@@ -11,16 +11,154 @@ import {
   formatLawReference
 } from '../../services/euLawsDatabase'
 
+// Remove duplicate expanded notation text from Austrian legal documents
+// The source data contains both abbreviated (§ 1, Abs. 1, Z 1) and expanded (Paragraph eins, Absatz eins, Ziffer eins) versions
+function cleanDuplicateText(text) {
+  if (!text) return ''
+
+  const lines = text.split('\n')
+  const cleanedLines = []
+
+  // Standalone expanded notation patterns (these are always duplicates)
+  const standaloneExpandedPatterns = [
+    /^Paragraph\s+\d+[a-z]?\s*,?\s*$/i,           // "Paragraph 13 c,"
+    /^Paragraph\s+eins\s*,?\s*$/i,                // "Paragraph eins,"
+    /^Absatz\s+(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+[a-z]?)\s*,?\s*$/i,  // "Absatz eins"
+    /^Ziffer\s+(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+)\s*,?\s*$/i,        // "Ziffer eins"
+    /^Litera\s+[a-z]\s*,?\s*$/i,                  // "Litera a"
+    /^Anmerkung,\s/i,                             // "Anmerkung, Paragraph..."
+  ]
+
+  // Patterns indicating the line contains expanded notation (duplicates of abbreviated)
+  const expandedContentPatterns = [
+    /Bundesgesetzblatt\s+(Teil\s+\w+,?\s*)?Nr\.\s+\d+\s+aus\s+\d+/i,  // "Bundesgesetzblatt Nr. 359 aus 1928"
+    /Paragraph\s+\d+[a-z]?\s*,\s*Absatz/i,        // "Paragraph 7, Absatz eins"
+    /gemäß\s+Paragraph\s+\d+/i,                   // "gemäß Paragraph 7"
+    /Paragraphen\s+\d+[a-z]?\s+(bis|und|,)/i,     // "Paragraphen 4 und 5"
+    /Absatz\s+(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+[a-z]?)\s*,?\s*(und|bis|Ziffer)/i, // "Absatz eins, Ziffer"
+    /des\s+Paragraph\s+\d+/i,                     // "des Paragraph 7"
+    /nach\s+Paragraph\s+\d+/i,                    // "nach Paragraph 14"
+    /im\s+Sinne\s+des\s+Paragraph/i,              // "im Sinne des Paragraph"
+    /\(Paragraph\s+\d+/i,                         // "(Paragraph 12 c)"
+    /Artikel\s+römisch\s+/i,                      // "Artikel römisch VI"
+    /Sitzung\s+\d+/i,                             // "Sitzung 1" (wrong expansion of "S. 1")
+  ]
+
+  // Function to normalize text for comparison (convert expanded to abbreviated)
+  const normalizeToAbbreviated = (line) => {
+    return line
+      .replace(/Paragraph\s+(\d+[a-z]?)\s*,?/gi, '§ $1')
+      .replace(/Paragraphen\s+/gi, '§§ ')
+      .replace(/Absatz\s+eins/gi, 'Abs. 1')
+      .replace(/Absatz\s+zwei/gi, 'Abs. 2')
+      .replace(/Absatz\s+drei/gi, 'Abs. 3')
+      .replace(/Absatz\s+vier/gi, 'Abs. 4')
+      .replace(/Absatz\s+fünf/gi, 'Abs. 5')
+      .replace(/Absatz\s+sechs/gi, 'Abs. 6')
+      .replace(/Absatz\s+sieben/gi, 'Abs. 7')
+      .replace(/Absatz\s+acht/gi, 'Abs. 8')
+      .replace(/Absatz\s+neun/gi, 'Abs. 9')
+      .replace(/Absatz\s+zehn/gi, 'Abs. 10')
+      .replace(/Absatz\s+(\d+[a-z]?)/gi, 'Abs. $1')
+      .replace(/Ziffer\s+eins/gi, 'Z 1')
+      .replace(/Ziffer\s+zwei/gi, 'Z 2')
+      .replace(/Ziffer\s+drei/gi, 'Z 3')
+      .replace(/Ziffer\s+(\d+)/gi, 'Z $1')
+      .replace(/Litera\s+([a-z])/gi, 'lit. $1')
+      .replace(/Bundesgesetzblatt\s+Teil\s+eins,?\s*Nr\.\s+(\d+)\s+aus\s+(\d+),?/gi, 'BGBl. I Nr. $1/$2')
+      .replace(/Bundesgesetzblatt\s+Teil\s+zwei,?\s*Nr\.\s+(\d+)\s+aus\s+(\d+),?/gi, 'BGBl. II Nr. $1/$2')
+      .replace(/Bundesgesetzblatt\s+Nr\.\s+(\d+)\s+aus\s+(\d+),?/gi, 'BGBl. Nr. $1/$2')
+      .replace(/Sitzung\s+(\d+)/gi, 'S. $1')
+      .replace(/römisch\s+([IVX]+)/gi, '$1')
+      .toLowerCase()
+      .trim()
+  }
+
+  // Keep track of recent normalized content to detect duplicates
+  const recentContent = []
+  const MAX_RECENT = 5
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim()
+
+    // Keep empty lines (but not multiple in a row)
+    if (!line) {
+      if (cleanedLines.length > 0 && cleanedLines[cleanedLines.length - 1] !== '') {
+        cleanedLines.push('')
+      }
+      continue
+    }
+
+    // Skip standalone expanded notation lines
+    if (standaloneExpandedPatterns.some(pattern => pattern.test(line))) {
+      continue
+    }
+
+    // Check if this line has expanded content patterns
+    const hasExpandedContent = expandedContentPatterns.some(pattern => pattern.test(line))
+
+    if (hasExpandedContent) {
+      // Normalize this line and check if we've seen similar content recently
+      const normalized = normalizeToAbbreviated(line)
+
+      // Check if any recent line has similar normalized content
+      const isDuplicate = recentContent.some(recent => {
+        // Compare normalized versions - if they're very similar, it's a duplicate
+        const similarity = getSimilarity(recent, normalized)
+        return similarity > 0.85
+      })
+
+      if (isDuplicate) {
+        continue // Skip this duplicate expanded line
+      }
+    }
+
+    // Add the line and track its normalized form
+    cleanedLines.push(line)
+    const normalizedLine = normalizeToAbbreviated(line)
+    recentContent.push(normalizedLine)
+    if (recentContent.length > MAX_RECENT) {
+      recentContent.shift()
+    }
+  }
+
+  return cleanedLines.join('\n')
+}
+
+// Simple similarity check between two strings
+function getSimilarity(str1, str2) {
+  if (!str1 || !str2) return 0
+  if (str1 === str2) return 1
+
+  const len1 = str1.length
+  const len2 = str2.length
+  const maxLen = Math.max(len1, len2)
+
+  if (maxLen === 0) return 1
+
+  // Count matching characters at same positions
+  let matches = 0
+  const minLen = Math.min(len1, len2)
+  for (let i = 0; i < minLen; i++) {
+    if (str1[i] === str2[i]) matches++
+  }
+
+  return matches / maxLen
+}
+
 // Parse law text into sections
 function parseLawSections(text) {
   if (!text) return []
+
+  // First clean duplicate expanded notation
+  const cleanedText = cleanDuplicateText(text)
 
   const sections = []
   // Match § sections and Artikel
   const sectionRegex = /(?:^|\n)(§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)|(?:Artikel|Art\.?)\s*(\d+[a-z]?)\s*\.?\s*([^\n]*))/gi
 
   let match
-  while ((match = sectionRegex.exec(text)) !== null) {
+  while ((match = sectionRegex.exec(cleanedText)) !== null) {
     const isArticle = !!match[4]
     const number = isArticle ? match[4] : match[2]
     const title = (isArticle ? match[5] : match[3])?.trim() || ''
@@ -37,8 +175,8 @@ function parseLawSections(text) {
   // Add content to each section
   for (let i = 0; i < sections.length; i++) {
     const start = sections[i].index
-    const end = i < sections.length - 1 ? sections[i + 1].index : text.length
-    sections[i].content = text.substring(start, end).trim()
+    const end = i < sections.length - 1 ? sections[i + 1].index : cleanedText.length
+    sections[i].content = cleanedText.substring(start, end).trim()
   }
 
   return sections
@@ -47,6 +185,9 @@ function parseLawSections(text) {
 // Skip boilerplate and get clean text
 function getCleanLawText(text) {
   if (!text) return ''
+
+  // First apply duplicate text cleaning
+  const cleanedText = cleanDuplicateText(text)
 
   // Find where real content starts
   const markers = [
@@ -59,14 +200,14 @@ function getCleanLawText(text) {
 
   let startIndex = 0
   for (const marker of markers) {
-    const match = text.match(marker)
-    if (match && match.index < text.length * 0.4) {
+    const match = cleanedText.match(marker)
+    if (match && match.index < cleanedText.length * 0.4) {
       startIndex = match.index
       break
     }
   }
 
-  return text.substring(startIndex)
+  return cleanedText.substring(startIndex)
 }
 
 // Law type badge colors
