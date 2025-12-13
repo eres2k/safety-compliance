@@ -5,9 +5,9 @@
  */
 
 // Import the full EU laws databases
-import atLawsData from '../../eu_safety_laws/at/at_safety_laws_database.json'
+import atLawsData from '../../eu_safety_laws/at/at_database.json'
 import deLawsData from '../../eu_safety_laws/de/de_safety_laws_database.json'
-import nlLawsData from '../../eu_safety_laws/nl/nl_safety_laws_database.json'
+import nlLawsData from '../../eu_safety_laws/nl/nl_database.json'
 
 // Database cache
 let lawsDatabase = null
