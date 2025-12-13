@@ -1,0 +1,338 @@
+{
+  "id": "DE",
+  "name": "DGUV & Arbeitsschutzgesetz (ArbSchG)",
+  "fullName": "Gesetz über die Durchführung von Maßnahmen des Arbeitsschutzes zur Verbesserung der Sicherheit und des Gesundheitsschutzes der Beschäftigten bei der Arbeit",
+  "country": "Germany",
+  "lastUpdated": "2024-01-01",
+  "sections": [
+    {
+      "id": "arbschg1",
+      "title": "ArbSchG - Erster Abschnitt: Allgemeine Vorschriften",
+      "sections": [
+        {
+          "id": "arbschg-1",
+          "paragraph": "§ 1 ArbSchG",
+          "title": "Zielsetzung und Anwendungsbereich",
+          "content": "Dieses Gesetz dient dazu, Sicherheit und Gesundheitsschutz der Beschäftigten bei der Arbeit durch Maßnahmen des Arbeitsschutzes zu sichern und zu verbessern. Es gilt in allen Tätigkeitsbereichen und findet im Rahmen der Vorgaben des Seearbeitsgesetzes auch auf den in dessen Anwendungsbereich fallenden Seeschiffen Anwendung.",
+          "keywords": ["Zielsetzung", "Anwendungsbereich", "Arbeitsschutz", "Geltungsbereich"]
+        },
+        {
+          "id": "arbschg-2",
+          "paragraph": "§ 2 ArbSchG",
+          "title": "Begriffsbestimmungen",
+          "content": "(1) Maßnahmen des Arbeitsschutzes im Sinne dieses Gesetzes sind Maßnahmen zur Verhütung von Unfällen bei der Arbeit und arbeitsbedingten Gesundheitsgefahren einschließlich Maßnahmen der menschengerechten Gestaltung der Arbeit.\n(2) Beschäftigte im Sinne dieses Gesetzes sind Arbeitnehmerinnen und Arbeitnehmer, die zu ihrer Berufsbildung Beschäftigten, arbeitnehmerähnliche Personen und Beamte.",
+          "keywords": ["Begriffsbestimmungen", "Arbeitsschutzmaßnahmen", "Beschäftigte", "Definitionen"]
+        }
+      ]
+    },
+    {
+      "id": "arbschg2",
+      "title": "ArbSchG - Zweiter Abschnitt: Pflichten des Arbeitgebers",
+      "sections": [
+        {
+          "id": "arbschg-3",
+          "paragraph": "§ 3 ArbSchG",
+          "title": "Grundpflichten des Arbeitgebers",
+          "content": "(1) Der Arbeitgeber ist verpflichtet, die erforderlichen Maßnahmen des Arbeitsschutzes unter Berücksichtigung der Umstände zu treffen, die Sicherheit und Gesundheit der Beschäftigten bei der Arbeit beeinflussen. Er hat die Maßnahmen auf ihre Wirksamkeit zu überprüfen und erforderlichenfalls sich ändernden Gegebenheiten anzupassen.\n(2) Zur Planung und Durchführung der Maßnahmen hat der Arbeitgeber unter Berücksichtigung der Art der Tätigkeiten und der Zahl der Beschäftigten für eine geeignete Organisation zu sorgen.",
+          "keywords": ["Grundpflichten", "Arbeitgeberpflichten", "Wirksamkeitsprüfung", "Organisation"]
+        },
+        {
+          "id": "arbschg-4",
+          "paragraph": "§ 4 ArbSchG",
+          "title": "Allgemeine Grundsätze",
+          "content": "Der Arbeitgeber hat bei Maßnahmen des Arbeitsschutzes von folgenden allgemeinen Grundsätzen auszugehen:\n1. Die Arbeit ist so zu gestalten, dass eine Gefährdung für das Leben sowie die physische und die psychische Gesundheit möglichst vermieden und die verbleibende Gefährdung möglichst gering gehalten wird;\n2. Gefahren sind an ihrer Quelle zu bekämpfen;\n3. bei den Maßnahmen sind der Stand von Technik, Arbeitsmedizin und Hygiene sowie sonstige gesicherte arbeitswissenschaftliche Erkenntnisse zu berücksichtigen;\n4. Maßnahmen sind mit dem Ziel zu planen, Technik, Arbeitsorganisation, sonstige Arbeitsbedingungen, soziale Beziehungen und Einfluss der Umwelt auf den Arbeitsplatz sachgerecht zu verknüpfen;\n5. individuelle Schutzmaßnahmen sind nachrangig zu anderen Maßnahmen.",
+          "keywords": ["Allgemeine Grundsätze", "TOP-Prinzip", "Gefahrenbekämpfung", "Arbeitsgestaltung"]
+        },
+        {
+          "id": "arbschg-5",
+          "paragraph": "§ 5 ArbSchG",
+          "title": "Beurteilung der Arbeitsbedingungen",
+          "content": "(1) Der Arbeitgeber hat durch eine Beurteilung der für die Beschäftigten mit ihrer Arbeit verbundenen Gefährdung zu ermitteln, welche Maßnahmen des Arbeitsschutzes erforderlich sind.\n(2) Der Arbeitgeber hat die Beurteilung je nach Art der Tätigkeiten vorzunehmen. Bei gleichartigen Arbeitsbedingungen ist die Beurteilung eines Arbeitsplatzes oder einer Tätigkeit ausreichend.\n(3) Eine Gefährdung kann sich insbesondere ergeben durch:\n1. die Gestaltung und die Einrichtung der Arbeitsstätte und des Arbeitsplatzes,\n2. physikalische, chemische und biologische Einwirkungen,\n3. die Gestaltung, die Auswahl und den Einsatz von Arbeitsmitteln,\n4. die Gestaltung von Arbeits- und Fertigungsverfahren, Arbeitsabläufen und Arbeitszeit und deren Zusammenwirken,\n5. unzureichende Qualifikation und Unterweisung der Beschäftigten,\n6. psychische Belastungen bei der Arbeit.",
+          "keywords": ["Gefährdungsbeurteilung", "Risikoanalyse", "Arbeitsbedingungen", "Psychische Belastung"]
+        },
+        {
+          "id": "arbschg-6",
+          "paragraph": "§ 6 ArbSchG",
+          "title": "Dokumentation",
+          "content": "(1) Der Arbeitgeber muss über die je nach Art der Tätigkeiten und der Zahl der Beschäftigten erforderlichen Unterlagen verfügen, aus denen das Ergebnis der Gefährdungsbeurteilung, die von ihm festgelegten Maßnahmen des Arbeitsschutzes und das Ergebnis ihrer Überprüfung ersichtlich sind.\n(2) Bei gleichartiger Gefährdungssituation ist es ausreichend, wenn die Unterlagen zusammengefasste Angaben enthalten.",
+          "keywords": ["Dokumentation", "Unterlagen", "Gefährdungsbeurteilung", "Nachweise"]
+        },
+        {
+          "id": "arbschg-7",
+          "paragraph": "§ 7 ArbSchG",
+          "title": "Übertragung von Aufgaben",
+          "content": "Bei der Übertragung von Aufgaben auf Beschäftigte hat der Arbeitgeber je nach Art der Tätigkeiten zu berücksichtigen, ob die Beschäftigten befähigt sind, die für die Sicherheit und den Gesundheitsschutz bei der Aufgabenerfüllung zu beachtenden Bestimmungen und Maßnahmen einzuhalten.",
+          "keywords": ["Aufgabenübertragung", "Befähigung", "Delegation", "Verantwortung"]
+        },
+        {
+          "id": "arbschg-8",
+          "paragraph": "§ 8 ArbSchG",
+          "title": "Zusammenarbeit mehrerer Arbeitgeber",
+          "content": "Werden Beschäftigte mehrerer Arbeitgeber an einem Arbeitsplatz tätig, sind die Arbeitgeber verpflichtet, bei der Durchführung der Sicherheits- und Gesundheitsschutzbestimmungen zusammenzuarbeiten. Soweit dies für die Sicherheit und den Gesundheitsschutz der Beschäftigten bei der Arbeit erforderlich ist, haben die Arbeitgeber je nach Art der Tätigkeiten insbesondere sich gegenseitig und ihre Beschäftigten über die mit den Arbeiten verbundenen Gefahren für Sicherheit und Gesundheit der Beschäftigten zu unterrichten und Maßnahmen zur Verhütung dieser Gefahren abzustimmen.",
+          "keywords": ["Zusammenarbeit", "Mehrere Arbeitgeber", "Koordination", "Fremdfirmen"]
+        },
+        {
+          "id": "arbschg-9",
+          "paragraph": "§ 9 ArbSchG",
+          "title": "Besondere Gefahren",
+          "content": "(1) Der Arbeitgeber hat Maßnahmen zu treffen, damit nur Beschäftigte Zugang zu besonders gefährlichen Arbeitsbereichen haben, die zuvor geeignete Anweisungen erhalten haben.\n(2) Der Arbeitgeber hat Vorkehrungen zu treffen, dass alle Beschäftigten, die einer unmittelbaren erheblichen Gefahr ausgesetzt sind oder sein können, möglichst frühzeitig über diese Gefahr und die getroffenen oder zu treffenden Schutzmaßnahmen unterrichtet sind.",
+          "keywords": ["Besondere Gefahren", "Zugangsbeschränkung", "Gefahrenbereiche", "Unterweisung"]
+        },
+        {
+          "id": "arbschg-10",
+          "paragraph": "§ 10 ArbSchG",
+          "title": "Erste Hilfe und sonstige Notfallmaßnahmen",
+          "content": "(1) Der Arbeitgeber hat entsprechend der Art der Arbeitsstätte und der Tätigkeiten sowie der Zahl der Beschäftigten die Maßnahmen zu treffen, die zur Ersten Hilfe, Brandbekämpfung und Evakuierung der Beschäftigten erforderlich sind.\n(2) Der Arbeitgeber hat diejenigen Beschäftigten zu benennen, die Aufgaben der Ersten Hilfe, Brandbekämpfung und Evakuierung der Beschäftigten übernehmen.",
+          "keywords": ["Erste Hilfe", "Brandbekämpfung", "Evakuierung", "Notfallmaßnahmen"]
+        },
+        {
+          "id": "arbschg-11",
+          "paragraph": "§ 11 ArbSchG",
+          "title": "Arbeitsmedizinische Vorsorge",
+          "content": "Der Arbeitgeber hat auf der Grundlage der Gefährdungsbeurteilung für eine angemessene arbeitsmedizinische Vorsorge zu sorgen.",
+          "keywords": ["Arbeitsmedizinische Vorsorge", "Gesundheitsüberwachung", "Vorsorgeuntersuchung"]
+        },
+        {
+          "id": "arbschg-12",
+          "paragraph": "§ 12 ArbSchG",
+          "title": "Unterweisung",
+          "content": "(1) Der Arbeitgeber hat die Beschäftigten über Sicherheit und Gesundheitsschutz bei der Arbeit während ihrer Arbeitszeit ausreichend und angemessen zu unterweisen. Die Unterweisung umfasst Anweisungen und Erläuterungen, die eigens auf den Arbeitsplatz oder den Aufgabenbereich der Beschäftigten ausgerichtet sind. Die Unterweisung muss bei der Einstellung, bei Veränderungen im Aufgabenbereich, der Einführung neuer Arbeitsmittel oder einer neuen Technologie vor Aufnahme der Tätigkeit der Beschäftigten erfolgen. Die Unterweisung muss an die Gefährdungsentwicklung angepasst sein und erforderlichenfalls regelmäßig wiederholt werden.",
+          "keywords": ["Unterweisung", "Schulung", "Arbeitsschutzunterweisung", "Einweisung"]
+        }
+      ]
+    },
+    {
+      "id": "arbschg3",
+      "title": "ArbSchG - Dritter Abschnitt: Pflichten und Rechte der Beschäftigten",
+      "sections": [
+        {
+          "id": "arbschg-15",
+          "paragraph": "§ 15 ArbSchG",
+          "title": "Pflichten der Beschäftigten",
+          "content": "(1) Die Beschäftigten sind verpflichtet, nach ihren Möglichkeiten sowie gemäß der Unterweisung und Weisung des Arbeitgebers für ihre Sicherheit und Gesundheit bei der Arbeit Sorge zu tragen. Entsprechend Satz 1 haben die Beschäftigten auch für die Sicherheit und Gesundheit der Personen zu sorgen, die von ihren Handlungen oder Unterlassungen bei der Arbeit betroffen sind.\n(2) Die Beschäftigten haben insbesondere Maschinen, Geräte, Werkzeuge, Arbeitsstoffe, Transportmittel und sonstige Arbeitsmittel sowie Schutzvorrichtungen und die ihnen zur Verfügung gestellte persönliche Schutzausrüstung bestimmungsgemäß zu verwenden.",
+          "keywords": ["Beschäftigtenpflichten", "Mitwirkung", "Sorgfaltspflicht", "PSA-Benutzung"]
+        },
+        {
+          "id": "arbschg-16",
+          "paragraph": "§ 16 ArbSchG",
+          "title": "Besondere Unterstützungspflichten",
+          "content": "(1) Die Beschäftigten haben dem Arbeitgeber oder dem zuständigen Vorgesetzten jede von ihnen festgestellte unmittelbare erhebliche Gefahr für die Sicherheit und Gesundheit sowie jeden an den Schutzsystemen festgestellten Defekt unverzüglich zu melden.\n(2) Die Beschäftigten haben gemeinsam mit dem Betriebsarzt und der Fachkraft für Arbeitssicherheit den Arbeitgeber darin zu unterstützen, die Sicherheit und den Gesundheitsschutz der Beschäftigten bei der Arbeit zu gewährleisten.",
+          "keywords": ["Meldepflicht", "Unterstützungspflicht", "Gefahrenmeldung", "Mitwirkung"]
+        },
+        {
+          "id": "arbschg-17",
+          "paragraph": "§ 17 ArbSchG",
+          "title": "Rechte der Beschäftigten",
+          "content": "(1) Die Beschäftigten sind berechtigt, dem Arbeitgeber Vorschläge zu allen Fragen der Sicherheit und des Gesundheitsschutzes bei der Arbeit zu machen.\n(2) Sind Beschäftigte auf Grund konkreter Anhaltspunkte der Auffassung, dass die vom Arbeitgeber getroffenen Maßnahmen und bereitgestellten Mittel nicht ausreichen, um die Sicherheit und den Gesundheitsschutz bei der Arbeit zu gewährleisten, können sie sich an die zuständige Behörde wenden.",
+          "keywords": ["Beschäftigtenrechte", "Vorschlagsrecht", "Beschwerderecht", "Behördenkontakt"]
+        }
+      ]
+    },
+    {
+      "id": "asig",
+      "title": "ASiG - Arbeitssicherheitsgesetz",
+      "sections": [
+        {
+          "id": "asig-1",
+          "paragraph": "§ 1 ASiG",
+          "title": "Grundsatz",
+          "content": "Der Arbeitgeber hat nach Maßgabe dieses Gesetzes Betriebsärzte und Fachkräfte für Arbeitssicherheit zu bestellen. Diese sollen ihn beim Arbeitsschutz und bei der Unfallverhütung unterstützen.",
+          "keywords": ["Bestellungspflicht", "Betriebsarzt", "Fachkraft für Arbeitssicherheit", "Grundsatz"]
+        },
+        {
+          "id": "asig-2",
+          "paragraph": "§ 2 ASiG",
+          "title": "Bestellung von Betriebsärzten",
+          "content": "(1) Der Arbeitgeber hat Betriebsärzte schriftlich zu bestellen und ihnen die in § 3 genannten Aufgaben zu übertragen, soweit dies erforderlich ist im Hinblick auf die Betriebsart und die damit für die Arbeitnehmer verbundenen Unfall- und Gesundheitsgefahren, die Zahl der beschäftigten Arbeitnehmer und die Zusammensetzung der Arbeitnehmerschaft, die Betriebsorganisation.",
+          "keywords": ["Betriebsarzt", "Bestellung", "Schriftform", "Anforderungen"]
+        },
+        {
+          "id": "asig-3",
+          "paragraph": "§ 3 ASiG",
+          "title": "Aufgaben der Betriebsärzte",
+          "content": "Die Betriebsärzte haben die Aufgabe, den Arbeitgeber beim Arbeitsschutz und bei der Unfallverhütung in allen Fragen des Gesundheitsschutzes zu unterstützen. Sie haben insbesondere:\n1. den Arbeitgeber und die sonst für den Arbeitsschutz und die Unfallverhütung verantwortlichen Personen zu beraten,\n2. die Arbeitnehmer zu untersuchen, arbeitsmedizinisch zu beurteilen und zu beraten,\n3. die Durchführung des Arbeitsschutzes und der Unfallverhütung zu beobachten.",
+          "keywords": ["Betriebsarzt-Aufgaben", "Beratung", "Untersuchung", "Arbeitsmedizin"]
+        },
+        {
+          "id": "asig-5",
+          "paragraph": "§ 5 ASiG",
+          "title": "Bestellung von Fachkräften für Arbeitssicherheit",
+          "content": "(1) Der Arbeitgeber hat Fachkräfte für Arbeitssicherheit (Sicherheitsingenieure, -techniker, -meister) schriftlich zu bestellen und ihnen die in § 6 genannten Aufgaben zu übertragen.",
+          "keywords": ["Fachkraft für Arbeitssicherheit", "FaSi", "Sifa", "Bestellung"]
+        },
+        {
+          "id": "asig-6",
+          "paragraph": "§ 6 ASiG",
+          "title": "Aufgaben der Fachkräfte für Arbeitssicherheit",
+          "content": "Die Fachkräfte für Arbeitssicherheit haben die Aufgabe, den Arbeitgeber beim Arbeitsschutz und bei der Unfallverhütung in allen Fragen der Arbeitssicherheit einschließlich der menschengerechten Gestaltung der Arbeit zu unterstützen. Sie haben insbesondere:\n1. den Arbeitgeber und die sonst für den Arbeitsschutz und die Unfallverhütung verantwortlichen Personen zu beraten,\n2. die Betriebsanlagen und die technischen Arbeitsmittel zu überprüfen,\n3. die Durchführung des Arbeitsschutzes und der Unfallverhütung zu beobachten,\n4. auf die Benutzung der Körperschutzmittel zu achten,\n5. Ursachen von Arbeitsunfällen zu untersuchen.",
+          "keywords": ["FaSi-Aufgaben", "Beratung", "Überprüfung", "Unfalluntersuchung"]
+        },
+        {
+          "id": "asig-11",
+          "paragraph": "§ 11 ASiG",
+          "title": "Arbeitsschutzausschuss",
+          "content": "Soweit in einer sonstigen Rechtsvorschrift nichts anderes bestimmt ist, hat der Arbeitgeber in Betrieben mit mehr als zwanzig Beschäftigten einen Arbeitsschutzausschuss zu bilden; bei der Feststellung der Zahl der Beschäftigten sind Teilzeitbeschäftigte mit einer regelmäßigen wöchentlichen Arbeitszeit von nicht mehr als 20 Stunden mit 0,5 und nicht mehr als 30 Stunden mit 0,75 zu berücksichtigen. Der Ausschuss setzt sich zusammen aus dem Arbeitgeber oder einem von ihm Beauftragten, zwei vom Betriebsrat bestimmten Betriebsratsmitgliedern, Betriebsärzten, Fachkräften für Arbeitssicherheit und Sicherheitsbeauftragten.",
+          "keywords": ["Arbeitsschutzausschuss", "ASA", "20 Beschäftigte", "Zusammensetzung"]
+        }
+      ]
+    },
+    {
+      "id": "dguv1",
+      "title": "DGUV Vorschrift 1: Grundsätze der Prävention",
+      "sections": [
+        {
+          "id": "dguv1-2",
+          "paragraph": "§ 2 DGUV V1",
+          "title": "Grundpflichten des Unternehmers",
+          "content": "Der Unternehmer hat die erforderlichen Maßnahmen zur Verhütung von Arbeitsunfällen, Berufskrankheiten und arbeitsbedingten Gesundheitsgefahren sowie für eine wirksame Erste Hilfe zu treffen. Die zu treffenden Maßnahmen sind insbesondere in staatlichen Arbeitsschutzvorschriften, dieser Unfallverhütungsvorschrift und in weiteren Unfallverhütungsvorschriften näher bestimmt.",
+          "keywords": ["Unternehmerpflichten", "Prävention", "Unfallverhütung", "Erste Hilfe"]
+        },
+        {
+          "id": "dguv1-4",
+          "paragraph": "§ 4 DGUV V1",
+          "title": "Unterweisung der Versicherten",
+          "content": "(1) Der Unternehmer hat die Versicherten über Sicherheit und Gesundheitsschutz bei der Arbeit, insbesondere über die mit ihrer Arbeit verbundenen Gefährdungen und die Maßnahmen zu ihrer Verhütung, entsprechend § 12 Absatz 1 Arbeitsschutzgesetz sowie bei einer Arbeitnehmerüberlassung entsprechend § 12 Absatz 2 Arbeitsschutzgesetz zu unterweisen.\n(2) Der Unternehmer hat die Versicherten über die bei ihren Tätigkeiten auftretenden Gefährdungen sowie über die Maßnahmen zu ihrer Abwendung vor Aufnahme der Tätigkeit zu unterweisen. Diese Unterweisung muss bei Bedarf, mindestens aber einmal jährlich, wiederholt werden.",
+          "keywords": ["Unterweisung", "Jährlich", "Gefährdungen", "Schulung"]
+        },
+        {
+          "id": "dguv1-7",
+          "paragraph": "§ 7 DGUV V1",
+          "title": "Befähigung für Tätigkeiten",
+          "content": "Der Unternehmer darf Versicherte, die erkennbar nicht in der Lage sind, eine Arbeit ohne Gefahr für sich oder andere auszuführen, mit dieser Arbeit nicht beschäftigen.",
+          "keywords": ["Befähigung", "Eignung", "Arbeitsfähigkeit", "Beschäftigungsverbot"]
+        },
+        {
+          "id": "dguv1-20",
+          "paragraph": "§ 20 DGUV V1",
+          "title": "Sicherheitsbeauftragte",
+          "content": "(1) In Unternehmen mit regelmäßig mehr als 20 Beschäftigten hat der Unternehmer unter Beteiligung des Betriebsrates oder Personalrates Sicherheitsbeauftragte zu bestellen.\n(2) Als Sicherheitsbeauftragte dürfen nur Personen bestellt werden, die in dem Unternehmen beschäftigt sind.\n(3) Die Zahl der Sicherheitsbeauftragten ergibt sich aus der Anlage 2 zu dieser Unfallverhütungsvorschrift. Sie richtet sich nach: der im Unternehmen bestehenden Unfall- und Gesundheitsgefahr, der räumlichen, zeitlichen und fachlichen Nähe der Sicherheitsbeauftragten zu den Beschäftigten.",
+          "keywords": ["Sicherheitsbeauftragte", "SiBe", "20 Beschäftigte", "Bestellung"]
+        },
+        {
+          "id": "dguv1-22",
+          "paragraph": "§ 22 DGUV V1",
+          "title": "Notfallmaßnahmen",
+          "content": "Der Unternehmer hat entsprechend der Art der Arbeitsstätte und der Tätigkeiten sowie der Zahl der Beschäftigten die Maßnahmen zu treffen, die zur Ersten Hilfe, Brandbekämpfung und Evakuierung der Versicherten erforderlich sind, dabei hat er der Anwesenheit anderer Personen Rechnung zu tragen.",
+          "keywords": ["Notfallmaßnahmen", "Erste Hilfe", "Brandbekämpfung", "Evakuierung"]
+        },
+        {
+          "id": "dguv1-24",
+          "paragraph": "§ 24 DGUV V1",
+          "title": "Erste-Hilfe-Material",
+          "content": "(1) Der Unternehmer hat dafür zu sorgen, dass zur Ersten Hilfe und zur Rettung aus Gefahr die erforderlichen Einrichtungen, das erforderliche Erste-Hilfe-Material und das erforderliche Personal zur Verfügung stehen.\n(2) Der Unternehmer hat dafür zu sorgen, dass nach einem tödlichen oder schweren Unfall die Unfallstelle so lange unverändert bleibt, wie es zur Untersuchung des Unfalls notwendig ist.",
+          "keywords": ["Erste-Hilfe-Material", "Verbandkasten", "Unfallstelle", "Sicherung"]
+        },
+        {
+          "id": "dguv1-26",
+          "paragraph": "§ 26 DGUV V1",
+          "title": "Zahl und Ausbildung der Ersthelfer",
+          "content": "(1) Der Unternehmer hat dafür zu sorgen, dass für die Erste-Hilfe-Leistung Ersthelfer zur Verfügung stehen. Die Mindestanzahl der Ersthelfer beträgt:\n- bei 2 bis zu 20 anwesenden Versicherten: 1 Ersthelfer\n- bei mehr als 20 anwesenden Versicherten in Verwaltungs- und Handelsbetrieben: 5% der Beschäftigten\n- bei mehr als 20 anwesenden Versicherten in sonstigen Betrieben: 10% der Beschäftigten",
+          "keywords": ["Ersthelfer", "Anzahl", "Ausbildung", "Quote"]
+        }
+      ]
+    },
+    {
+      "id": "dguv2",
+      "title": "DGUV Vorschrift 2: Betriebsärzte und Fachkräfte für Arbeitssicherheit",
+      "sections": [
+        {
+          "id": "dguv2-2",
+          "paragraph": "§ 2 DGUV V2",
+          "title": "Bestellung",
+          "content": "(1) Der Unternehmer hat Betriebsärzte und Fachkräfte für Arbeitssicherheit zur Wahrnehmung der in den §§ 3 und 6 Arbeitssicherheitsgesetz bezeichneten Aufgaben schriftlich zu bestellen.\n(2) Der Unternehmer muss bei der Bestellung Festlegungen über die regelmäßige Erfüllung der Aufgaben treffen.",
+          "keywords": ["Bestellung", "Betriebsarzt", "FaSi", "Schriftform"]
+        },
+        {
+          "id": "dguv2-5",
+          "paragraph": "§ 5 DGUV V2",
+          "title": "Einsatzzeiten",
+          "content": "Die Grundbetreuung orientiert sich an der Betriebsart und wird in drei Betreuungsgruppen eingeteilt. Die Einsatzzeiten betragen:\n- Gruppe I (geringe Gefährdung): 0,5 Stunden je Beschäftigten/Jahr\n- Gruppe II (mittlere Gefährdung): 1,5 Stunden je Beschäftigten/Jahr\n- Gruppe III (hohe Gefährdung): 2,5 Stunden je Beschäftigten/Jahr\nDie Aufteilung zwischen Betriebsarzt und FaSi soll mindestens jeweils 20% betragen und wird vom Unternehmer festgelegt.",
+          "keywords": ["Einsatzzeiten", "Grundbetreuung", "Betreuungsgruppen", "Stundenberechnung"]
+        }
+      ]
+    }
+  ],
+  "penalties": [
+    {
+      "violation": "Fehlende Gefährdungsbeurteilung",
+      "penalty": "Bis zu € 30.000",
+      "reference": "§ 5 ArbSchG"
+    },
+    {
+      "violation": "Keine Fachkraft für Arbeitssicherheit",
+      "penalty": "Bis zu € 25.000",
+      "reference": "§ 1 ASiG"
+    },
+    {
+      "violation": "Fehlende Dokumentation",
+      "penalty": "Bis zu € 5.000",
+      "reference": "§ 6 ArbSchG"
+    },
+    {
+      "violation": "Kein Arbeitsschutzausschuss",
+      "penalty": "Bis zu € 10.000",
+      "reference": "§ 11 ASiG"
+    },
+    {
+      "violation": "Fehlende jährliche Unterweisung",
+      "penalty": "Bis zu € 5.000",
+      "reference": "DGUV V1 § 4"
+    },
+    {
+      "violation": "Keine Sicherheitsbeauftragten",
+      "penalty": "Bis zu € 10.000",
+      "reference": "DGUV V1 § 20"
+    },
+    {
+      "violation": "Fehlende Ersthelfer",
+      "penalty": "Bis zu € 5.000",
+      "reference": "DGUV V1 § 26"
+    }
+  ],
+  "personnelRequirements": {
+    "sibe": {
+      "threshold": 20,
+      "formula": "Abhängig von Gefährdung und Betriebsart (siehe DGUV V1 Anlage 2)",
+      "description": "Sicherheitsbeauftragte ab 20 Beschäftigten"
+    },
+    "fasi": {
+      "description": "Pflicht in allen Betrieben",
+      "hours": {
+        "groupI": 0.5,
+        "groupII": 1.5,
+        "groupIII": 2.5
+      },
+      "unit": "Stunden pro Beschäftigten pro Jahr"
+    },
+    "betriebsarzt": {
+      "description": "Pflicht in allen Betrieben",
+      "hours": {
+        "groupI": 0.2,
+        "groupII": 0.5,
+        "groupIII": 1.2
+      },
+      "unit": "Stunden pro Beschäftigten pro Jahr"
+    },
+    "firstAiders": {
+      "under20": 1,
+      "office": "5% der Beschäftigten",
+      "other": "10% der Beschäftigten"
+    },
+    "asa": {
+      "threshold": 20,
+      "description": "Arbeitsschutzausschuss ab 20 Beschäftigten"
+    }
+  },
+  "glossary": [
+    { "abbr": "ArbSchG", "full": "Arbeitsschutzgesetz", "description": "Gesetz über die Durchführung von Maßnahmen des Arbeitsschutzes" },
+    { "abbr": "ASiG", "full": "Arbeitssicherheitsgesetz", "description": "Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte" },
+    { "abbr": "DGUV", "full": "Deutsche Gesetzliche Unfallversicherung", "description": "Spitzenverband der Berufsgenossenschaften und Unfallkassen" },
+    { "abbr": "FaSi", "full": "Fachkraft für Arbeitssicherheit", "description": "Auch: Sifa - Sicherheitsfachkraft" },
+    { "abbr": "SiBe", "full": "Sicherheitsbeauftragter", "description": "Ehrenamtlicher Beschäftigter für Arbeitsschutz" },
+    { "abbr": "ASA", "full": "Arbeitsschutzausschuss", "description": "Betriebliches Gremium für Arbeitsschutzfragen" },
+    { "abbr": "GBU", "full": "Gefährdungsbeurteilung", "description": "Systematische Ermittlung und Bewertung von Gefährdungen" },
+    { "abbr": "PSA", "full": "Persönliche Schutzausrüstung", "description": "Ausrüstung zum Schutz gegen Gefährdungen" },
+    { "abbr": "BG", "full": "Berufsgenossenschaft", "description": "Träger der gesetzlichen Unfallversicherung" },
+    { "abbr": "ArbMedVV", "full": "Verordnung zur arbeitsmedizinischen Vorsorge", "description": "Regelt arbeitsmedizinische Vorsorgeuntersuchungen" }
+  ]
+}

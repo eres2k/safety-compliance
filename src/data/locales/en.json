@@ -1,0 +1,132 @@
+{
+  "appTitle": "WHS Safety Compliance Navigator",
+  "appSubtitle": "AI-Powered Workplace Safety Assistant",
+  "selectFramework": "Select Legal Framework",
+  "frameworks": {
+    "AT": "Austria (ASchG)",
+    "DE": "Germany (DGUV)",
+    "NL": "Netherlands (Arbowet)"
+  },
+  "modules": {
+    "lawBrowser": {
+      "title": "Law Browser & Search",
+      "description": "Navigate and search safety legislation"
+    },
+    "complianceChecker": {
+      "title": "Compliance Checker",
+      "description": "Check requirements for your company"
+    },
+    "documentGenerator": {
+      "title": "Document Generator",
+      "description": "Create safety documents from templates"
+    },
+    "quickReference": {
+      "title": "Quick Reference Tools",
+      "description": "Calculators, lookups, and glossary"
+    },
+    "regulationLookup": {
+      "title": "Regulation Lookup",
+      "description": "Query specific requirements"
+    }
+  },
+  "common": {
+    "search": "Search",
+    "searchPlaceholder": "Search laws and regulations...",
+    "back": "Back to Modules",
+    "generate": "Generate",
+    "calculate": "Calculate",
+    "lookup": "Look Up",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "download": "Download",
+    "bookmark": "Bookmark",
+    "bookmarked": "Bookmarked",
+    "explain": "Explain Simply",
+    "loading": "Loading",
+    "noResults": "No results found",
+    "selectOption": "Select an option",
+    "companySize": "Company Size",
+    "industry": "Industry Type",
+    "topic": "Topic",
+    "employees": "employees",
+    "required": "Required",
+    "optional": "Optional",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close"
+  },
+  "industries": {
+    "logistics": "Logistics & Warehousing",
+    "manufacturing": "Manufacturing",
+    "construction": "Construction",
+    "office": "Office Work",
+    "healthcare": "Healthcare",
+    "retail": "Retail",
+    "hospitality": "Hospitality",
+    "education": "Education"
+  },
+  "topics": {
+    "firstAid": "First Aid",
+    "fireSafety": "Fire Safety",
+    "ppe": "Personal Protective Equipment",
+    "hazardous": "Hazardous Substances",
+    "ergonomics": "Ergonomics",
+    "machinery": "Machinery Safety",
+    "electrical": "Electrical Safety",
+    "workingHours": "Working Hours",
+    "training": "Safety Training",
+    "riskAssessment": "Risk Assessment"
+  },
+  "documents": {
+    "riskAssessment": "Risk Assessment Template",
+    "asaMeeting": "ASA Meeting Agenda",
+    "committeeMinutes": "Safety Committee Minutes",
+    "inspectionChecklist": "Workplace Inspection Checklist",
+    "incidentReport": "Incident Report Form",
+    "trainingDoc": "Training Documentation"
+  },
+  "documentFields": {
+    "workplace": "Workplace/Area",
+    "activity": "Activity/Process",
+    "department": "Department",
+    "date": "Date",
+    "attendees": "Attendees",
+    "mainTopics": "Main Topics",
+    "discussedItems": "Items Discussed",
+    "inspectionType": "Inspection Type",
+    "area": "Area to Inspect",
+    "location": "Location",
+    "description": "Description of Incident",
+    "injuredPerson": "Injured Person (if any)",
+    "trainingType": "Training Type",
+    "participants": "Participants",
+    "trainer": "Trainer Name"
+  },
+  "tools": {
+    "deadlineCalculator": "Deadline Calculator",
+    "penaltyLookup": "Penalty Lookup Table",
+    "personnelCalculator": "Required Personnel Calculator",
+    "glossary": "Abbreviation Glossary"
+  },
+  "calculators": {
+    "lastInspection": "Last Inspection Date",
+    "nextInspection": "Next Inspection Due",
+    "daysRemaining": "Days Remaining",
+    "daysOverdue": "days overdue!",
+    "numberOfEmployees": "Number of Employees",
+    "enterEmployees": "Enter number of employees"
+  },
+  "compliance": {
+    "requirements": "Compliance Requirements",
+    "queryPrompt": "What are the requirements for [TOPIC] in a company with [SIZE] employees?",
+    "quickTopics": "Quick topics:"
+  },
+  "api": {
+    "notConfigured": "AI features require API configuration. Please contact administrator.",
+    "error": "Error generating response. Please try again."
+  },
+  "footer": {
+    "disclaimer": "For informational purposes only",
+    "advice": "Always consult official sources and legal professionals for binding advice"
+  }
+}

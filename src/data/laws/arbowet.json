@@ -1,0 +1,250 @@
+{
+  "id": "NL",
+  "name": "Arbowet - Arbeidsomstandighedenwet",
+  "fullName": "Wet van 18 maart 1999, houdende bepalingen ter verbetering van de arbeidsomstandigheden",
+  "country": "Netherlands",
+  "lastUpdated": "2024-01-01",
+  "sections": [
+    {
+      "id": "ch1",
+      "title": "Hoofdstuk 1: Begrippen en toepassingsgebied",
+      "sections": [
+        {
+          "id": "art1",
+          "paragraph": "Artikel 1",
+          "title": "Begripsbepalingen",
+          "content": "In deze wet en de daarop berustende bepalingen wordt verstaan onder:\na. arbeid: arbeid verricht in dienst van een werkgever;\nb. arbeidsomstandigheden: omstandigheden waaronder arbeid wordt verricht;\nc. werkgever: degene die een ander krachtens arbeidsovereenkomst, publiekrechtelijke aanstelling of in het kader van de vrijwillige overheidsdienst arbeid laat verrichten;\nd. werknemer: een persoon die krachtens arbeidsovereenkomst, publiekrechtelijke aanstelling of in het kader van de vrijwillige overheidsdienst arbeid verricht;\ne. arbeidsplaats: iedere plaats waar arbeid wordt verricht.",
+          "keywords": ["Begrippen", "Definities", "Werkgever", "Werknemer", "Arbeidsplaats"]
+        },
+        {
+          "id": "art2",
+          "paragraph": "Artikel 2",
+          "title": "Toepassingsgebied",
+          "content": "(1) Deze wet is van toepassing op arbeid verricht in Nederland en de Nederlandse exclusieve economische zone.\n(2) Deze wet is niet van toepassing op arbeid verricht in of op een luchtvaartuig tijdens de vlucht, een zeeschip of een zeevissersschip, voor zover de bescherming van de werknemers naar het oordeel van Onze Minister voldoende op andere wijze is gewaarborgd.",
+          "keywords": ["Toepassingsgebied", "Nederland", "Geldingsbereik"]
+        }
+      ]
+    },
+    {
+      "id": "ch2",
+      "title": "Hoofdstuk 2: Arbeidsomstandighedenbeleid",
+      "sections": [
+        {
+          "id": "art3",
+          "paragraph": "Artikel 3",
+          "title": "Algemeen arbeidsomstandighedenbeleid",
+          "content": "(1) De werkgever zorgt voor de veiligheid en de gezondheid van de werknemers inzake alle met de arbeid verbonden aspecten en voert daartoe een beleid dat is gericht op zo goed mogelijke arbeidsomstandigheden, waarbij hij, gelet op de stand van de wetenschap en professionele dienstverlening, het volgende in acht neemt:\na. de werkgever organiseert de arbeid zodanig dat daarvan geen nadelige invloed uitgaat op de veiligheid en de gezondheid van de werknemer;\nb. de werkgever voorkomt en beperkt psychosociale arbeidsbelasting;\nc. de gevaren en risico's voor de veiligheid of de gezondheid van de werknemer worden zoveel mogelijk in eerste aanleg bij de bron bestreden;\nd. arbeidsplaatsen, arbeidsmiddelen en de wijze van werken worden zoveel mogelijk aangepast aan de persoonlijke eigenschappen van werknemers.",
+          "keywords": ["Arbobeleid", "Veiligheid", "Gezondheid", "Werkgeverplichten", "PSA"]
+        },
+        {
+          "id": "art4",
+          "paragraph": "Artikel 4",
+          "title": "Verzuimbeleid",
+          "content": "De werkgever voert, binnen het algemene arbeidsomstandighedenbeleid, een beleid met betrekking tot het voorkomen en indien dat niet mogelijk is beperken van ziekteverzuim van werknemers.",
+          "keywords": ["Verzuimbeleid", "Ziekteverzuim", "Preventie"]
+        },
+        {
+          "id": "art5",
+          "paragraph": "Artikel 5",
+          "title": "Inventarisatie en evaluatie van risico's",
+          "content": "(1) Bij het voeren van het arbeidsomstandighedenbeleid legt de werkgever in een inventarisatie en evaluatie schriftelijk vast welke risico's de arbeid voor de werknemers met zich brengt. Deze risico-inventarisatie en -evaluatie bevat tevens een beschrijving van de gevaren en de risicobeperkende maatregelen en de risico's voor bijzondere categorieën van werknemers.\n(2) In de risico-inventarisatie en -evaluatie wordt aandacht besteed aan de toegang van werknemers tot een deskundige werknemer of persoon of de arbodienst.\n(3) Een plan van aanpak, waarin is aangegeven welke maatregelen zullen worden genomen in verband met de bedoelde risico's en de samenhang daartussen, maakt deel uit van de risico-inventarisatie en -evaluatie.\n(4) De risico-inventarisatie en -evaluatie wordt aangepast zo dikwijls als de daarmee opgedane ervaring, gewijzigde werkmethoden of werkomstandigheden of de stand van de wetenschap en professionele dienstverlening daartoe aanleiding geven.",
+          "keywords": ["RI&E", "Risico-inventarisatie", "Plan van aanpak", "Risicobeoordeling"]
+        },
+        {
+          "id": "art6",
+          "paragraph": "Artikel 6",
+          "title": "Toetsing RI&E",
+          "content": "(1) De risico-inventarisatie en -evaluatie wordt getoetst door een gecertificeerde deskundige of arbodienst.\n(2) In afwijking van het eerste lid is toetsing niet verplicht indien in de onderneming ten hoogste 25 werknemers werkzaam zijn en gebruik is gemaakt van een bij algemene maatregel van bestuur aangewezen risico-inventarisatie en -evaluatiemethode.",
+          "keywords": ["RI&E toetsing", "Certificering", "25 werknemers", "Vrijstelling"]
+        },
+        {
+          "id": "art8",
+          "paragraph": "Artikel 8",
+          "title": "Voorlichting en onderricht",
+          "content": "(1) De werkgever zorgt ervoor dat de werknemers doeltreffend worden ingelicht over de te verrichten werkzaamheden en de daaraan verbonden risico's, alsmede over de maatregelen die erop gericht zijn deze risico's te voorkomen of te beperken.\n(2) De werkgever zorgt ervoor dat aan de werknemers doeltreffend en aan hun onderscheiden taken aangepast onderricht wordt verstrekt met betrekking tot de arbeidsomstandigheden.\n(3) De voorlichting en het onderricht worden gegeven bij indiensttreding, bij overplaatsing of verandering van functie, bij invoering van nieuwe arbeidsmiddelen of veranderde werkmethoden.",
+          "keywords": ["Voorlichting", "Onderricht", "Instructie", "Opleiding"]
+        },
+        {
+          "id": "art9",
+          "paragraph": "Artikel 9",
+          "title": "Melding en registratie van arbeidsongevallen en beroepsziekten",
+          "content": "(1) De werkgever meldt arbeidsongevallen die leiden tot de dood, een blijvend letsel of een ziekenhuisopname direct aan de daartoe aangewezen toezichthouder en rapporteert daaromtrent desgevraagd zo spoedig mogelijk schriftelijk aan deze toezichthouder.\n(2) De werkgever houdt een lijst bij van de gemelde arbeidsongevallen en van arbeidsongevallen die hebben geleid tot een verzuim van meer dan drie werkdagen.",
+          "keywords": ["Ongevallenmelding", "Registratie", "Arbeidsongevallen", "Beroepsziekten"]
+        }
+      ]
+    },
+    {
+      "id": "ch3",
+      "title": "Hoofdstuk 3: Bijstand deskundige diensten",
+      "sections": [
+        {
+          "id": "art13",
+          "paragraph": "Artikel 13",
+          "title": "Bijstand deskundige werknemers op het gebied van preventie en bescherming",
+          "content": "(1) De werkgever laat zich ten aanzien van de naleving van zijn verplichtingen op grond van deze wet bijstaan door een of meer deskundige werknemers.\n(2) De werknemers beschikken over voldoende deskundigheid, ervaring en uitrusting om de taken naar behoren te vervullen.\n(3) De in het eerste lid bedoelde verplichting geldt niet met betrekking tot de in artikel 14, eerste lid, bedoelde taken.",
+          "keywords": ["Preventiemedewerker", "Deskundige werknemer", "Bijstand", "Interne ondersteuning"]
+        },
+        {
+          "id": "art14",
+          "paragraph": "Artikel 14",
+          "title": "Maatwerkregeling deskundige bijstand",
+          "content": "(1) De werkgever kan voor de organisatie van de deskundige bijstand, bedoeld in artikel 13, kiezen voor een maatwerkregeling als bedoeld in dit artikel of voor de vangnetregeling, bedoeld in artikel 14a.\n(2) In de maatwerkregeling worden afspraken gemaakt over:\na. het toetsen van de risico-inventarisatie en -evaluatie;\nb. de bijstand bij de begeleiding van werknemers die door ziekte niet in staat zijn hun arbeid te verrichten;\nc. het uitvoeren van het arbeidsgezondheidskundig onderzoek.\n(3) De werkgever sluit een contract met een bedrijfsarts of arbodienst voor de taken genoemd in het tweede lid.",
+          "keywords": ["Maatwerkregeling", "Arbodienst", "Bedrijfsarts", "Contract"]
+        },
+        {
+          "id": "art14a",
+          "paragraph": "Artikel 14a",
+          "title": "Vangnetregeling deskundige bijstand",
+          "content": "(1) Indien de werkgever niet kiest voor de maatwerkregeling, is hij verplicht zich te laten bijstaan door een gecertificeerde arbodienst (vangnetregeling).\n(2) De arbodienst verricht in ieder geval de taken genoemd in artikel 14, tweede lid.",
+          "keywords": ["Vangnetregeling", "Arbodienst", "Certificering"]
+        },
+        {
+          "id": "art15",
+          "paragraph": "Artikel 15",
+          "title": "Voorzieningen in verband met eerste hulp, brandbestrijding en evacuatie",
+          "content": "(1) De werkgever zorgt voor de nodige voorzieningen voor eerste hulp bij ongevallen, voor brandbestrijding en voor evacuatie van werknemers en andere aanwezige personen, en bepaalt het aantal werknemers dat is belast met het verlenen van eerste hulp, brandbestrijding en evacuatie (BHV).\n(2) De werkgever zorgt dat de werknemers die zijn belast met eerste hulp, brandbestrijding en evacuatie adequaat zijn opgeleid en over voldoende materieel beschikken.",
+          "keywords": ["BHV", "Eerste hulp", "Brandbestrijding", "Evacuatie", "Bedrijfshulpverlening"]
+        }
+      ]
+    },
+    {
+      "id": "ch4",
+      "title": "Hoofdstuk 4: Verplichtingen en rechten werknemers",
+      "sections": [
+        {
+          "id": "art11",
+          "paragraph": "Artikel 11",
+          "title": "Verplichtingen werknemers",
+          "content": "De werknemer is verplicht om in zijn doen en laten op de arbeidsplaats, overeenkomstig zijn opleiding en de door de werkgever gegeven instructies, naar vermogen zorg te dragen voor zijn eigen veiligheid en gezondheid en die van de andere betrokken personen. Met name is hij verplicht om:\na. arbeidsmiddelen en gevaarlijke stoffen op de juiste wijze te gebruiken;\nb. de hem ter beschikking gestelde persoonlijke beschermingsmiddelen op de juiste wijze te gebruiken en na gebruik op de daartoe bestemde plaats op te bergen;\nc. de op arbeidsmiddelen en anderszins aangebrachte beveiligingen niet te veranderen of buiten noodzaak weg te halen;\nd. mee te werken aan voor hem georganiseerd onderricht;\ne. de door hem opgemerkte gevaren voor de veiligheid of de gezondheid terstond ter kennis te brengen aan de werkgever.",
+          "keywords": ["Werknemersverplichtingen", "Zorgplicht", "PBM", "Meldingsplicht"]
+        },
+        {
+          "id": "art12",
+          "paragraph": "Artikel 12",
+          "title": "Rechten werknemers",
+          "content": "(1) De werknemer heeft het recht het werk te onderbreken en, indien het gevaar ernstig en onmiddellijk is en niet kan worden voorkomen, de gevaarlijke werkplek te verlaten.\n(2) De werknemer die van het in het eerste lid bedoelde recht gebruik heeft gemaakt, mag niet benadeeld worden.",
+          "keywords": ["Werknemersrechten", "Werkonderbreking", "Benadelingsverbod"]
+        }
+      ]
+    },
+    {
+      "id": "ch5",
+      "title": "Hoofdstuk 5: Toezicht en handhaving",
+      "sections": [
+        {
+          "id": "art24",
+          "paragraph": "Artikel 24",
+          "title": "Aanwijzing toezichthouders",
+          "content": "Met het toezicht op de naleving van het bepaalde bij of krachtens deze wet zijn belast de bij besluit van Onze Minister aangewezen ambtenaren van de Nederlandse Arbeidsinspectie (Inspectie SZW).",
+          "keywords": ["Arbeidsinspectie", "Inspectie SZW", "Toezicht", "Handhaving"]
+        },
+        {
+          "id": "art27",
+          "paragraph": "Artikel 27",
+          "title": "Eis tot naleving",
+          "content": "(1) Een daartoe aangewezen toezichthouder kan aan een werkgever of een werknemer een eis stellen betreffende de wijze waarop een of meer bepalingen van deze wet moeten worden nageleefd.\n(2) Een eis wordt gesteld voor een bepaalde termijn.\n(3) Het niet naleven van een eis is een beboetbaar feit.",
+          "keywords": ["Eis tot naleving", "Termijn", "Beboetbaar feit"]
+        },
+        {
+          "id": "art28",
+          "paragraph": "Artikel 28",
+          "title": "Stillegging van het werk",
+          "content": "Een daartoe aangewezen toezichthouder is bevoegd mondeling of schriftelijk te bevelen dat personen niet mogen blijven in door hem aangewezen plaatsen of bepaalde werkzaamheden moeten staken, indien naar zijn redelijk oordeel ernstig gevaar voor personen bestaat.",
+          "keywords": ["Stillegging", "Werkstaking", "Ernstig gevaar", "Bevel"]
+        },
+        {
+          "id": "art33",
+          "paragraph": "Artikel 33",
+          "title": "Beboetbare feiten",
+          "content": "(1) Als overtreding wordt aangemerkt het niet naleven van de in deze wet genoemde voorschriften.\n(2) De bestuurlijke boete die ten hoogste voor een overtreding kan worden opgelegd, is gelijk aan de geldboete van de vijfde categorie (€ 103.000).\n(3) Bij ernstige overtredingen en recidive kan de boete worden verdubbeld.",
+          "keywords": ["Boetes", "Overtredingen", "Bestuurlijke boete", "Sancties"]
+        }
+      ]
+    },
+    {
+      "id": "ch6",
+      "title": "Hoofdstuk 6: Bijzondere bepalingen",
+      "sections": [
+        {
+          "id": "art16",
+          "paragraph": "Artikel 16",
+          "title": "Nadere regels",
+          "content": "Bij algemene maatregel van bestuur kunnen nadere regels worden gesteld ter uitvoering van deze wet. Deze regels zijn opgenomen in het Arbobesluit en de Arboregeling.",
+          "keywords": ["Arbobesluit", "Arboregeling", "Nadere regels", "AMvB"]
+        }
+      ]
+    }
+  ],
+  "penalties": [
+    {
+      "violation": "Ontbrekende RI&E",
+      "penalty": "Tot € 45.000",
+      "reference": "Art. 5 Arbowet"
+    },
+    {
+      "violation": "Geen preventiemedewerker",
+      "penalty": "Tot € 13.500",
+      "reference": "Art. 13 Arbowet"
+    },
+    {
+      "violation": "Ontbrekende BHV",
+      "penalty": "Tot € 13.500",
+      "reference": "Art. 15 Arbowet"
+    },
+    {
+      "violation": "Geen voorlichting/onderricht",
+      "penalty": "Tot € 4.500",
+      "reference": "Art. 8 Arbowet"
+    },
+    {
+      "violation": "Ontbrekend arbodienstcontract",
+      "penalty": "Tot € 13.500",
+      "reference": "Art. 14 Arbowet"
+    },
+    {
+      "violation": "Niet melden arbeidsongeval",
+      "penalty": "Tot € 9.000",
+      "reference": "Art. 9 Arbowet"
+    },
+    {
+      "violation": "Ernstige overtreding (herhaling)",
+      "penalty": "Tot € 103.000",
+      "reference": "Art. 33 Arbowet"
+    }
+  ],
+  "personnelRequirements": {
+    "preventiemedewerker": {
+      "description": "Verplicht in alle bedrijven",
+      "rules": [
+        { "max": 25, "note": "Werkgever mag zelf de taken uitvoeren" },
+        { "min": 26, "note": "Minimaal 1 aangewezen werknemer" }
+      ]
+    },
+    "bhv": {
+      "description": "Bedrijfshulpverlening",
+      "minimum": "Minimaal 1 BHV'er per 50 werknemers",
+      "note": "Afhankelijk van risico's kunnen meer nodig zijn"
+    },
+    "arbodienst": {
+      "description": "Maatwerkregeling of Vangnetregeling",
+      "maatwerkregeling": "Contract met bedrijfsarts voor wettelijke taken",
+      "vangnetregeling": "Gecertificeerde arbodienst voor alle taken"
+    },
+    "rie": {
+      "toetsing": "Verplicht door gecertificeerde deskundige/arbodienst",
+      "vrijstelling": "Tot 25 werknemers met erkend RI&E-instrument"
+    }
+  },
+  "glossary": [
+    { "abbr": "Arbowet", "full": "Arbeidsomstandighedenwet", "description": "Wet voor veiligheid en gezondheid op het werk" },
+    { "abbr": "RI&E", "full": "Risico-Inventarisatie en -Evaluatie", "description": "Verplichte inventarisatie van risico's op de werkplek" },
+    { "abbr": "PBM", "full": "Persoonlijke Beschermingsmiddelen", "description": "Beschermingsuitrusting voor werknemers" },
+    { "abbr": "BHV", "full": "Bedrijfshulpverlening", "description": "Eerste hulp, brandbestrijding en evacuatie" },
+    { "abbr": "PM", "full": "Preventiemedewerker", "description": "Medewerker voor preventie en arbeidsomstandigheden" },
+    { "abbr": "SZW", "full": "Sociale Zaken en Werkgelegenheid", "description": "Ministerie verantwoordelijk voor Arbowet" },
+    { "abbr": "ISZW", "full": "Inspectie SZW", "description": "Toezichthouder op naleving Arbowet (nu NLA)" },
+    { "abbr": "NLA", "full": "Nederlandse Arbeidsinspectie", "description": "Nieuwe naam voor Inspectie SZW" },
+    { "abbr": "OR", "full": "Ondernemingsraad", "description": "Medezeggenschapsorgaan in bedrijven" },
+    { "abbr": "PAGO", "full": "Periodiek Arbeidsgezondheidskundig Onderzoek", "description": "Vrijwillig gezondheidsonderzoek voor werknemers" }
+  ]
+}

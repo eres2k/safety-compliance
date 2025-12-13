@@ -1,0 +1,132 @@
+{
+  "appTitle": "WHS Veiligheids-Navigator",
+  "appSubtitle": "AI-gestuurde Arbo-assistent",
+  "selectFramework": "Selecteer Rechtskader",
+  "frameworks": {
+    "AT": "Oostenrijk (ASchG)",
+    "DE": "Duitsland (DGUV)",
+    "NL": "Nederland (Arbowet)"
+  },
+  "modules": {
+    "lawBrowser": {
+      "title": "Wetgeving Browser & Zoeken",
+      "description": "Navigeer en zoek arbowetgeving"
+    },
+    "complianceChecker": {
+      "title": "Compliance Checker",
+      "description": "Controleer vereisten voor uw bedrijf"
+    },
+    "documentGenerator": {
+      "title": "Document Generator",
+      "description": "Maak veiligheidsdocumenten van sjablonen"
+    },
+    "quickReference": {
+      "title": "Snelle Referentie Tools",
+      "description": "Calculators, opzoektabellen en glossarium"
+    },
+    "regulationLookup": {
+      "title": "Voorschriften Opzoeken",
+      "description": "Zoek specifieke vereisten op"
+    }
+  },
+  "common": {
+    "search": "Zoeken",
+    "searchPlaceholder": "Zoek wetten en voorschriften...",
+    "back": "Terug naar Modules",
+    "generate": "Genereren",
+    "calculate": "Berekenen",
+    "lookup": "Opzoeken",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd!",
+    "download": "Downloaden",
+    "bookmark": "Bladwijzer",
+    "bookmarked": "Gemarkeerd",
+    "explain": "Eenvoudig uitleggen",
+    "loading": "Laden",
+    "noResults": "Geen resultaten gevonden",
+    "selectOption": "Selecteer een optie",
+    "companySize": "Bedrijfsgrootte",
+    "industry": "Industrie Type",
+    "topic": "Onderwerp",
+    "employees": "werknemers",
+    "required": "Verplicht",
+    "optional": "Optioneel",
+    "error": "Fout",
+    "success": "Succes",
+    "close": "Sluiten"
+  },
+  "industries": {
+    "logistics": "Logistiek & Magazijn",
+    "manufacturing": "Productie",
+    "construction": "Bouw",
+    "office": "Kantoorwerk",
+    "healthcare": "Gezondheidszorg",
+    "retail": "Detailhandel",
+    "hospitality": "Horeca",
+    "education": "Onderwijs"
+  },
+  "topics": {
+    "firstAid": "Eerste Hulp",
+    "fireSafety": "Brandveiligheid",
+    "ppe": "Persoonlijke Beschermingsmiddelen",
+    "hazardous": "Gevaarlijke Stoffen",
+    "ergonomics": "Ergonomie",
+    "machinery": "Machineveiligheid",
+    "electrical": "Elektrische Veiligheid",
+    "workingHours": "Werktijden",
+    "training": "Veiligheidstraining",
+    "riskAssessment": "Risico-inventarisatie"
+  },
+  "documents": {
+    "riskAssessment": "Risico-inventarisatie Sjabloon",
+    "asaMeeting": "Arbo-vergadering Agenda",
+    "committeeMinutes": "Commissie Notulen",
+    "inspectionChecklist": "Inspectie Checklist",
+    "incidentReport": "Incidentrapport",
+    "trainingDoc": "Trainingsdocumentatie"
+  },
+  "documentFields": {
+    "workplace": "Werkplek/Gebied",
+    "activity": "Activiteit/Proces",
+    "department": "Afdeling",
+    "date": "Datum",
+    "attendees": "Aanwezigen",
+    "mainTopics": "Hoofdonderwerpen",
+    "discussedItems": "Besproken Punten",
+    "inspectionType": "Inspectie Type",
+    "area": "Te Inspecteren Gebied",
+    "location": "Locatie",
+    "description": "Beschrijving van Incident",
+    "injuredPerson": "Gewonde Persoon (indien van toepassing)",
+    "trainingType": "Training Type",
+    "participants": "Deelnemers",
+    "trainer": "Naam Trainer"
+  },
+  "tools": {
+    "deadlineCalculator": "Deadline Calculator",
+    "penaltyLookup": "Boetes Opzoektabel",
+    "personnelCalculator": "Personeel Calculator",
+    "glossary": "Afkortingen Glossarium"
+  },
+  "calculators": {
+    "lastInspection": "Laatste Inspectie Datum",
+    "nextInspection": "Volgende Inspectie Vervalt",
+    "daysRemaining": "Resterende Dagen",
+    "daysOverdue": "dagen te laat!",
+    "numberOfEmployees": "Aantal Werknemers",
+    "enterEmployees": "Voer aantal werknemers in"
+  },
+  "compliance": {
+    "requirements": "Compliance Vereisten",
+    "queryPrompt": "Wat zijn de vereisten voor [ONDERWERP] in een bedrijf met [GROOTTE] werknemers?",
+    "quickTopics": "Snelle onderwerpen:"
+  },
+  "api": {
+    "notConfigured": "AI-functies vereisen API-configuratie. Neem contact op met beheerder.",
+    "error": "Fout bij het genereren van antwoord. Probeer opnieuw."
+  },
+  "footer": {
+    "disclaimer": "Alleen voor informatieve doeleinden",
+    "advice": "Raadpleeg altijd officiële bronnen en juridische professionals voor bindend advies"
+  }
+}
