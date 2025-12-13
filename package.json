@@ -1,6 +1,7 @@
 {
   "name": "whs-safety-navigator",
   "version": "1.0.0",
+  "type": "module",
   "description": "AI-Powered Workplace Health and Safety Compliance Navigator for Austria, Germany, and Netherlands",
   "private": true,
   "scripts": {
