@@ -32,13 +32,33 @@ export function initializeLawsDatabase() {
 }
 
 /**
+ * Normalize law item fields to standard format
+ * Maps various field names from different JSON sources to consistent names
+ */
+function normalizeLawItem(item) {
+  return {
+    ...item,
+    // Normalize abbreviation field (JSON may have 'abbr' or 'abbreviation')
+    abbreviation: item.abbreviation || item.abbr || null,
+    // Normalize content field (JSON may have 'text' or 'full_text')
+    content: item.content ? {
+      ...item.content,
+      full_text: item.content.full_text || item.content.text || null,
+      available: item.content.available !== undefined ? item.content.available : !!(item.content.full_text || item.content.text)
+    } : null,
+    // Ensure description exists (fallback to category or empty string)
+    description: item.description || null
+  }
+}
+
+/**
  * Process raw laws data into standardized format
  */
 function processLawsData(data, countryCode) {
   if (!data || !data.items) {
     return {
       metadata: data?.metadata || {},
-      categories: data?.categories || {},
+      categories: data?.categories || data?.types || {},
       items: [],
       itemsById: {},
       itemsByType: {},
@@ -46,13 +66,16 @@ function processLawsData(data, countryCode) {
     }
   }
 
-  const items = data.items.map(item => ({
-    ...item,
-    country: countryCode,
-    searchText: buildSearchText(item),
-    keywords: extractKeywords(item),
-    relatedIds: findRelatedLaws(item, data.items)
-  }))
+  const items = data.items.map(item => {
+    const normalized = normalizeLawItem(item)
+    return {
+      ...normalized,
+      country: countryCode,
+      searchText: buildSearchText(normalized),
+      keywords: extractKeywords(normalized),
+      relatedIds: findRelatedLaws(normalized, data.items.map(normalizeLawItem))
+    }
+  })
 
   // Create lookup maps
   const itemsById = {}

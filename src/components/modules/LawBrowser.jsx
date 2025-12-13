@@ -273,15 +273,15 @@ export function LawBrowser({ onBack }) {
                         <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${typeColors[selectedLaw.type] || typeColors.law}`}>
                           {selectedLaw.type?.replace(/_/g, ' ')}
                         </span>
-                        {selectedLaw.enacted && (
+                        {(selectedLaw.enacted || selectedLaw.category) && (
                           <span className="text-xs text-gray-500 dark:text-gray-400">
-                            Enacted: {selectedLaw.enacted}
+                            {selectedLaw.enacted ? `Enacted: ${selectedLaw.enacted}` : selectedLaw.category}
                           </span>
                         )}
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {selectedLaw.abbreviation && (
-                          <span className="text-whs-orange-500">{selectedLaw.abbreviation} - </span>
+                        {(selectedLaw.abbreviation || selectedLaw.abbr) && (
+                          <span className="text-whs-orange-500">{selectedLaw.abbreviation || selectedLaw.abbr} - </span>
                         )}
                         {selectedLaw.title}
                       </h3>
@@ -308,25 +308,39 @@ export function LawBrowser({ onBack }) {
                 </div>
 
                 <div className="overflow-y-auto h-[calc(100%-180px)] p-5">
-                  {/* Description */}
-                  {selectedLaw.description && (
+                  {/* Category */}
+                  {selectedLaw.category && (
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Description</h4>
-                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {selectedLaw.description}
-                      </p>
+                      <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Category</h4>
+                      <span className="inline-block px-3 py-1 bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300 rounded-lg text-sm">
+                        {selectedLaw.category}
+                      </span>
                     </div>
                   )}
 
+                  {/* Description */}
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Description</h4>
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {selectedLaw.description || 'No description available for this law.'}
+                    </p>
+                  </div>
+
                   {/* Content excerpt */}
-                  {selectedLaw.content?.full_text && (
-                    <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Content Excerpt</h4>
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Content Excerpt</h4>
+                    {(selectedLaw.content?.full_text || selectedLaw.content?.text) ? (
                       <div className="bg-gray-50 dark:bg-whs-dark-700 rounded-xl p-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap max-h-48 overflow-y-auto">
-                        {highlightText(getLawExcerpt(selectedLaw, searchTerm, 500), searchTerm)}
+                        {highlightText(
+                          getLawExcerpt(selectedLaw, searchTerm, 500) ||
+                          (selectedLaw.content?.text?.substring(0, 500) + '...'),
+                          searchTerm
+                        )}
                       </div>
-                    </div>
-                  )}
+                    ) : (
+                      <p className="text-gray-500 dark:text-gray-400 italic">No content excerpt available for this law.</p>
+                    )}
+                  </div>
 
                   {/* Source */}
                   {selectedLaw.source && (
