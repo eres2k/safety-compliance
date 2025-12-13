@@ -1,0 +1,132 @@
+{
+  "appTitle": "WHS Arbeitsschutz-Navigator",
+  "appSubtitle": "KI-gestützte Arbeitsschutz-Assistenz",
+  "selectFramework": "Rechtsrahmen wählen",
+  "frameworks": {
+    "AT": "Österreich (ASchG)",
+    "DE": "Deutschland (DGUV)",
+    "NL": "Niederlande (Arbowet)"
+  },
+  "modules": {
+    "lawBrowser": {
+      "title": "Gesetzes-Browser & Suche",
+      "description": "Arbeitsschutzgesetze durchsuchen"
+    },
+    "complianceChecker": {
+      "title": "Compliance-Prüfer",
+      "description": "Anforderungen für Ihr Unternehmen prüfen"
+    },
+    "documentGenerator": {
+      "title": "Dokumenten-Generator",
+      "description": "Sicherheitsdokumente aus Vorlagen erstellen"
+    },
+    "quickReference": {
+      "title": "Schnellreferenz-Tools",
+      "description": "Rechner, Nachschlagewerke und Glossar"
+    },
+    "regulationLookup": {
+      "title": "Vorschriften-Abfrage",
+      "description": "Spezifische Anforderungen abfragen"
+    }
+  },
+  "common": {
+    "search": "Suchen",
+    "searchPlaceholder": "Gesetze und Vorschriften durchsuchen...",
+    "back": "Zurück zu Modulen",
+    "generate": "Generieren",
+    "calculate": "Berechnen",
+    "lookup": "Nachschlagen",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "download": "Herunterladen",
+    "bookmark": "Lesezeichen",
+    "bookmarked": "Markiert",
+    "explain": "Einfach erklären",
+    "loading": "Lädt",
+    "noResults": "Keine Ergebnisse gefunden",
+    "selectOption": "Option wählen",
+    "companySize": "Unternehmensgröße",
+    "industry": "Branche",
+    "topic": "Thema",
+    "employees": "Mitarbeiter",
+    "required": "Erforderlich",
+    "optional": "Optional",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "close": "Schließen"
+  },
+  "industries": {
+    "logistics": "Logistik & Lagerhaltung",
+    "manufacturing": "Produktion",
+    "construction": "Bauwesen",
+    "office": "Büroarbeit",
+    "healthcare": "Gesundheitswesen",
+    "retail": "Einzelhandel",
+    "hospitality": "Gastgewerbe",
+    "education": "Bildungswesen"
+  },
+  "topics": {
+    "firstAid": "Erste Hilfe",
+    "fireSafety": "Brandschutz",
+    "ppe": "Persönliche Schutzausrüstung",
+    "hazardous": "Gefahrstoffe",
+    "ergonomics": "Ergonomie",
+    "machinery": "Maschinensicherheit",
+    "electrical": "Elektrische Sicherheit",
+    "workingHours": "Arbeitszeiten",
+    "training": "Sicherheitsschulung",
+    "riskAssessment": "Gefährdungsbeurteilung"
+  },
+  "documents": {
+    "riskAssessment": "Gefährdungsbeurteilung",
+    "asaMeeting": "ASA-Sitzung Tagesordnung",
+    "committeeMinutes": "Ausschuss-Protokoll",
+    "inspectionChecklist": "Begehungs-Checkliste",
+    "incidentReport": "Unfallbericht",
+    "trainingDoc": "Schulungsnachweis"
+  },
+  "documentFields": {
+    "workplace": "Arbeitsplatz/Bereich",
+    "activity": "Tätigkeit/Prozess",
+    "department": "Abteilung",
+    "date": "Datum",
+    "attendees": "Teilnehmer",
+    "mainTopics": "Hauptthemen",
+    "discussedItems": "Besprochene Punkte",
+    "inspectionType": "Inspektionsart",
+    "area": "Zu inspizierender Bereich",
+    "location": "Ort",
+    "description": "Beschreibung des Vorfalls",
+    "injuredPerson": "Verletzte Person (falls vorhanden)",
+    "trainingType": "Schulungsart",
+    "participants": "Teilnehmer",
+    "trainer": "Name des Trainers"
+  },
+  "tools": {
+    "deadlineCalculator": "Fristen-Rechner",
+    "penaltyLookup": "Bußgeld-Tabelle",
+    "personnelCalculator": "Personal-Rechner",
+    "glossary": "Abkürzungsverzeichnis"
+  },
+  "calculators": {
+    "lastInspection": "Letzte Inspektion",
+    "nextInspection": "Nächste Inspektion fällig",
+    "daysRemaining": "Verbleibende Tage",
+    "daysOverdue": "Tage überfällig!",
+    "numberOfEmployees": "Anzahl der Mitarbeiter",
+    "enterEmployees": "Anzahl der Mitarbeiter eingeben"
+  },
+  "compliance": {
+    "requirements": "Compliance-Anforderungen",
+    "queryPrompt": "Was sind die Anforderungen für [THEMA] in einem Unternehmen mit [GRÖSSE] Mitarbeitern?",
+    "quickTopics": "Schnellthemen:"
+  },
+  "api": {
+    "notConfigured": "KI-Funktionen erfordern API-Konfiguration. Bitte Administrator kontaktieren.",
+    "error": "Fehler bei der Generierung. Bitte erneut versuchen."
+  },
+  "footer": {
+    "disclaimer": "Nur zu Informationszwecken",
+    "advice": "Konsultieren Sie immer offizielle Quellen und Rechtsexperten für verbindliche Beratung"
+  }
+}
