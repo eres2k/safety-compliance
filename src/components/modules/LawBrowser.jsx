@@ -146,12 +146,46 @@ function getSimilarity(str1, str2) {
   return matches / maxLen
 }
 
+// Normalize spelled-out Austrian paragraph notation to standard § form
+function normalizeParagraphNotation(text) {
+  if (!text) return ''
+
+  const numberWords = {
+    eins: '1',
+    zwei: '2',
+    drei: '3',
+    vier: '4',
+    fünf: '5',
+    sechs: '6',
+    sieben: '7',
+    acht: '8',
+    neun: '9',
+    zehn: '10'
+  }
+
+  let normalized = text
+
+  // Convert "Paragraph eins" style references to § numbers
+  normalized = normalized.replace(/Paragraph\s+(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\b/gi, (match, word) => {
+    const number = numberWords[word.toLowerCase()]
+    return `§ ${number}`
+  })
+
+  // Standardize numeric paragraph markers and ensure consistent punctuation
+  normalized = normalized.replace(/Paragraph\s+(\d+[a-z]?)\s*,?/gi, '§ $1.')
+
+  // Merge titles that appear on the next line after the paragraph marker
+  normalized = normalized.replace(/§\s*([\d]+[a-z]?)\s*\.?,?\s*\n+\s*([^\n]+)/g, '§ $1. $2')
+
+  return normalized
+}
+
 // Parse law text into sections
 function parseLawSections(text) {
   if (!text) return []
 
   // First clean duplicate expanded notation
-  const cleanedText = cleanDuplicateText(text)
+  const cleanedText = normalizeParagraphNotation(cleanDuplicateText(text))
 
   const sections = []
   // Match § sections and Artikel
@@ -187,7 +221,7 @@ function getCleanLawText(text) {
   if (!text) return ''
 
   // First apply duplicate text cleaning
-  const cleanedText = cleanDuplicateText(text)
+  const cleanedText = normalizeParagraphNotation(cleanDuplicateText(text))
 
   // Find where real content starts
   const markers = [
