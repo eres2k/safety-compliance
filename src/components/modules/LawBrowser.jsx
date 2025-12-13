@@ -332,8 +332,7 @@ export function LawBrowser({ onBack }) {
                     {(selectedLaw.content?.full_text || selectedLaw.content?.text) ? (
                       <div className="bg-gray-50 dark:bg-whs-dark-700 rounded-xl p-4 text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap max-h-48 overflow-y-auto">
                         {highlightText(
-                          getLawExcerpt(selectedLaw, searchTerm, 500) ||
-                          (selectedLaw.content?.text?.substring(0, 500) + '...'),
+                          getLawExcerpt(selectedLaw, searchTerm, 800),
                           searchTerm
                         )}
                       </div>
