@@ -462,31 +462,111 @@ export function getLawContentSections(country, lawId) {
 }
 
 /**
- * Extract law excerpt around a search term
+ * Extract law excerpt around a search term or find meaningful content
  */
 export function getLawExcerpt(law, searchTerm, contextLength = 200) {
-  if (!law.content?.full_text || !searchTerm) {
+  const text = law.content?.full_text || law.content?.text
+  if (!text) {
     return law.description || ''
   }
 
-  const text = law.content.full_text
-  const termLower = searchTerm.toLowerCase()
-  const textLower = text.toLowerCase()
-  const index = textLower.indexOf(termLower)
+  // If there's a search term, find it in the text
+  if (searchTerm) {
+    const termLower = searchTerm.toLowerCase()
+    const textLower = text.toLowerCase()
+    const index = textLower.indexOf(termLower)
 
-  if (index === -1) {
-    return text.substring(0, contextLength) + '...'
+    if (index !== -1) {
+      const start = Math.max(0, index - contextLength / 2)
+      const end = Math.min(text.length, index + searchTerm.length + contextLength / 2)
+
+      let excerpt = text.substring(start, end)
+
+      if (start > 0) excerpt = '...' + excerpt
+      if (end < text.length) excerpt = excerpt + '...'
+
+      return excerpt
+    }
   }
 
-  const start = Math.max(0, index - contextLength / 2)
-  const end = Math.min(text.length, index + searchTerm.length + contextLength / 2)
+  // No search term or term not found - find meaningful content by skipping boilerplate
+  // Common boilerplate patterns to skip past
+  const contentStartMarkers = [
+    /§\s*1[.\s]/i,                           // First section marker
+    /Artikel\s*1[.\s]/i,                     // Article 1
+    /1\.\s*Abschnitt/i,                      // Section 1 (German)
+    /Inhaltsverzeichnis\s*\n/i,              // Table of contents end
+    /Präambel/i,                             // Preamble
+    /Allgemeine Bestimmungen/i,              // General provisions
+    /Geltungsbereich/i,                      // Scope of application
+    /Begriffsbestimmungen/i,                 // Definitions
+    /Dieses Bundesgesetz/i,                  // "This federal law"
+    /Dieses Gesetz/i,                        // "This law"
+  ]
 
-  let excerpt = text.substring(start, end)
+  let contentStart = 0
 
-  if (start > 0) excerpt = '...' + excerpt
-  if (end < text.length) excerpt = excerpt + '...'
+  // Try to find where the actual content starts
+  for (const marker of contentStartMarkers) {
+    const match = text.match(marker)
+    if (match && match.index !== undefined) {
+      // Found a content marker - use it if it's reasonable
+      if (match.index < text.length * 0.5) { // Only if in first half of document
+        contentStart = match.index
+        break
+      }
+    }
+  }
 
-  return excerpt
+  // If no marker found, skip past common boilerplate keywords
+  if (contentStart === 0) {
+    const boilerplateEnd = [
+      'Navigationsleiste',
+      'Barrierefreiheitserklärung',
+      'Datenschutzerklärung',
+      'BGBl',
+      'Bundesgesetzblatt'
+    ]
+
+    let lastBoilerplatePos = 0
+    for (const keyword of boilerplateEnd) {
+      let pos = 0
+      let searchPos = 0
+      // Find the last occurrence of boilerplate within first 2000 chars
+      while ((pos = text.indexOf(keyword, searchPos)) !== -1 && pos < 2000) {
+        lastBoilerplatePos = Math.max(lastBoilerplatePos, pos + keyword.length)
+        searchPos = pos + 1
+      }
+    }
+
+    if (lastBoilerplatePos > 0) {
+      // Skip to the next line after boilerplate
+      const nextNewline = text.indexOf('\n', lastBoilerplatePos)
+      contentStart = nextNewline !== -1 ? nextNewline + 1 : lastBoilerplatePos
+    }
+  }
+
+  // Extract excerpt from meaningful content
+  const meaningfulText = text.substring(contentStart).trim()
+
+  if (meaningfulText.length <= contextLength) {
+    return meaningfulText
+  }
+
+  // Try to end at a sentence boundary
+  let excerpt = meaningfulText.substring(0, contextLength)
+  const lastSentenceEnd = Math.max(
+    excerpt.lastIndexOf('. '),
+    excerpt.lastIndexOf('.\n'),
+    excerpt.lastIndexOf('? '),
+    excerpt.lastIndexOf('! ')
+  )
+
+  if (lastSentenceEnd > contextLength * 0.5) {
+    excerpt = excerpt.substring(0, lastSentenceEnd + 1)
+  }
+
+  return excerpt + '...'
 }
 
 /**
