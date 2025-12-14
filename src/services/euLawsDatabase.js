@@ -122,31 +122,50 @@ function generateSummaryFromContent(content, maxLength = 200) {
 /**
  * Normalize law item fields to standard format
  * Maps various field names from different JSON sources to consistent names
+ *
+ * Handles different database structures:
+ * - DE: content is nested in item.content.full_text
+ * - AT/NL: content is at top level in item.full_text
  */
 function normalizeLawItem(item) {
+  // Get full text from various possible locations
+  // AT/NL store full_text at top level, DE stores it in content.full_text
+  const fullText = item.full_text || item.content?.full_text || item.content?.text || null
+
   // Clean the summary text
   let cleanedSummary = cleanSummaryText(item.summary)
 
   // If summary is still empty, try to generate from content
-  if (!cleanedSummary) {
-    const fullText = item.content?.full_text || item.content?.text
+  if (!cleanedSummary && fullText) {
     cleanedSummary = generateSummaryFromContent(fullText)
+  }
+
+  // Normalize content structure to always have content.full_text
+  const normalizedContent = {
+    full_text: fullText,
+    text: fullText, // Keep text as alias for backwards compatibility
+    available: !!fullText,
+    // Preserve other content fields if they exist
+    ...(item.content && typeof item.content === 'object' ? {
+      format: item.content.format,
+      sections: item.content.sections,
+      num_pages: item.content.num_pages,
+      text_length: item.content.text_length
+    } : {})
   }
 
   return {
     ...item,
     // Normalize abbreviation field (JSON may have 'abbr' or 'abbreviation')
     abbreviation: item.abbreviation || item.abbr || null,
-    // Normalize content field (JSON may have 'text' or 'full_text')
-    content: item.content ? {
-      ...item.content,
-      full_text: item.content.full_text || item.content.text || null,
-      available: item.content.available !== undefined ? item.content.available : !!(item.content.full_text || item.content.text)
-    } : null,
+    // Normalize content to consistent structure
+    content: normalizedContent,
     // Ensure description exists (fallback to category or empty string)
     description: item.description || null,
     // Use cleaned or generated summary
-    summary: cleanedSummary
+    summary: cleanedSummary,
+    // Preserve chapters if they exist (AT/NL have chapters at top level)
+    chapters: item.chapters || []
   }
 }
 
