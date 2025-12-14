@@ -639,14 +639,22 @@ export function getLawContentSections(country, lawId) {
   const sections = []
 
   // Try to parse German law structure (§ sections)
-  const sectionRegex = /§\s*(\d+[a-z]?)\s*([^\n§]+)/gi
+  // Only match section headers at start of line, not inline references like "§ 2 Abs. 1"
+  // Section headers typically have format: "§ 21a Title" or "(1) § 21a Title"
+  // Inline references have format: "gemäß § 2 Abs. 1" or "nach §§ 3 und 6"
+  const sectionRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s+([A-ZÄÖÜ][^\n§]*?)(?=\n|$)/gm
   let match
 
   while ((match = sectionRegex.exec(text)) !== null) {
+    // Skip if this looks like an inline reference (title starts with "Abs." or similar)
+    const title = match[2].trim()
+    if (/^(Abs\.|Absatz|Nr\.|Nummer|Satz|Buchstabe)/i.test(title)) {
+      continue
+    }
     sections.push({
       id: `${lawId}-s${match[1]}`,
       paragraph: `§ ${match[1]}`,
-      title: match[2].trim().substring(0, 100),
+      title: title.substring(0, 100),
       startIndex: match.index
     })
   }
