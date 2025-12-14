@@ -210,6 +210,130 @@ function getCleanLawText(text) {
   return cleanedText.substring(startIndex)
 }
 
+// Format text with proper structure (paragraphs, lists, etc.)
+function formatLawText(text) {
+  if (!text) return null
+
+  const lines = text.split('\n')
+  const elements = []
+  let currentParagraph = []
+  let inList = false
+  let listItems = []
+
+  const flushParagraph = () => {
+    if (currentParagraph.length > 0) {
+      const content = currentParagraph.join(' ').trim()
+      if (content) {
+        elements.push({ type: 'paragraph', content })
+      }
+      currentParagraph = []
+    }
+  }
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      elements.push({ type: 'list', items: [...listItems] })
+      listItems = []
+      inList = false
+    }
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim()
+
+    // Empty line - end current paragraph
+    if (!line) {
+      flushList()
+      flushParagraph()
+      continue
+    }
+
+    // Section headers (§ or Artikel)
+    if (/^(§\s*\d+[a-z]?|Art\.?\s*\d+|Artikel\s*\d+)/i.test(line)) {
+      flushList()
+      flushParagraph()
+      elements.push({ type: 'section', content: line })
+      continue
+    }
+
+    // Numbered list items (1., 2., etc. or a), b), etc.)
+    const numberedMatch = line.match(/^(\d+\.|[a-z]\)|[a-z]\.|[ivxIVX]+\.)\s+(.+)/)
+    if (numberedMatch) {
+      flushParagraph()
+      inList = true
+      listItems.push(numberedMatch[2])
+      continue
+    }
+
+    // Bullet-like patterns (-, *, •)
+    const bulletMatch = line.match(/^[-*•]\s+(.+)/)
+    if (bulletMatch) {
+      flushParagraph()
+      inList = true
+      listItems.push(bulletMatch[1])
+      continue
+    }
+
+    // Ziffer patterns (Z 1, Z 2, etc.)
+    const zifferMatch = line.match(/^Z\s+\d+[.:]\s*(.+)/)
+    if (zifferMatch) {
+      flushParagraph()
+      inList = true
+      listItems.push(zifferMatch[1] || line)
+      continue
+    }
+
+    // Regular text
+    if (inList && !line.startsWith(' ')) {
+      flushList()
+    }
+    currentParagraph.push(line)
+  }
+
+  flushList()
+  flushParagraph()
+
+  return elements
+}
+
+// Render formatted elements
+function FormattedText({ text }) {
+  const elements = formatLawText(text)
+  if (!elements || elements.length === 0) {
+    return <div className="whitespace-pre-wrap">{text}</div>
+  }
+
+  return (
+    <div className="space-y-4">
+      {elements.map((el, idx) => {
+        switch (el.type) {
+          case 'section':
+            return (
+              <h4 key={idx} className="font-semibold text-whs-orange-600 dark:text-whs-orange-400 mt-6 first:mt-0">
+                {el.content}
+              </h4>
+            )
+          case 'list':
+            return (
+              <ul key={idx} className="list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300">
+                {el.items.map((item, i) => (
+                  <li key={i} className="leading-relaxed">{item}</li>
+                ))}
+              </ul>
+            )
+          case 'paragraph':
+          default:
+            return (
+              <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                {el.content}
+              </p>
+            )
+        }
+      })}
+    </div>
+  )
+}
+
 // Law type badge colors
 const typeColors = {
   law: 'bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300',
@@ -646,17 +770,15 @@ export function LawBrowser({ onBack }) {
                                   </h3>
                                 )}
                               </div>
-                              <div className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                {section.content}
+                              <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
+                                <FormattedText text={section.content} />
                               </div>
                             </div>
                           ))}
                         </div>
                       ) : (
                         /* Raw text fallback */
-                        <div className="text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
-                          {getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)}
-                        </div>
+                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} />
                       )}
 
                       {/* AI Explanation */}

@@ -154,7 +154,10 @@ function normalizeLawItem(item) {
  * Process raw laws data into standardized format
  */
 function processLawsData(data, countryCode) {
-  if (!data || !data.items) {
+  // Handle different data structures: AT/NL use 'documents', DE uses 'items'
+  const rawItems = data?.items || data?.documents || []
+
+  if (!data || rawItems.length === 0) {
     return {
       metadata: data?.metadata || {},
       categories: data?.categories || data?.types || {},
@@ -165,14 +168,14 @@ function processLawsData(data, countryCode) {
     }
   }
 
-  const items = data.items.map(item => {
+  const items = rawItems.map(item => {
     const normalized = normalizeLawItem(item)
     return {
       ...normalized,
       country: countryCode,
       searchText: buildSearchText(normalized),
       keywords: extractKeywords(normalized),
-      relatedIds: findRelatedLaws(normalized, data.items.map(normalizeLawItem))
+      relatedIds: findRelatedLaws(normalized, rawItems.map(normalizeLawItem))
     }
   })
 
