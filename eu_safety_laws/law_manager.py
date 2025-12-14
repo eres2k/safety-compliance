@@ -809,6 +809,11 @@ def get_section_number(section: Dict) -> float:
         return 0
 
 
+def normalize_section_number(num: str) -> str:
+    """Normalize section number for deduplication (e.g., '1.' and '1' -> '1')."""
+    return str(num).rstrip(".").strip()
+
+
 def restructure_law(doc: Dict, structure: List[Dict], jurisdiction: str) -> Dict:
     """Restructure a law according to official chapter structure."""
     # Collect all sections
@@ -816,10 +821,10 @@ def restructure_law(doc: Dict, structure: List[Dict], jurisdiction: str) -> Dict
     for chapter in doc.get("chapters", []):
         all_sections.extend(chapter.get("sections", []))
 
-    # Deduplicate (keep longer text)
+    # Deduplicate using normalized number (keep longer text)
     seen = {}
     for section in all_sections:
-        num = section.get("number", "")
+        num = normalize_section_number(section.get("number", ""))
         text = section.get("text", "")
         if num not in seen or len(text) > len(seen[num].get("text", "")):
             seen[num] = section
