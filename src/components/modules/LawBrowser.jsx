@@ -22,11 +22,14 @@ function cleanDuplicateText(text) {
   // Standalone expanded notation patterns (these are always duplicates)
   const standaloneExpandedPatterns = [
     /^Paragraph\s+\d+[a-z]?\s*,?\s*$/i,           // "Paragraph 13 c,"
+    /^Paragraph\s+\d+\s+[a-z]\s*,?\s*$/i,         // "Paragraph 52 a,"
     /^Paragraph\s+eins\s*,?\s*$/i,                // "Paragraph eins,"
     /^Absatz\s+(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+[a-z]?)\s*,?\s*$/i,  // "Absatz eins"
     /^Ziffer\s+(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+)\s*,?\s*$/i,        // "Ziffer eins"
     /^Litera\s+[a-z]\s*,?\s*$/i,                  // "Litera a"
     /^Anmerkung,\s/i,                             // "Anmerkung, Paragraph..."
+    /^Text$/i,                                     // Just "Text" by itself (navigation element)
+    /^Abschnitt$/i,                                // Just "Abschnitt" by itself
   ]
 
   // Patterns indicating the line contains expanded notation (duplicates of abbreviated)
@@ -122,7 +125,17 @@ function cleanDuplicateText(text) {
     }
   }
 
-  return cleanedLines.join('\n')
+  let result = cleanedLines.join('\n')
+
+  // Also clean inline duplicates where "Paragraph X" appears right after "§ X"
+  // e.g., "§ 52a. Paragraph 52 a, Elektronische..." -> "§ 52a. Elektronische..."
+  result = result
+    .replace(/§\s*(\d+[a-z]?)\.?\s*Paragraph\s+\d+\s*[a-z]?\s*,\s*/gi, '§ $1. ')
+    .replace(/§\s*(\d+)\.?\s*Paragraph\s+\d+\s*,\s*/gi, '§ $1. ')
+    // Remove duplicate section number patterns like "§ 1. (1)" appearing twice
+    .replace(/\n(§\s*\d+[a-z]?\.?\s*)\n\1/gi, '\n$1')
+
+  return result
 }
 
 // Simple similarity check between two strings
@@ -153,33 +166,55 @@ function parseLawSections(text) {
   // First clean duplicate expanded notation
   const cleanedText = cleanDuplicateText(text)
 
-  const sections = []
-  // Match § sections and Artikel
+  const sectionsMap = new Map() // Use map to deduplicate by section number
+  // Match § sections and Artikel - capture the full header line
   const sectionRegex = /(?:^|\n)(§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)|(?:Artikel|Art\.?)\s*(\d+[a-z]?)\s*\.?\s*([^\n]*))/gi
 
   let match
+  const matches = []
   while ((match = sectionRegex.exec(cleanedText)) !== null) {
     const isArticle = !!match[4]
     const number = isArticle ? match[4] : match[2]
     const title = (isArticle ? match[5] : match[3])?.trim() || ''
     const prefix = isArticle ? 'Art.' : '§'
+    const headerLength = match[0].length
 
-    sections.push({
+    matches.push({
       id: `section-${number}`,
       number: `${prefix} ${number}`,
       title: title.substring(0, 80),
-      index: match.index
+      index: match.index,
+      headerEnd: match.index + headerLength, // Where the content actually starts
+      rawNumber: number
     })
   }
 
-  // Add content to each section
-  for (let i = 0; i < sections.length; i++) {
-    const start = sections[i].index
-    const end = i < sections.length - 1 ? sections[i + 1].index : cleanedText.length
-    sections[i].content = cleanedText.substring(start, end).trim()
+  // Add content to each section, skipping the header line
+  for (let i = 0; i < matches.length; i++) {
+    const section = matches[i]
+    const contentStart = section.headerEnd
+    const contentEnd = i < matches.length - 1 ? matches[i + 1].index : cleanedText.length
+    let content = cleanedText.substring(contentStart, contentEnd).trim()
+
+    // Skip duplicate entries (table of contents vs actual content)
+    // Keep the one with more content
+    const existingSection = sectionsMap.get(section.rawNumber)
+    if (existingSection) {
+      // Keep the section with more substantial content
+      if (content.length > existingSection.content.length) {
+        sectionsMap.set(section.rawNumber, { ...section, content })
+      }
+    } else {
+      sectionsMap.set(section.rawNumber, { ...section, content })
+    }
   }
 
-  return sections
+  // Convert map to array and sort by section number
+  return Array.from(sectionsMap.values()).sort((a, b) => {
+    const numA = parseFloat(a.rawNumber.replace(/[a-z]/gi, '.1')) || 0
+    const numB = parseFloat(b.rawNumber.replace(/[a-z]/gi, '.1')) || 0
+    return numA - numB
+  })
 }
 
 // Skip boilerplate and get clean text
@@ -487,6 +522,12 @@ export function LawBrowser({ onBack }) {
     setExplanation('')
     setActiveSection(null)
     setSearchInLaw('')
+    // Reset section refs to avoid stale references
+    sectionRefs.current = {}
+    // Scroll content to top
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0
+    }
   }
 
   const hasContent = selectedLaw?.content?.full_text || selectedLaw?.content?.text
