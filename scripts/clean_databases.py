@@ -8,10 +8,16 @@ Usage:
     python scripts/clean_databases.py --country AT
     python scripts/clean_databases.py --country DE
     python scripts/clean_databases.py --country NL
-    python scripts/clean_databases.py --all --fast  # Only clean full_text, skip sections
+    python scripts/clean_databases.py --all --fast          # Only clean full_text, skip sections
+    python scripts/clean_databases.py --all --structure-only # Only extract Abschnitt structure (no cleaning)
+
+Features:
+    - AI-powered text cleaning (using Gemini)
+    - Abschnitt structure extraction (AT: "1. Abschnitt", DE: "Erster Abschnitt")
+    - Adds abschnitt info to each section in the JSON
 
 Environment:
-    GEMINI_API_KEY: Your Gemini API key (required)
+    GEMINI_API_KEY: Your Gemini API key (required for AI cleaning)
 
     Or create a .env file with:
     GEMINI_API_KEY=your_key_here
@@ -79,6 +85,238 @@ def log_progress(msg):
 def log_progress_done():
     """Clear the progress line"""
     print()
+
+
+# German ordinal words to numbers mapping
+GERMAN_ORDINALS = {
+    'erster': '1', 'erste': '1', 'ersten': '1',
+    'zweiter': '2', 'zweite': '2', 'zweiten': '2',
+    'dritter': '3', 'dritte': '3', 'dritten': '3',
+    'vierter': '4', 'vierte': '4', 'vierten': '4',
+    'fünfter': '5', 'fünfte': '5', 'fünften': '5',
+    'sechster': '6', 'sechste': '6', 'sechsten': '6',
+    'siebter': '7', 'siebte': '7', 'siebten': '7', 'siebenter': '7',
+    'achter': '8', 'achte': '8', 'achten': '8',
+    'neunter': '9', 'neunte': '9', 'neunten': '9',
+    'zehnter': '10', 'zehnte': '10', 'zehnten': '10',
+    'elfter': '11', 'elfte': '11', 'elften': '11',
+    'zwölfter': '12', 'zwölfte': '12', 'zwölften': '12',
+}
+
+def ordinal_to_number(word):
+    """Convert German ordinal word to number"""
+    return GERMAN_ORDINALS.get(word.lower(), word)
+
+
+def extract_nl_hoofdstuk_structure(full_text: str) -> dict:
+    """
+    Extract Hoofdstuk (Chapter) structure from Dutch law text.
+    Returns a mapping: artikel_number -> hoofdstuk_info
+
+    Handles:
+    - "Artikel X.Y" format where X is Hoofdstuk number (e.g., Artikel 1.1, Artikel 2.5)
+    - Simple "Artikel X" format (no grouping, returns empty)
+    """
+    if not full_text:
+        return {}
+
+    # Detect if this law uses "Artikel X.Y" format (with Hoofdstuk grouping)
+    # vs simple "Artikel X" format (no grouping)
+    has_hoofdstuk_format = re.search(r'Artikel\s+\d+\.\d+', full_text, re.IGNORECASE)
+
+    if not has_hoofdstuk_format:
+        # Simple format like "Artikel 1", "Artikel 2" - no grouping
+        return {}
+
+    # Parse Hoofdstuk headers from the text (if present)
+    hoofdstuk_titles = {}
+
+    # Look for explicit Hoofdstuk headers like "Hoofdstuk 1. Title" or "HOOFDSTUK 1 TITLE"
+    hoofdstuk_pattern = r'Hoofdstuk\s+(\d+)[\.\s:]+([^\n]*)'
+    for match in re.finditer(hoofdstuk_pattern, full_text, re.IGNORECASE):
+        num = match.group(1)
+        title = match.group(2).strip()
+        # Clean up title - remove "Artikel" references that might follow
+        title = re.sub(r'\s*Artikel\s+\d+.*$', '', title, flags=re.IGNORECASE).strip()
+        if title and num not in hoofdstuk_titles:
+            hoofdstuk_titles[num] = title
+
+    # Find all "Artikel X.Y" patterns and map them to Hoofdstuk
+    artikel_to_hoofdstuk = {}
+    artikel_pattern = r'Artikel\s+(\d+)\.(\d+[a-z]?)'
+
+    for match in re.finditer(artikel_pattern, full_text, re.IGNORECASE):
+        hoofdstuk_num = match.group(1)
+        artikel_sub = match.group(2)
+        artikel_key = f"{hoofdstuk_num}.{artikel_sub}"
+
+        if artikel_key not in artikel_to_hoofdstuk:
+            artikel_to_hoofdstuk[artikel_key] = {
+                'number': hoofdstuk_num,
+                'title': hoofdstuk_titles.get(hoofdstuk_num, ''),
+                'display_name': f'Hoofdstuk {hoofdstuk_num}'
+            }
+
+    return artikel_to_hoofdstuk
+
+
+def extract_abschnitt_structure(full_text: str, country: str) -> dict:
+    """
+    Extract Abschnitt (section) structure from law text.
+    Returns a mapping: paragraph_number -> abschnitt_info
+
+    Handles:
+    - Austrian format: "1. Abschnitt", "2. Abschnitt"
+    - German format: "Erster Abschnitt", "Zweiter Abschnitt"
+    - Dutch format: "Artikel X.Y" where X is Hoofdstuk (Chapter) number
+    """
+    if not full_text:
+        return {}
+
+    # For NL, extract Hoofdstuk from "Artikel X.Y" format
+    if country == 'NL':
+        return extract_nl_hoofdstuk_structure(full_text)
+
+    # Detect format type
+    ordinal_pattern = '|'.join(GERMAN_ORDINALS.keys())
+    has_german_ordinals = re.search(rf'({ordinal_pattern})\s+Abschnitt', full_text, re.IGNORECASE)
+
+    # Find TOC portion (usually in first 30% of text)
+    toc_end_markers = [
+        r'§\s*1\.?\s+[A-ZÄÖÜ][a-zäöüß]+[^\n]*\n.*?\(1\)',  # § 1 followed by content with (1)
+        r'§\s*1\s*\n+\d+\.\s*Abschnitt',  # § 1 followed by Abschnitt header
+    ]
+
+    toc_end = len(full_text) // 3  # Default to 1/3 of text
+    for pattern in toc_end_markers:
+        match = re.search(pattern, full_text, re.IGNORECASE | re.DOTALL)
+        if match and match.start() < len(full_text) * 0.5:
+            toc_end = match.start()
+            break
+
+    toc_content = full_text[:toc_end]
+
+    # Parse Abschnitt headers
+    abschnitt_list = []
+
+    if has_german_ordinals:
+        # German format: "Erster Abschnitt", "Zweiter Abschnitt"
+        pattern = rf'({ordinal_pattern})\s+Abschnitt[:\s]*([^\n]*)'
+        for match in re.finditer(pattern, toc_content, re.IGNORECASE):
+            ordinal_word = match.group(1)
+            number = ordinal_to_number(ordinal_word)
+            title = match.group(2).strip()
+            abschnitt_list.append({
+                'number': number,
+                'title': title,
+                'display_name': f'{ordinal_word.capitalize()} Abschnitt',
+                'toc_index': match.start()
+            })
+    else:
+        # Austrian format: "1. Abschnitt", "2. Abschnitt"
+        pattern = r'(\d+)\.\s*Abschnitt[:\s]*([^\n]*)'
+        for match in re.finditer(pattern, toc_content, re.IGNORECASE):
+            number = match.group(1)
+            title = match.group(2).strip()
+            abschnitt_list.append({
+                'number': number,
+                'title': title,
+                'display_name': f'{number}. Abschnitt',
+                'toc_index': match.start()
+            })
+
+    if not abschnitt_list:
+        return {}
+
+    # Sort by number
+    abschnitt_list.sort(key=lambda x: int(x['number']))
+
+    # For each Abschnitt, find which § belong to it
+    paragraph_to_abschnitt = {}
+
+    for i, ab in enumerate(abschnitt_list):
+        # Get TOC portion for this Abschnitt
+        start = ab['toc_index']
+        end = abschnitt_list[i + 1]['toc_index'] if i + 1 < len(abschnitt_list) else len(toc_content)
+        section_toc = toc_content[start:end]
+
+        # Find all § in this section
+        paragraphs = re.findall(r'§\s*(\d+[a-z]?)\.?', section_toc, re.IGNORECASE)
+
+        if paragraphs:
+            # Get first and last paragraph numbers
+            first = int(re.sub(r'[a-z]', '', paragraphs[0], flags=re.IGNORECASE))
+            last = int(re.sub(r'[a-z]', '', paragraphs[-1], flags=re.IGNORECASE))
+
+            # Map all paragraphs in range to this Abschnitt
+            for p in range(first, last + 1):
+                paragraph_to_abschnitt[str(p)] = {
+                    'number': ab['number'],
+                    'title': ab['title'],
+                    'display_name': ab['display_name']
+                }
+
+            # Also map letter variants (e.g., 52a, 77a)
+            for para in paragraphs:
+                if re.search(r'[a-z]', para, re.IGNORECASE):
+                    paragraph_to_abschnitt[para.lower()] = {
+                        'number': ab['number'],
+                        'title': ab['title'],
+                        'display_name': ab['display_name']
+                    }
+
+    return paragraph_to_abschnitt
+
+
+def add_abschnitt_to_sections(doc: dict, country: str) -> dict:
+    """Add Abschnitt/Hoofdstuk information to each section in the document"""
+    full_text = doc.get('full_text', '')
+    if not full_text:
+        return doc
+
+    # Extract Abschnitt/Hoofdstuk mapping
+    abschnitt_map = extract_abschnitt_structure(full_text, country)
+
+    if not abschnitt_map:
+        return doc
+
+    # Add abschnitt info to each section
+    if doc.get('chapters'):
+        for chapter in doc['chapters']:
+            if chapter.get('sections'):
+                for section in chapter['sections']:
+                    # Extract paragraph/artikel number from section
+                    section_num = section.get('number', '')
+
+                    if country == 'NL':
+                        # NL format: "Artikel X.Y" - extract "X.Y" part
+                        match = re.search(r'(\d+\.\d+[a-z]?)', section_num, re.IGNORECASE)
+                        if match:
+                            clean_num = match.group(1)
+                            abschnitt = abschnitt_map.get(clean_num)
+                            if abschnitt:
+                                section['abschnitt'] = abschnitt
+                    else:
+                        # AT/DE format: "§ X" - clean and lookup
+                        clean_num = re.sub(r'[§\s.]', '', section_num).strip()
+
+                        # Look up Abschnitt
+                        abschnitt = abschnitt_map.get(clean_num)
+                        if not abschnitt:
+                            # Try without letter suffix
+                            base_num = re.sub(r'[a-z]', '', clean_num, flags=re.IGNORECASE)
+                            abschnitt = abschnitt_map.get(base_num)
+
+                        if abschnitt:
+                            section['abschnitt'] = abschnitt
+
+    # Store the full mapping in metadata
+    doc['abschnitt_structure'] = list({
+        json.dumps(v, sort_keys=True): v
+        for v in abschnitt_map.values()
+    }.values())
+
+    return doc
 
 
 class SimpleProgressBar:
@@ -352,12 +590,23 @@ def clean_text_with_regex(text: str, country: str) -> str:
     return cleaned
 
 
-def process_document(api_key: str, doc: dict, index: int, total: int, country: str, use_ai: bool = True, fast_mode: bool = False) -> dict:
+def process_document(api_key: str, doc: dict, index: int, total: int, country: str, use_ai: bool = True, fast_mode: bool = False, structure_only: bool = False) -> dict:
     """Process a single document"""
     title = doc.get('abbreviation') or doc.get('title') or f"Document {index + 1}"
     print(f"\n{Colors.BOLD}[{index + 1}/{total}] {title}{Colors.RESET}")
 
     cleaned_doc = doc.copy()
+
+    # In structure_only mode, skip text cleaning
+    if structure_only:
+        # Extract and add Abschnitt structure to sections
+        log_progress("Extracting Abschnitt structure...")
+        cleaned_doc = add_abschnitt_to_sections(cleaned_doc, country)
+        log_progress_done()
+        if cleaned_doc.get('abschnitt_structure'):
+            log_success(f"Found {len(cleaned_doc['abschnitt_structure'])} Abschnitt sections")
+        log_success(f"Completed {title}")
+        return cleaned_doc
 
     # Clean full_text if present
     if doc.get('full_text') and len(doc['full_text']) > 100:
@@ -442,11 +691,18 @@ def process_document(api_key: str, doc: dict, index: int, total: int, country: s
             cleaned_chapters.append(cleaned_chapter)
         cleaned_doc['chapters'] = cleaned_chapters
 
+    # Extract and add Abschnitt structure to sections
+    log_progress("Extracting Abschnitt structure...")
+    cleaned_doc = add_abschnitt_to_sections(cleaned_doc, country)
+    log_progress_done()
+    if cleaned_doc.get('abschnitt_structure'):
+        log_success(f"Found {len(cleaned_doc['abschnitt_structure'])} Abschnitt sections")
+
     log_success(f"Completed {title}")
     return cleaned_doc
 
 
-def process_database(country: str, api_key: str, use_ai: bool = True, fast_mode: bool = False):
+def process_database(country: str, api_key: str, use_ai: bool = True, fast_mode: bool = False, structure_only: bool = False):
     """Process a country's database"""
     base_path = Path(__file__).parent.parent / 'eu_safety_laws' / country.lower()
     input_file = base_path / f'{country.lower()}_database.json'
@@ -487,7 +743,7 @@ def process_database(country: str, api_key: str, use_ai: bool = True, fast_mode:
 
     for i, doc in enumerate(documents):
         try:
-            cleaned_doc = process_document(api_key, doc, i, len(documents), country, use_ai, fast_mode)
+            cleaned_doc = process_document(api_key, doc, i, len(documents), country, use_ai, fast_mode, structure_only)
             cleaned_documents.append(cleaned_doc)
             time.sleep(0.5)  # Rate limiting between documents
         except Exception as e:
@@ -539,12 +795,13 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-    python clean_databases.py --all              # Clean all databases
-    python clean_databases.py --country AT       # Clean Austrian database only
-    python clean_databases.py --country DE       # Clean German database only
-    python clean_databases.py --country NL       # Clean Netherlands database only
-    python clean_databases.py --all --fast       # Only clean full_text (much faster)
-    python clean_databases.py --all --no-ai      # Use regex only (no API needed)
+    python clean_databases.py --all                  # Clean all databases with AI
+    python clean_databases.py --country AT           # Clean Austrian database only
+    python clean_databases.py --country DE           # Clean German database only
+    python clean_databases.py --country NL           # Clean Netherlands database only
+    python clean_databases.py --all --fast           # Only clean full_text (much faster)
+    python clean_databases.py --all --no-ai          # Use regex only (no API needed)
+    python clean_databases.py --all --structure-only # Only extract Abschnitt structure (no cleaning)
 
 Environment:
     Set GEMINI_API_KEY environment variable or create a .env file
@@ -554,12 +811,18 @@ Environment:
     parser.add_argument('--all', action='store_true', help='Clean all databases')
     parser.add_argument('--fast', action='store_true', help='Fast mode: only clean full_text with AI, use regex for sections')
     parser.add_argument('--no-ai', action='store_true', help='Use regex only, no Gemini API')
+    parser.add_argument('--structure-only', action='store_true', help='Only extract Abschnitt structure, no text cleaning')
 
     args = parser.parse_args()
 
     if not args.country and not args.all:
         parser.print_help()
         sys.exit(1)
+
+    # Structure-only mode implies no-ai
+    if args.structure_only:
+        args.no_ai = True
+        log_info("Structure-only mode: extracting Abschnitt structure without text cleaning")
 
     # Check for API key (unless using --no-ai)
     api_key = None
@@ -571,6 +834,7 @@ Environment:
             print("  1. Environment variable: export GEMINI_API_KEY=your_key")
             print("  2. Create a .env file with: GEMINI_API_KEY=your_key")
             print("  3. Use --no-ai flag to use regex-only cleaning")
+            print("  4. Use --structure-only to only extract Abschnitt structure")
             sys.exit(1)
         log_success("API key found")
 
@@ -591,7 +855,7 @@ Environment:
     countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
 
     for country in countries:
-        process_database(country, api_key, use_ai=not args.no_ai, fast_mode=args.fast)
+        process_database(country, api_key, use_ai=not args.no_ai, fast_mode=args.fast, structure_only=args.structure_only)
 
 
 if __name__ == '__main__':
