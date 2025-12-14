@@ -35,3 +35,7 @@ Thumbs.db
 # Cache
 .cache/
 *.tsbuildinfo
+
+# Database cleanup script outputs
+eu_safety_laws/**/*_backup.json
+eu_safety_laws/**/*_cleaned.json
