@@ -160,28 +160,63 @@ function getSimilarity(str1, str2) {
 }
 
 // Pre-process Austrian law text to fix section format
-// Converts multi-line format to single-line format:
-// "§ 1.\nParagraph eins,\nGeltungsbereich" -> "§ 1. Geltungsbereich"
+// The RIS format has:
+// "§ 1\nText\n1. Abschnitt\nAllgemeine Bestimmungen\nGeltungsbereich\n§ 1.\nParagraph eins,\n(1)\nAbsatz eins\nActual content..."
 function preprocessAustrianText(text) {
   if (!text) return ''
 
   let result = text
 
-  // Fix table of contents format: "§ X.\nParagraph X,\nTitle" -> "§ X. Title"
-  // This handles the multi-line format in the TOC
-  result = result.replace(
-    /§\s*(\d+[a-z]?)\.?\s*\n\s*Paragraph\s+[\w\s]+,\s*\n\s*([^\n]+)/gi,
-    '§ $1. $2'
-  )
+  // Remove "Paragraph X," and "Absatz X" expanded notation lines
+  result = result.replace(/^\s*Paragraph\s+[\wäöü\s]+,\s*$/gim, '')
+  result = result.replace(/^\s*Absatz\s+[\wäöü\s]+\s*$/gim, '')
+  result = result.replace(/^\s*Ziffer\s+[\wäöü\s]+\s*$/gim, '')
+  result = result.replace(/^\s*Litera\s+[a-z]\s*$/gim, '')
 
-  // Also handle inline expanded notation: "§ 1. Paragraph eins, Title" -> "§ 1. Title"
-  result = result.replace(
-    /§\s*(\d+[a-z]?)\.?\s*Paragraph\s+[\w\s]+,\s*/gi,
-    '§ $1. '
-  )
+  // Remove inline expanded notations
+  result = result.replace(/Paragraph\s+[\wäöü\s]+,\s*/gi, '')
+  result = result.replace(/Absatz\s+(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\d+[a-z]?)\s*,?\s*/gi, '')
 
-  // Clean up "Paragraph X," standalone lines that might remain
-  result = result.replace(/^\s*Paragraph\s+[\w\s]+,\s*$/gim, '')
+  // Remove duplicate lines with expanded Bundesgesetzblatt references
+  // Keep abbreviated form (BGBl.), remove expanded form (Bundesgesetzblatt)
+  const lines = result.split('\n')
+  const cleanedLines = []
+  const seenContent = new Set()
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim()
+
+    // Skip lines that are just expanded notation
+    if (/^(Paragraph|Absatz|Ziffer|Litera|Anmerkung,)\s/i.test(line)) {
+      continue
+    }
+
+    // Skip duplicate expanded text (contains "Bundesgesetzblatt" when we have "BGBl.")
+    if (line.includes('Bundesgesetzblatt') && !line.includes('BGBl.')) {
+      // Check if similar content exists with abbreviated form
+      const abbreviated = line
+        .replace(/Bundesgesetzblatt\s+Teil\s+eins,?\s*/gi, 'BGBl. I ')
+        .replace(/Bundesgesetzblatt\s+Teil\s+zwei,?\s*/gi, 'BGBl. II ')
+        .replace(/Bundesgesetzblatt\s+Nr\.\s*/gi, 'BGBl. Nr. ')
+        .replace(/\s+aus\s+(\d+)/gi, '/$1')
+
+      // Skip if we've seen similar abbreviated content
+      const normalizedAbbr = abbreviated.toLowerCase().replace(/\s+/g, ' ').trim()
+      if (seenContent.has(normalizedAbbr)) {
+        continue
+      }
+    }
+
+    // Track normalized content to detect duplicates
+    const normalized = line.toLowerCase().replace(/\s+/g, ' ').trim()
+    if (normalized.length > 20) {
+      seenContent.add(normalized)
+    }
+
+    cleanedLines.push(lines[i])
+  }
+
+  result = cleanedLines.join('\n')
 
   // Clean multiple blank lines
   result = result.replace(/\n{3,}/g, '\n\n')
@@ -189,149 +224,134 @@ function preprocessAustrianText(text) {
   return result
 }
 
-// Parse law text into sections
+// Parse law text into sections based on "§ X\nText\n" markers
 function parseLawSections(text) {
   if (!text) return []
 
-  // First pre-process to fix Austrian multi-line format
-  let processedText = preprocessAustrianText(text)
+  // First pre-process to remove expanded notation
+  const cleanedText = preprocessAustrianText(text)
 
-  // Then clean duplicate expanded notation
-  const cleanedText = cleanDuplicateText(processedText)
+  const sections = []
+  const chapters = new Map() // Track Abschnitt titles
 
-  const sectionsMap = new Map() // Use map to deduplicate by section number
-  const chapters = [] // Track Abschnitt (chapter) headers
+  // Find the start of actual content (after TOC, starts with "§ 0\n" or "§ 1\n")
+  const contentStart = cleanedText.search(/§\s*[01]\s*\n\s*(?:Langtitel|Text)/i)
+  if (contentStart === -1) return []
 
-  // First, extract chapter headers (Abschnitt)
-  const chapterRegex = /(\d+)\.\s*Abschnitt[:\s]+([^\n]+)/gi
-  let chapterMatch
-  while ((chapterMatch = chapterRegex.exec(cleanedText)) !== null) {
-    chapters.push({
-      number: chapterMatch[1],
-      title: chapterMatch[2].trim(),
-      index: chapterMatch.index
-    })
-  }
+  const contentText = cleanedText.substring(contentStart)
 
-  // Match § sections and Artikel - capture the full header line
-  const sectionRegex = /(?:^|\n)(§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)|(?:Artikel|Art\.?)\s*(\d+[a-z]?)\s*\.?\s*([^\n]*))/gi
-
+  // Match sections by "§ X\nText\n" pattern
+  const sectionRegex = /§\s*(\d+[a-z]?)\s*\n\s*Text\s*\n/gi
+  const sectionMatches = []
   let match
-  const matches = []
-  while ((match = sectionRegex.exec(cleanedText)) !== null) {
-    const isArticle = !!match[4]
-    const number = isArticle ? match[4] : match[2]
-    let title = (isArticle ? match[5] : match[3])?.trim() || ''
-    const prefix = isArticle ? 'Art.' : '§'
-    const headerLength = match[0].length
 
-    // Clean title - remove any remaining "Paragraph X," patterns
-    title = title.replace(/^Paragraph\s+[\w\s]+,\s*/i, '').trim()
-
-    // Also remove patterns like "(1)" at the start if it's just that
-    if (/^\(\d+\)\s*$/.test(title)) {
-      title = ''
-    }
-
-    matches.push({
-      id: `section-${number}`,
-      number: `${prefix} ${number}`,
-      title: title.substring(0, 80),
+  while ((match = sectionRegex.exec(contentText)) !== null) {
+    sectionMatches.push({
+      number: match[1],
       index: match.index,
-      headerEnd: match.index + headerLength,
-      rawNumber: number
+      headerEnd: match.index + match[0].length
     })
   }
 
-  // Add content to each section, skipping the header line
-  for (let i = 0; i < matches.length; i++) {
-    const section = matches[i]
+  // Process each section
+  for (let i = 0; i < sectionMatches.length; i++) {
+    const section = sectionMatches[i]
     const contentStart = section.headerEnd
-    const contentEnd = i < matches.length - 1 ? matches[i + 1].index : cleanedText.length
-    let content = cleanedText.substring(contentStart, contentEnd).trim()
+    const contentEnd = i < sectionMatches.length - 1
+      ? sectionMatches[i + 1].index
+      : contentText.length
 
-    // If title is empty, try to extract it from the first line of content
-    if (!section.title && content) {
-      const firstLine = content.split('\n')[0].trim()
-      // Check if first line looks like a title (short, no punctuation at end except period)
-      if (firstLine && firstLine.length < 80 && !/^\(\d+\)/.test(firstLine) && !/^Absatz/.test(firstLine)) {
-        section.title = firstLine
-        content = content.substring(firstLine.length).trim()
+    let sectionContent = contentText.substring(contentStart, contentEnd).trim()
+    let title = ''
+    let chapterInfo = null
+
+    // Check if section starts with a chapter header (X. Abschnitt)
+    const chapterMatch = sectionContent.match(/^(\d+)\.\s*Abschnitt[:\s]*\n([^\n]+)\n/i)
+    if (chapterMatch) {
+      chapterInfo = {
+        number: chapterMatch[1],
+        title: chapterMatch[2].trim()
+      }
+      chapters.set(chapterMatch[1], chapterInfo.title)
+      sectionContent = sectionContent.substring(chapterMatch[0].length).trim()
+    }
+
+    // Extract section title (first line that's not a repeated § marker)
+    const lines = sectionContent.split('\n')
+    let titleLineIndex = 0
+
+    // Find title - skip lines that are just "§ X." markers
+    for (let j = 0; j < Math.min(5, lines.length); j++) {
+      const line = lines[j].trim()
+      if (line && !line.match(/^§\s*\d+[a-z]?\.?\s*$/) && !line.match(/^\(\d+\)$/)) {
+        title = line
+        titleLineIndex = j
+        break
       }
     }
 
-    // Skip duplicate entries (table of contents vs actual content)
-    // Keep the one with more content
-    const existingSection = sectionsMap.get(section.rawNumber)
-    if (existingSection) {
-      // Keep the section with more substantial content
-      if (content.length > existingSection.content.length) {
-        sectionsMap.set(section.rawNumber, { ...section, content })
-      }
-    } else {
-      sectionsMap.set(section.rawNumber, { ...section, content })
+    // Get content after title, skip repeated § marker
+    let actualContent = lines.slice(titleLineIndex + 1).join('\n').trim()
+
+    // Remove leading "§ X." if present
+    actualContent = actualContent.replace(/^§\s*\d+[a-z]?\.?\s*\n?/i, '').trim()
+
+    // Add chapter as a section entry if this is the first section in a new chapter
+    if (chapterInfo) {
+      sections.push({
+        id: `chapter-${chapterInfo.number}`,
+        number: `${chapterInfo.number}. Abschnitt`,
+        title: chapterInfo.title,
+        content: '',
+        rawNumber: `0.${chapterInfo.number}`,
+        isChapter: true,
+        sectionIndex: i
+      })
     }
-  }
 
-  // Build final sections array with chapter headers
-  const allSections = []
-
-  // Add Abschnitt headers as special sections
-  for (const chapter of chapters) {
-    allSections.push({
-      id: `chapter-${chapter.number}`,
-      number: `${chapter.number}. Abschnitt`,
-      title: chapter.title,
-      content: '',
-      rawNumber: `0.${chapter.number}`, // Sort before actual sections
-      isChapter: true,
-      index: chapter.index
+    // Add the section
+    sections.push({
+      id: `section-${section.number}`,
+      number: `§ ${section.number}`,
+      title: title.substring(0, 100),
+      content: actualContent,
+      rawNumber: section.number,
+      isChapter: false,
+      sectionIndex: i
     })
   }
 
-  // Add regular sections
-  allSections.push(...Array.from(sectionsMap.values()))
-
-  // Sort by position in document (index), with chapters coming first in their group
-  return allSections.sort((a, b) => {
-    // If both have index, sort by index
-    if (a.index !== undefined && b.index !== undefined) {
-      return a.index - b.index
-    }
-    // Otherwise sort by raw number
-    const numA = parseFloat(a.rawNumber.replace(/[a-z]/gi, '.1')) || 0
-    const numB = parseFloat(b.rawNumber.replace(/[a-z]/gi, '.1')) || 0
-    return numA - numB
-  })
+  return sections
 }
 
 // Skip boilerplate and get clean text
 function getCleanLawText(text) {
   if (!text) return ''
 
-  // First pre-process Austrian format, then clean duplicates
-  const processedText = preprocessAustrianText(text)
-  const cleanedText = cleanDuplicateText(processedText)
+  // Pre-process Austrian format
+  const cleanedText = preprocessAustrianText(text)
 
-  // Find where real content starts
+  // Find where real content starts (§ 0 or § 1 with Text marker)
+  const contentStart = cleanedText.search(/§\s*[01]\s*\n\s*(?:Langtitel|Text)/i)
+  if (contentStart !== -1) {
+    return cleanedText.substring(contentStart)
+  }
+
+  // Fallback: find first section marker
   const markers = [
     /§\s*1[.\s\n]/i,
-    /Artikel\s*1[.\s]/i,
     /1\.\s*Abschnitt/i,
     /Allgemeine Bestimmungen/i,
-    /Geltungsbereich/i,
   ]
 
-  let startIndex = 0
   for (const marker of markers) {
     const match = cleanedText.match(marker)
     if (match && match.index < cleanedText.length * 0.4) {
-      startIndex = match.index
-      break
+      return cleanedText.substring(match.index)
     }
   }
 
-  return cleanedText.substring(startIndex)
+  return cleanedText
 }
 
 // Format text with proper structure (paragraphs, lists, etc.)
