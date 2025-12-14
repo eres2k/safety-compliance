@@ -32,22 +32,140 @@ export function initializeLawsDatabase() {
 }
 
 /**
+ * Clean summary text by removing boilerplate navigation elements
+ * This is needed for Austrian laws scraped from RIS which contain HTML navigation text
+ */
+function cleanSummaryText(summary) {
+  if (!summary) return null
+
+  // Patterns to remove (Austrian RIS boilerplate)
+  const boilerplatePatterns = [
+    /^Seitenbereiche:[\s\S]*?Barrierefreiheitserklärung[\s\S]*?\)/i,
+    /^Seitenbereiche:.*$/im,
+    /Zum Inhalt\s*\([^)]*\)/gi,
+    /Zur Navigationsleiste\s*\([^)]*\)/gi,
+    /Kontakt\s*\([^)]*\)/gi,
+    /Impressum\s*\([^)]*\)/gi,
+    /Datenschutzerklärung\s*\([^)]*\)/gi,
+    /Barrierefreiheitserklärung\s*\([^)]*\)/gi,
+    /Accesskey\s*\d+/gi,
+    /^\s*\(\s*\)\s*$/gm
+  ]
+
+  let cleaned = summary
+  for (const pattern of boilerplatePatterns) {
+    cleaned = cleaned.replace(pattern, '')
+  }
+
+  // Clean up extra whitespace
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n').trim()
+
+  // If we removed too much, try to extract meaningful content
+  if (cleaned.length < 50) {
+    return null
+  }
+
+  return cleaned
+}
+
+/**
+ * Generate a summary from content text
+ */
+function generateSummaryFromContent(content, maxLength = 200) {
+  if (!content) return null
+
+  // Skip boilerplate at the start
+  const contentStartMarkers = [
+    /§\s*1[.\s]/i,
+    /Artikel\s*1[.\s]/i,
+    /\(1\)\s/i,
+    /Dieses\s+(Bundes)?[Gg]esetz/i,
+    /Zweck\s+des\s+Gesetzes/i,
+    /Ziel\s+dieser\s+Verordnung/i
+  ]
+
+  let startIndex = 0
+  for (const marker of contentStartMarkers) {
+    const match = content.match(marker)
+    if (match && match.index < content.length * 0.3) {
+      startIndex = match.index
+      break
+    }
+  }
+
+  const relevantContent = content.substring(startIndex)
+
+  // Extract first meaningful paragraph
+  const paragraphs = relevantContent.split(/\n{2,}/)
+  const firstParagraph = paragraphs.find(p => p.trim().length > 50) || paragraphs[0]
+
+  if (!firstParagraph) return null
+
+  // Truncate at sentence boundary
+  let summary = firstParagraph.trim()
+  if (summary.length > maxLength) {
+    const truncated = summary.substring(0, maxLength)
+    const lastSentence = Math.max(
+      truncated.lastIndexOf('. '),
+      truncated.lastIndexOf('.\n')
+    )
+    if (lastSentence > maxLength * 0.5) {
+      summary = truncated.substring(0, lastSentence + 1)
+    } else {
+      summary = truncated + '...'
+    }
+  }
+
+  return summary
+}
+
+/**
  * Normalize law item fields to standard format
  * Maps various field names from different JSON sources to consistent names
+ *
+ * Handles different database structures:
+ * - DE: content is nested in item.content.full_text
+ * - AT/NL: content is at top level in item.full_text
  */
 function normalizeLawItem(item) {
+  // Get full text from various possible locations
+  // AT/NL store full_text at top level, DE stores it in content.full_text
+  const fullText = item.full_text || item.content?.full_text || item.content?.text || null
+
+  // Clean the summary text
+  let cleanedSummary = cleanSummaryText(item.summary)
+
+  // If summary is still empty, try to generate from content
+  if (!cleanedSummary && fullText) {
+    cleanedSummary = generateSummaryFromContent(fullText)
+  }
+
+  // Normalize content structure to always have content.full_text
+  const normalizedContent = {
+    full_text: fullText,
+    text: fullText, // Keep text as alias for backwards compatibility
+    available: !!fullText,
+    // Preserve other content fields if they exist
+    ...(item.content && typeof item.content === 'object' ? {
+      format: item.content.format,
+      sections: item.content.sections,
+      num_pages: item.content.num_pages,
+      text_length: item.content.text_length
+    } : {})
+  }
+
   return {
     ...item,
     // Normalize abbreviation field (JSON may have 'abbr' or 'abbreviation')
     abbreviation: item.abbreviation || item.abbr || null,
-    // Normalize content field (JSON may have 'text' or 'full_text')
-    content: item.content ? {
-      ...item.content,
-      full_text: item.content.full_text || item.content.text || null,
-      available: item.content.available !== undefined ? item.content.available : !!(item.content.full_text || item.content.text)
-    } : null,
+    // Normalize content to consistent structure
+    content: normalizedContent,
     // Ensure description exists (fallback to category or empty string)
-    description: item.description || null
+    description: item.description || null,
+    // Use cleaned or generated summary
+    summary: cleanedSummary,
+    // Preserve chapters if they exist (AT/NL have chapters at top level)
+    chapters: item.chapters || []
   }
 }
 
@@ -55,7 +173,10 @@ function normalizeLawItem(item) {
  * Process raw laws data into standardized format
  */
 function processLawsData(data, countryCode) {
-  if (!data || !data.items) {
+  // Handle different data structures: AT/NL use 'documents', DE uses 'items'
+  const rawItems = data?.items || data?.documents || []
+
+  if (!data || rawItems.length === 0) {
     return {
       metadata: data?.metadata || {},
       categories: data?.categories || data?.types || {},
@@ -66,14 +187,14 @@ function processLawsData(data, countryCode) {
     }
   }
 
-  const items = data.items.map(item => {
+  const items = rawItems.map(item => {
     const normalized = normalizeLawItem(item)
     return {
       ...normalized,
       country: countryCode,
       searchText: buildSearchText(normalized),
       keywords: extractKeywords(normalized),
-      relatedIds: findRelatedLaws(normalized, data.items.map(normalizeLawItem))
+      relatedIds: findRelatedLaws(normalized, rawItems.map(normalizeLawItem))
     }
   })
 
@@ -265,7 +386,16 @@ export function getLawsByType(country, type) {
 }
 
 /**
- * Search laws
+ * Search laws with pagination support
+ * @param {string} query - Search query
+ * @param {Object} options - Search options
+ * @param {string|null} options.country - Filter by country (AT, DE, NL) or null for all
+ * @param {string|null} options.type - Filter by document type
+ * @param {string|null} options.category - Filter by category
+ * @param {number} options.page - Page number (1-indexed)
+ * @param {number} options.limit - Results per page
+ * @param {boolean} options.includeContent - Include full content in results
+ * @returns {Object} Search results with pagination metadata
  */
 export function searchLaws(query, options = {}) {
   if (!lawsDatabase) {
@@ -275,12 +405,18 @@ export function searchLaws(query, options = {}) {
   const {
     country = null, // null means all countries
     type = null,
-    limit = 50,
+    category = null,
+    page = 1,
+    limit = 20,
     includeContent = false
   } = options
 
-  const queryLower = query.toLowerCase().trim()
-  const results = []
+  // Validate pagination params
+  const validPage = Math.max(1, Math.floor(page))
+  const validLimit = Math.min(100, Math.max(1, Math.floor(limit)))
+
+  const queryLower = query?.toLowerCase().trim() || ''
+  const allResults = []
 
   const countries = country ? [country] : ['AT', 'DE', 'NL']
 
@@ -292,11 +428,15 @@ export function searchLaws(query, options = {}) {
       // Filter by type if specified
       if (type && item.type !== type) return
 
-      // Search in title, abbreviation, description
-      const score = calculateSearchScore(item, queryLower)
+      // Filter by category if specified
+      if (category && item.category !== category) return
+
+      // If no query, include all (with base score)
+      // Otherwise calculate search score
+      const score = queryLower ? calculateSearchScore(item, queryLower) : 1
 
       if (score > 0) {
-        results.push({
+        allResults.push({
           ...item,
           score,
           country: c,
@@ -307,10 +447,25 @@ export function searchLaws(query, options = {}) {
     })
   })
 
-  // Sort by score and limit
-  return results
-    .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
+  // Sort by score
+  allResults.sort((a, b) => b.score - a.score)
+
+  // Calculate pagination
+  const total = allResults.length
+  const totalPages = Math.ceil(total / validLimit)
+  const offset = (validPage - 1) * validLimit
+  const paginatedResults = allResults.slice(offset, offset + validLimit)
+
+  return {
+    results: paginatedResults,
+    pagination: {
+      page: validPage,
+      limit: validLimit,
+      total,
+      totalPages,
+      hasMore: validPage < totalPages
+    }
+  }
 }
 
 /**
@@ -397,6 +552,44 @@ export function getCrossReferences(country, lawId) {
 export function getLawCategories(country = 'DE') {
   const db = getLawsDatabase(country)
   return db.categories || {}
+}
+
+/**
+ * Get all facets (filter options) for the database
+ * Returns unique values for jurisdiction, type, and category filters
+ */
+export function getFacets() {
+  if (!lawsDatabase) {
+    initializeLawsDatabase()
+  }
+
+  const jurisdictions = new Set()
+  const types = new Set()
+  const categories = new Set()
+  const tags = new Set()
+
+  Object.entries(lawsDatabase).forEach(([country, data]) => {
+    jurisdictions.add(country)
+    data.items.forEach(item => {
+      if (item.type) types.add(item.type)
+      if (item.category) categories.add(item.category)
+      if (item.tags) item.tags.forEach(tag => tags.add(tag))
+    })
+  })
+
+  return {
+    jurisdictions: Array.from(jurisdictions).sort(),
+    types: Array.from(types).sort(),
+    categories: Array.from(categories).sort(),
+    tags: Array.from(tags).sort()
+  }
+}
+
+/**
+ * Validate country code
+ */
+export function isValidCountry(country) {
+  return ['AT', 'DE', 'NL'].includes(country)
 }
 
 /**
@@ -571,20 +764,32 @@ export function getLawExcerpt(law, searchTerm, contextLength = 200) {
 
 /**
  * Get popular/core laws for a country
+ * These are the most important workplace safety laws that users typically need
  */
 export function getCoreLaws(country = 'DE') {
-  const coreLawIds = {
-    AT: ['at-law-aschg', 'at-law-arbig', 'at-law-asvg'],
-    DE: ['de-law-arbschg', 'de-law-asig', 'de-law-arbstatv', 'de-law-gefstoffv'],
-    NL: ['nl-law-arbowet', 'nl-law-arbobesluit']
+  // Core law abbreviations for each country (primary workplace safety legislation)
+  const coreLawAbbreviations = {
+    AT: ['ASchG', 'ArbIG', 'ASVG', 'AStV', 'AM-VO'],
+    DE: ['ArbSchG', 'ASiG', 'ArbStättV', 'GefStoffV', 'BetrSichV'],
+    NL: ['Arbowet', 'Arbobesluit', 'Arboregeling', 'BRZO']
   }
 
   const db = getLawsDatabase(country)
-  const ids = coreLawIds[country] || []
+  const abbreviations = coreLawAbbreviations[country] || []
 
-  return ids
-    .map(id => db.itemsById[id])
-    .filter(Boolean)
+  // Find laws by abbreviation instead of hardcoded IDs
+  const coreLaws = []
+  for (const abbr of abbreviations) {
+    const law = db.items.find(item =>
+      item.abbreviation?.toLowerCase() === abbr.toLowerCase() ||
+      item.abbr?.toLowerCase() === abbr.toLowerCase()
+    )
+    if (law) {
+      coreLaws.push(law)
+    }
+  }
+
+  return coreLaws
 }
 
 /**
@@ -624,6 +829,8 @@ export default {
   getRelatedLaws,
   getCrossReferences,
   getLawCategories,
+  getFacets,
+  isValidCountry,
   getLawsStatistics,
   formatLawReference,
   getLawContentSections,
