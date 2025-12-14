@@ -159,7 +159,28 @@ function getSimilarity(str1, str2) {
   return matches / maxLen
 }
 
-// Parse law text into sections with Abschnitt groupings (AT) or Artikel format (NL)
+// German ordinal words to numbers mapping
+const germanOrdinals = {
+  'erster': '1', 'erste': '1', 'ersten': '1',
+  'zweiter': '2', 'zweite': '2', 'zweiten': '2',
+  'dritter': '3', 'dritte': '3', 'dritten': '3',
+  'vierter': '4', 'vierte': '4', 'vierten': '4',
+  'fünfter': '5', 'fünfte': '5', 'fünften': '5',
+  'sechster': '6', 'sechste': '6', 'sechsten': '6',
+  'siebter': '7', 'siebte': '7', 'siebten': '7', 'siebenter': '7',
+  'achter': '8', 'achte': '8', 'achten': '8',
+  'neunter': '9', 'neunte': '9', 'neunten': '9',
+  'zehnter': '10', 'zehnte': '10', 'zehnten': '10',
+  'elfter': '11', 'elfte': '11', 'elften': '11',
+  'zwölfter': '12', 'zwölfte': '12', 'zwölften': '12'
+}
+
+// Convert German ordinal word to number
+function ordinalToNumber(word) {
+  return germanOrdinals[word.toLowerCase()] || word
+}
+
+// Parse law text into sections with Abschnitt groupings (AT/DE) or Artikel format (NL)
 function parseLawSections(text, framework = 'AT') {
   if (!text) return []
 
@@ -206,38 +227,63 @@ function parseLawSections(text, framework = 'AT') {
       }
     }
   } else {
-    // Parse Austrian "§ X" format with Abschnitt groupings
+    // Parse Austrian/German "§ X" format with Abschnitt groupings
     // Strategy: Parse the TOC to determine which § belongs to which Abschnitt
 
-    // Step 1: Find the TOC section and parse Abschnitt -> § mappings
-    const abschnittRanges = []
+    // Detect format:
+    // - Austrian: "1. Abschnitt", "2. Abschnitt"
+    // - German: "Erster Abschnitt", "Zweiter Abschnitt"
+    const ordinalPattern = Object.keys(germanOrdinals).join('|')
+    const hasGermanOrdinals = new RegExp(`(${ordinalPattern})\\s+Abschnitt`, 'i').test(cleanedText)
 
-    // Look for TOC pattern: "X. Abschnitt:" followed by "§ Y." entries
-    // The TOC shows the structure clearly
+    // Step 1: Find the TOC section and parse Abschnitt -> § mappings
     const tocMatch = cleanedText.match(/INHALTSVERZEICHNIS|Inhaltsverzeichnis|INHALT/i)
     const tocStart = tocMatch ? tocMatch.index : 0
 
-    // Find where actual content starts (after TOC, where § 1 has actual content with (1))
-    const contentStartMatch = cleanedText.match(/§\s*1\.?\s*\n+[A-ZÄÖÜ][a-zäöüß]+[^\n]*\n+\(1\)/i)
+    // Find where actual content starts (after TOC, where § 1 has actual content)
+    const contentStartMatch = cleanedText.match(/§\s*1\.?\s+[A-ZÄÖÜ][a-zäöüß]+[^\n]*\n/i)
     const contentStart = contentStartMatch ? contentStartMatch.index : cleanedText.length * 0.3
 
     // Extract TOC portion
     const tocContent = cleanedText.substring(tocStart, contentStart)
 
-    // Parse Abschnitt headers from TOC and track which § numbers follow each
-    const abschnittTocRegex = /(\d+)\.\s*Abschnitt[:\s]*([^\n]*)/gi
-    let abMatch
+    // Parse Abschnitt headers from TOC
     const abschnittPositions = []
 
-    while ((abMatch = abschnittTocRegex.exec(tocContent)) !== null) {
-      abschnittPositions.push({
-        number: abMatch[1],
-        title: abMatch[2].trim(),
-        tocIndex: abMatch.index,
-        firstParagraph: null,
-        lastParagraph: null
-      })
+    if (hasGermanOrdinals) {
+      // German format: "Erster Abschnitt", "Zweiter Abschnitt", etc.
+      const germanAbschnittRegex = new RegExp(`(${ordinalPattern})\\s+Abschnitt[:\\s]*([^\\n]*)`, 'gi')
+      let abMatch
+      while ((abMatch = germanAbschnittRegex.exec(tocContent)) !== null) {
+        const ordinalWord = abMatch[1]
+        const number = ordinalToNumber(ordinalWord)
+        abschnittPositions.push({
+          number: number,
+          title: abMatch[2].trim(),
+          tocIndex: abMatch.index,
+          displayName: `${abMatch[1]} Abschnitt`,
+          firstParagraph: null,
+          lastParagraph: null
+        })
+      }
+    } else {
+      // Austrian format: "1. Abschnitt", "2. Abschnitt", etc.
+      const abschnittTocRegex = /(\d+)\.\s*Abschnitt[:\s]*([^\n]*)/gi
+      let abMatch
+      while ((abMatch = abschnittTocRegex.exec(tocContent)) !== null) {
+        abschnittPositions.push({
+          number: abMatch[1],
+          title: abMatch[2].trim(),
+          tocIndex: abMatch.index,
+          displayName: `${abMatch[1]}. Abschnitt`,
+          firstParagraph: null,
+          lastParagraph: null
+        })
+      }
     }
+
+    // Sort by number to ensure correct order
+    abschnittPositions.sort((a, b) => parseInt(a.number) - parseInt(b.number))
 
     // For each Abschnitt, find the § numbers that appear after it in the TOC
     for (let i = 0; i < abschnittPositions.length; i++) {
@@ -266,12 +312,12 @@ function parseLawSections(text, framework = 'AT') {
         for (let p = first; p <= last; p++) {
           paragraphToAbschnitt.set(p, ab)
         }
-        // Also handle letter variants like 52a, 77a, 78a, 78b, 82a, 82b, 82c, 88a, 96a, 101a, 127a
-        const letterVariants = [...abschnittPositions.length > 0 ?
-          tocContent.substring(ab.tocIndex, abschnittPositions[abschnittPositions.indexOf(ab) + 1]?.tocIndex || tocContent.length)
-            .matchAll(/§\s*(\d+)([a-z])\.?/gi) : []]
+        // Also handle letter variants like 52a, 77a, etc.
+        const abIndex = abschnittPositions.indexOf(ab)
+        const nextAbIndex = abschnittPositions[abIndex + 1]?.tocIndex || tocContent.length
+        const letterVariants = [...tocContent.substring(ab.tocIndex, nextAbIndex)
+          .matchAll(/§\s*(\d+)([a-z])\.?/gi)]
         for (const variant of letterVariants) {
-          const baseNum = parseInt(variant[1])
           paragraphToAbschnitt.set(`${variant[1]}${variant[2]}`, ab)
         }
       }
@@ -289,6 +335,7 @@ function parseLawSections(text, framework = 'AT') {
 
       // Clean up title - remove Abschnitt references and content markers
       title = title.replace(/^\d+\.\s*Abschnitt[:\s]*/i, '').trim()
+      title = title.replace(new RegExp(`^(${ordinalPattern})\\s+Abschnitt[:\\s]*`, 'i'), '').trim()
       title = title.replace(/^\(1\).*$/i, '').trim()
 
       matches.push({
@@ -308,8 +355,9 @@ function parseLawSections(text, framework = 'AT') {
       const contentEnd = i < matches.length - 1 ? matches[i + 1].index : mainContent.length
       let content = mainContent.substring(section.headerEnd, contentEnd).trim()
 
-      // Clean content - remove Abschnitt headers from content
+      // Clean content - remove Abschnitt headers from content (both formats)
       content = content.replace(/^\s*\d+\.\s*Abschnitt[^\n]*\n*/gi, '').trim()
+      content = content.replace(new RegExp(`^\\s*(${ordinalPattern})\\s+Abschnitt[^\\n]*\\n*`, 'gi'), '').trim()
 
       // Find Abschnitt based on paragraph number (from TOC mapping)
       let assignedAbschnitt = paragraphToAbschnitt.get(section.rawNumeric)
@@ -819,7 +867,7 @@ export function LawBrowser({ onBack }) {
                       <div key={section.id}>
                         {abschnittHeader && (
                           <div className="px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-whs-dark-600 sticky top-0">
-                            {abschnittHeader.number}. Abschnitt: {abschnittHeader.title}
+                            {abschnittHeader.displayName || `${abschnittHeader.number}. Abschnitt`}: {abschnittHeader.title}
                           </div>
                         )}
                         <button
@@ -943,7 +991,7 @@ export function LawBrowser({ onBack }) {
                                   {showAbschnittHeader && section.abschnitt && (
                                     <div className="mb-6 mt-8 first:mt-0 p-4 bg-gradient-to-r from-whs-orange-50 to-transparent dark:from-whs-orange-900/20 dark:to-transparent rounded-lg border-l-4 border-whs-orange-500">
                                       <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                                        {section.abschnitt.number}. Abschnitt
+                                        {section.abschnitt.displayName || `${section.abschnitt.number}. Abschnitt`}
                                       </h2>
                                       <p className="text-gray-600 dark:text-gray-400 font-medium">
                                         {section.abschnitt.title}
