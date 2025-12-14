@@ -14,11 +14,6 @@ const moduleIcons = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
   ),
-  documentGenerator: (
-    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-    </svg>
-  ),
   quickReference: (
     <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -35,7 +30,6 @@ const moduleIcons = {
 const moduleColors = {
   lawBrowser: 'from-whs-orange-500 to-whs-orange-600',
   complianceChecker: 'from-whs-success-500 to-whs-success-600',
-  documentGenerator: 'from-whs-info-500 to-whs-info-600',
   quickReference: 'from-whs-yellow-500 to-whs-yellow-600',
   regulationLookup: 'from-purple-500 to-purple-600'
 }
@@ -53,28 +47,12 @@ export function Dashboard({ onModuleSelect }) {
 
   const modules = [
     {
-      id: 'lawBrowser',
-      icon: moduleIcons.lawBrowser,
-      title: t.modules.lawBrowser.title,
-      description: t.modules.lawBrowser.description,
-      gradient: moduleColors.lawBrowser,
-      badge: `${stats.totalLaws}+ Laws`
-    },
-    {
       id: 'complianceChecker',
       icon: moduleIcons.complianceChecker,
       title: t.modules.complianceChecker.title,
       description: t.modules.complianceChecker.description,
       gradient: moduleColors.complianceChecker,
       badge: 'AI Powered'
-    },
-    {
-      id: 'documentGenerator',
-      icon: moduleIcons.documentGenerator,
-      title: t.modules.documentGenerator.title,
-      description: t.modules.documentGenerator.description,
-      gradient: moduleColors.documentGenerator,
-      badge: '6 Templates'
     },
     {
       id: 'quickReference',
@@ -118,13 +96,13 @@ export function Dashboard({ onModuleSelect }) {
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold text-white">
-                Welcome to{' '}
-                <span className="text-gradient">WHS Navigator</span>
+                EU Workplace Safety{' '}
+                <span className="text-gradient">Law Database</span>
               </h2>
 
               <p className="text-gray-400 max-w-xl">
-                Access comprehensive workplace safety regulations from Austria, Germany, and the Netherlands.
-                AI-powered compliance checking and document generation at your fingertips.
+                Comprehensive legal database with full-text workplace safety laws and regulations
+                from Austria, Germany, and the Netherlands. Includes Wikipedia reference articles.
               </p>
             </div>
 
@@ -147,20 +125,63 @@ export function Dashboard({ onModuleSelect }) {
         </div>
       </div>
 
-      {/* Quick Access */}
+      {/* Law Database - Main Feature */}
+      <button
+        onClick={() => onModuleSelect('lawBrowser')}
+        className="w-full group relative overflow-hidden rounded-2xl bg-gradient-to-br from-whs-orange-500 to-whs-orange-600 p-6 md:p-8 text-left transition-all duration-300 hover:shadow-2xl hover:shadow-whs-orange-500/25 hover:-translate-y-1"
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-grid-pattern" />
+        </div>
+        <div className="absolute -top-12 -right-12 w-64 h-64 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
+
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform text-white">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {t.modules.lawBrowser.title}
+                </h3>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-sm font-medium text-white">
+                  {stats.totalLaws || '86'}+ Laws
+                </span>
+              </div>
+              <p className="text-white/80 max-w-xl">
+                {t.modules.lawBrowser.description}. Browse full-text laws with section navigation,
+                search across all regulations, and get AI-powered explanations.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 text-white font-medium">
+            <span>Browse Laws</span>
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </div>
+      </button>
+
+      {/* Additional Tools */}
       <div>
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Quick Access
+              Additional Tools
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Select a module to get started
+              Compliance checking and reference tools
             </p>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-3 gap-5">
           {modules.map((module, index) => (
             <ModuleCard
               key={module.id}

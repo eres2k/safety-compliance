@@ -159,53 +159,222 @@ function getSimilarity(str1, str2) {
   return matches / maxLen
 }
 
-// Parse law text into sections
-function parseLawSections(text) {
+// German ordinal words to numbers mapping
+const germanOrdinals = {
+  'erster': '1', 'erste': '1', 'ersten': '1',
+  'zweiter': '2', 'zweite': '2', 'zweiten': '2',
+  'dritter': '3', 'dritte': '3', 'dritten': '3',
+  'vierter': '4', 'vierte': '4', 'vierten': '4',
+  'fünfter': '5', 'fünfte': '5', 'fünften': '5',
+  'sechster': '6', 'sechste': '6', 'sechsten': '6',
+  'siebter': '7', 'siebte': '7', 'siebten': '7', 'siebenter': '7',
+  'achter': '8', 'achte': '8', 'achten': '8',
+  'neunter': '9', 'neunte': '9', 'neunten': '9',
+  'zehnter': '10', 'zehnte': '10', 'zehnten': '10',
+  'elfter': '11', 'elfte': '11', 'elften': '11',
+  'zwölfter': '12', 'zwölfte': '12', 'zwölften': '12'
+}
+
+// Convert German ordinal word to number
+function ordinalToNumber(word) {
+  return germanOrdinals[word.toLowerCase()] || word
+}
+
+// Parse law text into sections with Abschnitt groupings (AT/DE) or Artikel format (NL)
+function parseLawSections(text, framework = 'AT') {
   if (!text) return []
 
   // First clean duplicate expanded notation
   const cleanedText = cleanDuplicateText(text)
 
-  const sectionsMap = new Map() // Use map to deduplicate by section number
-  // Match § sections and Artikel - capture the full header line
-  const sectionRegex = /(?:^|\n)(§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)|(?:Artikel|Art\.?)\s*(\d+[a-z]?)\s*\.?\s*([^\n]*))/gi
+  // Detect if this is Dutch/NL law (uses Artikel format)
+  const isArtikelFormat = /Artikel\s+\d+\./i.test(cleanedText)
 
-  let match
-  const matches = []
-  while ((match = sectionRegex.exec(cleanedText)) !== null) {
-    const isArticle = !!match[4]
-    const number = isArticle ? match[4] : match[2]
-    const title = (isArticle ? match[5] : match[3])?.trim() || ''
-    const prefix = isArticle ? 'Art.' : '§'
-    const headerLength = match[0].length
+  const sectionsMap = new Map()
 
-    matches.push({
-      id: `section-${number}`,
-      number: `${prefix} ${number}`,
-      title: title.substring(0, 80),
-      index: match.index,
-      headerEnd: match.index + headerLength, // Where the content actually starts
-      rawNumber: number
-    })
-  }
+  if (isArtikelFormat) {
+    // Parse Dutch "Artikel X. Title" format
+    const artikelRegex = /Artikel\s+(\d+[a-z]?)\.\s*([^\n]+)/gi
+    let match
+    const matches = []
 
-  // Add content to each section, skipping the header line
-  for (let i = 0; i < matches.length; i++) {
-    const section = matches[i]
-    const contentStart = section.headerEnd
-    const contentEnd = i < matches.length - 1 ? matches[i + 1].index : cleanedText.length
-    let content = cleanedText.substring(contentStart, contentEnd).trim()
+    while ((match = artikelRegex.exec(cleanedText)) !== null) {
+      const number = match[1]
+      const title = match[2].trim()
+      matches.push({
+        id: `artikel-${number}`,
+        number: `Artikel ${number}`,
+        title: title,
+        index: match.index,
+        headerEnd: match.index + match[0].length,
+        rawNumber: number
+      })
+    }
 
-    // Skip duplicate entries (table of contents vs actual content)
-    // Keep the one with more content
-    const existingSection = sectionsMap.get(section.rawNumber)
-    if (existingSection) {
-      // Keep the section with more substantial content
-      if (content.length > existingSection.content.length) {
-        sectionsMap.set(section.rawNumber, { ...section, content })
+    // Add content to each section - keep the one with most content
+    for (let i = 0; i < matches.length; i++) {
+      const section = matches[i]
+      const contentEnd = i < matches.length - 1 ? matches[i + 1].index : cleanedText.length
+      let content = cleanedText.substring(section.headerEnd, contentEnd).trim()
+
+      const existingSection = sectionsMap.get(section.rawNumber)
+      if (existingSection) {
+        if (content.length > existingSection.content.length) {
+          sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: null })
+        }
+      } else if (content.length > 5) {
+        sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: null })
+      }
+    }
+  } else {
+    // Parse Austrian/German "§ X" format with Abschnitt groupings
+    // Strategy: Parse the TOC to determine which § belongs to which Abschnitt
+
+    // Detect format:
+    // - Austrian: "1. Abschnitt", "2. Abschnitt"
+    // - German: "Erster Abschnitt", "Zweiter Abschnitt"
+    const ordinalPattern = Object.keys(germanOrdinals).join('|')
+    const hasGermanOrdinals = new RegExp(`(${ordinalPattern})\\s+Abschnitt`, 'i').test(cleanedText)
+
+    // Step 1: Find the TOC section and parse Abschnitt -> § mappings
+    const tocMatch = cleanedText.match(/INHALTSVERZEICHNIS|Inhaltsverzeichnis|INHALT/i)
+    const tocStart = tocMatch ? tocMatch.index : 0
+
+    // Find where actual content starts (after TOC, where § 1 has actual content)
+    const contentStartMatch = cleanedText.match(/§\s*1\.?\s+[A-ZÄÖÜ][a-zäöüß]+[^\n]*\n/i)
+    const contentStart = contentStartMatch ? contentStartMatch.index : cleanedText.length * 0.3
+
+    // Extract TOC portion
+    const tocContent = cleanedText.substring(tocStart, contentStart)
+
+    // Parse Abschnitt headers from TOC
+    const abschnittPositions = []
+
+    if (hasGermanOrdinals) {
+      // German format: "Erster Abschnitt", "Zweiter Abschnitt", etc.
+      const germanAbschnittRegex = new RegExp(`(${ordinalPattern})\\s+Abschnitt[:\\s]*([^\\n]*)`, 'gi')
+      let abMatch
+      while ((abMatch = germanAbschnittRegex.exec(tocContent)) !== null) {
+        const ordinalWord = abMatch[1]
+        const number = ordinalToNumber(ordinalWord)
+        abschnittPositions.push({
+          number: number,
+          title: abMatch[2].trim(),
+          tocIndex: abMatch.index,
+          displayName: `${abMatch[1]} Abschnitt`,
+          firstParagraph: null,
+          lastParagraph: null
+        })
       }
     } else {
-      sectionsMap.set(section.rawNumber, { ...section, content })
+      // Austrian format: "1. Abschnitt", "2. Abschnitt", etc.
+      const abschnittTocRegex = /(\d+)\.\s*Abschnitt[:\s]*([^\n]*)/gi
+      let abMatch
+      while ((abMatch = abschnittTocRegex.exec(tocContent)) !== null) {
+        abschnittPositions.push({
+          number: abMatch[1],
+          title: abMatch[2].trim(),
+          tocIndex: abMatch.index,
+          displayName: `${abMatch[1]}. Abschnitt`,
+          firstParagraph: null,
+          lastParagraph: null
+        })
+      }
+    }
+
+    // Sort by number to ensure correct order
+    abschnittPositions.sort((a, b) => parseInt(a.number) - parseInt(b.number))
+
+    // For each Abschnitt, find the § numbers that appear after it in the TOC
+    for (let i = 0; i < abschnittPositions.length; i++) {
+      const ab = abschnittPositions[i]
+      const nextAbStart = i < abschnittPositions.length - 1
+        ? abschnittPositions[i + 1].tocIndex
+        : tocContent.length
+
+      // Extract the TOC portion for this Abschnitt
+      const abschnittTocSection = tocContent.substring(ab.tocIndex, nextAbStart)
+
+      // Find all § numbers in this section
+      const paragraphMatches = [...abschnittTocSection.matchAll(/§\s*(\d+[a-z]?)\.?/gi)]
+      if (paragraphMatches.length > 0) {
+        ab.firstParagraph = paragraphMatches[0][1]
+        ab.lastParagraph = paragraphMatches[paragraphMatches.length - 1][1]
+      }
+    }
+
+    // Build a lookup: paragraph number -> Abschnitt
+    const paragraphToAbschnitt = new Map()
+    for (const ab of abschnittPositions) {
+      if (ab.firstParagraph && ab.lastParagraph) {
+        const first = parseInt(ab.firstParagraph.replace(/[a-z]/gi, ''))
+        const last = parseInt(ab.lastParagraph.replace(/[a-z]/gi, ''))
+        for (let p = first; p <= last; p++) {
+          paragraphToAbschnitt.set(p, ab)
+        }
+        // Also handle letter variants like 52a, 77a, etc.
+        const abIndex = abschnittPositions.indexOf(ab)
+        const nextAbIndex = abschnittPositions[abIndex + 1]?.tocIndex || tocContent.length
+        const letterVariants = [...tocContent.substring(ab.tocIndex, nextAbIndex)
+          .matchAll(/§\s*(\d+)([a-z])\.?/gi)]
+        for (const variant of letterVariants) {
+          paragraphToAbschnitt.set(`${variant[1]}${variant[2]}`, ab)
+        }
+      }
+    }
+
+    // Step 2: Parse actual content - find all § sections with their content
+    const mainContent = cleanedText.substring(contentStart)
+    const sectionRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)/gi
+    let match
+    const matches = []
+
+    while ((match = sectionRegex.exec(mainContent)) !== null) {
+      const number = match[1]
+      let title = (match[2] || '').trim()
+
+      // Clean up title - remove Abschnitt references and content markers
+      title = title.replace(/^\d+\.\s*Abschnitt[:\s]*/i, '').trim()
+      title = title.replace(new RegExp(`^(${ordinalPattern})\\s+Abschnitt[:\\s]*`, 'i'), '').trim()
+      title = title.replace(/^\(1\).*$/i, '').trim()
+
+      matches.push({
+        id: `section-${number}`,
+        number: `§ ${number}`,
+        title: title.substring(0, 100),
+        index: match.index,
+        headerEnd: match.index + match[0].length,
+        rawNumber: number,
+        rawNumeric: parseInt(number.replace(/[a-z]/gi, ''))
+      })
+    }
+
+    // Step 3: Assign content and Abschnitt to each section
+    for (let i = 0; i < matches.length; i++) {
+      const section = matches[i]
+      const contentEnd = i < matches.length - 1 ? matches[i + 1].index : mainContent.length
+      let content = mainContent.substring(section.headerEnd, contentEnd).trim()
+
+      // Clean content - remove Abschnitt headers from content (both formats)
+      content = content.replace(/^\s*\d+\.\s*Abschnitt[^\n]*\n*/gi, '').trim()
+      content = content.replace(new RegExp(`^\\s*(${ordinalPattern})\\s+Abschnitt[^\\n]*\\n*`, 'gi'), '').trim()
+
+      // Find Abschnitt based on paragraph number (from TOC mapping)
+      let assignedAbschnitt = paragraphToAbschnitt.get(section.rawNumeric)
+      // Also try with letter variant
+      if (!assignedAbschnitt && /[a-z]/i.test(section.rawNumber)) {
+        assignedAbschnitt = paragraphToAbschnitt.get(section.rawNumber.toLowerCase())
+      }
+
+      // Keep the section with more content when deduplicating
+      const existingSection = sectionsMap.get(section.rawNumber)
+      if (existingSection) {
+        if (content.length > existingSection.content.length) {
+          sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: assignedAbschnitt })
+        }
+      } else if (content.length > 10) {
+        sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: assignedAbschnitt })
+      }
     }
   }
 
@@ -466,8 +635,8 @@ export function LawBrowser({ onBack }) {
   const lawSections = useMemo(() => {
     if (!selectedLaw) return []
     const text = selectedLaw.content?.full_text || selectedLaw.content?.text || ''
-    return parseLawSections(getCleanLawText(text))
-  }, [selectedLaw])
+    return parseLawSections(getCleanLawText(text), framework)
+  }, [selectedLaw, framework])
 
   // Filter sections by search
   const filteredSections = useMemo(() => {
@@ -687,22 +856,37 @@ export function LawBrowser({ onBack }) {
                 />
               </div>
               <div className="overflow-y-auto h-[calc(100%-84px)]">
-                {filteredSections.map((section) => (
-                  <button
-                    key={section.id}
-                    onClick={() => scrollToSection(section.id)}
-                    className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
-                      activeSection === section.id
-                        ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
-                    }`}
-                  >
-                    <span className="font-semibold text-whs-orange-500">{section.number}</span>
-                    {section.title && (
-                      <span className="ml-1 line-clamp-1">{section.title}</span>
-                    )}
-                  </button>
-                ))}
+                {(() => {
+                  let currentAbschnitt = null
+                  return filteredSections.map((section) => {
+                    const abschnittHeader = section.abschnitt && section.abschnitt.number !== currentAbschnitt?.number
+                      ? (currentAbschnitt = section.abschnitt, section.abschnitt)
+                      : null
+
+                    return (
+                      <div key={section.id}>
+                        {abschnittHeader && (
+                          <div className="px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-whs-dark-600 sticky top-0">
+                            {abschnittHeader.displayName || `${abschnittHeader.number}. Abschnitt`}: {abschnittHeader.title}
+                          </div>
+                        )}
+                        <button
+                          onClick={() => scrollToSection(section.id)}
+                          className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
+                            activeSection === section.id
+                              ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
+                              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
+                          }`}
+                        >
+                          <span className="font-semibold text-whs-orange-500">{section.number}</span>
+                          {section.title && (
+                            <span className="ml-1 line-clamp-1">{section.title}</span>
+                          )}
+                        </button>
+                      </div>
+                    )
+                  })
+                })()}
               </div>
             </Card>
           </div>
@@ -794,28 +978,49 @@ export function LawBrowser({ onBack }) {
                       {/* Sections */}
                       {filteredSections.length > 0 ? (
                         <div className="space-y-8">
-                          {filteredSections.map((section) => (
-                            <div
-                              key={section.id}
-                              id={section.id}
-                              ref={(el) => (sectionRefs.current[section.id] = el)}
-                              className="scroll-mt-4"
-                            >
-                              <div className="flex items-baseline gap-3 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
-                                <span className="text-2xl font-bold text-whs-orange-500">
-                                  {section.number}
-                                </span>
-                                {section.title && (
-                                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                    {section.title}
-                                  </h3>
-                                )}
-                              </div>
-                              <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                <FormattedText text={section.content} />
-                              </div>
-                            </div>
-                          ))}
+                          {(() => {
+                            let currentAbschnitt = null
+                            return filteredSections.map((section) => {
+                              const showAbschnittHeader = section.abschnitt && section.abschnitt.number !== currentAbschnitt?.number
+                              if (showAbschnittHeader) {
+                                currentAbschnitt = section.abschnitt
+                              }
+
+                              return (
+                                <div key={section.id}>
+                                  {showAbschnittHeader && section.abschnitt && (
+                                    <div className="mb-6 mt-8 first:mt-0 p-4 bg-gradient-to-r from-whs-orange-50 to-transparent dark:from-whs-orange-900/20 dark:to-transparent rounded-lg border-l-4 border-whs-orange-500">
+                                      <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                                        {section.abschnitt.displayName || `${section.abschnitt.number}. Abschnitt`}
+                                      </h2>
+                                      <p className="text-gray-600 dark:text-gray-400 font-medium">
+                                        {section.abschnitt.title}
+                                      </p>
+                                    </div>
+                                  )}
+                                  <div
+                                    id={section.id}
+                                    ref={(el) => (sectionRefs.current[section.id] = el)}
+                                    className="scroll-mt-4"
+                                  >
+                                    <div className="flex items-baseline gap-3 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
+                                      <span className="text-2xl font-bold text-whs-orange-500">
+                                        {section.number}
+                                      </span>
+                                      {section.title && (
+                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                          {section.title}
+                                        </h3>
+                                      )}
+                                    </div>
+                                    <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
+                                      <FormattedText text={section.content} />
+                                    </div>
+                                  </div>
+                                </div>
+                              )
+                            })
+                          })()}
                         </div>
                       ) : (
                         /* Raw text fallback */
