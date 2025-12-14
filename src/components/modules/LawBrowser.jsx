@@ -159,90 +159,413 @@ function getSimilarity(str1, str2) {
   return matches / maxLen
 }
 
-// Parse law text into sections
-function parseLawSections(text) {
+// Pre-process Austrian law text to fix section format
+// The RIS format has:
+// "§ 1\nText\n1. Abschnitt\nAllgemeine Bestimmungen\nGeltungsbereich\n§ 1.\nParagraph eins,\n(1)\nAbsatz eins\nActual content..."
+function preprocessAustrianText(text) {
+  if (!text) return ''
+
+  let result = text
+
+  // Remove standalone expanded notation lines
+  result = result.replace(/^\s*Paragraph\s+[\wäöü\s]+,?\s*$/gim, '')
+  result = result.replace(/^\s*Absatz\s+[\wäöü\s]+\s*$/gim, '')
+  result = result.replace(/^\s*Ziffer\s+[\wäöü\s]+\s*$/gim, '')
+  result = result.replace(/^\s*Litera\s+[a-z]\s*$/gim, '')
+  result = result.replace(/^\s*Sub-Litera[,\s]+[a-z][,\s]+[a-z]\s*$/gim, '')
+  result = result.replace(/^\s*Anmerkung,.*$/gim, '')
+
+  // Remove "BGBl. römisch eins" expanded form
+  result = result.replace(/BGBl\.\s*römisch\s+eins/gi, 'BGBl. I')
+
+  // Process line by line to remove duplicate expanded content
+  const lines = result.split('\n')
+  const cleanedLines = []
+  const seenContent = new Map() // Map normalized content to line index
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    const trimmedLine = line.trim()
+
+    // Skip lines that are just expanded notation markers
+    if (/^(Paragraph|Absatz|Ziffer|Litera|Sub-Litera|Anmerkung)[,\s]/i.test(trimmedLine)) {
+      continue
+    }
+
+    // Check if this line is a duplicate with expanded notation
+    // Lines with "Bundesgesetzblatt" are expanded versions of "BGBl." lines
+    if (trimmedLine.includes('Bundesgesetzblatt') || trimmedLine.includes('römisch')) {
+      // Normalize: convert expanded form to abbreviated for comparison
+      const normalized = trimmedLine
+        .replace(/Bundesgesetzblatt\s+Teil\s+eins,?\s*/gi, 'BGBl. I ')
+        .replace(/Bundesgesetzblatt\s+Teil\s+zwei,?\s*/gi, 'BGBl. II ')
+        .replace(/Bundesgesetzblatt\s+Nr\.\s*/gi, 'BGBl. Nr. ')
+        .replace(/,\s*Nr\.\s*(\d+)\s+aus\s+(\d+),?/gi, ' Nr. $1/$2')
+        .replace(/\s+aus\s+(\d+),?/gi, '/$1')
+        .replace(/römisch\s+eins/gi, 'I')
+        .replace(/Paragraph\s+\d+[a-z]?,?\s*/gi, '')
+        .replace(/\s+/g, ' ')
+        .toLowerCase()
+        .trim()
+
+      // Check if we've seen similar content
+      let isDuplicate = false
+      for (const [seenNorm] of seenContent) {
+        // Check for substantial overlap
+        if (seenNorm.length > 30 && normalized.length > 30) {
+          const shorter = seenNorm.length < normalized.length ? seenNorm : normalized
+          const longer = seenNorm.length < normalized.length ? normalized : seenNorm
+          if (longer.includes(shorter.substring(0, 30))) {
+            isDuplicate = true
+            break
+          }
+        }
+      }
+      if (isDuplicate) continue
+    }
+
+    // Track content for duplicate detection
+    const normalizedForTracking = trimmedLine.toLowerCase().replace(/\s+/g, ' ').trim()
+    if (normalizedForTracking.length > 30) {
+      seenContent.set(normalizedForTracking, i)
+    }
+
+    cleanedLines.push(line)
+  }
+
+  result = cleanedLines.join('\n')
+
+  // Clean multiple blank lines
+  result = result.replace(/\n{3,}/g, '\n\n')
+
+  return result
+}
+
+// Pre-process Dutch (NL) law text to remove boilerplate
+function preprocessDutchText(text) {
+  if (!text) return ''
+
+  let result = text
+
+  // Remove Dutch legal database boilerplate lines
+  const boilerplatePatterns = [
+    /^\s*Toon relaties in LiDO\s*$/gim,
+    /^\s*Maak een permanente link\s*$/gim,
+    /^\s*Toon wetstechnische informatie\s*$/gim,
+    /^\s*\.\.\.\s*$/gim,
+    /^\s*Druk het regelingonderdeel af\s*$/gim,
+    /^\s*Sla het regelingonderdeel op\s*$/gim,
+    /^\s*\[Wijziging\(en\)[^\]]*\]\s*$/gim,
+    /^\s*wijzigingenoverzicht\s*$/gim,
+  ]
+
+  for (const pattern of boilerplatePatterns) {
+    result = result.replace(pattern, '')
+  }
+
+  // Clean multiple blank lines
+  result = result.replace(/\n{3,}/g, '\n\n')
+
+  return result
+}
+
+// Detect country from text patterns
+function detectCountry(text) {
+  if (!text) return 'unknown'
+
+  // Austrian patterns - check for RIS specific markers
+  if (/§\s*\d+\s*\n\s*Text\s*\n/i.test(text)) {
+    return 'AT'
+  }
+
+  // Dutch patterns
+  if (text.includes('Toon relaties in LiDO') || text.includes('regelingonderdeel') || /Artikel\s+\d+[a-z]?\.\s+/i.test(text)) {
+    return 'NL'
+  }
+
+  // German patterns - plain text with § but no "Text" marker
+  if (/^\s*§\s*\d+[a-z]?\s+[A-Z]/m.test(text) || (text.includes('Absatz') && !text.includes('Bundesgesetzblatt'))) {
+    return 'DE'
+  }
+
+  // Check for Austrian expanded notation
+  if (text.includes('Bundesgesetzblatt') || text.includes('BGBl.')) {
+    return 'AT'
+  }
+
+  return 'unknown'
+}
+
+// Parse law text into sections based on country-specific patterns
+function parseLawSections(text, framework) {
   if (!text) return []
 
-  // First clean duplicate expanded notation
-  const cleanedText = cleanDuplicateText(text)
+  const country = framework || detectCountry(text)
 
-  const sectionsMap = new Map() // Use map to deduplicate by section number
-  // Match § sections and Artikel - capture the full header line
-  const sectionRegex = /(?:^|\n)(§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)|(?:Artikel|Art\.?)\s*(\d+[a-z]?)\s*\.?\s*([^\n]*))/gi
+  if (country === 'NL') {
+    return parseDutchLawSections(text)
+  }
 
+  if (country === 'DE') {
+    return parseGermanLawSections(text)
+  }
+
+  // Default: Austrian parsing
+  return parseAustrianLawSections(text)
+}
+
+// Parse German law sections (simpler format without "Text" markers)
+function parseGermanLawSections(text) {
+  if (!text) return []
+
+  const sections = []
+
+  // German laws use "§ X Title" format directly
+  // Match § followed by number and title on same or next line
+  const sectionRegex = /§\s*(\d+[a-z]?)\s+([A-ZÄÖÜ][^\n]*?)(?=\n|$)/g
   let match
-  const matches = []
-  while ((match = sectionRegex.exec(cleanedText)) !== null) {
-    const isArticle = !!match[4]
-    const number = isArticle ? match[4] : match[2]
-    const title = (isArticle ? match[5] : match[3])?.trim() || ''
-    const prefix = isArticle ? 'Art.' : '§'
-    const headerLength = match[0].length
+  const sectionMatches = []
 
-    matches.push({
-      id: `section-${number}`,
-      number: `${prefix} ${number}`,
-      title: title.substring(0, 80),
+  while ((match = sectionRegex.exec(text)) !== null) {
+    sectionMatches.push({
+      number: match[1],
+      title: match[2].trim(),
       index: match.index,
-      headerEnd: match.index + headerLength, // Where the content actually starts
-      rawNumber: number
+      headerEnd: match.index + match[0].length
     })
   }
 
-  // Add content to each section, skipping the header line
-  for (let i = 0; i < matches.length; i++) {
-    const section = matches[i]
-    const contentStart = section.headerEnd
-    const contentEnd = i < matches.length - 1 ? matches[i + 1].index : cleanedText.length
-    let content = cleanedText.substring(contentStart, contentEnd).trim()
-
-    // Skip duplicate entries (table of contents vs actual content)
-    // Keep the one with more content
-    const existingSection = sectionsMap.get(section.rawNumber)
-    if (existingSection) {
-      // Keep the section with more substantial content
-      if (content.length > existingSection.content.length) {
-        sectionsMap.set(section.rawNumber, { ...section, content })
-      }
-    } else {
-      sectionsMap.set(section.rawNumber, { ...section, content })
+  // If no matches with title, try just § X pattern
+  if (sectionMatches.length === 0) {
+    const simpleRegex = /§\s*(\d+[a-z]?)/g
+    while ((match = simpleRegex.exec(text)) !== null) {
+      sectionMatches.push({
+        number: match[1],
+        title: '',
+        index: match.index,
+        headerEnd: match.index + match[0].length
+      })
     }
   }
 
-  // Convert map to array and sort by section number
-  return Array.from(sectionsMap.values()).sort((a, b) => {
-    const numA = parseFloat(a.rawNumber.replace(/[a-z]/gi, '.1')) || 0
-    const numB = parseFloat(b.rawNumber.replace(/[a-z]/gi, '.1')) || 0
-    return numA - numB
-  })
+  // Process each section
+  for (let i = 0; i < sectionMatches.length; i++) {
+    const section = sectionMatches[i]
+    const contentStart = section.headerEnd
+    const contentEnd = i < sectionMatches.length - 1
+      ? sectionMatches[i + 1].index
+      : text.length
+
+    let content = text.substring(contentStart, contentEnd).trim()
+
+    // Extract title from first line if not already captured
+    let title = section.title
+    if (!title && content) {
+      const firstLine = content.split('\n')[0].trim()
+      if (firstLine && firstLine.length < 100 && !/^\(\d+\)/.test(firstLine)) {
+        title = firstLine
+        content = content.substring(firstLine.length).trim()
+      }
+    }
+
+    sections.push({
+      id: `section-${section.number}`,
+      number: `§ ${section.number}`,
+      title: title.substring(0, 100),
+      content: content,
+      rawNumber: section.number,
+      isChapter: false
+    })
+  }
+
+  return sections
+}
+
+// Parse Dutch law sections
+function parseDutchLawSections(text) {
+  if (!text) return []
+
+  const cleanedText = preprocessDutchText(text)
+  const sections = []
+
+  // Match "Artikel X. Title" or "Artikel Xa. Title" patterns
+  const sectionRegex = /Artikel\s+(\d+[a-z]?)\.\s+([^\n]+)/gi
+  let match
+  const sectionMatches = []
+
+  while ((match = sectionRegex.exec(cleanedText)) !== null) {
+    sectionMatches.push({
+      number: match[1],
+      title: match[2].trim(),
+      index: match.index,
+      headerEnd: match.index + match[0].length
+    })
+  }
+
+  // Process each section
+  for (let i = 0; i < sectionMatches.length; i++) {
+    const section = sectionMatches[i]
+    const contentStart = section.headerEnd
+    const contentEnd = i < sectionMatches.length - 1
+      ? sectionMatches[i + 1].index
+      : cleanedText.length
+
+    let content = cleanedText.substring(contentStart, contentEnd).trim()
+
+    // Remove remaining boilerplate at start of content
+    content = content.replace(/^[\s\n]*(?:Toon relaties|Maak een|Druk het|Sla het)[^\n]*\n*/gi, '')
+
+    sections.push({
+      id: `section-${section.number}`,
+      number: `Art. ${section.number}`,
+      title: section.title.substring(0, 100),
+      content: content,
+      rawNumber: section.number,
+      isChapter: false
+    })
+  }
+
+  return sections
+}
+
+// Parse Austrian/German law sections
+function parseAustrianLawSections(text) {
+  if (!text) return []
+
+  // First pre-process to remove expanded notation
+  const cleanedText = preprocessAustrianText(text)
+
+  const sections = []
+  const chapters = new Map()
+
+  // Find the start of actual content
+  const contentStart = cleanedText.search(/(?:§\s*[01]|Art\.?\s*[01])\s*\n\s*(?:Langtitel|Text)/i)
+  if (contentStart === -1) {
+    const fallbackStart = cleanedText.search(/(?:§|Art\.?)\s*\d+[a-z]?\s*\n\s*Text\s*\n/i)
+    if (fallbackStart === -1) return []
+  }
+
+  const contentText = contentStart !== -1 ? cleanedText.substring(contentStart) : cleanedText
+
+  // Match sections by "§ X\nText\n" or "Art. X\nText\n" pattern
+  const sectionRegex = /(?:§|Art\.?)\s*(\d+[a-z]?)\s*\n\s*Text\s*\n/gi
+  const sectionMatches = []
+  let match
+
+  while ((match = sectionRegex.exec(contentText)) !== null) {
+    const isArticle = match[0].toLowerCase().startsWith('art')
+    sectionMatches.push({
+      number: match[1],
+      index: match.index,
+      headerEnd: match.index + match[0].length,
+      prefix: isArticle ? 'Art.' : '§'
+    })
+  }
+
+  // Process each section
+  for (let i = 0; i < sectionMatches.length; i++) {
+    const section = sectionMatches[i]
+    const contentStart = section.headerEnd
+    const contentEnd = i < sectionMatches.length - 1
+      ? sectionMatches[i + 1].index
+      : contentText.length
+
+    let sectionContent = contentText.substring(contentStart, contentEnd).trim()
+    let title = ''
+    let chapterInfo = null
+
+    // Check if section starts with a chapter header
+    // Handle both formats: "1. Abschnitt\nTitle" and "ABSCHNITT 1\nTitle"
+    let chapterMatch = sectionContent.match(/^(\d+)\.\s*(Abschnitt|Hauptstück|Teil)[:\s]*\n([^\n]+)\n/i)
+    if (!chapterMatch) {
+      // Try uppercase format: "ABSCHNITT 1\nTitle"
+      chapterMatch = sectionContent.match(/^(ABSCHNITT|HAUPTSTÜCK|TEIL)\s+(\d+)[:\s]*\n([^\n]+)\n/i)
+      if (chapterMatch) {
+        // Swap the groups to normalize - number should be first
+        chapterMatch = [chapterMatch[0], chapterMatch[2], chapterMatch[1], chapterMatch[3]]
+      }
+    }
+    if (chapterMatch) {
+      chapterInfo = {
+        number: chapterMatch[1],
+        title: chapterMatch[3].trim()
+      }
+      chapters.set(chapterMatch[1], chapterInfo.title)
+      sectionContent = sectionContent.substring(chapterMatch[0].length).trim()
+    }
+
+    // Extract section title
+    const lines = sectionContent.split('\n')
+    let titleLineIndex = 0
+
+    for (let j = 0; j < Math.min(5, lines.length); j++) {
+      const line = lines[j].trim()
+      if (line && !line.match(/^(?:§|Art\.?)\s*\d+[a-z]?\.?\s*$/) && !line.match(/^\(\d+\)$/)) {
+        title = line
+        titleLineIndex = j
+        break
+      }
+    }
+
+    let actualContent = lines.slice(titleLineIndex + 1).join('\n').trim()
+    actualContent = actualContent.replace(/^(?:§|Art\.?)\s*\d+[a-z]?\.?\s*\n?/i, '').trim()
+
+    // Add chapter entry (without "Abschnitt" word - just number and title)
+    if (chapterInfo) {
+      sections.push({
+        id: `chapter-${chapterInfo.number}`,
+        number: chapterInfo.number,
+        title: chapterInfo.title,
+        content: '',
+        rawNumber: `0.${chapterInfo.number}`,
+        isChapter: true,
+        sectionIndex: i
+      })
+    }
+
+    sections.push({
+      id: `section-${section.number}`,
+      number: `${section.prefix} ${section.number}`,
+      title: title.substring(0, 100),
+      content: actualContent,
+      rawNumber: section.number,
+      isChapter: false,
+      chapterNumber: chapterInfo?.number,
+      sectionIndex: i
+    })
+  }
+
+  return sections
 }
 
 // Skip boilerplate and get clean text
 function getCleanLawText(text) {
   if (!text) return ''
 
-  // First apply duplicate text cleaning
-  const cleanedText = cleanDuplicateText(text)
+  // Pre-process Austrian format
+  const cleanedText = preprocessAustrianText(text)
 
-  // Find where real content starts
+  // Find where real content starts (§ 0 or § 1 with Text marker)
+  const contentStart = cleanedText.search(/§\s*[01]\s*\n\s*(?:Langtitel|Text)/i)
+  if (contentStart !== -1) {
+    return cleanedText.substring(contentStart)
+  }
+
+  // Fallback: find first section marker
   const markers = [
     /§\s*1[.\s\n]/i,
-    /Artikel\s*1[.\s]/i,
     /1\.\s*Abschnitt/i,
     /Allgemeine Bestimmungen/i,
-    /Geltungsbereich/i,
   ]
 
-  let startIndex = 0
   for (const marker of markers) {
     const match = cleanedText.match(marker)
     if (match && match.index < cleanedText.length * 0.4) {
-      startIndex = match.index
-      break
+      return cleanedText.substring(match.index)
     }
   }
 
-  return cleanedText.substring(startIndex)
+  return cleanedText
 }
 
 // Format text with proper structure (paragraphs, lists, etc.)
@@ -390,9 +713,23 @@ export function LawBrowser({ onBack }) {
   const [searchInLaw, setSearchInLaw] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [prevFramework, setPrevFramework] = useState(framework)
+  const [collapsedChapters, setCollapsedChapters] = useState(new Set())
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
+
+  // Toggle chapter collapse
+  const toggleChapter = useCallback((chapterNumber) => {
+    setCollapsedChapters(prev => {
+      const next = new Set(prev)
+      if (next.has(chapterNumber)) {
+        next.delete(chapterNumber)
+      } else {
+        next.add(chapterNumber)
+      }
+      return next
+    })
+  }, [])
 
   // Handle framework switching with loading state
   useEffect(() => {
@@ -465,9 +802,32 @@ export function LawBrowser({ onBack }) {
   // Parse sections for selected law
   const lawSections = useMemo(() => {
     if (!selectedLaw) return []
-    const text = selectedLaw.content?.full_text || selectedLaw.content?.text || ''
-    return parseLawSections(getCleanLawText(text))
-  }, [selectedLaw])
+    const text = selectedLaw.full_text || selectedLaw.content?.full_text || selectedLaw.content?.text || ''
+    return parseLawSections(text, framework)
+  }, [selectedLaw, framework])
+
+  // Group sections by chapter for collapsible display
+  const groupedSections = useMemo(() => {
+    const groups = []
+    let currentChapter = null
+
+    for (const section of lawSections) {
+      if (section.isChapter) {
+        currentChapter = {
+          chapter: section,
+          sections: []
+        }
+        groups.push(currentChapter)
+      } else if (currentChapter) {
+        currentChapter.sections.push(section)
+      } else {
+        // Section without chapter
+        groups.push({ chapter: null, sections: [section] })
+      }
+    }
+
+    return groups
+  }, [lawSections])
 
   // Filter sections by search
   const filteredSections = useMemo(() => {
@@ -674,7 +1034,7 @@ export function LawBrowser({ onBack }) {
 
         {/* Middle: Section Navigation (when law selected) */}
         {selectedLaw && lawSections.length > 0 && (
-          <div className="w-56 flex-shrink-0">
+          <div className="w-64 flex-shrink-0">
             <Card className="h-full overflow-hidden">
               <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
                 <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Sections ({lawSections.length})</h3>
@@ -687,21 +1047,48 @@ export function LawBrowser({ onBack }) {
                 />
               </div>
               <div className="overflow-y-auto h-[calc(100%-84px)]">
-                {filteredSections.map((section) => (
-                  <button
-                    key={section.id}
-                    onClick={() => scrollToSection(section.id)}
-                    className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
-                      activeSection === section.id
-                        ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
-                    }`}
-                  >
-                    <span className="font-semibold text-whs-orange-500">{section.number}</span>
-                    {section.title && (
-                      <span className="ml-1 line-clamp-1">{section.title}</span>
+                {groupedSections.map((group, groupIdx) => (
+                  <div key={groupIdx}>
+                    {/* Chapter header with collapse toggle */}
+                    {group.chapter && (
+                      <button
+                        onClick={() => toggleChapter(group.chapter.number)}
+                        className="w-full text-left px-3 py-2.5 text-sm font-semibold bg-blue-50 dark:bg-blue-900/20 border-b border-blue-100 dark:border-blue-800 flex items-center justify-between hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="text-blue-600 dark:text-blue-400 flex-shrink-0">{group.chapter.number}.</span>
+                          <span className="text-gray-800 dark:text-gray-200 truncate">{group.chapter.title}</span>
+                        </div>
+                        <svg
+                          className={`w-4 h-4 text-blue-500 flex-shrink-0 transition-transform ${collapsedChapters.has(group.chapter.number) ? '' : 'rotate-180'}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
                     )}
-                  </button>
+                    {/* Sections in this chapter (collapsible) */}
+                    {(!group.chapter || !collapsedChapters.has(group.chapter.number)) && group.sections.map((section) => (
+                      <button
+                        key={section.id}
+                        onClick={() => scrollToSection(section.id)}
+                        className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
+                          group.chapter ? 'pl-5' : ''
+                        } ${
+                          activeSection === section.id
+                            ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
+                        }`}
+                      >
+                        <span className="font-semibold text-whs-orange-500">{section.number}</span>
+                        {section.title && (
+                          <span className="ml-1 line-clamp-1">{section.title}</span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 ))}
               </div>
             </Card>
@@ -801,19 +1188,31 @@ export function LawBrowser({ onBack }) {
                               ref={(el) => (sectionRefs.current[section.id] = el)}
                               className="scroll-mt-4"
                             >
-                              <div className="flex items-baseline gap-3 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
-                                <span className="text-2xl font-bold text-whs-orange-500">
-                                  {section.number}
-                                </span>
-                                {section.title && (
-                                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                    {section.title}
-                                  </h3>
-                                )}
-                              </div>
-                              <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                <FormattedText text={section.content} />
-                              </div>
+                              {section.isChapter ? (
+                                /* Chapter header - styled as a divider */
+                                <div className="mt-8 mb-4 py-3 px-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
+                                  <h2 className="text-xl font-bold text-blue-700 dark:text-blue-300">
+                                    {section.number}. {section.title}
+                                  </h2>
+                                </div>
+                              ) : (
+                                /* Regular section (§) */
+                                <>
+                                  <div className="flex items-baseline gap-3 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
+                                    <span className="text-2xl font-bold text-whs-orange-500">
+                                      {section.number}
+                                    </span>
+                                    {section.title && (
+                                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                        {section.title}
+                                      </h3>
+                                    )}
+                                  </div>
+                                  <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
+                                    <FormattedText text={section.content} />
+                                  </div>
+                                </>
+                              )}
                             </div>
                           ))}
                         </div>
