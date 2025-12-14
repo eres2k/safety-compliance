@@ -35,6 +35,9 @@ Thumbs.db
 # Cache
 .cache/
 *.tsbuildinfo
+__pycache__/
+*.pyc
+*.pyo
 
 # Database cleanup script outputs
 eu_safety_laws/**/*_backup.json
