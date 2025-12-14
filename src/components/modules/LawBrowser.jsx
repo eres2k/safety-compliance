@@ -167,53 +167,70 @@ function preprocessAustrianText(text) {
 
   let result = text
 
-  // Remove "Paragraph X," and "Absatz X" expanded notation lines
-  result = result.replace(/^\s*Paragraph\s+[\wäöü\s]+,\s*$/gim, '')
+  // Remove standalone expanded notation lines
+  result = result.replace(/^\s*Paragraph\s+[\wäöü\s]+,?\s*$/gim, '')
   result = result.replace(/^\s*Absatz\s+[\wäöü\s]+\s*$/gim, '')
   result = result.replace(/^\s*Ziffer\s+[\wäöü\s]+\s*$/gim, '')
   result = result.replace(/^\s*Litera\s+[a-z]\s*$/gim, '')
+  result = result.replace(/^\s*Sub-Litera[,\s]+[a-z][,\s]+[a-z]\s*$/gim, '')
+  result = result.replace(/^\s*Anmerkung,.*$/gim, '')
 
-  // Remove inline expanded notations
-  result = result.replace(/Paragraph\s+[\wäöü\s]+,\s*/gi, '')
-  result = result.replace(/Absatz\s+(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|\d+[a-z]?)\s*,?\s*/gi, '')
+  // Remove "BGBl. römisch eins" expanded form
+  result = result.replace(/BGBl\.\s*römisch\s+eins/gi, 'BGBl. I')
 
-  // Remove duplicate lines with expanded Bundesgesetzblatt references
-  // Keep abbreviated form (BGBl.), remove expanded form (Bundesgesetzblatt)
+  // Process line by line to remove duplicate expanded content
   const lines = result.split('\n')
   const cleanedLines = []
-  const seenContent = new Set()
+  const seenContent = new Map() // Map normalized content to line index
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim()
+    const line = lines[i]
+    const trimmedLine = line.trim()
 
-    // Skip lines that are just expanded notation
-    if (/^(Paragraph|Absatz|Ziffer|Litera|Anmerkung,)\s/i.test(line)) {
+    // Skip lines that are just expanded notation markers
+    if (/^(Paragraph|Absatz|Ziffer|Litera|Sub-Litera|Anmerkung)[,\s]/i.test(trimmedLine)) {
       continue
     }
 
-    // Skip duplicate expanded text (contains "Bundesgesetzblatt" when we have "BGBl.")
-    if (line.includes('Bundesgesetzblatt') && !line.includes('BGBl.')) {
-      // Check if similar content exists with abbreviated form
-      const abbreviated = line
+    // Check if this line is a duplicate with expanded notation
+    // Lines with "Bundesgesetzblatt" are expanded versions of "BGBl." lines
+    if (trimmedLine.includes('Bundesgesetzblatt') || trimmedLine.includes('römisch')) {
+      // Normalize: convert expanded form to abbreviated for comparison
+      const normalized = trimmedLine
         .replace(/Bundesgesetzblatt\s+Teil\s+eins,?\s*/gi, 'BGBl. I ')
         .replace(/Bundesgesetzblatt\s+Teil\s+zwei,?\s*/gi, 'BGBl. II ')
         .replace(/Bundesgesetzblatt\s+Nr\.\s*/gi, 'BGBl. Nr. ')
-        .replace(/\s+aus\s+(\d+)/gi, '/$1')
+        .replace(/,\s*Nr\.\s*(\d+)\s+aus\s+(\d+),?/gi, ' Nr. $1/$2')
+        .replace(/\s+aus\s+(\d+),?/gi, '/$1')
+        .replace(/römisch\s+eins/gi, 'I')
+        .replace(/Paragraph\s+\d+[a-z]?,?\s*/gi, '')
+        .replace(/\s+/g, ' ')
+        .toLowerCase()
+        .trim()
 
-      // Skip if we've seen similar abbreviated content
-      const normalizedAbbr = abbreviated.toLowerCase().replace(/\s+/g, ' ').trim()
-      if (seenContent.has(normalizedAbbr)) {
-        continue
+      // Check if we've seen similar content
+      let isDuplicate = false
+      for (const [seenNorm] of seenContent) {
+        // Check for substantial overlap
+        if (seenNorm.length > 30 && normalized.length > 30) {
+          const shorter = seenNorm.length < normalized.length ? seenNorm : normalized
+          const longer = seenNorm.length < normalized.length ? normalized : seenNorm
+          if (longer.includes(shorter.substring(0, 30))) {
+            isDuplicate = true
+            break
+          }
+        }
       }
+      if (isDuplicate) continue
     }
 
-    // Track normalized content to detect duplicates
-    const normalized = line.toLowerCase().replace(/\s+/g, ' ').trim()
-    if (normalized.length > 20) {
-      seenContent.add(normalized)
+    // Track content for duplicate detection
+    const normalizedForTracking = trimmedLine.toLowerCase().replace(/\s+/g, ' ').trim()
+    if (normalizedForTracking.length > 30) {
+      seenContent.set(normalizedForTracking, i)
     }
 
-    cleanedLines.push(lines[i])
+    cleanedLines.push(line)
   }
 
   result = cleanedLines.join('\n')
@@ -256,8 +273,8 @@ function preprocessDutchText(text) {
 function detectCountry(text) {
   if (!text) return 'unknown'
 
-  // Austrian patterns
-  if (text.includes('Bundesgesetzblatt') || text.includes('BGBl.') || /§\s*\d+\s*\n\s*Text\s*\n/i.test(text)) {
+  // Austrian patterns - check for RIS specific markers
+  if (/§\s*\d+\s*\n\s*Text\s*\n/i.test(text)) {
     return 'AT'
   }
 
@@ -266,9 +283,14 @@ function detectCountry(text) {
     return 'NL'
   }
 
-  // German patterns
-  if (text.includes('dejure.org') || text.includes('Bundesministerium')) {
+  // German patterns - plain text with § but no "Text" marker
+  if (/^\s*§\s*\d+[a-z]?\s+[A-Z]/m.test(text) || (text.includes('Absatz') && !text.includes('Bundesgesetzblatt'))) {
     return 'DE'
+  }
+
+  // Check for Austrian expanded notation
+  if (text.includes('Bundesgesetzblatt') || text.includes('BGBl.')) {
+    return 'AT'
   }
 
   return 'unknown'
@@ -284,8 +306,79 @@ function parseLawSections(text, framework) {
     return parseDutchLawSections(text)
   }
 
-  // Default: Austrian/German parsing
+  if (country === 'DE') {
+    return parseGermanLawSections(text)
+  }
+
+  // Default: Austrian parsing
   return parseAustrianLawSections(text)
+}
+
+// Parse German law sections (simpler format without "Text" markers)
+function parseGermanLawSections(text) {
+  if (!text) return []
+
+  const sections = []
+
+  // German laws use "§ X Title" format directly
+  // Match § followed by number and title on same or next line
+  const sectionRegex = /§\s*(\d+[a-z]?)\s+([A-ZÄÖÜ][^\n]*?)(?=\n|$)/g
+  let match
+  const sectionMatches = []
+
+  while ((match = sectionRegex.exec(text)) !== null) {
+    sectionMatches.push({
+      number: match[1],
+      title: match[2].trim(),
+      index: match.index,
+      headerEnd: match.index + match[0].length
+    })
+  }
+
+  // If no matches with title, try just § X pattern
+  if (sectionMatches.length === 0) {
+    const simpleRegex = /§\s*(\d+[a-z]?)/g
+    while ((match = simpleRegex.exec(text)) !== null) {
+      sectionMatches.push({
+        number: match[1],
+        title: '',
+        index: match.index,
+        headerEnd: match.index + match[0].length
+      })
+    }
+  }
+
+  // Process each section
+  for (let i = 0; i < sectionMatches.length; i++) {
+    const section = sectionMatches[i]
+    const contentStart = section.headerEnd
+    const contentEnd = i < sectionMatches.length - 1
+      ? sectionMatches[i + 1].index
+      : text.length
+
+    let content = text.substring(contentStart, contentEnd).trim()
+
+    // Extract title from first line if not already captured
+    let title = section.title
+    if (!title && content) {
+      const firstLine = content.split('\n')[0].trim()
+      if (firstLine && firstLine.length < 100 && !/^\(\d+\)/.test(firstLine)) {
+        title = firstLine
+        content = content.substring(firstLine.length).trim()
+      }
+    }
+
+    sections.push({
+      id: `section-${section.number}`,
+      number: `§ ${section.number}`,
+      title: title.substring(0, 100),
+      content: content,
+      rawNumber: section.number,
+      isChapter: false
+    })
+  }
+
+  return sections
 }
 
 // Parse Dutch law sections
@@ -382,7 +475,16 @@ function parseAustrianLawSections(text) {
     let chapterInfo = null
 
     // Check if section starts with a chapter header
-    const chapterMatch = sectionContent.match(/^(\d+)\.\s*(Abschnitt|Hauptstück|Teil)[:\s]*\n([^\n]+)\n/i)
+    // Handle both formats: "1. Abschnitt\nTitle" and "ABSCHNITT 1\nTitle"
+    let chapterMatch = sectionContent.match(/^(\d+)\.\s*(Abschnitt|Hauptstück|Teil)[:\s]*\n([^\n]+)\n/i)
+    if (!chapterMatch) {
+      // Try uppercase format: "ABSCHNITT 1\nTitle"
+      chapterMatch = sectionContent.match(/^(ABSCHNITT|HAUPTSTÜCK|TEIL)\s+(\d+)[:\s]*\n([^\n]+)\n/i)
+      if (chapterMatch) {
+        // Swap the groups to normalize - number should be first
+        chapterMatch = [chapterMatch[0], chapterMatch[2], chapterMatch[1], chapterMatch[3]]
+      }
+    }
     if (chapterMatch) {
       chapterInfo = {
         number: chapterMatch[1],
