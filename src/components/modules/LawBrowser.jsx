@@ -229,29 +229,79 @@ export function LawBrowser({ onBack }) {
   const [explanation, setExplanation] = useState('')
   const [activeSection, setActiveSection] = useState(null)
   const [searchInLaw, setSearchInLaw] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [prevFramework, setPrevFramework] = useState(framework)
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
+
+  // Handle framework switching with loading state
+  useEffect(() => {
+    if (framework !== prevFramework) {
+      setIsLoading(true)
+      setSelectedLaw(null)
+      setSelectedCategory('all')
+      setSearchTerm('')
+
+      // Small delay to show loading state and allow data to process
+      const timer = setTimeout(() => {
+        setIsLoading(false)
+        setPrevFramework(framework)
+      }, 150)
+
+      return () => clearTimeout(timer)
+    }
+  }, [framework, prevFramework])
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageSize] = useState(20)
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchTerm, selectedCategory, framework])
 
   // Get all laws and categories
   const allLaws = useMemo(() => getAllLaws(framework), [framework])
   const categories = useMemo(() => getLawCategories(framework), [framework])
 
-  // Filter and search laws
-  const filteredLaws = useMemo(() => {
+  // Filter and search laws with pagination
+  const { filteredLaws, pagination } = useMemo(() => {
+    if (searchTerm.trim()) {
+      // Use paginated search
+      const result = searchLaws(searchTerm, {
+        country: framework,
+        type: selectedCategory !== 'all' ? selectedCategory : null,
+        page: currentPage,
+        limit: pageSize
+      })
+      return { filteredLaws: result.results, pagination: result.pagination }
+    }
+
+    // Manual filtering for non-search browsing
     let results = allLaws
     if (selectedCategory !== 'all') {
       results = results.filter(law => law.type === selectedCategory)
     }
-    if (searchTerm.trim()) {
-      results = searchLaws(searchTerm, {
-        country: framework,
-        type: selectedCategory !== 'all' ? selectedCategory : null,
-        limit: 100
-      })
+
+    // Manual pagination
+    const total = results.length
+    const totalPages = Math.ceil(total / pageSize)
+    const offset = (currentPage - 1) * pageSize
+    const paginatedResults = results.slice(offset, offset + pageSize)
+
+    return {
+      filteredLaws: paginatedResults,
+      pagination: {
+        page: currentPage,
+        limit: pageSize,
+        total,
+        totalPages,
+        hasMore: currentPage < totalPages
+      }
     }
-    return results
-  }, [allLaws, searchTerm, selectedCategory, framework])
+  }, [allLaws, searchTerm, selectedCategory, framework, currentPage, pageSize])
 
   // Parse sections for selected law
   const lawSections = useMemo(() => {
@@ -337,7 +387,7 @@ export function LawBrowser({ onBack }) {
               {t.modules?.lawBrowser?.title || 'Law Browser'}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              {filteredLaws.length} laws and regulations
+              {pagination.total} laws and regulations
             </p>
           </div>
 
@@ -382,16 +432,31 @@ export function LawBrowser({ onBack }) {
       </div>
 
       {/* Main Content - 3 Column Layout */}
-      <div className="flex gap-4 h-[calc(100%-140px)]">
+      <div className="flex gap-4 h-[calc(100%-140px)] relative">
+        {/* Loading Overlay */}
+        {isLoading && (
+          <div className="absolute inset-0 bg-white/80 dark:bg-whs-dark-900/80 z-10 flex items-center justify-center rounded-lg">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-8 h-8 border-3 border-whs-orange-500 border-t-transparent rounded-full animate-spin"></div>
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                Loading {framework} laws...
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Left: Law List */}
         <div className="w-72 flex-shrink-0">
           <Card className="h-full overflow-hidden">
             <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
               <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Laws & Regulations</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                {pagination.total} total
+                {pagination.totalPages > 1 && ` (page ${pagination.page}/${pagination.totalPages})`}
+              </p>
             </div>
-            <div className="overflow-y-auto h-[calc(100%-48px)]">
-              {filteredLaws.slice(0, 50).map((law) => (
+            <div className="overflow-y-auto h-[calc(100%-72px)]">
+              {filteredLaws.map((law) => (
                 <button
                   key={law.id}
                   onClick={() => selectLaw(law)}
@@ -417,6 +482,28 @@ export function LawBrowser({ onBack }) {
                 </button>
               ))}
             </div>
+            {/* Pagination Controls */}
+            {pagination.totalPages > 1 && (
+              <div className="p-2 border-t border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800 flex items-center justify-between">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="px-2 py-1 text-xs font-medium rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-gray-200 dark:bg-whs-dark-700 hover:bg-gray-300 dark:hover:bg-whs-dark-600"
+                >
+                  Prev
+                </button>
+                <span className="text-xs text-gray-600 dark:text-gray-400">
+                  {pagination.page} / {pagination.totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(pagination.totalPages, p + 1))}
+                  disabled={!pagination.hasMore}
+                  className="px-2 py-1 text-xs font-medium rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-gray-200 dark:bg-whs-dark-700 hover:bg-gray-300 dark:hover:bg-whs-dark-600"
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </Card>
         </div>
 
