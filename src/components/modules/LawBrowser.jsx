@@ -12,6 +12,10 @@ import {
   WHS_TOPIC_LABELS,
   RELEVANCE_LEVELS
 } from '../../services/euLawsDatabase'
+import { generateFlowchart, simplifyText, findSemanticMatch, compareJurisdictions } from '../../services/aiService'
+import { LawVisualizer } from '../ui/LawVisualizer'
+import { ComplexitySlider, SimplifiedContent } from '../ui/ComplexitySlider'
+import { JurisdictionSelector, ComparisonView, SemanticMatchResults } from '../ui/JurisdictionComparer'
 
 // Remove duplicate expanded notation text from Austrian legal documents
 // The source data contains both abbreviated (§ 1, Abs. 1, Z 1) and expanded (Paragraph eins, Absatz eins, Ziffer eins) versions
@@ -694,6 +698,16 @@ export function LawBrowser({ onBack }) {
   const [prevFramework, setPrevFramework] = useState(framework)
   const [expandedSections, setExpandedSections] = useState(new Set()) // Sections collapsed by default
 
+  // Advanced AI features state
+  const [showFlowchart, setShowFlowchart] = useState(false)
+  const [flowchartData, setFlowchartData] = useState({ syntax: null, loading: false, error: null, sectionId: null })
+  const [complexityLevel, setComplexityLevel] = useState('legal') // legal, manager, associate
+  const [simplifiedTexts, setSimplifiedTexts] = useState({}) // Cache: { sectionId_level: text }
+  const [simplifyLoading, setSimplifyLoading] = useState({}) // { sectionId: true/false }
+  const [compareTarget, setCompareTarget] = useState(null) // Target jurisdiction for comparison
+  const [comparisonData, setComparisonData] = useState({ source: null, target: null, analysis: null, loading: false, error: null })
+  const [showComparison, setShowComparison] = useState(false)
+
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
 
@@ -896,6 +910,147 @@ export function LawBrowser({ onBack }) {
       setExplanation(t.api?.error || 'Failed to generate explanation')
     }
   }
+
+  // Generate flowchart for a section
+  const handleGenerateFlowchart = useCallback(async (section) => {
+    if (!section) return
+
+    setFlowchartData({ syntax: null, loading: true, error: null, sectionId: section.id })
+    setShowFlowchart(true)
+
+    try {
+      const syntax = await generateFlowchart(
+        section.content || section.text,
+        section.title || section.number,
+        framework
+      )
+      setFlowchartData({ syntax, loading: false, error: null, sectionId: section.id })
+    } catch (error) {
+      setFlowchartData({ syntax: null, loading: false, error: error.message, sectionId: section.id })
+    }
+  }, [framework])
+
+  // Handle complexity level change and simplify text
+  const handleComplexityChange = useCallback(async (level, section) => {
+    setComplexityLevel(level)
+
+    // For legal level, just show original text
+    if (level === 'legal') return
+
+    const cacheKey = `${section.id}_${level}`
+
+    // Check cache first
+    if (simplifiedTexts[cacheKey]) return
+
+    setSimplifyLoading(prev => ({ ...prev, [section.id]: true }))
+
+    try {
+      const simplified = await simplifyText(
+        section.content || section.text,
+        level,
+        framework,
+        language
+      )
+      setSimplifiedTexts(prev => ({ ...prev, [cacheKey]: simplified }))
+    } catch (error) {
+      console.error('Failed to simplify text:', error)
+    } finally {
+      setSimplifyLoading(prev => ({ ...prev, [section.id]: false }))
+    }
+  }, [framework, language, simplifiedTexts])
+
+  // Handle jurisdiction comparison
+  const handleCompareJurisdiction = useCallback(async (targetFramework, sourceSection) => {
+    if (!sourceSection || !targetFramework) return
+
+    setCompareTarget(targetFramework)
+    setComparisonData({ source: sourceSection, target: null, analysis: null, loading: true, error: null })
+    setShowComparison(true)
+
+    try {
+      // Get target jurisdiction sections
+      const targetLaws = getAllLaws(targetFramework)
+      const targetSections = []
+      for (const law of targetLaws) {
+        if (law.chapters) {
+          for (const chapter of law.chapters) {
+            if (chapter.sections) {
+              for (const section of chapter.sections) {
+                targetSections.push({
+                  ...section,
+                  lawTitle: law.title,
+                  lawAbbr: law.abbreviation
+                })
+              }
+            }
+          }
+        }
+      }
+
+      // Find semantic match
+      const matchResult = await findSemanticMatch(
+        sourceSection.content || sourceSection.text,
+        sourceSection.title || sourceSection.number,
+        framework,
+        targetFramework,
+        targetSections
+      )
+
+      if (matchResult.matches && matchResult.matches.length > 0) {
+        // Find the best match section
+        const bestMatch = matchResult.matches[0]
+        const targetSection = targetSections.find(s =>
+          s.number === bestMatch.number || s.title?.includes(bestMatch.number)
+        )
+
+        if (targetSection) {
+          // Get detailed comparison
+          const analysis = await compareJurisdictions(
+            sourceSection,
+            targetSection,
+            framework,
+            targetFramework,
+            language
+          )
+
+          setComparisonData({
+            source: sourceSection,
+            target: targetSection,
+            analysis,
+            matches: matchResult,
+            loading: false,
+            error: null
+          })
+        } else {
+          setComparisonData({
+            source: sourceSection,
+            target: null,
+            analysis: null,
+            matches: matchResult,
+            loading: false,
+            error: 'Could not load equivalent section details'
+          })
+        }
+      } else {
+        setComparisonData({
+          source: sourceSection,
+          target: null,
+          analysis: null,
+          matches: matchResult,
+          loading: false,
+          error: 'No equivalent section found in target jurisdiction'
+        })
+      }
+    } catch (error) {
+      setComparisonData({
+        source: sourceSection,
+        target: null,
+        analysis: null,
+        loading: false,
+        error: error.message
+      })
+    }
+  }, [framework, language])
 
   // Select a law
   const selectLaw = (law) => {
@@ -1309,9 +1464,73 @@ export function LawBrowser({ onBack }) {
                                           </div>
                                         )}
 
-                                        {/* Section Content */}
+                                        {/* AI Tools Bar */}
+                                        <div className="flex flex-wrap items-center gap-3 mb-4 p-3 bg-gray-50 dark:bg-whs-dark-900 rounded-lg border border-gray-200 dark:border-whs-dark-700">
+                                          {/* Visualize Button */}
+                                          <button
+                                            onClick={() => handleGenerateFlowchart(section)}
+                                            disabled={flowchartData.loading && flowchartData.sectionId === section.id}
+                                            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-whs-dark-700 border border-gray-300 dark:border-whs-dark-600 rounded-lg hover:bg-whs-orange-50 dark:hover:bg-whs-orange-900/20 hover:border-whs-orange-300 dark:hover:border-whs-orange-700 transition-colors disabled:opacity-50"
+                                          >
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7" />
+                                            </svg>
+                                            Visualize
+                                          </button>
+
+                                          {/* Complexity Slider */}
+                                          <div className="flex-1 min-w-[200px]">
+                                            <ComplexitySlider
+                                              value={complexityLevel}
+                                              onChange={(level) => handleComplexityChange(level, section)}
+                                              isLoading={simplifyLoading[section.id]}
+                                              disabled={false}
+                                            />
+                                          </div>
+
+                                          {/* Compare Jurisdiction Button */}
+                                          <JurisdictionSelector
+                                            currentJurisdiction={framework}
+                                            onSelect={(target) => handleCompareJurisdiction(target, section)}
+                                            disabled={comparisonData.loading}
+                                          />
+                                        </div>
+
+                                        {/* Flowchart Display */}
+                                        {showFlowchart && flowchartData.sectionId === section.id && (
+                                          <div className="mb-4">
+                                            <div className="flex items-center justify-between mb-2">
+                                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Decision Flow</span>
+                                              <button
+                                                onClick={() => setShowFlowchart(false)}
+                                                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                                              >
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                              </button>
+                                            </div>
+                                            <LawVisualizer
+                                              chartSyntax={flowchartData.syntax}
+                                              isLoading={flowchartData.loading}
+                                              error={flowchartData.error}
+                                              onRetry={() => handleGenerateFlowchart(section)}
+                                            />
+                                          </div>
+                                        )}
+
+                                        {/* Section Content - with complexity level */}
                                         <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                          <FormattedText text={section.content} />
+                                          {complexityLevel === 'legal' ? (
+                                            <FormattedText text={section.content} />
+                                          ) : (
+                                            <SimplifiedContent
+                                              content={simplifiedTexts[`${section.id}_${complexityLevel}`]}
+                                              level={complexityLevel}
+                                              isLoading={simplifyLoading[section.id]}
+                                              error={null}
+                                            />
+                                          )}
                                         </div>
                                       </div>
                                     )}
@@ -1410,6 +1629,23 @@ export function LawBrowser({ onBack }) {
           </Card>
         </div>
       </div>
+
+      {/* Jurisdiction Comparison Modal */}
+      {showComparison && (
+        <ComparisonView
+          sourceSection={comparisonData.source}
+          targetSection={comparisonData.target}
+          sourceFramework={framework}
+          targetFramework={compareTarget}
+          comparison={comparisonData.analysis}
+          isLoading={comparisonData.loading}
+          error={comparisonData.error}
+          onClose={() => {
+            setShowComparison(false)
+            setComparisonData({ source: null, target: null, analysis: null, loading: false, error: null })
+          }}
+        />
+      )}
     </div>
   )
 }
