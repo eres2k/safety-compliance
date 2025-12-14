@@ -5,7 +5,8 @@
     "document_count": 14,
     "error_count": 0,
     "cleaned_at": "2025-12-14T13:47:32.621682",
-    "cleaning_errors": 0
+    "cleaning_errors": 0,
+    "restructured_at": "2025-12-14T14:42:15.413303"
   },
   "documents": [
     {
@@ -54,9 +55,10 @@
       },
       "chapters": [
         {
-          "id": "de-arbschg-main",
+          "id": "de-arbschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "First Section - General Provisions",
           "sections": [
             {
               "id": "93da1cf30d67d4a3",
@@ -71,7 +73,15 @@
               "title": "§ 2",
               "text": "(1) Maßnahmen des Arbeitsschutzes im Sinne dieses Gesetzes sind Maßnahmen zur Verhütung von Unfällen bei der Arbeit und arbeitsbedingten Gesundheitsgefahren einschließlich Maßnahmen der menschengerechten Gestaltung der Arbeit.\n\n(2) Beschäftigte im Sinne dieses Gesetzes sind:\n1. Arbeitnehmerinnen und Arbeitnehmer,\n2. die zu ihrer Berufsbildung Beschäftigten,\n3. arbeitnehmerähnliche Personen im Sinne des § 5 Abs. 1 des Arbeitsgerichtsgesetzes, ausgenommen die in Heimarbeit Beschäftigten und die ihnen Gleichgestellten,\n4. Beamtinnen und Beamte,\n5. Richterinnen und Richter,\n6. Soldatinnen und Soldaten,\n7. die in Werkstätten für Behinderte Beschäftigten.\n\n(3) Arbeitgeber im Sinne dieses Gesetzes sind natürliche und juristische Personen und rechtsfähige Personengesellschaften, die Personen nach Absatz 2 beschäftigen.\n\n(4) Sonstige Rechtsvorschriften im Sinne dieses Gesetzes sind Regelungen über Maßnahmen des Arbeitsschutzes in anderen Gesetzen, in Rechtsverordnungen und Unfallverhütungsvorschriften.\n\n(5) Als Betriebe im Sinne dieses Gesetzes gelten für den Bereich des öffentlichen Dienstes die Dienststellen. Dienststellen sind die einzelnen Behörden, Verwaltungsstellen und Betriebe der Verwaltungen des Bundes, der Länder, der Gemeinden und der sonstigen Körperschaften, Anstalten und Stiftungen des öffentlichen Rechts, die Gerichte des Bundes und der Länder sowie die entsprechenden Einrichtungen der Streitkräfte.",
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "title_en": "Second Section - Employer Obligations",
+          "sections": [
             {
               "id": "24358cb26c65528a",
               "number": "3",
@@ -155,7 +165,15 @@
               "title": "§ 14",
               "text": "(1) Die Beschäftigten des öffentlichen Dienstes sind vor Beginn der Beschäftigung und bei Veränderungen in ihren Arbeitsbereichen über Gefahren für Sicherheit und Gesundheit, denen sie bei der Arbeit ausgesetzt sein können, sowie über die Maßnahmen und Einrichtungen zur Verhütung dieser Gefahren und die nach § 10 Abs. 2 getroffenen Maßnahmen zu unterrichten.\n(2) Soweit in Betrieben des öffentlichen Dienstes keine Vertretung der Beschäftigten besteht, hat der Arbeitgeber die Beschäftigten zu allen Maßnahmen zu hören, die Auswirkungen auf Sicherheit und Gesundheit der Beschäftigten haben können.",
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Pflichten und Rechte der Beschäftigten",
+          "title_en": "Third Section - Duties and Rights of Employees",
+          "sections": [
             {
               "id": "d1ab8c291140dc94",
               "number": "15",
@@ -176,7 +194,15 @@
               "title": "§ 17",
               "text": "§ 17\n(1) Die Beschäftigten sind berechtigt, dem Arbeitgeber Vorschläge zu allen Fragen der Sicherheit und des Gesundheitsschutzes bei der Arbeit zu machen. Für Beamtinnen und Beamte des Bundes ist § 125 des Bundesbeamtengesetzes anzuwenden. Entsprechendes Landesrecht bleibt unberührt.\n(2) Sind Beschäftigte auf Grund konkreter Anhaltspunkte der Auffassung, daß die vom Arbeitgeber getroffenen Maßnahmen und bereitgestellten Mittel nicht ausreichen, um die Sicherheit und den Gesundheitsschutz bei der Arbeit zu gewährleisten, und hilft der Arbeitgeber darauf gerichteten Beschwerden von Beschäftigten nicht ab, können sich diese an die zuständige Behörde wenden. Hierdurch dürfen den Beschäftigten keine Nachteile entstehen. Die in Absatz 1 Satz 2 und 3 genannten Vorschriften sowie die Vorschriften des Hinweisgeberschutzgesetzes, der Wehrbeschwerdeordnung und des Gesetzes über den Wehrbeauftragten des Deutschen Bundestages bleiben unberührt.",
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Verordnungsermächtigungen",
+          "title_en": "Fourth Section - Authorization for Ordinances",
+          "sections": [
             {
               "id": "4a3ae2303c031900",
               "number": "18",
@@ -197,7 +223,15 @@
               "title": "§ 20",
               "text": "(1) Für die Beamten der Länder, Gemeinden und sonstigen Körperschaften, Anstalten und Stiftungen des öffentlichen Rechts regelt das Landesrecht, ob und inwieweit die nach § 18 erlassenen Rechtsverordnungen gelten.\n(2) Für bestimmte Tätigkeiten im öffentlichen Dienst des Bundes, insbesondere bei der Bundeswehr, der Polizei, den Zivil- und Katastrophenschutzdiensten, dem Zoll oder den Nachrichtendiensten, können das Bundeskanzleramt, das Bundesministerium des Innern, für Bau und Heimat, das Bundesministerium für Verkehr und digitale Infrastruktur, das Bundesministerium der Verteidigung oder das Bundesministerium der Finanzen, soweit sie hierfür jeweils zuständig sind, durch Rechtsverordnung ohne Zustimmung des Bundesrates bestimmen, daß Vorschriften dieses Gesetzes ganz oder zum Teil nicht anzuwenden sind, soweit öffentliche Belange dies zwingend erfordern, insbesondere zur Aufrechterhaltung oder Wiederherstellung der öffentlichen Sicherheit. Rechtsverordnungen nach Satz 1 werden im Einvernehmen mit dem Bundesministerium für Arbeit und Soziales und, soweit nicht das Bundesministerium des Innern, für Bau und Heimat selbst ermächtigt ist, im Einvernehmen mit diesem Ministerium erlassen. In den Rechtsverordnungen ist gleichzeitig festzulegen, wie die Sicherheit und der Gesundheitsschutz bei der Arbeit unter Berücksichtigung der Ziele dieses Gesetzes auf andere Weise gewährleistet werden. Für Tätigkeiten im öffentlichen Dienst der Länder, Gemeinden und sonstigen landesunmittelbaren Körperschaften, Anstalten und Stiftungen des öffentlichen Rechts können den Sätzen 1 und 3 entsprechende Regelungen durch Landesrecht getroffen werden.",
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Gemeinsame deutsche Arbeitsschutzstrategie",
+          "title_en": "Fifth Section - Common German Occupational Safety Strategy",
+          "sections": [
             {
               "id": "c6a45aeee9d0f279",
               "number": "20a",
@@ -211,7 +245,15 @@
               "title": "§ 20b",
               "text": "(1) Die Aufgabe der Entwicklung, Steuerung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie nach § 20a Abs. 1 Satz 1 wird von der Nationalen Arbeitsschutzkonferenz wahrgenommen. Sie setzt sich aus jeweils drei stimmberechtigten Vertretern von Bund, Ländern und den Unfallversicherungsträgern zusammen und bestimmt für jede Gruppe drei Stellvertreter. Außerdem entsenden die Spitzenorganisationen der Arbeitgeber und Arbeitnehmer für die Behandlung von Angelegenheiten nach § 20a Abs. 2 Nr. 1 bis 3 und 5 jeweils bis zu drei Vertreter in die Nationale Arbeitsschutzkonferenz; sie nehmen mit beratender Stimme an den Sitzungen teil. Die Nationale Arbeitsschutzkonferenz gibt sich eine Geschäftsordnung; darin werden insbesondere die Arbeitsweise und das Beschlussverfahren festgelegt. Die Geschäftsordnung muss einstimmig angenommen werden.\n(2) Alle Einrichtungen, die mit Sicherheit und Gesundheit bei der Arbeit befasst sind, können der Nationalen Arbeitsschutzkonferenz Vorschläge für Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme unterbreiten.\n(3) Die Nationale Arbeitsschutzkonferenz wird durch ein Arbeitsschutzforum unterstützt, das in der Regel einmal jährlich stattfindet. Am Arbeitsschutzforum sollen sachverständige Vertreter der Spitzenorganisationen der Arbeitgeber und Arbeitnehmer, der Berufs- und Wirtschaftsverbände, der Wissenschaft, der Kranken- und Rentenversicherungsträger, von Einrichtungen im Bereich Sicherheit und Gesundheit bei der Arbeit sowie von Einrichtungen, die der Förderung der Beschäftigungsfähigkeit dienen, teilnehmen. Das Arbeitsschutzforum hat die Aufgabe, eine frühzeitige und aktive Teilhabe der sachverständigen Fachöffentlichkeit an der Entwicklung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie sicherzustellen und die Nationale Arbeitsschutzkonferenz entsprechend zu beraten.\n(4) Einzelheiten zum Verfahren der Einreichung von Vorschlägen nach Absatz 2 und zur Durchführung des Arbeitsschutzforums nach Absatz 3 werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz geregelt.\n(5) Die Geschäfte der Nationalen Arbeitsschutzkonferenz und des Arbeitsschutzforums führt die Bundesanstalt für Arbeitsschutz und Arbeitsmedizin. Einzelheiten zu Arbeitsweise und Verfahren werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz festgelegt.",
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch6",
+          "number": "6",
+          "title": "Sechster Abschnitt - Schlußvorschriften",
+          "title_en": "Sixth Section - Final Provisions",
+          "sections": [
             {
               "id": "926be429cf6d03ab",
               "number": "21",
