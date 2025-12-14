@@ -1,13 +1,13 @@
 {
   "metadata": {
     "country": "DE",
-    "generated_at": "2025-12-14T15:59:04.308002",
+    "generated_at": "2025-12-14T17:06:30.827305",
     "document_count": 1,
     "error_count": 0
   },
   "documents": [
     {
-      "id": "41f7d51f11e856fe",
+      "id": "54dd624758965973",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -23,60 +23,60 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-14T15:59:03.806083",
+        "scraped_at": "2025-12-14T17:06:30.326185",
         "scraper_version": "7.0.0"
       },
       "whs_summary": {
         "total_sections": 29,
         "logistics_relevance_distribution": {
-          "critical": 0,
-          "high": 1,
-          "medium": 2,
-          "low": 26
+          "critical": 2,
+          "high": 3,
+          "medium": 8,
+          "low": 16
         },
         "top_whs_topics": [
           [
-            "employer_obligations",
-            4
+            "employee_rights",
+            27
           ],
           [
-            "employee_rights",
-            4
+            "employer_obligations",
+            21
           ],
           [
             "prevention_services",
-            3
+            20
           ],
           [
             "health_surveillance",
-            2
+            13
+          ],
+          [
+            "workplace_design",
+            9
           ],
           [
             "risk_assessment",
-            1
-          ],
-          [
-            "documentation",
-            1
-          ],
-          [
-            "first_aid",
-            1
-          ],
-          [
-            "training",
-            1
+            6
           ],
           [
             "incident_reporting",
-            1
+            6
           ],
           [
             "penalties",
-            1
+            3
+          ],
+          [
+            "training",
+            2
+          ],
+          [
+            "work_equipment",
+            2
           ]
         ],
-        "critical_sections_count": 1
+        "critical_sections_count": 5
       },
       "chapters": [
         {
@@ -89,8 +89,24 @@
               "id": "121c1aedd31978d8",
               "number": "1",
               "title": "§ 1. Zielsetzung und Anwendungsbereich",
-              "text": "§ 1 Zielsetzung und Anwendungsbereich",
-              "whs_topics": [],
+              "text": "(1) Dieses Gesetz dient dazu, Sicherheit und Gesundheitsschutz der Beschäftigten bei der Arbeit durch Maßnahmen des Arbeitsschutzes zu sichern und zu verbessern. Es gilt in allen Tätigkeitsbereichen und findet im Rahmen der Vorgaben des Seerechtsübereinkommens der Vereinten Nationen vom 10. Dezember 1982 (BGBl. 1994 II S. 1799) auch in der ausschließlichen Wirtschaftszone Anwendung.",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -103,8 +119,29 @@
               "id": "6b7774850086a92d",
               "number": "2",
               "title": "§ 2. Begriffsbestimmungen",
-              "text": "§ 2 Begriffsbestimmungen",
-              "whs_topics": [],
+              "text": "(1) Maßnahmen des Arbeitsschutzes im Sinne dieses Gesetzes sind Maßnahmen zur Verhütung von Unfällen bei der Arbeit und arbeitsbedingten Gesundheitsgefahren einschließlich Maßnahmen der menschengerechten Gestaltung der Arbeit.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -125,12 +162,27 @@
               "id": "b5f84057d3e22189",
               "number": "3",
               "title": "§ 3. Grundpflichten des Arbeitgebers",
-              "text": "§ 3 Grundpflichten des Arbeitgebers",
+              "text": "(1) Der Arbeitgeber ist verpflichtet, die erforderlichen Maßnahmen des Arbeitsschutzes unter Berücksichtigung der Umstände zu treffen, die Sicherheit und Gesundheit der Beschäftigten bei der Arbeit beeinflussen. Er hat die Maßnahmen auf ihre Wirksamkeit zu überprüfen und erforderlichenfalls sich ändernden Gegebenheiten anzupassen. Dabei hat er eine Verbesserung von Sicherheit und Gesundheitsschutz der Beschäftigten anzustreben.",
               "whs_topics": [
                 {
                   "id": "employer_obligations",
                   "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
                   "match_count": 2
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
@@ -145,13 +197,39 @@
               "id": "110fcbc50322ea1c",
               "number": "4",
               "title": "§ 4. Allgemeine Grundsätze",
-              "text": "§ 4 Allgemeine Grundsätze",
-              "whs_topics": [],
+              "text": "Der Arbeitgeber hat bei Maßnahmen des Arbeitsschutzes von folgenden allgemeinen Grundsätzen auszugehen:\n1.\nDie Arbeit ist so zu gestalten, daß eine Gefährdung für das Leben sowie die physische und die psychische Gesundheit möglichst vermieden und die verbleibende Gefährdung möglichst gering gehalten wird;\n2.\nGefahren sind an ihrer Quelle zu bekämpfen;\n3.\nbei den Maßnahmen sind der Stand von Technik, Arbeitsmedizin und Hygiene sowie sonstige gesicherte arbeitswissenschaftliche Erkenntnisse zu berücksichtigen;\n4.\nMaßnahmen sind mit dem Ziel zu planen, Technik, Arbeitsorganisation, sonstige Arbeitsbedingungen, soziale Beziehungen und Einfluß der Umwelt auf den Arbeitsplatz sachgerecht zu verknüpfen;\n5.\nindividuelle Schutzmaßnahmen sind nachrangig zu anderen Maßnahmen;\n6.\nspezielle Gefahren für besonders schutzbedürftige Beschäftigtengruppen sind zu berücksichtigen;\n7.\nden Beschäftigten sind geeignete Anweisungen zu erteilen;\n8.\nmittelbar oder unmittelbar geschlechtsspezifisch wirkende Regelungen sind nur zulässig, wenn dies aus biologischen Gründen zwingend geboten ist.",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -159,19 +237,34 @@
               "id": "b3cbf5577d8720c3",
               "number": "5",
               "title": "§ 5. Beurteilung der Arbeitsbedingungen",
-              "text": "§ 5 Beurteilung der Arbeitsbedingungen",
+              "text": "(1) Der Arbeitgeber hat durch eine Beurteilung der für die Beschäftigten mit ihrer Arbeit verbundenen Gefährdung zu ermitteln, welche Maßnahmen des Arbeitsschutzes erforderlich sind.",
               "whs_topics": [
                 {
                   "id": "risk_assessment",
                   "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -179,19 +272,39 @@
               "id": "2cca91060de0b3e5",
               "number": "6",
               "title": "§ 6. Dokumentation",
-              "text": "§ 6 Dokumentation",
+              "text": "(1) Der Arbeitgeber muß über die je nach Art der Tätigkeiten und der Zahl der Beschäftigten erforderlichen Unterlagen verfügen, aus denen das Ergebnis der Gefährdungsbeurteilung, die von ihm festgelegten Maßnahmen des Arbeitsschutzes und das Ergebnis ihrer Überprüfung ersichtlich sind. Bei gleichartiger Gefährdungssituation ist es ausreichend, wenn die Unterlagen zusammengefaßte Angaben enthalten.",
               "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 3
+                },
                 {
                   "id": "documentation",
                   "relevance": "high",
                   "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -199,8 +312,29 @@
               "id": "ef19621245abc127",
               "number": "7",
               "title": "§ 7. Übertragung von Aufgaben",
-              "text": "§ 7 Übertragung von Aufgaben",
-              "whs_topics": [],
+              "text": "Bei der Übertragung von Aufgaben auf Beschäftigte hat der Arbeitgeber je nach Art der Tätigkeiten zu berücksichtigen, ob die Beschäftigten befähigt sind, die für die Sicherheit und den Gesundheitsschutz bei der Aufgabenerfüllung zu beachtenden Bestimmungen und Maßnahmen einzuhalten.",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -213,11 +347,31 @@
               "id": "44772857d50ab167",
               "number": "8",
               "title": "§ 8. Zusammenarbeit mehrerer Arbeitgeber",
-              "text": "§ 8 Zusammenarbeit mehrerer Arbeitgeber",
+              "text": "(1) Werden Beschäftigte mehrerer Arbeitgeber an einem Arbeitsplatz tätig, sind die Arbeitgeber verpflichtet, bei der Durchführung der Sicherheits- und Gesundheitsschutzbestimmungen zusammenzuarbeiten. Soweit dies für die Sicherheit und den Gesundheitsschutz der Beschäftigten bei der Arbeit erforderlich ist, haben die Arbeitgeber je nach Art der Tätigkeiten insbesondere sich gegenseitig und ihre Beschäftigten über die mit den Arbeiten verbundenen Gefahren für Sicherheit und Gesundheit der Beschäftigten zu unterrichten und Maßnahmen zur Verhütung dieser Gefahren abzustimmen.",
               "whs_topics": [
                 {
                   "id": "employer_obligations",
                   "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
                   "match_count": 1
                 }
               ],
@@ -233,8 +387,24 @@
               "id": "35fa57876ddd6175",
               "number": "9",
               "title": "§ 9. Besondere Gefahren",
-              "text": "§ 9 Besondere Gefahren",
-              "whs_topics": [],
+              "text": "(1) Der Arbeitgeber hat Maßnahmen zu treffen, damit nur Beschäftigte Zugang zu besonders gefährlichen Arbeitsbereichen haben, die zuvor geeignete Anweisungen erhalten haben.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -247,18 +417,33 @@
               "id": "1aba636dc46f3a32",
               "number": "10",
               "title": "§ 10. Erste Hilfe und sonstige Notfallmaßnahmen",
-              "text": "§ 10 Erste Hilfe und sonstige Notfallmaßnahmen",
+              "text": "(1) Der Arbeitgeber hat entsprechend der Art der Arbeitsstätte und der Tätigkeiten sowie der Zahl der Beschäftigten die Maßnahmen zu treffen, die zur Ersten Hilfe, Brandbekämpfung und Evakuierung der Beschäftigten erforderlich sind. Dabei hat er der Anwesenheit anderer Personen Rechnung zu tragen. Er hat auch dafür zu sorgen, daß im Notfall die erforderlichen Verbindungen zu außerbetrieblichen Stellen, insbesondere in den Bereichen der Ersten Hilfe, der medizinischen Notversorgung, der Bergung und der Brandbekämpfung eingerichtet sind.",
               "whs_topics": [
                 {
                   "id": "first_aid",
                   "relevance": "high",
                   "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 4,
-                "level": "high",
-                "high_keyword_matches": 2,
+                "score": 6,
+                "level": "critical",
+                "high_keyword_matches": 3,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -267,12 +452,32 @@
               "id": "30eb75e1feadb66d",
               "number": "11",
               "title": "§ 11. Arbeitsmedizinische Vorsorge",
-              "text": "§ 11 Arbeitsmedizinische Vorsorge",
+              "text": "Der Arbeitgeber hat den Beschäftigten auf ihren Wunsch unbeschadet der Pflichten aus anderen Rechtsvorschriften zu ermöglichen, sich je nach den Gefahren für ihre Sicherheit und Gesundheit bei der Arbeit regelmäßig arbeitsmedizinisch untersuchen zu lassen, es sei denn, auf Grund der Beurteilung der Arbeitsbedingungen und der getroffenen Schutzmaßnahmen ist nicht mit einem Gesundheitsschaden zu rechnen.",
               "whs_topics": [
                 {
                   "id": "health_surveillance",
                   "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
                   "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
@@ -287,19 +492,39 @@
               "id": "8b38cf456adfc376",
               "number": "12",
               "title": "§ 12. Unterweisung",
-              "text": "§ 12 Unterweisung",
+              "text": "(1) Der Arbeitgeber hat die Beschäftigten über Sicherheit und Gesundheitsschutz bei der Arbeit während ihrer Arbeitszeit ausreichend und angemessen zu unterweisen. Die Unterweisung umfaßt Anweisungen und Erläuterungen, die eigens auf den Arbeitsplatz oder den Aufgabenbereich der Beschäftigten ausgerichtet sind. Die Unterweisung muß bei der Einstellung, bei Veränderungen im Aufgabenbereich, der Einführung neuer Arbeitsmittel oder einer neuen Technologie vor Aufnahme der Tätigkeit der Beschäftigten erfolgen. Die Unterweisung muß an die Gefährdungsentwicklung angepaßt sein und erforderlichenfalls regelmäßig wiederholt werden.",
               "whs_topics": [
                 {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
                   "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
                   "relevance": "high",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
+                "score": 5,
+                "level": "critical",
                 "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 3
               },
               "paragraphs": []
             },
@@ -307,13 +532,29 @@
               "id": "d6ae4544599890e4",
               "number": "13",
               "title": "§ 13. Verantwortliche Personen",
-              "text": "§ 13 Verantwortliche Personen",
-              "whs_topics": [],
+              "text": "(1) Verantwortlich für die Erfüllung der sich aus diesem Abschnitt ergebenden Pflichten sind neben dem Arbeitgeber\n1.\nsein gesetzlicher Vertreter,\n2.\ndas vertretungsberechtigte Organ einer juristischen Person,\n3.\nder vertretungsberechtigte Gesellschafter einer Personenhandelsgesellschaft,\n4.\nPersonen, die mit der Leitung eines Unternehmens oder eines Betriebes beauftragt sind, im Rahmen der ihnen übertragenen Aufgaben und Befugnisse,\n5.\nsonstige nach Absatz 2 oder nach einer auf Grund dieses Gesetzes erlassenen Rechtsverordnung oder nach einer Unfallverhütungsvorschrift verpflichtete Personen im Rahmen ihrer Aufgaben und Befugnisse.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -321,8 +562,23 @@
               "id": "62a36a569e268c12",
               "number": "14",
               "title": "§ 14. Unterrichtung und Anhörung der Beschäftigten des öffentlichen Dienstes",
-              "text": "§ 14 Unterrichtung und Anhörung der Beschäftigten des öffentlichen Dienstes",
+              "text": "(1) Die Beschäftigten des öffentlichen Dienstes sind vor Beginn der Beschäftigung und bei Veränderungen in ihren Arbeitsbereichen über Gefahren für Sicherheit und Gesundheit, denen sie bei der Arbeit ausgesetzt sein können, sowie über die Maßnahmen und Einrichtungen zur Verhütung dieser Gefahren und die nach § 10 Abs. 2 getroffenen Maßnahmen zu unterrichten.",
               "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
                 {
                   "id": "employee_rights",
                   "relevance": "medium",
@@ -349,11 +605,61 @@
               "id": "513253ea32df23a5",
               "number": "15",
               "title": "§ 15. Pflichten der Beschäftigten",
-              "text": "§ 15 Pflichten der Beschäftigten",
+              "text": "(1) Die Beschäftigten sind verpflichtet, nach ihren Möglichkeiten sowie gemäß der Unterweisung und Weisung des Arbeitgebers für ihre Sicherheit und Gesundheit bei der Arbeit Sorge zu tragen. Entsprechend Satz 1 haben die Beschäftigten auch für die Sicherheit und Gesundheit der Personen zu sorgen, die von ihren Handlungen oder Unterlassungen bei der Arbeit betroffen sind.",
               "whs_topics": [
                 {
                   "id": "employer_obligations",
                   "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "bdabbda26d9c9c43",
+              "number": "16",
+              "title": "§ 16. Besondere Unterstützungspflichten",
+              "text": "(1) Die Beschäftigten haben dem Arbeitgeber oder dem zuständigen Vorgesetzten jede von ihnen festgestellte unmittelbare erhebliche Gefahr für die Sicherheit und Gesundheit sowie jeden an den Schutzsystemen festgestellten Defekt unverzüglich zu melden.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
                   "match_count": 1
                 },
                 {
@@ -371,35 +677,30 @@
               "paragraphs": []
             },
             {
-              "id": "bdabbda26d9c9c43",
-              "number": "16",
-              "title": "§ 16. Besondere Unterstützungspflichten",
-              "text": "§ 16 Besondere Unterstützungspflichten",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
               "id": "7053cbfa86fefe7a",
               "number": "17",
               "title": "§ 17. Rechte der Beschäftigten",
-              "text": "§ 17 Rechte der Beschäftigten",
+              "text": "(1) Die Beschäftigten sind berechtigt, dem Arbeitgeber Vorschläge zu allen Fragen der Sicherheit und des Gesundheitsschutzes bei der Arbeit zu machen. Für Beamtinnen und Beamte des Bundes ist § 125 des Bundesbeamtengesetzes anzuwenden. Entsprechendes Landesrecht bleibt unberührt.",
               "whs_topics": [
                 {
                   "id": "employee_rights",
                   "relevance": "medium",
                   "match_count": 2
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
@@ -422,8 +723,19 @@
               "id": "9c0517abb2ee72af",
               "number": "18",
               "title": "§ 18. Verordnungsermächtigungen",
-              "text": "§ 18 Verordnungsermächtigungen",
-              "whs_topics": [],
+              "text": "(1) Die Bundesregierung wird ermächtigt, durch Rechtsverordnung mit Zustimmung des Bundesrates vorzuschreiben, welche Maßnahmen der Arbeitgeber und die sonstigen verantwortlichen Personen zu treffen haben und wie sich die Beschäftigten zu verhalten haben, um ihre jeweiligen Pflichten, die sich aus diesem Gesetz ergeben, zu erfüllen. In diesen Rechtsverordnungen kann auch bestimmt werden, daß bestimmte Vorschriften des Gesetzes zum Schutz anderer als in § 2 Abs. 2 genannter Personen anzuwenden sind.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -436,8 +748,18 @@
               "id": "4c6de6a29f643b9d",
               "number": "19",
               "title": "§ 19. Rechtsakte der Europäischen Gemeinschaften und zwischenstaatliche Vereinbarungen",
-              "text": "§ 19 Rechtsakte der Europäischen Gemeinschaften und zwischenstaatliche Vereinbarungen",
+              "text": "Rechtsverordnungen nach § 18 können auch erlassen werden, soweit dies zur Durchführung von Rechtsakten des Rates oder der Kommission der Europäischen Gemeinschaften oder von Beschlüssen internationaler Organisationen oder von zwischenstaatlichen Vereinbarungen, die Sachbereiche dieses Gesetzes betreffen, erforderlich ist, insbesondere um Arbeitsschutzpflichten für andere als in § 2 Abs. 3 genannte Personen zu regeln.",
               "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
                 {
                   "id": "employee_rights",
                   "relevance": "medium",
@@ -456,8 +778,14 @@
               "id": "3971f3701fcc0b0f",
               "number": "20",
               "title": "§ 20. Regelungen für den öffentlichen Dienst",
-              "text": "§ 20 Regelungen für den öffentlichen Dienst",
-              "whs_topics": [],
+              "text": "(1) Für die Beamten der Länder, Gemeinden und sonstigen Körperschaften, Anstalten und Stiftungen des öffentlichen Rechts regelt das Landesrecht, ob und inwieweit die nach § 18 erlassenen Rechtsverordnungen gelten.",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -478,19 +806,39 @@
               "id": "bfee520609b96cf6",
               "number": "20a",
               "title": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie",
-              "text": "§ 20a Gemeinsame deutsche Arbeitsschutzstrategie",
+              "text": "(1) Nach den Bestimmungen dieses Abschnitts entwickeln Bund, Länder und Unfallversicherungsträger im Interesse eines wirksamen Arbeitsschutzes eine gemeinsame deutsche Arbeitsschutzstrategie und gewährleisten ihre Umsetzung und Fortschreibung. Mit der Wahrnehmung der ihnen gesetzlich zugewiesenen Aufgaben zur Verhütung von Arbeitsunfällen, Berufskrankheiten und arbeitsbedingten Gesundheitsgefahren sowie zur menschengerechten Gestaltung der Arbeit tragen Bund, Länder und Unfallversicherungsträger dazu bei, die Ziele der gemeinsamen deutschen Arbeitsschutzstrategie zu erreichen.",
               "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
                 {
                   "id": "prevention_services",
                   "relevance": "high",
                   "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -498,19 +846,34 @@
               "id": "871931181e3faadb",
               "number": "20b",
               "title": "§ 20b. Nationale Arbeitsschutzkonferenz",
-              "text": "§ 20b Nationale Arbeitsschutzkonferenz",
+              "text": "(1) Die Aufgabe der Entwicklung, Steuerung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie nach § 20a Abs. 1 Satz 1 wird von der Nationalen Arbeitsschutzkonferenz wahrgenommen. Sie setzt sich aus jeweils drei stimmberechtigten Vertretern von Bund, Ländern und den Unfallversicherungsträgern zusammen und bestimmt für jede Gruppe drei Stellvertreter. Außerdem entsenden die Spitzenorganisationen der Arbeitgeber und Arbeitnehmer für die Behandlung von Angelegenheiten nach § 20a Abs. 2 Nr. 1 bis 3 und 5 jeweils bis zu drei Vertreter in die Nationale Arbeitsschutzkonferenz; sie nehmen mit beratender Stimme an den Sitzungen teil. Die Nationale Arbeitsschutzkonferenz gibt sich eine Geschäftsordnung; darin werden insbesondere die Arbeitsweise und das Beschlussverfahren festgelegt. Die Geschäftsordnung muss einstimmig angenommen werden.",
               "whs_topics": [
                 {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
                   "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
                   "relevance": "high",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             }
@@ -526,19 +889,39 @@
               "id": "34c86436dccafdfe",
               "number": "21",
               "title": "§ 21. Zuständige Behörden, Zusammenwirken mit den Trägern der gesetzlichen Unfallversicherung",
-              "text": "§ 21 Zuständige Behörden, Zusammenwirken mit den Trägern der gesetzlichen Unfallversicherung",
+              "text": "(1) Die Überwachung des Arbeitsschutzes nach diesem Gesetz ist staatliche Aufgabe. Die zuständigen Behörden haben die Einhaltung dieses Gesetzes und der auf Grund dieses Gesetzes erlassenen Rechtsverordnungen zu überwachen und die Arbeitgeber bei der Erfüllung ihrer Pflichten zu beraten. Bei der Überwachung haben die zuständigen Behörden bei der Auswahl von Betrieben Art und Umfang des betrieblichen Gefährdungspotenzials zu berücksichtigen.",
               "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
                 {
                   "id": "incident_reporting",
                   "relevance": "high",
                   "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 1,
+                "score": 2,
                 "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -546,57 +929,25 @@
               "id": "f17082b3f54d5b26",
               "number": "22",
               "title": "§ 22. Befugnisse der zuständigen Behörden",
-              "text": "§ 22 Befugnisse der zuständigen Behörden",
-              "whs_topics": [],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "2c34b9696ccba420",
-              "number": "23",
-              "title": "§ 23. Betriebliche Daten, Zusammenarbeit mit anderen Behörden, Jahresbericht, Bundesfachstelle",
-              "text": "§ 23 Betriebliche Daten, Zusammenarbeit mit anderen Behörden, Jahresbericht, Bundesfachstelle",
-              "whs_topics": [],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "ae262e7f76b6c91d",
-              "number": "24",
-              "title": "§ 24. Ermächtigung zum Erlaß von allgemeinen Verwaltungsvorschriften",
-              "text": "§ 24 Ermächtigung zum Erlaß von allgemeinen Verwaltungsvorschriften",
-              "whs_topics": [],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "6224d18445a3298b",
-              "number": "24a",
-              "title": "§ 24a. Ausschuss für Sicherheit und Gesundheit bei der Arbeit",
-              "text": "§ 24a Ausschuss für Sicherheit und Gesundheit bei der Arbeit",
+              "text": "(1) Die zuständige Behörde kann vom Arbeitgeber oder von den verantwortlichen Personen die zur Durchführung ihrer Überwachungsaufgabe erforderlichen Auskünfte und die Überlassung von entsprechenden Unterlagen verlangen. Werden Beschäftigte mehrerer Arbeitgeber an einem Arbeitsplatz tätig, kann die zuständige Behörde von den Arbeitgebern oder von den verantwortlichen Personen verlangen, dass das Ergebnis der Abstimmung über die zu treffenden Maßnahmen nach § 8 Absatz 1 schriftlich vorgelegt wird. Die auskunftspflichtige Person kann die Auskunft auf solche Fragen oder die Vorlage derjenigen Unterlagen verweigern, deren Beantwortung oder Vorlage sie selbst oder einen ihrer in § 383 Abs. 1 Nr. 1 bis 3 der Zivilprozeßordnung bezeichneten Angehörigen der Gefahr der Verfolgung wegen einer Straftat oder Ordnungswidrigkeit aussetzen würde. Die auskunftspflichtige Person ist darauf hinzuweisen.",
               "whs_topics": [
                 {
-                  "id": "prevention_services",
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
                   "relevance": "high",
                   "match_count": 1
                 },
                 {
-                  "id": "health_surveillance",
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
                   "relevance": "medium",
                   "match_count": 1
                 }
@@ -610,11 +961,121 @@
               "paragraphs": []
             },
             {
+              "id": "2c34b9696ccba420",
+              "number": "23",
+              "title": "§ 23. Betriebliche Daten, Zusammenarbeit mit anderen Behörden, Jahresbericht, Bundesfachstelle",
+              "text": "(1) Der Arbeitgeber hat der zuständigen Behörde zu einem von ihr bestimmten Zeitpunkt Mitteilungen über\n1.\ndie Zahl der Beschäftigten und derer, an die er Heimarbeit vergibt, aufgegliedert nach Geschlecht, Alter und Staatsangehörigkeit,\n2.\nden Namen oder die Bezeichnung und Anschrift des Betriebs, in dem er sie beschäftigt,\n3.\nseinen Namen, seine Firma und seine Anschrift sowie\n4.\nden Wirtschaftszweig, dem sein Betrieb angehört,\nzu machen. Das Bundesministerium für Arbeit und Soziales wird ermächtigt, durch Rechtsverordnung mit Zustimmung des Bundesrates zu bestimmen, daß die Stellen der Bundesverwaltung, denen der Arbeitgeber die in Satz 1 genannten Mitteilungen bereits auf Grund einer Rechtsvorschrift mitgeteilt hat, diese Angaben an die für die Behörden nach Satz 1 zuständigen obersten Landesbehörden als Schreiben oder auf maschinell verwertbaren Datenträgern oder durch Datenübertragung weiterzuleiten haben. In der Rechtsverordnung können das Nähere über die Form der weiterzuleitenden Angaben sowie die Frist für die Weiterleitung bestimmt werden. Die weitergeleiteten Angaben dürfen nur zur Erfüllung der in der Zuständigkeit der Behörden nach § 21 Abs. 1 liegenden Arbeitsschutzaufgaben verarbeitet werden.",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ae262e7f76b6c91d",
+              "number": "24",
+              "title": "§ 24. Ermächtigung zum Erlaß von allgemeinen Verwaltungsvorschriften",
+              "text": "Die Bundesregierung kann mit Zustimmung des Bundesrates allgemeine Verwaltungsvorschriften erlassen insbesondere\n1.\nzur Durchführung dieses Gesetzes und der auf Grund dieses Gesetzes erlassenen Rechtsverordnungen, insbesondere dazu, welche Kriterien zur Auswahl von Betrieben bei der Überwachung anzuwenden, welche Sachverhalte im Rahmen einer Betriebsbesichtigung mindestens zu prüfen und welche Ergebnisse aus der Überwachung für die Berichterstattung zu erfassen sind,\n2.\nüber die Gestaltung der Jahresberichte nach § 23 Abs. 4 und\n3.\nüber die Angaben, die die zuständigen obersten Landesbehörden dem Bundesministerium für Arbeit und Soziales für den Unfallverhütungsbericht nach § 25 Abs. 2 des Siebten Buches Sozialgesetzbuch bis zu einem bestimmten Zeitpunkt mitzuteilen haben.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "6224d18445a3298b",
+              "number": "24a",
+              "title": "§ 24a. Ausschuss für Sicherheit und Gesundheit bei der Arbeit",
+              "text": "(1) Beim Bundesministerium für Arbeit und Soziales wird ein Ausschuss für Sicherheit und Gesundheit bei der Arbeit gebildet, in dem geeignete Personen vonseiten der öffentlichen und privaten Arbeitgeber, der Gewerkschaften, der Landesbehörden, der gesetzlichen Unfallversicherung und weitere geeignete Personen, insbesondere aus der Wissenschaft, vertreten sein sollen. Dem Ausschuss sollen nicht mehr als 15 Mitglieder angehören. Für jedes Mitglied ist ein stellvertretendes Mitglied zu benennen. Die Mitgliedschaft im Ausschuss ist ehrenamtlich. Ein Mitglied oder ein stellvertretendes Mitglied aus den anderen Ausschüssen beim Bundesministerium für Arbeit und Soziales nach § 18 Absatz 2 Nummer 5 soll dauerhaft als Gast im Ausschuss für Sicherheit und Gesundheit bei der Arbeit vertreten sein.",
+              "whs_topics": [
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
               "id": "c2cdc5a1f8d91cc5",
               "number": "25",
               "title": "§ 25. Bußgeldvorschriften",
-              "text": "§ 25 Bußgeldvorschriften",
+              "text": "(1) Ordnungswidrig handelt, wer vorsätzlich oder fahrlässig\n1.\neiner Rechtsverordnung nach § 18 Abs. 1 oder § 19 zuwiderhandelt, soweit sie für einen bestimmten Tatbestand auf diese Bußgeldvorschrift verweist, oder\n2.\na)\nals Arbeitgeber oder als verantwortliche Person einer vollziehbaren Anordnung nach § 22 Abs. 3 oder\nb)\nals Beschäftigter einer vollziehbaren Anordnung nach § 22 Abs. 3 Satz 1 Nr. 1\nzuwiderhandelt.",
               "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
                 {
                   "id": "penalties",
                   "relevance": "high",
@@ -633,8 +1094,24 @@
               "id": "4841b1465dd94dd5",
               "number": "26",
               "title": "§ 26. Strafvorschriften",
-              "text": "§ 26 Strafvorschriften",
-              "whs_topics": [],
+              "text": "Mit Freiheitsstrafe bis zu einem Jahr oder mit Geldstrafe wird bestraft, wer\n1.\neine in § 25 Abs. 1 Nr. 2 Buchstabe a bezeichnete Handlung beharrlich wiederholt oder\n2.\ndurch eine in § 25 Abs. 1 Nr. 1 oder Nr. 2 Buchstabe a bezeichnete vorsätzliche Handlung Leben oder Gesundheit eines Beschäftigten gefährdet.",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",

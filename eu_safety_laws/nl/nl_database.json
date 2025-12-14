@@ -1,13 +1,13 @@
 {
   "metadata": {
     "country": "NL",
-    "generated_at": "2025-12-14T15:55:51.397857",
+    "generated_at": "2025-12-14T17:06:32.319861",
     "document_count": 1,
     "error_count": 0
   },
   "documents": [
     {
-      "id": "b8feac7de92e9500",
+      "id": "cf6b6319665f152f",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -23,7 +23,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-14T15:55:50.895721",
+        "scraped_at": "2025-12-14T17:06:31.818279",
         "scraper_version": "7.0.0"
       },
       "whs_summary": {
