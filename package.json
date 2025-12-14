@@ -8,7 +8,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src --ext js,jsx"
+    "lint": "eslint src --ext js,jsx",
+    "clean:at": "node scripts/clean-at-database.js",
+    "clean:de": "node scripts/clean-de-database.js",
+    "clean:all": "npm run clean:at && npm run clean:de"
   },
   "dependencies": {
     "react": "^18.2.0",
