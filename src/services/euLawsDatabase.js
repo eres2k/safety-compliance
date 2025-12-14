@@ -637,27 +637,50 @@ export function getLawContentSections(country, lawId) {
 
   const text = law.content.full_text
   const sections = []
+  const seenSections = new Set()
 
-  // Try to parse German law structure (§ sections)
-  // Only match section headers at start of line, not inline references like "§ 2 Abs. 1"
-  // Section headers typically have format: "§ 21a Title" or "(1) § 21a Title"
-  // Inline references have format: "gemäß § 2 Abs. 1" or "nach §§ 3 und 6"
-  const sectionRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s+([A-ZÄÖÜ][^\n§]*?)(?=\n|$)/gm
+  // German format: "§ 21a Beschäftigung im Straßentransport" - section with title
+  // Only match at start of line, title must start with capital letter
+  const germanRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s+([A-ZÄÖÜ][^\n§]*?)(?=\n|$)/gm
   let match
 
-  while ((match = sectionRegex.exec(text)) !== null) {
-    // Skip if this looks like an inline reference (title starts with "Abs." or similar)
+  while ((match = germanRegex.exec(text)) !== null) {
+    const sectionNum = match[1]
     const title = match[2].trim()
+    // Skip inline references (title starts with Abs., Nr., etc.)
     if (/^(Abs\.|Absatz|Nr\.|Nummer|Satz|Buchstabe)/i.test(title)) {
       continue
     }
-    sections.push({
-      id: `${lawId}-s${match[1]}`,
-      paragraph: `§ ${match[1]}`,
-      title: title.substring(0, 100),
-      startIndex: match.index
-    })
+    if (!seenSections.has(sectionNum)) {
+      seenSections.add(sectionNum)
+      sections.push({
+        id: `${lawId}-s${sectionNum}`,
+        paragraph: `§ ${sectionNum}`,
+        title: title.substring(0, 100),
+        startIndex: match.index
+      })
+    }
   }
+
+  // Austrian format: "§ 2\n(1)\n\nArbeitnehmer..." - section number alone, then (1)
+  // Match § NUMBER at start of line, followed by newline and (1) or similar
+  const austrianRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s*\n+\s*\(1\)/gm
+
+  while ((match = austrianRegex.exec(text)) !== null) {
+    const sectionNum = match[1]
+    if (!seenSections.has(sectionNum)) {
+      seenSections.add(sectionNum)
+      sections.push({
+        id: `${lawId}-s${sectionNum}`,
+        paragraph: `§ ${sectionNum}`,
+        title: '', // Austrian sections typically don't have inline titles
+        startIndex: match.index
+      })
+    }
+  }
+
+  // Sort by position in document
+  sections.sort((a, b) => a.startIndex - b.startIndex)
 
   return sections
 }
