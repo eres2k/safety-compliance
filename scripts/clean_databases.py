@@ -108,6 +108,58 @@ def ordinal_to_number(word):
     return GERMAN_ORDINALS.get(word.lower(), word)
 
 
+def extract_nl_hoofdstuk_structure(full_text: str) -> dict:
+    """
+    Extract Hoofdstuk (Chapter) structure from Dutch law text.
+    Returns a mapping: artikel_number -> hoofdstuk_info
+
+    Handles:
+    - "Artikel X.Y" format where X is Hoofdstuk number (e.g., Artikel 1.1, Artikel 2.5)
+    - Simple "Artikel X" format (no grouping, returns empty)
+    """
+    if not full_text:
+        return {}
+
+    # Detect if this law uses "Artikel X.Y" format (with Hoofdstuk grouping)
+    # vs simple "Artikel X" format (no grouping)
+    has_hoofdstuk_format = re.search(r'Artikel\s+\d+\.\d+', full_text, re.IGNORECASE)
+
+    if not has_hoofdstuk_format:
+        # Simple format like "Artikel 1", "Artikel 2" - no grouping
+        return {}
+
+    # Parse Hoofdstuk headers from the text (if present)
+    hoofdstuk_titles = {}
+
+    # Look for explicit Hoofdstuk headers like "Hoofdstuk 1. Title" or "HOOFDSTUK 1 TITLE"
+    hoofdstuk_pattern = r'Hoofdstuk\s+(\d+)[\.\s:]+([^\n]*)'
+    for match in re.finditer(hoofdstuk_pattern, full_text, re.IGNORECASE):
+        num = match.group(1)
+        title = match.group(2).strip()
+        # Clean up title - remove "Artikel" references that might follow
+        title = re.sub(r'\s*Artikel\s+\d+.*$', '', title, flags=re.IGNORECASE).strip()
+        if title and num not in hoofdstuk_titles:
+            hoofdstuk_titles[num] = title
+
+    # Find all "Artikel X.Y" patterns and map them to Hoofdstuk
+    artikel_to_hoofdstuk = {}
+    artikel_pattern = r'Artikel\s+(\d+)\.(\d+[a-z]?)'
+
+    for match in re.finditer(artikel_pattern, full_text, re.IGNORECASE):
+        hoofdstuk_num = match.group(1)
+        artikel_sub = match.group(2)
+        artikel_key = f"{hoofdstuk_num}.{artikel_sub}"
+
+        if artikel_key not in artikel_to_hoofdstuk:
+            artikel_to_hoofdstuk[artikel_key] = {
+                'number': hoofdstuk_num,
+                'title': hoofdstuk_titles.get(hoofdstuk_num, ''),
+                'display_name': f'Hoofdstuk {hoofdstuk_num}'
+            }
+
+    return artikel_to_hoofdstuk
+
+
 def extract_abschnitt_structure(full_text: str, country: str) -> dict:
     """
     Extract Abschnitt (section) structure from law text.
@@ -116,14 +168,14 @@ def extract_abschnitt_structure(full_text: str, country: str) -> dict:
     Handles:
     - Austrian format: "1. Abschnitt", "2. Abschnitt"
     - German format: "Erster Abschnitt", "Zweiter Abschnitt"
-    - Dutch format: No Abschnitt, uses "Artikel" directly
+    - Dutch format: "Artikel X.Y" where X is Hoofdstuk (Chapter) number
     """
     if not full_text:
         return {}
 
-    # For NL, no Abschnitt structure
+    # For NL, extract Hoofdstuk from "Artikel X.Y" format
     if country == 'NL':
-        return {}
+        return extract_nl_hoofdstuk_structure(full_text)
 
     # Detect format type
     ordinal_pattern = '|'.join(GERMAN_ORDINALS.keys())
@@ -217,12 +269,12 @@ def extract_abschnitt_structure(full_text: str, country: str) -> dict:
 
 
 def add_abschnitt_to_sections(doc: dict, country: str) -> dict:
-    """Add Abschnitt information to each section in the document"""
+    """Add Abschnitt/Hoofdstuk information to each section in the document"""
     full_text = doc.get('full_text', '')
     if not full_text:
         return doc
 
-    # Extract Abschnitt mapping
+    # Extract Abschnitt/Hoofdstuk mapping
     abschnitt_map = extract_abschnitt_structure(full_text, country)
 
     if not abschnitt_map:
@@ -233,20 +285,30 @@ def add_abschnitt_to_sections(doc: dict, country: str) -> dict:
         for chapter in doc['chapters']:
             if chapter.get('sections'):
                 for section in chapter['sections']:
-                    # Extract paragraph number from section
+                    # Extract paragraph/artikel number from section
                     section_num = section.get('number', '')
-                    # Clean the number (remove "§", spaces, trailing dots)
-                    clean_num = re.sub(r'[§\s.]', '', section_num).strip()
 
-                    # Look up Abschnitt
-                    abschnitt = abschnitt_map.get(clean_num)
-                    if not abschnitt:
-                        # Try without letter suffix
-                        base_num = re.sub(r'[a-z]', '', clean_num, flags=re.IGNORECASE)
-                        abschnitt = abschnitt_map.get(base_num)
+                    if country == 'NL':
+                        # NL format: "Artikel X.Y" - extract "X.Y" part
+                        match = re.search(r'(\d+\.\d+[a-z]?)', section_num, re.IGNORECASE)
+                        if match:
+                            clean_num = match.group(1)
+                            abschnitt = abschnitt_map.get(clean_num)
+                            if abschnitt:
+                                section['abschnitt'] = abschnitt
+                    else:
+                        # AT/DE format: "§ X" - clean and lookup
+                        clean_num = re.sub(r'[§\s.]', '', section_num).strip()
 
-                    if abschnitt:
-                        section['abschnitt'] = abschnitt
+                        # Look up Abschnitt
+                        abschnitt = abschnitt_map.get(clean_num)
+                        if not abschnitt:
+                            # Try without letter suffix
+                            base_num = re.sub(r'[a-z]', '', clean_num, flags=re.IGNORECASE)
+                            abschnitt = abschnitt_map.get(base_num)
+
+                        if abschnitt:
+                            section['abschnitt'] = abschnitt
 
     # Store the full mapping in metadata
     doc['abschnitt_structure'] = list({

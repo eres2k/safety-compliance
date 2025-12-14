@@ -193,22 +193,63 @@ function parseLawSections(text, framework = 'AT') {
   const sectionsMap = new Map()
 
   if (isArtikelFormat) {
-    // Parse Dutch "Artikel X. Title" format
-    const artikelRegex = /Artikel\s+(\d+[a-z]?)\.\s*([^\n]+)/gi
+    // Parse Dutch "Artikel X. Title" or "Artikel X.Y. Title" format
+    // Detect if this is "Artikel X.Y" format (with Hoofdstuk grouping)
+    const hasHoofdstukFormat = /Artikel\s+\d+\.\d+/i.test(cleanedText)
+
+    // Parse Hoofdstuk titles if present
+    const hoofdstukTitles = new Map()
+    if (hasHoofdstukFormat) {
+      const hoofdstukPattern = /Hoofdstuk\s+(\d+)[\.\s:]+([^\n]*)/gi
+      let hMatch
+      while ((hMatch = hoofdstukPattern.exec(cleanedText)) !== null) {
+        const num = hMatch[1]
+        let title = hMatch[2].trim()
+        // Clean up title - remove "Artikel" references
+        title = title.replace(/\s*Artikel\s+\d+.*$/i, '').trim()
+        if (title && !hoofdstukTitles.has(num)) {
+          hoofdstukTitles.set(num, title)
+        }
+      }
+    }
+
+    // Match both formats: "Artikel X." and "Artikel X.Y."
+    const artikelRegex = hasHoofdstukFormat
+      ? /Artikel\s+(\d+)\.(\d+[a-z]?)\.?\s*([^\n]*)/gi
+      : /Artikel\s+(\d+[a-z]?)\.\s*([^\n]+)/gi
+
     let match
     const matches = []
 
     while ((match = artikelRegex.exec(cleanedText)) !== null) {
-      const number = match[1]
-      const title = match[2].trim()
-      matches.push({
-        id: `artikel-${number}`,
-        number: `Artikel ${number}`,
-        title: title,
-        index: match.index,
-        headerEnd: match.index + match[0].length,
-        rawNumber: number
-      })
+      if (hasHoofdstukFormat) {
+        // "Artikel X.Y. Title" format
+        const hoofdstukNum = match[1]
+        const artikelSub = match[2]
+        const fullNumber = `${hoofdstukNum}.${artikelSub}`
+        const title = (match[3] || '').trim()
+        matches.push({
+          id: `artikel-${fullNumber}`,
+          number: `Artikel ${fullNumber}`,
+          title: title,
+          index: match.index,
+          headerEnd: match.index + match[0].length,
+          rawNumber: fullNumber,
+          hoofdstukNum: hoofdstukNum
+        })
+      } else {
+        // Simple "Artikel X. Title" format
+        const number = match[1]
+        const title = match[2].trim()
+        matches.push({
+          id: `artikel-${number}`,
+          number: `Artikel ${number}`,
+          title: title,
+          index: match.index,
+          headerEnd: match.index + match[0].length,
+          rawNumber: number
+        })
+      }
     }
 
     // Add content to each section - keep the one with most content
@@ -217,13 +258,23 @@ function parseLawSections(text, framework = 'AT') {
       const contentEnd = i < matches.length - 1 ? matches[i + 1].index : cleanedText.length
       let content = cleanedText.substring(section.headerEnd, contentEnd).trim()
 
+      // Build abschnitt (Hoofdstuk) info for grouped format
+      let hoofdstukInfo = null
+      if (hasHoofdstukFormat && section.hoofdstukNum) {
+        hoofdstukInfo = {
+          number: section.hoofdstukNum,
+          title: hoofdstukTitles.get(section.hoofdstukNum) || '',
+          displayName: `Hoofdstuk ${section.hoofdstukNum}`
+        }
+      }
+
       const existingSection = sectionsMap.get(section.rawNumber)
       if (existingSection) {
         if (content.length > existingSection.content.length) {
-          sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: null })
+          sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: hoofdstukInfo })
         }
       } else if (content.length > 5) {
-        sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: null })
+        sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: hoofdstukInfo })
       }
     }
   } else {
