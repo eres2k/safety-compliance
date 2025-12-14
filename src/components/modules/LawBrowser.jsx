@@ -169,21 +169,6 @@ function parseLawSections(text, framework = 'AT') {
   // Detect if this is Dutch/NL law (uses Artikel format)
   const isArtikelFormat = /Artikel\s+\d+\./i.test(cleanedText)
 
-  // Find where actual content starts (skip table of contents)
-  let contentStart = 0
-  const contentMarkers = isArtikelFormat
-    ? [/Artikel\s+1\.\s+[A-Z]/i]
-    : [/§\s*1\.?\s*\n/i, /1\.\s*Abschnitt/i]
-
-  for (const marker of contentMarkers) {
-    const match = cleanedText.match(marker)
-    if (match && match.index !== undefined && match.index < cleanedText.length * 0.5) {
-      contentStart = match.index
-      break
-    }
-  }
-
-  const mainContent = cleanedText.substring(contentStart)
   const sectionsMap = new Map()
 
   if (isArtikelFormat) {
@@ -192,7 +177,7 @@ function parseLawSections(text, framework = 'AT') {
     let match
     const matches = []
 
-    while ((match = artikelRegex.exec(mainContent)) !== null) {
+    while ((match = artikelRegex.exec(cleanedText)) !== null) {
       const number = match[1]
       const title = match[2].trim()
       matches.push({
@@ -205,13 +190,12 @@ function parseLawSections(text, framework = 'AT') {
       })
     }
 
-    // Add content to each section
+    // Add content to each section - keep the one with most content
     for (let i = 0; i < matches.length; i++) {
       const section = matches[i]
-      const contentEnd = i < matches.length - 1 ? matches[i + 1].index : mainContent.length
-      let content = mainContent.substring(section.headerEnd, contentEnd).trim()
+      const contentEnd = i < matches.length - 1 ? matches[i + 1].index : cleanedText.length
+      let content = cleanedText.substring(section.headerEnd, contentEnd).trim()
 
-      // Keep the section with more content when deduplicating
       const existingSection = sectionsMap.get(section.rawNumber)
       if (existingSection) {
         if (content.length > existingSection.content.length) {
@@ -223,30 +207,78 @@ function parseLawSections(text, framework = 'AT') {
     }
   } else {
     // Parse Austrian "§ X" format with Abschnitt groupings
+    // Strategy: Parse the TOC to determine which § belongs to which Abschnitt
 
-    // First, find all Abschnitt headers with their positions
-    const abschnittList = []
-    const abschnittRegex = /(\d+)\.\s*Abschnitt[:\s]*([^\n]*)/gi
-    let abschnittMatch
-    while ((abschnittMatch = abschnittRegex.exec(mainContent)) !== null) {
-      const num = abschnittMatch[1]
-      const title = abschnittMatch[2].trim()
-      // Only add if not already present (avoid duplicates)
-      if (!abschnittList.find(a => a.number === num)) {
-        abschnittList.push({
-          number: num,
-          title,
-          index: abschnittMatch.index,
-          // We'll calculate which section numbers belong to this Abschnitt later
-          firstSection: null
-        })
+    // Step 1: Find the TOC section and parse Abschnitt -> § mappings
+    const abschnittRanges = []
+
+    // Look for TOC pattern: "X. Abschnitt:" followed by "§ Y." entries
+    // The TOC shows the structure clearly
+    const tocMatch = cleanedText.match(/INHALTSVERZEICHNIS|Inhaltsverzeichnis|INHALT/i)
+    const tocStart = tocMatch ? tocMatch.index : 0
+
+    // Find where actual content starts (after TOC, where § 1 has actual content with (1))
+    const contentStartMatch = cleanedText.match(/§\s*1\.?\s*\n+[A-ZÄÖÜ][a-zäöüß]+[^\n]*\n+\(1\)/i)
+    const contentStart = contentStartMatch ? contentStartMatch.index : cleanedText.length * 0.3
+
+    // Extract TOC portion
+    const tocContent = cleanedText.substring(tocStart, contentStart)
+
+    // Parse Abschnitt headers from TOC and track which § numbers follow each
+    const abschnittTocRegex = /(\d+)\.\s*Abschnitt[:\s]*([^\n]*)/gi
+    let abMatch
+    const abschnittPositions = []
+
+    while ((abMatch = abschnittTocRegex.exec(tocContent)) !== null) {
+      abschnittPositions.push({
+        number: abMatch[1],
+        title: abMatch[2].trim(),
+        tocIndex: abMatch.index,
+        firstParagraph: null,
+        lastParagraph: null
+      })
+    }
+
+    // For each Abschnitt, find the § numbers that appear after it in the TOC
+    for (let i = 0; i < abschnittPositions.length; i++) {
+      const ab = abschnittPositions[i]
+      const nextAbStart = i < abschnittPositions.length - 1
+        ? abschnittPositions[i + 1].tocIndex
+        : tocContent.length
+
+      // Extract the TOC portion for this Abschnitt
+      const abschnittTocSection = tocContent.substring(ab.tocIndex, nextAbStart)
+
+      // Find all § numbers in this section
+      const paragraphMatches = [...abschnittTocSection.matchAll(/§\s*(\d+[a-z]?)\.?/gi)]
+      if (paragraphMatches.length > 0) {
+        ab.firstParagraph = paragraphMatches[0][1]
+        ab.lastParagraph = paragraphMatches[paragraphMatches.length - 1][1]
       }
     }
 
-    // Sort Abschnitt by their number
-    abschnittList.sort((a, b) => parseInt(a.number) - parseInt(b.number))
+    // Build a lookup: paragraph number -> Abschnitt
+    const paragraphToAbschnitt = new Map()
+    for (const ab of abschnittPositions) {
+      if (ab.firstParagraph && ab.lastParagraph) {
+        const first = parseInt(ab.firstParagraph.replace(/[a-z]/gi, ''))
+        const last = parseInt(ab.lastParagraph.replace(/[a-z]/gi, ''))
+        for (let p = first; p <= last; p++) {
+          paragraphToAbschnitt.set(p, ab)
+        }
+        // Also handle letter variants like 52a, 77a, 78a, 78b, 82a, 82b, 82c, 88a, 96a, 101a, 127a
+        const letterVariants = [...abschnittPositions.length > 0 ?
+          tocContent.substring(ab.tocIndex, abschnittPositions[abschnittPositions.indexOf(ab) + 1]?.tocIndex || tocContent.length)
+            .matchAll(/§\s*(\d+)([a-z])\.?/gi) : []]
+        for (const variant of letterVariants) {
+          const baseNum = parseInt(variant[1])
+          paragraphToAbschnitt.set(`${variant[1]}${variant[2]}`, ab)
+        }
+      }
+    }
 
-    // Parse all § sections
+    // Step 2: Parse actual content - find all § sections with their content
+    const mainContent = cleanedText.substring(contentStart)
     const sectionRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)/gi
     let match
     const matches = []
@@ -255,9 +287,8 @@ function parseLawSections(text, framework = 'AT') {
       const number = match[1]
       let title = (match[2] || '').trim()
 
-      // Clean up title - remove Abschnitt references
+      // Clean up title - remove Abschnitt references and content markers
       title = title.replace(/^\d+\.\s*Abschnitt[:\s]*/i, '').trim()
-      // Remove content markers from title
       title = title.replace(/^\(1\).*$/i, '').trim()
 
       matches.push({
@@ -271,10 +302,7 @@ function parseLawSections(text, framework = 'AT') {
       })
     }
 
-    // For each section, determine which Abschnitt it belongs to
-    // The logic: find the Abschnitt that appears closest BEFORE this section in the text
-    // OR the Abschnitt whose text position is just after the previous section
-
+    // Step 3: Assign content and Abschnitt to each section
     for (let i = 0; i < matches.length; i++) {
       const section = matches[i]
       const contentEnd = i < matches.length - 1 ? matches[i + 1].index : mainContent.length
@@ -283,27 +311,11 @@ function parseLawSections(text, framework = 'AT') {
       // Clean content - remove Abschnitt headers from content
       content = content.replace(/^\s*\d+\.\s*Abschnitt[^\n]*\n*/gi, '').trim()
 
-      // Find which Abschnitt this section belongs to
-      // Look for Abschnitt that appears BETWEEN the previous section and this section
-      // OR the closest Abschnitt that appears before this section
-      let assignedAbschnitt = null
-
-      const prevSectionEnd = i > 0 ? matches[i - 1].headerEnd : 0
-
-      for (const ab of abschnittList) {
-        // Check if this Abschnitt appears between previous section and current section
-        if (ab.index >= prevSectionEnd && ab.index <= section.index) {
-          assignedAbschnitt = ab
-        }
-        // Or if no Abschnitt found yet and this one appears before current section
-        else if (!assignedAbschnitt && ab.index < section.index) {
-          assignedAbschnitt = ab
-        }
-      }
-
-      // Track first section for each Abschnitt
-      if (assignedAbschnitt && assignedAbschnitt.firstSection === null) {
-        assignedAbschnitt.firstSection = section.rawNumber
+      // Find Abschnitt based on paragraph number (from TOC mapping)
+      let assignedAbschnitt = paragraphToAbschnitt.get(section.rawNumeric)
+      // Also try with letter variant
+      if (!assignedAbschnitt && /[a-z]/i.test(section.rawNumber)) {
+        assignedAbschnitt = paragraphToAbschnitt.get(section.rawNumber.toLowerCase())
       }
 
       // Keep the section with more content when deduplicating
