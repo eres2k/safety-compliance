@@ -692,6 +692,7 @@ export function LawBrowser({ onBack }) {
   const [relevanceFilter, setRelevanceFilter] = useState('all') // all, critical, high, medium, low
   const [isLoading, setIsLoading] = useState(false)
   const [prevFramework, setPrevFramework] = useState(framework)
+  const [expandedSections, setExpandedSections] = useState(new Set()) // Sections collapsed by default
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
@@ -836,12 +837,42 @@ export function LawBrowser({ onBack }) {
     return getRelatedLaws(framework, selectedLaw.id, 5)
   }, [selectedLaw, framework])
 
+  // Reset expanded sections when law changes
+  useEffect(() => {
+    setExpandedSections(new Set())
+  }, [selectedLaw?.id])
+
+  // Toggle section expansion
+  const toggleSection = useCallback((sectionId) => {
+    setExpandedSections(prev => {
+      const next = new Set(prev)
+      if (next.has(sectionId)) {
+        next.delete(sectionId)
+      } else {
+        next.add(sectionId)
+      }
+      return next
+    })
+  }, [])
+
+  // Expand all sections
+  const expandAllSections = useCallback(() => {
+    setExpandedSections(new Set(filteredSections.map(s => s.id)))
+  }, [filteredSections])
+
+  // Collapse all sections
+  const collapseAllSections = useCallback(() => {
+    setExpandedSections(new Set())
+  }, [])
+
   // Scroll to section
   const scrollToSection = useCallback((sectionId) => {
     const element = sectionRefs.current[sectionId]
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       setActiveSection(sectionId)
+      // Also expand the section when scrolling to it
+      setExpandedSections(prev => new Set(prev).add(sectionId))
     }
   }, [])
 
@@ -1195,7 +1226,22 @@ export function LawBrowser({ onBack }) {
 
                       {/* Sections */}
                       {filteredSections.length > 0 ? (
-                        <div className="space-y-8">
+                        <div className="space-y-4">
+                          {/* Expand/Collapse All buttons */}
+                          <div className="flex justify-end gap-2 mb-4">
+                            <button
+                              onClick={expandAllSections}
+                              className="px-3 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-colors"
+                            >
+                              Expand All
+                            </button>
+                            <button
+                              onClick={collapseAllSections}
+                              className="px-3 py-1 text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-colors"
+                            >
+                              Collapse All
+                            </button>
+                          </div>
                           {(() => {
                             let currentAbschnitt = null
                             return filteredSections.map((section) => {
@@ -1203,11 +1249,12 @@ export function LawBrowser({ onBack }) {
                               if (showAbschnittHeader) {
                                 currentAbschnitt = section.abschnitt
                               }
+                              const isExpanded = expandedSections.has(section.id)
 
                               return (
                                 <div key={section.id}>
                                   {showAbschnittHeader && section.abschnitt && (
-                                    <div className="mb-6 mt-8 first:mt-0 p-4 bg-gradient-to-r from-whs-orange-50 to-transparent dark:from-whs-orange-900/20 dark:to-transparent rounded-lg border-l-4 border-whs-orange-500">
+                                    <div className="mb-4 mt-6 first:mt-0 p-4 bg-gradient-to-r from-whs-orange-50 to-transparent dark:from-whs-orange-900/20 dark:to-transparent rounded-lg border-l-4 border-whs-orange-500">
                                       <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                                         {section.abschnitt.displayName || `${section.abschnitt.number}. Abschnitt`}
                                       </h2>
@@ -1219,16 +1266,27 @@ export function LawBrowser({ onBack }) {
                                   <div
                                     id={section.id}
                                     ref={(el) => (sectionRefs.current[section.id] = el)}
-                                    className="scroll-mt-4"
+                                    className="scroll-mt-4 border border-gray-200 dark:border-whs-dark-700 rounded-lg overflow-hidden"
                                   >
-                                    {/* Section Header with WHS Relevance */}
-                                    <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
-                                      <div className="flex items-baseline gap-3 flex-1">
-                                        <span className="text-2xl font-bold text-whs-orange-500">
+                                    {/* Collapsible Section Header */}
+                                    <button
+                                      onClick={() => toggleSection(section.id)}
+                                      className="w-full flex flex-col md:flex-row md:items-center gap-2 p-3 bg-gray-50 dark:bg-whs-dark-800 hover:bg-gray-100 dark:hover:bg-whs-dark-700 transition-colors text-left"
+                                    >
+                                      <div className="flex items-center gap-3 flex-1">
+                                        <svg
+                                          className={`w-4 h-4 text-gray-500 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                        <span className="text-xl font-bold text-whs-orange-500">
                                           {section.number}
                                         </span>
                                         {section.title && (
-                                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                          <h3 className="text-base font-semibold text-gray-900 dark:text-white">
                                             {section.title}
                                           </h3>
                                         )}
@@ -1237,21 +1295,26 @@ export function LawBrowser({ onBack }) {
                                       {section.amazon_logistics_relevance && (
                                         <RelevanceBadge level={section.amazon_logistics_relevance.level} />
                                       )}
-                                    </div>
+                                    </button>
 
-                                    {/* WHS Topics Tags */}
-                                    {section.whs_topics && section.whs_topics.length > 0 && (
-                                      <div className="flex flex-wrap gap-1 mb-3">
-                                        {section.whs_topics.slice(0, 4).map(topic => (
-                                          <TopicTag key={topic.id} topicId={topic.id} small />
-                                        ))}
+                                    {/* Expandable Content */}
+                                    {isExpanded && (
+                                      <div className="p-4 border-t border-gray-200 dark:border-whs-dark-700">
+                                        {/* WHS Topics Tags */}
+                                        {section.whs_topics && section.whs_topics.length > 0 && (
+                                          <div className="flex flex-wrap gap-1 mb-3">
+                                            {section.whs_topics.slice(0, 4).map(topic => (
+                                              <TopicTag key={topic.id} topicId={topic.id} small />
+                                            ))}
+                                          </div>
+                                        )}
+
+                                        {/* Section Content */}
+                                        <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
+                                          <FormattedText text={section.content} />
+                                        </div>
                                       </div>
                                     )}
-
-                                    {/* Section Content */}
-                                    <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                      <FormattedText text={section.content} />
-                                    </div>
                                   </div>
                                 </div>
                               )
