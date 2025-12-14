@@ -11,7 +11,8 @@
     "lint": "eslint src --ext js,jsx",
     "clean:at": "node scripts/clean-at-database.js",
     "clean:de": "node scripts/clean-de-database.js",
-    "clean:all": "npm run clean:at && npm run clean:de"
+    "clean:nl": "node scripts/clean-nl-database.js",
+    "clean:all": "npm run clean:at && npm run clean:de && npm run clean:nl"
   },
   "dependencies": {
     "react": "^18.2.0",
