@@ -224,20 +224,130 @@ function preprocessAustrianText(text) {
   return result
 }
 
-// Parse law text into sections based on "§ X\nText\n" or "Art. X\nText\n" markers
-function parseLawSections(text) {
+// Pre-process Dutch (NL) law text to remove boilerplate
+function preprocessDutchText(text) {
+  if (!text) return ''
+
+  let result = text
+
+  // Remove Dutch legal database boilerplate lines
+  const boilerplatePatterns = [
+    /^\s*Toon relaties in LiDO\s*$/gim,
+    /^\s*Maak een permanente link\s*$/gim,
+    /^\s*Toon wetstechnische informatie\s*$/gim,
+    /^\s*\.\.\.\s*$/gim,
+    /^\s*Druk het regelingonderdeel af\s*$/gim,
+    /^\s*Sla het regelingonderdeel op\s*$/gim,
+    /^\s*\[Wijziging\(en\)[^\]]*\]\s*$/gim,
+    /^\s*wijzigingenoverzicht\s*$/gim,
+  ]
+
+  for (const pattern of boilerplatePatterns) {
+    result = result.replace(pattern, '')
+  }
+
+  // Clean multiple blank lines
+  result = result.replace(/\n{3,}/g, '\n\n')
+
+  return result
+}
+
+// Detect country from text patterns
+function detectCountry(text) {
+  if (!text) return 'unknown'
+
+  // Austrian patterns
+  if (text.includes('Bundesgesetzblatt') || text.includes('BGBl.') || /§\s*\d+\s*\n\s*Text\s*\n/i.test(text)) {
+    return 'AT'
+  }
+
+  // Dutch patterns
+  if (text.includes('Toon relaties in LiDO') || text.includes('regelingonderdeel') || /Artikel\s+\d+[a-z]?\.\s+/i.test(text)) {
+    return 'NL'
+  }
+
+  // German patterns
+  if (text.includes('dejure.org') || text.includes('Bundesministerium')) {
+    return 'DE'
+  }
+
+  return 'unknown'
+}
+
+// Parse law text into sections based on country-specific patterns
+function parseLawSections(text, framework) {
+  if (!text) return []
+
+  const country = framework || detectCountry(text)
+
+  if (country === 'NL') {
+    return parseDutchLawSections(text)
+  }
+
+  // Default: Austrian/German parsing
+  return parseAustrianLawSections(text)
+}
+
+// Parse Dutch law sections
+function parseDutchLawSections(text) {
+  if (!text) return []
+
+  const cleanedText = preprocessDutchText(text)
+  const sections = []
+
+  // Match "Artikel X. Title" or "Artikel Xa. Title" patterns
+  const sectionRegex = /Artikel\s+(\d+[a-z]?)\.\s+([^\n]+)/gi
+  let match
+  const sectionMatches = []
+
+  while ((match = sectionRegex.exec(cleanedText)) !== null) {
+    sectionMatches.push({
+      number: match[1],
+      title: match[2].trim(),
+      index: match.index,
+      headerEnd: match.index + match[0].length
+    })
+  }
+
+  // Process each section
+  for (let i = 0; i < sectionMatches.length; i++) {
+    const section = sectionMatches[i]
+    const contentStart = section.headerEnd
+    const contentEnd = i < sectionMatches.length - 1
+      ? sectionMatches[i + 1].index
+      : cleanedText.length
+
+    let content = cleanedText.substring(contentStart, contentEnd).trim()
+
+    // Remove remaining boilerplate at start of content
+    content = content.replace(/^[\s\n]*(?:Toon relaties|Maak een|Druk het|Sla het)[^\n]*\n*/gi, '')
+
+    sections.push({
+      id: `section-${section.number}`,
+      number: `Art. ${section.number}`,
+      title: section.title.substring(0, 100),
+      content: content,
+      rawNumber: section.number,
+      isChapter: false
+    })
+  }
+
+  return sections
+}
+
+// Parse Austrian/German law sections
+function parseAustrianLawSections(text) {
   if (!text) return []
 
   // First pre-process to remove expanded notation
   const cleanedText = preprocessAustrianText(text)
 
   const sections = []
-  const chapters = new Map() // Track Abschnitt titles
+  const chapters = new Map()
 
-  // Find the start of actual content (after TOC, starts with "§ 0\n" or "§ 1\n" or "Art. 1\n")
+  // Find the start of actual content
   const contentStart = cleanedText.search(/(?:§\s*[01]|Art\.?\s*[01])\s*\n\s*(?:Langtitel|Text)/i)
   if (contentStart === -1) {
-    // Fallback: try to find any section with Text marker
     const fallbackStart = cleanedText.search(/(?:§|Art\.?)\s*\d+[a-z]?\s*\n\s*Text\s*\n/i)
     if (fallbackStart === -1) return []
   }
@@ -271,23 +381,21 @@ function parseLawSections(text) {
     let title = ''
     let chapterInfo = null
 
-    // Check if section starts with a chapter header (X. Abschnitt or X. Hauptstück)
+    // Check if section starts with a chapter header
     const chapterMatch = sectionContent.match(/^(\d+)\.\s*(Abschnitt|Hauptstück|Teil)[:\s]*\n([^\n]+)\n/i)
     if (chapterMatch) {
       chapterInfo = {
         number: chapterMatch[1],
-        type: chapterMatch[2],
         title: chapterMatch[3].trim()
       }
       chapters.set(chapterMatch[1], chapterInfo.title)
       sectionContent = sectionContent.substring(chapterMatch[0].length).trim()
     }
 
-    // Extract section title (first line that's not a repeated § marker)
+    // Extract section title
     const lines = sectionContent.split('\n')
     let titleLineIndex = 0
 
-    // Find title - skip lines that are just "§ X." or "Art. X" markers
     for (let j = 0; j < Math.min(5, lines.length); j++) {
       const line = lines[j].trim()
       if (line && !line.match(/^(?:§|Art\.?)\s*\d+[a-z]?\.?\s*$/) && !line.match(/^\(\d+\)$/)) {
@@ -297,17 +405,14 @@ function parseLawSections(text) {
       }
     }
 
-    // Get content after title, skip repeated § marker
     let actualContent = lines.slice(titleLineIndex + 1).join('\n').trim()
-
-    // Remove leading "§ X." or "Art. X" if present
     actualContent = actualContent.replace(/^(?:§|Art\.?)\s*\d+[a-z]?\.?\s*\n?/i, '').trim()
 
-    // Add chapter as a section entry if this is the first section in a new chapter
+    // Add chapter entry (without "Abschnitt" word - just number and title)
     if (chapterInfo) {
       sections.push({
         id: `chapter-${chapterInfo.number}`,
-        number: `${chapterInfo.number}. ${chapterInfo.type}`,
+        number: chapterInfo.number,
         title: chapterInfo.title,
         content: '',
         rawNumber: `0.${chapterInfo.number}`,
@@ -316,7 +421,6 @@ function parseLawSections(text) {
       })
     }
 
-    // Add the section
     sections.push({
       id: `section-${section.number}`,
       number: `${section.prefix} ${section.number}`,
@@ -324,6 +428,7 @@ function parseLawSections(text) {
       content: actualContent,
       rawNumber: section.number,
       isChapter: false,
+      chapterNumber: chapterInfo?.number,
       sectionIndex: i
     })
   }
@@ -506,9 +611,23 @@ export function LawBrowser({ onBack }) {
   const [searchInLaw, setSearchInLaw] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [prevFramework, setPrevFramework] = useState(framework)
+  const [collapsedChapters, setCollapsedChapters] = useState(new Set())
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
+
+  // Toggle chapter collapse
+  const toggleChapter = useCallback((chapterNumber) => {
+    setCollapsedChapters(prev => {
+      const next = new Set(prev)
+      if (next.has(chapterNumber)) {
+        next.delete(chapterNumber)
+      } else {
+        next.add(chapterNumber)
+      }
+      return next
+    })
+  }, [])
 
   // Handle framework switching with loading state
   useEffect(() => {
@@ -581,9 +700,32 @@ export function LawBrowser({ onBack }) {
   // Parse sections for selected law
   const lawSections = useMemo(() => {
     if (!selectedLaw) return []
-    const text = selectedLaw.content?.full_text || selectedLaw.content?.text || ''
-    return parseLawSections(getCleanLawText(text))
-  }, [selectedLaw])
+    const text = selectedLaw.full_text || selectedLaw.content?.full_text || selectedLaw.content?.text || ''
+    return parseLawSections(text, framework)
+  }, [selectedLaw, framework])
+
+  // Group sections by chapter for collapsible display
+  const groupedSections = useMemo(() => {
+    const groups = []
+    let currentChapter = null
+
+    for (const section of lawSections) {
+      if (section.isChapter) {
+        currentChapter = {
+          chapter: section,
+          sections: []
+        }
+        groups.push(currentChapter)
+      } else if (currentChapter) {
+        currentChapter.sections.push(section)
+      } else {
+        // Section without chapter
+        groups.push({ chapter: null, sections: [section] })
+      }
+    }
+
+    return groups
+  }, [lawSections])
 
   // Filter sections by search
   const filteredSections = useMemo(() => {
@@ -790,7 +932,7 @@ export function LawBrowser({ onBack }) {
 
         {/* Middle: Section Navigation (when law selected) */}
         {selectedLaw && lawSections.length > 0 && (
-          <div className="w-56 flex-shrink-0">
+          <div className="w-64 flex-shrink-0">
             <Card className="h-full overflow-hidden">
               <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
                 <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Sections ({lawSections.length})</h3>
@@ -803,27 +945,48 @@ export function LawBrowser({ onBack }) {
                 />
               </div>
               <div className="overflow-y-auto h-[calc(100%-84px)]">
-                {filteredSections.map((section) => (
-                  <button
-                    key={section.id}
-                    onClick={() => scrollToSection(section.id)}
-                    className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
-                      section.isChapter
-                        ? 'bg-blue-50 dark:bg-blue-900/20 font-semibold'
-                        : ''
-                    } ${
-                      activeSection === section.id
-                        ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
-                    }`}
-                  >
-                    <span className={`font-semibold ${section.isChapter ? 'text-blue-600 dark:text-blue-400' : 'text-whs-orange-500'}`}>
-                      {section.number}
-                    </span>
-                    {section.title && (
-                      <span className="ml-1 line-clamp-1">{section.title}</span>
+                {groupedSections.map((group, groupIdx) => (
+                  <div key={groupIdx}>
+                    {/* Chapter header with collapse toggle */}
+                    {group.chapter && (
+                      <button
+                        onClick={() => toggleChapter(group.chapter.number)}
+                        className="w-full text-left px-3 py-2.5 text-sm font-semibold bg-blue-50 dark:bg-blue-900/20 border-b border-blue-100 dark:border-blue-800 flex items-center justify-between hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="text-blue-600 dark:text-blue-400 flex-shrink-0">{group.chapter.number}.</span>
+                          <span className="text-gray-800 dark:text-gray-200 truncate">{group.chapter.title}</span>
+                        </div>
+                        <svg
+                          className={`w-4 h-4 text-blue-500 flex-shrink-0 transition-transform ${collapsedChapters.has(group.chapter.number) ? '' : 'rotate-180'}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
                     )}
-                  </button>
+                    {/* Sections in this chapter (collapsible) */}
+                    {(!group.chapter || !collapsedChapters.has(group.chapter.number)) && group.sections.map((section) => (
+                      <button
+                        key={section.id}
+                        onClick={() => scrollToSection(section.id)}
+                        className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
+                          group.chapter ? 'pl-5' : ''
+                        } ${
+                          activeSection === section.id
+                            ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
+                        }`}
+                      >
+                        <span className="font-semibold text-whs-orange-500">{section.number}</span>
+                        {section.title && (
+                          <span className="ml-1 line-clamp-1">{section.title}</span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 ))}
               </div>
             </Card>
@@ -924,10 +1087,10 @@ export function LawBrowser({ onBack }) {
                               className="scroll-mt-4"
                             >
                               {section.isChapter ? (
-                                /* Chapter header (Abschnitt) - styled as a divider */
+                                /* Chapter header - styled as a divider */
                                 <div className="mt-8 mb-4 py-3 px-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
                                   <h2 className="text-xl font-bold text-blue-700 dark:text-blue-300">
-                                    {section.number}: {section.title}
+                                    {section.number}. {section.title}
                                   </h2>
                                 </div>
                               ) : (
