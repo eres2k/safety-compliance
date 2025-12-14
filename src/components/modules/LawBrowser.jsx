@@ -159,22 +159,23 @@ function getSimilarity(str1, str2) {
   return matches / maxLen
 }
 
-// Parse law text into sections with Abschnitt groupings
-function parseLawSections(text) {
+// Parse law text into sections with Abschnitt groupings (AT) or Artikel format (NL)
+function parseLawSections(text, framework = 'AT') {
   if (!text) return []
 
   // First clean duplicate expanded notation
   const cleanedText = cleanDuplicateText(text)
 
-  // Find where actual content starts (after table of contents)
-  // Look for "§ 1" followed by section content (not in TOC format)
-  const contentStartMarkers = [
-    /§\s*1\s*\n+\d+\.\s*Abschnitt/i,  // Austrian format: § 1 followed by Abschnitt
-    /§\s*1\s*[^\n]*\n+\(1\)/i,        // § 1 followed by (1)
-  ]
+  // Detect if this is Dutch/NL law (uses Artikel format)
+  const isArtikelFormat = /Artikel\s+\d+\./i.test(cleanedText)
 
+  // Find where actual content starts (skip table of contents)
   let contentStart = 0
-  for (const marker of contentStartMarkers) {
+  const contentMarkers = isArtikelFormat
+    ? [/Artikel\s+1\.\s+[A-Z]/i]
+    : [/§\s*1\.?\s*\n/i, /1\.\s*Abschnitt/i]
+
+  for (const marker of contentMarkers) {
     const match = cleanedText.match(marker)
     if (match && match.index !== undefined && match.index < cleanedText.length * 0.5) {
       contentStart = match.index
@@ -182,98 +183,138 @@ function parseLawSections(text) {
     }
   }
 
-  // If no marker found, try to find where TOC ends
-  if (contentStart === 0) {
-    // Look for the pattern where § X is followed by actual content (numbered paragraphs)
-    const tocEndPattern = /§\s*(\d+[a-z]?)\s*\n+(?:\d+\.\s*Abschnitt[^\n]*\n+)?(?:[A-ZÄÖÜ][a-zäöüß]+[^\n]*\n+)?\s*\(1\)/
-    const tocMatch = cleanedText.match(tocEndPattern)
-    if (tocMatch && tocMatch.index !== undefined) {
-      contentStart = tocMatch.index
-    }
-  }
-
   const mainContent = cleanedText.substring(contentStart)
+  const sectionsMap = new Map()
 
-  // Parse Abschnitt headers
-  const abschnittMap = new Map()
-  const abschnittRegex = /(\d+)\.\s*Abschnitt[:\s]*([^\n]*)/gi
-  let abschnittMatch
-  while ((abschnittMatch = abschnittRegex.exec(mainContent)) !== null) {
-    const num = abschnittMatch[1]
-    const title = abschnittMatch[2].trim()
-    if (!abschnittMap.has(num)) {
-      abschnittMap.set(num, { number: num, title, index: abschnittMatch.index })
-    }
-  }
+  if (isArtikelFormat) {
+    // Parse Dutch "Artikel X. Title" format
+    const artikelRegex = /Artikel\s+(\d+[a-z]?)\.\s*([^\n]+)/gi
+    let match
+    const matches = []
 
-  const sectionsMap = new Map() // Use map to deduplicate by section number
-  // Match § sections - capture the section header
-  // Pattern: § number followed by optional title on same/next line, then content starting with (1)
-  const sectionRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s*\.?\s*(?:\n+(?:\d+\.\s*Abschnitt[^\n]*\n+)?([A-ZÄÖÜ][^\n(]*))?\s*(?=\n*\(1\)|\n*[A-ZÄÖÜ])/gi
-
-  let match
-  const matches = []
-  while ((match = sectionRegex.exec(mainContent)) !== null) {
-    const number = match[1]
-    let title = (match[2] || '').trim()
-
-    // Clean up title
-    title = title.replace(/^\d+\.\s*Abschnitt[:\s]*/i, '').trim()
-
-    matches.push({
-      id: `section-${number}`,
-      number: `§ ${number}`,
-      title: title.substring(0, 100),
-      index: match.index,
-      headerEnd: match.index + match[0].length,
-      rawNumber: number
-    })
-  }
-
-  // If no matches from detailed regex, use simpler approach
-  if (matches.length === 0) {
-    const simpleRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)/gi
-    while ((match = simpleRegex.exec(mainContent)) !== null) {
+    while ((match = artikelRegex.exec(mainContent)) !== null) {
       const number = match[1]
-      const title = (match[2] || '').trim()
+      const title = match[2].trim()
+      matches.push({
+        id: `artikel-${number}`,
+        number: `Artikel ${number}`,
+        title: title,
+        index: match.index,
+        headerEnd: match.index + match[0].length,
+        rawNumber: number
+      })
+    }
+
+    // Add content to each section
+    for (let i = 0; i < matches.length; i++) {
+      const section = matches[i]
+      const contentEnd = i < matches.length - 1 ? matches[i + 1].index : mainContent.length
+      let content = mainContent.substring(section.headerEnd, contentEnd).trim()
+
+      // Keep the section with more content when deduplicating
+      const existingSection = sectionsMap.get(section.rawNumber)
+      if (existingSection) {
+        if (content.length > existingSection.content.length) {
+          sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: null })
+        }
+      } else if (content.length > 5) {
+        sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: null })
+      }
+    }
+  } else {
+    // Parse Austrian "§ X" format with Abschnitt groupings
+
+    // First, find all Abschnitt headers with their positions
+    const abschnittList = []
+    const abschnittRegex = /(\d+)\.\s*Abschnitt[:\s]*([^\n]*)/gi
+    let abschnittMatch
+    while ((abschnittMatch = abschnittRegex.exec(mainContent)) !== null) {
+      const num = abschnittMatch[1]
+      const title = abschnittMatch[2].trim()
+      // Only add if not already present (avoid duplicates)
+      if (!abschnittList.find(a => a.number === num)) {
+        abschnittList.push({
+          number: num,
+          title,
+          index: abschnittMatch.index,
+          // We'll calculate which section numbers belong to this Abschnitt later
+          firstSection: null
+        })
+      }
+    }
+
+    // Sort Abschnitt by their number
+    abschnittList.sort((a, b) => parseInt(a.number) - parseInt(b.number))
+
+    // Parse all § sections
+    const sectionRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)/gi
+    let match
+    const matches = []
+
+    while ((match = sectionRegex.exec(mainContent)) !== null) {
+      const number = match[1]
+      let title = (match[2] || '').trim()
+
+      // Clean up title - remove Abschnitt references
+      title = title.replace(/^\d+\.\s*Abschnitt[:\s]*/i, '').trim()
+      // Remove content markers from title
+      title = title.replace(/^\(1\).*$/i, '').trim()
+
       matches.push({
         id: `section-${number}`,
         number: `§ ${number}`,
         title: title.substring(0, 100),
         index: match.index,
         headerEnd: match.index + match[0].length,
-        rawNumber: number
+        rawNumber: number,
+        rawNumeric: parseInt(number.replace(/[a-z]/gi, ''))
       })
     }
-  }
 
-  // Add content to each section
-  for (let i = 0; i < matches.length; i++) {
-    const section = matches[i]
-    const contentStartIdx = section.headerEnd
-    const contentEnd = i < matches.length - 1 ? matches[i + 1].index : mainContent.length
-    let content = mainContent.substring(contentStartIdx, contentEnd).trim()
+    // For each section, determine which Abschnitt it belongs to
+    // The logic: find the Abschnitt that appears closest BEFORE this section in the text
+    // OR the Abschnitt whose text position is just after the previous section
 
-    // Clean content - remove Abschnitt headers from start
-    content = content.replace(/^\d+\.\s*Abschnitt[^\n]*\n*/i, '').trim()
+    for (let i = 0; i < matches.length; i++) {
+      const section = matches[i]
+      const contentEnd = i < matches.length - 1 ? matches[i + 1].index : mainContent.length
+      let content = mainContent.substring(section.headerEnd, contentEnd).trim()
 
-    // Determine which Abschnitt this section belongs to
-    let abschnitt = null
-    const sectionNum = parseInt(section.rawNumber.replace(/[a-z]/gi, ''))
-    for (const [abNum, abData] of abschnittMap.entries()) {
-      if (abData.index < section.index) {
-        abschnitt = abData
+      // Clean content - remove Abschnitt headers from content
+      content = content.replace(/^\s*\d+\.\s*Abschnitt[^\n]*\n*/gi, '').trim()
+
+      // Find which Abschnitt this section belongs to
+      // Look for Abschnitt that appears BETWEEN the previous section and this section
+      // OR the closest Abschnitt that appears before this section
+      let assignedAbschnitt = null
+
+      const prevSectionEnd = i > 0 ? matches[i - 1].headerEnd : 0
+
+      for (const ab of abschnittList) {
+        // Check if this Abschnitt appears between previous section and current section
+        if (ab.index >= prevSectionEnd && ab.index <= section.index) {
+          assignedAbschnitt = ab
+        }
+        // Or if no Abschnitt found yet and this one appears before current section
+        else if (!assignedAbschnitt && ab.index < section.index) {
+          assignedAbschnitt = ab
+        }
       }
-    }
 
-    // Keep the section with more content when deduplicating
-    const existingSection = sectionsMap.get(section.rawNumber)
-    if (existingSection) {
-      if (content.length > existingSection.content.length) {
-        sectionsMap.set(section.rawNumber, { ...section, content, abschnitt })
+      // Track first section for each Abschnitt
+      if (assignedAbschnitt && assignedAbschnitt.firstSection === null) {
+        assignedAbschnitt.firstSection = section.rawNumber
       }
-    } else if (content.length > 10) { // Only add if there's substantial content
-      sectionsMap.set(section.rawNumber, { ...section, content, abschnitt })
+
+      // Keep the section with more content when deduplicating
+      const existingSection = sectionsMap.get(section.rawNumber)
+      if (existingSection) {
+        if (content.length > existingSection.content.length) {
+          sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: assignedAbschnitt })
+        }
+      } else if (content.length > 10) {
+        sectionsMap.set(section.rawNumber, { ...section, content, abschnitt: assignedAbschnitt })
+      }
     }
   }
 
@@ -534,8 +575,8 @@ export function LawBrowser({ onBack }) {
   const lawSections = useMemo(() => {
     if (!selectedLaw) return []
     const text = selectedLaw.content?.full_text || selectedLaw.content?.text || ''
-    return parseLawSections(getCleanLawText(text))
-  }, [selectedLaw])
+    return parseLawSections(getCleanLawText(text), framework)
+  }, [selectedLaw, framework])
 
   // Filter sections by search
   const filteredSections = useMemo(() => {
