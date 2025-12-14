@@ -8,7 +8,9 @@ import {
   getLawById,
   getRelatedLaws,
   getLawCategories,
-  formatLawReference
+  formatLawReference,
+  WHS_TOPIC_LABELS,
+  RELEVANCE_LEVELS
 } from '../../services/euLawsDatabase'
 
 // Remove duplicate expanded notation text from Austrian legal documents
@@ -598,6 +600,85 @@ const typeColors = {
   dguv_information: 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
 }
 
+// WHS Relevance Badge component
+function RelevanceBadge({ level }) {
+  const config = RELEVANCE_LEVELS[level] || RELEVANCE_LEVELS.low
+  return (
+    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${config.bgColor} ${config.textColor}`}>
+      {config.label}
+    </span>
+  )
+}
+
+// WHS Topic Tag component
+function TopicTag({ topicId, small = false }) {
+  const topic = WHS_TOPIC_LABELS[topicId]
+  if (!topic) return null
+
+  return (
+    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 ${small ? 'text-xs' : 'text-sm'}`}>
+      <span>{topic.icon}</span>
+      <span>{topic.label}</span>
+    </span>
+  )
+}
+
+// WHS Summary Panel component
+function WHSSummaryPanel({ summary }) {
+  if (!summary) return null
+
+  const { total_sections, logistics_relevance_distribution, top_whs_topics, critical_sections_count } = summary
+
+  return (
+    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-4 mb-6">
+      <h4 className="font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+        <span>📊</span>
+        <span>WHS Analysis Summary</span>
+      </h4>
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
+          <div className="text-2xl font-bold text-gray-900 dark:text-white">{total_sections}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Total Sections</div>
+        </div>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
+          <div className="text-2xl font-bold text-red-600 dark:text-red-400">{critical_sections_count}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">High Priority</div>
+        </div>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
+          <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+            {logistics_relevance_distribution?.critical || 0}
+          </div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Critical for Logistics</div>
+        </div>
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
+          <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
+            {logistics_relevance_distribution?.high || 0}
+          </div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">High Relevance</div>
+        </div>
+      </div>
+
+      {/* Top Topics */}
+      {top_whs_topics && top_whs_topics.length > 0 && (
+        <div>
+          <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">Top WHS Topics:</div>
+          <div className="flex flex-wrap gap-2">
+            {top_whs_topics.slice(0, 6).map(([topicId, count]) => (
+              <span key={topicId} className="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-gray-800 rounded-lg text-sm">
+                <span>{WHS_TOPIC_LABELS[topicId]?.icon || '📌'}</span>
+                <span className="text-gray-700 dark:text-gray-300">{WHS_TOPIC_LABELS[topicId]?.label || topicId}</span>
+                <span className="text-xs text-gray-500">({count})</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function LawBrowser({ onBack }) {
   const { t, framework, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
   const { explainSection, isLoading: aiLoading } = useAI()
@@ -608,6 +689,7 @@ export function LawBrowser({ onBack }) {
   const [explanation, setExplanation] = useState('')
   const [activeSection, setActiveSection] = useState(null)
   const [searchInLaw, setSearchInLaw] = useState('')
+  const [relevanceFilter, setRelevanceFilter] = useState('all') // all, critical, high, medium, low
   const [isLoading, setIsLoading] = useState(false)
   const [prevFramework, setPrevFramework] = useState(framework)
 
@@ -682,23 +764,71 @@ export function LawBrowser({ onBack }) {
     }
   }, [allLaws, searchTerm, selectedCategory, framework, currentPage, pageSize])
 
-  // Parse sections for selected law
+  // Parse sections for selected law - use pre-parsed chapters if available
   const lawSections = useMemo(() => {
     if (!selectedLaw) return []
+
+    // Check if we have pre-parsed chapters from the scraper
+    if (selectedLaw.chapters && selectedLaw.chapters.length > 0) {
+      const sections = []
+      for (const chapter of selectedLaw.chapters) {
+        if (chapter.sections) {
+          for (const section of chapter.sections) {
+            sections.push({
+              id: section.id,
+              number: section.number?.startsWith('§') || section.number?.startsWith('Artikel')
+                ? section.number
+                : (framework === 'NL' ? `Artikel ${section.number}` : `§ ${section.number}`),
+              title: section.title?.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+\.?)\s*/i, '').trim() || '',
+              content: section.text || '',
+              rawNumber: section.number,
+              abschnitt: {
+                number: chapter.number,
+                title: chapter.title_en || chapter.title,
+                displayName: chapter.title
+              },
+              // WHS metadata from scraper
+              whs_topics: section.whs_topics || [],
+              amazon_logistics_relevance: section.amazon_logistics_relevance || null
+            })
+          }
+        }
+      }
+      return sections
+    }
+
+    // Fallback to parsing from text
     const text = selectedLaw.content?.full_text || selectedLaw.content?.text || ''
     return parseLawSections(getCleanLawText(text), framework)
   }, [selectedLaw, framework])
 
-  // Filter sections by search
+  // Filter sections by search and relevance
   const filteredSections = useMemo(() => {
-    if (!searchInLaw.trim()) return lawSections
-    const term = searchInLaw.toLowerCase()
-    return lawSections.filter(s =>
-      s.number.toLowerCase().includes(term) ||
-      s.title.toLowerCase().includes(term) ||
-      s.content.toLowerCase().includes(term)
-    )
-  }, [lawSections, searchInLaw])
+    let filtered = lawSections
+
+    // Filter by relevance level
+    if (relevanceFilter !== 'all') {
+      filtered = filtered.filter(s => {
+        const level = s.amazon_logistics_relevance?.level
+        if (relevanceFilter === 'critical') return level === 'critical'
+        if (relevanceFilter === 'high') return level === 'critical' || level === 'high'
+        if (relevanceFilter === 'medium') return level === 'critical' || level === 'high' || level === 'medium'
+        return true
+      })
+    }
+
+    // Filter by search term
+    if (searchInLaw.trim()) {
+      const term = searchInLaw.toLowerCase()
+      filtered = filtered.filter(s =>
+        s.number.toLowerCase().includes(term) ||
+        s.title.toLowerCase().includes(term) ||
+        s.content.toLowerCase().includes(term)
+      )
+    }
+
+    return filtered
+  }, [lawSections, searchInLaw, relevanceFilter])
 
   // Get related laws
   const relatedLaws = useMemo(() => {
@@ -894,10 +1024,12 @@ export function LawBrowser({ onBack }) {
 
         {/* Middle: Section Navigation (when law selected) */}
         {selectedLaw && lawSections.length > 0 && (
-          <div className="w-56 flex-shrink-0">
+          <div className="w-64 flex-shrink-0">
             <Card className="h-full overflow-hidden">
               <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
-                <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Sections ({lawSections.length})</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                  Sections ({filteredSections.length}/{lawSections.length})
+                </h3>
                 <input
                   type="text"
                   value={searchInLaw}
@@ -905,8 +1037,26 @@ export function LawBrowser({ onBack }) {
                   placeholder="Search sections..."
                   className="mt-2 w-full px-2 py-1 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-whs-orange-500"
                 />
+                {/* Relevance Filter */}
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {['all', 'critical', 'high', 'medium'].map(level => (
+                    <button
+                      key={level}
+                      onClick={() => setRelevanceFilter(level)}
+                      className={`px-2 py-0.5 text-xs rounded-full transition-colors ${
+                        relevanceFilter === level
+                          ? 'bg-whs-orange-500 text-white'
+                          : level === 'all'
+                            ? 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300'
+                            : `${RELEVANCE_LEVELS[level]?.bgColor || ''} ${RELEVANCE_LEVELS[level]?.textColor || ''} hover:opacity-80`
+                      }`}
+                    >
+                      {level === 'all' ? 'All' : RELEVANCE_LEVELS[level]?.label}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="overflow-y-auto h-[calc(100%-84px)]">
+              <div className="overflow-y-auto h-[calc(100%-120px)]">
                 {(() => {
                   let currentAbschnitt = null
                   return filteredSections.map((section) => {
@@ -914,24 +1064,36 @@ export function LawBrowser({ onBack }) {
                       ? (currentAbschnitt = section.abschnitt, section.abschnitt)
                       : null
 
+                    const relevanceLevel = section.amazon_logistics_relevance?.level
+                    const relevanceColor = relevanceLevel === 'critical' ? 'border-l-red-500' :
+                      relevanceLevel === 'high' ? 'border-l-orange-500' :
+                      relevanceLevel === 'medium' ? 'border-l-yellow-500' : 'border-l-transparent'
+
                     return (
                       <div key={section.id}>
                         {abschnittHeader && (
                           <div className="px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-whs-dark-600 sticky top-0">
-                            {abschnittHeader.displayName || `${abschnittHeader.number}. Abschnitt`}: {abschnittHeader.title}
+                            {abschnittHeader.displayName || `${abschnittHeader.number}. Abschnitt`}
                           </div>
                         )}
                         <button
                           onClick={() => scrollToSection(section.id)}
-                          className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
+                          className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 border-l-4 ${relevanceColor} ${
                             activeSection === section.id
                               ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
                               : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
                           }`}
                         >
-                          <span className="font-semibold text-whs-orange-500">{section.number}</span>
+                          <div className="flex items-center justify-between">
+                            <span className="font-semibold text-whs-orange-500">{section.number}</span>
+                            {section.whs_topics && section.whs_topics.length > 0 && (
+                              <span className="text-xs opacity-60">
+                                {WHS_TOPIC_LABELS[section.whs_topics[0]?.id]?.icon || ''}
+                              </span>
+                            )}
+                          </div>
                           {section.title && (
-                            <span className="ml-1 line-clamp-1">{section.title}</span>
+                            <div className="text-xs line-clamp-1 mt-0.5 opacity-75">{section.title}</div>
                           )}
                         </button>
                       </div>
@@ -1000,11 +1162,16 @@ export function LawBrowser({ onBack }) {
                 <div ref={contentRef} className="flex-1 overflow-y-auto">
                   {hasContent ? (
                     <div className="p-6">
+                      {/* WHS Summary Panel */}
+                      {selectedLaw.whs_summary && (
+                        <WHSSummaryPanel summary={selectedLaw.whs_summary} />
+                      )}
+
                       {/* Source info */}
                       {selectedLaw.source && (
                         <div className="mb-6 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm">
                           <span className="font-medium text-blue-700 dark:text-blue-300">Source:</span>
-                          <span className="ml-2 text-blue-600 dark:text-blue-400">{selectedLaw.source.name}</span>
+                          <span className="ml-2 text-blue-600 dark:text-blue-400">{selectedLaw.source.authority || selectedLaw.source.name}</span>
                         </div>
                       )}
 
@@ -1054,16 +1221,34 @@ export function LawBrowser({ onBack }) {
                                     ref={(el) => (sectionRefs.current[section.id] = el)}
                                     className="scroll-mt-4"
                                   >
-                                    <div className="flex items-baseline gap-3 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
-                                      <span className="text-2xl font-bold text-whs-orange-500">
-                                        {section.number}
-                                      </span>
-                                      {section.title && (
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                          {section.title}
-                                        </h3>
+                                    {/* Section Header with WHS Relevance */}
+                                    <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
+                                      <div className="flex items-baseline gap-3 flex-1">
+                                        <span className="text-2xl font-bold text-whs-orange-500">
+                                          {section.number}
+                                        </span>
+                                        {section.title && (
+                                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                            {section.title}
+                                          </h3>
+                                        )}
+                                      </div>
+                                      {/* WHS Relevance Badge */}
+                                      {section.amazon_logistics_relevance && (
+                                        <RelevanceBadge level={section.amazon_logistics_relevance.level} />
                                       )}
                                     </div>
+
+                                    {/* WHS Topics Tags */}
+                                    {section.whs_topics && section.whs_topics.length > 0 && (
+                                      <div className="flex flex-wrap gap-1 mb-3">
+                                        {section.whs_topics.slice(0, 4).map(topic => (
+                                          <TopicTag key={topic.id} topicId={topic.id} small />
+                                        ))}
+                                      </div>
+                                    )}
+
+                                    {/* Section Content */}
                                     <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
                                       <FormattedText text={section.content} />
                                     </div>

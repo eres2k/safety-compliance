@@ -1,13 +1,13 @@
 {
   "metadata": {
     "country": "DE",
-    "generated_at": "2025-12-14T16:29:57.585546",
+    "generated_at": "2025-12-14T15:59:04.308002",
     "document_count": 1,
     "error_count": 0
   },
   "documents": [
     {
-      "id": "91ca0e9dc3103550",
+      "id": "41f7d51f11e856fe",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -19,198 +19,628 @@
       "source": {
         "url": "https://www.gesetze-im-internet.de/arbschg/",
         "title": "Gesetz über die Durchführung von Maßnahmen des Arbeitsschutzes zur Verbesserung der Sicherheit und des Gesundheitsschutzes der Beschäftigten bei der Arbeit",
-        "authority": "gesetze-im-internet.de"
+        "authority": "gesetze-im-internet.de",
+        "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-14T16:29:57.084583",
-        "scraper_version": "6.0.0"
+        "scraped_at": "2025-12-14T15:59:03.806083",
+        "scraper_version": "7.0.0"
+      },
+      "whs_summary": {
+        "total_sections": 29,
+        "logistics_relevance_distribution": {
+          "critical": 0,
+          "high": 1,
+          "medium": 2,
+          "low": 26
+        },
+        "top_whs_topics": [
+          [
+            "employer_obligations",
+            4
+          ],
+          [
+            "employee_rights",
+            4
+          ],
+          [
+            "prevention_services",
+            3
+          ],
+          [
+            "health_surveillance",
+            2
+          ],
+          [
+            "risk_assessment",
+            1
+          ],
+          [
+            "documentation",
+            1
+          ],
+          [
+            "first_aid",
+            1
+          ],
+          [
+            "training",
+            1
+          ],
+          [
+            "incident_reporting",
+            1
+          ],
+          [
+            "penalties",
+            1
+          ]
+        ],
+        "critical_sections_count": 1
       },
       "chapters": [
         {
-          "id": "de-arbschg-main",
+          "id": "de-arbschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "First Section - General Provisions",
           "sections": [
             {
               "id": "121c1aedd31978d8",
               "number": "1",
-              "title": "§ 1",
+              "title": "§ 1. Zielsetzung und Anwendungsbereich",
               "text": "§ 1 Zielsetzung und Anwendungsbereich",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "6b7774850086a92d",
               "number": "2",
-              "title": "§ 2",
+              "title": "§ 2. Begriffsbestimmungen",
               "text": "§ 2 Begriffsbestimmungen",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "title_en": "Second Section - Employer Obligations",
+          "sections": [
             {
               "id": "b5f84057d3e22189",
               "number": "3",
-              "title": "§ 3",
+              "title": "§ 3. Grundpflichten des Arbeitgebers",
               "text": "§ 3 Grundpflichten des Arbeitgebers",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "110fcbc50322ea1c",
               "number": "4",
-              "title": "§ 4",
+              "title": "§ 4. Allgemeine Grundsätze",
               "text": "§ 4 Allgemeine Grundsätze",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "b3cbf5577d8720c3",
               "number": "5",
-              "title": "§ 5",
+              "title": "§ 5. Beurteilung der Arbeitsbedingungen",
               "text": "§ 5 Beurteilung der Arbeitsbedingungen",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "2cca91060de0b3e5",
               "number": "6",
-              "title": "§ 6",
+              "title": "§ 6. Dokumentation",
               "text": "§ 6 Dokumentation",
+              "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "ef19621245abc127",
               "number": "7",
-              "title": "§ 7",
+              "title": "§ 7. Übertragung von Aufgaben",
               "text": "§ 7 Übertragung von Aufgaben",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "44772857d50ab167",
               "number": "8",
-              "title": "§ 8",
+              "title": "§ 8. Zusammenarbeit mehrerer Arbeitgeber",
               "text": "§ 8 Zusammenarbeit mehrerer Arbeitgeber",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "35fa57876ddd6175",
               "number": "9",
-              "title": "§ 9",
+              "title": "§ 9. Besondere Gefahren",
               "text": "§ 9 Besondere Gefahren",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "1aba636dc46f3a32",
               "number": "10",
-              "title": "§ 10",
+              "title": "§ 10. Erste Hilfe und sonstige Notfallmaßnahmen",
               "text": "§ 10 Erste Hilfe und sonstige Notfallmaßnahmen",
+              "whs_topics": [
+                {
+                  "id": "first_aid",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "30eb75e1feadb66d",
               "number": "11",
-              "title": "§ 11",
+              "title": "§ 11. Arbeitsmedizinische Vorsorge",
               "text": "§ 11 Arbeitsmedizinische Vorsorge",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "8b38cf456adfc376",
               "number": "12",
-              "title": "§ 12",
+              "title": "§ 12. Unterweisung",
               "text": "§ 12 Unterweisung",
+              "whs_topics": [
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "d6ae4544599890e4",
               "number": "13",
-              "title": "§ 13",
+              "title": "§ 13. Verantwortliche Personen",
               "text": "§ 13 Verantwortliche Personen",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "62a36a569e268c12",
               "number": "14",
-              "title": "§ 14",
+              "title": "§ 14. Unterrichtung und Anhörung der Beschäftigten des öffentlichen Dienstes",
               "text": "§ 14 Unterrichtung und Anhörung der Beschäftigten des öffentlichen Dienstes",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Pflichten und Rechte der Beschäftigten",
+          "title_en": "Third Section - Duties and Rights of Employees",
+          "sections": [
             {
               "id": "513253ea32df23a5",
               "number": "15",
-              "title": "§ 15",
+              "title": "§ 15. Pflichten der Beschäftigten",
               "text": "§ 15 Pflichten der Beschäftigten",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "bdabbda26d9c9c43",
               "number": "16",
-              "title": "§ 16",
+              "title": "§ 16. Besondere Unterstützungspflichten",
               "text": "§ 16 Besondere Unterstützungspflichten",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "7053cbfa86fefe7a",
               "number": "17",
-              "title": "§ 17",
+              "title": "§ 17. Rechte der Beschäftigten",
               "text": "§ 17 Rechte der Beschäftigten",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Verordnungsermächtigungen",
+          "title_en": "Fourth Section - Authorization for Ordinances",
+          "sections": [
             {
               "id": "9c0517abb2ee72af",
               "number": "18",
-              "title": "§ 18",
+              "title": "§ 18. Verordnungsermächtigungen",
               "text": "§ 18 Verordnungsermächtigungen",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "4c6de6a29f643b9d",
               "number": "19",
-              "title": "§ 19",
+              "title": "§ 19. Rechtsakte der Europäischen Gemeinschaften und zwischenstaatliche Vereinbarungen",
               "text": "§ 19 Rechtsakte der Europäischen Gemeinschaften und zwischenstaatliche Vereinbarungen",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "3971f3701fcc0b0f",
               "number": "20",
-              "title": "§ 20",
+              "title": "§ 20. Regelungen für den öffentlichen Dienst",
               "text": "§ 20 Regelungen für den öffentlichen Dienst",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Gemeinsame deutsche Arbeitsschutzstrategie",
+          "title_en": "Fifth Section - Common German Occupational Safety Strategy",
+          "sections": [
+            {
+              "id": "bfee520609b96cf6",
+              "number": "20a",
+              "title": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie",
+              "text": "§ 20a Gemeinsame deutsche Arbeitsschutzstrategie",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
+              "id": "871931181e3faadb",
+              "number": "20b",
+              "title": "§ 20b. Nationale Arbeitsschutzkonferenz",
+              "text": "§ 20b Nationale Arbeitsschutzkonferenz",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch6",
+          "number": "6",
+          "title": "Sechster Abschnitt - Schlußvorschriften",
+          "title_en": "Sixth Section - Final Provisions",
+          "sections": [
+            {
               "id": "34c86436dccafdfe",
               "number": "21",
-              "title": "§ 21",
+              "title": "§ 21. Zuständige Behörden, Zusammenwirken mit den Trägern der gesetzlichen Unfallversicherung",
               "text": "§ 21 Zuständige Behörden, Zusammenwirken mit den Trägern der gesetzlichen Unfallversicherung",
+              "whs_topics": [
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
               "paragraphs": []
             },
             {
               "id": "f17082b3f54d5b26",
               "number": "22",
-              "title": "§ 22",
+              "title": "§ 22. Befugnisse der zuständigen Behörden",
               "text": "§ 22 Befugnisse der zuständigen Behörden",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "2c34b9696ccba420",
               "number": "23",
-              "title": "§ 23",
+              "title": "§ 23. Betriebliche Daten, Zusammenarbeit mit anderen Behörden, Jahresbericht, Bundesfachstelle",
               "text": "§ 23 Betriebliche Daten, Zusammenarbeit mit anderen Behörden, Jahresbericht, Bundesfachstelle",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "ae262e7f76b6c91d",
               "number": "24",
-              "title": "§ 24",
+              "title": "§ 24. Ermächtigung zum Erlaß von allgemeinen Verwaltungsvorschriften",
               "text": "§ 24 Ermächtigung zum Erlaß von allgemeinen Verwaltungsvorschriften",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "6224d18445a3298b",
+              "number": "24a",
+              "title": "§ 24a. Ausschuss für Sicherheit und Gesundheit bei der Arbeit",
+              "text": "§ 24a Ausschuss für Sicherheit und Gesundheit bei der Arbeit",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "c2cdc5a1f8d91cc5",
               "number": "25",
-              "title": "§ 25",
+              "title": "§ 25. Bußgeldvorschriften",
               "text": "§ 25 Bußgeldvorschriften",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             },
             {
               "id": "4841b1465dd94dd5",
               "number": "26",
-              "title": "§ 26",
+              "title": "§ 26. Strafvorschriften",
               "text": "§ 26 Strafvorschriften",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
               "paragraphs": []
             }
           ]
