@@ -159,53 +159,121 @@ function getSimilarity(str1, str2) {
   return matches / maxLen
 }
 
-// Parse law text into sections
+// Parse law text into sections with Abschnitt groupings
 function parseLawSections(text) {
   if (!text) return []
 
   // First clean duplicate expanded notation
   const cleanedText = cleanDuplicateText(text)
 
+  // Find where actual content starts (after table of contents)
+  // Look for "§ 1" followed by section content (not in TOC format)
+  const contentStartMarkers = [
+    /§\s*1\s*\n+\d+\.\s*Abschnitt/i,  // Austrian format: § 1 followed by Abschnitt
+    /§\s*1\s*[^\n]*\n+\(1\)/i,        // § 1 followed by (1)
+  ]
+
+  let contentStart = 0
+  for (const marker of contentStartMarkers) {
+    const match = cleanedText.match(marker)
+    if (match && match.index !== undefined && match.index < cleanedText.length * 0.5) {
+      contentStart = match.index
+      break
+    }
+  }
+
+  // If no marker found, try to find where TOC ends
+  if (contentStart === 0) {
+    // Look for the pattern where § X is followed by actual content (numbered paragraphs)
+    const tocEndPattern = /§\s*(\d+[a-z]?)\s*\n+(?:\d+\.\s*Abschnitt[^\n]*\n+)?(?:[A-ZÄÖÜ][a-zäöüß]+[^\n]*\n+)?\s*\(1\)/
+    const tocMatch = cleanedText.match(tocEndPattern)
+    if (tocMatch && tocMatch.index !== undefined) {
+      contentStart = tocMatch.index
+    }
+  }
+
+  const mainContent = cleanedText.substring(contentStart)
+
+  // Parse Abschnitt headers
+  const abschnittMap = new Map()
+  const abschnittRegex = /(\d+)\.\s*Abschnitt[:\s]*([^\n]*)/gi
+  let abschnittMatch
+  while ((abschnittMatch = abschnittRegex.exec(mainContent)) !== null) {
+    const num = abschnittMatch[1]
+    const title = abschnittMatch[2].trim()
+    if (!abschnittMap.has(num)) {
+      abschnittMap.set(num, { number: num, title, index: abschnittMatch.index })
+    }
+  }
+
   const sectionsMap = new Map() // Use map to deduplicate by section number
-  // Match § sections and Artikel - capture the full header line
-  const sectionRegex = /(?:^|\n)(§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)|(?:Artikel|Art\.?)\s*(\d+[a-z]?)\s*\.?\s*([^\n]*))/gi
+  // Match § sections - capture the section header
+  // Pattern: § number followed by optional title on same/next line, then content starting with (1)
+  const sectionRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s*\.?\s*(?:\n+(?:\d+\.\s*Abschnitt[^\n]*\n+)?([A-ZÄÖÜ][^\n(]*))?\s*(?=\n*\(1\)|\n*[A-ZÄÖÜ])/gi
 
   let match
   const matches = []
-  while ((match = sectionRegex.exec(cleanedText)) !== null) {
-    const isArticle = !!match[4]
-    const number = isArticle ? match[4] : match[2]
-    const title = (isArticle ? match[5] : match[3])?.trim() || ''
-    const prefix = isArticle ? 'Art.' : '§'
-    const headerLength = match[0].length
+  while ((match = sectionRegex.exec(mainContent)) !== null) {
+    const number = match[1]
+    let title = (match[2] || '').trim()
+
+    // Clean up title
+    title = title.replace(/^\d+\.\s*Abschnitt[:\s]*/i, '').trim()
 
     matches.push({
       id: `section-${number}`,
-      number: `${prefix} ${number}`,
-      title: title.substring(0, 80),
+      number: `§ ${number}`,
+      title: title.substring(0, 100),
       index: match.index,
-      headerEnd: match.index + headerLength, // Where the content actually starts
+      headerEnd: match.index + match[0].length,
       rawNumber: number
     })
   }
 
-  // Add content to each section, skipping the header line
+  // If no matches from detailed regex, use simpler approach
+  if (matches.length === 0) {
+    const simpleRegex = /(?:^|\n)\s*§\s*(\d+[a-z]?)\s*\.?\s*([^\n]*)/gi
+    while ((match = simpleRegex.exec(mainContent)) !== null) {
+      const number = match[1]
+      const title = (match[2] || '').trim()
+      matches.push({
+        id: `section-${number}`,
+        number: `§ ${number}`,
+        title: title.substring(0, 100),
+        index: match.index,
+        headerEnd: match.index + match[0].length,
+        rawNumber: number
+      })
+    }
+  }
+
+  // Add content to each section
   for (let i = 0; i < matches.length; i++) {
     const section = matches[i]
-    const contentStart = section.headerEnd
-    const contentEnd = i < matches.length - 1 ? matches[i + 1].index : cleanedText.length
-    let content = cleanedText.substring(contentStart, contentEnd).trim()
+    const contentStartIdx = section.headerEnd
+    const contentEnd = i < matches.length - 1 ? matches[i + 1].index : mainContent.length
+    let content = mainContent.substring(contentStartIdx, contentEnd).trim()
 
-    // Skip duplicate entries (table of contents vs actual content)
-    // Keep the one with more content
+    // Clean content - remove Abschnitt headers from start
+    content = content.replace(/^\d+\.\s*Abschnitt[^\n]*\n*/i, '').trim()
+
+    // Determine which Abschnitt this section belongs to
+    let abschnitt = null
+    const sectionNum = parseInt(section.rawNumber.replace(/[a-z]/gi, ''))
+    for (const [abNum, abData] of abschnittMap.entries()) {
+      if (abData.index < section.index) {
+        abschnitt = abData
+      }
+    }
+
+    // Keep the section with more content when deduplicating
     const existingSection = sectionsMap.get(section.rawNumber)
     if (existingSection) {
-      // Keep the section with more substantial content
       if (content.length > existingSection.content.length) {
-        sectionsMap.set(section.rawNumber, { ...section, content })
+        sectionsMap.set(section.rawNumber, { ...section, content, abschnitt })
       }
-    } else {
-      sectionsMap.set(section.rawNumber, { ...section, content })
+    } else if (content.length > 10) { // Only add if there's substantial content
+      sectionsMap.set(section.rawNumber, { ...section, content, abschnitt })
     }
   }
 
@@ -687,22 +755,37 @@ export function LawBrowser({ onBack }) {
                 />
               </div>
               <div className="overflow-y-auto h-[calc(100%-84px)]">
-                {filteredSections.map((section) => (
-                  <button
-                    key={section.id}
-                    onClick={() => scrollToSection(section.id)}
-                    className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
-                      activeSection === section.id
-                        ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
-                    }`}
-                  >
-                    <span className="font-semibold text-whs-orange-500">{section.number}</span>
-                    {section.title && (
-                      <span className="ml-1 line-clamp-1">{section.title}</span>
-                    )}
-                  </button>
-                ))}
+                {(() => {
+                  let currentAbschnitt = null
+                  return filteredSections.map((section) => {
+                    const abschnittHeader = section.abschnitt && section.abschnitt.number !== currentAbschnitt?.number
+                      ? (currentAbschnitt = section.abschnitt, section.abschnitt)
+                      : null
+
+                    return (
+                      <div key={section.id}>
+                        {abschnittHeader && (
+                          <div className="px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-whs-dark-600 sticky top-0">
+                            {abschnittHeader.number}. Abschnitt: {abschnittHeader.title}
+                          </div>
+                        )}
+                        <button
+                          onClick={() => scrollToSection(section.id)}
+                          className={`w-full text-left px-3 py-2 text-sm transition-colors border-b border-gray-50 dark:border-whs-dark-800 ${
+                            activeSection === section.id
+                              ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
+                              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
+                          }`}
+                        >
+                          <span className="font-semibold text-whs-orange-500">{section.number}</span>
+                          {section.title && (
+                            <span className="ml-1 line-clamp-1">{section.title}</span>
+                          )}
+                        </button>
+                      </div>
+                    )
+                  })
+                })()}
               </div>
             </Card>
           </div>
@@ -794,28 +877,49 @@ export function LawBrowser({ onBack }) {
                       {/* Sections */}
                       {filteredSections.length > 0 ? (
                         <div className="space-y-8">
-                          {filteredSections.map((section) => (
-                            <div
-                              key={section.id}
-                              id={section.id}
-                              ref={(el) => (sectionRefs.current[section.id] = el)}
-                              className="scroll-mt-4"
-                            >
-                              <div className="flex items-baseline gap-3 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
-                                <span className="text-2xl font-bold text-whs-orange-500">
-                                  {section.number}
-                                </span>
-                                {section.title && (
-                                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                    {section.title}
-                                  </h3>
-                                )}
-                              </div>
-                              <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                <FormattedText text={section.content} />
-                              </div>
-                            </div>
-                          ))}
+                          {(() => {
+                            let currentAbschnitt = null
+                            return filteredSections.map((section) => {
+                              const showAbschnittHeader = section.abschnitt && section.abschnitt.number !== currentAbschnitt?.number
+                              if (showAbschnittHeader) {
+                                currentAbschnitt = section.abschnitt
+                              }
+
+                              return (
+                                <div key={section.id}>
+                                  {showAbschnittHeader && section.abschnitt && (
+                                    <div className="mb-6 mt-8 first:mt-0 p-4 bg-gradient-to-r from-whs-orange-50 to-transparent dark:from-whs-orange-900/20 dark:to-transparent rounded-lg border-l-4 border-whs-orange-500">
+                                      <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                                        {section.abschnitt.number}. Abschnitt
+                                      </h2>
+                                      <p className="text-gray-600 dark:text-gray-400 font-medium">
+                                        {section.abschnitt.title}
+                                      </p>
+                                    </div>
+                                  )}
+                                  <div
+                                    id={section.id}
+                                    ref={(el) => (sectionRefs.current[section.id] = el)}
+                                    className="scroll-mt-4"
+                                  >
+                                    <div className="flex items-baseline gap-3 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
+                                      <span className="text-2xl font-bold text-whs-orange-500">
+                                        {section.number}
+                                      </span>
+                                      {section.title && (
+                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                          {section.title}
+                                        </h3>
+                                      )}
+                                    </div>
+                                    <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
+                                      <FormattedText text={section.content} />
+                                    </div>
+                                  </div>
+                                </div>
+                              )
+                            })
+                          })()}
                         </div>
                       ) : (
                         /* Raw text fallback */

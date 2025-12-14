@@ -41,6 +41,19 @@ const frameworks = {
       text: 'text-orange-500',
       ring: 'ring-orange-500/30'
     }
+  },
+  WIKI: {
+    code: 'WIKI',
+    name: 'Wikipedia',
+    lawName: 'Reference',
+    flag: '📚',
+    colors: {
+      bg: 'bg-gray-600',
+      bgHover: 'hover:bg-gray-700',
+      border: 'border-gray-600',
+      text: 'text-gray-600',
+      ring: 'ring-gray-500/30'
+    }
   }
 }
 

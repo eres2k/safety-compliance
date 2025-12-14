@@ -146,6 +146,14 @@ export function AppProvider({ children }) {
       name: 'Netherlands',
       code: 'NL',
       lawName: 'Arbowet'
+    },
+    WIKI: {
+      primary: '#636466',
+      light: '#F3F4F6',
+      dark: '#374151',
+      name: 'Wikipedia',
+      code: 'WIKI',
+      lawName: 'Reference'
     }
   }), [])
 

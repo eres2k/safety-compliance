@@ -6,7 +6,6 @@ import { Dashboard } from './components/Dashboard'
 import {
   LawBrowser,
   ComplianceChecker,
-  DocumentGenerator,
   QuickReference,
   RegulationLookup
 } from './components/modules'
@@ -41,8 +40,6 @@ function AppContent() {
         return <LawBrowser onBack={onBack} />
       case 'complianceChecker':
         return <ComplianceChecker onBack={onBack} />
-      case 'documentGenerator':
-        return <DocumentGenerator onBack={onBack} />
       case 'quickReference':
         return <QuickReference onBack={onBack} />
       case 'regulationLookup':

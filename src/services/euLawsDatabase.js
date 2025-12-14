@@ -6,8 +6,9 @@
 
 // Import the full EU laws databases
 import atLawsData from '../../eu_safety_laws/at/at_database.json'
-import deLawsData from '../../eu_safety_laws/de/de_safety_laws_database.json'
+import deLawsData from '../../eu_safety_laws/de/de_database.json'
 import nlLawsData from '../../eu_safety_laws/nl/nl_database.json'
+import wikiLawsData from '../../eu_safety_laws/wiki_all/wiki_all_database.json'
 
 // Database cache
 let lawsDatabase = null
@@ -22,7 +23,8 @@ export function initializeLawsDatabase() {
   lawsDatabase = {
     AT: processLawsData(atLawsData, 'AT'),
     DE: processLawsData(deLawsData, 'DE'),
-    NL: processLawsData(nlLawsData, 'NL')
+    NL: processLawsData(nlLawsData, 'NL'),
+    WIKI: processLawsData(wikiLawsData, 'WIKI')
   }
 
   // Build search index
@@ -418,7 +420,7 @@ export function searchLaws(query, options = {}) {
   const queryLower = query?.toLowerCase().trim() || ''
   const allResults = []
 
-  const countries = country ? [country] : ['AT', 'DE', 'NL']
+  const countries = country ? [country] : ['AT', 'DE', 'NL', 'WIKI']
 
   countries.forEach(c => {
     const db = lawsDatabase[c]
@@ -589,7 +591,7 @@ export function getFacets() {
  * Validate country code
  */
 export function isValidCountry(country) {
-  return ['AT', 'DE', 'NL'].includes(country)
+  return ['AT', 'DE', 'NL', 'WIKI'].includes(country)
 }
 
 /**
