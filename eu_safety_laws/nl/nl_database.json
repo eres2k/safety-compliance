@@ -1,13 +1,13 @@
 {
   "metadata": {
     "country": "NL",
-    "generated_at": "2025-12-14T15:55:51.397857",
+    "generated_at": "2025-12-14T16:17:20.034490",
     "document_count": 1,
     "error_count": 0
   },
   "documents": [
     {
-      "id": "b8feac7de92e9500",
+      "id": "3d65530f7079fe17",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -23,60 +23,60 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-14T15:55:50.895721",
-        "scraper_version": "7.0.0"
+        "scraped_at": "2025-12-14T16:17:19.532792",
+        "scraper_version": "7.1.0"
       },
       "whs_summary": {
         "total_sections": 72,
         "logistics_relevance_distribution": {
-          "critical": 0,
-          "high": 0,
-          "medium": 10,
-          "low": 62
+          "critical": 5,
+          "high": 4,
+          "medium": 25,
+          "low": 38
         },
         "top_whs_topics": [
           [
-            "employee_rights",
-            8
-          ],
-          [
-            "penalties",
-            6
-          ],
-          [
-            "prevention_services",
-            5
-          ],
-          [
             "employer_obligations",
-            4
+            32
           ],
           [
-            "risk_assessment",
-            3
+            "employee_rights",
+            24
           ],
           [
             "workplace_design",
-            2
+            20
           ],
           [
-            "incident_reporting",
-            2
+            "risk_assessment",
+            12
           ],
           [
-            "hazardous_substances",
-            1
+            "ppe",
+            10
           ],
           [
-            "training",
-            1
+            "prevention_services",
+            10
+          ],
+          [
+            "penalties",
+            9
           ],
           [
             "documentation",
-            1
+            8
+          ],
+          [
+            "incident_reporting",
+            7
+          ],
+          [
+            "health_surveillance",
+            7
           ]
         ],
-        "critical_sections_count": 0
+        "critical_sections_count": 9
       },
       "chapters": [
         {
@@ -89,13 +89,39 @@
               "id": "08afb51d10e71ce0",
               "number": "1",
               "title": "Artikel 1. Definities",
-              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
-              "whs_topics": [],
+              "text": "[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het\nIn deze wet en de daarop berustende bepalingen wordt verstaan onder:\narbeidsmiddelen:\nalle op de arbeidsplaats gebruikte machines en verwante producten, installaties,\napparaten, gereedschappen, digitale systemen en andere hulpmiddelen om de arbeid te\nverrichten;\narbeidsongeval:\neen aan een werknemer in verband met het verrichten van arbeid overkomen ongewilde,\nplotselinge gebeurtenis, die schade aan de gezondheid tot vrijwel onmiddellijk gevolg\nheeft gehad en heeft geleid tot ziekteverzuim, of de dood tot vrijwel onmiddellijk\ngevolg heeft gehad;\narbeidsplaats:\niedere plaats die in verband met het verrichten van arbeid wordt of pleegt te worden\ngebruikt;\narbodienst:\neen dienst als bedoeld in\nartikel 14a, tweede en derde lid\nondernemingsraad:\nde ondernemingsraad, bedoeld in de\nWet op de ondernemingsraden\nOnze Minister:\nOnze Minister van Sociale Zaken en Werkgelegenheid;\npersoneelsvertegenwoordiging:\nde personeelsvertegenwoordiging, bedoeld in de\nWet op de ondernemingsraden\npsychosociale arbeidsbelasting:\nde blootstelling aan factoren in de arbeidssituatie die stress teweeg brengen, waaronder\nin ieder geval:\nagressie of geweld;\ndirect of indirect onderscheid;\npesten;\nseksuele intimidatie;\nwerkdruk;\nstress:\neen toestand die als negatief ervaren lichamelijke, psychische of sociale gevolgen\nheeft;\ntoezichthouder:\nde toezichthouder, bedoeld in de\nAlgemene wet bestuursrecht\n, en als zodanig aangewezen op grond van\nartikel 24\nvrijwilliger:\nde persoon, die niet bij wijze van beroep arbeid verricht voor een privaatrechtelijk\nof publiekrechtelijk lichaam dat niet is onderworpen aan de vennootschapsbelasting\ndan wel voor een sportorganisatie en die geen werknemer is in de zin van\nartikel 2 van de Wet op de loonbelasting 1964\n, met uitzondering van de persoon die arbeid verricht:\nter voorbereiding op beroepsmatige arbeid;\nin het kader van een taakstraf dan wel in het kader van het voldoen aan voorwaarden\nter voorkoming van strafvervolging als bedoeld in\nartikel 74, tweede lid, onderdeel f\n, of\nartikel 77f, eerste lid, onderdeel b, van het Wetboek van Strafrecht\ndan wel in het kader van deelneming aan een project als bedoeld in\nartikel 77e van het Wetboek van Strafrecht\n; of\nals bedoeld in\nartikel 16, zesde lid, onderdeel c\nwerkgever:\ndegene jegens wie een ander krachtens arbeidsovereenkomst of publiekrechtelijke aanstelling\ngehouden is tot het verrichten van arbeid, behalve indien die ander aan een derde\nter beschikking wordt gesteld voor het verrichten van arbeid, welke die derde gewoonlijk\ndoet verrichten; of\ndegene aan wie een ander ter beschikking wordt gesteld voor het verrichten van arbeid\nals bedoeld onder a;\nwerknemer:\nde ander, genoemd in de begripsomschrijving van werkgever;\nzelfstandige:\ndegene die zonder werkgever of werknemer te zijn arbeid verricht.\nIn deze wet en de daarop berustende bepalingen wordt mede verstaan onder:\nbedrijf:\neen andere plaats waar arbeid wordt verricht of pleegt te worden verricht;\ninrichting:\neen andere plaats waar arbeid wordt verricht op pleegt te worden verricht;\nwerkgever:\ndegene die zonder werkgever of werknemer in de zin van het eerste lid te zijn, een\nander onder zijn gezag arbeid doet verrichten; of\ndegene die zonder werkgever of werknemer in de zin van het eerste lid te zijn, een\nander niet onder zijn gezag arbeid in een woning doet verrichten, in bij algemene\nmaatregel van bestuur aan te wijzen gevallen;\nwerknemer:\nde ander, genoemd in de in dit lid opgenomen begripsomschrijving van werkgever, met\nuitzondering van degene die als vrijwilliger arbeid verricht.",
+              "whs_topics": [
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "ergonomics",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 7,
+                "level": "critical",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 3
               },
               "paragraphs": []
             },
@@ -103,8 +129,24 @@
               "id": "63ab439bd85dfe72",
               "number": "2",
               "title": "Artikel 2. Uitbreiding Toepassingsgebied",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Deze wet en de daarop berustende bepalingen zijn mede van toepassing op:\narbeid verricht binnen de exclusieve economische zone;\nverrichtingen van leerlingen en studenten in onderwijsinrichtingen of gedeelten daarvan,\nopen ruimten daaronder begrepen, die vergelijkbaar zijn met arbeid in de beroepspraktijk;\narbeid die geheel of ten dele buiten Nederland wordt verricht door personen, werkzaam\naan boord van zeeschepen die op grond van voor Nederland geldende rechtsregels gerechtigd\nzijn de vlag van het Koninkrijk te voeren;\narbeid die voor een in Nederland gevestigde werkgever geheel of ten dele buiten Nederland\nwordt verricht door personen, werkzaam aan boord van luchtvaartuigen.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -125,13 +167,39 @@
               "id": "12b1c0f3ebcc7586",
               "number": "3",
               "title": "Artikel 3. Arbobeleid",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "De werkgever zorgt voor de veiligheid en de gezondheid van de werknemers inzake alle\nmet de arbeid verbonden aspecten en voert daartoe een beleid dat is gericht op zo\ngoed mogelijke arbeidsomstandigheden, waarbij hij, gelet op de stand van de wetenschap\nen professionele dienstverlening, het volgende in acht neemt:\ntenzij dit redelijkerwijs niet kan worden gevergd organiseert de werkgever de arbeid\nzodanig dat daarvan geen nadelige invloed uitgaat op de veiligheid en de gezondheid\nvan de werknemer;\ntenzij dit redelijkerwijs niet kan worden gevergd worden de gevaren en risico's voor\nde veiligheid of de gezondheid van de werknemer zoveel mogelijk in eerste aanleg bij\nde bron daarvan voorkomen of beperkt; naar de mate waarin dergelijke gevaren en risico's\nniet bij de bron kunnen worden voorkomen of beperkt, worden daartoe andere doeltreffende\nmaatregelen getroffen waarbij maatregelen gericht op collectieve bescherming voorrang\nhebben boven maatregelen gericht op individuele bescherming; slechts indien redelijkerwijs\nniet kan worden gevergd dat maatregelen worden getroffen die zijn gericht op individuele\nbescherming, worden doeltreffende en passende persoonlijke beschermingsmiddelen aan\nde werknemer ter beschikking gesteld;\nde inrichting van de arbeidsplaatsen, de werkmethoden en de bij de arbeid gebruikte\narbeidsmiddelen alsmede de arbeidsinhoud worden zoveel als redelijkerwijs kan worden\ngevergd aan de persoonlijke eigenschappen van werknemers aangepast;\nmonotone en tempogebonden arbeid wordt, zoveel als redelijkerwijs kan worden gevergd,\nvermeden dan wel, indien dat niet mogelijk is, beperkt;\ndoeltreffende maatregelen worden getroffen op het gebied van de eerste hulp bij ongevallen,\nde brandbestrijding en de evacuatie van werknemers en andere aanwezige personen, en\ndoeltreffende verbindingen worden onderhouden met de desbetreffende externe hulpverleningsorganisaties;\nelke werknemer moet bij ernstig en onmiddellijk gevaar voor zijn eigen veiligheid\nof die van anderen, rekening houdend met zijn technische kennis en middelen, de nodige\npassende maatregelen kunnen nemen om de gevolgen van een dergelijk gevaar te voorkomen,\nwaarbij\nartikel 29, eerste lid, derde zin\n, van overeenkomstige toepassing is.\nDe werkgever voert, binnen het algemeen arbeidsomstandighedenbeleid, een beleid gericht\nop voorkoming en indien dat niet mogelijk is beperking van psychosociale arbeidsbelasting.\nTer uitvoering van het eerste lid draagt de werkgever zorg voor een goede verdeling\nvan bevoegdheden en verantwoordelijkheden tussen de bij de werkgever werkzame personen,\nwaarbij hij rekening houdt met de bekwaamheden van de werknemers.\nDe werkgever toetst het arbeidsomstandighedenbeleid regelmatig aan de ervaringen die\ndaarmee zijn opgedaan en past de maatregelen aan zo dikwijls als de daarmee opgedane\nervaring daartoe aanleiding geeft.",
+              "whs_topics": [
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "first_aid",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 8,
+                "level": "critical",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 4
               },
               "paragraphs": []
             },
@@ -139,10 +207,20 @@
               "id": "9945ed266a328c69",
               "number": "4",
               "title": "Artikel 4. Aanpassing arbeidsplaats werknemer met structurele functionele beperking",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "In aanvulling op\nartikel 3, eerste lid, aanhef en onder c\n, past de werkgever, bedoeld in\nonderdeel a van de begripsomschrijving van werkgever in artikel 1, eerste lid\n, uit hoofde van de uitoefening van zijn taak, bedoeld in\nartikel 7:658a van het Burgerlijk Wetboek\nartikel 76e van de Ziektewet\nde inrichting van de arbeidsplaats, de werkmethoden en de bij de arbeid gebruikte\narbeidsmiddelen, alsmede de arbeidsinhoud aan zijn werknemer, die in verband met ongeschiktheid\nten gevolge van ziekte verhinderd is de bedongen arbeid te verrichten aan, en\nde inrichting van het bedrijf aan die werknemer aan, voorzover de behoefte daaraan\nwordt opgeroepen door de deelneming van die werknemer aan de werkzaamheden of het\ndaarmee samenhangende verblijf in het bedrijf.\nHet eerste lid is van overeenkomstige toepassing op de eigenrisicodrager, bedoeld\nartikel 1, eerste lid, onderdeel h, van de Ziektewet\nen de persoon, bedoeld in\nartikel 29, tweede lid, onderdelen a, b en c, van die wet\n, die laatstelijk tot de eigenrisicodrager in dienstbetrekking stond, gedurende de\nperiode dat de eigenrisicodrager aan die persoon ziekengeld moet betalen.",
               "whs_topics": [
                 {
                   "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
                   "relevance": "high",
                   "match_count": 1
                 },
@@ -153,10 +231,10 @@
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 2,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -164,10 +242,30 @@
               "id": "cf1b258f4dc74bf7",
               "number": "5",
               "title": "Artikel 5. Inventarisatie en evaluatie van risico’s",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Bij het voeren van het arbeidsomstandighedenbeleid legt de werkgever in een inventarisatie\nen evaluatie schriftelijk vast welke risico's de arbeid voor de werknemers met zich\nbrengt. Deze risico-inventarisatie en -evaluatie bevat tevens een beschrijving van\nde gevaren en de risico-beperkende maatregelen en de risico's voor bijzondere categorieën\nvan werknemers.\nIn de risico-inventarisatie en -evaluatie wordt aandacht besteed aan de toegang van\nwerknemers tot een deskundige werknemer of persoon, bedoeld in de\nartikelen 13\n, of de arbodienst.\nEen plan van aanpak, waarin is aangegeven welke maatregelen zullen worden genomen\nin verband met de bedoelde risico's en de samenhang daartussen, een en ander overeenkomstig\nartikel 3\n, maakt deel uit van de risico-inventarisatie en -evaluatie. In het plan van aanpak\nwordt tevens aangegeven binnen welke termijn deze maatregelen zullen worden genomen.\nDe risico-inventarisatie en -evaluatie wordt aangepast zo dikwijls als de daarmee\nopgedane ervaring, gewijzigde werkmethoden of werkomstandigheden of de stand van de\nwetenschap en professionele dienstverlening daartoe aanleiding geven.\nIndien de werkgever arbeid doet verrichten door een werknemer die hem ter beschikking\nwordt gesteld, verstrekt hij tijdig voor de aanvang van de werkzaamheden aan degene,\ndie de werknemer ter beschikking stelt, de beschrijving uit de risico-inventarisatie\nen -evaluatie van de gevaren en risicobeperkende maatregelen en van de risico's voor\nde werknemer op de in te nemen arbeidsplaats, opdat diegene deze beschrijving verstrekt\naan de betrokken werknemer.\nDe werkgever zorgt ervoor dat iedere werknemer kennis kan nemen van de risico-inventarisatie\nen -evaluatie.",
               "whs_topics": [
                 {
                   "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
                   "relevance": "high",
                   "match_count": 1
                 }
@@ -184,8 +282,23 @@
               "id": "f5ef61eb05d2342d",
               "number": "6",
               "title": "Artikel 6. Voorkoming en beperking van zware ongevallen waarbij gevaarlijke stoffen",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "zijn betrokken\nDe werkgever neemt bij het voeren van het arbeidsomstandighedenbeleid de maatregelen\ndie nodig zijn ter voorkoming en beperking van zware ongevallen waarbij gevaarlijke\nstoffen zijn betrokken en de gevolgen daarvan voor de veiligheid en de gezondheid\nvan de in het bedrijf, de inrichting, of een deel daarvan werkzame werknemers. Bij\nof krachtens algemene maatregel van bestuur worden regels gesteld met betrekking tot:\nde categorieën van bedrijven, inrichtingen of delen daarvan ten aanzien waarvan de\nwerkgever die maatregelen neemt;\nde gegevens die de werkgever met betrekking tot de bedrijven, inrichtingen of delen\ndaarvan, bedoeld onder a, op schrift stelt of verstrekt aan de toezichthouder of aan\nde werknemers en de andere deskundige personen, bedoeld in\nartikel 13, eerste tot en met derde lid\n, de personen, bedoeld in\nartikel 14, eerste lid\nen de arbodienst;\nde maatregelen die de werkgever neemt ten aanzien van de bedrijven, inrichtingen of\ndelen daarvan, bedoeld onder a;\nhet tijdstip waarop en de frequentie waarmee wordt voldaan aan de verplichtingen,\nbedoeld onder b en c;\neen verbod op de exploitatie van het bedrijf, de inrichting of een deel daarvan, indien\nniet of niet voldoende is voldaan aan een of meer verplichtingen krachtens dit artikel;\nhet toezicht op de naleving van het bij of krachtens dit artikel bepaalde.\nOnze Minister kan een bedrijf of een inrichting of een deel daarvan afzonderlijk aanwijzen\nten aanzien waarvan op de werkgever een of meer van de verplichtingen bedoeld in of\nkrachtens het eerste lid rusten indien zich in verband met de aanwezigheid van gevaarlijke\nstoffen bijzondere gevaren kunnen voordoen voor de veiligheid en de gezondheid van\nde daarin werkzame werknemers. Bij de aanwijzing wordt bepaald op welk tijdstip aan\nde betreffende verplichtingen moet zijn voldaan. De werking van de aanwijzing wordt\nopgeschort totdat de termijn voor het indienen van een bezwaar- of beroepschrift is\nverstreken of, indien bezwaar is gemaakt of beroep is ingesteld, op het bezwaar of\nberoep is beslist.\nHet niet naleven van de bij of krachtens het eerste lid, tweede volzin, gestelde regels\nwordt aangemerkt als strafbaar feit voor zover dat bij of krachtens algemene maatregel\nvan bestuur is bepaald.",
               "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
                 {
                   "id": "risk_assessment",
                   "relevance": "high",
@@ -194,11 +307,6 @@
                 {
                   "id": "incident_reporting",
                   "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
                   "match_count": 1
                 }
               ],
@@ -214,8 +322,23 @@
               "id": "f1d517ef4bce51be",
               "number": "7",
               "title": "Artikel 7. Informatie aan het publiek",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "De toezichthouder stelt krachtens\nartikel 6, eerste lid, onder b\n, verschafte en bij algemene maatregel van bestuur aangewezen gegevens uit eigen beweging\nter beschikking van het publiek. Bij of krachtens algemene maatregel van bestuur kunnen\nterzake regels worden gesteld.\nOnverminderd\nartikel 5.1, eerste lid, van de Wet open overheid\nen in afwijking van artikel 5.1, tweede en vijfde lid, van die wet blijft het verstrekken\nvan gegevens als bedoeld in het eerste lid achterwege voor zover het belang daarvan\nniet opweegt tegen de volgende belangen:\nhet belang, bedoeld in\nartikel 5.1, tweede lid, onder e, van de Wet open overheid\nhet belang, bedoeld in\nartikel 5.1, tweede lid, onder h, van de Wet open overheid\n, voor zover het betreft het voorkomen van sabotage.\nArtikel 5.1, vierde lid, van de Wet open overheid\nis niet van toepassing op het op verzoek verstrekken van gegevens die door de daartoe\naangewezen ambtenaar bedoeld in\nartikel 24\nzijn verkregen in verband met de toepassing van het bepaalde bij of krachtens\nartikel 6\nter uitvoering van Richtlijn 2012/18/EU van het Europees Parlement en de Raad van\n4 juli 2012 betreffende de beheersing van de gevaren van zware ongevallen waarbij\ngevaarlijke stoffen zijn betrokken, houdende wijziging en vervolgens intrekking van\nRichtlijn 96/82/EG van de Raad (PbEU 2012, L 197).\nArtikel 5.1, tweede lid, aanhef en onder b, van de Wet open overheid\nis op het op verzoek verstrekken van informatie over gegevens als bedoeld in het\nderde lid uitsluitend van toepassing, voorzover die gegevens een vertrouwelijk karakter\nhebben.\nArtikel 5.1, tweede lid, aanhef en onder h, van de Wet open overheid\nis op het op verzoek verstrekken van gegevens als bedoeld in het derde lid uitsluitend\nvan toepassing voor zover het gegevens betreft die afbreuk kunnen doen aan de mogelijkheid\nvan het voorkomen van sabotage.\nOp het op verzoek verstrekken van gegevens als bedoeld in het derde lid is\nartikel 5.1, vijfde lid, van de Wet open overheid\nniet van toepassing.",
               "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
                 {
                   "id": "employee_rights",
                   "relevance": "medium",
@@ -223,10 +346,10 @@
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 2,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -234,19 +357,39 @@
               "id": "46ed1781845b0d3d",
               "number": "8",
               "title": "Artikel 8. Voorlichting en onderricht",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "De werkgever zorgt ervoor dat de werknemers doeltreffend worden ingelicht over de\nte verrichten werkzaamheden en de daaraan verbonden risico's, alsmede over de maatregelen\ndie erop gericht zijn deze risico's te voorkomen of te beperken.\nTevens zorgt de werkgever ervoor dat de werknemers doeltreffend worden ingelicht over\nde wijze waarop de deskundige bijstand, bedoeld in de\nartikelen 13\n14a\n, in zijn bedrijf of inrichting is georganiseerd.\nDe werkgever zorgt ervoor dat aan de werknemers doeltreffend en aan hun onderscheiden\ntaken aangepast onderricht wordt verstrekt met betrekking tot de arbeidsomstandigheden.\nIndien persoonlijke beschermingsmiddelen ter beschikking van de werknemers worden\ngesteld en indien op arbeidsmiddelen of anderszins beveiligingen zijn aangebracht,\nzorgt de werkgever ervoor dat de werknemers op de hoogte zijn van hun doel en werking\nen de wijze waarop zij deze dienen te gebruiken.\nDe werkgever ziet toe op de naleving van de instructies en voorschriften gericht op\nhet voorkomen of beperken van de in het eerste lid genoemde risico's alsmede op het\njuiste gebruik van persoonlijke beschermingsmiddelen.\nIndien binnen de onderneming werknemers jonger dan 18 jaar werkzaam zijn, houdt de\nwerkgever bij de uitvoering van de in de voorgaande leden genoemde verplichtingen\nin het bijzonder rekening met de aan de jeugdige leeftijd inherente beperkte werkervaring\nen onvoltooide lichamelijke en geestelijke ontwikkeling van deze werknemers.",
               "whs_topics": [
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
                 {
                   "id": "training",
                   "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
                   "match_count": 2
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
+                "score": 8,
+                "level": "critical",
+                "high_keyword_matches": 3,
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -254,8 +397,13 @@
               "id": "653390fae8964a3d",
               "number": "9",
               "title": "Artikel 9. Melding en registratie van arbeidsongevallen en beroepsziekten",
-              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "text": "[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het\nDe werkgever meldt arbeidsongevallen die leiden tot de dood, een blijvend letsel of\neen ziekenhuisopname direct aan de daartoe aangewezen toezichthouder en rapporteert\nhierover desgevraagd zo spoedig mogelijk aan deze toezichthouder.\nDe werkgever houdt een lijst bij van de gemelde arbeidsongevallen en van arbeidsongevallen\nwelke hebben geleid tot een verzuim van meer dan drie werkdagen en registreert daarop\nde aard en datum van het ongeval.\nDe persoon, bedoeld in\nartikel 14, eerste lid\n, die belast is met de taak, bedoeld in onderdeel b van dat lid, of de arbodienst\nmeldt beroepsziekten aan een door Onze Minister hiertoe aangewezen instelling.\nOnze Minister vergoedt ten laste van ’s Rijks kas de door de aangewezen instelling,\nbedoeld in het derde lid, gemaakte uitvoeringskosten overeenkomstig bij ministeriële\nregeling vast te stellen regels.\nGelet op artikel 9, tweede lid, onderdeel b, van de Algemene verordening gegevensbescherming,\nis het verbod om gegevens over gezondheid te verwerken niet van toepassing indien\nde verwerking geschiedt door een werkgever en de verwerking noodzakelijk is om te\nvoldoen aan de verplichtingen, genoemd in het eerste lid. Artikel 30, vierde lid,\ntweede zin, van de Uitvoeringswet Algemene verordening gegevensbescherming is van\novereenkomstige toepassing.",
               "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
                 {
                   "id": "incident_reporting",
                   "relevance": "high",
@@ -265,13 +413,23 @@
                   "id": "documentation",
                   "relevance": "high",
                   "match_count": 1
+                },
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -279,11 +437,31 @@
               "id": "205a2b15d60b51a6",
               "number": "10",
               "title": "Artikel 10. Voorkomen van gevaar voor derden",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Indien bij of in rechtstreeks verband met de arbeid die de werkgever door zijn werknemers\ndoet verrichten in een bedrijf of een inrichting of in de onmiddellijke omgeving daarvan\ngevaar kan ontstaan voor de veiligheid of de gezondheid van andere personen dan die\nwerknemers, neemt de werkgever doeltreffende maatregelen ter voorkoming van dat gevaar.",
               "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
                 {
                   "id": "risk_assessment",
                   "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
                   "match_count": 1
                 }
               ],
@@ -299,24 +477,39 @@
               "id": "dd863ada2915dfb3",
               "number": "11",
               "title": "Artikel 11. Algemene verplichtingen van de werknemers",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "De werknemer is verplicht om in zijn doen en laten op de arbeidsplaats, overeenkomstig\nzijn opleiding en de door de werkgever gegeven instructies, naar vermogen zorg te\ndragen voor zijn eigen veiligheid en gezondheid en die van de andere betrokken personen.\nMet name is hij verplicht om:\narbeidsmiddelen en gevaarlijke stoffen op de juiste wijze te gebruiken;\nde hem ter beschikking gestelde persoonlijke beschermingsmiddelen op de juiste wijze\nte gebruiken en na gebruik op de daartoe bestemde plaats op te bergen, een en ander\nvoor zover niet krachtens deze wet is bepaald dat werknemers niet verplicht zijn beschermingsmiddelen\nals vorenbedoeld te gebruiken;\nde op arbeidsmiddelen of anderszins aangebrachte beveiligingen niet te veranderen\nof buiten noodzaak weg te halen en deze op de juiste wijze te gebruiken;\nmede te werken aan het voor hem georganiseerde onderricht bedoeld in\nartikel 8\nde door hem opgemerkte gevaren voor de veiligheid of de gezondheid terstond ter kennis\nte brengen aan de werkgever of degene die namens deze ter plaatse met de leiding is\nbelast;\nde werkgever en de de werknemers en de andere deskundige personen, bedoeld in\nartikel 13, eerste tot en met derde lid\n, de personen, bedoeld in\nartikel 14, eerste lid\n, en de arbodienst, indien nodig bij te staan bij de uitvoering van hun verplichtingen\nen taken op grond van deze wet.",
               "whs_topics": [
                 {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
                   "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "prevention_services",
                   "relevance": "high",
                   "match_count": 2
                 },
                 {
-                  "id": "employee_rights",
-                  "relevance": "medium",
+                  "id": "risk_assessment",
+                  "relevance": "high",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 6,
+                "level": "critical",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             }
@@ -332,42 +525,32 @@
               "id": "50688762ff685900",
               "number": "12",
               "title": "Artikel 12. Samenwerking, overleg en bijzondere rechten van de ondernemingsraad, de",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "personeelsvertegenwoordiging en de belanghebbende werknemers\nBij de uitvoering van het arbeidsomstandighedenbeleid werken de werkgever en de werknemers\nsamen.\nDe werkgever voert overleg met de ondernemingsraad of de personeelsvertegenwoordiging\nover aangelegenheden die het arbeidsomstandighedenbeleid betreffen alsmede over de\nuitvoering van dit beleid, waarbij actief informatie wordt gewisseld.\nDe werkgever voert in ondernemingen waarin in de regel minder dan 10 personen werkzaam\nzijn, bij het ontbreken van een ondernemingsraad of personeelsvertegenwoordiging,\noverleg met de belanghebbende werknemers over de risico-inventarisatie en -evaluatie,\nde organisatie van de deskundige bijstand, bedoeld in\nartikel 13, eerste tot en met derde lid\n, de arbodienst en de deskundige bijstand, bedoeld in\nartikel 15\nAan de leden van de ondernemingsraad of de personeelsvertegenwoordiging wordt in verband\nmet hun taak in het kader van de arbeidsomstandigheden van de werknemers:\nde mogelijkheid geboden zich met de toezichthouder tijdens zijn bezoek aan het bedrijf\nof de inrichting buiten tegenwoordigheid van anderen te onderhouden;\nde mogelijkheid geboden de toezichthouder tijdens zijn bezoek aan het bedrijf of de\ninrichting te vergezellen, behoudens voor zover deze te kennen geeft dat daartegen\nvanwege een goede uitoefening van zijn taak bezwaren bestaan.\nVoor het bij of krachtens deze wet bepaalde treedt voor de toepassing van de\nafdelingen 3.6\n4.1.2. van de Algemene wet bestuursrecht\neen ondernemingsraad of personeelsvertegenwoordiging in de plaats van de belanghebbende\nwerknemers.\nBij het ontbreken van de ondernemingsraad of personeelsvertegenwoordiging wordt, in\nafwijking van\nartikel 3.41 van de Algemene wet bestuursrecht\n, van een beschikking zo spoedig mogelijk door de werkgever mededeling gedaan aan\nde belanghebbende werknemers. Die beschikking treedt, in afwijking van\nartikel 3.40 van de Algemene wet bestuursrecht\n, voor hen niet eerder in werking dan nadat de werkgever aan de mededelingsplicht,\nals bedoeld in de vorige zin, heeft voldaan.",
               "whs_topics": [
                 {
                   "id": "employee_rights",
                   "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "45db5b945f4ce041",
-              "number": "13",
-              "title": "Artikel 13. Bijstand deskundige werknemers op het gebied van preventie en bescherming",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [
+                  "match_count": 3
+                },
                 {
-                  "id": "ppe",
+                  "id": "risk_assessment",
                   "relevance": "high",
-                  "match_count": 1
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
                 },
                 {
                   "id": "prevention_services",
                   "relevance": "high",
-                  "match_count": 1
+                  "match_count": 2
                 },
                 {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
                 }
               ],
               "amazon_logistics_relevance": {
@@ -379,22 +562,82 @@
               "paragraphs": []
             },
             {
-              "id": "bc40250f26483f40",
-              "number": "14",
-              "title": "Artikel 14. Maatwerkregeling aanvullende deskundige bijstand bij specifieke taken",
-              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "id": "45db5b945f4ce041",
+              "number": "13",
+              "title": "Artikel 13. Bijstand deskundige werknemers op het gebied van preventie en bescherming",
+              "text": "De werkgever laat zich ten aanzien van de naleving van zijn verplichtingen op grond\nvan deze wet bijstaan door een of meer deskundige werknemers. Indien in het bedrijf\nof de inrichting van de werkgever een ondernemingsraad of personeelsvertegenwoordiging\nis ingesteld, wordt de keuze voor de deskundige werknemer, bedoeld in de eerste zin,\nen diens positionering, bepaald met instemming van die ondernemingsraad of personeelsvertegenwoordiging.\nArtikel 27, derde tot en met zesde lid, van de Wet op de ondernemingsraden\nis van overeenkomstige toepassing.\nVoorzover de mogelijkheden onvoldoende zijn om de bijstand binnen het bedrijf of de\ninrichting te organiseren, wordt de bijstand verleend door een combinatie van deskundige\nwerknemers en andere deskundige personen.\nIndien er geen mogelijkheden zijn om de bijstand binnen het bedrijf of de inrichting\nte organiseren, wordt de bijstand verleend door andere deskundige personen.\nDe werknemers en de andere deskundige personen beschikken over een zodanige deskundigheid,\nervaring en uitrusting, zijn zodanig in aantal, gedurende zoveel tijd beschikbaar\nen zodanig georganiseerd, dat zij de bijstand naar behoren kunnen verlenen.\nDe werkgever stelt de werknemers in de gelegenheid de bijstand zelfstandig en onafhankelijk\nte verlenen. De werknemers worden uit hoofde van een juiste taakuitoefening niet benadeeld\nin hun positie in het bedrijf of de inrichting.\nArtikel 21, vierde zin, van de Wet op de ondernemingsraden\nis van overeenkomstige toepassing.\nDe deskundige personen verlenen hun bijstand met behoud van hun zelfstandigheid en\nvan hun onafhankelijkheid ten opzichte van de werkgever.\nHet verlenen van bijstand omvat in ieder geval:\nhet verlenen van medewerking aan het verrichten en opstellen van een risico-inventarisatie\nen -evaluatie als bedoeld in\nartikel 5\nhet adviseren aan onderscheidenlijk nauw samenwerken met de deskundige personen, bedoeld\nartikel 14, eerste lid\n, de ondernemingsraad of de personeelsvertegenwoordiging, of, bij het ontbreken daarvan,\nde belanghebbende werknemers, inzake de genomen en de te nemen maatregelen, gericht\nop een zo goed mogelijk arbeidsomstandighedenbeleid;\nde uitvoering van de maatregelen, bedoeld in onderdeel b, dan wel de medewerking daaraan.\nEen afschrift van een advies als bedoeld in het zevende lid, onderdeel b, wordt aan\nde werkgever gezonden.\nIn de risico-inventarisatie en -evaluatie, bedoeld in\nartikel 5\n, worden de maatregelen beschreven die nodig zijn om te voldoen aan het vierde en\ntiende lid.\nIn afwijking van het eerste tot en met het derde lid, kunnen bij werkgevers met niet\nmeer dan 25 werknemers de taken in het kader van de bijstand ook worden verricht door\nde werkgever zelf, indien deze natuurlijk persoon is, of door de directeur indien\nde werkgever rechtspersoon is, indien deze personen beschikken over voldoende deskundigheid,\nervaring en uitrusting om deze taken naar behoren te vervullen.",
               "whs_topics": [
                 {
-                  "id": "prevention_services",
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "ppe",
                   "relevance": "high",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 2,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "bc40250f26483f40",
+              "number": "14",
+              "title": "Artikel 14. Maatwerkregeling aanvullende deskundige bijstand bij specifieke taken",
+              "text": "op het gebied van preventie en bescherming\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het\nIn aanvulling op\nartikel 13\nlaat de werkgever zich bij de volgende taken bijstaan door een of meer deskundige\npersonen ten behoeve van wie overeenkomstig\nartikel 20\neen certificaat is afgegeven of die als bedrijfsarts is ingeschreven in een erkend\nspecialistenregister als bedoeld in\nartikel 14 van de Wet op de beroepen in de individuele gezondheidszorg\nhet toetsen van de risico-inventarisatie en -evaluatie, bedoeld in\nartikel 5\n, en daarover adviseren;\nhet adviseren bij de begeleiding van werknemers die door ziekte niet in staat zijn\nhun arbeid te verrichten, met inbegrip van het adviseren bij de uitvoering van bij\nof krachtens\nartikel 25, eerste, tweede, derde, vierde en zevende lid van de Wet werk en inkomen\nnaar arbeidsvermogen\n, dan wel bij of krachtens\nartikel 71a, eerste, tweede, derde, vierde en zevende lid, van de Wet op de arbeidsongeschiktheidsverzekering\ngestelde regels;\nhet uitvoeren van:\n1°.\nhet arbeidsgezondheidskundig onderzoek, bedoeld in\nartikel 18\n2°.\nde aanstellingskeuring, indien de werkgever deze laat verrichten;\n3°.\nde consultatie met betrekking tot gezondheidskundige vraagstukken in verband met de\narbeid, anders dan de begeleiding, bedoeld onder b.\nBij de toepassing van het eerste lid wordt het volgende in acht genomen:\nde bijstand bij de taken, bedoeld in het eerste lid, wordt doeltreffend uitgevoerd;\nde bijstand bij de taak, bedoeld in het eerste lid, onderdeel a, wordt binnen het\nbedrijf of de inrichting georganiseerd;\nvoorzover de mogelijkheden onvoldoende zijn om de bijstand bij de taak, bedoeld in\nhet eerste lid, onderdeel a, binnen het bedrijf of de inrichting te organiseren, wordt\nde bijstand verleend door een of meer andere deskundige personen als bedoeld in het\neerste lid, aanhef;\nde personen die de bijstand verrichten, hebben een zodanige uitrusting en zijn zodanig\nin aantal, gedurende zoveel tijd beschikbaar en zodanig georganiseerd, dat zij de\nbijstand bij de taken, bedoeld in het eerste lid, naar behoren kunnen verlenen;\ner is een doeltreffende toegang tot de bedrijfsarts;\nde bedrijfsarts is in de gelegenheid iedere arbeidsplaats in het bedrijf of de inrichting\nvan de werkgever te bezoeken;\ntenzij zwaarwegende argumenten zich daartegen verzetten, honoreert de bedrijfsarts\neen verzoek van de werknemer om in verband met een door hem gegeven advies dat betrekking\nheeft op de taken, bedoeld in het eerste lid, onder b en c, zo spoedig mogelijk een\nandere bedrijfsarts te raadplegen;\nde bedrijfsarts heeft een adequate procedure voor het afwikkelen van klachten;\nde personen die bijstand verrichten, werken nauw samen met en adviseren en verlenen\nmedewerking aan de in\nartikel 13, eerste lid\n, genoemde deskundige personen, de ondernemingsraad of de personeelsvertegenwoordiging,\nof, bij het ontbreken daarvan, de belanghebbende werknemers, inzake te nemen, genomen\nen uit te voeren maatregelen gericht op een zo goed mogelijk arbeidsomstandighedenbeleid;\nde bedrijfsarts adviseert over preventieve maatregelen betreffende het algemeen arbeidsomstandighedenbeleid,\nbedoeld in\nartikel 3\nEen afschrift van een advies als bedoeld in het eerste lid, onderdeel a, wordt door\nde degene die dit advies heeft opgesteld gezonden aan de ondernemingsraad of de personeelsvertegenwoordiging.\nBij het ontbreken van een ondernemingsraad of personeelsvertegenwoordiging wordt een\nafschrift van dit advies zo spoedig mogelijk door de werkgever gezonden aan de belanghebbende\nwerknemers.\nDe wijze waarop de bijstandverlening plaatsvindt met betrekking tot de taken, bedoeld\nin de\nartikelen 9, derde lid\n14a\nalsmede de daarop berustende bepalingen, wordt door of vanwege een overeenkomst tussen\nde werkgever en de deskundige personen, bedoeld in\nartikel 14, eerste lid\n, schriftelijk vastgelegd. Onderdeel van de overeenkomst is de wijze waarop de in\nde aanhef van dit artikel genoemde personen in het bedrijf of de inrichting van de\nwerkgever met inachtneming van de professionele dienstverlening uitvoering kunnen\ngeven aan de verplichtingen die op grond van de in de eerste zin bedoelde taken op\nhen rusten.\nAangaande de bedrijfsarts wordt in de overeenkomst, bedoeld in het vierde lid, in\nhet bijzonder aandacht besteed aan de wijze waarop aan het tweede lid, onderdelen\nf tot en met j, en\nartikel 9, derde lid\n, uitvoering wordt gegeven.\nBij de gegevensverwerking noodzakelijk voor de uitvoering van de taak, bedoeld in\nhet eerste lid, onderdeel b, kan gebruik worden gemaakt van het burgerservicenummer.\nArtikel 464 van Boek 7 van het Burgerlijk Wetboek\nvoorzover het betreft de overeenkomstige toepassing van de\nartikelen 457\n464, tweede lid, onder b, van Boek 7 van het Burgerlijk Wetboek\n, is niet van toepassing indien in verband met de uitvoering van deze wet handelingen\nworden verricht op het gebied van de geneeskunst door personen die zijn belast met\nde taken, bedoeld in het eerste lid, onderdeel b.\nArtikel 13, vijfde en zesde lid\n, is van overeenkomstige toepassing.\nDe organisatie van de bijstand bij de taken, bedoeld in het eerste lid, kan, met inachtneming\nvan het tweede lid, plaatsvinden bij:\ncollectieve arbeidsovereenkomst of bij regeling door of namens een daartoe bevoegd\nbestuursorgaan, of\nregeling waaromtrent de werkgever schriftelijk overeenstemming heeft bereikt met de\nondernemingsraad of de personeelsvertegenwoordiging.\nIndien zowel een collectieve arbeidsovereenkomst of een regeling als bedoeld in het\nnegende lid, onderdeel a, als een regeling als bedoeld in het negende lid, onderdeel\nb, gelden, zijn de in die overeenkomst en regelingen gegeven bepalingen naast elkaar\nvan toepassing. In geval van strijd zijn de bepalingen van de collectieve arbeidsovereenkomst\nof de regeling, bedoeld in het negende lid, onderdeel a, van toepassing.\nVoor de toepassing van dit artikel en de daarop berustende bepalingen geldt een collectieve\narbeidsovereenkomst als bedoeld in het negende lid, onderdeel a, en een regeling als\nbedoeld in het negende lid, onderdelen a en b, gedurende 5 jaren, te rekenen vanaf\nhet tijdstip waarop die collectieve arbeidsovereenkomst of die regeling ingaat. Bij\nwijziging van de in de eerste zin bedoelde collectieve arbeidsovereenkomst of regeling\nbinnen 5 jaren na inwerkingtreding, wordt het in de eerste zin bedoelde tijdvak beëindigd\nop het tijdstip van inwerkingtreding van de gewijzigde collectieve arbeidsovereenkomst\nof regeling.\nHet eerste lid, aanhef en onderdeel a, is niet van toepassing ten aanzien van de werkgever:\ndie werknemers arbeid laat verrichten voor een tijdsduur van in totaal, voor alle\nwerknemers gezamenlijk, ten hoogste 40 uur per week, of\nmet in de regel ten hoogste 25 werknemers, indien voor het opstellen van een risico-inventarisatie\nen -evaluatie gebruik wordt gemaakt van:\n1°.\neen model dat is opgenomen in een collectieve arbeidsovereenkomst of in een regeling\ndoor een daartoe bevoegd bestuursorgaan en een onverplicht karakter heeft, of\n2°.\neen instrument dat is aangemeld bij Onze Minister dan wel bij een door Onze Minister\naangewezen instelling.\nBij of krachtens algemene maatregel van bestuur worden regels gesteld voor:\nde tijdsduur van arbeid die buiten beschouwing wordt gelaten bij de toepassing van\nhet twaalfde lid, onderdeel a;\nhet model en het instrument, bedoeld in het twaalfde lid, onderdeel b.\nBij of krachtens algemene maatregel van bestuur kan worden bepaald dat de bijstand\nbij een of meer taken als bedoeld in het eerste lid, onderdelen b en c, niet verplicht\nis met inachtneming van bij of krachtens die algemene maatregel van bestuur gegeven\nvoorschriften.\nHet niet naleven van de bij of krachtens deze wet vastgestelde verplichtingen, bedoeld\nin het tweede lid, onder g, h en j, door de bedrijfsarts, de verplichting, bedoeld\nin het tweede lid, onder i, door de personen, bedoeld in het eerste lid, en de verplichting,\nbedoeld in het derde lid, eerste zin, door de personen, bedoeld in het eerste lid,\nwordt aangemerkt als een overtreding.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -402,10 +645,30 @@
               "id": "e8bd89e03119ef82",
               "number": "14a",
               "title": "Artikel 14a. Vangnetregeling aanvullende deskundige bijstand op het gebied van preventie",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "en bescherming\nIndien de bijstand bij de taken, bedoeld in\nartikel 14, eerste lid\n, niet is georganiseerd met toepassing van\nartikel 14, negende lid\n, wordt deze bijstand georganiseerd met inachtneming van dit artikel.\nDe werkgever laat zich met betrekking tot de taken, bedoeld in\nartikel 14, eerste lid\n, bijstaan door een arbodienst, ten behoeve waarvan overeenkomstig\nartikel 20\neen certificaat is afgegeven en die deel uitmaakt van de organisatie van het bedrijf\nof de inrichting.\nVoorzover de mogelijkheden onvoldoende zijn om de bijstand binnen het bedrijf of de\ninrichting te organiseren, wordt de bijstand verleend door een andere arbodienst ten\nbehoeve waarvan, overeenkomstig\nartikel 20\n, een certificaat is afgegeven.\nDe werknemers van een arbodienst werken nauw samen met en adviseren en verlenen medewerking\naan de in\nartikel 13, eerste lid\n, genoemde deskundige personen, de ondernemingsraad of de personeelsvertegenwoordiging,\nof, bij het ontbreken daarvan, de belanghebbende werknemers, inzake te nemen, genomen\nen uit te voeren maatregelen gericht op een zo goed mogelijk arbeidsomstandighedenbeleid.\nHet niet naleven van deze verplichting door de werknemers van een arbodienst wordt\naangemerkt als een overtreding.\nArtikel 13, vijfde en zesde lid\n, is van overeenkomstige toepassing.\nArtikel 14, tweede lid, onder a en onder d tot en met j, derde tot en met zevende\nlid en twaalfde tot en met vijftiende lid\n, is van toepassing.",
               "whs_topics": [
                 {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
                   "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "ppe",
                   "relevance": "high",
                   "match_count": 1
                 }
@@ -422,24 +685,39 @@
               "id": "3e56e35a64f94794",
               "number": "15",
               "title": "Artikel 15. Deskundige bijstand op het gebied van bedrijfshulpverlening",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "De werkgever laat zich ten aanzien van de naleving van zijn verplichtingen op grond\nvan\nartikel 3, eerste lid, onder e, van deze wet\nbijstaan door een of meer werknemers die door hem zijn aangewezen als bedrijfshulpverleners.\nHet verlenen van de bijstand houdt in elk geval in:\nhet verlenen van eerste hulp bij ongevallen;\nhet beperken en het bestrijden van brand en het beperken van de gevolgen van ongevallen;\nhet in noodsituaties alarmeren en evacueren van alle werknemers en andere personen\nin het bedrijf of de inrichting.\nDe bedrijfshulpverleners beschikken over een zodanige opleiding en uitrusting, zijn\nzodanig in aantal en zodanig georganiseerd dat zij de in het tweede lid genoemde taken\nnaar behoren kunnen vervullen.",
               "whs_topics": [
                 {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
                   "id": "first_aid",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "training",
                   "relevance": "high",
                   "match_count": 1
                 },
                 {
-                  "id": "prevention_services",
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
                   "relevance": "high",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -447,7 +725,7 @@
               "id": "c731643741dc1fca",
               "number": "15a",
               "title": "Artikel 15a. Informatierechten deskundige werknemers en personen, bedrijfshulpverleners",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "en arbodiensten\nDe werkgever zorgt ervoor dat de deskundige werknemers en de andere deskundige personen,\nbedoeld in\nartikel 13\n, de personen, bedoeld in\nartikel 14, eerste lid\n, de bedrijfshulpverleners, bedoeld in\nartikel 15\n, en de arbodienst kennis kunnen nemen van:\nde ongevalsrapportages en de lijst van arbeidsongevallen, bedoeld in\nartikel 9\neen eis als bedoeld in\nartikel 27, eerste lid\neen bevel als bedoeld in\nartikel 28, eerste lid\neen bevel als bedoeld in\nartikel 28a, tweede lid\neen beschikking tot oplegging van een last onder bestuursdwang of tot oplegging van\neen last onder dwangsom als bedoeld in\nartikel 28b\neen verzoek om ontheffing als bedoeld in\nartikel 30, tweede lid\neen rapport als bedoeld in\nartikel 36, eerste lid\neen beschikking als bedoeld in\nartikel 37, eerste lid",
               "whs_topics": [
                 {
                   "id": "employee_rights",
@@ -457,14 +735,24 @@
                 {
                   "id": "prevention_services",
                   "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             }
@@ -480,19 +768,39 @@
               "id": "641032aadabee737",
               "number": "16",
               "title": "Artikel 16. Nadere regels met betrekking tot arbeidsomstandigheden alsmede uitzonderingen",
-              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "text": "op en uitbreidingen van toepassingsgebied\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het\nBij of krachtens algemene maatregel van bestuur worden regels gesteld in verband met\narbeidsomstandigheden van de werknemers.\nDe in het eerste lid bedoelde regels\nhebben betrekking op de arbozorg en de organisatie van de arbeid, de inrichting van\nde arbeidsplaatsen, het werken met gevaarlijke stoffen en biologische agentia, de\nmate van fysieke belasting waaraan werknemers blootstaan, de fysische factoren die\nzich op de arbeidsplaats voordoen, de bij de arbeid gebruikte arbeidsmiddelen en persoonlijke\nbeschermingsmiddelen en de op de arbeidsplaats te gebruiken veiligheids- en gezondheidssignalering\nkunnen mede strekken ter uitvoering van de\nartikelen 3\n14a\nDe in het eerste en tweede lid bedoelde regels kunnen inhouden:\neen verbod om bepaalde bij die maatregel omschreven arbeid te verrichten of te doen\nverrichten waaraan bijzondere gevaren voor de veiligheid of de gezondheid zijn verbonden;\neen verbod om bepaalde bij die maatregel omschreven arbeid te verrichten of te doen\nverrichten, indien met betrekking tot die arbeid niet aan de bij of krachtens die\nmaatregel vastgestelde voorwaarden of voorschriften is voldaan;\neen verbod om bepaalde bij die maatregel omschreven gevaarlijke stoffen of voorwerpen\nvoorhanden te hebben, waaraan bijzondere gevaren voor de veiligheid of de gezondheid\nzijn verbonden;\neen verbod om bepaalde bij die maatregel omschreven gevaarlijke stoffen of voorwerpen\nvoorhanden te hebben, indien met betrekking tot die stoffen of voorwerpen niet aan\nde bij of krachtens die maatregel vastgestelde voorwaarden of voorschriften is voldaan;\neen verbod om bepaalde bij die maatregel omschreven arbeid te verrichten of te doen\nverrichten indien de werknemers niet arbeidsgezondheidskundig zijn onderzocht.\nBij algemene maatregel van bestuur kan worden bepaald dat deze wet en de daarop berustende\nbepalingen geheel of gedeeltelijk niet van toepassing zijn op:\narbeid verricht in of op een luchtvaartuig, dan wel een zeeschip of binnenvaartuig,\ndan wel een voertuig op een openbare weg of een spoor- of tramweg;\narbeid verricht in militaire dienst;\narbeid verricht door werknemers en verrichtingen als bedoeld in\nartikel 2, onderdeel b\n, van leerlingen en studenten in onderwijsinrichtingen;\narbeid verricht bij een verkenningsonderzoek, het opsporen of winnen van delfstoffen\nof aardwarmte dan wel het opslaan van stoffen als bedoeld in de Mijnbouwwet;\narbeid verricht binnen de exclusieve economische zone.\nDe in het derde lid, onder e, bedoelde maatregel stelt het verrichten van arbeid slechts\nafhankelijk van het resultaat van een arbeidsgezondheidskundig onderzoek voor zover\ndie arbeid bijzondere gevaren meebrengt voor het leven of de gezondheid van de werknemer\nzelf of van andere personen of voor zover dit om andere bijzondere redenen geboden\nis. Bij of krachtens algemene maatregel van bestuur worden met betrekking tot dit\narbeidsgezondheidskundig onderzoek en de wijze van registratie, verwerking en bewaring\nvan de uitslag daarvan nadere regels gesteld. Deze hebben in ieder geval betrekking\nop de gevallen waarin en de wijze waarop een verzoek tot herkeuring kan worden gedaan.\nBij algemene maatregel van bestuur kunnen met betrekking tot de arbeid of de verrichtingen:\nbedoeld in het vierde lid;\nverricht in de burgerlijke openbare dienst;\nverricht in een gevangenis of huis van bewaring als bedoeld in de\nPenitentiaire beginselenwet\n, een justitiële inrichting voor verpleging van ter beschikking gestelden als bedoeld\nin de\nBeginselenwet verpleging ter beschikking gestelden\nof een inrichting als bedoeld in de\nBeginselenwet justitiële jeugdinrichtingen\nregels worden gesteld die afwijken van deze wet of de daarop berustende bepalingen\nof strekken tot aanvulling daarvan. Met betrekking tot de arbeid of de verrichtingen,\nbedoeld in het vierde lid, onder c, kan bij algemene maatregel van bestuur worden\nbepaald dat\nafdeling 4.1.2 van de Algemene wet bestuursrecht\nniet van toepassing is.\nBij algemene maatregel van bestuur kan worden bepaald dat de verplichting tot naleving\nvan daarbij aangewezen voorschriften van deze wet of de daarop berustende bepalingen,\nvoor zover zij betrekking hebben op arbeid waaraan bijzondere gevaren voor de veiligheid\nof de gezondheid zijn verbonden, dan wel noodzakelijk zijn ter uitvoering van verdragen\nof besluiten van volkenrechtelijke organisaties, zich mede richt tot:\neen zelfstandige;\neen werkgever die deze arbeid zelf verricht;\ndegene bij wie vrijwilligers werkzaam zijn;\neen vrijwilliger.\nBij algemene maatregel van bestuur kan worden bepaald dat de verplichting tot naleving\nvan daarbij aangegeven voorschriften in de gevallen bij die maatregel omschreven rust\nop een ander dan de werkgever. Aangewezen kunnen worden de eigenaar of beheerder dan\nwel degene die anderszins bevoegd is te beslissen over het ontwerp, de vervaardiging\ndan wel het onderhoud van arbeidsplaatsen en arbeidsmiddelen, zoals zonodig nader\nbij die maatregel is bepaald.\nDe in het eerste lid bedoelde regels kunnen betrekking hebben op andere onderwerpen\ndan die genoemd in het tweede lid of zich richten tot andere personen dan de werkgever\nof de in het zevende en achtste lid bedoelde personen, indien dat noodzakelijk is\nter uitvoering van verdragen of besluiten van volkenrechtelijke organisaties met betrekking\ntot de verbetering van de veiligheid of de gezondheid.\nDe werkgever, dan wel een ander dan de werkgever bedoeld in het zevende, achtste of\nnegende lid en de werknemers zijn verplicht tot naleving van de voorschriften en verboden\nvastgesteld bij of krachtens de op grond van dit artikel,\nartikel 20, eerste lid\n, en\nartikel 24, negende lid\n, vastgestelde algemene maatregel van bestuur voorzover en op de wijze als bij of\nkrachtens deze maatregel is bepaald.\nHet niet naleven van de in het tiende lid bedoelde voorschriften en verboden kan worden\naangemerkt als strafbaar feit.",
               "whs_topics": [
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
                 {
                   "id": "workplace_design",
                   "relevance": "high",
-                  "match_count": 1
+                  "match_count": 3
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 8,
+                "level": "critical",
+                "high_keyword_matches": 3,
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -500,8 +808,53 @@
               "id": "21575bd152cdf289",
               "number": "17",
               "title": "Artikel 17. Maatwerk door werkgevers en werknemers",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Bij algemene maatregel van bestuur kan, met inachtneming van in die maatregel gegeven\nvoorschriften, worden bepaald dat aan een of meer van de krachtens deze wet vastgestelde\nbepalingen op een andere wijze kan worden voldaan dan in die bepalingen is aangegeven,\nechter uitsluitend bij collectieve regeling als bedoeld in\nartikel 1:3, eerste lid van de Arbeidstijdenwet\n, dan wel een regeling waaromtrent de werkgever schriftelijk overeenstemming heeft\nbereikt met de ondernemingsraad of de personeelsvertegenwoordiging. Daarbij wordt\nte allen tijde in acht genomen dat geen afbreuk wordt gedaan aan het beschermingsniveau\nvan de in de eerste volzin bedoelde bepalingen.",
               "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "788c41d6f22e4670",
+              "number": "18",
+              "title": "Artikel 18. Arbeidsgezondheidskundig onderzoek",
+              "text": "De werkgever stelt de werknemers periodiek in de gelegenheid een onderzoek te ondergaan,\ndat erop is gericht de risico's die de arbeid voor de gezondheid van de werknemers\nmet zich brengt zoveel mogelijk te voorkomen of te beperken.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
                 {
                   "id": "employer_obligations",
                   "relevance": "high",
@@ -514,30 +867,10 @@
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "788c41d6f22e4670",
-              "number": "18",
-              "title": "Artikel 18. Arbeidsgezondheidskundig onderzoek",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 3
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -545,8 +878,18 @@
               "id": "0771c7c68bc337e6",
               "number": "19",
               "title": "Artikel 19. Verschillende werkgevers",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Indien in een bedrijf of een inrichting verschillende werkgevers arbeid doen verrichten,\nwerken zij onderling op doelmatige wijze samen teneinde de naleving van het bij of\nkrachtens deze wet bepaalde te verzekeren.\nAlvorens werkzaamheden behorende tot een bij algemene maatregel van bestuur aangewezen\ncategorie aanvangen zorgen de werkgevers ervoor dat schriftelijk is vastgelegd op\nwelke wijze zal worden samengewerkt, welke voorzieningen daarbij zullen worden getroffen\nen op welke wijze op die voorzieningen toezicht zal worden uitgeoefend.",
               "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
                 {
                   "id": "employer_obligations",
                   "relevance": "high",
@@ -565,12 +908,28 @@
               "id": "cc1a0384e8b7fcde",
               "number": "20",
               "title": "Artikel 20. Certificatie",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Bij of krachtens algemene maatregel van bestuur worden regels gesteld op grond waarvan\nwerkgevers, werknemers, andere personen of instellingen in het bezit moeten zijn van\neen of meer certificaten waaruit blijkt dat zij voldoen aan voorschriften, gesteld\nbij of krachtens deze wet.\nOnze Minister dan wel een door Onze Minister op verzoek aangewezen instelling beslist\nop aanvraag over de afgifte van het certificaat en is tevens bevoegd een afgegeven\ncertificaat in te trekken of te schorsen. De\nKaderwet zelfstandige bestuursorganen\nis niet van toepassing op aangewezen instellingen als bedoeld in de eerste zin.\nEen certificaat als bedoeld in het eerste lid en een aanwijzing als bedoeld in het\ntweede lid worden gegeven voor een beperkte tijdsduur. Aan een aanwijzing en een certificaat\nkunnen voorschriften worden verbonden. De bedoelde beperking en voorschriften worden\nin de aanwijzing en het certificaat vermeld.\nBij of krachtens algemene maatregel van bestuur worden regels gesteld onder meer met\nbetrekking tot:\nde wijze waarop de aanvraag om een certificaat als bedoeld in het eerste lid en een\naanwijzing als bedoeld in het tweede lid wordt gedaan en de gegevens die daarbij van\nde aanvrager worden verlangd;\nde gronden waarop een aanwijzing kan worden gegeven, gewijzigd, geschorst of ingetrokken;\nde gronden waarop en de gevallen waarin de afgifte van een certificaat kan worden\ngeweigerd dan wel een afgegeven certificaat kan worden geschorst of ingetrokken;\nde vergoeding van de kosten die is verschuldigd in verband met de afgifte van een\ncertificaat of het geven van een aanwijzing.\nDe kosten van onderzoeken of nog steeds wordt voldaan aan de voorwaarden voor de afgifte\nvan een certificaat onderscheidenlijk het geven van een aanwijzing, kunnen eveneens\nten laste worden gebracht van de houder van het certificaat onderscheidenlijk de aangewezen\ninstelling, mits deze onderzoeken en kosten zijn vastgelegd in een voorschrift als\nbedoeld in het derde lid.\nIndien bij de afgifte van een certificaat, het geven van een aanwijzing of het verrichten\nvan een onderzoek als bedoeld in het vijfde lid, diensten van derden worden benut,\nkunnen ook de door die derden gemaakte kosten ten laste worden gebracht van de houder\nvan het certificaat onderscheidenlijk de aangewezen instelling dan wel de aanvrager,\nbedoeld in het vierde lid, onder a.\nDe berekening van de door derden gemaakte kosten als bedoeld in het zesde lid, voor\nzover deze ten laste worden gebracht van de houder van een certificaat onderscheidenlijk\nde aangewezen instelling dan wel de aanvrager, bedoeld in het vierde lid, onder a,\ngeschiedt door die derden op zorgvuldige, transparante en éénduidige wijze met inachtneming\nvan de redelijkheid en proportionaliteit.\nBij ministeriële regeling worden nadere regels gesteld betreffende de wijze van betaling\nvan de vergoeding van de kosten, bedoeld in het vierde, vijfde en zesde lid.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -579,18 +938,23 @@
               "id": "6b2ae564c3490335",
               "number": "21",
               "title": "Artikel 21. Informatievoorziening",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "De krachtens\nartikel 20, tweede lid\n, aangewezen instellingen verstrekken desgevraagd kosteloos aan Onze Minister de voor\nde uitoefening van zijn taak benodigde inlichtingen. Onze Minister kan inzage vorderen\nvan zakelijke gegevens en bescheiden, voor zover dat voor de vervulling van zijn taak\nredelijkerwijs nodig is.\nBij algemene maatregel van bestuur kunnen de krachtens\nartikel 20, tweede lid\n, aangewezen instellingen worden verplicht tot het periodiek opstellen en toezenden\naan Onze Minister van een verslag van de in\nartikel 20, tweede lid\n, genoemde werkzaamheden en de rechtmatigheid en doeltreffendheid van die werkzaamheden\nen werkwijze in de afgelopen periode.",
               "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
                 {
                   "id": "employee_rights",
                   "relevance": "medium",
-                  "match_count": 1
+                  "match_count": 2
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -599,12 +963,12 @@
               "id": "289020bba57e3716",
               "number": "22",
               "title": "Artikel 22. Aanwijzingen",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Onze Minister kan de krachtens\nartikel 20, tweede lid\n, aangewezen instellingen aanwijzingen geven met betrekking tot de uitoefening van\nhun taak. Hij treedt daarbij niet in individuele gevallen.\nDe krachtens\nartikel 20, tweede lid\n, aangewezen instellingen zijn gehouden overeenkomstig de aanwijzing, bedoeld in het\neerste lid, te handelen.",
               "whs_topics": [],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -613,12 +977,18 @@
               "id": "fdb1b4412e66b6a3",
               "number": "23",
               "title": "Artikel 23. Taakverwaarlozing",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Bij algemene maatregel van bestuur kunnen voorzieningen worden getroffen voor het\ngeval de krachtens\nartikel 20, tweede lid\n, aangewezen instellingen hun uit deze wet voortvloeiende verplichtingen niet naar\nbehoren nakomen.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -635,13 +1005,39 @@
               "id": "b6ec4585798bbbff",
               "number": "24",
               "title": "Artikel 24. Ambtenaren belast met het toezicht",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Met het toezicht op de naleving van het bepaalde bij of krachtens deze wet zijn belast\nde bij besluit van Onze Minister aangewezen onder hem ressorterende ambtenaren.\nMet betrekking tot door Onze Minister aangewezen categorieën van arbeid zijn met het\ntoezicht op de naleving van het bepaalde bij of krachtens deze wet belast of mede\nbelast de door hem aangewezen andere ambtenaren dan de in het eerste lid bedoelde.\nIndien ambtenaren worden aangewezen die ressorteren onder een andere minister, wordt\nhet besluit tot aanwijzing van die ambtenaren genomen door Onze Minister en die andere\nminister gezamenlijk. Van een besluit als bedoeld in het eerste lid en in dit lid\nwordt mededeling gedaan door plaatsing in de Staatscourant.\nDe toezichthouder is bevoegd, met medeneming van de benodigde apparatuur, een woning\nbinnen te treden zonder toestemming van de bewoner.\nDe toezichthouder is voorts bevoegd te allen tijde ter zake van een arbeidsongeval\neen onderzoek in te stellen. Hij stelt naar aanleiding van dat onderzoek een rapport\nop.\nDe toezichthouder stelt ter voldoening aan\nartikel 5:18, zesde lid, van de Algemene wet bestuursrecht\neen rapport op; dit rapport en een rapport als bedoeld in het vierde lid zendt hij\naan de werkgever, aan de ondernemingsraad of aan de personeelsvertegenwoordiging,\nen indien van toepassing, aan de bij een arbeidsongeval betrokken persoon of personen.\nDe toezichthouder is bevoegd bij het verwerken van persoonsgegevens gebruik te maken\nvan het burgerservicenummer voorzover dat voor de vervulling van zijn taak redelijkerwijs\nnodig is.\nDe toezichthouder geeft zo spoedig mogelijk gehoor aan het verzoek om een onderzoek\nin te stellen, gedaan door de ondernemingsraad of de personeelsvertegenwoordiging,\ndan wel door een vereniging van werknemers, die krachtens haar statuten ten doel heeft\nde belangen van haar leden als werknemers te behartigen en als zodanig in de betrokken\nonderneming of bedrijfstak werkzaam is en in het bezit is van volledige rechtsbevoegdheid.\nTen dienste van het onderzoek naar een overtreding is de toezichthouder, voor zover\ndat voor de vervulling van zijn taak redelijkerwijs nodig is, bevoegd ieder staande\nte houden en te vorderen dat hij zijn naam, voornamen, geboortedatum en geboortejaar\nen adres opgeeft.\nBij of krachtens algemene maatregel van bestuur kan worden bepaald dat in de bij of\nkrachtens die maatregel te bepalen gevallen en wijze degene die arbeid verricht of\ndoet verrichten in de territoriale zee of de exclusieve economische zone, verplicht\nis de toezichthouder bij de uitoefening van zijn bevoegdheden te vervoeren naar door\nde toezichthouder aan te duiden plaatsen waar deze arbeid wordt of zal worden verricht.\nGelet op artikel 9, tweede lid, onderdeel b, van de Algemene verordening gegevensbescherming,\nis het verbod om gegevens over gezondheid te verwerken niet van toepassing indien\nde verwerking geschiedt door de toezichthouder, voor zover de verwerking noodzakelijk\nis voor het onderzoek naar arbeidsongevallen die leiden tot de dood, een blijvend\nletsel of een ziekenhuisopname als bedoeld in\nartikel 9, eerste lid\nIndien toepassing wordt gegeven aan het tiende lid worden de gegevens over gezondheid\nalleen verwerkt door personen die uit hoofde van ambt, beroep of wettelijk voorschrift\ndan wel krachtens een overeenkomst tot geheimhouding zijn verplicht.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 2,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -649,8 +1045,14 @@
               "id": "ce623a91071ccae9",
               "number": "25",
               "title": "Artikel 25. Toezicht op instellingen",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Onze Minister ziet toe op de rechtmatige en doeltreffende uitvoering van het bepaalde\nbij en krachtens deze wet door krachtens\nartikel 20, tweede lid\n, aangewezen instellingen.",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 2,
                 "level": "medium",
@@ -663,8 +1065,24 @@
               "id": "e8088b010a22443d",
               "number": "26",
               "title": "Artikel 26. Geheimhouding",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "De toezichthouders zijn, behoudens tegenover hen aan wier gezag zij uit kracht van\nhun ambt zijn onderworpen, verplicht tot geheimhouding van de namen van de personen\ndoor wie een klacht is ingediend of aangifte is gedaan van een overtreding van deze\nwet en de daarop berustende bepalingen, behoudens wanneer deze personen hun schriftelijk\nhebben verklaard tegen de mededeling van hun namen geen bedenkingen te hebben.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -677,8 +1095,24 @@
               "id": "e58c19ea316c4a18",
               "number": "27",
               "title": "Artikel 27. Eis tot naleving",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Een daartoe aangewezen toezichthouder kan aan een werkgever een eis stellen betreffende\nde wijze waarop een of meer bepalingen gesteld bij of krachtens deze wet moeten worden\nnageleefd.\nEen eis vermeldt van welke regelen hij de wijze van naleving bepaalt en bevat de termijn\nwaarbinnen eraan moet zijn voldaan.\nDe werkgever is verplicht om aan de eis te voldoen. De werknemers zijn verplicht aan\nde eis te voldoen voor zover zulks bij de eis is bepaald. De werkgever draagt zorg\ndat de werknemers van de op hen rustende verplichting zo spoedig mogelijk in kennis\nworden gesteld.\nVoor de toepassing van de vorige leden worden met een werkgever gelijkgesteld: de\nartikel 16, zevende, achtste en negende lid\n, bedoelde personen voor zover het betreft de krachtens dat artikel omschreven verplichtingen.\nEen eis kan worden gesteld tot naleving van de\nartikelen 3\n13, eerste lid, eerste volzin, en tweede tot en met vierde lid, zevende lid, onder\nb, negende en tiende lid\n14, eerste lid, tweede lid, onder a tot en met f, vierde en vijfde lid\n14a, tweede, derde en vierde lid\n15, eerste en derde lid\n, voor zover dat bij de krachtens dat artikel gestelde regels is bepaald,\nEen eis kan worden gesteld tot naleving van\nartikel 14, tweede lid, onder g, h en j\n, waarbij voor de toepassing van het eerste tot en met derde lid de bedrijfsarts met\nde werkgever gelijk wordt gesteld en tot naleving van artikel 14, tweede lid, onder\ni, waarbij voor de toepassing van het eerste tot en met derde lid de in\nartikel 14, eerste lid\n, bedoelde personen met de werkgever gelijk worden gesteld.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -691,13 +1125,39 @@
               "id": "d3d7f01e2b0db301",
               "number": "28",
               "title": "Artikel 28. Stillegging van het werk",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Een daartoe aangewezen toezichthouder is bevoegd mondeling of bij gedagtekend schrijven\nte bevelen, dat personen niet mogen blijven in door hem aangewezen plaatsen, of dat\ndoor hem aangewezen werkzaamheden worden gestaakt dan wel niet mogen worden aangevangen,\nindien naar zijn redelijk oordeel dat verblijf of die werkzaamheden ernstig gevaar\nopleveren voor personen.\nEen mondeling bevel wordt zo spoedig mogelijk schriftelijk bevestigd aan de werkgever\nof aan de andere personen, bedoeld in\nartikel 16, zevende, achtste en negende lid\nDe bevoegdheid, bedoeld in het eerste lid, geldt mede in die gevallen, waarin op grond\nvan het bepaalde in\nartikel 27\naan een gestelde eis nog geen uitvoering behoeft te worden gegeven.\nZodra naar het oordeel van de toezichthouder die een bevel als bedoeld in het eerste\nlid gaf, geen ernstig gevaar meer aanwezig is, trekt hij het bevel in.\nDe toezichthouder, die een bevel als bedoeld in het eerste lid gegeven heeft, is bevoegd\nmet betrekking tot dit bevel de nodige maatregelen te treffen, de nodige aanwijzingen\nte geven en de hulp van de sterke arm in te roepen. De maatregelen en aanwijzingen\nkunnen onder meer betrekking hebben op het verzegelen van arbeidsmiddelen en arbeidsplaatsen.\nIeder wie zulks aangaat is verplicht zich te gedragen overeenkomstig een bevel, als\nbedoeld in het eerste lid en een aanwijzing als bedoeld in het vijfde lid.\nDe bevoegdheden uit het eerste tot en met zesde lid zijn van overeenkomstige toepassing\nindien in verband met de epidemie van een infectieziekte behorend tot groep A1 of\neen directe dreiging daarvan als bedoeld in de\nWet publieke gezondheid\n, bij of krachtens wettelijk voorschrift dan wel gezien de stand van de wetenschap\nen professionele dienstverlening benodigde noodzakelijke maatregelen of voorzieningen\ndie de kans op besmetting van werknemers of derden op arbeidsplaatsen kunnen voorkomen\nof beperken, in ernstige mate niet worden getroffen.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             },
@@ -705,12 +1165,28 @@
               "id": "7fcf836c43155620",
               "number": "28a",
               "title": "Artikel 28a. Bevel stillegging van werk in verband met recidive",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Een daartoe door Onze Minister aangewezen, onder hem ressorterende ambtenaar kan,\nnadat een overtreding van een voorschrift of verbod bij of krachtens deze wet is geconstateerd\ndie bestuurlijk beboetbaar is gesteld of op grond van de\nWet op de economische delicten\nstrafbaar is gesteld, aan de werkgever of de zelfstandige een schriftelijke waarschuwing\ngeven dat bij herhaling van de overtreding of bij een latere overtreding van eenzelfde\nin de waarschuwing aangegeven wettelijke verplichting of verbod of bij of krachtens\nalgemene maatregel van bestuur aan te wijzen soortgelijke verplichtingen of verboden,\ndoor hem een bevel kan worden opgelegd dat door hem aangewezen werkzaamheden voor\nten hoogste drie maanden worden gestaakt dan wel niet mogen worden aangevangen.\nDe artikelen 24, tweede lid\n, en\n27, vierde lid\n, zijn van overeenkomstige toepassing.\nIndien een waarschuwing als bedoeld in het eerste lid is gegeven en herhaling van\nde overtreding of een latere overtreding als bedoeld in het eerste lid is geconstateerd,\nkan door de ambtenaar, bedoeld in het eerste lid, aan de werkgever of de zelfstandige\nbij beschikking een bevel als bedoeld in het eerste lid worden opgelegd dat wordt\nopgevolgd met ingang van het in de beschikking aangeven tijdstip. Deze beschikking\nwordt niet gegeven zolang wegens de eerste overtreding, bedoeld in het eerste lid,\nnog niet een bestuurlijke boete is opgelegd of een proces-verbaal is opgemaakt.\nDe constatering van de overtreding, bedoeld in het eerste of tweede lid, wordt vastgelegd\nin een boeterapport of proces-verbaal.\nDe waarschuwing, bedoeld in het eerste lid, vervalt indien na de dagtekening van de\nwaarschuwing vijf jaren zijn verstreken.\nDe ambtenaar, bedoeld in het eerste lid, is bevoegd met betrekking tot het bevel,\nbedoeld in het tweede lid, de nodige maatregelen te treffen, de nodige aanwijzingen\nte geven en de hulp van de sterke arm in te roepen.\nIeder wie zulks aangaat is verplicht zich te gedragen overeenkomstig een bevel als\nbedoeld in het tweede lid en een maatregel of aanwijzing als bedoeld in het vijfde\nlid.\nBij of krachtens algemene maatregel van bestuur worden nadere regels gesteld met betrekking\ntot het eerste en tweede lid.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -719,7 +1195,7 @@
               "id": "25f7b23d1ef57469",
               "number": "28b",
               "title": "Artikel 28b. Last onder bestuursdwang",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Onze Minister is bevoegd tot oplegging van een last onder bestuursdwang ter zake van\nde naleving van de\nartikelen 24, negende lid\n28, eerste lid\n, en\n28a, tweede lid\n, en de daartoe bij algemene maatregel van bestuur aangewezen bepalingen krachtens\ndeze wet. Artikel 24, tweede lid, is van overeenkomstige toepassing.",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -733,13 +1209,34 @@
               "id": "8de8e0360ced54f6",
               "number": "29",
               "title": "Artikel 29. Werkonderbreking",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Een werknemer is bevoegd het werk te onderbreken en de onderbreking voort te zetten,\nindien en zolang naar zijn redelijk oordeel ernstig gevaar voor personen als bedoeld\nartikel 28\naanwezig is en naar zijn redelijk oordeel het gevaar zo onmiddellijk dreigt dat een\ntoezichthouder niet tijdig kan optreden. Voor de duur van de onderbreking behoudt\nde werknemer zijn aanspraak op het naar tijdruimte vastgesteld loon. De werknemer\nmag als gevolg van de werkonderbreking niet worden benadeeld in zijn positie in het\nbedrijf of in de inrichting.\nDegene die stelt dat de werknemer de aanwezigheid van onmiddellijk dreigend gevaar\nals bedoeld in het eerste lid op grond van de feiten waarop hij zich beroept, niet\nnaar zijn redelijk oordeel mocht aannemen, moet dit bewijzen.\nIndien de onderbreking van het werk geschiedt buiten weten van de werkgever onderscheidenlijk\nde bij de arbeid betrokken leidinggevende persoon, moet de werknemer de onderbreking\nterstond bij deze melden.\nDe onderbreking van het werk wordt zo spoedig mogelijk ter kennis gebracht van de\ndaartoe aangewezen toezichthouder, die een bevel geeft krachtens\nartikel 28, eerste lid\n, of verklaart, zo nodig onder het stellen van een eis als bedoeld in\nartikel 27\n, dat de arbeid kan worden verricht. Door de beschikking van de daartoe aangewezen\ntoezichthouder eindigt de bevoegdheid van de werknemer de werkonderbreking voort te\nzetten.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -747,12 +1244,23 @@
               "id": "55e8db39f170893b",
               "number": "29a",
               "title": "Artikel 29a. Gegevensuitwisseling",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Bestuursorganen en een instelling als bedoeld in\nartikel 20, tweede lid\n, zijn bevoegd uit eigen beweging en verplicht desgevraagd aan Onze Minister en de\ntoezichthouder kosteloos alle gegevens en inlichtingen te verstrekken die noodzakelijk\nzijn voor de uitvoering en het toezicht op de naleving van het bepaalde bij of krachtens\ndeze wet en dit noodzakelijk is ten behoeve van een samenwerkingsverband tussen twee\nof meer van de voornoemde instanties.\nOnze Minister en de toezichthouder verstrekken andere bestuursorganen en een instelling\nals bedoeld in\nartikel 20, tweede lid\n, kosteloos alle gegevens en inlichtingen, die zijn verkregen door de uitvoering of\nhet toezicht op de naleving van het bepaalde bij of krachtens deze wet, welke noodzakelijk\nzijn voor de uitvoering van hun wettelijke taak en dit noodzakelijk is ten behoeve\nvan een samenwerkingsverband tussen twee of meer van de voornoemde instanties.\nOnze Minister, bestuursorganen, de toezichthouder en een instelling als bedoeld in\nartikel 20, tweede lid\n, kunnen bij het verwerken van persoonsgegevens gebruik maken van het burgerservicenummer.\nDe gegevensverstrekking, bedoeld in het eerste en tweede lid, vindt niet plaats indien\nde persoonlijke levenssfeer van de betrokkene daardoor onevenredig wordt geschaad.\nBij of krachtens algemene maatregel van bestuur kunnen regels worden gesteld omtrent\nde gevallen waarin en de wijze waarop in ieder geval gegevens worden verstrekt.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -761,7 +1269,7 @@
               "id": "40934318ae3a497c",
               "number": "29b",
               "title": "Artikel 29b. Openbaarmaking van door toezicht op de naleving verkregen gegevens",
-              "text": "... Sla het regelingonderdeel op\n\n[Tekst zonder datum inwerkingtreding. Zie het wijzigingenoverzicht .]",
+              "text": "[Tekst zonder datum inwerkingtreding. Zie het\nDit onderdeel is (nog) niet in werking getreden; zie het",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -783,8 +1291,14 @@
               "id": "1be661c157895fe6",
               "number": "30",
               "title": "Artikel 30. Vrijstelling en ontheffing",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Onze Minister kan met betrekking tot categorieën van bedrijven, inrichtingen, personen,\nof arbeidsverhoudingen vrijstelling verlenen van de voorschriften zoals die bij of\nkrachtens de\nartikelen 5\n12 tot en met 18\nzijn vastgesteld.\nEen daartoe aangewezen toezichthouder kan met betrekking tot een individueel bedrijf\nof inrichting ontheffing verlenen van de in het eerste lid bedoelde voorschriften,\ntenzij met betrekking tot een dergelijk voorschrift een eis is gesteld.\nBij algemene maatregel van bestuur kunnen regelen worden gesteld inzake het verlenen\nvan vrijstellingen of ontheffingen als bedoeld in het eerste onderscheidenlijk tweede\nlid.\nEen vrijstelling of een ontheffing kan onder beperkingen worden verleend.\nAan een vrijstelling of een ontheffing kunnen voorschriften worden verbonden.\nEen vrijstelling onderscheidenlijk ontheffing kan worden ingetrokken wanneer:\neen of meer der redenen waarom zij is verleend is of zijn vervallen;\neen of meer van de daaraan verbonden voorschriften niet wordt of worden nageleefd;\nzich na de verlening zodanige feiten of omstandigheden voordoen dat, indien deze ten\ntijde van de verlening bekend waren geweest, de vrijstelling of ontheffing niet of\nniet in die vorm zou zijn verleend.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 2,
                 "level": "medium",
@@ -797,7 +1311,7 @@
               "id": "06a586a406f2d643",
               "number": "31",
               "title": "Artikel 31. Beroep",
-              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "text": "[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het\nTegen een beschikking op grond van deze wet van een ambtenaar als bedoeld in\nartikel 24, tweede lid\n, kan door een belanghebbende administratief beroep worden ingesteld bij Onze Minister,\ntenzij sprake is van een beschikking die blijkens het tweede lid namens Onze Minister\nwordt gegeven.\nEen beschikking op grond van deze wet van een ambtenaar als bedoeld in de\nartikelen 24, eerste lid\n28a, eerste lid\n28b\n, en\n34, eerste lid\n, wordt gegeven namens Onze Minister.",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -819,19 +1333,39 @@
               "id": "f12e03ab6b496d49",
               "number": "32",
               "title": "Artikel 32. Strafbepaling",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Het is de werkgever verboden handelingen te verrichten of na te laten in strijd met\ndeze wet of de daarop berustende bepalingen indien daardoor, naar hij weet of redelijkerwijs\nmoet weten, levensgevaar of ernstige schade aan de gezondheid van een of meer werknemers\nontstaat of te verwachten is.",
               "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
                 {
                   "id": "penalties",
                   "relevance": "high",
                   "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -839,12 +1373,12 @@
               "id": "c32f89050e636cc3",
               "number": "33",
               "title": "Artikel 33. Overtredingen",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Als overtreding wordt aangemerkt het niet naleven van de\nartikelen 3\n4, eerste lid\n6, eerste lid, eerste volzin\n9, eerste en tweede lid\n13, eerste lid, eerste volzin, en tweede tot en met vierde lid, zevende lid, onder\nb, negende en tiende lid\n14, eerste lid, tweede lid, onder a tot en met f, derde lid, tweede zin, vierde en\nvijfde lid\n14a, tweede en derde lid\n15, eerste en derde lid\nAls overtreding wordt tevens aangemerkt het niet naleven van de\nartikelen 6, eerste lid, tweede volzin\n, en\n16, tiende lid\n, voor zover het niet naleven van de in die artikelleden bedoelde voorschriften en\nverboden bij of krachtens algemene maatregel van bestuur is aangemerkt als overtreding.\nGeen bestuurlijke boete kan worden opgelegd ter zake van bij of krachtens deze wet\nstrafbaar gestelde feiten of ter zake van deze wet in de\nWet op de economische delicten\nstrafbaar gestelde feiten, met uitzondering van de strafbare feiten, bedoeld in\nartikel 6, derde lid\n, van deze wet en\nartikel 1, onder 1°, van de Wet op de economische delicten\nten aanzien van artikel 6, eerste lid, eerste volzin.",
               "whs_topics": [
                 {
                   "id": "penalties",
                   "relevance": "high",
-                  "match_count": 1
+                  "match_count": 3
                 }
               ],
               "amazon_logistics_relevance": {
@@ -859,7 +1393,7 @@
               "id": "52b49ce265e5157b",
               "number": "33a",
               "title": "Artikel 33a. a",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-07-2009]",
+              "text": "[Vervallen per 01-07-2009]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -873,18 +1407,28 @@
               "id": "a3cee359c40a2fba",
               "number": "34",
               "title": "Artikel 34. Hoogte bestuurlijke boete en recidive",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Een daartoe door Onze Minister aangewezen, onder hem ressorterende ambtenaar legt\nde bestuurlijke boete op aan de overtreder op wie de verplichtingen rusten die voortvloeien\nuit deze wet en de daarop berustende bepalingen, voor zover het niet naleven daarvan\nis aangeduid als overtreding.\nDe ambtenaar, bedoeld in het eerste lid, is niet reeds aangewezen als toezichthouder.\nDe bestuurlijke boete die voor een overtreding kan worden opgelegd bedraagt ten hoogste\nhet bedrag van de vijfde categorie, bedoeld in\nartikel 23, vierde lid, van het Wetboek van Strafrecht\nDe bestuurlijke boete die voor een overtreding van\nartikel 6, eerste lid\n, of voor het niet naleven van een voorschrift of verbod bij of krachtens de algemene\nmaatregel van bestuur, bedoeld in artikel 6, eerste lid, voor zover aangemerkt als\novertreding, kan worden opgelegd bedraagt ten hoogste het bedrag van de zesde categorie,\nbedoeld in\nartikel 23, vierde lid, van het Wetboek van Strafrecht\nOnverminderd het derde en vierde lid verhoogt de op grond van het eerste lid aangewezen\nambtenaar de op te leggen bestuurlijke boete met 100 procent van het boetebedrag,\nvastgesteld op grond van het tiende lid, indien binnen een tijdvak van vijf jaar voorafgaand\naan de dag van constatering van de overtreding een eerdere overtreding, bestaande\nuit het niet naleven van eenzelfde wettelijke verplichting of verbod of het niet naleven\nvan bij of krachtens algemene maatregel van bestuur aan te wijzen soortgelijke verplichtingen\nen verboden, is geconstateerd en de bestuurlijke boete wegens de eerdere overtreding\nonherroepelijk is geworden.\nDe verhoging van de bestuurlijke boete, bedoeld in het vijfde lid, bedraagt 200 procent\nindien zowel de overtreding als de eerdere overtreding, bedoeld in dat lid, bij of\nkrachtens algemene maatregel van bestuur zijn aangewezen als ernstige overtredingen.\nOnverminderd het derde en vierde lid verhoogt de op grond van het eerste lid aangewezen\nambtenaar de op te leggen bestuurlijke boete met 200 procent van het boetebedrag,\nvastgesteld op grond van het tiende lid, indien binnen een tijdvak van vijf jaar voorafgaand\naan de dag van constatering van de overtreding twee maal een eerdere overtreding,\nbestaande uit het niet naleven van eenzelfde wettelijke verplichting of verbod of\nhet niet naleven van bij of krachtens algemene maatregel van bestuur aan te wijzen\nsoortgelijke verplichtingen en verboden, is geconstateerd en de bestuurlijke boeten\nwegens de eerdere overtredingen onherroepelijk zijn geworden.\nVoor de toepassing van het vijfde en zevende lid wordt met een onherroepelijke bestuurlijke\nboete gelijkgesteld een onherroepelijke strafrechtelijke sanctie wegens een overtreding\nals bedoeld in\nartikel 6, derde lid\nIn afwijking van het vijfde en zevende lid is het tijdvak van vijf jaar in die leden\ntien jaar indien de onherroepelijke boetes, bedoeld in die leden, zijn opgelegd wegens\nbij of krachtens algemene maatregel van bestuur aangewezen ernstige overtredingen.\nOnze Minister stelt beleidsregels vast waarin de boetebedragen voor de overtredingen\nworden vastgesteld.\nArtikel 5:53 van de Algemene wet bestuursrecht\nis van toepassing indien een artikel gesteld bij of krachtens deze wet op grond waarvan\neen bestuurlijke boete kan worden opgelegd, niet is nageleefd.\nIn afwijking van\nartikel 8:69 van de Algemene wet bestuursrecht\nkan de rechter in beroep of hoger beroep de hoogte van de boete ook ten nadele van\nde belanghebbende wijzigen.",
               "whs_topics": [
                 {
                   "id": "penalties",
                   "relevance": "high",
+                  "match_count": 4
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -893,7 +1437,7 @@
               "id": "f0bd18d5c711252c",
               "number": "35",
               "title": "Artikel 35. 5",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-07-2009]",
+              "text": "[Vervallen per 01-07-2009]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -907,11 +1451,16 @@
               "id": "692b9ed930c398ac",
               "number": "36",
               "title": "Artikel 36. Boeterapport",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Onverminderd\nartikel 5:48, tweede lid, van de Algemene wet bestuursrecht\nvermeldt het rapport naast de overtreder in ieder geval de andere bij de overtreding\nbetrokken persoon of personen.\nHet rapport wordt toegezonden aan de daartoe op grond van\nartikel 34, eerste lid\n, aangewezen ambtenaar.\nEen afschrift van het rapport wordt toegezonden of uitgereikt aan de andere bij de\novertreding betrokken persoon of personen, bedoeld in het eerste lid.",
               "whs_topics": [
                 {
                   "id": "penalties",
                   "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
                   "match_count": 1
                 }
               ],
@@ -927,12 +1476,12 @@
               "id": "899189f58b2d3e3b",
               "number": "37",
               "title": "Artikel 37. Boetebeschikking",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Een afschrift van de boetebeschikking wordt toegezonden of uitgereikt aan de andere\nbij de overtreding betrokken persoon of personen, bedoeld in\nartikel 36, eerste lid\n, en in voorkomend geval, desgevraagd aan zijn of hun nabestaande of nabestaanden.",
               "whs_topics": [
                 {
                   "id": "penalties",
                   "relevance": "high",
-                  "match_count": 1
+                  "match_count": 2
                 }
               ],
               "amazon_logistics_relevance": {
@@ -947,12 +1496,12 @@
               "id": "5dfbb1ae57ab90b7",
               "number": "38",
               "title": "Artikel 38. Inlichtingenplicht jegens de boeteoplegger",
-              "text": "... Sla het regelingonderdeel op",
+              "text": "Degene aan wie een bestuurlijke boete is opgelegd is verplicht desgevraagd aan de\ndaartoe op grond van\nartikel 34, eerste lid\n, aangewezen ambtenaar de inlichtingen te verstrekken die voor de tenuitvoerlegging\nvan de boete van belang zijn.",
               "whs_topics": [
                 {
                   "id": "employer_obligations",
                   "relevance": "high",
-                  "match_count": 1
+                  "match_count": 2
                 },
                 {
                   "id": "penalties",
@@ -972,7 +1521,7 @@
               "id": "a950ed95f372f929",
               "number": "39",
               "title": "Artikel 39. 9",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-07-2009]",
+              "text": "[Vervallen per 01-07-2009]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -986,7 +1535,7 @@
               "id": "9a3dca1a4bd2cdb2",
               "number": "40",
               "title": "Artikel 40. 0",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-04-2011]",
+              "text": "[Vervallen per 01-04-2011]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1000,7 +1549,7 @@
               "id": "20533ced4c5e0769",
               "number": "41",
               "title": "Artikel 41. 1",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-07-2009]",
+              "text": "[Vervallen per 01-07-2009]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1014,7 +1563,7 @@
               "id": "0c672a8c78051581",
               "number": "42",
               "title": "Artikel 42. 2",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2013]",
+              "text": "[Vervallen per 01-01-2013]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1028,8 +1577,19 @@
               "id": "3c2348da21643bef",
               "number": "43",
               "title": "Artikel 43. Terugbetaling",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Indien een bestuurlijke boete ten onrechte is opgelegd, wordt deze binnen zes weken\nnadat is vastgesteld dat de bestuurlijke boete ten onrechte is opgelegd, aan de rechthebbende\nterugbetaald.",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 2,
                 "level": "medium",
@@ -1050,8 +1610,14 @@
               "id": "ad0ddcfbd5863fb3",
               "number": "44",
               "title": "Artikel 44. Kosten",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "De kosten die zijn verbonden aan de naleving van de regels die bij of krachtens deze\nwet zijn gesteld, worden niet ten laste van de werknemers gebracht.",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -1064,13 +1630,39 @@
               "id": "cd92cd3b084877d4",
               "number": "45",
               "title": "Artikel 45. Overgangsbepaling",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Op schriftelijke afspraken die zijn gemaakt overeenkomstig\nartikel 14, vierde lid\n, zoals dat artikellid luidde de dag voorafgaand aan het tijdstip van inwerkingtreding\nvan de Wet van 25 januari 2017 tot wijziging van de Arbeidsomstandighedenwet in verband\nmet de versterking van de betrokkenheid van de werkgevers en werknemers bij de arbodienstverlening,\nde preventie in het bedrijf of de inrichting van de werkgever, en de randvoorwaarden\nvoor het handelen van de bedrijfsarts (Stb. 2017, 22), blijft artikel 14, vierde lid,\nzoals dat artikellid luidde de dag voorafgaand aan het tijdstip van inwerkingtreding\nvan die wet, van toepassing tot de datum waarop die afspraken expireren, doch uiterlijk\ntot een jaar na inwerkingtreding van die wet. Tot dat tijdstip is\nartikel 14, vijfde lid\n, niet van toepassing.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -1078,8 +1670,14 @@
               "id": "5a4e4ba43b03643c",
               "number": "46",
               "title": "Artikel 46. Citeertitel",
-              "text": "... Sla het regelingonderdeel op",
-              "whs_topics": [],
+              "text": "Deze wet wordt aangehaald als: Arbeidsomstandighedenwet.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -1092,7 +1690,7 @@
               "id": "25ce789938aadbe4",
               "number": "47",
               "title": "Artikel 47. 7",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1106,7 +1704,7 @@
               "id": "b8df87555bc3d2fe",
               "number": "49",
               "title": "Artikel 49. 9",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1120,7 +1718,7 @@
               "id": "fa92a6dc5232ed14",
               "number": "50",
               "title": "Artikel 50. 0",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1134,7 +1732,7 @@
               "id": "be58eeaa5f04b138",
               "number": "51",
               "title": "Artikel 51. 1",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1148,7 +1746,7 @@
               "id": "1135cdfb75537976",
               "number": "52",
               "title": "Artikel 52. 2",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1162,7 +1760,7 @@
               "id": "0613ca5944e369d8",
               "number": "53",
               "title": "Artikel 53. 3",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-05-2004]",
+              "text": "[Vervallen per 01-05-2004]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1176,7 +1774,7 @@
               "id": "2898c32271b2b09c",
               "number": "54",
               "title": "Artikel 54. 4",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 29-12-2000]",
+              "text": "[Vervallen per 29-12-2000]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1190,7 +1788,7 @@
               "id": "fd7c18f7f71dd9c2",
               "number": "55",
               "title": "Artikel 55. 5",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1204,7 +1802,7 @@
               "id": "ad4bf34b954a636d",
               "number": "56",
               "title": "Artikel 56. 6",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1218,7 +1816,7 @@
               "id": "17cad480c5001d7a",
               "number": "57",
               "title": "Artikel 57. 7",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1232,7 +1830,7 @@
               "id": "8009456ba1993242",
               "number": "58",
               "title": "Artikel 58. 8",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1246,7 +1844,7 @@
               "id": "5628e96b2a3c4106",
               "number": "59",
               "title": "Artikel 59. 9",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1260,7 +1858,7 @@
               "id": "f3ced159d7f2d4b8",
               "number": "60",
               "title": "Artikel 60. 0",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1274,7 +1872,7 @@
               "id": "d192647868745a4b",
               "number": "61",
               "title": "Artikel 61. 1",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1288,7 +1886,7 @@
               "id": "175d84faf0af45b1",
               "number": "62",
               "title": "Artikel 62. 2",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1302,7 +1900,7 @@
               "id": "cc83af693ac3bb7b",
               "number": "63",
               "title": "Artikel 63. 3",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1316,7 +1914,7 @@
               "id": "0750b0e465a9d08f",
               "number": "64",
               "title": "Artikel 64. 4",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1330,7 +1928,7 @@
               "id": "fc0c4ab4bc8e6238",
               "number": "65",
               "title": "Artikel 65. 5",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -1344,7 +1942,7 @@
               "id": "f577fbe273e372d5",
               "number": "66",
               "title": "Artikel 66. 6",
-              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "text": "[Vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,

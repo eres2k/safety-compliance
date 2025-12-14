@@ -78,7 +78,7 @@ except ImportError:
 class Config:
     """Global configuration for the law manager."""
     base_path: Path = field(default_factory=lambda: Path(__file__).parent)
-    scraper_version: str = "7.0.0"
+    scraper_version: str = "7.1.0"
     request_timeout: int = 30
     rate_limit_delay: float = 0.5
     max_retries: int = 3
@@ -396,6 +396,13 @@ Return ONLY the cleaned text."""
 class Scraper:
     """Base scraper for EU safety laws."""
 
+    # Common HTTP headers to avoid being blocked
+    HTTP_HEADERS = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9,de;q=0.8,nl;q=0.7',
+    }
+
     def __init__(self, country: str):
         self.country = country
         self.config = CONFIG.sources.get(country, {})
@@ -406,21 +413,31 @@ class Scraper:
         """Scrape laws for this country. Override in subclass."""
         raise NotImplementedError
 
-    def fetch_url(self, url: str) -> Optional[str]:
-        """Fetch a URL with retries."""
+    def fetch_url(self, url: str, timeout: int = None) -> Optional[str]:
+        """Fetch a URL with retries and exponential backoff."""
         if not HAS_REQUESTS:
             log_error("requests package required for scraping. Install with: pip install requests")
             return None
 
+        timeout = timeout or CONFIG.request_timeout
+
         for attempt in range(CONFIG.max_retries):
             try:
-                response = requests.get(url, timeout=CONFIG.request_timeout)
+                response = requests.get(url, timeout=timeout, headers=self.HTTP_HEADERS)
                 response.raise_for_status()
                 return response.text
+            except requests.exceptions.Timeout:
+                log_warning(f"Timeout on attempt {attempt + 1}/{CONFIG.max_retries}")
+            except requests.exceptions.HTTPError as e:
+                status = e.response.status_code if e.response else 'unknown'
+                log_warning(f"HTTP {status} on attempt {attempt + 1}/{CONFIG.max_retries}")
             except Exception as e:
                 log_warning(f"Attempt {attempt + 1}/{CONFIG.max_retries} failed: {e}")
-                if attempt < CONFIG.max_retries - 1:
-                    time.sleep(2 ** attempt)
+
+            if attempt < CONFIG.max_retries - 1:
+                wait_time = 2 ** attempt  # 1s, 2s, 4s
+                time.sleep(wait_time)
+
         return None
 
 
@@ -862,15 +879,9 @@ class DEScraper(Scraper):
         return documents
 
     def _fetch_section_content(self, section_url: str) -> str:
-        """Fetch full content from individual section page with quick timeout."""
-        if not HAS_REQUESTS:
-            return ""
-
-        try:
-            response = requests.get(section_url, timeout=5)  # Quick 5s timeout
-            response.raise_for_status()
-            html = response.text
-        except Exception:
+        """Fetch full content from individual section page."""
+        html = self.fetch_url(section_url, timeout=15)
+        if not html:
             return ""
 
         soup = BeautifulSoup(html, 'html.parser')
@@ -880,8 +891,12 @@ class DEScraper(Scraper):
             elem.decompose()
 
         # Find the main content container (gesetze-im-internet uses specific divs)
-        content_div = soup.find('div', class_='jntext') or soup.find('div', class_='jurAbsatz')
+        # Try multiple selectors
+        content_divs = soup.find_all('div', class_='jurAbsatz')
+        if content_divs:
+            return '\n\n'.join(div.get_text(separator='\n', strip=True) for div in content_divs)
 
+        content_div = soup.find('div', class_='jntext')
         if content_div:
             return content_div.get_text(separator='\n', strip=True)
 
@@ -956,6 +971,42 @@ class DEScraper(Scraper):
             "medium_keyword_matches": medium_matches
         }
 
+    def _try_full_html_page(self, base_url: str, abbrev: str) -> Dict[str, str]:
+        """Try to fetch full law content from HTML full version page."""
+        section_contents = {}
+
+        # Try the BJNR full page
+        full_urls = [
+            urljoin(base_url, 'BJNR124610996.html'),  # ArbSchG specific
+            urljoin(base_url, 'index.html#BJNR124610996'),
+        ]
+
+        for full_url in full_urls:
+            html = self.fetch_url(full_url, timeout=60)
+            if not html:
+                continue
+
+            soup = BeautifulSoup(html, 'html.parser')
+
+            # Look for sections in the full page
+            for div in soup.find_all('div', class_='jurAbsatz'):
+                # Find the section number from nearby header
+                header = div.find_previous(['h2', 'h3', 'h4'])
+                if header:
+                    header_text = header.get_text(strip=True)
+                    match = re.search(r'§\s*(\d+[a-z]?)', header_text)
+                    if match:
+                        section_num = match.group(1)
+                        content = div.get_text(separator='\n', strip=True)
+                        if section_num not in section_contents or len(content) > len(section_contents[section_num]):
+                            section_contents[section_num] = content
+
+            if section_contents:
+                log_success(f"Extracted {len(section_contents)} sections from full HTML page")
+                break
+
+        return section_contents
+
     def _parse_german_law_full(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
         """Parse a German law with full text extraction."""
         soup = BeautifulSoup(html, 'html.parser')
@@ -984,29 +1035,44 @@ class DEScraper(Scraper):
                             "href": href
                         })
 
-        # Try to fetch content for each section (with fast timeout and limited retries)
-        log_info(f"Attempting to fetch {len(section_links)} section pages...")
-        progress = create_progress_bar(len(section_links), f"Fetching {abbrev} sections")
+        # Try to get full content from full HTML page first
+        log_info(f"Trying to fetch full HTML version...")
+        full_page_contents = self._try_full_html_page(url, abbrev)
 
-        failed_fetches = 0
-        max_failures = 3  # Stop trying after 3 consecutive failures
+        # If full page didn't work, try individual section pages
+        if not full_page_contents:
+            log_info(f"Attempting to fetch {len(section_links)} individual section pages...")
+            progress = create_progress_bar(len(section_links), f"Fetching {abbrev} sections")
 
+            failed_fetches = 0
+            max_failures = 3  # Stop trying after 3 consecutive failures
+
+            for link_info in section_links:
+                content = ""
+
+                # Only try fetching if we haven't had too many consecutive failures
+                if failed_fetches < max_failures:
+                    section_url = urljoin(url, link_info["href"])
+                    content = self._fetch_section_content(section_url)
+
+                    if not content:
+                        failed_fetches += 1
+                    else:
+                        failed_fetches = 0  # Reset on success
+                        full_page_contents[link_info["number"]] = content
+
+                progress.update(1)
+                if failed_fetches < max_failures:
+                    time.sleep(CONFIG.rate_limit_delay * 0.3)
+
+            progress.close()
+
+            if failed_fetches >= max_failures:
+                log_warning(f"Individual page fetching failed - using index titles only")
+
+        # Build sections list
         for link_info in section_links:
-            content = ""
-
-            # Only try fetching if we haven't had too many consecutive failures
-            if failed_fetches < max_failures:
-                section_url = urljoin(url, link_info["href"])
-                content = self._fetch_section_content(section_url)
-
-                if not content:
-                    failed_fetches += 1
-                else:
-                    failed_fetches = 0  # Reset on success
-
-            # Use title as fallback content if fetch failed
-            if not content:
-                content = link_info["title"]
+            content = full_page_contents.get(link_info["number"], link_info["title"])
 
             whs_topics = self._classify_whs_topics(content, link_info["title"])
             logistics_relevance = self._calculate_logistics_relevance(content, link_info["title"])
@@ -1020,15 +1086,6 @@ class DEScraper(Scraper):
                 "amazon_logistics_relevance": logistics_relevance,
                 "paragraphs": []
             })
-
-            progress.update(1)
-            if failed_fetches < max_failures:
-                time.sleep(CONFIG.rate_limit_delay * 0.3)  # Shorter delay
-
-        progress.close()
-
-        if failed_fetches >= max_failures:
-            log_warning(f"Individual page fetching failed - using index titles only")
 
         # Sort and organize into chapters
         sections.sort(key=lambda s: get_section_number(s))
@@ -1225,14 +1282,9 @@ class NLScraper(Scraper):
         """Parse a Dutch law with full text extraction."""
         soup = BeautifulSoup(html, 'html.parser')
 
-        # Remove UI boilerplate
-        for elem in soup.find_all(['nav', 'script', 'style', 'header', 'footer']):
+        # Remove script and style elements
+        for elem in soup.find_all(['script', 'style']):
             elem.decompose()
-
-        # Remove specific Dutch UI elements
-        for elem in soup.find_all(string=re.compile(r'(Toon relaties|Maak een permanente link|Toon wetstechnische|Druk het regelingonderdeel)', re.I)):
-            if elem.parent:
-                elem.parent.decompose()
 
         title_elem = soup.find('h1') or soup.find('title')
         title = title_elem.get_text(strip=True) if title_elem else abbrev
@@ -1240,67 +1292,81 @@ class NLScraper(Scraper):
         sections = []
         seen_sections = set()
 
-        # Find all Artikel headings (wetten.overheid.nl uses h4 for articles)
-        artikel_headings = soup.find_all(['h4', 'h3', 'h2'])
+        # UI boilerplate patterns to filter out
+        boilerplate_patterns = [
+            r'Toon relaties in LiDO',
+            r'Maak een permanente link',
+            r'Toon wetstechnische informatie',
+            r'Druk het regelingonderdeel af',
+            r'Sla het regelingonderdeel op',
+            r'\[Wijziging\(en\)[^\]]*\]',
+            r'wijzigingenoverzicht',
+        ]
+        boilerplate_regex = re.compile('|'.join(boilerplate_patterns), re.IGNORECASE)
 
-        for heading in artikel_headings:
-            text = heading.get_text(strip=True)
-            match = re.search(r'Artikel\s+(\d+[a-z]?)', text, re.IGNORECASE)
-            if match:
-                section_num = match.group(1)
-                if section_num in seen_sections:
+        # Find all artikel divs - these contain the actual article content
+        # wetten.overheid.nl uses div.artikel for article containers
+        artikel_divs = soup.find_all('div', class_=re.compile(r'^artikel$'))
+
+        for artikel_div in artikel_divs:
+            # Find the h4 header within the div
+            header = artikel_div.find('h4')
+            if not header:
+                continue
+
+            header_text = header.get_text(strip=True)
+            match = re.search(r'Artikel\s+(\d+[a-z]?)', header_text, re.IGNORECASE)
+            if not match:
+                continue
+
+            section_num = match.group(1)
+            if section_num in seen_sections:
+                continue
+            seen_sections.add(section_num)
+
+            # Extract title after article number
+            title_match = re.search(r'Artikel\s+\d+[a-z]?\.?\s*(.+)', header_text, re.IGNORECASE)
+            article_title = title_match.group(1).strip() if title_match else ""
+
+            # Get all text content from the artikel div
+            full_div_text = artikel_div.get_text(separator='\n', strip=True)
+
+            # Clean up the text: remove boilerplate and clean whitespace
+            cleaned_lines = []
+            for line in full_div_text.split('\n'):
+                line = line.strip()
+                # Skip empty lines and boilerplate
+                if not line or len(line) < 3:
                     continue
-                seen_sections.add(section_num)
+                if boilerplate_regex.search(line):
+                    continue
+                # Skip lines that are just the header repeated
+                if line == header_text:
+                    continue
+                # Skip UI action items
+                if line in ['...', '.']:
+                    continue
+                cleaned_lines.append(line)
 
-                # Extract title after article number
-                title_match = re.search(r'Artikel\s+\d+[a-z]?\.?\s*(.+)', text, re.IGNORECASE)
-                article_title = title_match.group(1).strip() if title_match else ""
+            # Join and further clean the text
+            full_text = '\n'.join(cleaned_lines)
+            # Remove excessive whitespace
+            full_text = re.sub(r'\n{3,}', '\n\n', full_text)
+            # Remove the article header from the beginning if present
+            full_text = re.sub(r'^Artikel\s+\d+[a-z]?\.?\s*[^\n]*\n*', '', full_text, flags=re.IGNORECASE)
 
-                # Collect all content until next article heading
-                content_parts = []
-                current = heading.find_next_sibling()
-                while current:
-                    if current.name in ['h2', 'h3', 'h4']:
-                        # Check if it's another article heading
-                        current_text = current.get_text(strip=True)
-                        if re.search(r'Artikel\s+\d+', current_text, re.IGNORECASE):
-                            break
-                        if re.search(r'Hoofdstuk\s+\d+', current_text, re.IGNORECASE):
-                            break
+            whs_topics = self._classify_whs_topics(full_text, article_title)
+            logistics_relevance = self._calculate_logistics_relevance(full_text, article_title)
 
-                    # Extract content from list items, paragraphs, divs
-                    if current.name in ['ul', 'ol', 'p', 'div', 'li']:
-                        elem_text = current.get_text(separator=' ', strip=True)
-                        # Filter out UI boilerplate
-                        if elem_text and len(elem_text) > 5:
-                            if not re.search(r'(Toon relaties|permanente link|wetstechnische)', elem_text, re.I):
-                                content_parts.append(elem_text)
-
-                    current = current.find_next_sibling()
-
-                # Deduplicate content parts
-                seen_content = set()
-                unique_content = []
-                for part in content_parts:
-                    normalized = part.lower().strip()[:100]
-                    if normalized not in seen_content:
-                        seen_content.add(normalized)
-                        unique_content.append(part)
-
-                full_text = '\n\n'.join(unique_content)
-
-                whs_topics = self._classify_whs_topics(full_text, article_title)
-                logistics_relevance = self._calculate_logistics_relevance(full_text, article_title)
-
-                sections.append({
-                    "id": generate_id(f"{abbrev}-{section_num}"),
-                    "number": section_num,
-                    "title": f"Artikel {section_num}. {article_title}".rstrip('.'),
-                    "text": full_text[:15000],
-                    "whs_topics": whs_topics,
-                    "amazon_logistics_relevance": logistics_relevance,
-                    "paragraphs": []
-                })
+            sections.append({
+                "id": generate_id(f"{abbrev}-{section_num}"),
+                "number": section_num,
+                "title": f"Artikel {section_num}. {article_title}".rstrip('.'),
+                "text": full_text[:15000],
+                "whs_topics": whs_topics,
+                "amazon_logistics_relevance": logistics_relevance,
+                "paragraphs": []
+            })
 
         # Sort sections by number
         sections.sort(key=lambda s: get_section_number(s))
