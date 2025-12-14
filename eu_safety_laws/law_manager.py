@@ -460,24 +460,74 @@ class ATScraper(Scraper):
         title_elem = soup.find('h1') or soup.find('title')
         title = title_elem.get_text(strip=True) if title_elem else abbrev
 
-        # Extract sections (§)
+        # Extract sections (§) - RIS uses multiple patterns
         sections = []
-        content_area = soup.find('div', class_='contentBlock') or soup.find('body')
+        seen_sections = set()
 
-        if content_area:
-            # Find all paragraph headers
-            for para in content_area.find_all(['h2', 'h3', 'div'], class_=re.compile(r'(para|section|norm)')):
-                section_text = para.get_text(strip=True)
-                match = re.search(r'§\s*(\d+[a-z]?)\.?', section_text)
-                if match:
-                    section_num = match.group(1)
+        # Method 1: Find h5 tags with § (RIS primary structure)
+        for h5 in soup.find_all('h5'):
+            text = h5.get_text(strip=True)
+            match = re.search(r'§\s*(\d+[a-z]?)\.?', text)
+            if match:
+                section_num = match.group(1)
+                if section_num not in seen_sections:
+                    seen_sections.add(section_num)
+                    # Get title from following h3
+                    h3 = h5.find_next('h3')
+                    section_title = h3.get_text(strip=True) if h3 else ""
+                    # Get content from following elements
+                    content_parts = []
+                    for sibling in h5.find_next_siblings():
+                        if sibling.name in ['h5', 'h2']:  # Stop at next section
+                            break
+                        if sibling.name in ['ol', 'p', 'div']:
+                            content_parts.append(sibling.get_text(strip=True))
                     sections.append({
                         "id": generate_id(f"{abbrev}-{section_num}"),
                         "number": section_num,
-                        "title": f"§ {section_num}",
-                        "text": section_text,
+                        "title": f"§ {section_num}. {section_title}".strip(),
+                        "text": "\n".join(content_parts)[:5000],  # Limit text size
                         "paragraphs": []
                     })
+
+        # Method 2: Find links to sections (fallback)
+        if not sections:
+            for link in soup.find_all('a', href=True):
+                text = link.get_text(strip=True)
+                match = re.search(r'§\s*(\d+[a-z]?)\.?', text)
+                if match:
+                    section_num = match.group(1)
+                    if section_num not in seen_sections:
+                        seen_sections.add(section_num)
+                        sections.append({
+                            "id": generate_id(f"{abbrev}-{section_num}"),
+                            "number": section_num,
+                            "title": f"§ {section_num}",
+                            "text": text,
+                            "paragraphs": []
+                        })
+
+        # Method 3: Find any element containing § pattern (last resort)
+        if not sections:
+            for elem in soup.find_all(string=re.compile(r'§\s*\d+')):
+                text = elem.strip() if isinstance(elem, str) else elem.get_text(strip=True)
+                match = re.search(r'§\s*(\d+[a-z]?)\.?', text)
+                if match:
+                    section_num = match.group(1)
+                    if section_num not in seen_sections:
+                        seen_sections.add(section_num)
+                        parent = elem.parent if hasattr(elem, 'parent') else None
+                        full_text = parent.get_text(strip=True) if parent else text
+                        sections.append({
+                            "id": generate_id(f"{abbrev}-{section_num}"),
+                            "number": section_num,
+                            "title": f"§ {section_num}",
+                            "text": full_text[:2000],
+                            "paragraphs": []
+                        })
+
+        # Sort sections by number
+        sections.sort(key=lambda s: get_section_number(s))
 
         return {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
@@ -543,17 +593,71 @@ class DEScraper(Scraper):
         title = title.get_text(strip=True) if title else abbrev
 
         sections = []
-        for link in soup.find_all('a', href=re.compile(r'__\d+\.html')):
-            section_text = link.get_text(strip=True)
-            match = re.search(r'§\s*(\d+[a-z]?)', section_text)
-            if match:
-                sections.append({
-                    "id": generate_id(f"{abbrev}-{match.group(1)}"),
-                    "number": match.group(1),
-                    "title": f"§ {match.group(1)}",
-                    "text": section_text,
-                    "paragraphs": []
-                })
+        seen_sections = set()
+
+        # Method 1: Find links to individual sections (gesetze-im-internet pattern)
+        for link in soup.find_all('a', href=True):
+            href = link.get('href', '')
+            text = link.get_text(strip=True)
+            # Match links like __1.html, __2.html or BJNR pattern
+            if re.search(r'(__\d+\.html|BJNE\d+)', href):
+                match = re.search(r'§\s*(\d+[a-z]?)\b', text)
+                if match:
+                    section_num = match.group(1)
+                    if section_num not in seen_sections:
+                        seen_sections.add(section_num)
+                        # Extract full title if available
+                        full_title = text.strip()
+                        sections.append({
+                            "id": generate_id(f"{abbrev}-{section_num}"),
+                            "number": section_num,
+                            "title": full_title if "§" in full_title else f"§ {section_num}",
+                            "text": full_title,
+                            "paragraphs": []
+                        })
+
+        # Method 2: Find headings with § (for full-text pages)
+        if not sections:
+            for heading in soup.find_all(['h2', 'h3', 'h4']):
+                text = heading.get_text(strip=True)
+                match = re.search(r'§\s*(\d+[a-z]?)\b', text)
+                if match:
+                    section_num = match.group(1)
+                    if section_num not in seen_sections:
+                        seen_sections.add(section_num)
+                        # Get content from following siblings
+                        content_parts = []
+                        for sibling in heading.find_next_siblings():
+                            if sibling.name in ['h2', 'h3', 'h4']:
+                                break
+                            content_parts.append(sibling.get_text(strip=True))
+                        sections.append({
+                            "id": generate_id(f"{abbrev}-{section_num}"),
+                            "number": section_num,
+                            "title": text,
+                            "text": "\n".join(content_parts)[:5000],
+                            "paragraphs": []
+                        })
+
+        # Method 3: Find any text with § pattern (fallback)
+        if not sections:
+            for elem in soup.find_all(string=re.compile(r'§\s*\d+')):
+                text = str(elem).strip()
+                match = re.search(r'§\s*(\d+[a-z]?)\b', text)
+                if match:
+                    section_num = match.group(1)
+                    if section_num not in seen_sections:
+                        seen_sections.add(section_num)
+                        sections.append({
+                            "id": generate_id(f"{abbrev}-{section_num}"),
+                            "number": section_num,
+                            "title": f"§ {section_num}",
+                            "text": text[:1000],
+                            "paragraphs": []
+                        })
+
+        # Sort sections by number
+        sections.sort(key=lambda s: get_section_number(s))
 
         return {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
@@ -607,17 +711,69 @@ class NLScraper(Scraper):
         title = title_elem.get_text(strip=True) if title_elem else abbrev
 
         sections = []
-        for artikel in soup.find_all(['h2', 'h3', 'div'], string=re.compile(r'Artikel\s+\d+')):
-            text = artikel.get_text(strip=True)
-            match = re.search(r'Artikel\s+(\d+[a-z]?)', text)
+        seen_sections = set()
+
+        # Method 1: Find h4 headings with Artikel (wetten.overheid.nl pattern)
+        for heading in soup.find_all(['h4', 'h3', 'h2']):
+            text = heading.get_text(strip=True)
+            match = re.search(r'Artikel\s+(\d+[a-z]?)', text, re.IGNORECASE)
             if match:
-                sections.append({
-                    "id": generate_id(f"{abbrev}-{match.group(1)}"),
-                    "number": f"{match.group(1)}.",
-                    "title": f"Artikel {match.group(1)}.",
-                    "text": text,
-                    "paragraphs": []
-                })
+                section_num = match.group(1)
+                if section_num not in seen_sections:
+                    seen_sections.add(section_num)
+                    # Get content from following siblings
+                    content_parts = []
+                    for sibling in heading.find_next_siblings():
+                        if sibling.name in ['h2', 'h3', 'h4']:
+                            break
+                        if sibling.name in ['p', 'div', 'ol', 'ul']:
+                            content_parts.append(sibling.get_text(strip=True))
+                    sections.append({
+                        "id": generate_id(f"{abbrev}-{section_num}"),
+                        "number": f"{section_num}.",
+                        "title": text,
+                        "text": "\n".join(content_parts)[:5000] if content_parts else text,
+                        "paragraphs": []
+                    })
+
+        # Method 2: Find links to articles (fallback)
+        if not sections:
+            for link in soup.find_all('a', href=True):
+                text = link.get_text(strip=True)
+                match = re.search(r'Artikel\s+(\d+[a-z]?)', text, re.IGNORECASE)
+                if match:
+                    section_num = match.group(1)
+                    if section_num not in seen_sections:
+                        seen_sections.add(section_num)
+                        sections.append({
+                            "id": generate_id(f"{abbrev}-{section_num}"),
+                            "number": f"{section_num}.",
+                            "title": f"Artikel {section_num}.",
+                            "text": text,
+                            "paragraphs": []
+                        })
+
+        # Method 3: Find any text with Artikel pattern (last resort)
+        if not sections:
+            for elem in soup.find_all(string=re.compile(r'Artikel\s+\d+', re.IGNORECASE)):
+                text = str(elem).strip()
+                match = re.search(r'Artikel\s+(\d+[a-z]?)', text, re.IGNORECASE)
+                if match:
+                    section_num = match.group(1)
+                    if section_num not in seen_sections:
+                        seen_sections.add(section_num)
+                        parent = elem.parent if hasattr(elem, 'parent') else None
+                        full_text = parent.get_text(strip=True) if parent else text
+                        sections.append({
+                            "id": generate_id(f"{abbrev}-{section_num}"),
+                            "number": f"{section_num}.",
+                            "title": f"Artikel {section_num}.",
+                            "text": full_text[:2000],
+                            "paragraphs": []
+                        })
+
+        # Sort sections by number
+        sections.sort(key=lambda s: get_section_number(s))
 
         return {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
