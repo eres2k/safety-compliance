@@ -132,7 +132,28 @@ function generateSummaryFromContent(content, maxLength = 200) {
 function normalizeLawItem(item) {
   // Get full text from various possible locations
   // AT/NL store full_text at top level, DE stores it in content.full_text
-  const fullText = item.full_text || item.content?.full_text || item.content?.text || null
+  let fullText = item.full_text || item.content?.full_text || item.content?.text || null
+
+  // Fallback: If no direct full_text but chapters exist, reconstruct from chapters
+  // This handles AT data where text is stored in chapters[].sections[].text
+  if (!fullText && item.chapters && Array.isArray(item.chapters) && item.chapters.length > 0) {
+    const textParts = []
+    for (const chapter of item.chapters) {
+      if (chapter.title) {
+        textParts.push(`\n${chapter.title}\n`)
+      }
+      if (chapter.sections && Array.isArray(chapter.sections)) {
+        for (const section of chapter.sections) {
+          if (section.text) {
+            textParts.push(section.text)
+          }
+        }
+      }
+    }
+    if (textParts.length > 0) {
+      fullText = textParts.join('\n\n')
+    }
+  }
 
   // Clean the summary text
   let cleanedSummary = cleanSummaryText(item.summary)
