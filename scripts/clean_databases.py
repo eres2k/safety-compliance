@@ -8,6 +8,7 @@ Usage:
     python scripts/clean_databases.py --country AT
     python scripts/clean_databases.py --country DE
     python scripts/clean_databases.py --country NL
+    python scripts/clean_databases.py --all --fast  # Only clean full_text, skip sections
 
 Environment:
     GEMINI_API_KEY: Your Gemini API key (required)
@@ -37,6 +38,13 @@ try:
 except ImportError:
     HAS_REQUESTS = False
 
+# Try to import tqdm for progress bars
+try:
+    from tqdm import tqdm
+    HAS_TQDM = True
+except ImportError:
+    HAS_TQDM = False
+
 # Colors for terminal output
 class Colors:
     RED = '\033[91m'
@@ -45,6 +53,7 @@ class Colors:
     BLUE = '\033[94m'
     CYAN = '\033[96m'
     RESET = '\033[0m'
+    BOLD = '\033[1m'
 
 def log_info(msg):
     print(f"{Colors.CYAN}ℹ {msg}{Colors.RESET}")
@@ -62,6 +71,57 @@ def log_header(msg):
     print(f"\n{Colors.BLUE}{'='*60}{Colors.RESET}")
     print(f"{Colors.BLUE}{msg}{Colors.RESET}")
     print(f"{Colors.BLUE}{'='*60}{Colors.RESET}\n")
+
+def log_progress(msg):
+    """Log progress message that overwrites the current line"""
+    print(f"\r{Colors.CYAN}  → {msg}{Colors.RESET}", end='', flush=True)
+
+def log_progress_done():
+    """Clear the progress line"""
+    print()
+
+
+class SimpleProgressBar:
+    """Simple text-based progress bar for when tqdm is not available"""
+    def __init__(self, total, desc="Processing", width=40):
+        self.total = total
+        self.current = 0
+        self.desc = desc
+        self.width = width
+        self.start_time = time.time()
+
+    def update(self, n=1):
+        self.current += n
+        self._display()
+
+    def set_description(self, desc):
+        self.desc = desc
+        self._display()
+
+    def _display(self):
+        if self.total == 0:
+            return
+        pct = self.current / self.total
+        filled = int(self.width * pct)
+        bar = '█' * filled + '░' * (self.width - filled)
+        elapsed = time.time() - self.start_time
+        if self.current > 0:
+            eta = (elapsed / self.current) * (self.total - self.current)
+            eta_str = f"ETA: {int(eta)}s"
+        else:
+            eta_str = "ETA: --"
+        print(f"\r  {self.desc}: |{bar}| {self.current}/{self.total} ({pct*100:.0f}%) {eta_str}  ", end='', flush=True)
+
+    def close(self):
+        print()
+
+
+def create_progress_bar(total, desc="Processing"):
+    """Create a progress bar (tqdm if available, otherwise simple text)"""
+    if HAS_TQDM:
+        return tqdm(total=total, desc=f"  {desc}", ncols=80, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]')
+    else:
+        return SimpleProgressBar(total, desc)
 
 
 # System prompts for each country
@@ -292,28 +352,82 @@ def clean_text_with_regex(text: str, country: str) -> str:
     return cleaned
 
 
-def process_document(api_key: str, doc: dict, index: int, total: int, country: str, use_ai: bool = True) -> dict:
+def process_document(api_key: str, doc: dict, index: int, total: int, country: str, use_ai: bool = True, fast_mode: bool = False) -> dict:
     """Process a single document"""
     title = doc.get('abbreviation') or doc.get('title') or f"Document {index + 1}"
-    log_info(f"[{index + 1}/{total}] Processing: {title}")
+    print(f"\n{Colors.BOLD}[{index + 1}/{total}] {title}{Colors.RESET}")
 
     cleaned_doc = doc.copy()
 
     # Clean full_text if present
     if doc.get('full_text') and len(doc['full_text']) > 100:
+        log_progress(f"Cleaning full_text ({len(doc['full_text']):,} chars)...")
         try:
             if use_ai:
                 cleaned_doc['full_text'] = clean_text_with_ai(api_key, doc['full_text'], title, country)
             else:
                 cleaned_doc['full_text'] = clean_text_with_regex(doc['full_text'], country)
-            log_success(f"Cleaned full_text for {title}")
+            log_progress_done()
+            log_success(f"Cleaned full_text ({len(cleaned_doc['full_text']):,} chars)")
         except Exception as e:
-            log_error(f"Failed to clean full_text for {title}: {e}")
+            log_progress_done()
+            log_error(f"Failed to clean full_text: {e}")
             # Try regex fallback
             cleaned_doc['full_text'] = clean_text_with_regex(doc['full_text'], country)
+            log_info("Used regex fallback")
 
-    # Clean sections in chapters
-    if doc.get('chapters'):
+    # Clean sections in chapters (skip if fast_mode)
+    if doc.get('chapters') and not fast_mode:
+        # Count total sections
+        total_sections = sum(len(ch.get('sections', [])) for ch in doc['chapters'])
+
+        if total_sections > 0 and use_ai:
+            print(f"  Processing {total_sections} sections...")
+            pbar = create_progress_bar(total_sections, desc=f"{title} sections")
+
+        cleaned_chapters = []
+        section_count = 0
+
+        for chapter in doc['chapters']:
+            cleaned_chapter = chapter.copy()
+            if chapter.get('sections'):
+                cleaned_sections = []
+                for section in chapter['sections']:
+                    section_count += 1
+                    cleaned_section = section.copy()
+                    section_title = section.get('title', section.get('number', f'Section {section_count}'))
+
+                    if section.get('text'):
+                        if use_ai and len(section['text']) > 200:
+                            if HAS_TQDM:
+                                pbar.set_description(f"  {section_title[:30]}")
+                            try:
+                                cleaned_section['text'] = clean_text_with_ai(
+                                    api_key, section['text'],
+                                    section_title,
+                                    country
+                                )
+                                time.sleep(0.3)  # Rate limiting
+                            except Exception as e:
+                                cleaned_section['text'] = clean_text_with_regex(section['text'], country)
+                        else:
+                            cleaned_section['text'] = clean_text_with_regex(section['text'], country)
+
+                    cleaned_sections.append(cleaned_section)
+
+                    if total_sections > 0 and use_ai:
+                        pbar.update(1)
+
+                cleaned_chapter['sections'] = cleaned_sections
+            cleaned_chapters.append(cleaned_chapter)
+
+        if total_sections > 0 and use_ai:
+            pbar.close()
+
+        cleaned_doc['chapters'] = cleaned_chapters
+    elif doc.get('chapters') and fast_mode:
+        # Fast mode: only use regex on sections
+        log_info("Fast mode: cleaning sections with regex only")
         cleaned_chapters = []
         for chapter in doc['chapters']:
             cleaned_chapter = chapter.copy()
@@ -322,27 +436,17 @@ def process_document(api_key: str, doc: dict, index: int, total: int, country: s
                 for section in chapter['sections']:
                     cleaned_section = section.copy()
                     if section.get('text'):
-                        if use_ai and len(section['text']) > 200:
-                            try:
-                                cleaned_section['text'] = clean_text_with_ai(
-                                    api_key, section['text'],
-                                    section.get('title', section.get('number', '')),
-                                    country
-                                )
-                                time.sleep(0.5)  # Rate limiting
-                            except:
-                                cleaned_section['text'] = clean_text_with_regex(section['text'], country)
-                        else:
-                            cleaned_section['text'] = clean_text_with_regex(section['text'], country)
+                        cleaned_section['text'] = clean_text_with_regex(section['text'], country)
                     cleaned_sections.append(cleaned_section)
                 cleaned_chapter['sections'] = cleaned_sections
             cleaned_chapters.append(cleaned_chapter)
         cleaned_doc['chapters'] = cleaned_chapters
 
+    log_success(f"Completed {title}")
     return cleaned_doc
 
 
-def process_database(country: str, api_key: str, use_ai: bool = True):
+def process_database(country: str, api_key: str, use_ai: bool = True, fast_mode: bool = False):
     """Process a country's database"""
     base_path = Path(__file__).parent.parent / 'eu_safety_laws' / country.lower()
     input_file = base_path / f'{country.lower()}_database.json'
@@ -383,9 +487,9 @@ def process_database(country: str, api_key: str, use_ai: bool = True):
 
     for i, doc in enumerate(documents):
         try:
-            cleaned_doc = process_document(api_key, doc, i, len(documents), country, use_ai)
+            cleaned_doc = process_document(api_key, doc, i, len(documents), country, use_ai, fast_mode)
             cleaned_documents.append(cleaned_doc)
-            time.sleep(1)  # Rate limiting between documents
+            time.sleep(0.5)  # Rate limiting between documents
         except Exception as e:
             log_error(f"Failed to process document {i + 1}: {e}")
             errors.append({'index': i, 'title': doc.get('title', ''), 'error': str(e)})
@@ -439,6 +543,7 @@ Examples:
     python clean_databases.py --country AT       # Clean Austrian database only
     python clean_databases.py --country DE       # Clean German database only
     python clean_databases.py --country NL       # Clean Netherlands database only
+    python clean_databases.py --all --fast       # Only clean full_text (much faster)
     python clean_databases.py --all --no-ai      # Use regex only (no API needed)
 
 Environment:
@@ -447,6 +552,7 @@ Environment:
     )
     parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to clean')
     parser.add_argument('--all', action='store_true', help='Clean all databases')
+    parser.add_argument('--fast', action='store_true', help='Fast mode: only clean full_text with AI, use regex for sections')
     parser.add_argument('--no-ai', action='store_true', help='Use regex only, no Gemini API')
 
     args = parser.parse_args()
@@ -478,11 +584,14 @@ Environment:
     else:
         log_info("Using regex-only mode (no AI)")
 
+    if args.fast:
+        log_info("Fast mode: AI for full_text only, regex for sections")
+
     # Process databases
     countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
 
     for country in countries:
-        process_database(country, api_key, use_ai=not args.no_ai)
+        process_database(country, api_key, use_ai=not args.no_ai, fast_mode=args.fast)
 
 
 if __name__ == '__main__':
