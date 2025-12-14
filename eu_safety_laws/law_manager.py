@@ -569,17 +569,34 @@ class ATScraper(Scraper):
                     continue
                 seen_sections.add(section_num)
 
-                # Get title from following h3 or h4
+                # Get title from following h3, h4, or h5 (RIS uses h5 for section titles like "Geltungsbereich")
                 section_title = ""
+                # First try siblings
                 next_elem = h2.find_next_sibling()
                 while next_elem and next_elem.name not in ['h2']:
-                    if next_elem.name in ['h3', 'h4']:
+                    if next_elem.name in ['h3', 'h4', 'h5']:
                         candidate = next_elem.get_text(strip=True)
-                        # Skip if it's just another § reference
-                        if not re.match(r'^§\s*\d+', candidate):
+                        # Skip if it's just another § reference, chapter heading, or generic placeholder
+                        if (not re.match(r'^§\s*\d+', candidate) and
+                            not re.match(r'^\d+\.\s*Abschnitt', candidate) and
+                            candidate.lower() not in ['text', 'inhalt', 'content']):
                             section_title = candidate
                             break
                     next_elem = next_elem.find_next_sibling()
+
+                # Fallback: search all following elements (not just siblings) for h5 title
+                if not section_title:
+                    next_h2 = h2.find_next('h2')
+                    for h5 in h2.find_all_next('h5'):
+                        # Stop if we've passed the next h2
+                        if next_h2 and h5.sourceline and next_h2.sourceline and h5.sourceline > next_h2.sourceline:
+                            break
+                        candidate = h5.get_text(strip=True)
+                        if (candidate and len(candidate) > 2 and
+                            not re.match(r'^§\s*\d+', candidate) and
+                            candidate.lower() not in ['text', 'inhalt', 'content']):
+                            section_title = candidate
+                            break
 
                 # Collect all content until next h2 with §
                 content_parts = []
