@@ -224,7 +224,7 @@ function preprocessAustrianText(text) {
   return result
 }
 
-// Parse law text into sections based on "§ X\nText\n" markers
+// Parse law text into sections based on "§ X\nText\n" or "Art. X\nText\n" markers
 function parseLawSections(text) {
   if (!text) return []
 
@@ -234,22 +234,28 @@ function parseLawSections(text) {
   const sections = []
   const chapters = new Map() // Track Abschnitt titles
 
-  // Find the start of actual content (after TOC, starts with "§ 0\n" or "§ 1\n")
-  const contentStart = cleanedText.search(/§\s*[01]\s*\n\s*(?:Langtitel|Text)/i)
-  if (contentStart === -1) return []
+  // Find the start of actual content (after TOC, starts with "§ 0\n" or "§ 1\n" or "Art. 1\n")
+  const contentStart = cleanedText.search(/(?:§\s*[01]|Art\.?\s*[01])\s*\n\s*(?:Langtitel|Text)/i)
+  if (contentStart === -1) {
+    // Fallback: try to find any section with Text marker
+    const fallbackStart = cleanedText.search(/(?:§|Art\.?)\s*\d+[a-z]?\s*\n\s*Text\s*\n/i)
+    if (fallbackStart === -1) return []
+  }
 
-  const contentText = cleanedText.substring(contentStart)
+  const contentText = contentStart !== -1 ? cleanedText.substring(contentStart) : cleanedText
 
-  // Match sections by "§ X\nText\n" pattern
-  const sectionRegex = /§\s*(\d+[a-z]?)\s*\n\s*Text\s*\n/gi
+  // Match sections by "§ X\nText\n" or "Art. X\nText\n" pattern
+  const sectionRegex = /(?:§|Art\.?)\s*(\d+[a-z]?)\s*\n\s*Text\s*\n/gi
   const sectionMatches = []
   let match
 
   while ((match = sectionRegex.exec(contentText)) !== null) {
+    const isArticle = match[0].toLowerCase().startsWith('art')
     sectionMatches.push({
       number: match[1],
       index: match.index,
-      headerEnd: match.index + match[0].length
+      headerEnd: match.index + match[0].length,
+      prefix: isArticle ? 'Art.' : '§'
     })
   }
 
@@ -265,12 +271,13 @@ function parseLawSections(text) {
     let title = ''
     let chapterInfo = null
 
-    // Check if section starts with a chapter header (X. Abschnitt)
-    const chapterMatch = sectionContent.match(/^(\d+)\.\s*Abschnitt[:\s]*\n([^\n]+)\n/i)
+    // Check if section starts with a chapter header (X. Abschnitt or X. Hauptstück)
+    const chapterMatch = sectionContent.match(/^(\d+)\.\s*(Abschnitt|Hauptstück|Teil)[:\s]*\n([^\n]+)\n/i)
     if (chapterMatch) {
       chapterInfo = {
         number: chapterMatch[1],
-        title: chapterMatch[2].trim()
+        type: chapterMatch[2],
+        title: chapterMatch[3].trim()
       }
       chapters.set(chapterMatch[1], chapterInfo.title)
       sectionContent = sectionContent.substring(chapterMatch[0].length).trim()
@@ -280,10 +287,10 @@ function parseLawSections(text) {
     const lines = sectionContent.split('\n')
     let titleLineIndex = 0
 
-    // Find title - skip lines that are just "§ X." markers
+    // Find title - skip lines that are just "§ X." or "Art. X" markers
     for (let j = 0; j < Math.min(5, lines.length); j++) {
       const line = lines[j].trim()
-      if (line && !line.match(/^§\s*\d+[a-z]?\.?\s*$/) && !line.match(/^\(\d+\)$/)) {
+      if (line && !line.match(/^(?:§|Art\.?)\s*\d+[a-z]?\.?\s*$/) && !line.match(/^\(\d+\)$/)) {
         title = line
         titleLineIndex = j
         break
@@ -293,14 +300,14 @@ function parseLawSections(text) {
     // Get content after title, skip repeated § marker
     let actualContent = lines.slice(titleLineIndex + 1).join('\n').trim()
 
-    // Remove leading "§ X." if present
-    actualContent = actualContent.replace(/^§\s*\d+[a-z]?\.?\s*\n?/i, '').trim()
+    // Remove leading "§ X." or "Art. X" if present
+    actualContent = actualContent.replace(/^(?:§|Art\.?)\s*\d+[a-z]?\.?\s*\n?/i, '').trim()
 
     // Add chapter as a section entry if this is the first section in a new chapter
     if (chapterInfo) {
       sections.push({
         id: `chapter-${chapterInfo.number}`,
-        number: `${chapterInfo.number}. Abschnitt`,
+        number: `${chapterInfo.number}. ${chapterInfo.type}`,
         title: chapterInfo.title,
         content: '',
         rawNumber: `0.${chapterInfo.number}`,
@@ -312,7 +319,7 @@ function parseLawSections(text) {
     // Add the section
     sections.push({
       id: `section-${section.number}`,
-      number: `§ ${section.number}`,
+      number: `${section.prefix} ${section.number}`,
       title: title.substring(0, 100),
       content: actualContent,
       rawNumber: section.number,
