@@ -78,7 +78,7 @@ except ImportError:
 class Config:
     """Global configuration for the law manager."""
     base_path: Path = field(default_factory=lambda: Path(__file__).parent)
-    scraper_version: str = "6.0.0"
+    scraper_version: str = "7.0.0"
     request_timeout: int = 30
     rate_limit_delay: float = 0.5
     max_retries: int = 3
@@ -425,109 +425,259 @@ class Scraper:
 
 
 class ATScraper(Scraper):
-    """Scraper for Austrian laws from RIS."""
+    """Scraper for Austrian laws from RIS with full text extraction."""
+
+    # WHS relevance mapping for Amazon Logistics context
+    WHS_TOPICS = {
+        # Core safety topics
+        "risk_assessment": {"keywords": ["Ermittlung", "Beurteilung", "Gefahren", "Evaluierung"], "relevance": "high"},
+        "documentation": {"keywords": ["Dokument", "schriftlich", "Aufzeichnung", "Unterweisung"], "relevance": "high"},
+        "ppe": {"keywords": ["Schutzausrüstung", "persönlich", "Ausrüstung", "PSA"], "relevance": "high"},
+        "first_aid": {"keywords": ["Erste Hilfe", "Ersthelfer", "Sanitäter", "Notfall"], "relevance": "high"},
+        "training": {"keywords": ["Unterweisung", "Schulung", "Ausbildung", "Information"], "relevance": "high"},
+        "workplace_design": {"keywords": ["Arbeitsstätte", "Arbeitsplatz", "Gestaltung", "Einrichtung"], "relevance": "high"},
+        "work_equipment": {"keywords": ["Arbeitsmittel", "Geräte", "Maschinen", "Werkzeug"], "relevance": "high"},
+        "hazardous_substances": {"keywords": ["Arbeitsstoff", "gefährlich", "Gefahrstoff", "chemisch"], "relevance": "medium"},
+        "health_surveillance": {"keywords": ["Gesundheit", "Überwachung", "Untersuchung", "Arzt"], "relevance": "medium"},
+        "ergonomics": {"keywords": ["Ergonomie", "Belastung", "Heben", "Tragen", "manuell"], "relevance": "high"},
+        "incident_reporting": {"keywords": ["Unfall", "Meldung", "Vorfall", "Ereignis"], "relevance": "high"},
+        "working_hours": {"keywords": ["Arbeitszeit", "Ruhezeit", "Pause", "Nachtarbeit"], "relevance": "medium"},
+        "special_groups": {"keywords": ["Jugendliche", "Schwangere", "Mutterschutz", "behindert"], "relevance": "medium"},
+        "prevention_services": {"keywords": ["Präventivdienst", "Sicherheitsfachkraft", "Arbeitsmedizin"], "relevance": "high"},
+        "employer_obligations": {"keywords": ["Arbeitgeber", "Pflicht", "verpflichtet", "verantwortlich"], "relevance": "high"},
+        "employee_rights": {"keywords": ["Arbeitnehmer", "Recht", "Mitwirkung", "Information"], "relevance": "medium"},
+        "penalties": {"keywords": ["Strafe", "Verwaltungsübertretung", "Geldstrafe", "Sanktion"], "relevance": "high"},
+    }
 
     def __init__(self):
         super().__init__('AT')
 
     def scrape(self) -> List[Dict[str, Any]]:
-        """Scrape Austrian laws from RIS."""
+        """Scrape Austrian laws from RIS with full text extraction."""
         if not HAS_BS4:
             log_error("BeautifulSoup required for scraping. Install with: pip install beautifulsoup4")
             return []
 
         documents = []
         for abbrev, path in self.config.get('main_laws', {}).items():
-            log_info(f"Scraping {abbrev}...")
+            log_info(f"Scraping {abbrev} with full text extraction...")
             url = urljoin(self.base_url, path)
             html = self.fetch_url(url)
 
             if html:
-                doc = self._parse_ris_law(html, abbrev, url)
+                doc = self._parse_ris_law_full(html, abbrev, url)
                 if doc:
                     documents.append(doc)
-                    log_success(f"Scraped {abbrev}: {len(doc.get('chapters', [{}])[0].get('sections', []))} sections")
+                    total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
+                    log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
 
             time.sleep(CONFIG.rate_limit_delay)
 
         return documents
 
-    def _parse_ris_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
-        """Parse an Austrian law from RIS HTML."""
+    def _extract_section_text(self, container) -> str:
+        """Extract full text from a section container, handling nested structure."""
+        text_parts = []
+
+        # Process all child elements
+        for elem in container.find_all(['p', 'ol', 'li', 'div'], recursive=True):
+            # Skip navigation and UI elements
+            if elem.get('class') and any(c in str(elem.get('class')) for c in ['nav', 'menu', 'sidebar']):
+                continue
+
+            text = elem.get_text(separator=' ', strip=True)
+            if text and len(text) > 3:  # Skip very short text
+                # Clean up the text
+                text = re.sub(r'\s+', ' ', text)
+                text_parts.append(text)
+
+        # Deduplicate while preserving order
+        seen = set()
+        unique_parts = []
+        for part in text_parts:
+            # Normalize for comparison
+            normalized = part.lower().strip()
+            if normalized not in seen and len(normalized) > 10:
+                seen.add(normalized)
+                unique_parts.append(part)
+
+        return '\n\n'.join(unique_parts)
+
+    def _classify_whs_topics(self, text: str, title: str) -> List[Dict[str, Any]]:
+        """Classify section by WHS relevance topics."""
+        topics = []
+        combined_text = f"{title} {text}".lower()
+
+        for topic_id, topic_data in self.WHS_TOPICS.items():
+            matches = sum(1 for kw in topic_data["keywords"] if kw.lower() in combined_text)
+            if matches > 0:
+                topics.append({
+                    "id": topic_id,
+                    "relevance": topic_data["relevance"],
+                    "match_count": matches
+                })
+
+        # Sort by match count and relevance
+        topics.sort(key=lambda x: (-x["match_count"], x["relevance"] != "high"))
+        return topics[:5]  # Return top 5 topics
+
+    def _parse_ris_law_full(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
+        """Parse an Austrian law from RIS HTML with full text extraction."""
         soup = BeautifulSoup(html, 'html.parser')
 
         # Extract title
         title_elem = soup.find('h1') or soup.find('title')
         title = title_elem.get_text(strip=True) if title_elem else abbrev
 
-        # Extract sections (§) - RIS uses multiple patterns
+        # Remove navigation/boilerplate elements
+        for elem in soup.find_all(['nav', 'header', 'footer', 'script', 'style']):
+            elem.decompose()
+
+        # Remove elements with navigation-related classes
+        for elem in soup.find_all(class_=re.compile(r'(nav|menu|sidebar|header|footer)', re.I)):
+            elem.decompose()
+
         sections = []
         seen_sections = set()
 
-        # Method 1: Find h5 tags with § (RIS primary structure)
-        for h5 in soup.find_all('h5'):
-            text = h5.get_text(strip=True)
+        # Method 1: RIS structure - find h2 elements with § markers
+        # The RIS uses: <h2>§ 1</h2> followed by content
+        h2_sections = soup.find_all('h2')
+        for h2 in h2_sections:
+            text = h2.get_text(strip=True)
             match = re.search(r'§\s*(\d+[a-z]?)\.?', text)
             if match:
                 section_num = match.group(1)
-                if section_num not in seen_sections:
-                    seen_sections.add(section_num)
-                    # Get title from following h3
-                    h3 = h5.find_next('h3')
-                    section_title = h3.get_text(strip=True) if h3 else ""
-                    # Get content from following elements
-                    content_parts = []
-                    for sibling in h5.find_next_siblings():
-                        if sibling.name in ['h5', 'h2']:  # Stop at next section
-                            break
-                        if sibling.name in ['ol', 'p', 'div']:
-                            content_parts.append(sibling.get_text(strip=True))
-                    sections.append({
-                        "id": generate_id(f"{abbrev}-{section_num}"),
-                        "number": section_num,
-                        "title": f"§ {section_num}. {section_title}".strip(),
-                        "text": "\n".join(content_parts)[:5000],  # Limit text size
-                        "paragraphs": []
-                    })
+                if section_num in seen_sections:
+                    continue
+                seen_sections.add(section_num)
 
-        # Method 2: Find links to sections (fallback)
+                # Get title from following h3 or h4
+                section_title = ""
+                next_elem = h2.find_next_sibling()
+                while next_elem and next_elem.name not in ['h2']:
+                    if next_elem.name in ['h3', 'h4']:
+                        candidate = next_elem.get_text(strip=True)
+                        # Skip if it's just another § reference
+                        if not re.match(r'^§\s*\d+', candidate):
+                            section_title = candidate
+                            break
+                    next_elem = next_elem.find_next_sibling()
+
+                # Collect all content until next h2 with §
+                content_parts = []
+                current = h2.find_next_sibling()
+                while current:
+                    if current.name == 'h2':
+                        h2_text = current.get_text(strip=True)
+                        if re.search(r'§\s*\d+', h2_text):
+                            break
+
+                    # Extract text from content elements
+                    if current.name in ['p', 'div', 'ol', 'ul', 'table']:
+                        elem_text = current.get_text(separator=' ', strip=True)
+                        if elem_text and len(elem_text) > 5:
+                            # Clean up redundant parenthetical references
+                            elem_text = re.sub(r'\s*\([^)]*Paragraph[^)]*\)', '', elem_text)
+                            content_parts.append(elem_text)
+
+                    current = current.find_next_sibling()
+
+                # Combine and clean text
+                full_text = '\n\n'.join(content_parts)
+                # Remove duplicate expanded notation
+                full_text = re.sub(r'(\d+)\s*\([^)]*(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)[^)]*\)', r'\1', full_text)
+
+                # Classify WHS topics
+                whs_topics = self._classify_whs_topics(full_text, section_title)
+
+                sections.append({
+                    "id": generate_id(f"{abbrev}-{section_num}"),
+                    "number": section_num,
+                    "title": f"§ {section_num}. {section_title}".strip().rstrip('.'),
+                    "text": full_text[:15000],  # Increased limit for full text
+                    "whs_topics": whs_topics,
+                    "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, section_title),
+                    "paragraphs": []
+                })
+
+        # Method 2: Alternative structure - find h4 with §
         if not sections:
-            for link in soup.find_all('a', href=True):
-                text = link.get_text(strip=True)
+            log_info("Trying alternative parsing method (h4 elements)...")
+            for h4 in soup.find_all('h4'):
+                text = h4.get_text(strip=True)
                 match = re.search(r'§\s*(\d+[a-z]?)\.?', text)
                 if match:
                     section_num = match.group(1)
-                    if section_num not in seen_sections:
-                        seen_sections.add(section_num)
-                        sections.append({
-                            "id": generate_id(f"{abbrev}-{section_num}"),
-                            "number": section_num,
-                            "title": f"§ {section_num}",
-                            "text": text,
-                            "paragraphs": []
-                        })
+                    if section_num in seen_sections:
+                        continue
+                    seen_sections.add(section_num)
 
-        # Method 3: Find any element containing § pattern (last resort)
+                    # Get title from element text after the §
+                    title_match = re.search(r'§\s*\d+[a-z]?\.?\s*(.+)', text)
+                    section_title = title_match.group(1) if title_match else ""
+
+                    # Collect content
+                    content_parts = []
+                    parent = h4.find_parent(['div', 'section', 'article'])
+                    if parent:
+                        for elem in parent.find_all(['p', 'li', 'ol']):
+                            elem_text = elem.get_text(strip=True)
+                            if elem_text and len(elem_text) > 10:
+                                content_parts.append(elem_text)
+
+                    full_text = '\n\n'.join(content_parts)
+                    whs_topics = self._classify_whs_topics(full_text, section_title)
+
+                    sections.append({
+                        "id": generate_id(f"{abbrev}-{section_num}"),
+                        "number": section_num,
+                        "title": f"§ {section_num}. {section_title}".strip().rstrip('.'),
+                        "text": full_text[:15000],
+                        "whs_topics": whs_topics,
+                        "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, section_title),
+                        "paragraphs": []
+                    })
+
+        # Method 3: Parse from any container with § (last resort with deep extraction)
         if not sections:
+            log_info("Trying deep extraction method...")
+            # Find all text containing §
             for elem in soup.find_all(string=re.compile(r'§\s*\d+')):
+                parent = elem.find_parent(['div', 'section', 'article', 'td'])
+                if not parent:
+                    continue
+
                 text = elem.strip() if isinstance(elem, str) else elem.get_text(strip=True)
                 match = re.search(r'§\s*(\d+[a-z]?)\.?', text)
                 if match:
                     section_num = match.group(1)
-                    if section_num not in seen_sections:
-                        seen_sections.add(section_num)
-                        parent = elem.parent if hasattr(elem, 'parent') else None
-                        full_text = parent.get_text(strip=True) if parent else text
-                        sections.append({
-                            "id": generate_id(f"{abbrev}-{section_num}"),
-                            "number": section_num,
-                            "title": f"§ {section_num}",
-                            "text": full_text[:2000],
-                            "paragraphs": []
-                        })
+                    if section_num in seen_sections:
+                        continue
+                    seen_sections.add(section_num)
+
+                    # Extract text from parent container
+                    full_text = parent.get_text(separator='\n', strip=True)
+                    # Clean up
+                    full_text = re.sub(r'\n{3,}', '\n\n', full_text)
+
+                    whs_topics = self._classify_whs_topics(full_text, "")
+
+                    sections.append({
+                        "id": generate_id(f"{abbrev}-{section_num}"),
+                        "number": section_num,
+                        "title": f"§ {section_num}",
+                        "text": full_text[:10000],
+                        "whs_topics": whs_topics,
+                        "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
+                        "paragraphs": []
+                    })
 
         # Sort sections by number
         sections.sort(key=lambda s: get_section_number(s))
+
+        # Organize into official chapter structure
+        chapters = self._organize_into_chapters(sections, abbrev)
 
         return {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
@@ -548,45 +698,266 @@ class ATScraper(Scraper):
                 "scraped_at": datetime.now().isoformat(),
                 "scraper_version": CONFIG.scraper_version
             },
-            "chapters": [{
+            "whs_summary": self._generate_whs_summary(sections),
+            "chapters": chapters
+        }
+
+    def _calculate_logistics_relevance(self, text: str, title: str) -> Dict[str, Any]:
+        """Calculate relevance score for Amazon Logistics WHS context."""
+        combined = f"{title} {text}".lower()
+
+        # Keywords highly relevant to logistics/warehouse operations
+        logistics_keywords = {
+            "high": [
+                "heben", "tragen", "transport", "lager", "förder", "stapler",
+                "palette", "regal", "rampe", "fahrzeug", "beladen", "entladen",
+                "ergonomie", "rücken", "muskel", "bewegung", "repetitiv",
+                "unterweisung", "schutzausrüstung", "sicherheitsschuhe",
+                "warnweste", "erste hilfe", "notfall", "fluchtweg", "brandschutz"
+            ],
+            "medium": [
+                "arbeitsmittel", "maschine", "gerät", "lärmschutz", "beleuchtung",
+                "temperatur", "klima", "sanitär", "pause", "arbeitszeit",
+                "gefährdung", "risiko", "unfall", "verletzung", "prävention"
+            ]
+        }
+
+        high_matches = sum(1 for kw in logistics_keywords["high"] if kw in combined)
+        medium_matches = sum(1 for kw in logistics_keywords["medium"] if kw in combined)
+
+        score = (high_matches * 2) + medium_matches
+
+        if score >= 5:
+            relevance_level = "critical"
+        elif score >= 3:
+            relevance_level = "high"
+        elif score >= 1:
+            relevance_level = "medium"
+        else:
+            relevance_level = "low"
+
+        return {
+            "score": score,
+            "level": relevance_level,
+            "high_keyword_matches": high_matches,
+            "medium_keyword_matches": medium_matches
+        }
+
+    def _organize_into_chapters(self, sections: List[Dict], abbrev: str) -> List[Dict]:
+        """Organize sections into official chapter structure."""
+        structure = LAW_STRUCTURES.get("AT", {}).get(abbrev, [])
+
+        if not structure:
+            # Fallback to single chapter
+            return [{
                 "id": f"at-{abbrev.lower()}-main",
                 "number": "1",
                 "title": "Hauptteil",
+                "title_en": "Main Part",
                 "sections": sections
             }]
+
+        chapters = []
+        for chapter_def in structure:
+            start, end = chapter_def["section_range"]
+            chapter_sections = [
+                s for s in sections
+                if start <= get_section_number(s) <= end
+            ]
+
+            if chapter_sections:
+                chapters.append({
+                    "id": f"at-{abbrev.lower()}-ch{chapter_def['number']}",
+                    "number": chapter_def["number"],
+                    "title": chapter_def["title"],
+                    "title_en": chapter_def.get("title_en", ""),
+                    "sections": chapter_sections
+                })
+
+        return chapters if chapters else [{
+            "id": f"at-{abbrev.lower()}-main",
+            "number": "1",
+            "title": "Hauptteil",
+            "title_en": "Main Part",
+            "sections": sections
+        }]
+
+    def _generate_whs_summary(self, sections: List[Dict]) -> Dict[str, Any]:
+        """Generate WHS summary statistics for the law."""
+        topic_counts = {}
+        relevance_counts = {"critical": 0, "high": 0, "medium": 0, "low": 0}
+
+        for section in sections:
+            # Count topics
+            for topic in section.get("whs_topics", []):
+                topic_id = topic["id"]
+                if topic_id not in topic_counts:
+                    topic_counts[topic_id] = 0
+                topic_counts[topic_id] += 1
+
+            # Count relevance levels
+            relevance = section.get("amazon_logistics_relevance", {})
+            level = relevance.get("level", "low")
+            relevance_counts[level] += 1
+
+        # Sort topics by count
+        sorted_topics = sorted(topic_counts.items(), key=lambda x: -x[1])
+
+        return {
+            "total_sections": len(sections),
+            "logistics_relevance_distribution": relevance_counts,
+            "top_whs_topics": sorted_topics[:10],
+            "critical_sections_count": relevance_counts["critical"] + relevance_counts["high"]
         }
 
 
 class DEScraper(Scraper):
-    """Scraper for German laws from gesetze-im-internet.de."""
+    """Scraper for German laws from gesetze-im-internet.de with full text extraction."""
+
+    # WHS relevance mapping for German context
+    WHS_TOPICS = {
+        "risk_assessment": {"keywords": ["Gefährdungsbeurteilung", "Beurteilung", "Gefährdung", "ermitteln"], "relevance": "high"},
+        "documentation": {"keywords": ["Dokumentation", "dokumentieren", "Aufzeichnung", "Nachweis"], "relevance": "high"},
+        "ppe": {"keywords": ["Schutzausrüstung", "persönliche", "PSA", "Schutzkleidung"], "relevance": "high"},
+        "first_aid": {"keywords": ["Erste Hilfe", "Ersthelfer", "Notfall", "Rettung"], "relevance": "high"},
+        "training": {"keywords": ["Unterweisung", "Schulung", "Ausbildung", "Qualifikation"], "relevance": "high"},
+        "workplace_design": {"keywords": ["Arbeitsplatz", "Arbeitsstätte", "Gestaltung", "Einrichtung"], "relevance": "high"},
+        "work_equipment": {"keywords": ["Arbeitsmittel", "Maschine", "Gerät", "Werkzeug"], "relevance": "high"},
+        "hazardous_substances": {"keywords": ["Gefahrstoff", "gefährlich", "Stoff", "chemisch"], "relevance": "medium"},
+        "health_surveillance": {"keywords": ["Gesundheit", "arbeitsmedizinisch", "Vorsorge", "Untersuchung"], "relevance": "medium"},
+        "ergonomics": {"keywords": ["Ergonomie", "Belastung", "Heben", "körperlich"], "relevance": "high"},
+        "incident_reporting": {"keywords": ["Unfall", "Meldung", "Vorfall", "Ereignis"], "relevance": "high"},
+        "working_hours": {"keywords": ["Arbeitszeit", "Ruhezeit", "Pause"], "relevance": "medium"},
+        "special_groups": {"keywords": ["Jugendliche", "Schwangere", "Mutterschutz", "behindert"], "relevance": "medium"},
+        "prevention_services": {"keywords": ["Fachkraft", "Sicherheit", "Betriebsarzt", "Arbeitsschutz"], "relevance": "high"},
+        "employer_obligations": {"keywords": ["Arbeitgeber", "Pflicht", "verpflichtet", "Verantwortung"], "relevance": "high"},
+        "employee_rights": {"keywords": ["Beschäftigte", "Arbeitnehmer", "Recht", "Mitwirkung"], "relevance": "medium"},
+        "penalties": {"keywords": ["Strafe", "Ordnungswidrigkeit", "Bußgeld", "Sanktion"], "relevance": "high"},
+    }
 
     def __init__(self):
         super().__init__('DE')
 
     def scrape(self) -> List[Dict[str, Any]]:
-        """Scrape German laws."""
+        """Scrape German laws with full text extraction from individual section pages."""
         if not HAS_BS4:
             log_error("BeautifulSoup required. Install with: pip install beautifulsoup4")
             return []
 
         documents = []
         for abbrev, path in self.config.get('main_laws', {}).items():
-            log_info(f"Scraping {abbrev}...")
+            log_info(f"Scraping {abbrev} with full text extraction...")
             url = urljoin(self.base_url, path)
             html = self.fetch_url(url)
 
             if html:
-                doc = self._parse_german_law(html, abbrev, url)
+                doc = self._parse_german_law_full(html, abbrev, url)
                 if doc:
                     documents.append(doc)
-                    log_success(f"Scraped {abbrev}")
+                    total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
+                    log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
 
             time.sleep(CONFIG.rate_limit_delay)
 
         return documents
 
-    def _parse_german_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
-        """Parse a German law."""
+    def _fetch_section_content(self, section_url: str) -> str:
+        """Fetch full content from individual section page with quick timeout."""
+        if not HAS_REQUESTS:
+            return ""
+
+        try:
+            response = requests.get(section_url, timeout=5)  # Quick 5s timeout
+            response.raise_for_status()
+            html = response.text
+        except Exception:
+            return ""
+
+        soup = BeautifulSoup(html, 'html.parser')
+
+        # Remove navigation elements
+        for elem in soup.find_all(['nav', 'script', 'style']):
+            elem.decompose()
+
+        # Find the main content container (gesetze-im-internet uses specific divs)
+        content_div = soup.find('div', class_='jntext') or soup.find('div', class_='jurAbsatz')
+
+        if content_div:
+            return content_div.get_text(separator='\n', strip=True)
+
+        # Fallback: find content after the title
+        title = soup.find(['h2', 'h3'])
+        if title:
+            content_parts = []
+            for sibling in title.find_next_siblings():
+                if sibling.name in ['h2', 'h3', 'nav', 'footer']:
+                    break
+                text = sibling.get_text(strip=True)
+                if text and len(text) > 5:
+                    content_parts.append(text)
+            return '\n\n'.join(content_parts)
+
+        return ""
+
+    def _classify_whs_topics(self, text: str, title: str) -> List[Dict[str, Any]]:
+        """Classify section by WHS relevance topics."""
+        topics = []
+        combined_text = f"{title} {text}".lower()
+
+        for topic_id, topic_data in self.WHS_TOPICS.items():
+            matches = sum(1 for kw in topic_data["keywords"] if kw.lower() in combined_text)
+            if matches > 0:
+                topics.append({
+                    "id": topic_id,
+                    "relevance": topic_data["relevance"],
+                    "match_count": matches
+                })
+
+        topics.sort(key=lambda x: (-x["match_count"], x["relevance"] != "high"))
+        return topics[:5]
+
+    def _calculate_logistics_relevance(self, text: str, title: str) -> Dict[str, Any]:
+        """Calculate relevance score for logistics/warehouse operations."""
+        combined = f"{title} {text}".lower()
+
+        logistics_keywords = {
+            "high": [
+                "heben", "tragen", "transport", "lager", "förder", "stapler",
+                "palette", "regal", "rampe", "fahrzeug", "beladen", "entladen",
+                "ergonomie", "rücken", "muskel", "körperlich",
+                "unterweisung", "schutzausrüstung", "sicherheitsschuhe",
+                "warnweste", "erste hilfe", "notfall", "fluchtweg"
+            ],
+            "medium": [
+                "arbeitsmittel", "maschine", "gerät", "lärm", "beleuchtung",
+                "temperatur", "klima", "sanitär", "pause", "arbeitszeit",
+                "gefährdung", "risiko", "unfall", "verletzung", "prävention"
+            ]
+        }
+
+        high_matches = sum(1 for kw in logistics_keywords["high"] if kw in combined)
+        medium_matches = sum(1 for kw in logistics_keywords["medium"] if kw in combined)
+
+        score = (high_matches * 2) + medium_matches
+
+        if score >= 5:
+            level = "critical"
+        elif score >= 3:
+            level = "high"
+        elif score >= 1:
+            level = "medium"
+        else:
+            level = "low"
+
+        return {
+            "score": score,
+            "level": level,
+            "high_keyword_matches": high_matches,
+            "medium_keyword_matches": medium_matches
+        }
+
+    def _parse_german_law_full(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
+        """Parse a German law with full text extraction."""
         soup = BeautifulSoup(html, 'html.parser')
 
         title = soup.find('h1')
@@ -594,70 +965,74 @@ class DEScraper(Scraper):
 
         sections = []
         seen_sections = set()
+        section_links = []
 
-        # Method 1: Find links to individual sections (gesetze-im-internet pattern)
+        # Collect all section links first
         for link in soup.find_all('a', href=True):
             href = link.get('href', '')
             text = link.get_text(strip=True)
-            # Match links like __1.html, __2.html or BJNR pattern
-            if re.search(r'(__\d+\.html|BJNE\d+)', href):
+            # Match links like __1.html, __2.html, __20a.html or BJNR pattern
+            if re.search(r'(__\d+[a-z]?\.html|BJNE\d+)', href):
                 match = re.search(r'§\s*(\d+[a-z]?)\b', text)
                 if match:
                     section_num = match.group(1)
                     if section_num not in seen_sections:
                         seen_sections.add(section_num)
-                        # Extract full title if available
-                        full_title = text.strip()
-                        sections.append({
-                            "id": generate_id(f"{abbrev}-{section_num}"),
+                        section_links.append({
                             "number": section_num,
-                            "title": full_title if "§" in full_title else f"§ {section_num}",
-                            "text": full_title,
-                            "paragraphs": []
+                            "title": text.strip(),
+                            "href": href
                         })
 
-        # Method 2: Find headings with § (for full-text pages)
-        if not sections:
-            for heading in soup.find_all(['h2', 'h3', 'h4']):
-                text = heading.get_text(strip=True)
-                match = re.search(r'§\s*(\d+[a-z]?)\b', text)
-                if match:
-                    section_num = match.group(1)
-                    if section_num not in seen_sections:
-                        seen_sections.add(section_num)
-                        # Get content from following siblings
-                        content_parts = []
-                        for sibling in heading.find_next_siblings():
-                            if sibling.name in ['h2', 'h3', 'h4']:
-                                break
-                            content_parts.append(sibling.get_text(strip=True))
-                        sections.append({
-                            "id": generate_id(f"{abbrev}-{section_num}"),
-                            "number": section_num,
-                            "title": text,
-                            "text": "\n".join(content_parts)[:5000],
-                            "paragraphs": []
-                        })
+        # Try to fetch content for each section (with fast timeout and limited retries)
+        log_info(f"Attempting to fetch {len(section_links)} section pages...")
+        progress = create_progress_bar(len(section_links), f"Fetching {abbrev} sections")
 
-        # Method 3: Find any text with § pattern (fallback)
-        if not sections:
-            for elem in soup.find_all(string=re.compile(r'§\s*\d+')):
-                text = str(elem).strip()
-                match = re.search(r'§\s*(\d+[a-z]?)\b', text)
-                if match:
-                    section_num = match.group(1)
-                    if section_num not in seen_sections:
-                        seen_sections.add(section_num)
-                        sections.append({
-                            "id": generate_id(f"{abbrev}-{section_num}"),
-                            "number": section_num,
-                            "title": f"§ {section_num}",
-                            "text": text[:1000],
-                            "paragraphs": []
-                        })
+        failed_fetches = 0
+        max_failures = 3  # Stop trying after 3 consecutive failures
 
-        # Sort sections by number
+        for link_info in section_links:
+            content = ""
+
+            # Only try fetching if we haven't had too many consecutive failures
+            if failed_fetches < max_failures:
+                section_url = urljoin(url, link_info["href"])
+                content = self._fetch_section_content(section_url)
+
+                if not content:
+                    failed_fetches += 1
+                else:
+                    failed_fetches = 0  # Reset on success
+
+            # Use title as fallback content if fetch failed
+            if not content:
+                content = link_info["title"]
+
+            whs_topics = self._classify_whs_topics(content, link_info["title"])
+            logistics_relevance = self._calculate_logistics_relevance(content, link_info["title"])
+
+            sections.append({
+                "id": generate_id(f"{abbrev}-{link_info['number']}"),
+                "number": link_info["number"],
+                "title": f"§ {link_info['number']}. {link_info['title'].replace('§ ' + link_info['number'], '').strip()}".rstrip('.'),
+                "text": content[:15000] if content else link_info["title"],
+                "whs_topics": whs_topics,
+                "amazon_logistics_relevance": logistics_relevance,
+                "paragraphs": []
+            })
+
+            progress.update(1)
+            if failed_fetches < max_failures:
+                time.sleep(CONFIG.rate_limit_delay * 0.3)  # Shorter delay
+
+        progress.close()
+
+        if failed_fetches >= max_failures:
+            log_warning(f"Individual page fetching failed - using index titles only")
+
+        # Sort and organize into chapters
         sections.sort(key=lambda s: get_section_number(s))
+        chapters = self._organize_into_chapters(sections, abbrev)
 
         return {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
@@ -669,43 +1044,195 @@ class DEScraper(Scraper):
             "title_en": "Occupational Safety Act" if abbrev == "ArbSchG" else title,
             "category": "Core Safety",
             "implements_eu_directive": "89/391/EWG",
-            "source": {"url": url, "title": title, "authority": self.authority},
+            "source": {"url": url, "title": title, "authority": self.authority, "robots_txt_compliant": True},
             "scraping": {"scraped_at": datetime.now().isoformat(), "scraper_version": CONFIG.scraper_version},
-            "chapters": [{"id": f"de-{abbrev.lower()}-main", "number": "1", "title": "Hauptteil", "sections": sections}]
+            "whs_summary": self._generate_whs_summary(sections),
+            "chapters": chapters
+        }
+
+    def _organize_into_chapters(self, sections: List[Dict], abbrev: str) -> List[Dict]:
+        """Organize sections into official chapter structure."""
+        structure = LAW_STRUCTURES.get("DE", {}).get(abbrev, [])
+
+        if not structure:
+            return [{
+                "id": f"de-{abbrev.lower()}-main",
+                "number": "1",
+                "title": "Hauptteil",
+                "title_en": "Main Part",
+                "sections": sections
+            }]
+
+        chapters = []
+        for chapter_def in structure:
+            start, end = chapter_def["section_range"]
+            chapter_sections = [
+                s for s in sections
+                if start <= get_section_number(s) <= end
+            ]
+
+            if chapter_sections:
+                chapters.append({
+                    "id": f"de-{abbrev.lower()}-ch{chapter_def['number']}",
+                    "number": chapter_def["number"],
+                    "title": chapter_def["title"],
+                    "title_en": chapter_def.get("title_en", ""),
+                    "sections": chapter_sections
+                })
+
+        return chapters if chapters else [{
+            "id": f"de-{abbrev.lower()}-main",
+            "number": "1",
+            "title": "Hauptteil",
+            "title_en": "Main Part",
+            "sections": sections
+        }]
+
+    def _generate_whs_summary(self, sections: List[Dict]) -> Dict[str, Any]:
+        """Generate WHS summary statistics for the law."""
+        topic_counts = {}
+        relevance_counts = {"critical": 0, "high": 0, "medium": 0, "low": 0}
+
+        for section in sections:
+            for topic in section.get("whs_topics", []):
+                topic_id = topic["id"]
+                if topic_id not in topic_counts:
+                    topic_counts[topic_id] = 0
+                topic_counts[topic_id] += 1
+
+            relevance = section.get("amazon_logistics_relevance", {})
+            level = relevance.get("level", "low")
+            relevance_counts[level] += 1
+
+        sorted_topics = sorted(topic_counts.items(), key=lambda x: -x[1])
+
+        return {
+            "total_sections": len(sections),
+            "logistics_relevance_distribution": relevance_counts,
+            "top_whs_topics": sorted_topics[:10],
+            "critical_sections_count": relevance_counts["critical"] + relevance_counts["high"]
         }
 
 
 class NLScraper(Scraper):
-    """Scraper for Dutch laws from wetten.overheid.nl."""
+    """Scraper for Dutch laws from wetten.overheid.nl with full text extraction."""
+
+    # WHS relevance mapping for Dutch context
+    WHS_TOPICS = {
+        "risk_assessment": {"keywords": ["risico-inventarisatie", "evaluatie", "RI&E", "beoordeling", "gevaar"], "relevance": "high"},
+        "documentation": {"keywords": ["documentatie", "schriftelijk", "registratie", "plan"], "relevance": "high"},
+        "ppe": {"keywords": ["beschermingsmiddel", "persoonlijk", "PBM", "bescherming"], "relevance": "high"},
+        "first_aid": {"keywords": ["eerste hulp", "EHBO", "noodgeval", "bedrijfshulpverlening", "BHV"], "relevance": "high"},
+        "training": {"keywords": ["voorlichting", "opleiding", "instructie", "onderricht"], "relevance": "high"},
+        "workplace_design": {"keywords": ["arbeidsplaats", "werkplek", "inrichting", "omstandigheden"], "relevance": "high"},
+        "work_equipment": {"keywords": ["arbeidsmiddel", "machine", "gereedschap", "apparaat"], "relevance": "high"},
+        "hazardous_substances": {"keywords": ["gevaarlijke stof", "chemisch", "toxisch", "carcinogeen"], "relevance": "medium"},
+        "health_surveillance": {"keywords": ["gezondheid", "arbeidsgezondheidskundig", "onderzoek", "keurig"], "relevance": "medium"},
+        "ergonomics": {"keywords": ["ergonomie", "tillen", "fysieke belasting", "lichamelijk"], "relevance": "high"},
+        "incident_reporting": {"keywords": ["ongeval", "melding", "incident", "voorval"], "relevance": "high"},
+        "working_hours": {"keywords": ["arbeidstijd", "rusttijd", "pauze", "werktijd"], "relevance": "medium"},
+        "special_groups": {"keywords": ["jeugdige", "zwanger", "moeder", "gehandicapt"], "relevance": "medium"},
+        "prevention_services": {"keywords": ["preventiemedewerker", "arbodienst", "deskundige", "bedrijfsarts"], "relevance": "high"},
+        "employer_obligations": {"keywords": ["werkgever", "plicht", "verplicht", "zorgplicht"], "relevance": "high"},
+        "employee_rights": {"keywords": ["werknemer", "recht", "medewerking", "informatie"], "relevance": "medium"},
+        "penalties": {"keywords": ["boete", "straf", "overtreding", "sanctie"], "relevance": "high"},
+    }
 
     def __init__(self):
         super().__init__('NL')
 
     def scrape(self) -> List[Dict[str, Any]]:
-        """Scrape Dutch laws."""
+        """Scrape Dutch laws with full text extraction."""
         if not HAS_BS4:
             log_error("BeautifulSoup required. Install with: pip install beautifulsoup4")
             return []
 
         documents = []
         for abbrev, path in self.config.get('main_laws', {}).items():
-            log_info(f"Scraping {abbrev}...")
+            log_info(f"Scraping {abbrev} with full text extraction...")
             url = urljoin(self.base_url, path)
             html = self.fetch_url(url)
 
             if html:
-                doc = self._parse_dutch_law(html, abbrev, url)
+                doc = self._parse_dutch_law_full(html, abbrev, url)
                 if doc:
                     documents.append(doc)
-                    log_success(f"Scraped {abbrev}")
+                    total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
+                    log_success(f"Scraped {abbrev}: {total_sections} articles with full text")
 
             time.sleep(CONFIG.rate_limit_delay)
 
         return documents
 
-    def _parse_dutch_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
-        """Parse a Dutch law."""
+    def _classify_whs_topics(self, text: str, title: str) -> List[Dict[str, Any]]:
+        """Classify section by WHS relevance topics."""
+        topics = []
+        combined_text = f"{title} {text}".lower()
+
+        for topic_id, topic_data in self.WHS_TOPICS.items():
+            matches = sum(1 for kw in topic_data["keywords"] if kw.lower() in combined_text)
+            if matches > 0:
+                topics.append({
+                    "id": topic_id,
+                    "relevance": topic_data["relevance"],
+                    "match_count": matches
+                })
+
+        topics.sort(key=lambda x: (-x["match_count"], x["relevance"] != "high"))
+        return topics[:5]
+
+    def _calculate_logistics_relevance(self, text: str, title: str) -> Dict[str, Any]:
+        """Calculate relevance score for logistics/warehouse operations."""
+        combined = f"{title} {text}".lower()
+
+        logistics_keywords = {
+            "high": [
+                "tillen", "dragen", "transport", "magazijn", "vorkheftruck",
+                "pallet", "stelling", "laadperron", "voertuig", "laden", "lossen",
+                "ergonomie", "rug", "spier", "lichamelijk",
+                "voorlichting", "beschermingsmiddel", "veiligheidsschoenen",
+                "signaalvest", "eerste hulp", "noodgeval", "vluchtweg"
+            ],
+            "medium": [
+                "arbeidsmiddel", "machine", "apparaat", "geluid", "verlichting",
+                "temperatuur", "klimaat", "sanitair", "pauze", "arbeidstijd",
+                "gevaar", "risico", "ongeval", "letsel", "preventie"
+            ]
+        }
+
+        high_matches = sum(1 for kw in logistics_keywords["high"] if kw in combined)
+        medium_matches = sum(1 for kw in logistics_keywords["medium"] if kw in combined)
+
+        score = (high_matches * 2) + medium_matches
+
+        if score >= 5:
+            level = "critical"
+        elif score >= 3:
+            level = "high"
+        elif score >= 1:
+            level = "medium"
+        else:
+            level = "low"
+
+        return {
+            "score": score,
+            "level": level,
+            "high_keyword_matches": high_matches,
+            "medium_keyword_matches": medium_matches
+        }
+
+    def _parse_dutch_law_full(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
+        """Parse a Dutch law with full text extraction."""
         soup = BeautifulSoup(html, 'html.parser')
+
+        # Remove UI boilerplate
+        for elem in soup.find_all(['nav', 'script', 'style', 'header', 'footer']):
+            elem.decompose()
+
+        # Remove specific Dutch UI elements
+        for elem in soup.find_all(string=re.compile(r'(Toon relaties|Maak een permanente link|Toon wetstechnische|Druk het regelingonderdeel)', re.I)):
+            if elem.parent:
+                elem.parent.decompose()
 
         title_elem = soup.find('h1') or soup.find('title')
         title = title_elem.get_text(strip=True) if title_elem else abbrev
@@ -713,67 +1240,73 @@ class NLScraper(Scraper):
         sections = []
         seen_sections = set()
 
-        # Method 1: Find h4 headings with Artikel (wetten.overheid.nl pattern)
-        for heading in soup.find_all(['h4', 'h3', 'h2']):
+        # Find all Artikel headings (wetten.overheid.nl uses h4 for articles)
+        artikel_headings = soup.find_all(['h4', 'h3', 'h2'])
+
+        for heading in artikel_headings:
             text = heading.get_text(strip=True)
             match = re.search(r'Artikel\s+(\d+[a-z]?)', text, re.IGNORECASE)
             if match:
                 section_num = match.group(1)
-                if section_num not in seen_sections:
-                    seen_sections.add(section_num)
-                    # Get content from following siblings
-                    content_parts = []
-                    for sibling in heading.find_next_siblings():
-                        if sibling.name in ['h2', 'h3', 'h4']:
+                if section_num in seen_sections:
+                    continue
+                seen_sections.add(section_num)
+
+                # Extract title after article number
+                title_match = re.search(r'Artikel\s+\d+[a-z]?\.?\s*(.+)', text, re.IGNORECASE)
+                article_title = title_match.group(1).strip() if title_match else ""
+
+                # Collect all content until next article heading
+                content_parts = []
+                current = heading.find_next_sibling()
+                while current:
+                    if current.name in ['h2', 'h3', 'h4']:
+                        # Check if it's another article heading
+                        current_text = current.get_text(strip=True)
+                        if re.search(r'Artikel\s+\d+', current_text, re.IGNORECASE):
                             break
-                        if sibling.name in ['p', 'div', 'ol', 'ul']:
-                            content_parts.append(sibling.get_text(strip=True))
-                    sections.append({
-                        "id": generate_id(f"{abbrev}-{section_num}"),
-                        "number": f"{section_num}.",
-                        "title": text,
-                        "text": "\n".join(content_parts)[:5000] if content_parts else text,
-                        "paragraphs": []
-                    })
+                        if re.search(r'Hoofdstuk\s+\d+', current_text, re.IGNORECASE):
+                            break
 
-        # Method 2: Find links to articles (fallback)
-        if not sections:
-            for link in soup.find_all('a', href=True):
-                text = link.get_text(strip=True)
-                match = re.search(r'Artikel\s+(\d+[a-z]?)', text, re.IGNORECASE)
-                if match:
-                    section_num = match.group(1)
-                    if section_num not in seen_sections:
-                        seen_sections.add(section_num)
-                        sections.append({
-                            "id": generate_id(f"{abbrev}-{section_num}"),
-                            "number": f"{section_num}.",
-                            "title": f"Artikel {section_num}.",
-                            "text": text,
-                            "paragraphs": []
-                        })
+                    # Extract content from list items, paragraphs, divs
+                    if current.name in ['ul', 'ol', 'p', 'div', 'li']:
+                        elem_text = current.get_text(separator=' ', strip=True)
+                        # Filter out UI boilerplate
+                        if elem_text and len(elem_text) > 5:
+                            if not re.search(r'(Toon relaties|permanente link|wetstechnische)', elem_text, re.I):
+                                content_parts.append(elem_text)
 
-        # Method 3: Find any text with Artikel pattern (last resort)
-        if not sections:
-            for elem in soup.find_all(string=re.compile(r'Artikel\s+\d+', re.IGNORECASE)):
-                text = str(elem).strip()
-                match = re.search(r'Artikel\s+(\d+[a-z]?)', text, re.IGNORECASE)
-                if match:
-                    section_num = match.group(1)
-                    if section_num not in seen_sections:
-                        seen_sections.add(section_num)
-                        parent = elem.parent if hasattr(elem, 'parent') else None
-                        full_text = parent.get_text(strip=True) if parent else text
-                        sections.append({
-                            "id": generate_id(f"{abbrev}-{section_num}"),
-                            "number": f"{section_num}.",
-                            "title": f"Artikel {section_num}.",
-                            "text": full_text[:2000],
-                            "paragraphs": []
-                        })
+                    current = current.find_next_sibling()
+
+                # Deduplicate content parts
+                seen_content = set()
+                unique_content = []
+                for part in content_parts:
+                    normalized = part.lower().strip()[:100]
+                    if normalized not in seen_content:
+                        seen_content.add(normalized)
+                        unique_content.append(part)
+
+                full_text = '\n\n'.join(unique_content)
+
+                whs_topics = self._classify_whs_topics(full_text, article_title)
+                logistics_relevance = self._calculate_logistics_relevance(full_text, article_title)
+
+                sections.append({
+                    "id": generate_id(f"{abbrev}-{section_num}"),
+                    "number": section_num,
+                    "title": f"Artikel {section_num}. {article_title}".rstrip('.'),
+                    "text": full_text[:15000],
+                    "whs_topics": whs_topics,
+                    "amazon_logistics_relevance": logistics_relevance,
+                    "paragraphs": []
+                })
 
         # Sort sections by number
         sections.sort(key=lambda s: get_section_number(s))
+
+        # Organize into chapters (Hoofdstukken)
+        chapters = self._organize_into_chapters(sections, abbrev)
 
         return {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
@@ -785,9 +1318,73 @@ class NLScraper(Scraper):
             "title_en": "Working Conditions Act" if abbrev == "Arbowet" else title,
             "category": "Core Safety",
             "implements_eu_directive": "89/391/EEG",
-            "source": {"url": url, "title": title, "authority": self.authority},
+            "source": {"url": url, "title": title, "authority": self.authority, "robots_txt_compliant": True},
             "scraping": {"scraped_at": datetime.now().isoformat(), "scraper_version": CONFIG.scraper_version},
-            "chapters": [{"id": f"nl-{abbrev.lower()}-main", "number": "1", "title": "Hoofdinhoud", "sections": sections}]
+            "whs_summary": self._generate_whs_summary(sections),
+            "chapters": chapters
+        }
+
+    def _organize_into_chapters(self, sections: List[Dict], abbrev: str) -> List[Dict]:
+        """Organize sections into official chapter structure (Hoofdstukken)."""
+        structure = LAW_STRUCTURES.get("NL", {}).get(abbrev, [])
+
+        if not structure:
+            return [{
+                "id": f"nl-{abbrev.lower()}-main",
+                "number": "1",
+                "title": "Hoofdinhoud",
+                "title_en": "Main Content",
+                "sections": sections
+            }]
+
+        chapters = []
+        for chapter_def in structure:
+            start, end = chapter_def["section_range"]
+            chapter_sections = [
+                s for s in sections
+                if start <= get_section_number(s) <= end
+            ]
+
+            if chapter_sections:
+                chapters.append({
+                    "id": f"nl-{abbrev.lower()}-ch{chapter_def['number']}",
+                    "number": chapter_def["number"],
+                    "title": chapter_def["title"],
+                    "title_en": chapter_def.get("title_en", ""),
+                    "sections": chapter_sections
+                })
+
+        return chapters if chapters else [{
+            "id": f"nl-{abbrev.lower()}-main",
+            "number": "1",
+            "title": "Hoofdinhoud",
+            "title_en": "Main Content",
+            "sections": sections
+        }]
+
+    def _generate_whs_summary(self, sections: List[Dict]) -> Dict[str, Any]:
+        """Generate WHS summary statistics for the law."""
+        topic_counts = {}
+        relevance_counts = {"critical": 0, "high": 0, "medium": 0, "low": 0}
+
+        for section in sections:
+            for topic in section.get("whs_topics", []):
+                topic_id = topic["id"]
+                if topic_id not in topic_counts:
+                    topic_counts[topic_id] = 0
+                topic_counts[topic_id] += 1
+
+            relevance = section.get("amazon_logistics_relevance", {})
+            level = relevance.get("level", "low")
+            relevance_counts[level] += 1
+
+        sorted_topics = sorted(topic_counts.items(), key=lambda x: -x[1])
+
+        return {
+            "total_sections": len(sections),
+            "logistics_relevance_distribution": relevance_counts,
+            "top_whs_topics": sorted_topics[:10],
+            "critical_sections_count": relevance_counts["critical"] + relevance_counts["high"]
         }
 
 

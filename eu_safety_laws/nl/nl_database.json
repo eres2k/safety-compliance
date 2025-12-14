@@ -1,13 +1,13 @@
 {
   "metadata": {
     "country": "NL",
-    "generated_at": "2025-12-14T16:29:59.000470",
+    "generated_at": "2025-12-14T15:55:51.397857",
     "document_count": 1,
     "error_count": 0
   },
   "documents": [
     {
-      "id": "d11702efd1648092",
+      "id": "b8feac7de92e9500",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -19,18 +19,1342 @@
       "source": {
         "url": "https://wetten.overheid.nl/BWBR0010346/",
         "title": "Arbeidsomstandighedenwet",
-        "authority": "wetten.overheid.nl"
+        "authority": "wetten.overheid.nl",
+        "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-14T16:29:58.499775",
-        "scraper_version": "6.0.0"
+        "scraped_at": "2025-12-14T15:55:50.895721",
+        "scraper_version": "7.0.0"
+      },
+      "whs_summary": {
+        "total_sections": 72,
+        "logistics_relevance_distribution": {
+          "critical": 0,
+          "high": 0,
+          "medium": 10,
+          "low": 62
+        },
+        "top_whs_topics": [
+          [
+            "employee_rights",
+            8
+          ],
+          [
+            "penalties",
+            6
+          ],
+          [
+            "prevention_services",
+            5
+          ],
+          [
+            "employer_obligations",
+            4
+          ],
+          [
+            "risk_assessment",
+            3
+          ],
+          [
+            "workplace_design",
+            2
+          ],
+          [
+            "incident_reporting",
+            2
+          ],
+          [
+            "hazardous_substances",
+            1
+          ],
+          [
+            "training",
+            1
+          ],
+          [
+            "documentation",
+            1
+          ]
+        ],
+        "critical_sections_count": 0
       },
       "chapters": [
         {
-          "id": "nl-arbowet-main",
+          "id": "nl-arbowet-ch1",
           "number": "1",
-          "title": "Hoofdinhoud",
-          "sections": []
+          "title": "Hoofdstuk 1 - Definities en toepassingsgebied",
+          "title_en": "Chapter 1 - Definitions and Scope",
+          "sections": [
+            {
+              "id": "08afb51d10e71ce0",
+              "number": "1",
+              "title": "Artikel 1. Definities",
+              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "63ab439bd85dfe72",
+              "number": "2",
+              "title": "Artikel 2. Uitbreiding Toepassingsgebied",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "nl-arbowet-ch2",
+          "number": "2",
+          "title": "Hoofdstuk 2 - Arbeidsomstandighedenbeleid",
+          "title_en": "Chapter 2 - Working Conditions Policy",
+          "sections": [
+            {
+              "id": "12b1c0f3ebcc7586",
+              "number": "3",
+              "title": "Artikel 3. Arbobeleid",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "9945ed266a328c69",
+              "number": "4",
+              "title": "Artikel 4. Aanpassing arbeidsplaats werknemer met structurele functionele beperking",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "cf1b258f4dc74bf7",
+              "number": "5",
+              "title": "Artikel 5. Inventarisatie en evaluatie van risico’s",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "f5ef61eb05d2342d",
+              "number": "6",
+              "title": "Artikel 6. Voorkoming en beperking van zware ongevallen waarbij gevaarlijke stoffen",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "f1d517ef4bce51be",
+              "number": "7",
+              "title": "Artikel 7. Informatie aan het publiek",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "46ed1781845b0d3d",
+              "number": "8",
+              "title": "Artikel 8. Voorlichting en onderricht",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "653390fae8964a3d",
+              "number": "9",
+              "title": "Artikel 9. Melding en registratie van arbeidsongevallen en beroepsziekten",
+              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "whs_topics": [
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "205a2b15d60b51a6",
+              "number": "10",
+              "title": "Artikel 10. Voorkomen van gevaar voor derden",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "dd863ada2915dfb3",
+              "number": "11",
+              "title": "Artikel 11. Algemene verplichtingen van de werknemers",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "nl-arbowet-ch3",
+          "number": "3",
+          "title": "Hoofdstuk 3 - Samenwerking, overleg, bijzondere rechten en deskundige bijstand",
+          "title_en": "Chapter 3 - Cooperation, Consultation, Special Rights and Expert Assistance",
+          "sections": [
+            {
+              "id": "50688762ff685900",
+              "number": "12",
+              "title": "Artikel 12. Samenwerking, overleg en bijzondere rechten van de ondernemingsraad, de",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "45db5b945f4ce041",
+              "number": "13",
+              "title": "Artikel 13. Bijstand deskundige werknemers op het gebied van preventie en bescherming",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "bc40250f26483f40",
+              "number": "14",
+              "title": "Artikel 14. Maatwerkregeling aanvullende deskundige bijstand bij specifieke taken",
+              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "e8bd89e03119ef82",
+              "number": "14a",
+              "title": "Artikel 14a. Vangnetregeling aanvullende deskundige bijstand op het gebied van preventie",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "3e56e35a64f94794",
+              "number": "15",
+              "title": "Artikel 15. Deskundige bijstand op het gebied van bedrijfshulpverlening",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "first_aid",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c731643741dc1fca",
+              "number": "15a",
+              "title": "Artikel 15a. Informatierechten deskundige werknemers en personen, bedrijfshulpverleners",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "nl-arbowet-ch4",
+          "number": "4",
+          "title": "Hoofdstuk 4 - Bijzondere verplichtingen",
+          "title_en": "Chapter 4 - Special Obligations",
+          "sections": [
+            {
+              "id": "641032aadabee737",
+              "number": "16",
+              "title": "Artikel 16. Nadere regels met betrekking tot arbeidsomstandigheden alsmede uitzonderingen",
+              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "21575bd152cdf289",
+              "number": "17",
+              "title": "Artikel 17. Maatwerk door werkgevers en werknemers",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "788c41d6f22e4670",
+              "number": "18",
+              "title": "Artikel 18. Arbeidsgezondheidskundig onderzoek",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 3
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "0771c7c68bc337e6",
+              "number": "19",
+              "title": "Artikel 19. Verschillende werkgevers",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "cc1a0384e8b7fcde",
+              "number": "20",
+              "title": "Artikel 20. Certificatie",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "6b2ae564c3490335",
+              "number": "21",
+              "title": "Artikel 21. Informatievoorziening",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "289020bba57e3716",
+              "number": "22",
+              "title": "Artikel 22. Aanwijzingen",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "fdb1b4412e66b6a3",
+              "number": "23",
+              "title": "Artikel 23. Taakverwaarlozing",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "nl-arbowet-ch5",
+          "number": "5",
+          "title": "Hoofdstuk 5 - Toezicht en ambtelijke bevelen",
+          "title_en": "Chapter 5 - Supervision and Official Orders",
+          "sections": [
+            {
+              "id": "b6ec4585798bbbff",
+              "number": "24",
+              "title": "Artikel 24. Ambtenaren belast met het toezicht",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ce623a91071ccae9",
+              "number": "25",
+              "title": "Artikel 25. Toezicht op instellingen",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "e8088b010a22443d",
+              "number": "26",
+              "title": "Artikel 26. Geheimhouding",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "e58c19ea316c4a18",
+              "number": "27",
+              "title": "Artikel 27. Eis tot naleving",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "d3d7f01e2b0db301",
+              "number": "28",
+              "title": "Artikel 28. Stillegging van het werk",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "7fcf836c43155620",
+              "number": "28a",
+              "title": "Artikel 28a. Bevel stillegging van werk in verband met recidive",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "25f7b23d1ef57469",
+              "number": "28b",
+              "title": "Artikel 28b. Last onder bestuursdwang",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "8de8e0360ced54f6",
+              "number": "29",
+              "title": "Artikel 29. Werkonderbreking",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "55e8db39f170893b",
+              "number": "29a",
+              "title": "Artikel 29a. Gegevensuitwisseling",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "40934318ae3a497c",
+              "number": "29b",
+              "title": "Artikel 29b. Openbaarmaking van door toezicht op de naleving verkregen gegevens",
+              "text": "... Sla het regelingonderdeel op\n\n[Tekst zonder datum inwerkingtreding. Zie het wijzigingenoverzicht .]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "nl-arbowet-ch6",
+          "number": "6",
+          "title": "Hoofdstuk 6 - Vrijstellingen, ontheffingen en beroep",
+          "title_en": "Chapter 6 - Exemptions, Dispensations and Appeals",
+          "sections": [
+            {
+              "id": "1be661c157895fe6",
+              "number": "30",
+              "title": "Artikel 30. Vrijstelling en ontheffing",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "06a586a406f2d643",
+              "number": "31",
+              "title": "Artikel 31. Beroep",
+              "text": "... Sla het regelingonderdeel op\n\n[Wijziging(en) zonder datum inwerkingtreding aanwezig. Zie het wijzigingenoverzicht .]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "nl-arbowet-ch7",
+          "number": "7",
+          "title": "Hoofdstuk 7 - Sancties",
+          "title_en": "Chapter 7 - Sanctions",
+          "sections": [
+            {
+              "id": "f12e03ab6b496d49",
+              "number": "32",
+              "title": "Artikel 32. Strafbepaling",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c32f89050e636cc3",
+              "number": "33",
+              "title": "Artikel 33. Overtredingen",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "52b49ce265e5157b",
+              "number": "33a",
+              "title": "Artikel 33a. a",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-07-2009]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "a3cee359c40a2fba",
+              "number": "34",
+              "title": "Artikel 34. Hoogte bestuurlijke boete en recidive",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "f0bd18d5c711252c",
+              "number": "35",
+              "title": "Artikel 35. 5",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-07-2009]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "692b9ed930c398ac",
+              "number": "36",
+              "title": "Artikel 36. Boeterapport",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "899189f58b2d3e3b",
+              "number": "37",
+              "title": "Artikel 37. Boetebeschikking",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "5dfbb1ae57ab90b7",
+              "number": "38",
+              "title": "Artikel 38. Inlichtingenplicht jegens de boeteoplegger",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "a950ed95f372f929",
+              "number": "39",
+              "title": "Artikel 39. 9",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-07-2009]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "9a3dca1a4bd2cdb2",
+              "number": "40",
+              "title": "Artikel 40. 0",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-04-2011]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "20533ced4c5e0769",
+              "number": "41",
+              "title": "Artikel 41. 1",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-07-2009]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "0c672a8c78051581",
+              "number": "42",
+              "title": "Artikel 42. 2",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2013]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "3c2348da21643bef",
+              "number": "43",
+              "title": "Artikel 43. Terugbetaling",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "nl-arbowet-ch8",
+          "number": "8",
+          "title": "Hoofdstuk 8 - Overgangs- en slotbepalingen",
+          "title_en": "Chapter 8 - Transitional and Final Provisions",
+          "sections": [
+            {
+              "id": "ad0ddcfbd5863fb3",
+              "number": "44",
+              "title": "Artikel 44. Kosten",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "cd92cd3b084877d4",
+              "number": "45",
+              "title": "Artikel 45. Overgangsbepaling",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "5a4e4ba43b03643c",
+              "number": "46",
+              "title": "Artikel 46. Citeertitel",
+              "text": "... Sla het regelingonderdeel op",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "25ce789938aadbe4",
+              "number": "47",
+              "title": "Artikel 47. 7",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "b8df87555bc3d2fe",
+              "number": "49",
+              "title": "Artikel 49. 9",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "fa92a6dc5232ed14",
+              "number": "50",
+              "title": "Artikel 50. 0",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "be58eeaa5f04b138",
+              "number": "51",
+              "title": "Artikel 51. 1",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "1135cdfb75537976",
+              "number": "52",
+              "title": "Artikel 52. 2",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "0613ca5944e369d8",
+              "number": "53",
+              "title": "Artikel 53. 3",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-05-2004]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "2898c32271b2b09c",
+              "number": "54",
+              "title": "Artikel 54. 4",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 29-12-2000]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "fd7c18f7f71dd9c2",
+              "number": "55",
+              "title": "Artikel 55. 5",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ad4bf34b954a636d",
+              "number": "56",
+              "title": "Artikel 56. 6",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "17cad480c5001d7a",
+              "number": "57",
+              "title": "Artikel 57. 7",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "8009456ba1993242",
+              "number": "58",
+              "title": "Artikel 58. 8",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "5628e96b2a3c4106",
+              "number": "59",
+              "title": "Artikel 59. 9",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "f3ced159d7f2d4b8",
+              "number": "60",
+              "title": "Artikel 60. 0",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "d192647868745a4b",
+              "number": "61",
+              "title": "Artikel 61. 1",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "175d84faf0af45b1",
+              "number": "62",
+              "title": "Artikel 62. 2",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "cc83af693ac3bb7b",
+              "number": "63",
+              "title": "Artikel 63. 3",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "0750b0e465a9d08f",
+              "number": "64",
+              "title": "Artikel 64. 4",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "fc0c4ab4bc8e6238",
+              "number": "65",
+              "title": "Artikel 65. 5",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "f577fbe273e372d5",
+              "number": "66",
+              "title": "Artikel 66. 6",
+              "text": "... Sla het regelingonderdeel op\n\n[Vervallen per 01-01-2007]",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
         }
       ]
     }

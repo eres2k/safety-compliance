@@ -167,8 +167,43 @@ function normalizeLawItem(item) {
     // Use cleaned or generated summary
     summary: cleanedSummary,
     // Preserve chapters if they exist (AT/NL have chapters at top level)
-    chapters: item.chapters || []
+    chapters: item.chapters || [],
+    // WHS metadata - new fields for WHS employee browser
+    whs_summary: item.whs_summary || null,
   }
+}
+
+/**
+ * WHS Topic labels for display
+ */
+export const WHS_TOPIC_LABELS = {
+  risk_assessment: { label: 'Risk Assessment', icon: '⚠️', color: 'orange' },
+  documentation: { label: 'Documentation', icon: '📋', color: 'blue' },
+  ppe: { label: 'PPE', icon: '🦺', color: 'yellow' },
+  first_aid: { label: 'First Aid', icon: '🏥', color: 'red' },
+  training: { label: 'Training', icon: '📚', color: 'purple' },
+  workplace_design: { label: 'Workplace Design', icon: '🏭', color: 'gray' },
+  work_equipment: { label: 'Work Equipment', icon: '🔧', color: 'slate' },
+  hazardous_substances: { label: 'Hazardous Substances', icon: '☣️', color: 'amber' },
+  health_surveillance: { label: 'Health Surveillance', icon: '🩺', color: 'green' },
+  ergonomics: { label: 'Ergonomics', icon: '🧘', color: 'teal' },
+  incident_reporting: { label: 'Incident Reporting', icon: '📝', color: 'red' },
+  working_hours: { label: 'Working Hours', icon: '⏰', color: 'indigo' },
+  special_groups: { label: 'Special Groups', icon: '👥', color: 'pink' },
+  prevention_services: { label: 'Prevention Services', icon: '🛡️', color: 'cyan' },
+  employer_obligations: { label: 'Employer Obligations', icon: '👔', color: 'blue' },
+  employee_rights: { label: 'Employee Rights', icon: '✊', color: 'green' },
+  penalties: { label: 'Penalties', icon: '⚖️', color: 'red' },
+}
+
+/**
+ * Relevance level colors and labels
+ */
+export const RELEVANCE_LEVELS = {
+  critical: { label: 'Critical', color: 'red', bgColor: 'bg-red-100 dark:bg-red-900/30', textColor: 'text-red-700 dark:text-red-300' },
+  high: { label: 'High', color: 'orange', bgColor: 'bg-orange-100 dark:bg-orange-900/30', textColor: 'text-orange-700 dark:text-orange-300' },
+  medium: { label: 'Medium', color: 'yellow', bgColor: 'bg-yellow-100 dark:bg-yellow-900/30', textColor: 'text-yellow-700 dark:text-yellow-300' },
+  low: { label: 'Low', color: 'gray', bgColor: 'bg-gray-100 dark:bg-gray-800', textColor: 'text-gray-600 dark:text-gray-400' },
 }
 
 /**
