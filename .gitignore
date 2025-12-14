@@ -42,3 +42,7 @@ __pycache__/
 # Database cleanup script outputs
 eu_safety_laws/**/*_backup.json
 eu_safety_laws/**/*_cleaned.json
+eu_safety_laws/at/*.backup.json
+eu_safety_laws/de/*.backup.json
+eu_safety_laws/nl/*.backup.json
+*.backup.json
