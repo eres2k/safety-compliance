@@ -1,13 +1,13 @@
 {
   "metadata": {
     "country": "DE",
-    "generated_at": "2025-12-14T16:14:13.334855",
+    "generated_at": "2025-12-14T16:29:57.585546",
     "document_count": 1,
     "error_count": 0
   },
   "documents": [
     {
-      "id": "c81da69f3e6bdf09",
+      "id": "91ca0e9dc3103550",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -22,7 +22,7 @@
         "authority": "gesetze-im-internet.de"
       },
       "scraping": {
-        "scraped_at": "2025-12-14T16:14:12.833976",
+        "scraped_at": "2025-12-14T16:29:57.084583",
         "scraper_version": "6.0.0"
       },
       "chapters": [

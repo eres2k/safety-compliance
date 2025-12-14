@@ -1,7 +1,7 @@
 {
   "metadata": {
     "country": "AT",
-    "generated_at": "2025-12-14T16:14:12.395407",
+    "generated_at": "2025-12-14T16:29:56.628999",
     "document_count": 1,
     "error_count": 0,
     "cleaned_at": "2025-12-14T16:13:21.715946",
@@ -9,7 +9,7 @@
   },
   "documents": [
     {
-      "id": "3aa786f9b76f1e61",
+      "id": "33c3781e2a27cad4",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "AT",
@@ -24,7 +24,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-14T16:14:11.894319",
+        "scraped_at": "2025-12-14T16:29:56.128203",
         "scraper_version": "6.0.0"
       },
       "chapters": [

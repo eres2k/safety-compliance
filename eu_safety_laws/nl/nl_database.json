@@ -1,13 +1,13 @@
 {
   "metadata": {
     "country": "NL",
-    "generated_at": "2025-12-14T16:14:14.872112",
+    "generated_at": "2025-12-14T16:29:59.000470",
     "document_count": 1,
     "error_count": 0
   },
   "documents": [
     {
-      "id": "7c62d681e8fbc585",
+      "id": "d11702efd1648092",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -22,7 +22,7 @@
         "authority": "wetten.overheid.nl"
       },
       "scraping": {
-        "scraped_at": "2025-12-14T16:14:14.371324",
+        "scraped_at": "2025-12-14T16:29:58.499775",
         "scraper_version": "6.0.0"
       },
       "chapters": [
