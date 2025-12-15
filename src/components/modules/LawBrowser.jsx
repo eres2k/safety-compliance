@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, SearchInput } from '../ui'
+import { Button, Card, CardContent, SearchInput, LawVisualizer } from '../ui'
 import {
   getAllLaws,
   searchLaws,
@@ -681,7 +681,7 @@ function WHSSummaryPanel({ summary }) {
 
 export function LawBrowser({ onBack }) {
   const { t, framework, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
-  const { explainSection, isLoading: aiLoading } = useAI()
+  const { explainSection, generateFlowchart, isLoading: aiLoading } = useAI()
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedLaw, setSelectedLaw] = useState(null)
@@ -692,6 +692,11 @@ export function LawBrowser({ onBack }) {
   const [relevanceFilter, setRelevanceFilter] = useState('all') // all, critical, high, medium, low
   const [isLoading, setIsLoading] = useState(false)
   const [prevFramework, setPrevFramework] = useState(framework)
+
+  // Flowchart visualization state
+  const [flowchartData, setFlowchartData] = useState(null)
+  const [flowchartSectionId, setFlowchartSectionId] = useState(null)
+  const [flowchartLoading, setFlowchartLoading] = useState(false)
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
@@ -866,12 +871,50 @@ export function LawBrowser({ onBack }) {
     }
   }
 
+  // Handle flowchart generation for a section
+  const handleGenerateFlowchart = async (section) => {
+    if (!section || flowchartLoading) return
+
+    // If clicking the same section, toggle off
+    if (flowchartSectionId === section.id && flowchartData) {
+      setFlowchartData(null)
+      setFlowchartSectionId(null)
+      return
+    }
+
+    setFlowchartLoading(true)
+    setFlowchartSectionId(section.id)
+    setFlowchartData(null)
+
+    try {
+      const lawContext = selectedLaw ? `Law: ${selectedLaw.abbreviation || selectedLaw.title}\n` : ''
+      const sectionText = `${section.number}${section.title ? ` - ${section.title}` : ''}\n\n${section.content}`
+      const response = await generateFlowchart(lawContext + sectionText)
+      setFlowchartData(response)
+    } catch (error) {
+      console.error('Flowchart generation error:', error)
+      setFlowchartData(null)
+      setFlowchartSectionId(null)
+    } finally {
+      setFlowchartLoading(false)
+    }
+  }
+
+  // Close flowchart
+  const closeFlowchart = () => {
+    setFlowchartData(null)
+    setFlowchartSectionId(null)
+  }
+
   // Select a law
   const selectLaw = (law) => {
     setSelectedLaw(law)
     setExplanation('')
     setActiveSection(null)
     setSearchInLaw('')
+    // Reset flowchart state
+    setFlowchartData(null)
+    setFlowchartSectionId(null)
     // Reset section refs to avoid stale references
     sectionRefs.current = {}
     // Scroll content to top
@@ -1252,6 +1295,47 @@ export function LawBrowser({ onBack }) {
                                     <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
                                       <FormattedText text={section.content} />
                                     </div>
+
+                                    {/* Visualize Button */}
+                                    <div className="mt-4 flex items-center gap-2">
+                                      <button
+                                        onClick={() => handleGenerateFlowchart(section)}
+                                        disabled={flowchartLoading && flowchartSectionId === section.id}
+                                        className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
+                                          flowchartSectionId === section.id && flowchartData
+                                            ? 'bg-whs-orange-500 text-white'
+                                            : 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300 hover:bg-whs-orange-100 dark:hover:bg-whs-orange-900/30'
+                                        } disabled:opacity-50 disabled:cursor-not-allowed`}
+                                      >
+                                        {flowchartLoading && flowchartSectionId === section.id ? (
+                                          <>
+                                            <div className="w-4 h-4 border-2 border-whs-orange-300 border-t-whs-orange-600 rounded-full animate-spin"></div>
+                                            <span>Generating...</span>
+                                          </>
+                                        ) : (
+                                          <>
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+                                            </svg>
+                                            <span>{flowchartSectionId === section.id && flowchartData ? 'Hide Flowchart' : 'Visualize'}</span>
+                                          </>
+                                        )}
+                                      </button>
+                                      <span className="text-xs text-gray-400 dark:text-gray-500">
+                                        AI-powered decision tree
+                                      </span>
+                                    </div>
+
+                                    {/* Flowchart Visualization */}
+                                    {flowchartSectionId === section.id && flowchartData && (
+                                      <div className="mt-4">
+                                        <LawVisualizer
+                                          chartSyntax={flowchartData}
+                                          onClose={closeFlowchart}
+                                          title={`${section.number}${section.title ? ` - ${section.title}` : ''}`}
+                                        />
+                                      </div>
+                                    )}
                                   </div>
                                 </div>
                               )

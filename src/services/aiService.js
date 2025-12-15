@@ -110,3 +110,23 @@ Be specific and practical. Include all relevant legal citations.`
 
   return generateAIResponse(prompt, framework, language)
 }
+
+export async function generateFlowchart(lawText, framework, language) {
+  const prompt = `You are a visual logic expert. Create a Mermaid.js flowchart to explain this regulation.
+
+RULES:
+1. Use 'graph TD' (Top-Down) orientation.
+2. Use concise node labels (max 8 words per line).
+3. Focus on "If/Then" decision points in the law (e.g., "Is height > 2m?", "Are hazardous substances present?").
+4. Use diamond shapes for decisions (e.g., {Decision?})
+5. Use rounded rectangles for actions (e.g., (Action))
+6. Use rectangles for requirements (e.g., [Requirement])
+7. Include Yes/No or appropriate labels on decision arrows.
+8. Keep the flowchart practical and actionable for workplace safety managers.
+9. Output ONLY the raw Mermaid syntax string. No markdown code blocks, no backticks, no explanation.
+
+Regulation text:
+${lawText.substring(0, 4000)}`
+
+  return generateAIResponse(prompt, framework, language)
+}

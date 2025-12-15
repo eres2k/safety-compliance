@@ -77,6 +77,20 @@ export function useAI() {
     }
   }, [framework, language])
 
+  const generateFlowchart = useCallback(async (lawText) => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const response = await aiService.generateFlowchart(lawText, framework, language)
+      return response
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [framework, language])
+
   return {
     isLoading,
     error,
@@ -84,7 +98,8 @@ export function useAI() {
     explainSection,
     checkCompliance,
     generateDocument,
-    lookupRegulation
+    lookupRegulation,
+    generateFlowchart
   }
 }
 
