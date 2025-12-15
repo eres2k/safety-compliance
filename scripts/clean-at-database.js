@@ -27,6 +27,155 @@ const CONFIG = {
   rateLimitDelayMs: 1000, // Delay between API calls to avoid rate limits
 }
 
+// Official ASchG (ArbeitnehmerInnenschutzgesetz) section titles
+// Source: https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910
+const ASCHG_SECTION_TITLES = {
+  // 1. Abschnitt - Allgemeine Bestimmungen
+  '1': 'Geltungsbereich',
+  '2': 'Begriffsbestimmungen',
+  // 2. Abschnitt - Arbeitgeber
+  '3': 'Allgemeine Pflichten der Arbeitgeber',
+  '4': 'Ermittlung und Beurteilung der Gefahren; Festlegung von Maßnahmen',
+  '5': 'Sicherheits- und Gesundheitsschutzdokumente',
+  '6': 'Einsatz der Arbeitnehmer',
+  '7': 'Grundsätze der Gefahrenverhütung',
+  '8': 'Koordination',
+  '9': 'Überlassung',
+  '10': 'Bestellung von Sicherheitsvertrauenspersonen',
+  '11': 'Aufgaben, Information und Beiziehung der Sicherheitsvertrauenspersonen',
+  '12': 'Information',
+  '13': 'Anhörung und Beteiligung der Arbeitnehmer',
+  '14': 'Unterweisung',
+  // 3. Abschnitt - Arbeitnehmer
+  '15': 'Pflichten der Arbeitnehmer',
+  '16': 'Besondere Pflichten der Arbeitnehmer',
+  // 4. Abschnitt - Arbeitsstätten
+  '17': 'Allgemeine Anforderungen an Arbeitsstätten',
+  '18': 'Nichtraucherschutz',
+  '19': 'Brandschutz und Explosionsschutz',
+  '20': 'Erste Hilfe',
+  '21': 'Arbeitsstätten in Gebäuden',
+  '22': 'Arbeitsstätten im Freien',
+  '23': 'Baustellen',
+  '24': 'Auswärtige Arbeitsstellen',
+  '25': 'Lärm, Erschütterungen, Strahlung',
+  '26': 'Beleuchtung, Raumklima',
+  // 5. Abschnitt - Arbeitsmittel
+  '27': 'Allgemeine Bestimmungen über die Beschaffenheit',
+  '28': 'Aufstellung, Wartung und Prüfung',
+  '29': 'Besondere Bestimmungen über die Beschaffenheit von Arbeitsmitteln',
+  '30': 'Anforderungen an die Benutzung',
+  '31': 'Schutzeinrichtungen',
+  '32': 'Ergonomie',
+  '33': 'Brandschutz und Maßnahmen zur Brandbekämpfung',
+  // 6. Abschnitt - Arbeitsstoffe
+  '34': 'Allgemeine Bestimmungen',
+  '35': 'Grenzwerte',
+  '36': 'Besondere Bestimmungen',
+  '37': 'Messungen',
+  '38': 'Krebserzeugende, erbgutverändernde und fortpflanzungsgefährdende Arbeitsstoffe',
+  '39': 'Biologische Arbeitsstoffe',
+  '40': 'Persönliche Schutzausrüstung',
+  '41': 'Vorsorgemaßnahmen bei Unfällen',
+  '42': 'Verbotsbestimmungen',
+  // 7. Abschnitt - Gesundheitsüberwachung
+  '43': 'Verpflichtung zur Gesundheitsüberwachung',
+  '44': 'Zuständige Ärzte',
+  '45': 'Pflichten der Arbeitgeber',
+  '46': 'Rechte und Pflichten der Arbeitnehmer',
+  '47': 'Befunde; Bescheinigungen',
+  '48': 'Eignungs- und Folgeuntersuchungen',
+  '49': 'Sonstige besondere Untersuchungen',
+  '50': 'Übermittlung von Daten',
+  // 8. Abschnitt - Präventivdienste
+  '51': 'Beschäftigung von Sicherheitsfachkräften',
+  '52': 'Anforderungen an Sicherheitsfachkräfte',
+  '53': 'Übertragung der Aufgaben von Sicherheitsfachkräften an eigene Arbeitnehmer',
+  '54': 'Aufgaben der Sicherheitsfachkräfte',
+  '55': 'Weitere Fachleute',
+  '56': 'Arbeitsmedizinische Zentren',
+  '57': 'Meldepflicht',
+  '58': 'Sicherheitstechnische Zentren',
+  '59': 'Beschäftigung von Arbeitsmedizinern',
+  '60': 'Anforderungen an Arbeitsmediziner',
+  '61': 'Sonstige geeignete Fachleute',
+  '62': 'Arbeitspsychologen und sonstige geeignete Fachleute',
+  '63': 'Verhinderung der Präventivfachkräfte',
+  '64': 'Tätigkeitsberichte',
+  '65': 'Informations- und Begehungspflichten',
+  '66': 'Aufgaben der Arbeitsmediziner',
+  '67': 'Stellung der Präventivfachkräfte',
+  '68': 'Präventionszeit; Einsatzzeit',
+  '69': 'Präventionszeit bei Baustellen',
+  '70': 'Fachkundige Personen; Präventivdienste',
+  '71': 'Begehung durch Präventivdienste',
+  '72': 'Information der Präventivfachkräfte',
+  '73': 'Beiziehung von Präventivfachkräften',
+  '74': 'Pflichtenübertragung',
+  '75': 'Zusammenarbeit der Präventivfachkräfte',
+  '76': 'Arbeitsschutzausschüsse',
+  '77': 'Zentral-Arbeitsinspektorat',
+  '78': 'Sicherheitstechnische und arbeitsmedizinische Betreuung der Arbeitnehmer von Gebietskörperschaften',
+  '79': 'Aufgaben, Rechte und Pflichten der sicherheitstechnischen und arbeitsmedizinischen Zentren',
+  '80': 'Verordnungsermächtigung',
+  '81': 'Arbeitsinspektion',
+  '82': 'Strafbestimmungen',
+  '83': 'Verfahrensbestimmungen',
+  // 9. Abschnitt - Behörden und Verfahren
+  '84': 'Vorarbeiten für Verordnungen',
+  '85': 'Betretungsrecht',
+  '86': 'Auskunftsrecht',
+  '87': 'Weitere Aufgaben und Befugnisse',
+  '88': 'Beratung und Überwachung',
+  '89': 'Mitwirkungspflichten',
+  '90': 'Ausnahmen',
+  '91': 'Bescheidmäßige Vorschreibung',
+  '92': 'Übertretungen',
+  '93': 'Zusammenarbeit',
+  '94': 'Datenschutz',
+  // 10. Abschnitt - Übergangs- und Schlussbestimmungen
+  '95': 'Verweisungen',
+  '96': 'Übergangsbestimmungen',
+  '97': 'Übergangsbestimmungen für das 9. Hauptstück',
+  '98': 'Außerkrafttreten',
+  '99': 'Inkrafttreten',
+  '100': 'Vollziehung',
+  '101': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 60/2015',
+  '102': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 126/2017',
+  '103': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 100/2018',
+  '104': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 68/2019',
+  '105': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 131/2020',
+  '106': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 42/2021',
+  '107': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 148/2022',
+  '108': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 168/2023',
+  '109': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 37/2024',
+  '110': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 92/2024',
+  // Additional sections with letter suffixes
+  '4a': 'Präventivdienste für Baustellen',
+  '5a': 'Ermittlung und Beurteilung der Gefahren bei Baustellen',
+  '7a': 'Koordination bei Baustellen',
+  '8a': 'Vorankündigung',
+  '10a': 'Sicherheitsvertrauenspersonen auf Baustellen',
+  '17a': 'Sicherheits- und Gesundheitsschutzkennzeichnung',
+  '18a': 'Rauchverbot',
+  '19a': 'Maßnahmen zur Ersten Hilfe',
+  '20a': 'Erste-Hilfe-Beauftragung',
+  '25a': 'Elektromagnetische Felder',
+  '25b': 'Optische Strahlung',
+  '40a': 'Arbeitskleidung',
+  '40b': 'Reinigung und Aufbewahrung',
+  '42a': 'Aufbewahrung und Lagerung',
+  '48a': 'Eignungsuntersuchung für Taucher',
+  '68a': 'Präventionszeit für Sicherheitsfachkräfte',
+  '68b': 'Präventionszeit für Arbeitsmediziner',
+  '82a': 'Strafbestimmungen für Arbeitgeber',
+  '82b': 'Strafbestimmungen für Arbeitnehmer',
+  '82c': 'Strafbestimmungen für sonstige Personen',
+  '83a': 'Gemeinsame Verfahrensbestimmungen',
+  '93a': 'Zusammenarbeit mit anderen Behörden',
+  '93b': 'Zusammenarbeit auf Gemeinschaftsebene',
+}
+
 // ANSI colors for console output
 const colors = {
   reset: '\x1b[0m',
@@ -207,6 +356,49 @@ function cleanSectionText(text) {
 }
 
 /**
+ * Get official section title for ASchG sections
+ * Converts "§ 1" to "§ 1. Geltungsbereich"
+ */
+function getASchGSectionTitle(sectionNumber, currentTitle) {
+  if (!sectionNumber) return currentTitle
+
+  // Extract section number (e.g., "1", "4a", "25b")
+  const numMatch = sectionNumber.toString().match(/^(\d+[a-z]?)$/i)
+  if (!numMatch) return currentTitle
+
+  const sectionNum = numMatch[1].toLowerCase()
+  const officialTitle = ASCHG_SECTION_TITLES[sectionNum]
+
+  if (officialTitle) {
+    return `§ ${sectionNumber}. ${officialTitle}`
+  }
+
+  return currentTitle
+}
+
+/**
+ * Update section titles with official ASchG titles
+ */
+function updateSectionTitles(chapters, abbreviation) {
+  // Only apply to ASchG documents
+  if (abbreviation?.toUpperCase() !== 'ASCHG') {
+    return chapters
+  }
+
+  if (!chapters || !Array.isArray(chapters)) {
+    return chapters
+  }
+
+  return chapters.map(chapter => ({
+    ...chapter,
+    sections: chapter.sections?.map(section => ({
+      ...section,
+      title: getASchGSectionTitle(section.number, section.title),
+    })) || [],
+  }))
+}
+
+/**
  * Process a single document
  */
 async function processDocument(apiKey, doc, index, total) {
@@ -235,6 +427,13 @@ async function processDocument(apiKey, doc, index, total) {
         text: cleanSectionText(section.text),
       })) || [],
     }))
+  }
+
+  // Update section titles with official ASchG titles
+  if (cleanedDoc.chapters && cleanedDoc.abbreviation) {
+    cleanedDoc.chapters = updateSectionTitles(cleanedDoc.chapters, cleanedDoc.abbreviation)
+    const sectionCount = cleanedDoc.chapters.reduce((sum, ch) => sum + (ch.sections?.length || 0), 0)
+    logSuccess(`Updated ${sectionCount} section titles with official ASchG titles`)
   }
 
   return cleanedDoc
@@ -361,9 +560,106 @@ async function main() {
   console.log('\n' + '='.repeat(60) + '\n')
 }
 
-// Run
-main().catch(error => {
-  logError(`Unexpected error: ${error.message}`)
-  console.error(error)
-  process.exit(1)
-})
+/**
+ * Fix section titles only (without Gemini API)
+ * This can be run with: node scripts/clean-at-database.js --titles-only
+ */
+async function fixTitlesOnly() {
+  console.log('\n' + '='.repeat(60))
+  log('ASchG Section Titles Fix Script', 'blue')
+  console.log('='.repeat(60) + '\n')
+
+  // Check input file
+  if (!fs.existsSync(CONFIG.inputFile)) {
+    logError(`Input file not found: ${CONFIG.inputFile}`)
+    process.exit(1)
+  }
+  logSuccess(`Input file: ${CONFIG.inputFile}`)
+
+  // Read database
+  logInfo('Reading database...')
+  let database
+  try {
+    const content = fs.readFileSync(CONFIG.inputFile, 'utf-8')
+    database = JSON.parse(content)
+  } catch (error) {
+    logError(`Failed to read/parse database: ${error.message}`)
+    process.exit(1)
+  }
+
+  const documents = database.documents || []
+  logSuccess(`Loaded ${documents.length} documents`)
+
+  // Create backup
+  logInfo('Creating backup...')
+  try {
+    fs.writeFileSync(CONFIG.backupFile, JSON.stringify(database, null, 2))
+    logSuccess(`Backup created: ${CONFIG.backupFile}`)
+  } catch (error) {
+    logWarning(`Failed to create backup: ${error.message}`)
+  }
+
+  // Process documents - only update titles
+  console.log('\n' + '-'.repeat(40))
+  log('Updating section titles...', 'blue')
+  console.log('-'.repeat(40) + '\n')
+
+  let totalSectionsUpdated = 0
+  const updatedDocuments = documents.map(doc => {
+    if (doc.chapters && doc.abbreviation?.toUpperCase() === 'ASCHG') {
+      const updatedChapters = updateSectionTitles(doc.chapters, doc.abbreviation)
+      const sectionCount = updatedChapters.reduce((sum, ch) => sum + (ch.sections?.length || 0), 0)
+      totalSectionsUpdated += sectionCount
+      logSuccess(`Updated ${sectionCount} sections in ${doc.abbreviation}`)
+      return { ...doc, chapters: updatedChapters }
+    }
+    return doc
+  })
+
+  // Save updated database directly to input file
+  console.log('\n' + '-'.repeat(40))
+  log('Saving results...', 'blue')
+  console.log('-'.repeat(40) + '\n')
+
+  const updatedDatabase = {
+    ...database,
+    metadata: {
+      ...database.metadata,
+      titles_updated_at: new Date().toISOString(),
+    },
+    documents: updatedDocuments,
+  }
+
+  try {
+    fs.writeFileSync(CONFIG.inputFile, JSON.stringify(updatedDatabase, null, 2))
+    logSuccess(`Updated database saved: ${CONFIG.inputFile}`)
+  } catch (error) {
+    logError(`Failed to save updated database: ${error.message}`)
+    process.exit(1)
+  }
+
+  // Summary
+  console.log('\n' + '='.repeat(60))
+  log('Summary', 'blue')
+  console.log('='.repeat(60))
+  console.log(`Total documents processed: ${documents.length}`)
+  console.log(`Total sections updated: ${totalSectionsUpdated}`)
+  console.log(`\nBackup file: ${CONFIG.backupFile}`)
+  console.log('\n' + '='.repeat(60) + '\n')
+}
+
+// Parse command-line arguments and run
+const args = process.argv.slice(2)
+if (args.includes('--titles-only')) {
+  fixTitlesOnly().catch(error => {
+    logError(`Unexpected error: ${error.message}`)
+    console.error(error)
+    process.exit(1)
+  })
+} else {
+  main().catch(error => {
+    logError(`Unexpected error: ${error.message}`)
+    console.error(error)
+    process.exit(1)
+  })
+}
