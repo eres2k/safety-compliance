@@ -91,6 +91,66 @@ export function useAI() {
     }
   }, [framework, language])
 
+  // Feature 2: Simplify for Manager
+  const simplifyForManager = useCallback(async (lawText, sectionTitle) => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const response = await aiService.simplifyForManager(lawText, sectionTitle, framework, language)
+      return response
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [framework, language])
+
+  // Feature 2: Simplify for Associate (Toolbox Talk)
+  const simplifyForAssociate = useCallback(async (lawText, sectionTitle) => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const response = await aiService.simplifyForAssociate(lawText, sectionTitle, framework, language)
+      return response
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [framework, language])
+
+  // Feature 3: Find equivalent law in another jurisdiction
+  const findEquivalentLaw = useCallback(async (lawText, targetFramework) => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const response = await aiService.findEquivalentLaw(lawText, framework, targetFramework, language)
+      return response
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [framework, language])
+
+  // Feature 4: Generate semantic tags for a section
+  const generateSemanticTags = useCallback(async (lawText, sectionNumber) => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const response = await aiService.generateSemanticTags(lawText, sectionNumber, framework, language)
+      return response
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [framework, language])
+
   return {
     isLoading,
     error,
@@ -99,7 +159,11 @@ export function useAI() {
     checkCompliance,
     generateDocument,
     lookupRegulation,
-    generateFlowchart
+    generateFlowchart,
+    simplifyForManager,
+    simplifyForAssociate,
+    findEquivalentLaw,
+    generateSemanticTags
   }
 }
 

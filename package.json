@@ -12,7 +12,12 @@
     "clean:at": "node scripts/clean-at-database.js",
     "clean:de": "node scripts/clean-de-database.js",
     "clean:nl": "node scripts/clean-nl-database.js",
-    "clean:all": "npm run clean:at && npm run clean:de && npm run clean:nl"
+    "clean:all": "npm run clean:at && npm run clean:de && npm run clean:nl",
+    "tag:semantic": "node scripts/generate-semantic-tags.js",
+    "tag:semantic:at": "node scripts/generate-semantic-tags.js --country=at",
+    "tag:semantic:de": "node scripts/generate-semantic-tags.js --country=de",
+    "tag:semantic:nl": "node scripts/generate-semantic-tags.js --country=nl",
+    "tag:semantic:index": "node scripts/generate-semantic-tags.js --index"
   },
   "dependencies": {
     "mermaid": "^11.12.2",

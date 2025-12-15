@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, SearchInput, LawVisualizer } from '../ui'
+import { Button, Card, CardContent, SearchInput, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison } from '../ui'
 import {
   getAllLaws,
   searchLaws,
@@ -681,7 +681,7 @@ function WHSSummaryPanel({ summary }) {
 
 export function LawBrowser({ onBack }) {
   const { t, framework, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
-  const { explainSection, generateFlowchart, isLoading: aiLoading } = useAI()
+  const { explainSection, generateFlowchart, simplifyForManager, simplifyForAssociate, findEquivalentLaw, isLoading: aiLoading } = useAI()
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedLaw, setSelectedLaw] = useState(null)
@@ -697,6 +697,18 @@ export function LawBrowser({ onBack }) {
   const [flowchartData, setFlowchartData] = useState(null)
   const [flowchartSectionId, setFlowchartSectionId] = useState(null)
   const [flowchartLoading, setFlowchartLoading] = useState(false)
+
+  // Feature 2: Complexity Slider state
+  const [complexityLevel, setComplexityLevel] = useState('legal') // legal, manager, associate
+  const [simplifiedContent, setSimplifiedContent] = useState({}) // Cache: { sectionId: { manager: '', associate: '' } }
+  const [simplifyLoading, setSimplifyLoading] = useState(false)
+  const [activeSimplifySectionId, setActiveSimplifySectionId] = useState(null)
+
+  // Feature 3: Cross-Border Comparison state
+  const [showCrossBorder, setShowCrossBorder] = useState(false)
+  const [crossBorderData, setCrossBorderData] = useState(null)
+  const [crossBorderTarget, setCrossBorderTarget] = useState(null)
+  const [crossBorderLoading, setCrossBorderLoading] = useState(false)
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
@@ -906,6 +918,72 @@ export function LawBrowser({ onBack }) {
     setFlowchartSectionId(null)
   }
 
+  // Feature 2: Handle complexity level change for a section
+  const handleComplexityChange = async (level, section) => {
+    setComplexityLevel(level)
+
+    if (level === 'legal' || !section) return
+
+    // Check cache first
+    const cached = simplifiedContent[section.id]?.[level]
+    if (cached) return
+
+    setSimplifyLoading(true)
+    setActiveSimplifySectionId(section.id)
+
+    try {
+      const sectionTitle = `${section.number}${section.title ? ` - ${section.title}` : ''}`
+      let response
+      if (level === 'manager') {
+        response = await simplifyForManager(section.content, sectionTitle)
+      } else if (level === 'associate') {
+        response = await simplifyForAssociate(section.content, sectionTitle)
+      }
+
+      // Cache the result
+      setSimplifiedContent(prev => ({
+        ...prev,
+        [section.id]: {
+          ...prev[section.id],
+          [level]: response
+        }
+      }))
+    } catch (error) {
+      console.error('Simplification error:', error)
+    } finally {
+      setSimplifyLoading(false)
+      setActiveSimplifySectionId(null)
+    }
+  }
+
+  // Feature 3: Handle cross-border comparison
+  const handleCrossBorderCompare = async (targetFramework) => {
+    if (!selectedLaw || crossBorderLoading) return
+
+    setCrossBorderLoading(true)
+    setCrossBorderTarget(targetFramework)
+    setCrossBorderData(null)
+
+    try {
+      const lawText = selectedLaw.content?.full_text || selectedLaw.content?.text || selectedLaw.description || ''
+      const lawContext = `${selectedLaw.abbreviation || selectedLaw.title}\n\n${lawText.substring(0, 3000)}`
+      const response = await findEquivalentLaw(lawContext, targetFramework)
+      setCrossBorderData(response)
+    } catch (error) {
+      console.error('Cross-border comparison error:', error)
+      setCrossBorderData(null)
+    } finally {
+      setCrossBorderLoading(false)
+    }
+  }
+
+  // Close cross-border comparison
+  const closeCrossBorder = () => {
+    setShowCrossBorder(false)
+    setCrossBorderData(null)
+    setCrossBorderTarget(null)
+  }
+
   // Select a law
   const selectLaw = (law) => {
     setSelectedLaw(law)
@@ -915,6 +993,13 @@ export function LawBrowser({ onBack }) {
     // Reset flowchart state
     setFlowchartData(null)
     setFlowchartSectionId(null)
+    // Reset complexity slider state
+    setComplexityLevel('legal')
+    setSimplifiedContent({})
+    // Reset cross-border state
+    setShowCrossBorder(false)
+    setCrossBorderData(null)
+    setCrossBorderTarget(null)
     // Reset section refs to avoid stale references
     sectionRefs.current = {}
     // Scroll content to top
@@ -1175,6 +1260,16 @@ export function LawBrowser({ onBack }) {
                       )}
                     </div>
                     <div className="flex gap-2">
+                      {/* Cross-Border Compare Button */}
+                      <button
+                        onClick={() => setShowCrossBorder(!showCrossBorder)}
+                        className={`p-2 rounded-lg transition-colors ${
+                          showCrossBorder ? 'bg-white/30' : 'bg-white/10 hover:bg-white/20'
+                        }`}
+                        title="Compare across jurisdictions"
+                      >
+                        <span className="text-lg">🌍</span>
+                      </button>
                       <button
                         onClick={() => toggleBookmark(selectedLaw.id)}
                         className={`p-2 rounded-lg transition-colors ${
@@ -1208,6 +1303,20 @@ export function LawBrowser({ onBack }) {
                       {/* WHS Summary Panel */}
                       {selectedLaw.whs_summary && (
                         <WHSSummaryPanel summary={selectedLaw.whs_summary} />
+                      )}
+
+                      {/* Feature 3: Cross-Border Comparison Panel */}
+                      {showCrossBorder && (
+                        <div className="mb-6">
+                          <CrossBorderComparison
+                            sourceFramework={framework}
+                            comparisonData={crossBorderData}
+                            targetFramework={crossBorderTarget}
+                            isLoading={crossBorderLoading}
+                            onClose={closeCrossBorder}
+                            onCompare={handleCrossBorderCompare}
+                          />
+                        </div>
                       )}
 
                       {/* Source info */}
@@ -1291,9 +1400,35 @@ export function LawBrowser({ onBack }) {
                                       </div>
                                     )}
 
-                                    {/* Section Content */}
+                                    {/* Feature 2: Complexity Slider */}
+                                    <div className="mb-4">
+                                      <ComplexitySlider
+                                        currentLevel={complexityLevel}
+                                        onLevelChange={(level) => handleComplexityChange(level, section)}
+                                        isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                      />
+                                    </div>
+
+                                    {/* Section Content - switches based on complexity level */}
                                     <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                      <FormattedText text={section.content} />
+                                      {complexityLevel === 'legal' ? (
+                                        <FormattedText text={section.content} />
+                                      ) : (
+                                        <SimplifiedContent
+                                          content={simplifiedContent[section.id]?.[complexityLevel] || null}
+                                          level={complexityLevel}
+                                          isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                        />
+                                      )}
+                                      {/* Show original text link when viewing simplified */}
+                                      {complexityLevel !== 'legal' && simplifiedContent[section.id]?.[complexityLevel] && (
+                                        <button
+                                          onClick={() => setComplexityLevel('legal')}
+                                          className="mt-3 text-xs text-gray-500 dark:text-gray-400 hover:text-whs-orange-500 underline"
+                                        >
+                                          View original legal text
+                                        </button>
+                                      )}
                                     </div>
 
                                     {/* Visualize Button */}

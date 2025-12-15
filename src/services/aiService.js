@@ -130,3 +130,121 @@ ${lawText.substring(0, 4000)}`
 
   return generateAIResponse(prompt, framework, language)
 }
+
+// Feature 2: Legalese Complexity Slider - Simplify legal text
+export async function simplifyForManager(lawText, sectionTitle, framework, language) {
+  const prompt = `You are a workplace safety expert. Rewrite this legal regulation as a concise MANAGER SUMMARY.
+
+RULES:
+1. Extract key obligations and deadlines
+2. Use bullet points for clarity
+3. Format: "Key obligations: [list]" then "Deadlines: [list]" then "Records required: [list]"
+4. Keep it under 150 words
+5. Focus on what managers need to DO, not legal theory
+6. Include specific numbers (e.g., "every 12 months", "within 3 days")
+
+Section: ${sectionTitle || 'Regulation'}
+
+Legal text:
+${lawText.substring(0, 3000)}`
+
+  return generateAIResponse(prompt, framework, language)
+}
+
+export async function simplifyForAssociate(lawText, sectionTitle, framework, language) {
+  const prompt = `You are a safety trainer. Rewrite this regulation as a simple "TOOLBOX TALK" for warehouse/logistics floor workers.
+
+RULES:
+1. Use simple, direct language (8th grade reading level)
+2. Write as direct instructions: "Do this", "Don't do that", "Always check..."
+3. Maximum 5 bullet points
+4. Each point under 10 words
+5. Focus ONLY on what the worker personally must do
+6. No legal jargon, no paragraph references
+7. Add relevant safety icons as emoji where helpful (e.g., ⚠️ 🦺 🔧 ⛑️ 🚫)
+
+Section: ${sectionTitle || 'Safety Rule'}
+
+Legal text:
+${lawText.substring(0, 2000)}`
+
+  return generateAIResponse(prompt, framework, language)
+}
+
+// Feature 3: Cross-Border Harmonizer - Find equivalent laws across jurisdictions
+export async function findEquivalentLaw(lawText, sourceFramework, targetFramework, language) {
+  const frameworkNames = {
+    AT: 'Austrian ASchG',
+    DE: 'German DGUV/ArbSchG',
+    NL: 'Dutch Arbowet'
+  }
+
+  const prompt = `You are an EU workplace safety law expert. Analyze this ${frameworkNames[sourceFramework]} regulation and find its equivalent in ${frameworkNames[targetFramework]}.
+
+SOURCE REGULATION (${frameworkNames[sourceFramework]}):
+${lawText.substring(0, 2500)}
+
+TASK:
+1. Identify the equivalent provision in ${frameworkNames[targetFramework]}
+2. Compare the key requirements
+3. Highlight IMPORTANT DIFFERENCES that could affect compliance
+
+FORMAT YOUR RESPONSE EXACTLY AS:
+---EQUIVALENT---
+[Cite the equivalent paragraph/article in ${targetFramework}]
+
+---COMPARISON---
+| Requirement | ${sourceFramework} | ${targetFramework} |
+|-------------|-----|-----|
+[Table comparing 3-5 key points]
+
+---DIFFERENCES---
+⚠️ [List critical differences that require attention, each on new line starting with ⚠️]
+
+---RECOMMENDATION---
+[One sentence recommendation for cross-border compliance]`
+
+  return generateAIResponse(prompt, sourceFramework, language)
+}
+
+// Feature 4: Semantic Tagging - Tag law text with roles and equipment
+export async function generateSemanticTags(lawText, sectionNumber, framework, language) {
+  const prompt = `You are a logistics safety expert. Analyze this regulation and tag it with relevant Amazon Logistics roles and equipment.
+
+REGULATION:
+${lawText.substring(0, 2000)}
+
+AVAILABLE ROLE TAGS (use only these):
+- Packer
+- Pick_Associate
+- Stower
+- Dock_Clerk
+- Forklift_Operator
+- Sortation_Associate
+- Problem_Solver
+- Safety_Coordinator
+- Area_Manager
+- Delivery_Driver
+
+AVAILABLE EQUIPMENT TAGS (use only these):
+- Forklift
+- Pallet_Jack
+- Conveyor
+- Scanner
+- Ladder
+- Cart
+- PPE
+- Kiva_Robot
+- Loading_Dock
+- Racking
+
+OUTPUT FORMAT (JSON only, no explanation):
+{
+  "roles": ["Role1", "Role2"],
+  "equipment": ["Equipment1", "Equipment2"],
+  "hazards": ["brief hazard 1", "brief hazard 2"],
+  "keywords": ["keyword1", "keyword2", "keyword3"]
+}`
+
+  return generateAIResponse(prompt, framework, language)
+}
