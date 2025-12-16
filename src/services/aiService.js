@@ -180,21 +180,27 @@ export async function explainSection(section, framework, language) {
 ${section.paragraph || section.title}
 ${section.content}
 
-Return ONLY a valid JSON object with this structure:
-{
-  "title": "provision title",
-  "summary": "brief plain language summary",
-  "keyPoints": ["key point 1", "key point 2"],
-  "employerDuties": ["duty 1", "duty 2"],
-  "employeeRights": ["right 1", "right 2"],
-  "practicalTips": ["tip 1", "tip 2"]
-}
+Format your response as readable text with these sections:
 
-Be concise. Only include relevant information.`
+📖 SUMMARY
+A brief plain language summary of what this provision means.
+
+🔑 KEY POINTS
+- List the main points
+
+👔 EMPLOYER DUTIES
+- What employers must do
+
+👷 EMPLOYEE RIGHTS
+- What employees can expect
+
+💡 PRACTICAL TIPS
+- Actionable advice for implementation
+
+Be concise and use simple language.`
 
   const response = await generateAIResponse(prompt, framework, language)
-  const parsed = cleanAndParseJSON(response)
-  return formatJSONForDisplay(parsed)
+  return normalizeNewlines(response)
 }
 
 export async function checkCompliance(companySize, industry, topic, framework, language) {
@@ -236,28 +242,27 @@ export async function generateDocument(templateName, inputs, framework, language
 
 ${inputDetails}
 
-Return ONLY a valid JSON object with this structure:
-{
-  "documentType": "${templateName}",
-  "title": "document title",
-  "sections": [
-    {
-      "heading": "section heading",
-      "content": "section content"
-    }
-  ],
-  "legalReferences": ["citation 1", "citation 2"],
-  "signatureRequired": true,
-  "fields": {
-    "field_name": "field_value"
-  }
-}
+Format as a professional document with:
 
-Be concise. Only include relevant information.`
+📄 DOCUMENT TITLE
+[Title based on template type]
+
+📋 DOCUMENT CONTENT
+[Main content organized in clear sections with headings]
+
+📜 LEGAL REFERENCES
+- List applicable legal citations
+
+✍️ SIGNATURE FIELDS
+- List who needs to sign (if applicable)
+
+📅 DATE & VALIDITY
+- When this document is effective
+
+Use professional formatting with clear headings and bullet points.`
 
   const response = await generateAIResponse(prompt, framework, language)
-  const parsed = cleanAndParseJSON(response)
-  return formatJSONForDisplay(parsed)
+  return normalizeNewlines(response)
 }
 
 export async function lookupRegulation(topic, companySize, framework, language) {
@@ -474,33 +479,43 @@ export async function compareMultipleCountries(lawText, sourceFramework, languag
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `Compare this ${sourceFramework} regulation across AT, DE, NL.
+  const prompt = `You are a WHS legal expert. Compare this ${sourceFramework} regulation across Austria (AT), Germany (DE), and Netherlands (NL).
 
-SOURCE (${sourceFramework}):
+SOURCE REGULATION (${sourceFramework}):
 ${lawText.substring(0, 1000)}
 
-FORMAT:
+IMPORTANT: You MUST use these EXACT section markers in your response:
+
 ---TOPIC---
-[5-10 words]
+[Topic name in 5-10 words]
 
 ---AT_PROVISION---
-[§ citation + 1 sentence]
+[ASchG § citation + brief description. If source is AT, describe this provision. If no equivalent, write "No direct equivalent - see [related provision]"]
 
 ---DE_PROVISION---
-[§ citation + 1 sentence]
+[ArbSchG/DGUV § citation + brief description. If source is DE, describe this provision. If no equivalent, write "No direct equivalent - see [related provision]"]
 
 ---NL_PROVISION---
-[Artikel citation + 1 sentence]
+[Arbowet Artikel citation + brief description. If source is NL, describe this provision. If no equivalent, write "No direct equivalent - see [related provision]"]
 
 ---COMPARISON_TABLE---
 | Aspect | AT | DE | NL |
-[4 rows max]
+|--------|-----|-----|-----|
+| [Row 1] | [AT value] | [DE value] | [NL value] |
+| [Row 2] | [AT value] | [DE value] | [NL value] |
+| [Row 3] | [AT value] | [DE value] | [NL value] |
 
 ---KEY_DIFFERENCES---
-⚠️ [3 differences, one per line]
+⚠️ First key difference between jurisdictions
+⚠️ Second key difference between jurisdictions
+⚠️ Third key difference between jurisdictions
 
 ---HARMONIZATION_TIPS---
-✅ [3 tips, one per line]`
+✅ First practical tip for cross-border compliance
+✅ Second practical tip for cross-border compliance
+✅ Third practical tip for cross-border compliance
+
+Use the exact markers above. Be specific with legal citations.`
 
   const response = await generateAIResponse(prompt, sourceFramework, language)
   const normalizedResponse = normalizeNewlines(response)
