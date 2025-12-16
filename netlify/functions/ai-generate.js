@@ -56,9 +56,9 @@ export async function handler(event) {
       }
     }
 
-    // Use gemini-pro for widest availability
+    // Use gemini-2.0-flash - stable model with good rate limits
     const response = await fetchWithRetry(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: {
