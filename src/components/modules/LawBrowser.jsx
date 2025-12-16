@@ -718,7 +718,8 @@ export function LawBrowser({ onBack }) {
   const [selectedLaw, setSelectedLaw] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [activeSection, setActiveSection] = useState(null)
-  const [searchInLaw, setSearchInLaw] = useState('')
+  const [searchInLaw, setSearchInLaw] = useState('') // Section number/title filter
+  const [contentSearchTerm, setContentSearchTerm] = useState('') // Full text content search
   const [relevanceFilter, setRelevanceFilter] = useState('all') // all, critical, high, medium, low
   const [isLoading, setIsLoading] = useState(false)
   const [prevFramework, setPrevFramework] = useState(framework)
@@ -739,11 +740,13 @@ export function LawBrowser({ onBack }) {
   const [crossBorderData, setCrossBorderData] = useState(null)
   const [crossBorderTarget, setCrossBorderTarget] = useState(null)
   const [crossBorderLoading, setCrossBorderLoading] = useState(false)
+  const [crossBorderError, setCrossBorderError] = useState(null)
 
   // Feature 3b: Multi-Country Comparison state (compare all 3 countries)
   const [showMultiCountry, setShowMultiCountry] = useState(false)
   const [multiCountryData, setMultiCountryData] = useState(null)
   const [multiCountryLoading, setMultiCountryLoading] = useState(false)
+  const [multiCountryError, setMultiCountryError] = useState(null)
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
@@ -869,18 +872,26 @@ export function LawBrowser({ onBack }) {
       })
     }
 
-    // Filter by search term
+    // Filter by section number/title (section sidebar filter)
     if (searchInLaw.trim()) {
       const term = searchInLaw.toLowerCase()
       filtered = filtered.filter(s =>
         s.number.toLowerCase().includes(term) ||
-        s.title.toLowerCase().includes(term) ||
-        s.content.toLowerCase().includes(term)
+        s.title.toLowerCase().includes(term)
+      )
+    }
+
+    // Filter by content search term (full text search)
+    if (contentSearchTerm.trim()) {
+      const term = contentSearchTerm.toLowerCase()
+      filtered = filtered.filter(s =>
+        s.content.toLowerCase().includes(term) ||
+        s.title.toLowerCase().includes(term)
       )
     }
 
     return filtered
-  }, [lawSections, searchInLaw, relevanceFilter])
+  }, [lawSections, searchInLaw, contentSearchTerm, relevanceFilter])
 
   // Get related laws
   const relatedLaws = useMemo(() => {
@@ -989,6 +1000,7 @@ export function LawBrowser({ onBack }) {
     setCrossBorderLoading(true)
     setCrossBorderTarget(targetFramework)
     setCrossBorderData(null)
+    setCrossBorderError(null)
 
     try {
       const lawText = selectedLaw.content?.full_text || selectedLaw.content?.text || selectedLaw.description || ''
@@ -997,6 +1009,7 @@ export function LawBrowser({ onBack }) {
       setCrossBorderData(response)
     } catch (error) {
       console.error('Cross-border comparison error:', error)
+      setCrossBorderError(error.message || 'AI service unavailable')
       setCrossBorderData(null)
     } finally {
       setCrossBorderLoading(false)
@@ -1008,6 +1021,7 @@ export function LawBrowser({ onBack }) {
     setShowCrossBorder(false)
     setCrossBorderData(null)
     setCrossBorderTarget(null)
+    setCrossBorderError(null)
   }
 
   // Feature 3b: Handle multi-country comparison (all 3 countries)
@@ -1016,6 +1030,7 @@ export function LawBrowser({ onBack }) {
 
     setMultiCountryLoading(true)
     setMultiCountryData(null)
+    setMultiCountryError(null)
 
     try {
       const lawText = selectedLaw.content?.full_text || selectedLaw.content?.text || selectedLaw.description || ''
@@ -1024,6 +1039,7 @@ export function LawBrowser({ onBack }) {
       setMultiCountryData(response)
     } catch (error) {
       console.error('Multi-country comparison error:', error)
+      setMultiCountryError(error.message || 'AI service unavailable')
       setMultiCountryData(null)
     } finally {
       setMultiCountryLoading(false)
@@ -1034,6 +1050,7 @@ export function LawBrowser({ onBack }) {
   const closeMultiCountry = () => {
     setShowMultiCountry(false)
     setMultiCountryData(null)
+    setMultiCountryError(null)
   }
 
   // Select a law
@@ -1041,6 +1058,7 @@ export function LawBrowser({ onBack }) {
     setSelectedLaw(law)
     setActiveSection(null)
     setSearchInLaw('')
+    setContentSearchTerm('')
     // Reset flowchart state
     setFlowchartData(null)
     setFlowchartSectionId(null)
@@ -1051,9 +1069,11 @@ export function LawBrowser({ onBack }) {
     setShowCrossBorder(false)
     setCrossBorderData(null)
     setCrossBorderTarget(null)
+    setCrossBorderError(null)
     // Reset multi-country state
     setShowMultiCountry(false)
     setMultiCountryData(null)
+    setMultiCountryError(null)
     // Reset section refs to avoid stale references
     sectionRefs.current = {}
     // Scroll content to top
@@ -1216,7 +1236,7 @@ export function LawBrowser({ onBack }) {
                   type="text"
                   value={searchInLaw}
                   onChange={(e) => setSearchInLaw(e.target.value)}
-                  placeholder="Search sections..."
+                  placeholder="Filter by section number/title..."
                   className="mt-2 w-full px-2 py-1 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-whs-orange-500"
                 />
                 {/* Relevance Filter */}
@@ -1366,6 +1386,39 @@ export function LawBrowser({ onBack }) {
                   </div>
                 </div>
 
+                {/* Full Text Search in Law */}
+                {hasContent && lawSections.length > 0 && (
+                  <div className="flex-shrink-0 px-4 py-2 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
+                    <div className="relative">
+                      <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      <input
+                        type="text"
+                        value={contentSearchTerm}
+                        onChange={(e) => setContentSearchTerm(e.target.value)}
+                        placeholder="Full text search in this law..."
+                        className="w-full pl-9 pr-8 py-2 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-whs-orange-500 focus:border-transparent"
+                      />
+                      {contentSearchTerm && (
+                        <button
+                          onClick={() => setContentSearchTerm('')}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                    {contentSearchTerm && (
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        Found {filteredSections.length} matching section{filteredSections.length !== 1 ? 's' : ''}
+                      </p>
+                    )}
+                  </div>
+                )}
+
                 {/* Law Content */}
                 <div ref={contentRef} className="flex-1 overflow-y-auto">
                   {hasContent ? (
@@ -1382,6 +1435,7 @@ export function LawBrowser({ onBack }) {
                             sourceFramework={framework}
                             comparisonData={multiCountryData}
                             isLoading={multiCountryLoading}
+                            error={multiCountryError}
                             onClose={closeMultiCountry}
                             onCompare={handleMultiCountryCompare}
                           />
@@ -1396,6 +1450,7 @@ export function LawBrowser({ onBack }) {
                             comparisonData={crossBorderData}
                             targetFramework={crossBorderTarget}
                             isLoading={crossBorderLoading}
+                            error={crossBorderError}
                             onClose={closeCrossBorder}
                             onCompare={handleCrossBorderCompare}
                           />
@@ -1464,7 +1519,7 @@ export function LawBrowser({ onBack }) {
                                         </span>
                                         {section.title && (
                                           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                            {highlightText(section.title, searchInLaw)}
+                                            {highlightText(section.title, contentSearchTerm)}
                                           </h3>
                                         )}
                                       </div>
@@ -1495,7 +1550,7 @@ export function LawBrowser({ onBack }) {
                                     {/* Section Content - switches based on this section's complexity level */}
                                     <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
                                       {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
-                                        <FormattedText text={section.content} searchTerm={searchInLaw} />
+                                        <FormattedText text={section.content} searchTerm={contentSearchTerm} />
                                       ) : (
                                         <SimplifiedContent
                                           content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
@@ -1559,7 +1614,7 @@ export function LawBrowser({ onBack }) {
                         </div>
                       ) : (
                         /* Raw text fallback */
-                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={searchInLaw} />
+                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={contentSearchTerm} />
                       )}
 
                     </div>
