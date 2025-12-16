@@ -572,9 +572,16 @@ function calculateSearchScore(item, query) {
     score += 20
   }
 
-  // Content match
+  // Full text content match - search in searchText which includes all content
   if (item.searchText?.includes(query)) {
-    score += 10
+    score += 25
+
+    // Bonus for multiple occurrences in content
+    const contentLower = item.searchText || ''
+    const occurrences = (contentLower.match(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length
+    if (occurrences > 1) {
+      score += Math.min(occurrences * 2, 20) // Up to 20 bonus points for multiple matches
+    }
   }
 
   // Keyword match

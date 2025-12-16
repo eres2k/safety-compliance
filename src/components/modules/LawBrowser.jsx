@@ -741,12 +741,16 @@ export function LawBrowser({ onBack }) {
   const [crossBorderTarget, setCrossBorderTarget] = useState(null)
   const [crossBorderLoading, setCrossBorderLoading] = useState(false)
   const [crossBorderError, setCrossBorderError] = useState(null)
+  const [crossBorderSection, setCrossBorderSection] = useState(null) // Section being compared
 
   // Feature 3b: Multi-Country Comparison state (compare all 3 countries)
   const [showMultiCountry, setShowMultiCountry] = useState(false)
   const [multiCountryData, setMultiCountryData] = useState(null)
   const [multiCountryLoading, setMultiCountryLoading] = useState(false)
   const [multiCountryError, setMultiCountryError] = useState(null)
+
+  // Section collapse state - all collapsed by default
+  const [expandedSections, setExpandedSections] = useState({})
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
@@ -913,11 +917,16 @@ export function LawBrowser({ onBack }) {
     return getRelatedLaws(framework, selectedLaw.id, 5)
   }, [selectedLaw, framework])
 
-  // Scroll to section
+  // Scroll to section and expand it
   const scrollToSection = useCallback((sectionId) => {
     const element = sectionRefs.current[sectionId]
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      // Expand the section first
+      setExpandedSections(prev => ({ ...prev, [sectionId]: true }))
+      // Small delay to allow expansion before scrolling
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 50)
       setActiveSection(sectionId)
     }
   }, [])
@@ -1011,6 +1020,9 @@ export function LawBrowser({ onBack }) {
   const handleCrossBorderCompare = async (targetFramework, section = null) => {
     if (crossBorderLoading) return
 
+    // Use stored section if none provided
+    const sectionToCompare = section || crossBorderSection
+
     setCrossBorderLoading(true)
     setCrossBorderTarget(targetFramework)
     setCrossBorderData(null)
@@ -1018,10 +1030,10 @@ export function LawBrowser({ onBack }) {
 
     try {
       let lawContext
-      if (section) {
+      if (sectionToCompare) {
         // Compare specific section
-        const sectionTitle = `${section.number}${section.title ? ` - ${section.title}` : ''}`
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title || ''}\n${sectionTitle}\n\n${section.content?.substring(0, 3000) || ''}`
+        const sectionTitle = `${sectionToCompare.number}${sectionToCompare.title ? ` - ${sectionToCompare.title}` : ''}`
+        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title || ''}\n${sectionTitle}\n\n${sectionToCompare.content?.substring(0, 3000) || ''}`
       } else {
         // Compare whole law (fallback)
         const lawText = selectedLaw?.content?.full_text || selectedLaw?.content?.text || selectedLaw?.description || ''
@@ -1043,6 +1055,7 @@ export function LawBrowser({ onBack }) {
     setShowCrossBorder(false)
     setCrossBorderData(null)
     setCrossBorderTarget(null)
+    setCrossBorderSection(null)
     setCrossBorderError(null)
   }
 
@@ -1100,16 +1113,27 @@ export function LawBrowser({ onBack }) {
     setCrossBorderData(null)
     setCrossBorderTarget(null)
     setCrossBorderError(null)
+    setCrossBorderSection(null)
     // Reset multi-country state
     setShowMultiCountry(false)
     setMultiCountryData(null)
     setMultiCountryError(null)
+    // Reset section collapse state - all collapsed by default
+    setExpandedSections({})
     // Reset section refs to avoid stale references
     sectionRefs.current = {}
     // Scroll content to top
     if (contentRef.current) {
       contentRef.current.scrollTop = 0
     }
+  }
+
+  // Toggle section expand/collapse
+  const toggleSection = (sectionId) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }))
   }
 
   const hasContent = selectedLaw?.content?.full_text || selectedLaw?.content?.text
@@ -1348,6 +1372,7 @@ export function LawBrowser({ onBack }) {
                             onClick={(e) => {
                               e.stopPropagation()
                               scrollToSection(section.id)
+                              setCrossBorderSection(section)
                               setShowCrossBorder(true)
                               setShowMultiCountry(false)
                             }}
@@ -1545,14 +1570,25 @@ export function LawBrowser({ onBack }) {
                                     ref={(el) => (sectionRefs.current[section.id] = el)}
                                     className="scroll-mt-4"
                                   >
-                                    {/* Section Header with WHS Relevance */}
-                                    <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800">
-                                      <div className="flex items-baseline gap-3 flex-1">
+                                    {/* Section Header with WHS Relevance - Clickable to expand/collapse */}
+                                    <button
+                                      onClick={() => toggleSection(section.id)}
+                                      className="w-full flex flex-col md:flex-row md:items-center gap-2 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800 hover:bg-gray-50 dark:hover:bg-whs-dark-800 transition-colors rounded-t-lg px-2 -mx-2"
+                                    >
+                                      <div className="flex items-center gap-3 flex-1">
+                                        <svg
+                                          className={`w-5 h-5 text-gray-400 transition-transform ${expandedSections[section.id] ? 'rotate-90' : ''}`}
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                        </svg>
                                         <span className="text-2xl font-bold text-whs-orange-500">
                                           {section.number}
                                         </span>
                                         {section.title && (
-                                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-left">
                                             {highlightText(section.title, contentSearchTerm)}
                                           </h3>
                                         )}
@@ -1561,74 +1597,79 @@ export function LawBrowser({ onBack }) {
                                       {section.amazon_logistics_relevance && (
                                         <RelevanceBadge level={section.amazon_logistics_relevance.level} />
                                       )}
-                                    </div>
+                                    </button>
 
-                                    {/* WHS Topics Tags */}
-                                    {section.whs_topics && section.whs_topics.length > 0 && (
-                                      <div className="flex flex-wrap gap-1 mb-3">
-                                        {section.whs_topics.slice(0, 4).map(topic => (
-                                          <TopicTag key={topic.id} topicId={topic.id} small />
-                                        ))}
-                                      </div>
-                                    )}
-
-                                    {/* Feature 2: Complexity Slider - per-section reading level */}
-                                    <div className="mb-3">
-                                      <ComplexitySlider
-                                        currentLevel={sectionComplexityLevels[section.id] || 'legal'}
-                                        onLevelChange={(level) => handleComplexityChange(level, section)}
-                                        isLoading={simplifyLoading && activeSimplifySectionId === section.id}
-                                      />
-                                    </div>
-
-                                    {/* Section Content - switches based on this section's complexity level */}
-                                    <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                      {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
-                                        <FormattedText text={section.content} searchTerm={contentSearchTerm} />
-                                      ) : (
-                                        <SimplifiedContent
-                                          content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
-                                          level={sectionComplexityLevels[section.id]}
-                                          isLoading={simplifyLoading && activeSimplifySectionId === section.id}
-                                        />
-                                      )}
-                                      {/* Show original text link when viewing simplified */}
-                                      {(sectionComplexityLevels[section.id] || 'legal') !== 'legal' && simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] && (
-                                        <button
-                                          onClick={() => handleComplexityChange('legal', section)}
-                                          className="mt-3 text-xs text-gray-500 dark:text-gray-400 hover:text-whs-orange-500 underline"
-                                        >
-                                          View original legal text
-                                        </button>
-                                      )}
-                                    </div>
-
-                                    {/* Visualize Button */}
-                                    <div className="mt-4 flex items-center gap-2">
-                                      <button
-                                        onClick={() => handleGenerateFlowchart(section)}
-                                        disabled={flowchartLoading && flowchartSectionId === section.id}
-                                        className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
-                                          flowchartSectionId === section.id && flowchartData
-                                            ? 'bg-whs-orange-500 text-white'
-                                            : 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300 hover:bg-whs-orange-100 dark:hover:bg-whs-orange-900/30'
-                                        } disabled:opacity-50 disabled:cursor-not-allowed`}
-                                      >
-                                        {flowchartLoading && flowchartSectionId === section.id ? (
-                                          <>
-                                            <div className="w-4 h-4 border-2 border-whs-orange-300 border-t-whs-orange-600 rounded-full animate-spin"></div>
-                                            <span>Generating...</span>
-                                          </>
-                                        ) : (
-                                          <>
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-                                            </svg>
-                                            <span>{flowchartSectionId === section.id && flowchartData ? 'Hide Flowchart' : 'Visualize'}</span>
-                                          </>
+                                    {/* Collapsible Content */}
+                                    {expandedSections[section.id] && (
+                                      <>
+                                        {/* WHS Topics Tags */}
+                                        {section.whs_topics && section.whs_topics.length > 0 && (
+                                          <div className="flex flex-wrap gap-1 mb-3">
+                                            {section.whs_topics.slice(0, 4).map(topic => (
+                                              <TopicTag key={topic.id} topicId={topic.id} small />
+                                            ))}
+                                          </div>
                                         )}
-                                      </button>
-                                    </div>
+
+                                        {/* Feature 2: Complexity Slider - per-section reading level */}
+                                        <div className="mb-3">
+                                          <ComplexitySlider
+                                            currentLevel={sectionComplexityLevels[section.id] || 'legal'}
+                                            onLevelChange={(level) => handleComplexityChange(level, section)}
+                                            isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                          />
+                                        </div>
+
+                                        {/* Section Content - switches based on this section's complexity level */}
+                                        <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
+                                          {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
+                                            <FormattedText text={section.content} searchTerm={contentSearchTerm} />
+                                          ) : (
+                                            <SimplifiedContent
+                                              content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
+                                              level={sectionComplexityLevels[section.id]}
+                                              isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                            />
+                                          )}
+                                          {/* Show original text link when viewing simplified */}
+                                          {(sectionComplexityLevels[section.id] || 'legal') !== 'legal' && simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] && (
+                                            <button
+                                              onClick={() => handleComplexityChange('legal', section)}
+                                              className="mt-3 text-xs text-gray-500 dark:text-gray-400 hover:text-whs-orange-500 underline"
+                                            >
+                                              View original legal text
+                                            </button>
+                                          )}
+                                        </div>
+
+                                        {/* Visualize Button */}
+                                        <div className="mt-4 flex items-center gap-2">
+                                          <button
+                                            onClick={() => handleGenerateFlowchart(section)}
+                                            disabled={flowchartLoading && flowchartSectionId === section.id}
+                                            className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
+                                              flowchartSectionId === section.id && flowchartData
+                                                ? 'bg-whs-orange-500 text-white'
+                                                : 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300 hover:bg-whs-orange-100 dark:hover:bg-whs-orange-900/30'
+                                            } disabled:opacity-50 disabled:cursor-not-allowed`}
+                                          >
+                                            {flowchartLoading && flowchartSectionId === section.id ? (
+                                              <>
+                                                <div className="w-4 h-4 border-2 border-whs-orange-300 border-t-whs-orange-600 rounded-full animate-spin"></div>
+                                                <span>Generating...</span>
+                                              </>
+                                            ) : (
+                                              <>
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+                                                </svg>
+                                                <span>{flowchartSectionId === section.id && flowchartData ? 'Hide Flowchart' : 'Visualize'}</span>
+                                              </>
+                                            )}
+                                          </button>
+                                        </div>
+                                      </>
+                                    )}
 
                                     {/* Flowchart Visualization */}
                                     {flowchartSectionId === section.id && flowchartData && (
