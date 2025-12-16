@@ -161,6 +161,37 @@ function getSimilarity(str1, str2) {
   return matches / maxLen
 }
 
+// Highlight search term in text - returns JSX with highlighted matches
+function highlightText(text, searchTerm) {
+  if (!text || !searchTerm || searchTerm.trim().length === 0) {
+    return text
+  }
+
+  const term = searchTerm.trim()
+  // Escape special regex characters
+  const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const regex = new RegExp(`(${escapedTerm})`, 'gi')
+  const parts = text.split(regex)
+
+  if (parts.length === 1) {
+    return text
+  }
+
+  return parts.map((part, index) => {
+    if (part.toLowerCase() === term.toLowerCase()) {
+      return (
+        <mark
+          key={index}
+          className="bg-yellow-300 dark:bg-yellow-500/50 text-gray-900 dark:text-white px-0.5 rounded"
+        >
+          {part}
+        </mark>
+      )
+    }
+    return part
+  })
+}
+
 // German ordinal words to numbers mapping
 const germanOrdinals = {
   'erster': '1', 'erste': '1', 'ersten': '1',
@@ -553,11 +584,11 @@ function formatLawText(text) {
   return elements
 }
 
-// Render formatted elements
-function FormattedText({ text }) {
+// Render formatted elements with optional search term highlighting
+function FormattedText({ text, searchTerm = '' }) {
   const elements = formatLawText(text)
   if (!elements || elements.length === 0) {
-    return <div className="whitespace-pre-wrap">{text}</div>
+    return <div className="whitespace-pre-wrap">{highlightText(text, searchTerm)}</div>
   }
 
   return (
@@ -567,14 +598,14 @@ function FormattedText({ text }) {
           case 'section':
             return (
               <h4 key={idx} className="font-semibold text-whs-orange-600 dark:text-whs-orange-400 mt-6 first:mt-0">
-                {el.content}
+                {highlightText(el.content, searchTerm)}
               </h4>
             )
           case 'list':
             return (
               <ul key={idx} className="list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300">
                 {el.items.map((item, i) => (
-                  <li key={i} className="leading-relaxed">{item}</li>
+                  <li key={i} className="leading-relaxed">{highlightText(item, searchTerm)}</li>
                 ))}
               </ul>
             )
@@ -582,7 +613,7 @@ function FormattedText({ text }) {
           default:
             return (
               <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                {el.content}
+                {highlightText(el.content, searchTerm)}
               </p>
             )
         }
@@ -1210,7 +1241,7 @@ export function LawBrowser({ onBack }) {
                             )}
                           </div>
                           {section.title && (
-                            <div className="text-xs line-clamp-1 mt-0.5 opacity-75">{section.title}</div>
+                            <div className="text-xs line-clamp-1 mt-0.5 opacity-75">{highlightText(section.title, searchInLaw)}</div>
                           )}
                         </button>
                       </div>
@@ -1370,7 +1401,7 @@ export function LawBrowser({ onBack }) {
                                         </span>
                                         {section.title && (
                                           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                                            {section.title}
+                                            {highlightText(section.title, searchInLaw)}
                                           </h3>
                                         )}
                                       </div>
@@ -1401,7 +1432,7 @@ export function LawBrowser({ onBack }) {
                                     {/* Section Content - switches based on this section's complexity level */}
                                     <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
                                       {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
-                                        <FormattedText text={section.content} />
+                                        <FormattedText text={section.content} searchTerm={searchInLaw} />
                                       ) : (
                                         <SimplifiedContent
                                           content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
@@ -1465,7 +1496,7 @@ export function LawBrowser({ onBack }) {
                         </div>
                       ) : (
                         /* Raw text fallback */
-                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} />
+                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={searchInLaw} />
                       )}
 
                     </div>

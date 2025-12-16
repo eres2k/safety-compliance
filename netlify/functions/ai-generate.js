@@ -41,7 +41,7 @@ export async function handler(event) {
           systemInstruction: systemPrompt ? { parts: [{ text: systemPrompt }] } : undefined,
           generationConfig: {
             temperature: 0.3,
-            maxOutputTokens: 2048
+            maxOutputTokens: 8192
           }
         })
       }
