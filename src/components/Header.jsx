@@ -95,13 +95,16 @@ export function Header() {
   const currentLanguage = languages.find(l => l.code === language) || languages[0]
 
   const handleFrameworkChange = (newFramework) => {
-    setFramework(newFramework)
+    // Save directly to localStorage before reload
+    localStorage.setItem('whs_framework', newFramework)
     setShowFrameworkMenu(false)
-    // Force a page reload to ensure all data is refreshed
+    // Reload to ensure all data is refreshed with new framework
     window.location.reload()
   }
 
   const handleLanguageChange = (newLanguage) => {
+    // Save directly to localStorage
+    localStorage.setItem('whs_language', newLanguage)
     setLanguage(newLanguage)
     setShowLanguageMenu(false)
   }
