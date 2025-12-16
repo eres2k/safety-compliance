@@ -6,6 +6,40 @@ const FRAMEWORK_CONFIG = {
   NL: { name: 'Netherlands', flag: '🇳🇱', color: 'orange' }
 }
 
+// Parse markdown table into structured data
+function parseTable(tableText) {
+  if (!tableText) return null
+
+  const lines = tableText.split('\n').filter(line => line.trim())
+  if (lines.length < 2) return null
+
+  const rows = []
+  for (const line of lines) {
+    // Skip separator lines (|---|---| or variations)
+    if (/^[\s|:-]+$/.test(line.replace(/\|/g, '').trim())) continue
+    if (/^\|[-:\s|]+\|$/.test(line)) continue
+
+    const cells = line.split('|')
+      .map(cell => cell.trim())
+      .filter((cell, idx, arr) => {
+        if (idx === 0 && cell === '') return false
+        if (idx === arr.length - 1 && cell === '') return false
+        return true
+      })
+
+    if (cells.length >= 2) {
+      rows.push(cells)
+    }
+  }
+
+  if (rows.length < 2) return null
+
+  return {
+    headers: rows[0],
+    rows: rows.slice(1)
+  }
+}
+
 // Parse the AI response into structured sections
 function parseComparisonResponse(response) {
   if (!response) return null
@@ -13,36 +47,62 @@ function parseComparisonResponse(response) {
   const sections = {
     equivalent: '',
     comparison: '',
+    comparisonTable: null,
     differences: [],
     recommendation: ''
   }
 
   try {
-    // Extract equivalent section
-    const equivalentMatch = response.match(/---EQUIVALENT---\s*([\s\S]*?)(?=---COMPARISON---|$)/i)
-    if (equivalentMatch) {
-      sections.equivalent = equivalentMatch[1].trim()
-    }
+    // Check if response uses markers format
+    const hasMarkers = response.includes('---EQUIVALENT---') || response.includes('---COMPARISON---')
 
-    // Extract comparison table
-    const comparisonMatch = response.match(/---COMPARISON---\s*([\s\S]*?)(?=---DIFFERENCES---|$)/i)
-    if (comparisonMatch) {
-      sections.comparison = comparisonMatch[1].trim()
-    }
+    if (hasMarkers) {
+      // Extract equivalent section
+      const equivalentMatch = response.match(/---EQUIVALENT---\s*([\s\S]*?)(?=---COMPARISON---|$)/i)
+      if (equivalentMatch) {
+        sections.equivalent = equivalentMatch[1].trim()
+      }
 
-    // Extract differences (lines starting with warning emoji)
-    const differencesMatch = response.match(/---DIFFERENCES---\s*([\s\S]*?)(?=---RECOMMENDATION---|$)/i)
-    if (differencesMatch) {
-      const diffText = differencesMatch[1].trim()
-      sections.differences = diffText.split('\n')
-        .map(line => line.trim())
-        .filter(line => line.startsWith('⚠️') || line.length > 0)
-    }
+      // Extract comparison table
+      const comparisonMatch = response.match(/---COMPARISON---\s*([\s\S]*?)(?=---DIFFERENCES---|$)/i)
+      if (comparisonMatch) {
+        sections.comparison = comparisonMatch[1].trim()
+        sections.comparisonTable = parseTable(sections.comparison)
+      }
 
-    // Extract recommendation
-    const recommendationMatch = response.match(/---RECOMMENDATION---\s*([\s\S]*?)$/i)
-    if (recommendationMatch) {
-      sections.recommendation = recommendationMatch[1].trim()
+      // Extract differences (lines starting with warning emoji)
+      const differencesMatch = response.match(/---DIFFERENCES---\s*([\s\S]*?)(?=---RECOMMENDATION---|$)/i)
+      if (differencesMatch) {
+        const diffText = differencesMatch[1].trim()
+        sections.differences = diffText.split('\n')
+          .map(line => line.trim())
+          .filter(line => line.startsWith('⚠️') || line.length > 0)
+      }
+
+      // Extract recommendation
+      const recommendationMatch = response.match(/---RECOMMENDATION---\s*([\s\S]*?)$/i)
+      if (recommendationMatch) {
+        sections.recommendation = recommendationMatch[1].trim()
+      }
+    } else {
+      // Fallback: parse raw markdown response
+      // Look for markdown table anywhere in response
+      const tableMatch = response.match(/\|[^\n]+\|[\s\S]*?\|[^\n]+\|/g)
+      if (tableMatch) {
+        sections.comparison = tableMatch.join('\n')
+        sections.comparisonTable = parseTable(sections.comparison)
+      }
+
+      // Extract any bullet points as differences
+      const bulletPoints = response.match(/^[\s]*[-•⚠️]\s*.+$/gm)
+      if (bulletPoints) {
+        sections.differences = bulletPoints.map(line => line.trim())
+      }
+
+      // If we found a table, use parsed format; otherwise return raw
+      if (!sections.comparison) {
+        return { raw: response }
+      }
     }
   } catch {
     // If parsing fails, return the raw response
@@ -199,9 +259,45 @@ export function CrossBorderComparison({
               <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
                 <span>📊</span> Comparison
               </h5>
-              <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-mono">
-                {parsedData.comparison}
-              </div>
+              {parsedData.comparisonTable ? (
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-100 dark:bg-whs-dark-700">
+                      {parsedData.comparisonTable.headers.map((header, idx) => (
+                        <th
+                          key={idx}
+                          className="px-4 py-2 text-left font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-whs-dark-600"
+                        >
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {parsedData.comparisonTable.rows.map((row, rowIdx) => (
+                      <tr
+                        key={rowIdx}
+                        className={rowIdx % 2 === 0 ? 'bg-white dark:bg-whs-dark-800' : 'bg-gray-50 dark:bg-whs-dark-750'}
+                      >
+                        {row.map((cell, cellIdx) => (
+                          <td
+                            key={cellIdx}
+                            className={`px-4 py-2 border-b border-gray-100 dark:border-whs-dark-700 ${
+                              cellIdx === 0 ? 'font-medium text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
+                            }`}
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-mono">
+                  {parsedData.comparison}
+                </div>
+              )}
             </div>
           )}
 
