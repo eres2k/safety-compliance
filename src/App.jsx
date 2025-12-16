@@ -6,8 +6,14 @@ import { Dashboard } from './components/Dashboard'
 import {
   LawBrowser,
   ComplianceChecker,
-  QuickReference
+  QuickReference,
+  ComplianceDashboard,
+  RiskAssessment,
+  TrainingResources,
+  ChecklistTemplates,
+  AuditTrail
 } from './components/modules'
+import { RateLimitIndicator } from './components/ui'
 
 // Initialize EU laws database on app load
 import { initializeLawsDatabase } from './services/euLawsDatabase'
@@ -41,6 +47,16 @@ function AppContent() {
         return <ComplianceChecker onBack={onBack} />
       case 'quickReference':
         return <QuickReference onBack={onBack} />
+      case 'complianceDashboard':
+        return <ComplianceDashboard onBack={onBack} />
+      case 'riskAssessment':
+        return <RiskAssessment onBack={onBack} />
+      case 'trainingResources':
+        return <TrainingResources onBack={onBack} />
+      case 'checklistTemplates':
+        return <ChecklistTemplates onBack={onBack} />
+      case 'auditTrail':
+        return <AuditTrail onBack={onBack} />
       default:
         return <Dashboard onModuleSelect={setActiveModule} />
     }
@@ -93,6 +109,9 @@ function AppContent() {
         </main>
         <Footer />
       </div>
+
+      {/* Floating Rate Limit Indicator */}
+      <RateLimitIndicator variant="floating" />
     </div>
   )
 }

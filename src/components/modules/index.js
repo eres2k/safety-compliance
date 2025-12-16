@@ -1,3 +1,8 @@
 export { LawBrowser } from './LawBrowser'
 export { ComplianceChecker } from './ComplianceChecker'
 export { QuickReference } from './QuickReference'
+export { ComplianceDashboard } from './ComplianceDashboard'
+export { RiskAssessment } from './RiskAssessment'
+export { TrainingResources } from './TrainingResources'
+export { ChecklistTemplates } from './ChecklistTemplates'
+export { AuditTrail } from './AuditTrail'
