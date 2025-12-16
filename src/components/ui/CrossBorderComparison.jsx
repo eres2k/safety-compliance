@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { normalizeNewlines } from '../../services/aiService'
 
 const FRAMEWORK_CONFIG = {
   AT: { name: 'Austria', flag: '🇦🇹', color: 'red' },
@@ -44,6 +45,9 @@ function parseTable(tableText) {
 function parseComparisonResponse(response) {
   if (!response) return null
 
+  // Normalize escaped newlines first
+  const normalizedResponse = normalizeNewlines(response)
+
   const sections = {
     equivalent: '',
     comparison: '',
@@ -54,24 +58,24 @@ function parseComparisonResponse(response) {
 
   try {
     // Check if response uses markers format
-    const hasMarkers = response.includes('---EQUIVALENT---') || response.includes('---COMPARISON---')
+    const hasMarkers = normalizedResponse.includes('---EQUIVALENT---') || normalizedResponse.includes('---COMPARISON---')
 
     if (hasMarkers) {
       // Extract equivalent section
-      const equivalentMatch = response.match(/---EQUIVALENT---\s*([\s\S]*?)(?=---COMPARISON---|$)/i)
+      const equivalentMatch = normalizedResponse.match(/---EQUIVALENT---\s*([\s\S]*?)(?=---COMPARISON---|$)/i)
       if (equivalentMatch) {
         sections.equivalent = equivalentMatch[1].trim()
       }
 
       // Extract comparison table
-      const comparisonMatch = response.match(/---COMPARISON---\s*([\s\S]*?)(?=---DIFFERENCES---|$)/i)
+      const comparisonMatch = normalizedResponse.match(/---COMPARISON---\s*([\s\S]*?)(?=---DIFFERENCES---|$)/i)
       if (comparisonMatch) {
         sections.comparison = comparisonMatch[1].trim()
         sections.comparisonTable = parseTable(sections.comparison)
       }
 
       // Extract differences (lines starting with warning emoji)
-      const differencesMatch = response.match(/---DIFFERENCES---\s*([\s\S]*?)(?=---RECOMMENDATION---|$)/i)
+      const differencesMatch = normalizedResponse.match(/---DIFFERENCES---\s*([\s\S]*?)(?=---RECOMMENDATION---|$)/i)
       if (differencesMatch) {
         const diffText = differencesMatch[1].trim()
         sections.differences = diffText.split('\n')
@@ -80,33 +84,33 @@ function parseComparisonResponse(response) {
       }
 
       // Extract recommendation
-      const recommendationMatch = response.match(/---RECOMMENDATION---\s*([\s\S]*?)$/i)
+      const recommendationMatch = normalizedResponse.match(/---RECOMMENDATION---\s*([\s\S]*?)$/i)
       if (recommendationMatch) {
         sections.recommendation = recommendationMatch[1].trim()
       }
     } else {
       // Fallback: parse raw markdown response
       // Look for markdown table anywhere in response
-      const tableMatch = response.match(/\|[^\n]+\|[\s\S]*?\|[^\n]+\|/g)
+      const tableMatch = normalizedResponse.match(/\|[^\n]+\|[\s\S]*?\|[^\n]+\|/g)
       if (tableMatch) {
         sections.comparison = tableMatch.join('\n')
         sections.comparisonTable = parseTable(sections.comparison)
       }
 
       // Extract any bullet points as differences
-      const bulletPoints = response.match(/^[\s]*[-•⚠️]\s*.+$/gm)
+      const bulletPoints = normalizedResponse.match(/^[\s]*[-•⚠️]\s*.+$/gm)
       if (bulletPoints) {
         sections.differences = bulletPoints.map(line => line.trim())
       }
 
       // If we found a table, use parsed format; otherwise return raw
       if (!sections.comparison) {
-        return { raw: response }
+        return { raw: normalizedResponse }
       }
     }
   } catch {
     // If parsing fails, return the raw response
-    return { raw: response }
+    return { raw: normalizedResponse }
   }
 
   return sections

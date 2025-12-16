@@ -77,6 +77,14 @@ IMPORTANT: Always respond with valid JSON format only. No markdown, no code bloc
 ${LANGUAGE_CONTEXT[language]}`
 }
 
+// Helper function to normalize escaped newlines in AI responses
+// This fixes issues where AI returns literal \n instead of actual newlines
+export function normalizeNewlines(text) {
+  if (!text || typeof text !== 'string') return text
+  // Replace escaped newlines with actual newlines
+  return text.replace(/\\n/g, '\n')
+}
+
 // Helper function to clean and parse JSON from AI responses
 function cleanAndParseJSON(response) {
   if (!response) return null
@@ -313,8 +321,9 @@ Regulation text:
 ${lawText.substring(0, 4000)}`
 
   const response = await generateAIResponse(prompt, framework, language)
-  setCachedResponse(cacheKey, response)
-  return response
+  const normalizedResponse = normalizeNewlines(response)
+  setCachedResponse(cacheKey, normalizedResponse)
+  return normalizedResponse
 }
 
 // Feature 2: Legalese Complexity Slider - Simplify legal text
@@ -357,18 +366,21 @@ OUTPUT FORMAT (use these exact headers):
 
   const response = await generateAIResponse(prompt, framework, language)
 
+  // Normalize escaped newlines
+  const normalizedResponse = normalizeNewlines(response)
+
   // Parse the combined response
   const result = { manager: '', associate: '' }
-  const managerMatch = response.match(/---MANAGER---\s*([\s\S]*?)(?=---ASSOCIATE---|$)/i)
-  const associateMatch = response.match(/---ASSOCIATE---\s*([\s\S]*?)$/i)
+  const managerMatch = normalizedResponse.match(/---MANAGER---\s*([\s\S]*?)(?=---ASSOCIATE---|$)/i)
+  const associateMatch = normalizedResponse.match(/---ASSOCIATE---\s*([\s\S]*?)$/i)
 
   if (managerMatch) result.manager = managerMatch[1].trim()
   if (associateMatch) result.associate = associateMatch[1].trim()
 
   // Fallback if parsing fails - return full response for both
   if (!result.manager && !result.associate) {
-    result.manager = response
-    result.associate = response
+    result.manager = normalizedResponse
+    result.associate = normalizedResponse
   }
 
   setCachedResponse(cacheKey, result)
@@ -398,8 +410,9 @@ Legal text:
 ${lawText.substring(0, 3000)}`
 
   const response = await generateAIResponse(prompt, framework, language)
-  setCachedResponse(cacheKey, response)
-  return response
+  const normalizedResponse = normalizeNewlines(response)
+  setCachedResponse(cacheKey, normalizedResponse)
+  return normalizedResponse
 }
 
 export async function simplifyForAssociate(lawText, sectionTitle, framework, language) {
@@ -425,8 +438,9 @@ Legal text:
 ${lawText.substring(0, 2000)}`
 
   const response = await generateAIResponse(prompt, framework, language)
-  setCachedResponse(cacheKey, response)
-  return response
+  const normalizedResponse = normalizeNewlines(response)
+  setCachedResponse(cacheKey, normalizedResponse)
+  return normalizedResponse
 }
 
 // Feature 3: Cross-Border Harmonizer - Find equivalent laws across jurisdictions
@@ -456,8 +470,9 @@ FORMAT:
 [One sentence]`
 
   const response = await generateAIResponse(prompt, sourceFramework, language)
-  setCachedResponse(cacheKey, response)
-  return response
+  const normalizedResponse = normalizeNewlines(response)
+  setCachedResponse(cacheKey, normalizedResponse)
+  return normalizedResponse
 }
 
 // Feature 3b: Multi-Country Comparison - Compare laws across all 3 jurisdictions
@@ -496,8 +511,9 @@ FORMAT:
 ✅ [3 tips, one per line]`
 
   const response = await generateAIResponse(prompt, sourceFramework, language)
-  setCachedResponse(cacheKey, response)
-  return response
+  const normalizedResponse = normalizeNewlines(response)
+  setCachedResponse(cacheKey, normalizedResponse)
+  return normalizedResponse
 }
 
 // Feature 4: Semantic Tagging - Tag law text with roles and equipment

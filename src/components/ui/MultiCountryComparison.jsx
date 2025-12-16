@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { normalizeNewlines } from '../../services/aiService'
 
 const FRAMEWORK_CONFIG = {
   AT: { name: 'Austria', flag: '🇦🇹', color: 'red', bgClass: 'bg-red-50 dark:bg-red-900/20', textClass: 'text-red-700 dark:text-red-300', borderClass: 'border-red-200 dark:border-red-800' },
@@ -9,6 +10,9 @@ const FRAMEWORK_CONFIG = {
 // Parse the AI response into structured sections
 function parseMultiCountryResponse(response) {
   if (!response) return null
+
+  // Normalize escaped newlines first
+  const normalizedResponse = normalizeNewlines(response)
 
   const sections = {
     topic: '',
@@ -24,41 +28,41 @@ function parseMultiCountryResponse(response) {
 
   try {
     // Check if response uses markers format
-    const hasMarkers = response.includes('---TOPIC---') || response.includes('---AT_PROVISION---')
+    const hasMarkers = normalizedResponse.includes('---TOPIC---') || normalizedResponse.includes('---AT_PROVISION---')
 
     if (hasMarkers) {
       // Extract topic
-      const topicMatch = response.match(/---TOPIC---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      const topicMatch = normalizedResponse.match(/---TOPIC---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
       if (topicMatch) {
         sections.topic = topicMatch[1].trim()
       }
 
       // Extract AT provision
-      const atMatch = response.match(/---AT_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      const atMatch = normalizedResponse.match(/---AT_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
       if (atMatch) {
         sections.provisions.AT = atMatch[1].trim()
       }
 
       // Extract DE provision
-      const deMatch = response.match(/---DE_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      const deMatch = normalizedResponse.match(/---DE_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
       if (deMatch) {
         sections.provisions.DE = deMatch[1].trim()
       }
 
       // Extract NL provision
-      const nlMatch = response.match(/---NL_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      const nlMatch = normalizedResponse.match(/---NL_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
       if (nlMatch) {
         sections.provisions.NL = nlMatch[1].trim()
       }
 
       // Extract comparison table
-      const tableMatch = response.match(/---COMPARISON_TABLE---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      const tableMatch = normalizedResponse.match(/---COMPARISON_TABLE---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
       if (tableMatch) {
         sections.comparisonTable = tableMatch[1].trim()
       }
 
       // Extract differences
-      const differencesMatch = response.match(/---KEY_DIFFERENCES---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      const differencesMatch = normalizedResponse.match(/---KEY_DIFFERENCES---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
       if (differencesMatch) {
         const diffText = differencesMatch[1].trim()
         sections.differences = diffText.split('\n')
@@ -67,7 +71,7 @@ function parseMultiCountryResponse(response) {
       }
 
       // Extract harmonization tips
-      const tipsMatch = response.match(/---HARMONIZATION_TIPS---\s*([\s\S]*?)$/i)
+      const tipsMatch = normalizedResponse.match(/---HARMONIZATION_TIPS---\s*([\s\S]*?)$/i)
       if (tipsMatch) {
         const tipsText = tipsMatch[1].trim()
         sections.harmonizationTips = tipsText.split('\n')
@@ -77,25 +81,25 @@ function parseMultiCountryResponse(response) {
     } else {
       // Fallback: parse raw markdown response
       // Look for markdown table anywhere in response
-      const tableMatch = response.match(/\|[^\n]+\|[\s\S]*?\|[^\n]+\|/g)
+      const tableMatch = normalizedResponse.match(/\|[^\n]+\|[\s\S]*?\|[^\n]+\|/g)
       if (tableMatch) {
         sections.comparisonTable = tableMatch.join('\n')
       }
 
       // Extract any bullet points as differences
-      const bulletPoints = response.match(/^[\s]*[-•⚠️]\s*.+$/gm)
+      const bulletPoints = normalizedResponse.match(/^[\s]*[-•⚠️]\s*.+$/gm)
       if (bulletPoints) {
         sections.differences = bulletPoints.map(line => line.trim())
       }
 
       // If we found a table, use parsed format; otherwise return raw
       if (!sections.comparisonTable) {
-        return { raw: response }
+        return { raw: normalizedResponse }
       }
     }
   } catch {
     // If parsing fails, return the raw response
-    return { raw: response }
+    return { raw: normalizedResponse }
   }
 
   return sections
