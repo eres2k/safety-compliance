@@ -23,52 +23,75 @@ function parseMultiCountryResponse(response) {
   }
 
   try {
-    // Extract topic
-    const topicMatch = response.match(/---TOPIC---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
-    if (topicMatch) {
-      sections.topic = topicMatch[1].trim()
-    }
+    // Check if response uses markers format
+    const hasMarkers = response.includes('---TOPIC---') || response.includes('---AT_PROVISION---')
 
-    // Extract AT provision
-    const atMatch = response.match(/---AT_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
-    if (atMatch) {
-      sections.provisions.AT = atMatch[1].trim()
-    }
+    if (hasMarkers) {
+      // Extract topic
+      const topicMatch = response.match(/---TOPIC---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      if (topicMatch) {
+        sections.topic = topicMatch[1].trim()
+      }
 
-    // Extract DE provision
-    const deMatch = response.match(/---DE_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
-    if (deMatch) {
-      sections.provisions.DE = deMatch[1].trim()
-    }
+      // Extract AT provision
+      const atMatch = response.match(/---AT_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      if (atMatch) {
+        sections.provisions.AT = atMatch[1].trim()
+      }
 
-    // Extract NL provision
-    const nlMatch = response.match(/---NL_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
-    if (nlMatch) {
-      sections.provisions.NL = nlMatch[1].trim()
-    }
+      // Extract DE provision
+      const deMatch = response.match(/---DE_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      if (deMatch) {
+        sections.provisions.DE = deMatch[1].trim()
+      }
 
-    // Extract comparison table
-    const tableMatch = response.match(/---COMPARISON_TABLE---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
-    if (tableMatch) {
-      sections.comparisonTable = tableMatch[1].trim()
-    }
+      // Extract NL provision
+      const nlMatch = response.match(/---NL_PROVISION---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      if (nlMatch) {
+        sections.provisions.NL = nlMatch[1].trim()
+      }
 
-    // Extract differences
-    const differencesMatch = response.match(/---KEY_DIFFERENCES---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
-    if (differencesMatch) {
-      const diffText = differencesMatch[1].trim()
-      sections.differences = diffText.split('\n')
-        .map(line => line.trim())
-        .filter(line => line.startsWith('⚠️') || line.length > 0)
-    }
+      // Extract comparison table
+      const tableMatch = response.match(/---COMPARISON_TABLE---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      if (tableMatch) {
+        sections.comparisonTable = tableMatch[1].trim()
+      }
 
-    // Extract harmonization tips
-    const tipsMatch = response.match(/---HARMONIZATION_TIPS---\s*([\s\S]*?)$/i)
-    if (tipsMatch) {
-      const tipsText = tipsMatch[1].trim()
-      sections.harmonizationTips = tipsText.split('\n')
-        .map(line => line.trim())
-        .filter(line => line.startsWith('✅') || line.length > 0)
+      // Extract differences
+      const differencesMatch = response.match(/---KEY_DIFFERENCES---\s*([\s\S]*?)(?=---[A-Z_]+---|$)/i)
+      if (differencesMatch) {
+        const diffText = differencesMatch[1].trim()
+        sections.differences = diffText.split('\n')
+          .map(line => line.trim())
+          .filter(line => line.startsWith('⚠️') || line.length > 0)
+      }
+
+      // Extract harmonization tips
+      const tipsMatch = response.match(/---HARMONIZATION_TIPS---\s*([\s\S]*?)$/i)
+      if (tipsMatch) {
+        const tipsText = tipsMatch[1].trim()
+        sections.harmonizationTips = tipsText.split('\n')
+          .map(line => line.trim())
+          .filter(line => line.startsWith('✅') || line.length > 0)
+      }
+    } else {
+      // Fallback: parse raw markdown response
+      // Look for markdown table anywhere in response
+      const tableMatch = response.match(/\|[^\n]+\|[\s\S]*?\|[^\n]+\|/g)
+      if (tableMatch) {
+        sections.comparisonTable = tableMatch.join('\n')
+      }
+
+      // Extract any bullet points as differences
+      const bulletPoints = response.match(/^[\s]*[-•⚠️]\s*.+$/gm)
+      if (bulletPoints) {
+        sections.differences = bulletPoints.map(line => line.trim())
+      }
+
+      // If we found a table, use parsed format; otherwise return raw
+      if (!sections.comparisonTable) {
+        return { raw: response }
+      }
     }
   } catch {
     // If parsing fails, return the raw response
@@ -87,12 +110,19 @@ function parseTable(tableText) {
 
   const rows = []
   for (const line of lines) {
-    // Skip separator lines (|---|---|)
-    if (/^\|[\s-:|]+\|$/.test(line)) continue
+    // Skip separator lines (|---|---| or variations)
+    if (/^[\s|:-]+$/.test(line.replace(/\|/g, '').trim())) continue
+    if (/^\|[-:\s|]+\|$/.test(line)) continue
 
+    // Extract cells from pipe-separated line
     const cells = line.split('|')
       .map(cell => cell.trim())
-      .filter(cell => cell.length > 0)
+      .filter((cell, idx, arr) => {
+        // Filter out empty cells at start/end (from leading/trailing pipes)
+        if (idx === 0 && cell === '') return false
+        if (idx === arr.length - 1 && cell === '') return false
+        return true
+      })
 
     if (cells.length >= 2) {
       rows.push(cells)
