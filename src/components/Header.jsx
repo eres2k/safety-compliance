@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useApp } from '../context/AppContext'
 
 // Framework configuration with colors
@@ -40,21 +41,14 @@ const frameworks = {
       text: 'text-orange-500',
       ring: 'ring-orange-500/30'
     }
-  },
-  WIKI: {
-    code: 'WIKI',
-    name: 'Wikipedia',
-    lawName: 'Reference',
-    flag: '📚',
-    colors: {
-      bg: 'bg-gray-600',
-      bgHover: 'hover:bg-gray-700',
-      border: 'border-gray-600',
-      text: 'text-gray-600',
-      ring: 'ring-gray-500/30'
-    }
   }
 }
+
+const languages = [
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' }
+]
 
 // Theme toggle icon component
 function ThemeIcon({ isDark }) {
@@ -93,9 +87,24 @@ function SafetyLogo() {
 }
 
 export function Header() {
-  const { framework, isDark, toggleTheme, t } = useApp()
+  const { framework, setFramework, language, setLanguage, isDark, toggleTheme, t } = useApp()
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false)
+  const [showFrameworkMenu, setShowFrameworkMenu] = useState(false)
 
-  const currentFramework = frameworks[framework]
+  const currentFramework = frameworks[framework] || frameworks.DE
+  const currentLanguage = languages.find(l => l.code === language) || languages[0]
+
+  const handleFrameworkChange = (newFramework) => {
+    setFramework(newFramework)
+    setShowFrameworkMenu(false)
+    // Force a page reload to ensure all data is refreshed
+    window.location.reload()
+  }
+
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage)
+    setShowLanguageMenu(false)
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-whs-dark-700 transition-colors duration-300">
@@ -123,10 +132,82 @@ export function Header() {
 
           {/* Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Framework Display (Read-only) */}
-            <div className={`flex items-center gap-2 px-3 py-2 rounded-xl ${currentFramework.colors.bg} text-white shadow-md`}>
-              <span className="text-lg">{currentFramework.flag}</span>
-              <span className="text-sm font-semibold">{currentFramework.lawName}</span>
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setShowLanguageMenu(!showLanguageMenu)}
+                onBlur={() => setTimeout(() => setShowLanguageMenu(false), 200)}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-100 dark:bg-whs-dark-800 hover:bg-gray-200 dark:hover:bg-whs-dark-700 transition-colors"
+                aria-label="Select language"
+              >
+                <span className="text-lg">{currentLanguage.flag}</span>
+                <span className="hidden sm:inline text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {currentLanguage.code.toUpperCase()}
+                </span>
+                <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {showLanguageMenu && (
+                <div className="absolute right-0 mt-2 w-40 py-2 bg-white dark:bg-whs-dark-800 rounded-xl shadow-lg border border-gray-200 dark:border-whs-dark-700 animate-fade-in-down z-50">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-whs-dark-700 transition-colors ${
+                        language === lang.code ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-600 dark:text-whs-orange-400' : 'text-gray-700 dark:text-gray-300'
+                      }`}
+                    >
+                      <span className="text-lg">{lang.flag}</span>
+                      <span className="text-sm font-medium">{lang.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Framework Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setShowFrameworkMenu(!showFrameworkMenu)}
+                onBlur={() => setTimeout(() => setShowFrameworkMenu(false), 200)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-xl ${currentFramework.colors.bg} text-white hover:opacity-90 transition-all shadow-md`}
+                aria-label="Select legal framework"
+              >
+                <span className="text-lg">{currentFramework.flag}</span>
+                <span className="text-sm font-semibold">{currentFramework.lawName}</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {showFrameworkMenu && (
+                <div className="absolute right-0 mt-2 w-56 py-2 bg-white dark:bg-whs-dark-800 rounded-xl shadow-lg border border-gray-200 dark:border-whs-dark-700 animate-fade-in-down z-50">
+                  {Object.values(frameworks).map((fw) => (
+                    <button
+                      key={fw.code}
+                      onClick={() => handleFrameworkChange(fw.code)}
+                      className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-whs-dark-700 transition-colors ${
+                        framework === fw.code ? 'bg-gray-100 dark:bg-whs-dark-700' : ''
+                      }`}
+                    >
+                      <span className="text-xl">{fw.flag}</span>
+                      <div className="flex-1">
+                        <p className={`text-sm font-semibold ${framework === fw.code ? fw.colors.text : 'text-gray-900 dark:text-white'}`}>
+                          {fw.code} - {fw.lawName}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{fw.name}</p>
+                      </div>
+                      {framework === fw.code && (
+                        <svg className={`w-5 h-5 ${fw.colors.text}`} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Theme Toggle */}
