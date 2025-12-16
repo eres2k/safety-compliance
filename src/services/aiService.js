@@ -77,6 +77,45 @@ IMPORTANT: Always respond with valid JSON format only. No markdown, no code bloc
 ${LANGUAGE_CONTEXT[language]}`
 }
 
+// Helper function to clean and parse JSON from AI responses
+function cleanAndParseJSON(response) {
+  if (!response) return null
+
+  let cleanedResponse = response.trim()
+
+  // Remove markdown code blocks if present
+  // Handle ```json ... ``` or ``` ... ```
+  const jsonBlockMatch = cleanedResponse.match(/```(?:json)?\s*([\s\S]*?)```/)
+  if (jsonBlockMatch) {
+    cleanedResponse = jsonBlockMatch[1].trim()
+  }
+
+  // Try to find JSON object or array in the response
+  const jsonMatch = cleanedResponse.match(/(\{[\s\S]*\}|\[[\s\S]*\])/)
+  if (jsonMatch) {
+    cleanedResponse = jsonMatch[1]
+  }
+
+  try {
+    return JSON.parse(cleanedResponse)
+  } catch (e) {
+    console.warn('Failed to parse AI response as JSON:', e.message)
+    // Return the cleaned string if parsing fails
+    return cleanedResponse
+  }
+}
+
+// Format parsed JSON back to a readable string for display
+function formatJSONForDisplay(data) {
+  if (typeof data === 'string') return data
+
+  try {
+    return JSON.stringify(data, null, 2)
+  } catch (e) {
+    return String(data)
+  }
+}
+
 // Retry helper for transient failures
 async function fetchWithRetry(url, options, maxRetries = 2) {
   for (let i = 0; i <= maxRetries; i++) {
@@ -145,7 +184,9 @@ Return ONLY a valid JSON object with this structure:
 
 Be concise. Only include relevant information.`
 
-  return generateAIResponse(prompt, framework, language)
+  const response = await generateAIResponse(prompt, framework, language)
+  const parsed = cleanAndParseJSON(response)
+  return formatJSONForDisplay(parsed)
 }
 
 export async function checkCompliance(companySize, industry, topic, framework, language) {
@@ -175,7 +216,9 @@ Return ONLY a valid JSON object with this structure:
 
 Be concise. Only include relevant information.`
 
-  return generateAIResponse(prompt, framework, language)
+  const response = await generateAIResponse(prompt, framework, language)
+  const parsed = cleanAndParseJSON(response)
+  return formatJSONForDisplay(parsed)
 }
 
 export async function generateDocument(templateName, inputs, framework, language) {
@@ -206,7 +249,9 @@ Return ONLY a valid JSON object with this structure:
 
 Be concise. Only include relevant information.`
 
-  return generateAIResponse(prompt, framework, language)
+  const response = await generateAIResponse(prompt, framework, language)
+  const parsed = cleanAndParseJSON(response)
+  return formatJSONForDisplay(parsed)
 }
 
 export async function lookupRegulation(topic, companySize, framework, language) {
@@ -240,7 +285,9 @@ Return ONLY a valid JSON object with this structure:
 
 Be concise. Only include relevant information.`
 
-  return generateAIResponse(prompt, framework, language)
+  const response = await generateAIResponse(prompt, framework, language)
+  const parsed = cleanAndParseJSON(response)
+  return formatJSONForDisplay(parsed)
 }
 
 export async function generateFlowchart(lawText, framework, language) {
@@ -498,6 +545,8 @@ OUTPUT FORMAT (JSON only, no explanation):
 }`
 
   const response = await generateAIResponse(prompt, framework, language)
-  setCachedResponse(cacheKey, response)
-  return response
+  const parsed = cleanAndParseJSON(response)
+  const formatted = formatJSONForDisplay(parsed)
+  setCachedResponse(cacheKey, formatted)
+  return formatted
 }

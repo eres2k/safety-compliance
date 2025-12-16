@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
 
 // Framework configuration with colors
@@ -91,8 +91,27 @@ export function Header() {
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [showFrameworkMenu, setShowFrameworkMenu] = useState(false)
 
+  // Refs for click-outside detection
+  const languageRef = useRef(null)
+  const frameworkRef = useRef(null)
+
   const currentFramework = frameworks[framework] || frameworks.DE
   const currentLanguage = languages.find(l => l.code === language) || languages[0]
+
+  // Click outside handler
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (languageRef.current && !languageRef.current.contains(event.target)) {
+        setShowLanguageMenu(false)
+      }
+      if (frameworkRef.current && !frameworkRef.current.contains(event.target)) {
+        setShowFrameworkMenu(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const handleFrameworkChange = (newFramework) => {
     // Save directly to localStorage before reload
@@ -136,10 +155,9 @@ export function Header() {
           {/* Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Language Selector */}
-            <div className="relative">
+            <div className="relative" ref={languageRef}>
               <button
                 onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                onBlur={() => setTimeout(() => setShowLanguageMenu(false), 200)}
                 className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-100 dark:bg-whs-dark-800 hover:bg-gray-200 dark:hover:bg-whs-dark-700 transition-colors"
                 aria-label="Select language"
               >
@@ -171,10 +189,9 @@ export function Header() {
             </div>
 
             {/* Framework Selector */}
-            <div className="relative">
+            <div className="relative" ref={frameworkRef}>
               <button
                 onClick={() => setShowFrameworkMenu(!showFrameworkMenu)}
-                onBlur={() => setTimeout(() => setShowFrameworkMenu(false), 200)}
                 className={`flex items-center gap-2 px-3 py-2 rounded-xl ${currentFramework.colors.bg} text-white hover:opacity-90 transition-all shadow-md`}
                 aria-label="Select legal framework"
               >
