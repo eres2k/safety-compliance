@@ -297,9 +297,23 @@ function buildSearchText(item) {
     item.category
   ]
 
+  // Include full text content for comprehensive search
   if (item.content?.full_text) {
-    // Only include first 5000 chars for search performance
-    parts.push(item.content.full_text.substring(0, 5000))
+    parts.push(item.content.full_text)
+  }
+
+  // Also include chapter titles and section text for thorough search
+  if (item.chapters && Array.isArray(item.chapters)) {
+    for (const chapter of item.chapters) {
+      if (chapter.title) parts.push(chapter.title)
+      if (chapter.title_en) parts.push(chapter.title_en)
+      if (chapter.sections && Array.isArray(chapter.sections)) {
+        for (const section of chapter.sections) {
+          if (section.title) parts.push(section.title)
+          if (section.text) parts.push(section.text)
+        }
+      }
+    }
   }
 
   return parts.filter(Boolean).join(' ').toLowerCase()

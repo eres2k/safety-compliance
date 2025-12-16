@@ -23,7 +23,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              AI-powered workplace health and safety compliance navigator for Austria, Germany, and Netherlands.
+              Workplace health and safety compliance navigator for Austria, Germany, and Netherlands.
             </p>
           </div>
 

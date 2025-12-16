@@ -681,12 +681,11 @@ function WHSSummaryPanel({ summary }) {
 
 export function LawBrowser({ onBack }) {
   const { t, framework, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
-  const { explainSection, generateFlowchart, simplifyForManager, simplifyForAssociate, findEquivalentLaw, isLoading: aiLoading } = useAI()
+  const { generateFlowchart, simplifyForManager, simplifyForAssociate, findEquivalentLaw, isLoading: aiLoading } = useAI()
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedLaw, setSelectedLaw] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const [explanation, setExplanation] = useState('')
   const [activeSection, setActiveSection] = useState(null)
   const [searchInLaw, setSearchInLaw] = useState('')
   const [relevanceFilter, setRelevanceFilter] = useState('all') // all, critical, high, medium, low
@@ -698,8 +697,8 @@ export function LawBrowser({ onBack }) {
   const [flowchartSectionId, setFlowchartSectionId] = useState(null)
   const [flowchartLoading, setFlowchartLoading] = useState(false)
 
-  // Feature 2: Complexity Slider state
-  const [complexityLevel, setComplexityLevel] = useState('legal') // legal, manager, associate
+  // Feature 2: Complexity Slider state - per-section reading level
+  const [sectionComplexityLevels, setSectionComplexityLevels] = useState({}) // { sectionId: 'legal' | 'manager' | 'associate' }
   const [simplifiedContent, setSimplifiedContent] = useState({}) // Cache: { sectionId: { manager: '', associate: '' } }
   const [simplifyLoading, setSimplifyLoading] = useState(false)
   const [activeSimplifySectionId, setActiveSimplifySectionId] = useState(null)
@@ -868,21 +867,6 @@ export function LawBrowser({ onBack }) {
     if (term.trim()) addRecentSearch(term)
   }, [addRecentSearch])
 
-  // Handle AI explanation
-  const handleExplain = async () => {
-    if (!selectedLaw) return
-    try {
-      const text = selectedLaw.content?.full_text || selectedLaw.content?.text || ''
-      const response = await explainSection({
-        title: selectedLaw.title,
-        content: text.substring(0, 3000) || selectedLaw.description
-      })
-      setExplanation(response)
-    } catch (error) {
-      setExplanation(t.api?.error || 'Failed to generate explanation')
-    }
-  }
-
   // Handle flowchart generation for a section
   const handleGenerateFlowchart = async (section) => {
     if (!section || flowchartLoading) return
@@ -918,11 +902,17 @@ export function LawBrowser({ onBack }) {
     setFlowchartSectionId(null)
   }
 
-  // Feature 2: Handle complexity level change for a section
+  // Feature 2: Handle complexity level change for a specific section
   const handleComplexityChange = async (level, section) => {
-    setComplexityLevel(level)
+    if (!section) return
 
-    if (level === 'legal' || !section) return
+    // Update this section's reading level
+    setSectionComplexityLevels(prev => ({
+      ...prev,
+      [section.id]: level
+    }))
+
+    if (level === 'legal') return
 
     // Check cache first
     const cached = simplifiedContent[section.id]?.[level]
@@ -987,14 +977,13 @@ export function LawBrowser({ onBack }) {
   // Select a law
   const selectLaw = (law) => {
     setSelectedLaw(law)
-    setExplanation('')
     setActiveSection(null)
     setSearchInLaw('')
     // Reset flowchart state
     setFlowchartData(null)
     setFlowchartSectionId(null)
-    // Reset complexity slider state
-    setComplexityLevel('legal')
+    // Reset complexity slider state - per-section
+    setSectionComplexityLevels({})
     setSimplifiedContent({})
     // Reset cross-border state
     setShowCrossBorder(false)
@@ -1070,7 +1059,7 @@ export function LawBrowser({ onBack }) {
           onChange={(e) => setSearchTerm(e.target.value)}
           onSearch={handleSearch}
           onClear={() => setSearchTerm('')}
-          placeholder="Search laws..."
+          placeholder="Full text search across all laws..."
         />
       </div>
 
@@ -1400,30 +1389,30 @@ export function LawBrowser({ onBack }) {
                                       </div>
                                     )}
 
-                                    {/* Feature 2: Complexity Slider */}
-                                    <div className="mb-4">
+                                    {/* Feature 2: Complexity Slider - per-section reading level */}
+                                    <div className="mb-3">
                                       <ComplexitySlider
-                                        currentLevel={complexityLevel}
+                                        currentLevel={sectionComplexityLevels[section.id] || 'legal'}
                                         onLevelChange={(level) => handleComplexityChange(level, section)}
                                         isLoading={simplifyLoading && activeSimplifySectionId === section.id}
                                       />
                                     </div>
 
-                                    {/* Section Content - switches based on complexity level */}
+                                    {/* Section Content - switches based on this section's complexity level */}
                                     <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
-                                      {complexityLevel === 'legal' ? (
+                                      {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
                                         <FormattedText text={section.content} />
                                       ) : (
                                         <SimplifiedContent
-                                          content={simplifiedContent[section.id]?.[complexityLevel] || null}
-                                          level={complexityLevel}
+                                          content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
+                                          level={sectionComplexityLevels[section.id]}
                                           isLoading={simplifyLoading && activeSimplifySectionId === section.id}
                                         />
                                       )}
                                       {/* Show original text link when viewing simplified */}
-                                      {complexityLevel !== 'legal' && simplifiedContent[section.id]?.[complexityLevel] && (
+                                      {(sectionComplexityLevels[section.id] || 'legal') !== 'legal' && simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] && (
                                         <button
-                                          onClick={() => setComplexityLevel('legal')}
+                                          onClick={() => handleComplexityChange('legal', section)}
                                           className="mt-3 text-xs text-gray-500 dark:text-gray-400 hover:text-whs-orange-500 underline"
                                         >
                                           View original legal text
@@ -1456,9 +1445,6 @@ export function LawBrowser({ onBack }) {
                                           </>
                                         )}
                                       </button>
-                                      <span className="text-xs text-gray-400 dark:text-gray-500">
-                                        AI-powered decision tree
-                                      </span>
                                     </div>
 
                                     {/* Flowchart Visualization */}
@@ -1482,18 +1468,6 @@ export function LawBrowser({ onBack }) {
                         <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} />
                       )}
 
-                      {/* AI Explanation */}
-                      {explanation && (
-                        <div className="mt-8 p-4 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-xl">
-                          <div className="flex items-center gap-2 mb-2">
-                            <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                            </svg>
-                            <h4 className="font-semibold text-purple-700 dark:text-purple-300">AI Explanation</h4>
-                          </div>
-                          <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{explanation}</p>
-                        </div>
-                      )}
                     </div>
                   ) : (
                     <div className="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-400 p-8">
@@ -1522,17 +1496,6 @@ export function LawBrowser({ onBack }) {
                 {/* Actions Footer */}
                 <div className="flex-shrink-0 p-3 border-t border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
                   <div className="flex gap-2">
-                    <Button
-                      onClick={handleExplain}
-                      loading={aiLoading}
-                      disabled={aiLoading}
-                      size="sm"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
-                      Explain with AI
-                    </Button>
                     {selectedLaw.source?.pdf_url && (
                       <Button
                         variant="outline"

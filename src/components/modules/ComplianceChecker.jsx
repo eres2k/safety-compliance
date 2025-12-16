@@ -71,10 +71,10 @@ export function ComplianceChecker({ onBack }) {
       setResult(response)
 
       // Find related laws from our database
-      const laws = searchLaws(topic, framework)
-      setRelatedLaws(laws.slice(0, 5))
+      const searchResult = searchLaws(topic, { country: framework, limit: 5 })
+      setRelatedLaws(searchResult.results || [])
     } catch (error) {
-      setResult(t.api.error)
+      setResult(t.api?.error || 'Failed to check compliance')
     }
   }
 
@@ -115,7 +115,7 @@ export function ComplianceChecker({ onBack }) {
 
         <div className="flex items-center gap-2 px-3 py-1.5 bg-whs-success-500/10 dark:bg-whs-success-500/20 rounded-full border border-whs-success-500/20">
           <div className="w-2 h-2 bg-whs-success-500 rounded-full animate-pulse" />
-          <span className="text-sm font-medium text-whs-success-600 dark:text-whs-success-400">AI Powered</span>
+          <span className="text-sm font-medium text-whs-success-600 dark:text-whs-success-400">Compliance Tool</span>
         </div>
       </div>
 
@@ -360,7 +360,7 @@ export function ComplianceChecker({ onBack }) {
               Ready to Check Compliance
             </h3>
             <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto">
-              Select your company size, industry, and safety topic above to get AI-powered compliance guidance based on {currentFrameworkColor?.lawName || framework} regulations.
+              Select your company size, industry, and safety topic above to get compliance guidance based on {currentFrameworkColor?.lawName || framework} regulations.
             </p>
           </CardContent>
         </Card>
