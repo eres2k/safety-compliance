@@ -4,11 +4,8 @@ import { useAI } from '../../hooks/useAI'
 import { Button, Card, CardContent, SearchInput, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison } from '../ui'
 import {
   getAllLaws,
-  searchLaws,
-  getLawById,
   getRelatedLaws,
   getLawCategories,
-  formatLawReference,
   WHS_TOPIC_LABELS,
   RELEVANCE_LEVELS
 } from '../../services/euLawsDatabase'
@@ -752,6 +749,12 @@ export function LawBrowser({ onBack }) {
   // Section collapse state - all collapsed by default
   const [expandedSections, setExpandedSections] = useState({})
 
+  // Chapter collapse state for middle column - all collapsed by default
+  const [expandedChapters, setExpandedChapters] = useState({})
+
+  // Comparison Modal state
+  const [comparisonModal, setComparisonModal] = useState({ open: false, type: null, section: null })
+
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
 
@@ -787,22 +790,45 @@ export function LawBrowser({ onBack }) {
   const categories = useMemo(() => getLawCategories(framework), [framework])
 
   // Filter and search laws with pagination
+  // Uses direct text search similar to right column content search
   const { filteredLaws, pagination } = useMemo(() => {
-    if (searchTerm.trim()) {
-      // Use paginated search
-      const result = searchLaws(searchTerm, {
-        country: framework,
-        type: selectedCategory !== 'all' ? selectedCategory : null,
-        page: currentPage,
-        limit: pageSize
-      })
-      return { filteredLaws: result.results, pagination: result.pagination }
-    }
-
-    // Manual filtering for non-search browsing
     let results = allLaws
+
+    // Filter by category first
     if (selectedCategory !== 'all') {
       results = results.filter(law => law.type === selectedCategory)
+    }
+
+    // Apply full text search - similar approach to right column search
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase()
+      results = results.filter(law => {
+        // Search in law title
+        if (law.title?.toLowerCase().includes(term)) return true
+        // Search in English title
+        if (law.title_en?.toLowerCase().includes(term)) return true
+        // Search in abbreviation
+        if (law.abbreviation?.toLowerCase().includes(term)) return true
+        // Search in description
+        if (law.description?.toLowerCase().includes(term)) return true
+        // Search in full text content
+        if (law.content?.full_text?.toLowerCase().includes(term)) return true
+        if (law.content?.text?.toLowerCase().includes(term)) return true
+        // Search in chapters and sections
+        if (law.chapters && Array.isArray(law.chapters)) {
+          for (const chapter of law.chapters) {
+            if (chapter.title?.toLowerCase().includes(term)) return true
+            if (chapter.title_en?.toLowerCase().includes(term)) return true
+            if (chapter.sections && Array.isArray(chapter.sections)) {
+              for (const section of chapter.sections) {
+                if (section.title?.toLowerCase().includes(term)) return true
+                if (section.text?.toLowerCase().includes(term)) return true
+              }
+            }
+          }
+        }
+        return false
+      })
     }
 
     // Manual pagination
@@ -821,7 +847,7 @@ export function LawBrowser({ onBack }) {
         hasMore: currentPage < totalPages
       }
     }
-  }, [allLaws, searchTerm, selectedCategory, framework, currentPage, pageSize])
+  }, [allLaws, searchTerm, selectedCategory, currentPage, pageSize])
 
   // Parse sections for selected law - use pre-parsed chapters if available
   const lawSections = useMemo(() => {
@@ -917,19 +943,25 @@ export function LawBrowser({ onBack }) {
     return getRelatedLaws(framework, selectedLaw.id, 5)
   }, [selectedLaw, framework])
 
-  // Scroll to section and expand it
+  // Scroll to section and expand it (and its chapter)
   const scrollToSection = useCallback((sectionId) => {
     const element = sectionRefs.current[sectionId]
     if (element) {
-      // Expand the section first
+      // Find the section to get its chapter
+      const section = filteredSections.find(s => s.id === sectionId)
+      const chapterKey = section?.abschnitt?.number || 'ungrouped'
+
+      // Expand the chapter and section
+      setExpandedChapters(prev => ({ ...prev, [chapterKey]: true }))
       setExpandedSections(prev => ({ ...prev, [sectionId]: true }))
+
       // Small delay to allow expansion before scrolling
       setTimeout(() => {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }, 50)
       setActiveSection(sectionId)
     }
-  }, [])
+  }, [filteredSections])
 
   // Handle search
   const handleSearch = useCallback((term) => {
@@ -1120,6 +1152,10 @@ export function LawBrowser({ onBack }) {
     setMultiCountryError(null)
     // Reset section collapse state - all collapsed by default
     setExpandedSections({})
+    // Reset chapter collapse state - all collapsed by default
+    setExpandedChapters({})
+    // Reset comparison modal
+    setComparisonModal({ open: false, type: null, section: null })
     // Reset section refs to avoid stale references
     sectionRefs.current = {}
     // Scroll content to top
@@ -1134,6 +1170,29 @@ export function LawBrowser({ onBack }) {
       ...prev,
       [sectionId]: !prev[sectionId]
     }))
+  }
+
+  // Toggle chapter expand/collapse in middle column
+  const toggleChapter = (chapterKey) => {
+    setExpandedChapters(prev => ({
+      ...prev,
+      [chapterKey]: !prev[chapterKey]
+    }))
+  }
+
+  // Open comparison modal
+  const openComparisonModal = (type, section) => {
+    setComparisonModal({ open: true, type, section })
+    if (type === 'multi') {
+      handleMultiCountryCompare(section)
+    }
+  }
+
+  // Close comparison modal
+  const closeComparisonModal = () => {
+    setComparisonModal({ open: false, type: null, section: null })
+    closeMultiCountry()
+    closeCrossBorder()
   }
 
   const hasContent = selectedLaw?.content?.full_text || selectedLaw?.content?.text
@@ -1314,75 +1373,100 @@ export function LawBrowser({ onBack }) {
               </div>
               <div className="overflow-y-auto h-[calc(100%-120px)]">
                 {(() => {
-                  let currentAbschnitt = null
-                  return filteredSections.map((section) => {
-                    const abschnittHeader = section.abschnitt && section.abschnitt.number !== currentAbschnitt?.number
-                      ? (currentAbschnitt = section.abschnitt, section.abschnitt)
-                      : null
+                  // Group sections by chapter/Abschnitt
+                  const groupedSections = filteredSections.reduce((acc, section) => {
+                    const chapterKey = section.abschnitt?.number || 'ungrouped'
+                    if (!acc[chapterKey]) {
+                      acc[chapterKey] = {
+                        abschnitt: section.abschnitt,
+                        sections: []
+                      }
+                    }
+                    acc[chapterKey].sections.push(section)
+                    return acc
+                  }, {})
 
-                    const relevanceLevel = section.amazon_logistics_relevance?.level
-                    const relevanceColor = relevanceLevel === 'critical' ? 'border-l-red-500' :
-                      relevanceLevel === 'high' ? 'border-l-orange-500' :
-                      relevanceLevel === 'medium' ? 'border-l-yellow-500' : 'border-l-transparent'
+                  return Object.entries(groupedSections).map(([chapterKey, { abschnitt, sections }]) => {
+                    const isChapterExpanded = expandedChapters[chapterKey] ?? false
+                    const chapterTitle = abschnitt?.displayName || abschnitt?.title || `${chapterKey}. Abschnitt`
 
                     return (
-                      <div key={section.id} className={`border-b border-gray-50 dark:border-whs-dark-800 border-l-4 ${relevanceColor}`}>
-                        {abschnittHeader && (
-                          <div className="px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-whs-dark-600 sticky top-0">
-                            {abschnittHeader.displayName || `${abschnittHeader.number}. Abschnitt`}
-                          </div>
-                        )}
+                      <div key={chapterKey} className="border-b border-gray-200 dark:border-whs-dark-600">
+                        {/* Chapter Header - Clickable to expand/collapse */}
                         <button
-                          onClick={() => scrollToSection(section.id)}
-                          className={`w-full text-left px-3 py-2 text-sm transition-colors ${
-                            activeSection === section.id
-                              ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
-                              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
-                          }`}
+                          onClick={() => toggleChapter(chapterKey)}
+                          className="w-full px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-whs-dark-600 transition-colors sticky top-0 z-10"
                         >
-                          <div className="flex items-center justify-between">
-                            <span className="font-semibold text-whs-orange-500">{section.number}</span>
-                            {section.whs_topics && section.whs_topics.length > 0 && (
-                              <span className="text-xs opacity-60">
-                                {WHS_TOPIC_LABELS[section.whs_topics[0]?.id]?.icon || ''}
-                              </span>
-                            )}
-                          </div>
-                          {section.title && (
-                            <div className="text-xs line-clamp-1 mt-0.5 opacity-75">{highlightText(section.title, searchInLaw)}</div>
-                          )}
+                          <svg
+                            className={`w-4 h-4 transition-transform ${isChapterExpanded ? 'rotate-90' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                          <span className="flex-1 text-left truncate">{chapterTitle}</span>
+                          <span className="text-gray-400 dark:text-gray-500">({sections.length})</span>
                         </button>
-                        {/* Compare buttons for each section */}
-                        <div className="flex items-center gap-1 px-2 pb-2">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              scrollToSection(section.id)
-                              setShowMultiCountry(true)
-                              setShowCrossBorder(false)
-                              handleMultiCountryCompare(section)
-                            }}
-                            className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors"
-                            title="Compare this section across all 3 countries"
-                          >
-                            <span>🌍</span>
-                            <span>All</span>
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              scrollToSection(section.id)
-                              setCrossBorderSection(section)
-                              setShowCrossBorder(true)
-                              setShowMultiCountry(false)
-                            }}
-                            className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
-                            title="Compare this section with another country"
-                          >
-                            <span>↔️</span>
-                            <span>Compare</span>
-                          </button>
-                        </div>
+
+                        {/* Sections within chapter - only shown when expanded */}
+                        {isChapterExpanded && sections.map((section) => {
+                          const relevanceLevel = section.amazon_logistics_relevance?.level
+                          const relevanceColor = relevanceLevel === 'critical' ? 'border-l-red-500' :
+                            relevanceLevel === 'high' ? 'border-l-orange-500' :
+                            relevanceLevel === 'medium' ? 'border-l-yellow-500' : 'border-l-transparent'
+
+                          return (
+                            <div key={section.id} className={`border-b border-gray-50 dark:border-whs-dark-800 border-l-4 ${relevanceColor}`}>
+                              <button
+                                onClick={() => scrollToSection(section.id)}
+                                className={`w-full text-left px-3 py-2 text-sm transition-colors ${
+                                  activeSection === section.id
+                                    ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
+                                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
+                                }`}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span className="font-semibold text-whs-orange-500">{section.number}</span>
+                                  {section.whs_topics && section.whs_topics.length > 0 && (
+                                    <span className="text-xs opacity-60">
+                                      {WHS_TOPIC_LABELS[section.whs_topics[0]?.id]?.icon || ''}
+                                    </span>
+                                  )}
+                                </div>
+                                {section.title && (
+                                  <div className="text-xs line-clamp-1 mt-0.5 opacity-75">{highlightText(section.title, searchInLaw)}</div>
+                                )}
+                              </button>
+                              {/* Compare buttons for each section */}
+                              <div className="flex items-center gap-1 px-2 pb-2">
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    openComparisonModal('multi', section)
+                                  }}
+                                  className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors"
+                                  title="Compare this section across all 3 countries"
+                                >
+                                  <span>🌍</span>
+                                  <span>All</span>
+                                </button>
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    setCrossBorderSection(section)
+                                    openComparisonModal('cross', section)
+                                  }}
+                                  className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
+                                  title="Compare this section with another country"
+                                >
+                                  <span>↔️</span>
+                                  <span>Compare</span>
+                                </button>
+                              </div>
+                            </div>
+                          )
+                        })}
                       </div>
                     )
                   })
@@ -1485,35 +1569,6 @@ export function LawBrowser({ onBack }) {
                       {/* WHS Summary Panel */}
                       {selectedLaw.whs_summary && (
                         <WHSSummaryPanel summary={selectedLaw.whs_summary} />
-                      )}
-
-                      {/* Feature 3b: Multi-Country Comparison Panel (all 3 countries) */}
-                      {showMultiCountry && (
-                        <div className="mb-6">
-                          <MultiCountryComparison
-                            sourceFramework={framework}
-                            comparisonData={multiCountryData}
-                            isLoading={multiCountryLoading}
-                            error={multiCountryError}
-                            onClose={closeMultiCountry}
-                            onCompare={handleMultiCountryCompare}
-                          />
-                        </div>
-                      )}
-
-                      {/* Feature 3: Cross-Border Comparison Panel (2 countries) */}
-                      {showCrossBorder && (
-                        <div className="mb-6">
-                          <CrossBorderComparison
-                            sourceFramework={framework}
-                            comparisonData={crossBorderData}
-                            targetFramework={crossBorderTarget}
-                            isLoading={crossBorderLoading}
-                            error={crossBorderError}
-                            onClose={closeCrossBorder}
-                            onCompare={handleCrossBorderCompare}
-                          />
-                        </div>
                       )}
 
                       {/* Source info */}
@@ -1753,6 +1808,59 @@ export function LawBrowser({ onBack }) {
           </Card>
         </div>
       </div>
+
+      {/* Comparison Modal */}
+      {comparisonModal.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-whs-dark-700 bg-gradient-to-r from-whs-orange-500 to-whs-orange-600 text-white">
+              <div>
+                <h2 className="text-lg font-bold">
+                  {comparisonModal.type === 'multi' ? '🌍 Multi-Country Comparison' : '↔️ Cross-Border Comparison'}
+                </h2>
+                {comparisonModal.section && (
+                  <p className="text-sm text-white/80">
+                    {comparisonModal.section.number} {comparisonModal.section.title && `- ${comparisonModal.section.title}`}
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={closeComparisonModal}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="flex-1 overflow-y-auto p-4">
+              {comparisonModal.type === 'multi' ? (
+                <MultiCountryComparison
+                  sourceFramework={framework}
+                  comparisonData={multiCountryData}
+                  isLoading={multiCountryLoading}
+                  error={multiCountryError}
+                  onClose={closeComparisonModal}
+                  onCompare={() => handleMultiCountryCompare(comparisonModal.section)}
+                />
+              ) : (
+                <CrossBorderComparison
+                  sourceFramework={framework}
+                  comparisonData={crossBorderData}
+                  targetFramework={crossBorderTarget}
+                  isLoading={crossBorderLoading}
+                  error={crossBorderError}
+                  onClose={closeComparisonModal}
+                  onCompare={(target) => handleCrossBorderCompare(target, comparisonModal.section)}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
