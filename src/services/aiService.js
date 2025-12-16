@@ -180,82 +180,57 @@ ${lawText.substring(0, 2000)}`
 
 // Feature 3: Cross-Border Harmonizer - Find equivalent laws across jurisdictions
 export async function findEquivalentLaw(lawText, sourceFramework, targetFramework, language) {
-  const frameworkNames = {
-    AT: 'Austrian ASchG',
-    DE: 'German DGUV/ArbSchG',
-    NL: 'Dutch Arbowet'
-  }
+  const prompt = `Compare ${sourceFramework} regulation with ${targetFramework} equivalent.
 
-  const prompt = `You are an EU workplace safety law expert. Analyze this ${frameworkNames[sourceFramework]} regulation and find its equivalent in ${frameworkNames[targetFramework]}.
+SOURCE (${sourceFramework}):
+${lawText.substring(0, 1000)}
 
-SOURCE REGULATION (${frameworkNames[sourceFramework]}):
-${lawText.substring(0, 2500)}
-
-TASK:
-1. Identify the equivalent provision in ${frameworkNames[targetFramework]}
-2. Compare the key requirements
-3. Highlight IMPORTANT DIFFERENCES that could affect compliance
-
-FORMAT YOUR RESPONSE EXACTLY AS:
+FORMAT:
 ---EQUIVALENT---
-[Cite the equivalent paragraph/article in ${targetFramework}]
+[${targetFramework} paragraph/article citation]
 
 ---COMPARISON---
-| Requirement | ${sourceFramework} | ${targetFramework} |
-|-------------|-----|-----|
-[Table comparing 3-5 key points]
+| Aspect | ${sourceFramework} | ${targetFramework} |
+[3 key points]
 
 ---DIFFERENCES---
-⚠️ [List critical differences that require attention, each on new line starting with ⚠️]
+⚠️ [Key differences, one per line]
 
 ---RECOMMENDATION---
-[One sentence recommendation for cross-border compliance]`
+[One sentence]`
 
   return generateAIResponse(prompt, sourceFramework, language)
 }
 
 // Feature 3b: Multi-Country Comparison - Compare laws across all 3 jurisdictions
 export async function compareMultipleCountries(lawText, sourceFramework, language) {
-  const frameworkNames = {
-    AT: 'Austrian ASchG',
-    DE: 'German DGUV/ArbSchG',
-    NL: 'Dutch Arbowet'
-  }
+  const prompt = `Compare this ${sourceFramework} regulation across AT, DE, NL.
 
-  const allFrameworks = ['AT', 'DE', 'NL']
-  const otherFrameworks = allFrameworks.filter(f => f !== sourceFramework)
+SOURCE (${sourceFramework}):
+${lawText.substring(0, 1000)}
 
-  const prompt = `You are an EU workplace safety law expert. Analyze this ${frameworkNames[sourceFramework]} regulation and find equivalent provisions in ALL other EU member state frameworks (${otherFrameworks.map(f => frameworkNames[f]).join(' and ')}).
-
-SOURCE REGULATION (${frameworkNames[sourceFramework]}):
-${lawText.substring(0, 2500)}
-
-TASK:
-Compare this regulation across all 3 frameworks: ${allFrameworks.map(f => frameworkNames[f]).join(', ')}
-
-FORMAT YOUR RESPONSE EXACTLY AS:
+FORMAT:
 ---TOPIC---
-[Brief description of the regulation topic in 5-10 words]
+[5-10 words]
 
 ---AT_PROVISION---
-[For Austrian ASchG: cite specific paragraph (e.g., § 25 ASchG) and 1-2 sentence summary of requirements]
+[§ citation + 1 sentence]
 
 ---DE_PROVISION---
-[For German DGUV/ArbSchG: cite specific paragraph (e.g., § 5 ArbSchG) and 1-2 sentence summary of requirements]
+[§ citation + 1 sentence]
 
 ---NL_PROVISION---
-[For Dutch Arbowet: cite specific article (e.g., Artikel 5 Arbowet) and 1-2 sentence summary of requirements]
+[Artikel citation + 1 sentence]
 
 ---COMPARISON_TABLE---
-| Aspect | 🇦🇹 Austria | 🇩🇪 Germany | 🇳🇱 Netherlands |
-|--------|------------|------------|----------------|
-[Compare 4-6 key aspects: requirements, thresholds, deadlines, documentation, penalties, etc.]
+| Aspect | AT | DE | NL |
+[4 rows max]
 
 ---KEY_DIFFERENCES---
-⚠️ [List 3-5 critical differences between the frameworks, each on new line starting with ⚠️]
+⚠️ [3 differences, one per line]
 
 ---HARMONIZATION_TIPS---
-✅ [3-5 practical tips for companies operating in all 3 countries, each on new line starting with ✅]`
+✅ [3 tips, one per line]`
 
   return generateAIResponse(prompt, sourceFramework, language)
 }

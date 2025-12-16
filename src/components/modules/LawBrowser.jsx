@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, SearchInput, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison } from '../ui'
+import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison } from '../ui'
 import {
   getAllLaws,
   getRelatedLaws,
@@ -1063,13 +1063,13 @@ export function LawBrowser({ onBack }) {
     try {
       let lawContext
       if (sectionToCompare) {
-        // Compare specific section
+        // Compare specific section - keep context short for API
         const sectionTitle = `${sectionToCompare.number}${sectionToCompare.title ? ` - ${sectionToCompare.title}` : ''}`
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title || ''}\n${sectionTitle}\n\n${sectionToCompare.content?.substring(0, 3000) || ''}`
+        lawContext = `${selectedLaw?.abbreviation || ''}\n${sectionTitle}\n\n${sectionToCompare.content?.substring(0, 800) || ''}`
       } else {
         // Compare whole law (fallback)
         const lawText = selectedLaw?.content?.full_text || selectedLaw?.content?.text || selectedLaw?.description || ''
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title}\n\n${lawText.substring(0, 3000)}`
+        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title}\n\n${lawText.substring(0, 800)}`
       }
       const response = await findEquivalentLaw(lawContext, targetFramework)
       setCrossBorderData(response)
@@ -1102,13 +1102,13 @@ export function LawBrowser({ onBack }) {
     try {
       let lawContext
       if (section) {
-        // Compare specific section
+        // Compare specific section - keep context short for API
         const sectionTitle = `${section.number}${section.title ? ` - ${section.title}` : ''}`
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title || ''}\n${sectionTitle}\n\n${section.content?.substring(0, 3000) || ''}`
+        lawContext = `${selectedLaw?.abbreviation || ''}\n${sectionTitle}\n\n${section.content?.substring(0, 800) || ''}`
       } else {
         // Compare whole law (fallback)
         const lawText = selectedLaw?.content?.full_text || selectedLaw?.content?.text || selectedLaw?.description || ''
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title}\n\n${lawText.substring(0, 3000)}`
+        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title}\n\n${lawText.substring(0, 800)}`
       }
       const response = await compareMultipleCountries(lawContext)
       setMultiCountryData(response)
@@ -1248,17 +1248,6 @@ export function LawBrowser({ onBack }) {
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Search */}
-      <div className="mb-4">
-        <SearchInput
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onSearch={handleSearch}
-          onClear={() => setSearchTerm('')}
-          placeholder="Full text search across all laws..."
-        />
       </div>
 
       {/* Main Content - 3 Column Layout */}
