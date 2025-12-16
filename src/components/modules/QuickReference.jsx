@@ -90,10 +90,14 @@ export function QuickReference({ onBack }) {
   const [calcResult, setCalcResult] = useState(null)
   const [glossarySearch, setGlossarySearch] = useState('')
 
-  // Präventionszeit calculator state - GERMANY (DE)
-  const [praeventionEmployees, setPraeventionEmployees] = useState('')
+  // Präventionszeit calculator state - GERMANY (DE) - DGUV Vorschrift 2
+  const [deFullTimeEmployees, setDeFullTimeEmployees] = useState('')
+  const [dePartTime20, setDePartTime20] = useState('') // ≤20h/week = 0.5 FTE
+  const [dePartTime30, setDePartTime30] = useState('') // ≤30h/week = 0.75 FTE
   const [betreuungsgruppe, setBetreuungsgruppe] = useState('II') // Default to Group II (logistics)
   const [praeventionResult, setPraeventionResult] = useState(null)
+  // Legacy state for backwards compatibility
+  const [praeventionEmployees, setPraeventionEmployees] = useState('')
 
   // Präventionszeit calculator state - AUSTRIA (AT) - § 82a ASchG
   const [atOfficeEmployees, setAtOfficeEmployees] = useState('')
@@ -118,35 +122,66 @@ export function QuickReference({ onBack }) {
     { id: 'glossary', label: t.tools.glossary }
   ]
 
+  // GERMANY: Calculate prevention time according to DGUV Vorschrift 2
   const calculatePraeventionszeit = () => {
-    const emp = parseInt(praeventionEmployees)
-    if (isNaN(emp) || emp < 1) return
+    const fullTime = parseInt(deFullTimeEmployees) || 0
+    const partTime20 = parseInt(dePartTime20) || 0 // ≤20h/week = 0.5 FTE
+    const partTime30 = parseInt(dePartTime30) || 0 // ≤30h/week = 0.75 FTE
+
+    // Calculate FTE according to DGUV V2
+    // - ≤20h/week: Factor 0.5
+    // - ≤30h/week: Factor 0.75
+    // - >30h/week: Factor 1.0
+    const fteFromPartTime20 = partTime20 * 0.5
+    const fteFromPartTime30 = partTime30 * 0.75
+    const totalFte = fullTime + fteFromPartTime20 + fteFromPartTime30
+
+    if (totalFte < 1) return
 
     const gruppe = BETREUUNGSGRUPPEN[betreuungsgruppe]
     const fasiHoursPerEmployee = gruppe.fasi
     const baHoursPerEmployee = gruppe.betriebsarzt
 
-    const totalFasiHours = emp * fasiHoursPerEmployee
-    const totalBaHours = emp * baHoursPerEmployee
-    const totalHours = totalFasiHours + totalBaHours
+    // Grundbetreuung based on FTE
+    const totalFasiHours = totalFte * fasiHoursPerEmployee
+    const totalBaHours = totalFte * baHoursPerEmployee
+    const grundbetreuungHours = totalFasiHours + totalBaHours
+
+    // Betriebsspezifische Betreuung (typical addition for shift work, special hazards)
+    // Recommended: 0.2 h/FTE for FaSi, 0.05 h/FTE for BA
+    const betriebsspezifischFasi = totalFte * 0.2
+    const betriebsspezifischBa = totalFte * 0.05
+
+    const totalHours = grundbetreuungHours + betriebsspezifischFasi + betriebsspezifischBa
 
     // Convert to days (8h workday)
-    const fasiDays = (totalFasiHours / 8).toFixed(1)
-    const baDays = (totalBaHours / 8).toFixed(1)
+    const fasiDays = ((totalFasiHours + betriebsspezifischFasi) / 8).toFixed(1)
+    const baDays = ((totalBaHours + betriebsspezifischBa) / 8).toFixed(1)
     const totalDays = (totalHours / 8).toFixed(1)
 
     // Monthly breakdown
-    const fasiMonthly = (totalFasiHours / 12).toFixed(1)
-    const baMonthly = (totalBaHours / 12).toFixed(1)
+    const fasiMonthly = ((totalFasiHours + betriebsspezifischFasi) / 12).toFixed(1)
+    const baMonthly = ((totalBaHours + betriebsspezifischBa) / 12).toFixed(1)
+
+    // Total headcount for display
+    const totalHeadcount = fullTime + partTime20 + partTime30
 
     setPraeventionResult({
-      employees: emp,
+      employees: totalHeadcount,
+      fullTimeEmployees: fullTime,
+      partTime20Employees: partTime20,
+      partTime30Employees: partTime30,
+      totalFte: totalFte.toFixed(1),
       gruppe: betreuungsgruppe,
       gruppeName: gruppe.name[lang] || gruppe.name.en,
       fasiPerEmployee: fasiHoursPerEmployee,
       baPerEmployee: baHoursPerEmployee,
-      totalFasiHours: totalFasiHours.toFixed(1),
-      totalBaHours: totalBaHours.toFixed(1),
+      grundbetreuungFasi: totalFasiHours.toFixed(1),
+      grundbetreuungBa: totalBaHours.toFixed(1),
+      betriebsspezifischFasi: betriebsspezifischFasi.toFixed(1),
+      betriebsspezifischBa: betriebsspezifischBa.toFixed(1),
+      totalFasiHours: (totalFasiHours + betriebsspezifischFasi).toFixed(1),
+      totalBaHours: (totalBaHours + betriebsspezifischBa).toFixed(1),
       totalHours: totalHours.toFixed(1),
       fasiDays,
       baDays,
@@ -389,14 +424,15 @@ export function QuickReference({ onBack }) {
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div className="space-y-2">
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {lang === 'de' ? 'Anzahl der Beschäftigten' : 'Number of Employees'}
+                        {lang === 'de' ? 'Vollzeitkräfte (>30 Std./Woche)' : 'Full-time Employees (>30 h/week)'}
+                        <span className="ml-1 text-xs text-gray-500">(Faktor 1,0)</span>
                       </label>
                       <Input
                         type="number"
-                        value={praeventionEmployees}
-                        onChange={(e) => setPraeventionEmployees(e.target.value)}
-                        placeholder={lang === 'de' ? 'z.B. 150' : 'e.g. 150'}
-                        min="1"
+                        value={deFullTimeEmployees}
+                        onChange={(e) => setDeFullTimeEmployees(e.target.value)}
+                        placeholder={lang === 'de' ? 'z.B. 100' : 'e.g. 100'}
+                        min="0"
                         variant="glass"
                       />
                     </div>
@@ -419,20 +455,53 @@ export function QuickReference({ onBack }) {
                         {BETREUUNGSGRUPPEN[betreuungsgruppe].description[lang] || BETREUUNGSGRUPPEN[betreuungsgruppe].description.en}
                       </p>
                     </div>
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {lang === 'de' ? 'Teilzeit ≤20 Std./Woche' : 'Part-time ≤20 h/week'}
+                        <span className="ml-1 text-xs text-gray-500">(Faktor 0,5)</span>
+                      </label>
+                      <Input
+                        type="number"
+                        value={dePartTime20}
+                        onChange={(e) => setDePartTime20(e.target.value)}
+                        placeholder={lang === 'de' ? 'z.B. 30' : 'e.g. 30'}
+                        min="0"
+                        variant="glass"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {lang === 'de' ? 'Teilzeit 21-30 Std./Woche' : 'Part-time 21-30 h/week'}
+                        <span className="ml-1 text-xs text-gray-500">(Faktor 0,75)</span>
+                      </label>
+                      <Input
+                        type="number"
+                        value={dePartTime30}
+                        onChange={(e) => setDePartTime30(e.target.value)}
+                        placeholder={lang === 'de' ? 'z.B. 20' : 'e.g. 20'}
+                        min="0"
+                        variant="glass"
+                      />
+                    </div>
                   </div>
 
                   {/* Info Box */}
                   <div className="mb-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800">
                     <div className="flex items-start gap-3">
-                      <span className="text-emerald-500 text-xl">ℹ️</span>
+                      <span className="text-2xl">🇩🇪</span>
                       <div className="text-sm text-emerald-800 dark:text-emerald-300">
                         <p className="font-medium mb-1">
-                          {lang === 'de' ? 'Delivery Station Logistik = Gruppe II' : 'Delivery Station Logistics = Group II'}
+                          {lang === 'de' ? 'DGUV Vorschrift 2 - Teilzeitumrechnung' : 'DGUV Regulation 2 - Part-time Conversion'}
                         </p>
-                        <p>
+                        <ul className="list-disc list-inside space-y-1">
+                          <li>{lang === 'de' ? '≤20 Std./Woche = Faktor 0,5' : '≤20 h/week = Factor 0.5'}</li>
+                          <li>{lang === 'de' ? '21-30 Std./Woche = Faktor 0,75' : '21-30 h/week = Factor 0.75'}</li>
+                          <li>{lang === 'de' ? '>30 Std./Woche = Faktor 1,0' : '>30 h/week = Factor 1.0'}</li>
+                        </ul>
+                        <p className="mt-2">
                           {lang === 'de' ?
-                            'Transport- und Logistikbetriebe fallen typischerweise unter Gruppe II mit 1,5 Std./MA für FaSi und 0,5 Std./MA für Betriebsarzt pro Jahr.' :
-                            'Transport and logistics operations typically fall under Group II with 1.5 h/employee for safety specialist and 0.5 h/employee for company doctor per year.'}
+                            'Delivery Station Logistik = Gruppe II (1,5 Std./MA FaSi + 0,5 Std./MA BA)' :
+                            'Delivery Station Logistics = Group II (1.5 h/emp FaSi + 0.5 h/emp BA)'}
                         </p>
                       </div>
                     </div>
@@ -452,9 +521,40 @@ export function QuickReference({ onBack }) {
                     <div className="space-y-4 animate-fade-in-up">
                       <div className="p-4 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl text-white">
                         <h4 className="font-semibold text-lg mb-1">
-                          {lang === 'de' ? 'Ergebnis für' : 'Results for'} {praeventionResult.employees} {lang === 'de' ? 'Beschäftigte' : 'employees'}
+                          {lang === 'de' ? 'Ergebnis für' : 'Results for'} {praeventionResult.employees} {lang === 'de' ? 'Beschäftigte' : 'employees'} ({praeventionResult.totalFte} FTE)
                         </h4>
                         <p className="text-emerald-100 text-sm">{praeventionResult.gruppeName}</p>
+                      </div>
+
+                      {/* FTE Calculation Breakdown */}
+                      <div className="p-4 bg-gray-50 dark:bg-whs-dark-800/50 rounded-xl border border-gray-200 dark:border-whs-dark-700">
+                        <h5 className="font-semibold text-gray-900 dark:text-white mb-3">
+                          {lang === 'de' ? 'FTE-Berechnung (Vollzeitäquivalent)' : 'FTE Calculation (Full-time Equivalent)'}
+                        </h5>
+                        <div className="space-y-2 text-sm">
+                          {praeventionResult.fullTimeEmployees > 0 && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-600 dark:text-gray-400">{praeventionResult.fullTimeEmployees} {lang === 'de' ? 'Vollzeit' : 'Full-time'} × 1,0:</span>
+                              <span className="font-medium text-gray-900 dark:text-white">{praeventionResult.fullTimeEmployees} FTE</span>
+                            </div>
+                          )}
+                          {praeventionResult.partTime20Employees > 0 && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-600 dark:text-gray-400">{praeventionResult.partTime20Employees} {lang === 'de' ? 'Teilzeit ≤20h' : 'Part-time ≤20h'} × 0,5:</span>
+                              <span className="font-medium text-gray-900 dark:text-white">{(praeventionResult.partTime20Employees * 0.5).toFixed(1)} FTE</span>
+                            </div>
+                          )}
+                          {praeventionResult.partTime30Employees > 0 && (
+                            <div className="flex justify-between">
+                              <span className="text-gray-600 dark:text-gray-400">{praeventionResult.partTime30Employees} {lang === 'de' ? 'Teilzeit 21-30h' : 'Part-time 21-30h'} × 0,75:</span>
+                              <span className="font-medium text-gray-900 dark:text-white">{(praeventionResult.partTime30Employees * 0.75).toFixed(1)} FTE</span>
+                            </div>
+                          )}
+                          <div className="border-t border-gray-200 dark:border-whs-dark-600 pt-2 flex justify-between font-bold">
+                            <span className="text-gray-900 dark:text-white">{lang === 'de' ? 'Gesamt FTE:' : 'Total FTE:'}</span>
+                            <span className="text-emerald-600 dark:text-emerald-400">{praeventionResult.totalFte}</span>
+                          </div>
+                        </div>
                       </div>
 
                       <div className="grid md:grid-cols-2 gap-4">
@@ -466,11 +566,19 @@ export function QuickReference({ onBack }) {
                                 {lang === 'de' ? 'Fachkraft für Arbeitssicherheit (FaSi)' : 'Safety Specialist (FaSi)'}
                               </h5>
                               <p className="text-xs text-blue-600 dark:text-blue-400">
-                                {praeventionResult.fasiPerEmployee} {lang === 'de' ? 'Std. pro Beschäftigten/Jahr' : 'h per employee/year'}
+                                {praeventionResult.fasiPerEmployee} {lang === 'de' ? 'Std./FTE + 0,2 Std. betriebsspez.' : 'h/FTE + 0.2 h specific'}
                               </p>
                             </div>
                           </div>
                           <div className="space-y-2">
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-blue-700 dark:text-blue-300">{lang === 'de' ? 'Grundbetreuung:' : 'Basic support:'}</span>
+                              <span className="text-blue-900 dark:text-blue-100">{praeventionResult.grundbetreuungFasi} h</span>
+                            </div>
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-blue-700 dark:text-blue-300">{lang === 'de' ? 'Betriebsspezifisch:' : 'Operation-specific:'}</span>
+                              <span className="text-blue-900 dark:text-blue-100">+{praeventionResult.betriebsspezifischFasi} h</span>
+                            </div>
                             <div className="flex justify-between items-center">
                               <span className="text-sm text-blue-700 dark:text-blue-300">{lang === 'de' ? 'Gesamt pro Jahr:' : 'Total per year:'}</span>
                               <span className="font-bold text-blue-900 dark:text-blue-100 bg-blue-100 dark:bg-blue-800 px-3 py-1 rounded-lg">
@@ -480,10 +588,6 @@ export function QuickReference({ onBack }) {
                             <div className="flex justify-between items-center">
                               <span className="text-sm text-blue-700 dark:text-blue-300">{lang === 'de' ? 'Pro Monat:' : 'Per month:'}</span>
                               <span className="text-blue-900 dark:text-blue-100">{praeventionResult.fasiMonthly} {lang === 'de' ? 'Std.' : 'h'}</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-sm text-blue-700 dark:text-blue-300">{lang === 'de' ? 'Arbeitstage:' : 'Work days:'}</span>
-                              <span className="text-blue-900 dark:text-blue-100">{praeventionResult.fasiDays} {lang === 'de' ? 'Tage' : 'days'}</span>
                             </div>
                           </div>
                         </div>
@@ -496,11 +600,19 @@ export function QuickReference({ onBack }) {
                                 {lang === 'de' ? 'Betriebsarzt' : 'Company Doctor'}
                               </h5>
                               <p className="text-xs text-rose-600 dark:text-rose-400">
-                                {praeventionResult.baPerEmployee} {lang === 'de' ? 'Std. pro Beschäftigten/Jahr' : 'h per employee/year'}
+                                {praeventionResult.baPerEmployee} {lang === 'de' ? 'Std./FTE + 0,05 Std. betriebsspez.' : 'h/FTE + 0.05 h specific'}
                               </p>
                             </div>
                           </div>
                           <div className="space-y-2">
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-rose-700 dark:text-rose-300">{lang === 'de' ? 'Grundbetreuung:' : 'Basic support:'}</span>
+                              <span className="text-rose-900 dark:text-rose-100">{praeventionResult.grundbetreuungBa} h</span>
+                            </div>
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="text-rose-700 dark:text-rose-300">{lang === 'de' ? 'Betriebsspezifisch:' : 'Operation-specific:'}</span>
+                              <span className="text-rose-900 dark:text-rose-100">+{praeventionResult.betriebsspezifischBa} h</span>
+                            </div>
                             <div className="flex justify-between items-center">
                               <span className="text-sm text-rose-700 dark:text-rose-300">{lang === 'de' ? 'Gesamt pro Jahr:' : 'Total per year:'}</span>
                               <span className="font-bold text-rose-900 dark:text-rose-100 bg-rose-100 dark:bg-rose-800 px-3 py-1 rounded-lg">
@@ -510,10 +622,6 @@ export function QuickReference({ onBack }) {
                             <div className="flex justify-between items-center">
                               <span className="text-sm text-rose-700 dark:text-rose-300">{lang === 'de' ? 'Pro Monat:' : 'Per month:'}</span>
                               <span className="text-rose-900 dark:text-rose-100">{praeventionResult.baMonthly} {lang === 'de' ? 'Std.' : 'h'}</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-sm text-rose-700 dark:text-rose-300">{lang === 'de' ? 'Arbeitstage:' : 'Work days:'}</span>
-                              <span className="text-rose-900 dark:text-rose-100">{praeventionResult.baDays} {lang === 'de' ? 'Tage' : 'days'}</span>
                             </div>
                           </div>
                         </div>
@@ -526,7 +634,7 @@ export function QuickReference({ onBack }) {
                               {lang === 'de' ? 'Gesamte Präventionszeit pro Jahr' : 'Total Prevention Time per Year'}
                             </h5>
                             <p className="text-sm text-gray-500 dark:text-gray-400">
-                              FaSi + {lang === 'de' ? 'Betriebsarzt' : 'Company Doctor'}
+                              {lang === 'de' ? 'Grundbetreuung + Betriebsspezifisch' : 'Basic + Operation-specific support'}
                             </p>
                           </div>
                           <div className="text-right">
@@ -544,8 +652,8 @@ export function QuickReference({ onBack }) {
                         <span>📜</span>
                         <span>
                           {lang === 'de' ?
-                            'Gemäß DGUV Vorschrift 2 Anlage 2 - Regelbetreuung für Betriebe mit mehr als 10 Beschäftigten' :
-                            'According to DGUV Regulation 2 Appendix 2 - Standard support for operations with more than 10 employees'}
+                            'Gemäß DGUV Vorschrift 2 - Grundbetreuung (Anlage 2) + Betriebsspezifische Betreuung (Anlage 3)' :
+                            'According to DGUV Regulation 2 - Basic support (Appendix 2) + Operation-specific support (Appendix 3)'}
                         </span>
                       </div>
                     </div>
