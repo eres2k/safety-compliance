@@ -52,7 +52,7 @@ export function Dashboard({ onModuleSelect }) {
       title: t.modules.complianceChecker.title,
       description: t.modules.complianceChecker.description,
       gradient: moduleColors.complianceChecker,
-      badge: 'AI Powered'
+      badge: 'Guidance'
     },
     {
       id: 'quickReference',
@@ -117,8 +117,8 @@ export function Dashboard({ onModuleSelect }) {
                 <p className="text-xs text-gray-400 mt-1">Countries</p>
               </div>
               <div className="hidden sm:block bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center min-w-[100px]">
-                <p className="text-3xl font-bold text-whs-success-400">AI</p>
-                <p className="text-xs text-gray-400 mt-1">Powered</p>
+                <p className="text-3xl font-bold text-whs-success-400">Full</p>
+                <p className="text-xs text-gray-400 mt-1">Text</p>
               </div>
             </div>
           </div>
@@ -153,8 +153,8 @@ export function Dashboard({ onModuleSelect }) {
                 </span>
               </div>
               <p className="text-white/80 max-w-xl">
-                {t.modules.lawBrowser.description}. Browse full-text laws with section navigation,
-                search across all regulations, and get AI-powered explanations.
+                {t.modules.lawBrowser.description}. Browse full-text laws with section navigation
+                and search across all regulations.
               </p>
             </div>
           </div>

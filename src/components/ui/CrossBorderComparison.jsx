@@ -79,11 +79,8 @@ export function CrossBorderComparison({
         <div className="flex items-center gap-2">
           <span className="text-lg">🌍</span>
           <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
-            Cross-Border Harmonizer
+            Cross-Border Comparison
           </h4>
-          <span className="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs rounded-full">
-            AI Powered
-          </span>
         </div>
         {onClose && (
           <button

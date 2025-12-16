@@ -4,11 +4,6 @@ import { Button, Input, Card, CardContent } from '../ui'
 
 // Tool icons as SVG components
 const toolIcons = {
-  deadline: (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
-  ),
   personnel: (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -27,7 +22,6 @@ const toolIcons = {
 }
 
 const toolGradients = {
-  deadline: 'from-whs-orange-500 to-whs-orange-600',
   personnel: 'from-whs-info-500 to-whs-info-600',
   penalty: 'from-whs-danger-500 to-whs-danger-600',
   glossary: 'from-purple-500 to-purple-600'
@@ -35,33 +29,16 @@ const toolGradients = {
 
 export function QuickReference({ onBack }) {
   const { t, laws, framework, currentFrameworkColor } = useApp()
-  const [activeTool, setActiveTool] = useState('deadline')
+  const [activeTool, setActiveTool] = useState('personnel')
   const [employees, setEmployees] = useState('')
-  const [lastInspection, setLastInspection] = useState('')
   const [calcResult, setCalcResult] = useState(null)
   const [glossarySearch, setGlossarySearch] = useState('')
 
   const tools = [
-    { id: 'deadline', label: t.tools.deadlineCalculator },
     { id: 'personnel', label: t.tools.personnelCalculator },
     { id: 'penalty', label: t.tools.penaltyLookup },
     { id: 'glossary', label: t.tools.glossary }
   ]
-
-  const calculateDeadline = () => {
-    if (!lastInspection) return
-    const lastDate = new Date(lastInspection)
-    const nextDate = new Date(lastDate)
-    nextDate.setFullYear(nextDate.getFullYear() + 1)
-
-    const daysUntil = Math.ceil((nextDate - new Date()) / (1000 * 60 * 60 * 24))
-
-    setCalcResult({
-      nextInspection: nextDate.toLocaleDateString(),
-      daysRemaining: daysUntil,
-      status: daysUntil < 0 ? 'overdue' : daysUntil < 30 ? 'urgent' : 'ok'
-    })
-  }
 
   const calculatePersonnel = () => {
     const emp = parseInt(employees)
@@ -103,24 +80,6 @@ export function QuickReference({ onBack }) {
     item.full.toLowerCase().includes(glossarySearch.toLowerCase()) ||
     item.description?.toLowerCase().includes(glossarySearch.toLowerCase())
   )
-
-  const statusColors = {
-    overdue: {
-      bg: 'bg-whs-danger-100 dark:bg-whs-danger-500/20',
-      text: 'text-whs-danger-600 dark:text-whs-danger-400',
-      border: 'border-whs-danger-200 dark:border-whs-danger-500/30'
-    },
-    urgent: {
-      bg: 'bg-whs-yellow-100 dark:bg-whs-yellow-500/20',
-      text: 'text-whs-yellow-600 dark:text-whs-yellow-400',
-      border: 'border-whs-yellow-200 dark:border-whs-yellow-500/30'
-    },
-    ok: {
-      bg: 'bg-whs-success-100 dark:bg-whs-success-500/20',
-      text: 'text-whs-success-600 dark:text-whs-success-400',
-      border: 'border-whs-success-200 dark:border-whs-success-500/30'
-    }
-  }
 
   return (
     <div className="animate-fade-in">
@@ -188,73 +147,6 @@ export function QuickReference({ onBack }) {
       {/* Tool Content */}
       <Card variant="glass" className="overflow-hidden">
         <CardContent className="p-6">
-          {/* Deadline Calculator */}
-          {activeTool === 'deadline' && (
-            <div className="animate-fade-in">
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${toolGradients.deadline} flex items-center justify-center text-white`}>
-                  {toolIcons.deadline}
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {t.tools.deadlineCalculator}
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Calculate your next inspection deadline
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {t.calculators.lastInspection}
-                  </label>
-                  <Input
-                    type="date"
-                    value={lastInspection}
-                    onChange={(e) => setLastInspection(e.target.value)}
-                    variant="glass"
-                  />
-                </div>
-              </div>
-
-              <Button onClick={calculateDeadline} variant="primary" className="mb-6">
-                <span className="flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                  {t.common.calculate}
-                </span>
-              </Button>
-
-              {calcResult && (
-                <div className={`
-                  p-6 rounded-2xl border transition-all animate-fade-in-up
-                  ${statusColors[calcResult.status].bg}
-                  ${statusColors[calcResult.status].border}
-                `}>
-                  <div className="flex items-center justify-between mb-4">
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      {t.calculators.nextInspection}
-                    </p>
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColors[calcResult.status].bg} ${statusColors[calcResult.status].text}`}>
-                      {calcResult.status === 'overdue' ? 'Overdue' : calcResult.status === 'urgent' ? 'Urgent' : 'On Track'}
-                    </span>
-                  </div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                    {calcResult.nextInspection}
-                  </p>
-                  <p className={`text-lg font-semibold ${statusColors[calcResult.status].text}`}>
-                    {calcResult.daysRemaining < 0
-                      ? `${Math.abs(calcResult.daysRemaining)} ${t.calculators.daysOverdue}`
-                      : `${calcResult.daysRemaining} ${t.calculators.daysRemaining}`}
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-
           {/* Personnel Calculator */}
           {activeTool === 'personnel' && (
             <div className="animate-fade-in">

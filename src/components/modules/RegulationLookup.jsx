@@ -42,10 +42,10 @@ export function RegulationLookup({ onBack }) {
       setResult(response)
 
       // Find related laws from database
-      const laws = searchLaws(topic, framework)
-      setRelatedLaws(laws.slice(0, 6))
+      const searchResult = searchLaws(topic, { country: framework, limit: 6 })
+      setRelatedLaws(searchResult.results || [])
     } catch (error) {
-      setResult(t.api.error)
+      setResult(t.api?.error || 'Failed to lookup regulation')
     }
   }
 

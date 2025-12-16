@@ -1,10 +1,10 @@
 # WHS Safety Compliance Navigator
 
-AI-Powered Workplace Health and Safety Compliance Navigator for Austria (ASchG), Germany (DGUV), and Netherlands (Arbowet).
+Workplace Health and Safety Compliance Navigator for Austria (ASchG), Germany (DGUV), and Netherlands (Arbowet).
 
 ## Features
 
-- **Law Browser & Search**: Navigate and search safety legislation with AI-powered explanations
+- **Law Browser & Search**: Navigate and search safety legislation with full-text search
 - **Compliance Checker**: Check requirements based on company size, industry, and topic
 - **Document Generator**: Create safety documents from pre-defined templates
 - **Quick Reference Tools**: Calculators, penalty lookups, and glossary

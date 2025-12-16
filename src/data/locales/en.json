@@ -1,6 +1,6 @@
 {
   "appTitle": "WHS Safety Compliance Navigator",
-  "appSubtitle": "AI-Powered Workplace Safety Assistant",
+  "appSubtitle": "Workplace Safety Compliance Assistant",
   "selectFramework": "Select Legal Framework",
   "frameworks": {
     "AT": "Austria (ASchG)",
