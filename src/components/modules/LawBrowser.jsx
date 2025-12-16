@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, SearchInput, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison } from '../ui'
+import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison } from '../ui'
 import {
   getAllLaws,
   getRelatedLaws,
@@ -1248,17 +1248,6 @@ export function LawBrowser({ onBack }) {
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Search */}
-      <div className="mb-4">
-        <SearchInput
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onSearch={handleSearch}
-          onClear={() => setSearchTerm('')}
-          placeholder="Full text search across all laws..."
-        />
       </div>
 
       {/* Main Content - 3 Column Layout */}
