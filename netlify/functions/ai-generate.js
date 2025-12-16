@@ -56,9 +56,9 @@ export async function handler(event) {
       }
     }
 
-    // Use gemini-1.5-flash for better availability
+    // Use gemini-pro for widest availability
     const response = await fetchWithRetry(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: {
