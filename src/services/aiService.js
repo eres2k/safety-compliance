@@ -198,35 +198,33 @@ Be concise. Only include relevant information.`
 }
 
 export async function checkCompliance(companySize, industry, topic, framework, language) {
-  const prompt = `Provide a compliance checklist for a ${industry} company with ${companySize} employees regarding ${topic}.
+  const prompt = `Provide a compliance checklist for a ${industry} delivery station with ${companySize} employees regarding ${topic}.
 
-Return ONLY a valid JSON object with this structure:
-{
-  "topic": "${topic}",
-  "requirements": [
-    {
-      "title": "requirement title",
-      "citation": "legal paragraph reference",
-      "description": "brief description"
-    }
-  ],
-  "documentation": ["required document 1", "required document 2"],
-  "personnel": ["role requirement if any"],
-  "deadlines": [
-    {
-      "item": "what needs to be done",
-      "frequency": "how often"
-    }
-  ],
-  "penalties": ["penalty description"],
-  "steps": ["implementation step 1", "implementation step 2"]
-}
+Format your response as readable text with these sections:
 
-Be concise. Only include relevant information.`
+📋 REQUIREMENTS
+- List each requirement with its legal citation (e.g., "§ X.Y")
+- Include brief description of what's required
+
+📄 REQUIRED DOCUMENTATION
+- List all documents that must be maintained
+
+👥 PERSONNEL REQUIREMENTS
+- List any required safety roles or certifications
+
+⏰ DEADLINES & FREQUENCIES
+- List recurring tasks and their frequencies
+
+⚠️ PENALTIES FOR NON-COMPLIANCE
+- List potential consequences
+
+✅ IMPLEMENTATION STEPS
+- List actionable steps to achieve compliance
+
+Be concise and practical. Use bullet points. Include specific legal citations.`
 
   const response = await generateAIResponse(prompt, framework, language)
-  const parsed = cleanAndParseJSON(response)
-  return formatJSONForDisplay(parsed)
+  return normalizeNewlines(response)
 }
 
 export async function generateDocument(templateName, inputs, framework, language) {
@@ -263,39 +261,33 @@ Be concise. Only include relevant information.`
 }
 
 export async function lookupRegulation(topic, companySize, framework, language) {
-  const prompt = `What are the specific legal requirements for "${topic}" in a company with ${companySize || 'any number of'} employees?
+  const prompt = `What are the specific legal requirements for "${topic}" in a delivery station with ${companySize || 'any number of'} employees?
 
-Return ONLY a valid JSON object with this structure:
-{
-  "topic": "${topic}",
-  "legalRequirements": [
-    {
-      "citation": "paragraph reference",
-      "requirement": "brief description"
-    }
-  ],
-  "implementationSteps": ["step 1", "step 2"],
-  "documentation": ["required record 1", "required record 2"],
-  "deadlines": [
-    {
-      "task": "what needs to be done",
-      "frequency": "how often"
-    }
-  ],
-  "penalties": ["penalty description"],
-  "checklist": [
-    {
-      "item": "checklist item description",
-      "required": true
-    }
-  ]
-}
+Format your response as readable text with these sections:
 
-Be concise. Only include relevant information.`
+📜 LEGAL REQUIREMENTS
+- List each requirement with its specific legal citation (§ reference)
+- Include brief description
+
+🔧 IMPLEMENTATION STEPS
+- Practical steps to implement each requirement
+
+📄 REQUIRED DOCUMENTATION
+- List records and documents to maintain
+
+⏰ DEADLINES & FREQUENCIES
+- Inspection intervals, training renewals, etc.
+
+⚠️ PENALTIES
+- Consequences of non-compliance
+
+☑️ COMPLIANCE CHECKLIST
+- Quick checklist items to verify compliance
+
+Be concise and practical. Use bullet points. Include specific legal citations.`
 
   const response = await generateAIResponse(prompt, framework, language)
-  const parsed = cleanAndParseJSON(response)
-  return formatJSONForDisplay(parsed)
+  return normalizeNewlines(response)
 }
 
 export async function generateFlowchart(lawText, framework, language) {

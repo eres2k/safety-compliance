@@ -14,7 +14,7 @@
     },
     "complianceChecker": {
       "title": "Compliance Checker",
-      "description": "Check requirements for your company"
+      "description": "Check requirements for your delivery station"
     },
     "documentGenerator": {
       "title": "Document Generator",
@@ -41,7 +41,7 @@
     "loading": "Loading",
     "noResults": "No results found",
     "selectOption": "Select an option",
-    "companySize": "Company Size",
+    "stationSize": "Delivery Station Size",
     "industry": "Industry Type",
     "topic": "Topic",
     "employees": "employees",
@@ -114,7 +114,7 @@
   },
   "compliance": {
     "requirements": "Compliance Requirements",
-    "queryPrompt": "What are the requirements for [TOPIC] in a company with [SIZE] employees?",
+    "queryPrompt": "What are the requirements for [TOPIC] in a delivery station with [SIZE] employees?",
     "quickTopics": "Quick topics:"
   },
   "api": {
