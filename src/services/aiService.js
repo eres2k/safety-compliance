@@ -11,25 +11,36 @@ const LANGUAGE_CONTEXT = {
 }
 
 function buildSystemPrompt(framework, language) {
-  return `You are a Workplace Health and Safety legal expert specializing in ${FRAMEWORK_CONTEXT[framework]}.
+  return `You are a WHS legal expert for ${FRAMEWORK_CONTEXT[framework]}.
+Cite specific paragraphs. Be practical and concise.
+${LANGUAGE_CONTEXT[language]}`
+}
 
-RULES:
-1. ALWAYS cite specific paragraphs (e.g., "§ 25 ASchG" or "§ 5 ArbSchG" or "Artikel 5 Arbowet")
-2. Provide practical, actionable guidance
-3. Be precise with legal requirements
-4. When explaining complex terms, use plain language
-5. If unsure, recommend consulting authorities or legal counsel
-6. Structure responses with clear sections
-7. Include relevant deadlines and penalties where applicable
-8. ${LANGUAGE_CONTEXT[language]}
+// Retry helper for transient failures
+async function fetchWithRetry(url, options, maxRetries = 2) {
+  for (let i = 0; i <= maxRetries; i++) {
+    try {
+      const response = await fetch(url, options)
 
-Current Legal Framework: ${framework}
-Framework Name: ${FRAMEWORK_CONTEXT[framework]}`
+      // Retry on 503 (Service Unavailable) or 429 (Rate Limited)
+      if ((response.status === 503 || response.status === 429) && i < maxRetries) {
+        await new Promise(r => setTimeout(r, 1000 * (i + 1)))
+        continue
+      }
+
+      return response
+    } catch (error) {
+      if (i < maxRetries) {
+        await new Promise(r => setTimeout(r, 1000 * (i + 1)))
+        continue
+      }
+      throw error
+    }
+  }
 }
 
 export async function generateAIResponse(prompt, framework, language) {
-  // Call the Netlify function instead of directly calling Gemini
-  const response = await fetch('/.netlify/functions/ai-generate', {
+  const response = await fetchWithRetry('/.netlify/functions/ai-generate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -46,7 +57,6 @@ export async function generateAIResponse(prompt, framework, language) {
       const error = await response.json()
       errorMessage = error.message || error.details || 'AI service error'
     } catch {
-      // Response might not be JSON
       errorMessage = `AI service error (${response.status})`
     }
     throw new Error(errorMessage)
