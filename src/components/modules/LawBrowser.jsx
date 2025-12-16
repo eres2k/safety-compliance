@@ -1063,13 +1063,13 @@ export function LawBrowser({ onBack }) {
     try {
       let lawContext
       if (sectionToCompare) {
-        // Compare specific section
+        // Compare specific section - keep context short for API
         const sectionTitle = `${sectionToCompare.number}${sectionToCompare.title ? ` - ${sectionToCompare.title}` : ''}`
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title || ''}\n${sectionTitle}\n\n${sectionToCompare.content?.substring(0, 3000) || ''}`
+        lawContext = `${selectedLaw?.abbreviation || ''}\n${sectionTitle}\n\n${sectionToCompare.content?.substring(0, 800) || ''}`
       } else {
         // Compare whole law (fallback)
         const lawText = selectedLaw?.content?.full_text || selectedLaw?.content?.text || selectedLaw?.description || ''
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title}\n\n${lawText.substring(0, 3000)}`
+        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title}\n\n${lawText.substring(0, 800)}`
       }
       const response = await findEquivalentLaw(lawContext, targetFramework)
       setCrossBorderData(response)
@@ -1102,13 +1102,13 @@ export function LawBrowser({ onBack }) {
     try {
       let lawContext
       if (section) {
-        // Compare specific section
+        // Compare specific section - keep context short for API
         const sectionTitle = `${section.number}${section.title ? ` - ${section.title}` : ''}`
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title || ''}\n${sectionTitle}\n\n${section.content?.substring(0, 3000) || ''}`
+        lawContext = `${selectedLaw?.abbreviation || ''}\n${sectionTitle}\n\n${section.content?.substring(0, 800) || ''}`
       } else {
         // Compare whole law (fallback)
         const lawText = selectedLaw?.content?.full_text || selectedLaw?.content?.text || selectedLaw?.description || ''
-        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title}\n\n${lawText.substring(0, 3000)}`
+        lawContext = `${selectedLaw?.abbreviation || selectedLaw?.title}\n\n${lawText.substring(0, 800)}`
       }
       const response = await compareMultipleCountries(lawContext)
       setMultiCountryData(response)
