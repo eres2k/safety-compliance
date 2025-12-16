@@ -132,7 +132,7 @@ export function RegulationLookup({ onBack }) {
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {t.common.companySize} <span className="text-gray-400">({t.common.optional})</span>
+                {t.common.stationSize} <span className="text-gray-400">({t.common.optional})</span>
               </label>
               <Select
                 value={companySize}

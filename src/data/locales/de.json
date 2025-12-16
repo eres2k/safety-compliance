@@ -14,7 +14,7 @@
     },
     "complianceChecker": {
       "title": "Compliance-Prüfer",
-      "description": "Anforderungen für Ihr Unternehmen prüfen"
+      "description": "Anforderungen für Ihren Zustellstützpunkt prüfen"
     },
     "documentGenerator": {
       "title": "Dokumenten-Generator",
@@ -41,7 +41,7 @@
     "loading": "Lädt",
     "noResults": "Keine Ergebnisse gefunden",
     "selectOption": "Option wählen",
-    "companySize": "Unternehmensgröße",
+    "stationSize": "Zustellstützpunktgröße",
     "industry": "Branche",
     "topic": "Thema",
     "employees": "Mitarbeiter",
@@ -114,7 +114,7 @@
   },
   "compliance": {
     "requirements": "Compliance-Anforderungen",
-    "queryPrompt": "Was sind die Anforderungen für [THEMA] in einem Unternehmen mit [GRÖSSE] Mitarbeitern?",
+    "queryPrompt": "Was sind die Anforderungen für [THEMA] in einem Zustellstützpunkt mit [GRÖSSE] Mitarbeitern?",
     "quickTopics": "Schnellthemen:"
   },
   "api": {

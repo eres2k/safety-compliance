@@ -139,7 +139,7 @@ export function ComplianceChecker({ onBack }) {
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {t.common.companySize}
+                {t.common.stationSize}
               </label>
               <Select
                 value={companySize}
@@ -342,7 +342,7 @@ export function ComplianceChecker({ onBack }) {
               Ready to Check Compliance
             </h3>
             <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto">
-              Select your company size, industry, and safety topic above to get compliance guidance based on {currentFrameworkColor?.lawName || framework} regulations.
+              Select your delivery station size and safety topic above to get compliance guidance based on {currentFrameworkColor?.lawName || framework} regulations.
             </p>
           </CardContent>
         </Card>

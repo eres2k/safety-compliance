@@ -159,7 +159,7 @@ export function QuickReference({ onBack }) {
                     {t.tools.personnelCalculator}
                   </h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Calculate required safety personnel based on company size
+                    Calculate required safety personnel based on delivery station size
                   </p>
                 </div>
               </div>
