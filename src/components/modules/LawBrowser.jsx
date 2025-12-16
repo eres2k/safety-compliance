@@ -881,13 +881,27 @@ export function LawBrowser({ onBack }) {
       )
     }
 
-    // Filter by content search term (full text search)
+    // Filter by content search term (full text search in right column)
+    // Searches section content, title, chapter/Abschnitt title, and WHS topics
     if (contentSearchTerm.trim()) {
       const term = contentSearchTerm.toLowerCase()
-      filtered = filtered.filter(s =>
-        s.content.toLowerCase().includes(term) ||
-        s.title.toLowerCase().includes(term)
-      )
+      filtered = filtered.filter(s => {
+        // Search in section content
+        if (s.content?.toLowerCase().includes(term)) return true
+        // Search in section title
+        if (s.title?.toLowerCase().includes(term)) return true
+        // Search in chapter/Abschnitt title
+        if (s.abschnitt?.title?.toLowerCase().includes(term)) return true
+        if (s.abschnitt?.displayName?.toLowerCase().includes(term)) return true
+        // Search in WHS topic labels
+        if (s.whs_topics?.some(topic => {
+          const label = WHS_TOPIC_LABELS[topic.id]?.label?.toLowerCase()
+          return label && label.includes(term)
+        })) return true
+        // Search in section number
+        if (s.number?.toLowerCase().includes(term)) return true
+        return false
+      })
     }
 
     return filtered

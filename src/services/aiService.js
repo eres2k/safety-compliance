@@ -41,8 +41,15 @@ export async function generateAIResponse(prompt, framework, language) {
   })
 
   if (!response.ok) {
-    const error = await response.json()
-    throw new Error(error.message || 'AI request failed')
+    let errorMessage = 'AI request failed'
+    try {
+      const error = await response.json()
+      errorMessage = error.message || error.details || 'AI service error'
+    } catch {
+      // Response might not be JSON
+      errorMessage = `AI service error (${response.status})`
+    }
+    throw new Error(errorMessage)
   }
 
   const data = await response.json()
