@@ -709,7 +709,10 @@ function WHSSummaryPanel({ summary }) {
 
 export function LawBrowser({ onBack }) {
   const { t, framework, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
-  const { generateFlowchart, simplifyForManager, simplifyForAssociate, findEquivalentLaw, compareMultipleCountries, isLoading: aiLoading } = useAI()
+  const { generateFlowchart, simplifyForBothLevels, findEquivalentLaw, compareMultipleCountries, isLoading: aiLoading } = useAI()
+
+  // Debounce refs to prevent duplicate API calls
+  const pendingSimplifyRef = useRef({}) // Track pending simplification requests by sectionId
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedLaw, setSelectedLaw] = useState(null)
@@ -1005,6 +1008,7 @@ export function LawBrowser({ onBack }) {
   }
 
   // Feature 2: Handle complexity level change for a specific section
+  // Optimized: Uses combined API call to fetch both levels at once (saves ~50% tokens)
   const handleComplexityChange = async (level, section) => {
     if (!section) return
 
@@ -1020,24 +1024,26 @@ export function LawBrowser({ onBack }) {
     const cached = simplifiedContent[section.id]?.[level]
     if (cached) return
 
+    // Debounce: prevent duplicate requests for same section
+    if (pendingSimplifyRef.current[section.id]) return
+    pendingSimplifyRef.current[section.id] = true
+
     setSimplifyLoading(true)
     setActiveSimplifySectionId(section.id)
 
     try {
       const sectionTitle = `${section.number}${section.title ? ` - ${section.title}` : ''}`
-      let response
-      if (level === 'manager') {
-        response = await simplifyForManager(section.content, sectionTitle)
-      } else if (level === 'associate') {
-        response = await simplifyForAssociate(section.content, sectionTitle)
-      }
 
-      // Cache the result
+      // Use combined function to get BOTH levels in one API call
+      const response = await simplifyForBothLevels(section.content, sectionTitle)
+
+      // Cache BOTH results from single API call
       setSimplifiedContent(prev => ({
         ...prev,
         [section.id]: {
           ...prev[section.id],
-          [level]: response
+          manager: response.manager,
+          associate: response.associate
         }
       }))
     } catch (error) {
@@ -1045,6 +1051,7 @@ export function LawBrowser({ onBack }) {
     } finally {
       setSimplifyLoading(false)
       setActiveSimplifySectionId(null)
+      delete pendingSimplifyRef.current[section.id]
     }
   }
 

@@ -30,8 +30,9 @@ const CONFIG = {
   geminiModel: 'gemini-2.0-flash',
   maxRetries: 3,
   retryDelayMs: 2000,
-  rateLimitDelayMs: 500, // Delay between API calls
-  batchSize: 5, // Process sections in batches
+  rateLimitDelayMs: 1500, // Increased delay between API calls to avoid rate limits
+  batchSize: 5, // Process multiple sections in a single API call
+  maxSectionsPerBatch: 5, // Max sections to include in one batched API call
 }
 
 // Available role tags
@@ -77,12 +78,17 @@ function log(message, color = colors.reset) {
   console.log(`${color}${message}${colors.reset}`)
 }
 
-// Generate semantic tags for a section using AI
-async function generateTagsForSection(sectionText, sectionNumber, apiKey) {
-  const prompt = `You are a logistics safety expert. Analyze this regulation and tag it with relevant Amazon Logistics roles and equipment.
+// Generate semantic tags for MULTIPLE sections in a single API call (batched)
+// This reduces API calls by ~80% compared to individual calls
+async function generateTagsForBatch(sections, apiKey) {
+  const sectionsText = sections.map((s, i) =>
+    `[SECTION_${i}] ${s.number || s.id}:\n${(s.text || s.content || '').substring(0, 400)}`
+  ).join('\n\n---\n\n')
 
-REGULATION:
-${sectionText.substring(0, 2000)}
+  const prompt = `You are a logistics safety expert. Analyze these ${sections.length} regulations and tag each with relevant Amazon Logistics roles and equipment.
+
+REGULATIONS:
+${sectionsText}
 
 AVAILABLE ROLE TAGS (use only these):
 ${ROLE_TAGS.map(r => `- ${r}`).join('\n')}
@@ -90,13 +96,13 @@ ${ROLE_TAGS.map(r => `- ${r}`).join('\n')}
 AVAILABLE EQUIPMENT TAGS (use only these):
 ${EQUIPMENT_TAGS.map(e => `- ${e}`).join('\n')}
 
-OUTPUT FORMAT (JSON only, no explanation, no markdown):
-{
-  "roles": ["Role1", "Role2"],
-  "equipment": ["Equipment1", "Equipment2"],
-  "hazards": ["brief hazard 1", "brief hazard 2"],
-  "keywords": ["keyword1", "keyword2", "keyword3"]
-}`
+OUTPUT FORMAT (JSON array, one object per section, in order):
+[
+  {"roles": ["Role1"], "equipment": ["Equipment1"], "hazards": ["hazard1"], "keywords": ["keyword1"]},
+  {"roles": ["Role2"], "equipment": ["Equipment2"], "hazards": ["hazard2"], "keywords": ["keyword2"]}
+]
+
+Return ONLY the JSON array, no explanation, no markdown.`
 
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${CONFIG.geminiModel}:generateContent?key=${apiKey}`,
@@ -107,7 +113,7 @@ OUTPUT FORMAT (JSON only, no explanation, no markdown):
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
           temperature: 0.2,
-          maxOutputTokens: 500,
+          maxOutputTokens: 1500, // Increased for batch response
         },
       }),
     }
@@ -120,27 +126,33 @@ OUTPUT FORMAT (JSON only, no explanation, no markdown):
   const data = await response.json()
   const text = data.candidates?.[0]?.content?.parts?.[0]?.text || ''
 
-  // Extract JSON from response
-  const jsonMatch = text.match(/\{[\s\S]*\}/)
+  // Extract JSON array from response
+  const jsonMatch = text.match(/\[[\s\S]*\]/)
   if (!jsonMatch) {
-    throw new Error('No JSON found in response')
+    throw new Error('No JSON array found in response')
   }
 
   try {
-    const tags = JSON.parse(jsonMatch[0])
-    // Validate and filter tags
-    return {
+    const tagsArray = JSON.parse(jsonMatch[0])
+    // Validate and filter each result
+    return tagsArray.map(tags => ({
       roles: (tags.roles || []).filter(r => ROLE_TAGS.includes(r)),
       equipment: (tags.equipment || []).filter(e => EQUIPMENT_TAGS.includes(e)),
       hazards: (tags.hazards || []).slice(0, 5),
       keywords: (tags.keywords || []).slice(0, 10),
-    }
+    }))
   } catch (e) {
     throw new Error(`Failed to parse JSON: ${e.message}`)
   }
 }
 
-// Process a single law file
+// Legacy single-section function (fallback)
+async function generateTagsForSection(sectionText, sectionNumber, apiKey) {
+  const results = await generateTagsForBatch([{ number: sectionNumber, text: sectionText }], apiKey)
+  return results[0]
+}
+
+// Process a single law file with BATCHED API calls
 async function processLawFile(filename, apiKey) {
   const filePath = path.join(CONFIG.dataDir, filename)
 
@@ -155,44 +167,58 @@ async function processLawFile(filename, apiKey) {
   let processedCount = 0
   let errorCount = 0
 
-  // Process each law in the file
+  // Collect all untagged sections first
+  const untaggedSections = []
   for (const law of data.laws || []) {
     if (!law.chapters) continue
-
     for (const chapter of law.chapters) {
       if (!chapter.sections) continue
-
       for (const section of chapter.sections) {
-        // Skip if already tagged
-        if (section.semantic_tags) {
-          continue
-        }
-
+        if (section.semantic_tags) continue // Skip already tagged
         const sectionText = section.text || section.content || ''
         if (sectionText.length < 50) continue // Skip very short sections
+        untaggedSections.push({ section, sectionText })
+      }
+    }
+  }
 
-        try {
-          const tags = await generateTagsForSection(
-            sectionText,
-            section.number || section.id,
-            apiKey
-          )
+  log(`  Found ${untaggedSections.length} untagged sections`, colors.blue)
 
-          section.semantic_tags = tags
+  // Process in batches
+  for (let i = 0; i < untaggedSections.length; i += CONFIG.maxSectionsPerBatch) {
+    const batch = untaggedSections.slice(i, i + CONFIG.maxSectionsPerBatch)
+    const batchNum = Math.floor(i / CONFIG.maxSectionsPerBatch) + 1
+    const totalBatches = Math.ceil(untaggedSections.length / CONFIG.maxSectionsPerBatch)
+
+    log(`  Processing batch ${batchNum}/${totalBatches} (${batch.length} sections)...`, colors.cyan)
+
+    try {
+      const sectionsForApi = batch.map(b => ({
+        number: b.section.number || b.section.id,
+        text: b.sectionText
+      }))
+
+      const tagsArray = await generateTagsForBatch(sectionsForApi, apiKey)
+
+      // Apply tags to sections
+      for (let j = 0; j < batch.length; j++) {
+        if (tagsArray[j]) {
+          batch[j].section.semantic_tags = tagsArray[j]
           processedCount++
-
-          log(`  Tagged ${section.number || section.id}: ${tags.roles.length} roles, ${tags.equipment.length} equipment`, colors.green)
-
-          // Rate limiting
-          await new Promise(resolve => setTimeout(resolve, CONFIG.rateLimitDelayMs))
-        } catch (error) {
-          errorCount++
-          log(`  Error tagging ${section.number}: ${error.message}`, colors.red)
-
-          // Retry delay on error
-          await new Promise(resolve => setTimeout(resolve, CONFIG.retryDelayMs))
+          log(`    Tagged ${batch[j].section.number || batch[j].section.id}: ${tagsArray[j].roles.length} roles, ${tagsArray[j].equipment.length} equipment`, colors.green)
         }
       }
+
+      // Rate limiting between batches
+      if (i + CONFIG.maxSectionsPerBatch < untaggedSections.length) {
+        await new Promise(resolve => setTimeout(resolve, CONFIG.rateLimitDelayMs))
+      }
+    } catch (error) {
+      errorCount += batch.length
+      log(`    Batch error: ${error.message}`, colors.red)
+
+      // Retry delay on error
+      await new Promise(resolve => setTimeout(resolve, CONFIG.retryDelayMs))
     }
   }
 

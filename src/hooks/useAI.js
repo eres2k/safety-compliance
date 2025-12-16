@@ -121,6 +121,21 @@ export function useAI() {
     }
   }, [framework, language])
 
+  // Feature 2b: Combined simplification - returns BOTH manager and associate in one API call
+  const simplifyForBothLevels = useCallback(async (lawText, sectionTitle) => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const response = await aiService.simplifyForBothLevels(lawText, sectionTitle, framework, language)
+      return response
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [framework, language])
+
   // Feature 3: Find equivalent law in another jurisdiction
   const findEquivalentLaw = useCallback(async (lawText, targetFramework) => {
     setIsLoading(true)
@@ -177,6 +192,7 @@ export function useAI() {
     generateFlowchart,
     simplifyForManager,
     simplifyForAssociate,
+    simplifyForBothLevels,
     findEquivalentLaw,
     generateSemanticTags,
     compareMultipleCountries
