@@ -207,6 +207,52 @@ FORMAT YOUR RESPONSE EXACTLY AS:
   return generateAIResponse(prompt, sourceFramework, language)
 }
 
+// Feature 3b: Multi-Country Comparison - Compare laws across all 3 jurisdictions
+export async function compareMultipleCountries(lawText, sourceFramework, language) {
+  const frameworkNames = {
+    AT: 'Austrian ASchG',
+    DE: 'German DGUV/ArbSchG',
+    NL: 'Dutch Arbowet'
+  }
+
+  const allFrameworks = ['AT', 'DE', 'NL']
+  const otherFrameworks = allFrameworks.filter(f => f !== sourceFramework)
+
+  const prompt = `You are an EU workplace safety law expert. Analyze this ${frameworkNames[sourceFramework]} regulation and find equivalent provisions in ALL other EU member state frameworks (${otherFrameworks.map(f => frameworkNames[f]).join(' and ')}).
+
+SOURCE REGULATION (${frameworkNames[sourceFramework]}):
+${lawText.substring(0, 2500)}
+
+TASK:
+Compare this regulation across all 3 frameworks: ${allFrameworks.map(f => frameworkNames[f]).join(', ')}
+
+FORMAT YOUR RESPONSE EXACTLY AS:
+---TOPIC---
+[Brief description of the regulation topic in 5-10 words]
+
+---AT_PROVISION---
+[For Austrian ASchG: cite specific paragraph (e.g., § 25 ASchG) and 1-2 sentence summary of requirements]
+
+---DE_PROVISION---
+[For German DGUV/ArbSchG: cite specific paragraph (e.g., § 5 ArbSchG) and 1-2 sentence summary of requirements]
+
+---NL_PROVISION---
+[For Dutch Arbowet: cite specific article (e.g., Artikel 5 Arbowet) and 1-2 sentence summary of requirements]
+
+---COMPARISON_TABLE---
+| Aspect | 🇦🇹 Austria | 🇩🇪 Germany | 🇳🇱 Netherlands |
+|--------|------------|------------|----------------|
+[Compare 4-6 key aspects: requirements, thresholds, deadlines, documentation, penalties, etc.]
+
+---KEY_DIFFERENCES---
+⚠️ [List 3-5 critical differences between the frameworks, each on new line starting with ⚠️]
+
+---HARMONIZATION_TIPS---
+✅ [3-5 practical tips for companies operating in all 3 countries, each on new line starting with ✅]`
+
+  return generateAIResponse(prompt, sourceFramework, language)
+}
+
 // Feature 4: Semantic Tagging - Tag law text with roles and equipment
 export async function generateSemanticTags(lawText, sectionNumber, framework, language) {
   const prompt = `You are a logistics safety expert. Analyze this regulation and tag it with relevant Amazon Logistics roles and equipment.
