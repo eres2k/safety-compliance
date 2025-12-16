@@ -1082,7 +1082,7 @@ export function LawBrowser({ onBack }) {
       setCrossBorderData(response)
     } catch (error) {
       console.error('Cross-border comparison error:', error)
-      setCrossBorderError(error.message || 'AI service unavailable')
+      setCrossBorderError(error.message || 'Service unavailable')
       setCrossBorderData(null)
     } finally {
       setCrossBorderLoading(false)
@@ -1121,7 +1121,7 @@ export function LawBrowser({ onBack }) {
       setMultiCountryData(response)
     } catch (error) {
       console.error('Multi-country comparison error:', error)
-      setMultiCountryError(error.message || 'AI service unavailable')
+      setMultiCountryError(error.message || 'Service unavailable')
       setMultiCountryData(null)
     } finally {
       setMultiCountryLoading(false)

@@ -18,11 +18,6 @@ const moduleIcons = {
     <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
     </svg>
-  ),
-  regulationLookup: (
-    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-    </svg>
   )
 }
 
@@ -30,8 +25,7 @@ const moduleIcons = {
 const moduleColors = {
   lawBrowser: 'from-whs-orange-500 to-whs-orange-600',
   complianceChecker: 'from-whs-success-500 to-whs-success-600',
-  quickReference: 'from-whs-yellow-500 to-whs-yellow-600',
-  regulationLookup: 'from-purple-500 to-purple-600'
+  quickReference: 'from-whs-yellow-500 to-whs-yellow-600'
 }
 
 export function Dashboard({ onModuleSelect }) {
@@ -61,14 +55,6 @@ export function Dashboard({ onModuleSelect }) {
       description: t.modules.quickReference.description,
       gradient: moduleColors.quickReference,
       badge: 'Calculators'
-    },
-    {
-      id: 'regulationLookup',
-      icon: moduleIcons.regulationLookup,
-      title: t.modules.regulationLookup.title,
-      description: t.modules.regulationLookup.description,
-      gradient: moduleColors.regulationLookup,
-      badge: 'Smart Search'
     }
   ]
 
@@ -91,18 +77,18 @@ export function Dashboard({ onModuleSelect }) {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-whs-orange-500/20 rounded-full border border-whs-orange-500/30">
                 <div className="w-2 h-2 bg-whs-orange-500 rounded-full animate-pulse" />
                 <span className="text-sm font-medium text-whs-orange-400">
-                  {currentFrameworkColor?.name || 'EU'} Safety Regulations
+                  Amazon MEU WHS - Delivery Last Mile Logistics
                 </span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold text-white">
-                EU Workplace Safety{' '}
-                <span className="text-gradient">Law Database</span>
+                Safety Compliance{' '}
+                <span className="text-gradient">Navigator</span>
               </h2>
 
               <p className="text-gray-400 max-w-xl">
-                Comprehensive legal database with full-text workplace safety laws and regulations
-                from Austria, Germany, and the Netherlands. Includes Wikipedia reference articles.
+                Comprehensive workplace safety compliance platform for Delivery Last Mile Logistics operations
+                across Austria, Germany, and the Netherlands.
               </p>
             </div>
 
@@ -181,7 +167,7 @@ export function Dashboard({ onModuleSelect }) {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {modules.map((module, index) => (
             <ModuleCard
               key={module.id}
@@ -210,8 +196,8 @@ export function Dashboard({ onModuleSelect }) {
               Currently viewing: {currentFrameworkColor?.lawName || framework} Framework
             </h4>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              You are browsing {currentFrameworkColor?.name || 'European'} workplace safety regulations.
-              Switch frameworks using the selector in the header to access regulations from other countries.
+              You are browsing {currentFrameworkColor?.name || 'European'} workplace safety regulations
+              for Amazon MEU WHS Delivery Last Mile Logistics operations.
             </p>
           </div>
         </div>
