@@ -235,10 +235,10 @@ export function MultiCountryComparison({
               <span className="text-xl">⚠️</span>
               <div>
                 <h5 className="font-semibold text-red-800 dark:text-red-300 mb-1">
-                  AI Service Unavailable
+                  Service Unavailable
                 </h5>
                 <p className="text-sm text-red-700 dark:text-red-400 mb-3">
-                  The AI comparison service is temporarily unavailable. This feature requires an AI service to analyze and compare laws across all 3 jurisdictions.
+                  The comparison service is temporarily unavailable. This feature requires a service to analyze and compare laws across all 3 jurisdictions.
                 </p>
                 <button
                   onClick={() => onCompare?.()}

@@ -6,8 +6,7 @@ import { Dashboard } from './components/Dashboard'
 import {
   LawBrowser,
   ComplianceChecker,
-  QuickReference,
-  RegulationLookup
+  QuickReference
 } from './components/modules'
 
 // Initialize EU laws database on app load
@@ -42,8 +41,6 @@ function AppContent() {
         return <ComplianceChecker onBack={onBack} />
       case 'quickReference':
         return <QuickReference onBack={onBack} />
-      case 'regulationLookup':
-        return <RegulationLookup onBack={onBack} />
       default:
         return <Dashboard onModuleSelect={setActiveModule} />
     }

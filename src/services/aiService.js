@@ -73,6 +73,7 @@ function clearOldCache() {
 function buildSystemPrompt(framework, language) {
   return `You are a WHS legal expert for ${FRAMEWORK_CONTEXT[framework]}.
 Cite specific paragraphs. Be practical and concise.
+IMPORTANT: Always respond with valid JSON format only. No markdown, no code blocks, just raw JSON.
 ${LANGUAGE_CONTEXT[language]}`
 }
 
@@ -127,26 +128,52 @@ export async function generateAIResponse(prompt, framework, language) {
 }
 
 export async function explainSection(section, framework, language) {
-  const prompt = `Explain this legal provision in simple, plain language that a non-lawyer can understand. Focus on practical implications for employers and employees:
+  const prompt = `Explain this legal provision in simple terms.
 
 ${section.paragraph || section.title}
-${section.content}`
+${section.content}
+
+Return ONLY a valid JSON object with this structure:
+{
+  "title": "provision title",
+  "summary": "brief plain language summary",
+  "keyPoints": ["key point 1", "key point 2"],
+  "employerDuties": ["duty 1", "duty 2"],
+  "employeeRights": ["right 1", "right 2"],
+  "practicalTips": ["tip 1", "tip 2"]
+}
+
+Be concise. Only include relevant information.`
 
   return generateAIResponse(prompt, framework, language)
 }
 
 export async function checkCompliance(companySize, industry, topic, framework, language) {
-  const prompt = `Provide a detailed compliance checklist for a ${industry} company with ${companySize} employees regarding ${topic}.
+  const prompt = `Provide a compliance checklist for a ${industry} company with ${companySize} employees regarding ${topic}.
 
-Include:
-1. Specific legal requirements with paragraph citations
-2. Required documentation
-3. Personnel requirements (if any)
-4. Deadlines and frequencies for reviews/inspections
-5. Potential penalties for non-compliance
-6. Practical implementation steps
+Return ONLY a valid JSON object with this structure:
+{
+  "topic": "${topic}",
+  "requirements": [
+    {
+      "title": "requirement title",
+      "citation": "legal paragraph reference",
+      "description": "brief description"
+    }
+  ],
+  "documentation": ["required document 1", "required document 2"],
+  "personnel": ["role requirement if any"],
+  "deadlines": [
+    {
+      "item": "what needs to be done",
+      "frequency": "how often"
+    }
+  ],
+  "penalties": ["penalty description"],
+  "steps": ["implementation step 1", "implementation step 2"]
+}
 
-Format the response with clear sections and bullet points.`
+Be concise. Only include relevant information.`
 
   return generateAIResponse(prompt, framework, language)
 }
@@ -156,18 +183,28 @@ export async function generateDocument(templateName, inputs, framework, language
     .map(([key, value]) => `${key}: ${value || 'Not specified'}`)
     .join('\n')
 
-  const prompt = `Generate a professional ${templateName} document with the following details:
+  const prompt = `Generate a ${templateName} document with the following details:
 
 ${inputDetails}
 
-The document should:
-1. Follow the legal requirements of the current framework
-2. Include relevant legal citations
-3. Be structured professionally with clear sections
-4. Include all necessary fields for compliance
-5. Be ready to use (only requiring signature if applicable)
+Return ONLY a valid JSON object with this structure:
+{
+  "documentType": "${templateName}",
+  "title": "document title",
+  "sections": [
+    {
+      "heading": "section heading",
+      "content": "section content"
+    }
+  ],
+  "legalReferences": ["citation 1", "citation 2"],
+  "signatureRequired": true,
+  "fields": {
+    "field_name": "field_value"
+  }
+}
 
-Generate the complete document content in a professional format.`
+Be concise. Only include relevant information.`
 
   return generateAIResponse(prompt, framework, language)
 }
@@ -175,15 +212,33 @@ Generate the complete document content in a professional format.`
 export async function lookupRegulation(topic, companySize, framework, language) {
   const prompt = `What are the specific legal requirements for "${topic}" in a company with ${companySize || 'any number of'} employees?
 
-Provide:
-1. **Specific Legal Requirements** - Cite exact paragraphs
-2. **Practical Implementation Steps** - What exactly needs to be done
-3. **Documentation Requirements** - What records must be kept
-4. **Frequency/Deadlines** - How often things must be reviewed/done
-5. **Penalties for Non-Compliance** - What happens if not followed
-6. **Checklist** - A simple yes/no checklist to verify compliance
+Return ONLY a valid JSON object with this structure:
+{
+  "topic": "${topic}",
+  "legalRequirements": [
+    {
+      "citation": "paragraph reference",
+      "requirement": "brief description"
+    }
+  ],
+  "implementationSteps": ["step 1", "step 2"],
+  "documentation": ["required record 1", "required record 2"],
+  "deadlines": [
+    {
+      "task": "what needs to be done",
+      "frequency": "how often"
+    }
+  ],
+  "penalties": ["penalty description"],
+  "checklist": [
+    {
+      "item": "checklist item description",
+      "required": true
+    }
+  ]
+}
 
-Be specific and practical. Include all relevant legal citations.`
+Be concise. Only include relevant information.`
 
   return generateAIResponse(prompt, framework, language)
 }

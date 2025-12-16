@@ -54,7 +54,7 @@ export function ComplianceChecker({ onBack }) {
   const { checkCompliance, isLoading } = useAI()
 
   const [companySize, setCompanySize] = useState('')
-  const [industry, setIndustry] = useState('')
+  const industry = 'Delivery Last Mile Logistics' // Fixed for Amazon MEU WHS
   const [topic, setTopic] = useState('')
   const [result, setResult] = useState('')
   const [relatedLaws, setRelatedLaws] = useState([])
@@ -62,7 +62,7 @@ export function ComplianceChecker({ onBack }) {
   const [activeTab, setActiveTab] = useState('result')
 
   const handleCheck = async () => {
-    if (!companySize || !industry || !topic) {
+    if (!companySize || !topic) {
       return
     }
 
@@ -83,11 +83,6 @@ export function ComplianceChecker({ onBack }) {
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
-
-  const industryOptions = Object.entries(t.industries).map(([key, value]) => ({
-    value,
-    label: value
-  }))
 
   const topicOptions = Object.entries(t.topics).map(([key, value]) => ({
     value,
@@ -141,7 +136,7 @@ export function ComplianceChecker({ onBack }) {
       {/* Input Form */}
       <Card variant="glass" className="mb-6 animate-fade-in-up">
         <CardContent className="p-6">
-          <div className="grid md:grid-cols-3 gap-6 mb-6">
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 {t.common.companySize}
@@ -150,19 +145,6 @@ export function ComplianceChecker({ onBack }) {
                 value={companySize}
                 onChange={(e) => setCompanySize(e.target.value)}
                 options={sizeOptions}
-                placeholder={t.common.selectOption}
-                variant="glass"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {t.common.industry}
-              </label>
-              <Select
-                value={industry}
-                onChange={(e) => setIndustry(e.target.value)}
-                options={industryOptions}
                 placeholder={t.common.selectOption}
                 variant="glass"
               />
@@ -185,7 +167,7 @@ export function ComplianceChecker({ onBack }) {
           <Button
             onClick={handleCheck}
             loading={isLoading}
-            disabled={isLoading || !companySize || !industry || !topic}
+            disabled={isLoading || !companySize || !topic}
             variant="success"
             className="w-full"
             size="lg"

@@ -41,19 +41,6 @@ const frameworks = {
       text: 'text-orange-500',
       ring: 'ring-orange-500/30'
     }
-  },
-  WIKI: {
-    code: 'WIKI',
-    name: 'Wikipedia',
-    lawName: 'Reference',
-    flag: '📚',
-    colors: {
-      bg: 'bg-gray-600',
-      bgHover: 'hover:bg-gray-700',
-      border: 'border-gray-600',
-      text: 'text-gray-600',
-      ring: 'ring-gray-500/30'
-    }
   }
 }
 
@@ -104,8 +91,20 @@ export function Header() {
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [showFrameworkMenu, setShowFrameworkMenu] = useState(false)
 
-  const currentFramework = frameworks[framework]
+  const currentFramework = frameworks[framework] || frameworks.DE
   const currentLanguage = languages.find(l => l.code === language) || languages[0]
+
+  const handleFrameworkChange = (newFramework) => {
+    setFramework(newFramework)
+    setShowFrameworkMenu(false)
+    // Force a page reload to ensure all data is refreshed
+    window.location.reload()
+  }
+
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage)
+    setShowLanguageMenu(false)
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-lg border-b border-gray-200 dark:border-whs-dark-700 transition-colors duration-300">
@@ -155,10 +154,7 @@ export function Header() {
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code)
-                        setShowLanguageMenu(false)
-                      }}
+                      onClick={() => handleLanguageChange(lang.code)}
                       className={`w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-whs-dark-700 transition-colors ${
                         language === lang.code ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-600 dark:text-whs-orange-400' : 'text-gray-700 dark:text-gray-300'
                       }`}
@@ -191,10 +187,7 @@ export function Header() {
                   {Object.values(frameworks).map((fw) => (
                     <button
                       key={fw.code}
-                      onClick={() => {
-                        setFramework(fw.code)
-                        setShowFrameworkMenu(false)
-                      }}
+                      onClick={() => handleFrameworkChange(fw.code)}
                       className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-whs-dark-700 transition-colors ${
                         framework === fw.code ? 'bg-gray-100 dark:bg-whs-dark-700' : ''
                       }`}

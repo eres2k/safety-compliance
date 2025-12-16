@@ -147,7 +147,7 @@ export function LawVisualizer({ chartSyntax, onClose, title }) {
             {title || 'Visual Law Flowchart'}
           </h4>
           <span className="px-2 py-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300 text-xs rounded-full">
-            AI Generated
+            Auto Generated
           </span>
         </div>
         <div className="flex items-center gap-2">

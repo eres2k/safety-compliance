@@ -1,6 +1,6 @@
 {
-  "appTitle": "WHS Safety Compliance Navigator",
-  "appSubtitle": "Workplace Safety Compliance Assistant",
+  "appTitle": "Amazon MEU WHS Safety Navigator",
+  "appSubtitle": "Delivery Last Mile Logistics Safety Compliance",
   "selectFramework": "Select Legal Framework",
   "frameworks": {
     "AT": "Austria (ASchG)",
@@ -23,10 +23,6 @@
     "quickReference": {
       "title": "Quick Reference Tools",
       "description": "Calculators, lookups, and glossary"
-    },
-    "regulationLookup": {
-      "title": "Regulation Lookup",
-      "description": "Query specific requirements"
     }
   },
   "common": {
@@ -122,7 +118,7 @@
     "quickTopics": "Quick topics:"
   },
   "api": {
-    "notConfigured": "AI features require API configuration. Please contact administrator.",
+    "notConfigured": "Service features require API configuration. Please contact administrator.",
     "error": "Error generating response. Please try again."
   },
   "footer": {
