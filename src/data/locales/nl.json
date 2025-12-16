@@ -14,7 +14,7 @@
     },
     "complianceChecker": {
       "title": "Compliance Checker",
-      "description": "Controleer vereisten voor uw bezorgdepot"
+      "description": "Controleer vereisten voor uw verteilerstation"
     },
     "documentGenerator": {
       "title": "Document Generator",
@@ -41,7 +41,7 @@
     "loading": "Laden",
     "noResults": "Geen resultaten gevonden",
     "selectOption": "Selecteer een optie",
-    "stationSize": "Bezorgdepotgrootte",
+    "stationSize": "Verteilerstationgrootte",
     "industry": "Industrie Type",
     "topic": "Onderwerp",
     "employees": "werknemers",
@@ -114,7 +114,7 @@
   },
   "compliance": {
     "requirements": "Compliance Vereisten",
-    "queryPrompt": "Wat zijn de vereisten voor [ONDERWERP] in een bezorgdepot met [GROOTTE] werknemers?",
+    "queryPrompt": "Wat zijn de vereisten voor [ONDERWERP] in een verteilerstation met [GROOTTE] werknemers?",
     "quickTopics": "Snelle onderwerpen:"
   },
   "api": {
