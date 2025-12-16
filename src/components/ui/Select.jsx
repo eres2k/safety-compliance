@@ -67,7 +67,7 @@ export const Select = forwardRef(({
           {...props}
         >
           {placeholder && (
-            <option value="" className="text-gray-400">
+            <option value="" className="text-gray-500 bg-white dark:bg-whs-dark-800 dark:text-gray-400">
               {placeholder}
             </option>
           )}
@@ -75,7 +75,7 @@ export const Select = forwardRef(({
             <option
               key={option.value}
               value={option.value}
-              className="text-gray-900 dark:text-gray-100 dark:bg-whs-dark-800"
+              className="text-gray-900 bg-white dark:text-gray-100 dark:bg-whs-dark-800"
             >
               {option.label}
             </option>

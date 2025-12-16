@@ -707,6 +707,39 @@ function WHSSummaryPanel({ summary }) {
   )
 }
 
+// Helper function to shorten law titles for display
+// e.g., "DGUV & Arbeitsschutzgesetz (ArbSchG)" -> "DGUV"
+// e.g., "ASchG - ArbeitnehmerInnenschutzgesetz" -> "ASchG"
+function getShortenedLawName(law) {
+  if (!law) return ''
+
+  // Use abbreviation if available
+  const abbr = law.abbreviation || law.abbr
+  if (abbr) return abbr
+
+  // Extract short name from title
+  const title = law.title || law.name || ''
+
+  // Common patterns for German/Austrian law names
+  // DGUV & Arbeitsschutzgesetz (ArbSchG) -> DGUV
+  if (title.includes('DGUV')) return 'DGUV'
+
+  // ASchG - ArbeitnehmerInnenschutzgesetz -> ASchG
+  const dashMatch = title.match(/^([A-Z][A-Za-z-]+)\s*-/)
+  if (dashMatch) return dashMatch[1]
+
+  // Look for abbreviation in parentheses like (ArbSchG)
+  const parenMatch = title.match(/\(([A-Z][A-Za-z]+)\)/)
+  if (parenMatch) return parenMatch[1]
+
+  // Arbowet - Arbeidsomstandighedenwet -> Arbowet
+  const firstWord = title.split(/\s*[-–]\s*/)[0].trim()
+  if (firstWord.length <= 15) return firstWord
+
+  // Fallback: return first part up to 15 chars
+  return title.substring(0, 15) + (title.length > 15 ? '...' : '')
+}
+
 export function LawBrowser({ onBack }) {
   const { t, framework, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
   const { generateFlowchart, simplifyForBothLevels, findEquivalentLaw, compareMultipleCountries, isLoading: aiLoading } = useAI()
@@ -1492,7 +1525,7 @@ export function LawBrowser({ onBack }) {
                         )}
                       </div>
                       <h3 className="text-xl font-bold">
-                        {selectedLaw.abbreviation || selectedLaw.abbr} - {selectedLaw.title}
+                        {getShortenedLawName(selectedLaw)}
                       </h3>
                       {selectedLaw.title_en && (
                         <p className="text-white/80 text-sm mt-1">{selectedLaw.title_en}</p>
