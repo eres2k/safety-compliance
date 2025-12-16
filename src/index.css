@@ -646,3 +646,73 @@ mark, .highlight {
          text-whs-dark-900 dark:text-whs-orange-100
          px-0.5 rounded;
 }
+
+/* ===================================
+   Native Select Dark Mode Support
+   =================================== */
+
+/* Force dark backgrounds on native select dropdowns in dark mode */
+.dark select,
+.dark select option {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+.dark select option:checked,
+.dark select option:hover {
+  background-color: #334155 !important;
+}
+
+/* Light mode select styling */
+select option {
+  background-color: white;
+  color: #1f2937;
+}
+
+select option:checked,
+select option:hover {
+  background-color: #f3f4f6;
+}
+
+/* ===================================
+   Input Fields Dark Mode Fixes
+   =================================== */
+
+.dark input,
+.dark textarea {
+  color-scheme: dark;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b;
+}
+
+/* Ensure form inputs have proper contrast in dark mode */
+.dark input:not([type="checkbox"]):not([type="radio"]),
+.dark textarea,
+.dark select {
+  background-color: #1e293b;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: #f97316;
+  outline: none;
+}
+
+/* ===================================
+   Table Dark Mode Improvements
+   =================================== */
+
+.dark table tbody tr {
+  border-color: #334155;
+}
+
+.dark table td,
+.dark table th {
+  border-color: #334155;
+}

@@ -348,7 +348,7 @@ export function MultiCountryComparison({
                       {tableData.rows.map((row, rowIdx) => (
                         <tr
                           key={rowIdx}
-                          className={rowIdx % 2 === 0 ? 'bg-white dark:bg-whs-dark-800' : 'bg-gray-50 dark:bg-whs-dark-750'}
+                          className={rowIdx % 2 === 0 ? 'bg-gray-50 dark:bg-whs-dark-800' : 'bg-gray-100 dark:bg-whs-dark-700'}
                         >
                           {row.map((cell, cellIdx) => (
                             <td

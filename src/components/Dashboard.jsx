@@ -58,6 +58,49 @@ export function Dashboard({ onModuleSelect }) {
     }
   ]
 
+  const newFeatureModules = [
+    {
+      id: 'complianceDashboard',
+      icon: '📊',
+      title: 'Compliance Dashboard',
+      description: 'Track compliance status across all jurisdictions with visual overview',
+      gradient: 'from-blue-500 to-blue-600',
+      badge: 'New'
+    },
+    {
+      id: 'riskAssessment',
+      icon: '⚠️',
+      title: 'Risk Assessment Matrix',
+      description: 'Identify, evaluate, and manage workplace hazards with risk scoring',
+      gradient: 'from-red-500 to-red-600',
+      badge: 'New'
+    },
+    {
+      id: 'trainingResources',
+      icon: '🎓',
+      title: 'Training Resources',
+      description: 'Access mandatory and recommended safety training materials',
+      gradient: 'from-purple-500 to-purple-600',
+      badge: 'New'
+    },
+    {
+      id: 'checklistTemplates',
+      icon: '📋',
+      title: 'Compliance Checklists',
+      description: 'Pre-built checklists for site setup, audits, and inspections',
+      gradient: 'from-teal-500 to-teal-600',
+      badge: 'New'
+    },
+    {
+      id: 'auditTrail',
+      icon: '🕐',
+      title: 'Audit Trail',
+      description: 'View history of all compliance activities and reviews',
+      gradient: 'from-gray-500 to-gray-600',
+      badge: 'New'
+    }
+  ]
+
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Hero Section */}
@@ -179,6 +222,43 @@ export function Dashboard({ onModuleSelect }) {
               onClick={() => onModuleSelect(module.id)}
               delay={index * 0.1}
             />
+          ))}
+        </div>
+      </div>
+
+      {/* New Features Section */}
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Compliance Management
+            </h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Track, assess, and manage your safety compliance
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {newFeatureModules.map((module, index) => (
+            <button
+              key={module.id}
+              onClick={() => onModuleSelect(module.id)}
+              className={`group relative overflow-hidden rounded-xl bg-gradient-to-br ${module.gradient} p-5 text-left transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5`}
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
+              <div className="relative z-10">
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-3xl">{module.icon}</span>
+                  <span className="px-2 py-0.5 bg-white/20 rounded text-xs font-medium text-white">
+                    {module.badge}
+                  </span>
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-1">{module.title}</h4>
+                <p className="text-white/80 text-sm line-clamp-2">{module.description}</p>
+              </div>
+            </button>
           ))}
         </div>
       </div>

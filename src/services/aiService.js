@@ -123,6 +123,61 @@ function formatJSONForDisplay(data) {
   }
 }
 
+// ============================================
+// Global Rate Limiter - 60 second minimum between requests
+// ============================================
+const RATE_LIMIT_MS = 60 * 1000 // 60 seconds
+let lastRequestTime = 0
+let requestQueue = Promise.resolve()
+
+/**
+ * Enforces a global rate limit on Gemini API requests.
+ * Returns a promise that resolves when it's safe to make the next request.
+ */
+async function waitForRateLimit() {
+  const now = Date.now()
+  const timeSinceLastRequest = now - lastRequestTime
+  const waitTime = Math.max(0, RATE_LIMIT_MS - timeSinceLastRequest)
+
+  if (waitTime > 0) {
+    console.log(`[Rate Limit] Waiting ${Math.ceil(waitTime / 1000)}s before next Gemini request...`)
+    await new Promise(resolve => setTimeout(resolve, waitTime))
+  }
+
+  lastRequestTime = Date.now()
+}
+
+/**
+ * Queue requests to ensure they are processed sequentially with rate limiting
+ */
+function queueRequest(requestFn) {
+  requestQueue = requestQueue.then(async () => {
+    await waitForRateLimit()
+    return requestFn()
+  }).catch(err => {
+    // Don't let one failed request block the queue
+    console.error('[Rate Limit] Request failed:', err.message)
+    throw err
+  })
+  return requestQueue
+}
+
+/**
+ * Get the current rate limit status
+ * @returns {object} { isLimited: boolean, remainingSeconds: number }
+ */
+export function getRateLimitStatus() {
+  const now = Date.now()
+  const timeSinceLastRequest = now - lastRequestTime
+  const remainingMs = Math.max(0, RATE_LIMIT_MS - timeSinceLastRequest)
+
+  return {
+    isLimited: remainingMs > 0,
+    remainingSeconds: Math.ceil(remainingMs / 1000),
+    rateLimitSeconds: RATE_LIMIT_MS / 1000
+  }
+}
+
 // Retry helper for transient failures
 async function fetchWithRetry(url, options, maxRetries = 2) {
   for (let i = 0; i <= maxRetries; i++) {
@@ -147,30 +202,33 @@ async function fetchWithRetry(url, options, maxRetries = 2) {
 }
 
 export async function generateAIResponse(prompt, framework, language) {
-  const response = await fetchWithRetry('/.netlify/functions/ai-generate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      prompt,
-      systemPrompt: buildSystemPrompt(framework, language)
+  // Use rate-limited queue for all AI requests
+  return queueRequest(async () => {
+    const response = await fetchWithRetry('/.netlify/functions/ai-generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        prompt,
+        systemPrompt: buildSystemPrompt(framework, language)
+      })
     })
-  })
 
-  if (!response.ok) {
-    let errorMessage = 'AI request failed'
-    try {
-      const error = await response.json()
-      errorMessage = error.message || error.details || 'AI service error'
-    } catch {
-      errorMessage = `AI service error (${response.status})`
+    if (!response.ok) {
+      let errorMessage = 'AI request failed'
+      try {
+        const error = await response.json()
+        errorMessage = error.message || error.details || 'AI service error'
+      } catch {
+        errorMessage = `AI service error (${response.status})`
+      }
+      throw new Error(errorMessage)
     }
-    throw new Error(errorMessage)
-  }
 
-  const data = await response.json()
-  return data.response
+    const data = await response.json()
+    return data.response
+  })
 }
 
 export async function explainSection(section, framework, language) {

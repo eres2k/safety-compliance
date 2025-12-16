@@ -52,6 +52,42 @@ export function AppProvider({ children }) {
     return []
   })
 
+  // Audit Trail state - tracks law reviews
+  const [auditTrail, setAuditTrail] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('whs_audit_trail')
+      return saved ? JSON.parse(saved) : []
+    }
+    return []
+  })
+
+  // Saved Queries state
+  const [savedQueries, setSavedQueries] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('whs_saved_queries')
+      return saved ? JSON.parse(saved) : []
+    }
+    return []
+  })
+
+  // Offline cached laws
+  const [offlineCache, setOfflineCache] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('whs_offline_cache')
+      return saved ? JSON.parse(saved) : { laws: [], lastUpdated: null }
+    }
+    return { laws: [], lastUpdated: null }
+  })
+
+  // Compliance status tracking
+  const [complianceStatus, setComplianceStatus] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('whs_compliance_status')
+      return saved ? JSON.parse(saved) : {}
+    }
+    return {}
+  })
+
   // Persist framework selection
   useEffect(() => {
     localStorage.setItem('whs_framework', framework)
@@ -83,6 +119,26 @@ export function AppProvider({ children }) {
   useEffect(() => {
     localStorage.setItem('whs_recent_searches', JSON.stringify(recentSearches))
   }, [recentSearches])
+
+  // Persist audit trail
+  useEffect(() => {
+    localStorage.setItem('whs_audit_trail', JSON.stringify(auditTrail))
+  }, [auditTrail])
+
+  // Persist saved queries
+  useEffect(() => {
+    localStorage.setItem('whs_saved_queries', JSON.stringify(savedQueries))
+  }, [savedQueries])
+
+  // Persist offline cache
+  useEffect(() => {
+    localStorage.setItem('whs_offline_cache', JSON.stringify(offlineCache))
+  }, [offlineCache])
+
+  // Persist compliance status
+  useEffect(() => {
+    localStorage.setItem('whs_compliance_status', JSON.stringify(complianceStatus))
+  }, [complianceStatus])
 
   // Get current translations
   const t = useMemo(() => translations[language] || translations.en, [language])
@@ -120,6 +176,93 @@ export function AppProvider({ children }) {
   const clearRecentSearches = useCallback(() => {
     setRecentSearches([])
   }, [])
+
+  // Audit Trail functions
+  const addAuditEntry = useCallback((entry) => {
+    const newEntry = {
+      id: Date.now(),
+      timestamp: new Date().toISOString(),
+      framework,
+      ...entry
+    }
+    setAuditTrail(prev => [newEntry, ...prev].slice(0, 100)) // Keep last 100 entries
+  }, [framework])
+
+  const clearAuditTrail = useCallback(() => {
+    setAuditTrail([])
+  }, [])
+
+  // Saved Queries functions
+  const saveQuery = useCallback((query) => {
+    const newQuery = {
+      id: Date.now(),
+      savedAt: new Date().toISOString(),
+      framework,
+      ...query
+    }
+    setSavedQueries(prev => [newQuery, ...prev].slice(0, 20)) // Keep 20 saved queries
+  }, [framework])
+
+  const removeQuery = useCallback((queryId) => {
+    setSavedQueries(prev => prev.filter(q => q.id !== queryId))
+  }, [])
+
+  const clearSavedQueries = useCallback(() => {
+    setSavedQueries([])
+  }, [])
+
+  // Offline cache functions
+  const cacheLaw = useCallback((law) => {
+    setOfflineCache(prev => {
+      const existing = prev.laws.filter(l => l.id !== law.id)
+      return {
+        laws: [...existing, { ...law, cachedAt: new Date().toISOString() }].slice(0, 50),
+        lastUpdated: new Date().toISOString()
+      }
+    })
+  }, [])
+
+  const removeCachedLaw = useCallback((lawId) => {
+    setOfflineCache(prev => ({
+      ...prev,
+      laws: prev.laws.filter(l => l.id !== lawId)
+    }))
+  }, [])
+
+  const isCached = useCallback((lawId) => {
+    return offlineCache.laws.some(l => l.id === lawId)
+  }, [offlineCache])
+
+  const clearOfflineCache = useCallback(() => {
+    setOfflineCache({ laws: [], lastUpdated: null })
+  }, [])
+
+  // Compliance status functions
+  const updateComplianceStatus = useCallback((lawId, status) => {
+    setComplianceStatus(prev => ({
+      ...prev,
+      [lawId]: {
+        status, // 'compliant', 'partial', 'non-compliant', 'not-reviewed'
+        updatedAt: new Date().toISOString(),
+        framework
+      }
+    }))
+  }, [framework])
+
+  const getComplianceStatus = useCallback((lawId) => {
+    return complianceStatus[lawId] || { status: 'not-reviewed', updatedAt: null }
+  }, [complianceStatus])
+
+  const getComplianceStats = useCallback(() => {
+    const entries = Object.values(complianceStatus).filter(c => c.framework === framework)
+    return {
+      total: entries.length,
+      compliant: entries.filter(c => c.status === 'compliant').length,
+      partial: entries.filter(c => c.status === 'partial').length,
+      nonCompliant: entries.filter(c => c.status === 'non-compliant').length,
+      notReviewed: entries.filter(c => c.status === 'not-reviewed').length
+    }
+  }, [complianceStatus, framework])
 
   // Framework colors mapping
   const frameworkColors = useMemo(() => ({
@@ -182,7 +325,27 @@ export function AppProvider({ children }) {
     // Recent searches
     recentSearches,
     addRecentSearch,
-    clearRecentSearches
+    clearRecentSearches,
+    // Audit Trail
+    auditTrail,
+    addAuditEntry,
+    clearAuditTrail,
+    // Saved Queries
+    savedQueries,
+    saveQuery,
+    removeQuery,
+    clearSavedQueries,
+    // Offline Cache
+    offlineCache,
+    cacheLaw,
+    removeCachedLaw,
+    isCached,
+    clearOfflineCache,
+    // Compliance Status
+    complianceStatus,
+    updateComplianceStatus,
+    getComplianceStatus,
+    getComplianceStats
   }
 
   return (
