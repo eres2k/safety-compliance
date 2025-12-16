@@ -109,6 +109,7 @@ export const SearchInput = forwardRef(({
   onSearch,
   onClear,
   value,
+  onChange,
   placeholder = 'Search...',
   className = '',
   ...props
@@ -140,7 +141,7 @@ export const SearchInput = forwardRef(({
         value={currentValue}
         onChange={(e) => {
           setInternalValue(e.target.value)
-          props.onChange?.(e)
+          onChange?.(e)
         }}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}

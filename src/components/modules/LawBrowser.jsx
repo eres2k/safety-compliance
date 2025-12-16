@@ -994,8 +994,9 @@ export function LawBrowser({ onBack }) {
   }
 
   // Feature 3: Handle cross-border comparison
-  const handleCrossBorderCompare = async (targetFramework) => {
-    if (!selectedLaw || crossBorderLoading) return
+  const handleCrossBorderCompare = async (targetFramework, law = null) => {
+    const lawToCompare = law || selectedLaw
+    if (!lawToCompare || crossBorderLoading) return
 
     setCrossBorderLoading(true)
     setCrossBorderTarget(targetFramework)
@@ -1003,8 +1004,8 @@ export function LawBrowser({ onBack }) {
     setCrossBorderError(null)
 
     try {
-      const lawText = selectedLaw.content?.full_text || selectedLaw.content?.text || selectedLaw.description || ''
-      const lawContext = `${selectedLaw.abbreviation || selectedLaw.title}\n\n${lawText.substring(0, 3000)}`
+      const lawText = lawToCompare.content?.full_text || lawToCompare.content?.text || lawToCompare.description || ''
+      const lawContext = `${lawToCompare.abbreviation || lawToCompare.title}\n\n${lawText.substring(0, 3000)}`
       const response = await findEquivalentLaw(lawContext, targetFramework)
       setCrossBorderData(response)
     } catch (error) {
@@ -1025,16 +1026,17 @@ export function LawBrowser({ onBack }) {
   }
 
   // Feature 3b: Handle multi-country comparison (all 3 countries)
-  const handleMultiCountryCompare = async () => {
-    if (!selectedLaw || multiCountryLoading) return
+  const handleMultiCountryCompare = async (law = null) => {
+    const lawToCompare = law || selectedLaw
+    if (!lawToCompare || multiCountryLoading) return
 
     setMultiCountryLoading(true)
     setMultiCountryData(null)
     setMultiCountryError(null)
 
     try {
-      const lawText = selectedLaw.content?.full_text || selectedLaw.content?.text || selectedLaw.description || ''
-      const lawContext = `${selectedLaw.abbreviation || selectedLaw.title}\n\n${lawText.substring(0, 3000)}`
+      const lawText = lawToCompare.content?.full_text || lawToCompare.content?.text || lawToCompare.description || ''
+      const lawContext = `${lawToCompare.abbreviation || lawToCompare.title}\n\n${lawText.substring(0, 3000)}`
       const response = await compareMultipleCountries(lawContext)
       setMultiCountryData(response)
     } catch (error) {
@@ -1174,29 +1176,63 @@ export function LawBrowser({ onBack }) {
             </div>
             <div className="overflow-y-auto h-[calc(100%-72px)]">
               {filteredLaws.map((law) => (
-                <button
+                <div
                   key={law.id}
-                  onClick={() => selectLaw(law)}
-                  className={`w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
+                  className={`w-full border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
                     selectedLaw?.id === law.id
                       ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 border-l-4 border-l-whs-orange-500'
                       : 'hover:bg-gray-50 dark:hover:bg-whs-dark-800'
                   }`}
                 >
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className={`px-2 py-0.5 rounded text-xs font-medium ${typeColors[law.type] || typeColors.law}`}>
-                      {law.abbreviation || law.abbr || law.type}
-                    </span>
+                  <button
+                    onClick={() => selectLaw(law)}
+                    className="w-full text-left p-3 pb-1"
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${typeColors[law.type] || typeColors.law}`}>
+                        {law.abbreviation || law.abbr || law.type}
+                      </span>
+                    </div>
+                    <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
+                      {law.title}
+                    </h4>
+                    {law.title_en && (
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
+                        {law.title_en}
+                      </p>
+                    )}
+                  </button>
+                  {/* Compare buttons for each law */}
+                  <div className="flex items-center gap-1 px-3 pb-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        selectLaw(law)
+                        setShowMultiCountry(true)
+                        setShowCrossBorder(false)
+                        handleMultiCountryCompare(law)
+                      }}
+                      className="flex items-center gap-1 px-2 py-1 text-xs bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors"
+                      title="Compare across all 3 countries"
+                    >
+                      <span>🌍</span>
+                      <span>Compare All</span>
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        selectLaw(law)
+                        setShowCrossBorder(true)
+                        setShowMultiCountry(false)
+                      }}
+                      className="flex items-center gap-1 px-2 py-1 text-xs bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
+                      title="Compare with one other country"
+                    >
+                      <span>↔️</span>
+                      <span>Compare</span>
+                    </button>
                   </div>
-                  <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
-                    {law.title}
-                  </h4>
-                  {law.title_en && (
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
-                      {law.title_en}
-                    </p>
-                  )}
-                </button>
+                </div>
               ))}
             </div>
             {/* Pagination Controls */}
@@ -1334,32 +1370,6 @@ export function LawBrowser({ onBack }) {
                       )}
                     </div>
                     <div className="flex gap-2">
-                      {/* Multi-Country Compare Button (3 countries) */}
-                      <button
-                        onClick={() => {
-                          setShowMultiCountry(!showMultiCountry)
-                          setShowCrossBorder(false) // Close 2-country comparison
-                        }}
-                        className={`p-2 rounded-lg transition-colors ${
-                          showMultiCountry ? 'bg-white/30' : 'bg-white/10 hover:bg-white/20'
-                        }`}
-                        title="Compare across all 3 countries"
-                      >
-                        <span className="text-lg">🌍</span>
-                      </button>
-                      {/* Cross-Border Compare Button (2 countries) */}
-                      <button
-                        onClick={() => {
-                          setShowCrossBorder(!showCrossBorder)
-                          setShowMultiCountry(false) // Close 3-country comparison
-                        }}
-                        className={`p-2 rounded-lg transition-colors ${
-                          showCrossBorder ? 'bg-white/30' : 'bg-white/10 hover:bg-white/20'
-                        }`}
-                        title="Compare with one other country"
-                      >
-                        <span className="text-lg">↔️</span>
-                      </button>
                       <button
                         onClick={() => toggleBookmark(selectedLaw.id)}
                         className={`p-2 rounded-lg transition-colors ${
