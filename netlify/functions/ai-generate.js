@@ -1,3 +1,30 @@
+// Retry helper with exponential backoff
+async function fetchWithRetry(url, options, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const response = await fetch(url, options)
+
+      // If rate limited (429) or server error (5xx), retry
+      if (response.status === 429 || response.status >= 500) {
+        if (i < maxRetries - 1) {
+          const delay = Math.pow(2, i) * 1000 // 1s, 2s, 4s
+          await new Promise(r => setTimeout(r, delay))
+          continue
+        }
+      }
+
+      return response
+    } catch (error) {
+      if (i < maxRetries - 1) {
+        const delay = Math.pow(2, i) * 1000
+        await new Promise(r => setTimeout(r, delay))
+        continue
+      }
+      throw error
+    }
+  }
+}
+
 export async function handler(event) {
   // Only allow POST
   if (event.httpMethod !== 'POST') {
@@ -29,8 +56,9 @@ export async function handler(event) {
       }
     }
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+    // Use gemini-pro for widest availability
+    const response = await fetchWithRetry(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: {
@@ -41,7 +69,7 @@ export async function handler(event) {
           systemInstruction: systemPrompt ? { parts: [{ text: systemPrompt }] } : undefined,
           generationConfig: {
             temperature: 0.3,
-            maxOutputTokens: 8192
+            maxOutputTokens: 2048
           }
         })
       }
