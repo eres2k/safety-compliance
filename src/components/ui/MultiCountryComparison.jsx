@@ -111,6 +111,7 @@ export function MultiCountryComparison({
   sourceFramework,
   comparisonData,
   isLoading,
+  error,
   onClose,
   onCompare
 }) {
@@ -196,8 +197,33 @@ export function MultiCountryComparison({
         </div>
       )}
 
+      {/* Error State */}
+      {error && !isLoading && (
+        <div className="p-6">
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <span className="text-xl">⚠️</span>
+              <div>
+                <h5 className="font-semibold text-red-800 dark:text-red-300 mb-1">
+                  AI Service Unavailable
+                </h5>
+                <p className="text-sm text-red-700 dark:text-red-400 mb-3">
+                  The AI comparison service is temporarily unavailable. This feature requires an AI service to analyze and compare laws across all 3 jurisdictions.
+                </p>
+                <button
+                  onClick={() => onCompare?.()}
+                  className="px-3 py-1.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm font-medium rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors"
+                >
+                  Try Again
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Comparison Results */}
-      {parsedData && !isLoading && (
+      {parsedData && !isLoading && !error && (
         <div>
           {/* Topic Header */}
           {parsedData.topic && (
