@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, SearchInput, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison } from '../ui'
+import { Button, Card, CardContent, SearchInput, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison } from '../ui'
 import {
   getAllLaws,
   searchLaws,
@@ -712,7 +712,7 @@ function WHSSummaryPanel({ summary }) {
 
 export function LawBrowser({ onBack }) {
   const { t, framework, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
-  const { generateFlowchart, simplifyForManager, simplifyForAssociate, findEquivalentLaw, isLoading: aiLoading } = useAI()
+  const { generateFlowchart, simplifyForManager, simplifyForAssociate, findEquivalentLaw, compareMultipleCountries, isLoading: aiLoading } = useAI()
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedLaw, setSelectedLaw] = useState(null)
@@ -739,6 +739,11 @@ export function LawBrowser({ onBack }) {
   const [crossBorderData, setCrossBorderData] = useState(null)
   const [crossBorderTarget, setCrossBorderTarget] = useState(null)
   const [crossBorderLoading, setCrossBorderLoading] = useState(false)
+
+  // Feature 3b: Multi-Country Comparison state (compare all 3 countries)
+  const [showMultiCountry, setShowMultiCountry] = useState(false)
+  const [multiCountryData, setMultiCountryData] = useState(null)
+  const [multiCountryLoading, setMultiCountryLoading] = useState(false)
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
@@ -1005,6 +1010,32 @@ export function LawBrowser({ onBack }) {
     setCrossBorderTarget(null)
   }
 
+  // Feature 3b: Handle multi-country comparison (all 3 countries)
+  const handleMultiCountryCompare = async () => {
+    if (!selectedLaw || multiCountryLoading) return
+
+    setMultiCountryLoading(true)
+    setMultiCountryData(null)
+
+    try {
+      const lawText = selectedLaw.content?.full_text || selectedLaw.content?.text || selectedLaw.description || ''
+      const lawContext = `${selectedLaw.abbreviation || selectedLaw.title}\n\n${lawText.substring(0, 3000)}`
+      const response = await compareMultipleCountries(lawContext)
+      setMultiCountryData(response)
+    } catch (error) {
+      console.error('Multi-country comparison error:', error)
+      setMultiCountryData(null)
+    } finally {
+      setMultiCountryLoading(false)
+    }
+  }
+
+  // Close multi-country comparison
+  const closeMultiCountry = () => {
+    setShowMultiCountry(false)
+    setMultiCountryData(null)
+  }
+
   // Select a law
   const selectLaw = (law) => {
     setSelectedLaw(law)
@@ -1020,6 +1051,9 @@ export function LawBrowser({ onBack }) {
     setShowCrossBorder(false)
     setCrossBorderData(null)
     setCrossBorderTarget(null)
+    // Reset multi-country state
+    setShowMultiCountry(false)
+    setMultiCountryData(null)
     // Reset section refs to avoid stale references
     sectionRefs.current = {}
     // Scroll content to top
@@ -1280,15 +1314,31 @@ export function LawBrowser({ onBack }) {
                       )}
                     </div>
                     <div className="flex gap-2">
-                      {/* Cross-Border Compare Button */}
+                      {/* Multi-Country Compare Button (3 countries) */}
                       <button
-                        onClick={() => setShowCrossBorder(!showCrossBorder)}
+                        onClick={() => {
+                          setShowMultiCountry(!showMultiCountry)
+                          setShowCrossBorder(false) // Close 2-country comparison
+                        }}
+                        className={`p-2 rounded-lg transition-colors ${
+                          showMultiCountry ? 'bg-white/30' : 'bg-white/10 hover:bg-white/20'
+                        }`}
+                        title="Compare across all 3 countries"
+                      >
+                        <span className="text-lg">🌍</span>
+                      </button>
+                      {/* Cross-Border Compare Button (2 countries) */}
+                      <button
+                        onClick={() => {
+                          setShowCrossBorder(!showCrossBorder)
+                          setShowMultiCountry(false) // Close 3-country comparison
+                        }}
                         className={`p-2 rounded-lg transition-colors ${
                           showCrossBorder ? 'bg-white/30' : 'bg-white/10 hover:bg-white/20'
                         }`}
-                        title="Compare across jurisdictions"
+                        title="Compare with one other country"
                       >
-                        <span className="text-lg">🌍</span>
+                        <span className="text-lg">↔️</span>
                       </button>
                       <button
                         onClick={() => toggleBookmark(selectedLaw.id)}
@@ -1325,7 +1375,20 @@ export function LawBrowser({ onBack }) {
                         <WHSSummaryPanel summary={selectedLaw.whs_summary} />
                       )}
 
-                      {/* Feature 3: Cross-Border Comparison Panel */}
+                      {/* Feature 3b: Multi-Country Comparison Panel (all 3 countries) */}
+                      {showMultiCountry && (
+                        <div className="mb-6">
+                          <MultiCountryComparison
+                            sourceFramework={framework}
+                            comparisonData={multiCountryData}
+                            isLoading={multiCountryLoading}
+                            onClose={closeMultiCountry}
+                            onCompare={handleMultiCountryCompare}
+                          />
+                        </div>
+                      )}
+
+                      {/* Feature 3: Cross-Border Comparison Panel (2 countries) */}
                       {showCrossBorder && (
                         <div className="mb-6">
                           <CrossBorderComparison

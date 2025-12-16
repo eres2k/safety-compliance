@@ -6,6 +6,7 @@ export { LoadingSpinner, LoadingOverlay, Skeleton, CardSkeleton, ProgressSpinner
 export { LawVisualizer } from './LawVisualizer'
 export { ComplexitySlider, SimplifiedContent } from './ComplexitySlider'
 export { CrossBorderComparison } from './CrossBorderComparison'
+export { MultiCountryComparison } from './MultiCountryComparison'
 
 // Re-export default components
 export { default as ButtonDefault } from './Button'
@@ -16,3 +17,4 @@ export { default as LoadingSpinnerDefault } from './LoadingSpinner'
 export { default as LawVisualizerDefault } from './LawVisualizer'
 export { default as ComplexitySliderDefault } from './ComplexitySlider'
 export { default as CrossBorderComparisonDefault } from './CrossBorderComparison'
+export { default as MultiCountryComparisonDefault } from './MultiCountryComparison'

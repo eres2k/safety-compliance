@@ -151,6 +151,21 @@ export function useAI() {
     }
   }, [framework, language])
 
+  // Feature 3b: Compare law across all 3 countries
+  const compareMultipleCountries = useCallback(async (lawText) => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const response = await aiService.compareMultipleCountries(lawText, framework, language)
+      return response
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [framework, language])
+
   return {
     isLoading,
     error,
@@ -163,7 +178,8 @@ export function useAI() {
     simplifyForManager,
     simplifyForAssociate,
     findEquivalentLaw,
-    generateSemanticTags
+    generateSemanticTags,
+    compareMultipleCountries
   }
 }
 
