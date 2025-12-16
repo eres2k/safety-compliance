@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Input, Select, Card, CardContent } from '../ui'
+import { Button, Input, Select, Card, CardContent, FormattedAIResponse } from '../ui'
 import { LoadingSpinner, DotsLoading } from '../ui/LoadingSpinner'
 import { searchLaws, getLawsByTopic } from '../../services/euLawsDatabase'
 
@@ -289,10 +289,8 @@ export function RegulationLookup({ onBack }) {
                 </div>
               </div>
               <CardContent className="p-6">
-                <div className="prose prose-sm dark:prose-invert max-w-none">
-                  <pre className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-whs-dark-800/50 p-4 rounded-xl max-h-[500px] overflow-y-auto font-sans border border-gray-100 dark:border-whs-dark-700">
-                    {result}
-                  </pre>
+                <div className="max-h-[500px] overflow-y-auto bg-gray-50 dark:bg-whs-dark-800/50 p-4 rounded-xl border border-gray-100 dark:border-whs-dark-700">
+                  <FormattedAIResponse content={result} />
                 </div>
               </CardContent>
             </Card>
