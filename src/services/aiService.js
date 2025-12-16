@@ -73,7 +73,6 @@ function clearOldCache() {
 function buildSystemPrompt(framework, language) {
   return `You are a WHS legal expert for ${FRAMEWORK_CONTEXT[framework]}.
 Cite specific paragraphs. Be practical and concise.
-IMPORTANT: Always respond with valid JSON format only. No markdown, no code blocks, just raw JSON.
 ${LANGUAGE_CONTEXT[language]}`
 }
 

@@ -7,6 +7,7 @@ export { LawVisualizer } from './LawVisualizer'
 export { ComplexitySlider, SimplifiedContent } from './ComplexitySlider'
 export { CrossBorderComparison } from './CrossBorderComparison'
 export { MultiCountryComparison } from './MultiCountryComparison'
+export { FormattedAIResponse } from './FormattedAIResponse'
 
 // Re-export default components
 export { default as ButtonDefault } from './Button'
