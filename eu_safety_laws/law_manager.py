@@ -40,7 +40,9 @@ Usage:
     python law_manager.py all --country DE --laws 2       # Full pipeline with 2 laws
 
 Environment:
-    GEMINI_API_KEY: Required for AI-powered cleaning (optional with --no-ai)
+    ANTHROPIC_API_KEY: Claude API key for AI-powered cleaning (preferred)
+    GEMINI_API_KEY: Gemini API key for AI-powered cleaning (fallback)
+    AI_PROVIDER: Force provider selection (auto/claude/gemini, default: auto)
 
 Sources:
     AT: RIS (Rechtsinformationssystem) - ris.bka.gv.at
@@ -87,6 +89,12 @@ try:
 except ImportError:
     HAS_TQDM = False
 
+try:
+    import anthropic
+    HAS_ANTHROPIC = True
+except ImportError:
+    HAS_ANTHROPIC = False
+
 
 # =============================================================================
 # Configuration
@@ -101,6 +109,8 @@ class Config:
     rate_limit_delay: float = 0.5
     max_retries: int = 3
     gemini_model: str = "gemini-2.0-flash"
+    claude_model: str = "claude-haiku-4-20250414"
+    ai_provider: str = "auto"  # "auto", "claude", or "gemini"
 
     # Source URLs - laws are ordered by relevance (first = most important)
     sources: Dict[str, Dict[str, str]] = field(default_factory=lambda: {
@@ -283,23 +293,49 @@ def generate_content_hash(doc: Dict[str, Any]) -> str:
     return hashlib.sha256(content.encode()).hexdigest()[:32]
 
 
-def get_api_key() -> Optional[str]:
-    """Get Gemini API key from environment or .env file."""
-    api_key = os.environ.get('GEMINI_API_KEY')
+def get_api_key(provider: str = None) -> Tuple[Optional[str], str]:
+    """Get API key from environment or .env file.
 
-    if not api_key:
-        env_path = CONFIG.base_path.parent / '.env'
-        if env_path.exists():
-            with open(env_path) as f:
-                for line in f:
-                    if line.startswith('GEMINI_API_KEY='):
-                        api_key = line.split('=', 1)[1].strip()
-                        break
+    Returns (api_key, provider) tuple where provider is 'claude' or 'gemini'.
+    Priority: ANTHROPIC_API_KEY > GEMINI_API_KEY (unless provider is specified)
+    """
+    env_path = CONFIG.base_path.parent / '.env'
+    env_vars = {}
 
-    if not api_key:
-        api_key = os.environ.get('VITE_GEMINI_API_KEY')
+    # Load .env file if exists
+    if env_path.exists():
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if '=' in line and not line.startswith('#'):
+                    key, value = line.split('=', 1)
+                    env_vars[key.strip()] = value.strip()
 
-    return api_key
+    # Get keys from environment or .env
+    claude_key = os.environ.get('ANTHROPIC_API_KEY') or env_vars.get('ANTHROPIC_API_KEY')
+    gemini_key = os.environ.get('GEMINI_API_KEY') or env_vars.get('GEMINI_API_KEY') or os.environ.get('VITE_GEMINI_API_KEY')
+
+    # Override provider from environment if set
+    provider = provider or os.environ.get('AI_PROVIDER') or CONFIG.ai_provider
+
+    if provider == 'claude' and claude_key:
+        return claude_key, 'claude'
+    elif provider == 'gemini' and gemini_key:
+        return gemini_key, 'gemini'
+    elif provider == 'auto':
+        # Prefer Claude if available
+        if claude_key:
+            return claude_key, 'claude'
+        elif gemini_key:
+            return gemini_key, 'gemini'
+
+    # Fallback to any available key
+    if claude_key:
+        return claude_key, 'claude'
+    if gemini_key:
+        return gemini_key, 'gemini'
+
+    return None, 'none'
 
 
 def get_db_path(country: str) -> Path:
@@ -2022,50 +2058,95 @@ def clean_text_with_regex(text: str, country: str) -> str:
     return cleaned.strip()
 
 
-def clean_text_with_ai(api_key: str, text: str, title: str, country: str) -> str:
-    """Clean text using Gemini AI."""
+def clean_text_with_ai(api_key: str, text: str, title: str, country: str, provider: str = 'gemini') -> str:
+    """Clean text using AI (Claude or Gemini)."""
     if not text or len(text) < 100:
         return text
 
     system_prompt = SYSTEM_PROMPTS.get(country, SYSTEM_PROMPTS['DE'])
     prompt = f'Clean this law text for "{title}":\n\n{text[:30000]}'
 
-    if HAS_GENAI:
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel(
-            model_name=CONFIG.gemini_model,
-            system_instruction=system_prompt
-        )
+    # Use Claude API
+    if provider == 'claude':
+        if HAS_ANTHROPIC:
+            client = anthropic.Anthropic(api_key=api_key)
+            for attempt in range(CONFIG.max_retries):
+                try:
+                    response = client.messages.create(
+                        model=CONFIG.claude_model,
+                        max_tokens=8192,
+                        system=system_prompt,
+                        messages=[{"role": "user", "content": prompt}]
+                    )
+                    return response.content[0].text
+                except Exception as e:
+                    log_warning(f"Claude attempt {attempt + 1} failed: {e}")
+                    if attempt < CONFIG.max_retries - 1:
+                        time.sleep(2 ** attempt)
 
-        for attempt in range(CONFIG.max_retries):
-            try:
-                response = model.generate_content(
-                    prompt,
-                    generation_config=genai.GenerationConfig(temperature=0.1, max_output_tokens=8192)
-                )
-                return response.text
-            except Exception as e:
-                log_warning(f"AI attempt {attempt + 1} failed: {e}")
-                if attempt < CONFIG.max_retries - 1:
-                    time.sleep(2 ** attempt)
+        elif HAS_REQUESTS:
+            # Fallback to REST API for Claude
+            url = "https://api.anthropic.com/v1/messages"
+            headers = {
+                "Content-Type": "application/json",
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01"
+            }
+            payload = {
+                "model": CONFIG.claude_model,
+                "max_tokens": 8192,
+                "system": system_prompt,
+                "messages": [{"role": "user", "content": prompt}]
+            }
 
-    elif HAS_REQUESTS:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
-        payload = {
-            "contents": [{"parts": [{"text": prompt}]}],
-            "systemInstruction": {"parts": [{"text": system_prompt}]},
-            "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192}
-        }
+            for attempt in range(CONFIG.max_retries):
+                try:
+                    response = requests.post(url, headers=headers, json=payload, timeout=120)
+                    response.raise_for_status()
+                    return response.json()['content'][0]['text']
+                except Exception as e:
+                    log_warning(f"Claude attempt {attempt + 1} failed: {e}")
+                    if attempt < CONFIG.max_retries - 1:
+                        time.sleep(2 ** attempt)
 
-        for attempt in range(CONFIG.max_retries):
-            try:
-                response = requests.post(url, json=payload, timeout=120)
-                response.raise_for_status()
-                return response.json()['candidates'][0]['content']['parts'][0]['text']
-            except Exception as e:
-                log_warning(f"AI attempt {attempt + 1} failed: {e}")
-                if attempt < CONFIG.max_retries - 1:
-                    time.sleep(2 ** attempt)
+    # Use Gemini API
+    else:
+        if HAS_GENAI:
+            genai.configure(api_key=api_key)
+            model = genai.GenerativeModel(
+                model_name=CONFIG.gemini_model,
+                system_instruction=system_prompt
+            )
+
+            for attempt in range(CONFIG.max_retries):
+                try:
+                    response = model.generate_content(
+                        prompt,
+                        generation_config=genai.GenerationConfig(temperature=0.1, max_output_tokens=8192)
+                    )
+                    return response.text
+                except Exception as e:
+                    log_warning(f"Gemini attempt {attempt + 1} failed: {e}")
+                    if attempt < CONFIG.max_retries - 1:
+                        time.sleep(2 ** attempt)
+
+        elif HAS_REQUESTS:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
+            payload = {
+                "contents": [{"parts": [{"text": prompt}]}],
+                "systemInstruction": {"parts": [{"text": system_prompt}]},
+                "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192}
+            }
+
+            for attempt in range(CONFIG.max_retries):
+                try:
+                    response = requests.post(url, json=payload, timeout=120)
+                    response.raise_for_status()
+                    return response.json()['candidates'][0]['content']['parts'][0]['text']
+                except Exception as e:
+                    log_warning(f"Gemini attempt {attempt + 1} failed: {e}")
+                    if attempt < CONFIG.max_retries - 1:
+                        time.sleep(2 ** attempt)
 
     return text
 
@@ -2074,10 +2155,12 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
     """Clean a country's database."""
     log_section(f"Cleaning {country} database")
 
-    api_key = get_api_key() if use_ai else None
+    api_key, provider = get_api_key() if use_ai else (None, 'none')
     if use_ai and not api_key:
         log_warning("No API key found, falling back to regex cleaning")
         use_ai = False
+    elif use_ai:
+        log_info(f"Using {provider.upper()} for AI cleaning")
 
     db = load_database(country)
     documents = db.get('documents', [])
@@ -2095,7 +2178,7 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
         # Clean full_text if present
         if doc.get('full_text'):
             if use_ai:
-                doc['full_text'] = clean_text_with_ai(api_key, doc['full_text'], title, country)
+                doc['full_text'] = clean_text_with_ai(api_key, doc['full_text'], title, country, provider)
             else:
                 doc['full_text'] = clean_text_with_regex(doc['full_text'], country)
 
@@ -2106,7 +2189,7 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
                     if section.get('text'):
                         if use_ai and len(section['text']) > 500:
                             section['text'] = clean_text_with_ai(api_key, section['text'],
-                                                                  section.get('title', ''), country)
+                                                                  section.get('title', ''), country, provider)
                             time.sleep(0.3)  # Rate limiting
                         else:
                             section['text'] = clean_text_with_regex(section['text'], country)
@@ -2115,6 +2198,7 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
 
     # Update metadata
     db['metadata']['cleaned_at'] = datetime.now().isoformat()
+    db['metadata']['ai_provider'] = provider if use_ai else 'regex'
     save_database(country, db)
 
     return True
