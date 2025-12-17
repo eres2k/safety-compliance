@@ -15,11 +15,13 @@ Commands:
 
 Usage:
     python law_manager.py scrape --country AT
+    python law_manager.py scrape --country AT --laws 3    # Fetch 3 laws for AT
+    python law_manager.py scrape --all --laws 5           # Fetch 5 laws per country
     python law_manager.py clean --all --fast
     python law_manager.py restructure --all
     python law_manager.py build
     python law_manager.py status
-    python law_manager.py all --country DE
+    python law_manager.py all --country DE --laws 2       # Full pipeline with 2 laws
 
 Environment:
     GEMINI_API_KEY: Required for AI-powered cleaning (optional with --no-ai)
@@ -84,27 +86,45 @@ class Config:
     max_retries: int = 3
     gemini_model: str = "gemini-2.0-flash"
 
-    # Source URLs
+    # Source URLs - laws are ordered by relevance (first = most important)
     sources: Dict[str, Dict[str, str]] = field(default_factory=lambda: {
         "AT": {
             "base_url": "https://www.ris.bka.gv.at",
             "authority": "RIS",
             "main_laws": {
-                "ASchG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",
+                "ASchG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",      # Worker Protection Act
+                "AZG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008238",        # Working Time Act
+                "ARG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008374",        # Rest Period Act
+                "MSchG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008464",      # Maternity Protection Act
+                "KJBG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008632",       # Child and Youth Employment Act
+                "AStV": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001927",       # Workplace Regulation
+                "AM-VO": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001933",      # Work Equipment Regulation
+                "DOK-VO": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001602",     # Documentation Regulation
             }
         },
         "DE": {
             "base_url": "https://www.gesetze-im-internet.de",
             "authority": "gesetze-im-internet.de",
             "main_laws": {
-                "ArbSchG": "/arbschg/",
+                "ArbSchG": "/arbschg/",           # Occupational Safety Act
+                "ASiG": "/asig/",                 # Workplace Safety Act
+                "ArbZG": "/arbzg/",               # Working Time Act
+                "MuSchG": "/muschg/",             # Maternity Protection Act
+                "JArbSchG": "/jarbschg/",         # Youth Labor Protection Act
+                "ArbStättV": "/arbst_ttv_2004/",  # Workplace Ordinance
+                "BetrSichV": "/betrsichv_2015/",  # Industrial Safety Regulation
+                "GefStoffV": "/gefstoffv_2010/",  # Hazardous Substances Ordinance
             }
         },
         "NL": {
             "base_url": "https://wetten.overheid.nl",
             "authority": "wetten.overheid.nl",
             "main_laws": {
-                "Arbowet": "/BWBR0010346/",
+                "Arbowet": "/BWBR0010346/",           # Working Conditions Act
+                "Arbobesluit": "/BWBR0008498/",      # Working Conditions Decree
+                "Arboregeling": "/BWBR0008587/",    # Working Conditions Regulation
+                "Arbeidstijdenwet": "/BWBR0007671/", # Working Time Act
+                "ATB": "/BWBR0007687/",              # Working Time Decree
             }
         }
     })
@@ -403,11 +423,13 @@ class Scraper:
         'Accept-Language': 'en-US,en;q=0.9,de;q=0.8,nl;q=0.7',
     }
 
-    def __init__(self, country: str):
+    def __init__(self, country: str, law_limit: int = None):
         self.country = country
         self.config = CONFIG.sources.get(country, {})
         self.base_url = self.config.get('base_url', '')
         self.authority = self.config.get('authority', '')
+        # Number of laws to fetch (None = all)
+        self.law_limit = law_limit
 
     def scrape(self) -> List[Dict[str, Any]]:
         """Scrape laws for this country. Override in subclass."""
@@ -466,8 +488,8 @@ class ATScraper(Scraper):
         "penalties": {"keywords": ["Strafe", "Verwaltungsübertretung", "Geldstrafe", "Sanktion"], "relevance": "high"},
     }
 
-    def __init__(self):
-        super().__init__('AT')
+    def __init__(self, law_limit: int = None):
+        super().__init__('AT', law_limit)
 
     def scrape(self) -> List[Dict[str, Any]]:
         """Scrape Austrian laws from RIS with full text extraction."""
@@ -476,7 +498,12 @@ class ATScraper(Scraper):
             return []
 
         documents = []
-        for abbrev, path in self.config.get('main_laws', {}).items():
+        main_laws = list(self.config.get('main_laws', {}).items())
+        laws_to_fetch = main_laws[:self.law_limit] if self.law_limit else main_laws
+
+        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available AT laws")
+
+        for abbrev, path in laws_to_fetch:
             log_info(f"Scraping {abbrev} with full text extraction...")
             url = urljoin(self.base_url, path)
             html = self.fetch_url(url)
@@ -869,8 +896,8 @@ class DEScraper(Scraper):
         "penalties": {"keywords": ["Strafe", "Ordnungswidrigkeit", "Bußgeld", "Sanktion"], "relevance": "high"},
     }
 
-    def __init__(self):
-        super().__init__('DE')
+    def __init__(self, law_limit: int = None):
+        super().__init__('DE', law_limit)
 
     def scrape(self) -> List[Dict[str, Any]]:
         """Scrape German laws with full text extraction from individual section pages."""
@@ -879,7 +906,12 @@ class DEScraper(Scraper):
             return []
 
         documents = []
-        for abbrev, path in self.config.get('main_laws', {}).items():
+        main_laws = list(self.config.get('main_laws', {}).items())
+        laws_to_fetch = main_laws[:self.law_limit] if self.law_limit else main_laws
+
+        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available DE laws")
+
+        for abbrev, path in laws_to_fetch:
             log_info(f"Scraping {abbrev} with full text extraction...")
             url = urljoin(self.base_url, path)
             html = self.fetch_url(url)
@@ -1212,8 +1244,8 @@ class NLScraper(Scraper):
         "penalties": {"keywords": ["boete", "straf", "overtreding", "sanctie"], "relevance": "high"},
     }
 
-    def __init__(self):
-        super().__init__('NL')
+    def __init__(self, law_limit: int = None):
+        super().__init__('NL', law_limit)
 
     def scrape(self) -> List[Dict[str, Any]]:
         """Scrape Dutch laws with full text extraction."""
@@ -1222,7 +1254,12 @@ class NLScraper(Scraper):
             return []
 
         documents = []
-        for abbrev, path in self.config.get('main_laws', {}).items():
+        main_laws = list(self.config.get('main_laws', {}).items())
+        laws_to_fetch = main_laws[:self.law_limit] if self.law_limit else main_laws
+
+        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available NL laws")
+
+        for abbrev, path in laws_to_fetch:
             log_info(f"Scraping {abbrev} with full text extraction...")
             url = urljoin(self.base_url, path)
             html = self.fetch_url(url)
@@ -1899,6 +1936,7 @@ def show_status() -> None:
 def cmd_scrape(args) -> int:
     """Run the scrape command."""
     countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
+    law_limit = getattr(args, 'laws', None)
 
     for country in countries:
         log_header(f"Scraping {country} Laws")
@@ -1908,7 +1946,7 @@ def cmd_scrape(args) -> int:
             log_error(f"No scraper for {country}")
             continue
 
-        scraper = scraper_class()
+        scraper = scraper_class(law_limit=law_limit)
         documents = scraper.scrape()
 
         if documents:
@@ -1965,6 +2003,7 @@ def cmd_status(args) -> int:
 def cmd_all(args) -> int:
     """Run the complete pipeline."""
     countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
+    law_limit = getattr(args, 'laws', None)
 
     log_header("Running Complete Pipeline")
 
@@ -1974,7 +2013,8 @@ def cmd_all(args) -> int:
         # Scrape
         if not args.skip_scrape:
             log_info("Step 1: Scraping...")
-            scraper = SCRAPERS.get(country, lambda: None)()
+            scraper_class = SCRAPERS.get(country)
+            scraper = scraper_class(law_limit=law_limit) if scraper_class else None
             if scraper:
                 documents = scraper.scrape()
                 if documents:
@@ -2024,6 +2064,8 @@ def main():
     scrape_parser = subparsers.add_parser('scrape', help='Scrape laws from official sources')
     scrape_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to scrape')
     scrape_parser.add_argument('--all', action='store_true', help='Scrape all countries')
+    scrape_parser.add_argument('--laws', type=int, default=1, metavar='N',
+                               help='Number of laws to fetch per country (default: 1, max varies by country)')
 
     # Clean command
     clean_parser = subparsers.add_parser('clean', help='Clean scraped content')
@@ -2051,6 +2093,8 @@ def main():
     all_parser.add_argument('--fast', action='store_true', help='Fast cleaning mode')
     all_parser.add_argument('--skip-scrape', action='store_true', help='Skip scraping step')
     all_parser.add_argument('--skip-build', action='store_true', help='Skip master database build')
+    all_parser.add_argument('--laws', type=int, default=1, metavar='N',
+                            help='Number of laws to fetch per country (default: 1, max varies by country)')
 
     args = parser.parse_args()
 
