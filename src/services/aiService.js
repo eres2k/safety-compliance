@@ -388,23 +388,23 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `You are a workplace safety expert. Create TWO versions of this regulation.
+  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Create TWO versions of this regulation.
 
-===MANAGER VERSION===
-Rewrite as a concise MANAGER SUMMARY:
-- Extract key obligations and deadlines
+===WHS SUMMARY===
+Rewrite as a concise WHS SUMMARY for Amazon safety managers:
+- Extract key compliance obligations and deadlines relevant to Amazon logistics operations
 - Use bullet points for clarity
-- Format: "Key obligations:" then "Deadlines:" then "Records required:"
+- Format: "Key WHS obligations:" then "Compliance deadlines:" then "Documentation required:"
 - Keep it under 150 words
-- Focus on what managers need to DO
+- Focus on actionable compliance requirements for delivery station operations
 
-===ASSOCIATE VERSION===
-Rewrite as a simple TOOLBOX TALK for floor workers:
-- Use simple, direct language (8th grade level)
-- Write as direct instructions: "Do this", "Don't do that"
+===EXPLAIN LIKE I'M 5===
+Rewrite in the simplest possible terms, as if explaining to a 5-year-old:
+- Use very simple words anyone can understand
+- Short sentences, no jargon at all
 - Maximum 5 bullet points, each under 10 words
-- Focus ONLY on what the worker must do personally
-- Add safety emoji where helpful (⚠️ 🦺 🔧 ⛑️ 🚫)
+- Focus ONLY on the basic safety rule or idea
+- Add helpful emoji to make it memorable (⚠️ ✅ ❌ 👷 🚫)
 
 Section: ${sectionTitle || 'Regulation'}
 
@@ -413,10 +413,10 @@ ${lawText.substring(0, 2500)}
 
 OUTPUT FORMAT (use these exact headers):
 ---MANAGER---
-[manager summary here]
+[WHS summary here]
 
 ---ASSOCIATE---
-[associate toolbox talk here]`
+[simple explanation here]`
 
   const response = await generateAIResponse(prompt, framework, language)
 
@@ -448,14 +448,14 @@ export async function simplifyForManager(lawText, sectionTitle, framework, langu
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `You are a workplace safety expert. Rewrite this legal regulation as a concise MANAGER SUMMARY.
+  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Rewrite this legal regulation as a concise WHS SUMMARY.
 
 RULES:
-1. Extract key obligations and deadlines
+1. Extract key compliance obligations and deadlines relevant to Amazon logistics operations
 2. Use bullet points for clarity
-3. Format: "Key obligations: [list]" then "Deadlines: [list]" then "Records required: [list]"
+3. Format: "Key WHS obligations: [list]" then "Compliance deadlines: [list]" then "Documentation required: [list]"
 4. Keep it under 150 words
-5. Focus on what managers need to DO, not legal theory
+5. Focus on actionable compliance requirements for delivery station operations
 6. Include specific numbers (e.g., "every 12 months", "within 3 days")
 
 Section: ${sectionTitle || 'Regulation'}
@@ -475,16 +475,16 @@ export async function simplifyForAssociate(lawText, sectionTitle, framework, lan
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `You are a safety trainer. Rewrite this regulation as a simple "TOOLBOX TALK" for warehouse/logistics floor workers.
+  const prompt = `Explain this safety regulation like you're talking to a 5-year-old child.
 
 RULES:
-1. Use simple, direct language (8th grade reading level)
-2. Write as direct instructions: "Do this", "Don't do that", "Always check..."
+1. Use the simplest words possible - no big or fancy words
+2. Very short sentences anyone can understand
 3. Maximum 5 bullet points
 4. Each point under 10 words
-5. Focus ONLY on what the worker personally must do
-6. No legal jargon, no paragraph references
-7. Add relevant safety icons as emoji where helpful (e.g., ⚠️ 🦺 🔧 ⛑️ 🚫)
+5. Focus ONLY on the basic safety idea
+6. No legal words at all
+7. Add fun emoji to help remember (⚠️ ✅ ❌ 👷 🚫 💡)
 
 Section: ${sectionTitle || 'Safety Rule'}
 

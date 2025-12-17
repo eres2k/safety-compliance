@@ -3,8 +3,8 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 // Default complexity levels with English fallbacks
 const getComplexityLevels = (t) => [
   { id: 'legal', label: t?.complexity?.legal || 'Legal Text', icon: '⚖️', description: t?.complexity?.legalDescription || 'Original legal language' },
-  { id: 'manager', label: t?.complexity?.manager || 'Manager Summary', icon: '📋', description: t?.complexity?.managerDescription || 'Key obligations & deadlines' },
-  { id: 'associate', label: t?.complexity?.associate || 'Toolbox Talk', icon: '🦺', description: t?.complexity?.associateDescription || 'Simple worker instructions' }
+  { id: 'manager', label: t?.complexity?.manager || 'WHS Summary', icon: '📋', description: t?.complexity?.managerDescription || 'Amazon WHS key obligations & compliance requirements' },
+  { id: 'associate', label: t?.complexity?.associate || "Explain like I'm 5", icon: '💡', description: t?.complexity?.associateDescription || 'Simple explanation anyone can understand' }
 ]
 
 export function ComplexitySlider({
@@ -83,13 +83,13 @@ export function SimplifiedContent({ content, level, isLoading, t = {} }) {
       bg: 'bg-blue-50 dark:bg-blue-900/20',
       border: 'border-blue-200 dark:border-blue-800',
       icon: '📋',
-      title: t?.complexity?.manager || 'Manager Summary'
+      title: t?.complexity?.manager || 'WHS Summary'
     },
     associate: {
       bg: 'bg-green-50 dark:bg-green-900/20',
       border: 'border-green-200 dark:border-green-800',
-      icon: '🦺',
-      title: t?.complexity?.associate || 'Toolbox Talk'
+      icon: '💡',
+      title: t?.complexity?.associate || "Explain like I'm 5"
     }
   }
 

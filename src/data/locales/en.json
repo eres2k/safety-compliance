@@ -64,10 +64,10 @@
     "legalDescription": "Original legal language",
     "legalFull": "Original Legal Text",
     "viewOriginal": "View original legal text",
-    "manager": "Manager Summary",
-    "managerDescription": "Key obligations & deadlines",
-    "associate": "Toolbox Talk",
-    "associateDescription": "Simple worker instructions"
+    "manager": "WHS Summary",
+    "managerDescription": "Amazon WHS key obligations & compliance requirements",
+    "associate": "Explain like I'm 5",
+    "associateDescription": "Simple explanation anyone can understand"
   },
   "sections": {
     "title": "Sections"

@@ -64,10 +64,10 @@
     "legalDescription": "Originaler Gesetzestext",
     "legalFull": "Originaler Gesetzestext",
     "viewOriginal": "Original-Gesetzestext anzeigen",
-    "manager": "Führungskraft-Zusammenfassung",
-    "managerDescription": "Wichtige Pflichten & Fristen",
-    "associate": "Mitarbeiter-Unterweisung",
-    "associateDescription": "Einfache Arbeitsanweisungen"
+    "manager": "WHS-Zusammenfassung",
+    "managerDescription": "Amazon WHS Pflichten & Compliance-Anforderungen",
+    "associate": "Einfach erklärt",
+    "associateDescription": "Einfache Erklärung für jedermann"
   },
   "sections": {
     "title": "Abschnitte"
