@@ -1,15 +1,15 @@
 {
   "metadata": {
     "country": "NL",
-    "generated_at": "2025-12-17T21:10:09.359903",
+    "generated_at": "2025-12-17T22:20:00.521412",
     "document_count": 1,
     "error_count": 0,
-    "cleaned_at": "2025-12-17T21:12:09.841658",
-    "restructured_at": "2025-12-17T21:12:09.872396"
+    "cleaned_at": "2025-12-17T22:22:57.801902",
+    "restructured_at": "2025-12-17T22:22:57.817380"
   },
   "documents": [
     {
-      "id": "f18cf619e160f2de",
+      "id": "a697628dcc7d4e96",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -25,48 +25,40 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-17T21:10:08.858093",
+        "scraped_at": "2025-12-17T22:19:43.520623",
         "scraper_version": "7.1.0"
       },
       "whs_summary": {
-        "total_sections": 47,
+        "total_sections": 33,
         "logistics_relevance_distribution": {
-          "critical": 5,
-          "high": 4,
-          "medium": 25,
-          "low": 13
+          "critical": 4,
+          "high": 5,
+          "medium": 17,
+          "low": 7
         },
         "top_whs_topics": [
           [
             "employer_obligations",
-            32
-          ],
-          [
-            "employee_rights",
-            24
+            23
           ],
           [
             "workplace_design",
-            20
+            17
+          ],
+          [
+            "employee_rights",
+            16
           ],
           [
             "risk_assessment",
-            12
+            10
           ],
           [
             "prevention_services",
-            10
-          ],
-          [
-            "penalties",
-            10
-          ],
-          [
-            "ppe",
             9
           ],
           [
-            "documentation",
+            "ppe",
             8
           ],
           [
@@ -74,8 +66,16 @@
             7
           ],
           [
-            "health_surveillance",
-            7
+            "work_equipment",
+            5
+          ],
+          [
+            "documentation",
+            5
+          ],
+          [
+            "penalties",
+            5
           ]
         ],
         "critical_sections_count": 9
@@ -91,7 +91,7 @@
               "id": "08afb51d10e71ce0",
               "number": "1",
               "title": "Artikel 1. Definities",
-              "text": "**Artikel 1. Definities**\n\n1 In deze wet en de daarop berustende bepalingen wordt verstaan onder:\narbeidsmiddelen: alle op de arbeidsplaats gebruikte machines en verwante producten, installaties, apparaten, gereedschappen, digitale systemen en andere hulpmiddelen om de arbeid te verrichten;\narbeidsongeval: een aan een werknemer in verband met het verrichten van arbeid overkomen ongewilde, plotselinge gebeurtenis, die schade aan de gezondheid tot vrijwel onmiddellijk gevolg heeft gehad en heeft geleid tot ziekteverzuim, of de dood tot vrijwel onmiddellijk gevolg heeft gehad;\narbeidsplaats: iedere plaats die in verband met het verrichten van arbeid wordt of pleegt te worden gebruikt;\narbodienst: een dienst als bedoeld in artikel 14a, tweede en derde lid ;\nondernemingsraad: de ondernemingsraad, bedoeld in de Wet op de ondernemingsraden ;\nOnze Minister: Onze Minister van Sociale Zaken en Werkgelegenheid;\npersoneelsvertegenwoordiging: de personeelsvertegenwoordiging, bedoeld in de Wet op de ondernemingsraden ;\npsychosociale arbeidsbelasting: de blootstelling aan factoren in de arbeidssituatie die stress teweeg brengen, waaronder in ieder geval:\na. agressie of geweld;\nb. direct of indirect onderscheid;\nc. pesten;\nd. seksuele intimidatie;\ne. werkdruk;\nstress: een toestand die als negatief ervaren lichamelijke, psychische of sociale gevolgen heeft;\ntoezichthouder: de toezichthouder, bedoeld in de Algemene wet bestuursrecht , en als zodanig aangewezen op grond van artikel 24 ;\nvrijwilliger: de persoon, die niet bij wijze van beroep arbeid verricht voor een privaatrechtelijk of publiekrechtelijk lichaam dat niet is onderworpen aan de vennootschapsbelasting dan wel voor een sportorganisatie en die geen werknemer is in de zin van artikel 2 van de Wet op de loonbelasting 1964 , met uitzondering van de persoon die arbeid verricht:\na. ter voorbereiding op beroepsmatige arbeid;\nb. in het kader van een taakstraf dan wel in het kader van het voldoen aan voorwaarden ter voorkoming van strafvervolging als bedoeld in artikel 74, tweede lid, onderdeel f , of artikel 77f, eerste lid, onderdeel b, van het Wetboek van Strafrecht dan wel in het kader van deelneming aan een project als bedoeld in artikel 77e van het Wetboek van Strafrecht ; of\nc. als bedoeld in artikel 16, zesde lid, onderdeel c ;\nwerkgever:\na. degene jegens wie een ander krachtens arbeidsovereenkomst of publiekrechtelijke aanstelling gehouden is tot het verrichten van arbeid, behalve indien die ander aan een derde ter beschikking wordt gesteld voor het verrichten van arbeid, welke die derde gewoonlijk doet verrichten; of\nb. degene aan wie een ander ter beschikking wordt gesteld voor het verrichten van arbeid als bedoeld onder a;\nwerknemer: de ander, genoemd in de begripsomschrijving van werkgever;\nzelfstandige: degene die zonder werkgever of werknemer te zijn arbeid verricht.\n\n2 In deze wet en de daarop berustende bepalingen wordt mede verstaan onder:\nbedrijf: een andere plaats waar arbeid wordt verricht of pleegt te worden verricht;\ninrichting: een andere plaats waar arbeid wordt verricht op pleegt te worden verricht;\nwerkgever:\na. degene die zonder werkgever of werknemer in de zin van het eerste lid te zijn, een ander onder zijn gezag arbeid doet verrichten; of\nb. degene die zonder werkgever of werknemer in de zin van het eerste lid te zijn, een ander niet onder zijn gezag arbeid in een woning doet verrichten, in bij algemene maatregel van bestuur aan te wijzen gevallen;\nwerknemer: de ander, genoemd in de in dit lid opgenomen begripsomschrijving van werkgever, met uitzondering van degene die als vrijwilliger arbeid verricht.\n",
+              "text": "**Artikel 1. Definities**\n\n1 In deze wet en de daarop berustende bepalingen wordt verstaan onder:\n\narbeidsmiddelen: alle op de arbeidsplaats gebruikte machines en verwante producten, installaties, apparaten, gereedschappen, digitale systemen en andere hulpmiddelen om de arbeid te verrichten;\n\narbeidsongeval: een aan een werknemer in verband met het verrichten van arbeid overkomen ongewilde, plotselinge gebeurtenis, die schade aan de gezondheid tot vrijwel onmiddellijk gevolg heeft gehad en heeft geleid tot ziekteverzuim, of de dood tot vrijwel onmiddellijk gevolg heeft gehad;\n\narbeidsplaats: iedere plaats die in verband met het verrichten van arbeid wordt of pleegt te worden gebruikt;\n\narbodienst: een dienst als bedoeld in artikel 14a, tweede en derde lid;\n\nondernemingsraad: de ondernemingsraad, bedoeld in de Wet op de ondernemingsraden;\n\nOnze Minister: Onze Minister van Sociale Zaken en Werkgelegenheid;\n\npersoneelsvertegenwoordiging: de personeelsvertegenwoordiging, bedoeld in de Wet op de ondernemingsraden;\n\npsychosociale arbeidsbelasting: de blootstelling aan factoren in de arbeidssituatie die stress teweeg brengen, waaronder in ieder geval:\n\n*   a. agressie of geweld;\n*   b. direct of indirect onderscheid;\n*   c. pesten;\n*   d. seksuele intimidatie;\n*   e. werkdruk;\n\nstress: een toestand die als negatief ervaren lichamelijke, psychische of sociale gevolgen heeft;\n\ntoezichthouder: de toezichthouder, bedoeld in de Algemene wet bestuursrecht, en als zodanig aangewezen op grond van artikel 24;\n\nvrijwilliger: de persoon, die niet bij wijze van beroep arbeid verricht voor een privaatrechtelijk of publiekrechtelijk lichaam dat niet is onderworpen aan de vennootschapsbelasting dan wel voor een sportorganisatie en die geen werknemer is in de zin van artikel 2 van de Wet op de loonbelasting 1964, met uitzondering van de persoon die arbeid verricht:\n\n*   a. ter voorbereiding op beroepsmatige arbeid;\n*   b. in het kader van een taakstraf dan wel in het kader van het voldoen aan voorwaarden ter voorkoming van strafvervolging als bedoeld in artikel 74, tweede lid, onderdeel f, of artikel 77f, eerste lid, onderdeel b, van het Wetboek van Strafrecht dan wel in het kader van deelneming aan een project als bedoeld in artikel 77e van het Wetboek van Strafrecht; of\n*   c. als bedoeld in artikel 16, zesde lid, onderdeel c;\n\nwerkgever:\n\n*   a. degene jegens wie een ander krachtens arbeidsovereenkomst of publiekrechtelijke aanstelling gehouden is tot het verrichten van arbeid, behalve indien die ander aan een derde ter beschikking wordt gesteld voor het verrichten van arbeid, welke die derde gewoonlijk doet verrichten; of\n*   b. degene aan wie een ander ter beschikking wordt gesteld voor het verrichten van arbeid als bedoeld onder a;\n\nwerknemer: de ander, genoemd in de begripsomschrijving van werkgever;\n\nzelfstandige: degene die zonder werkgever of werknemer te zijn arbeid verricht.\n\n2 In deze wet en de daarop berustende bepalingen wordt mede verstaan onder:\n\nbedrijf: een andere plaats waar arbeid wordt verricht of pleegt te worden verricht;\n\ninrichting: een andere plaats waar arbeid wordt verricht op pleegt te worden verricht;\n\nwerkgever:\n\n*   a. degene die zonder werkgever of werknemer in de zin van het eerste lid te zijn, een ander onder zijn gezag arbeid doet verrichten; of\n*   b. degene die zonder werkgever of werknemer in de zin van het eerste lid te zijn, een ander niet onder zijn gezag arbeid in een woning doet verrichten, in bij algemene maatregel van bestuur aan te wijzen gevallen;\n\nwerknemer: de ander, genoemd in de in dit lid opgenomen begripsomschrijving van werkgever, met uitzondering van degene die als vrijwilliger arbeid verricht.\n",
               "whs_topics": [
                 {
                   "id": "work_equipment",
@@ -131,7 +131,7 @@
               "id": "63ab439bd85dfe72",
               "number": "2",
               "title": "Artikel 2. Uitbreiding Toepassingsgebied",
-              "text": "Artikel 2. Uitbreiding Toepassingsgebied\n\nDeze wet en de daarop berustende bepalingen zijn mede van toepassing op:\na. arbeid verricht binnen de exclusieve economische zone;\nb. verrichtingen van leerlingen en studenten in onderwijsinrichtingen of gedeelten daarvan, open ruimten daaronder begrepen, die vergelijkbaar zijn met arbeid in de beroepspraktijk;\nc. arbeid die geheel of ten dele buiten Nederland wordt verricht door personen, werkzaam aan boord van zeeschepen die op grond van voor Nederland geldende rechtsregels gerechtigd zijn de vlag van het Koninkrijk te voeren;\nd. arbeid die voor een in Nederland gevestigde werkgever geheel of ten dele buiten Nederland wordt verricht door personen, werkzaam aan boord van luchtvaartuigen.\n",
+              "text": "Artikel 2. Uitbreiding Toepassingsgebied\n\na. arbeid verricht binnen de exclusieve economische zone;\nb. verrichtingen van leerlingen en studenten in onderwijsinrichtingen of gedeelten daarvan, open ruimten daaronder begrepen, die vergelijkbaar zijn met arbeid in de beroepspraktijk;\nc. arbeid die geheel of ten dele buiten Nederland wordt verricht door personen, werkzaam aan boord van zeeschepen die op grond van voor Nederland geldende rechtsregels gerechtigd zijn de vlag van het Koninkrijk te voeren;\nd. arbeid die voor een in Nederland gevestigde werkgever geheel of ten dele buiten Nederland wordt verricht door personen, werkzaam aan boord van luchtvaartuigen.\n",
               "whs_topics": [
                 {
                   "id": "workplace_design",
@@ -169,7 +169,7 @@
               "id": "12b1c0f3ebcc7586",
               "number": "3",
               "title": "Artikel 3. Arbobeleid",
-              "text": "**Artikel 3. Arbobeleid**\n\n1 De werkgever zorgt voor de veiligheid en de gezondheid van de werknemers inzake alle met de arbeid verbonden aspecten en voert daartoe een beleid dat is gericht op zo goed mogelijke arbeidsomstandigheden, waarbij hij, gelet op de stand van de wetenschap en professionele dienstverlening, het volgende in acht neemt:\n\na. tenzij dit redelijkerwijs niet kan worden gevergd organiseert de werkgever de arbeid zodanig dat daarvan geen nadelige invloed uitgaat op de veiligheid en de gezondheid van de werknemer;\n\nb. tenzij dit redelijkerwijs niet kan worden gevergd worden de gevaren en risico's voor de veiligheid of de gezondheid van de werknemer zoveel mogelijk in eerste aanleg bij de bron daarvan voorkomen of beperkt; naar de mate waarin dergelijke gevaren en risico's niet bij de bron kunnen worden voorkomen of beperkt, worden daartoe andere doeltreffende maatregelen getroffen waarbij maatregelen gericht op collectieve bescherming voorrang hebben boven maatregelen gericht op individuele bescherming; slechts indien redelijkerwijs niet kan worden gevergd dat maatregelen worden getroffen die zijn gericht op individuele bescherming, worden doeltreffende en passende persoonlijke beschermingsmiddelen aan de werknemer ter beschikking gesteld;\n\nc. de inrichting van de arbeidsplaatsen, de werkmethoden en de bij de arbeid gebruikte arbeidsmiddelen alsmede de arbeidsinhoud worden zoveel als redelijkerwijs kan worden gevergd aan de persoonlijke eigenschappen van werknemers aangepast;\n\nd. monotone en tempogebonden arbeid wordt, zoveel als redelijkerwijs kan worden gevergd, vermeden dan wel, indien dat niet mogelijk is, beperkt;\n\ne. doeltreffende maatregelen worden getroffen op het gebied van de eerste hulp bij ongevallen, de brandbestrijding en de evacuatie van werknemers en andere aanwezige personen, en doeltreffende verbindingen worden onderhouden met de desbetreffende externe hulpverleningsorganisaties;\n\nf. elke werknemer moet bij ernstig en onmiddellijk gevaar voor zijn eigen veiligheid of die van anderen, rekening houdend met zijn technische kennis en middelen, de nodige passende maatregelen kunnen nemen om de gevolgen van een dergelijk gevaar te voorkomen, waarbij artikel 29, eerste lid, derde zin , van overeenkomstige toepassing is.\n\n2 De werkgever voert, binnen het algemeen arbeidsomstandighedenbeleid, een beleid gericht op voorkoming en indien dat niet mogelijk is beperking van psychosociale arbeidsbelasting.\n\n3 Ter uitvoering van het eerste lid draagt de werkgever zorg voor een goede verdeling van bevoegdheden en verantwoordelijkheden tussen de bij de werkgever werkzame personen, waarbij hij rekening houdt met de bekwaamheden van de werknemers.\n\n4 De werkgever toetst het arbeidsomstandighedenbeleid regelmatig aan de ervaringen die daarmee zijn opgedaan en past de maatregelen aan zo dikwijls als de daarmee opgedane ervaring daartoe aanleiding geeft.\n",
+              "text": "**Artikel 3. Arbobeleid**\n\n1 De werkgever zorgt voor de veiligheid en de gezondheid van de werknemers inzake alle met de arbeid verbonden aspecten en voert daartoe een beleid dat is gericht op zo goed mogelijke arbeidsomstandigheden, waarbij hij, gelet op de stand van de wetenschap en professionele dienstverlening, het volgende in acht neemt:\n\n*   a. tenzij dit redelijkerwijs niet kan worden gevergd organiseert de werkgever de arbeid zodanig dat daarvan geen nadelige invloed uitgaat op de veiligheid en de gezondheid van de werknemer;\n*   b. tenzij dit redelijkerwijs niet kan worden gevergd worden de gevaren en risico's voor de veiligheid of de gezondheid van de werknemer zoveel mogelijk in eerste aanleg bij de bron daarvan voorkomen of beperkt; naar de mate waarin dergelijke gevaren en risico's niet bij de bron kunnen worden voorkomen of beperkt, worden daartoe andere doeltreffende maatregelen getroffen waarbij maatregelen gericht op collectieve bescherming voorrang hebben boven maatregelen gericht op individuele bescherming; slechts indien redelijkerwijs niet kan worden gevergd dat maatregelen worden getroffen die zijn gericht op individuele bescherming, worden doeltreffende en passende persoonlijke beschermingsmiddelen aan de werknemer ter beschikking gesteld;\n*   c. de inrichting van de arbeidsplaatsen, de werkmethoden en de bij de arbeid gebruikte arbeidsmiddelen alsmede de arbeidsinhoud worden zoveel als redelijkerwijs kan worden gevergd aan de persoonlijke eigenschappen van werknemers aangepast;\n*   d. monotone en tempogebonden arbeid wordt, zoveel als redelijkerwijs kan worden gevergd, vermeden dan wel, indien dat niet mogelijk is, beperkt;\n*   e. doeltreffende maatregelen worden getroffen op het gebied van de eerste hulp bij ongevallen, de brandbestrijding en de evacuatie van werknemers en andere aanwezige personen, en doeltreffende verbindingen worden onderhouden met de desbetreffende externe hulpverleningsorganisaties;\n*   f. elke werknemer moet bij ernstig en onmiddellijk gevaar voor zijn eigen veiligheid of die van anderen, rekening houdend met zijn technische kennis en middelen, de nodige passende maatregelen kunnen nemen om de gevolgen van een dergelijk gevaar te voorkomen, waarbij artikel 29, eerste lid, derde zin , van overeenkomstige toepassing is.\n\n2 De werkgever voert, binnen het algemeen arbeidsomstandighedenbeleid, een beleid gericht op voorkoming en indien dat niet mogelijk is beperking van psychosociale arbeidsbelasting.\n\n3 Ter uitvoering van het eerste lid draagt de werkgever zorg voor een goede verdeling van bevoegdheden en verantwoordelijkheden tussen de bij de werkgever werkzame personen, waarbij hij rekening houdt met de bekwaamheden van de werknemers.\n\n4 De werkgever toetst het arbeidsomstandighedenbeleid regelmatig aan de ervaringen die daarmee zijn opgedaan en past de maatregelen aan zo dikwijls als de daarmee opgedane ervaring daartoe aanleiding geeft.\n",
               "whs_topics": [
                 {
                   "id": "ppe",
@@ -359,7 +359,7 @@
               "id": "46ed1781845b0d3d",
               "number": "8",
               "title": "Artikel 8. Voorlichting en onderricht",
-              "text": "Artikel 8. Voorlichting en onderricht\n\n1 De werkgever zorgt ervoor dat de werknemers doeltreffend worden ingelicht over de te verrichten werkzaamheden en de daaraan verbonden risico's, alsmede over de maatregelen die erop gericht zijn deze risico's te voorkomen of te beperken. Tevens zorgt de werkgever ervoor dat de werknemers doeltreffend worden ingelicht over de wijze waarop de deskundige bijstand, bedoeld in de artikelen 13 , 14 , 14a en 15 , in zijn bedrijf of inrichting is georganiseerd.\n2 De werkgever zorgt ervoor dat aan de werknemers doeltreffend en aan hun onderscheiden taken aangepast onderricht wordt verstrekt met betrekking tot de arbeidsomstandigheden.\n3 Indien persoonlijke beschermingsmiddelen ter beschikking van de werknemers worden gesteld en indien op arbeidsmiddelen of anderszins beveiligingen zijn aangebracht, zorgt de werkgever ervoor dat de werknemers op de hoogte zijn van hun doel en werking en de wijze waarop zij deze dienen te gebruiken.\n4 De werkgever ziet toe op de naleving van de instructies en voorschriften gericht op het voorkomen of beperken van de in het eerste lid genoemde risico's alsmede op het juiste gebruik van persoonlijke beschermingsmiddelen.\n5 Indien binnen de onderneming werknemers jonger dan 18 jaar werkzaam zijn, houdt de werkgever bij de uitvoering van de in de voorgaande leden genoemde verplichtingen in het bijzonder rekening met de aan de jeugdige leeftijd inherente beperkte werkervaring en onvoltooide lichamelijke en geestelijke ontwikkeling van deze werknemers.",
+              "text": "Artikel 8. Voorlichting en onderricht\n\n1 De werkgever zorgt ervoor dat de werknemers doeltreffend worden ingelicht over de te verrichten werkzaamheden en de daaraan verbonden risico's, alsmede over de maatregelen die erop gericht zijn deze risico's te voorkomen of te beperken. Tevens zorgt de werkgever ervoor dat de werknemers doeltreffend worden ingelicht over de wijze waarop de deskundige bijstand, bedoeld in de artikelen 13 , 14 , 14a en 15 , in zijn bedrijf of inrichting is georganiseerd.\n2 De werkgever zorgt ervoor dat aan de werknemers doeltreffend en aan hun onderscheiden taken aangepast onderricht wordt verstrekt met betrekking tot de arbeidsomstandigheden.\n3 Indien persoonlijke beschermingsmiddelen ter beschikking van de werknemers worden gesteld en indien op arbeidsmiddelen of anderszins beveiligingen zijn aangebracht, zorgt de werkgever ervoor dat de werknemers op de hoogte zijn van hun doel en werking en de wijze waarop zij deze dienen te gebruiken.\n4 De werkgever ziet toe op de naleving van de instructies en voorschriften gericht op het voorkomen of beperken van de in het eerste lid genoemde risico's alsmede op het juiste gebruik van persoonlijke beschermingsmiddelen.\n5 Indien binnen de onderneming werknemers jonger dan 18 jaar werkzaam zijn, houdt de werkgever bij de uitvoering van de in de voorgaande leden genoemde verplichtingen in het bijzonder rekening met de aan de jeugdige leeftijd inherente beperkte werkervaring en onvoltooide lichamelijke en geestelijke ontwikkeling van deze werknemers.\n",
               "whs_topics": [
                 {
                   "id": "ppe",
@@ -436,58 +436,13 @@
               "paragraphs": []
             },
             {
-              "id": "205a2b15d60b51a6",
-              "number": "10",
-              "title": "Artikel 10. Voorkomen van gevaar voor derden",
-              "text": "Indien bij of in rechtstreeks verband met de arbeid die de werkgever door zijn werknemers doet verrichten in een bedrijf of een inrichting of in de onmiddellijke omgeving daarvan gevaar kan ontstaan voor de veiligheid of de gezondheid van andere personen dan die werknemers, neemt de werkgever doeltreffende maatregelen ter voorkoming van dat gevaar.",
-              "whs_topics": [
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
               "id": "dd863ada2915dfb3",
               "number": "11",
               "title": "Artikel 11. Algemene verplichtingen van de werknemers",
-              "text": "Artikel 11. Algemene verplichtingen van de werknemers\n\nDe werknemer is verplicht om in zijn doen en laten op de arbeidsplaats, overeenkomstig zijn opleiding en de door de werkgever gegeven instructies, naar vermogen zorg te dragen voor zijn eigen veiligheid en gezondheid en die van de andere betrokken personen. Met name is hij verplicht om:\na. arbeidsmiddelen en gevaarlijke stoffen op de juiste wijze te gebruiken;\nb. de hem ter beschikking gestelde persoonlijke beschermingsmiddelen op de juiste wijze te gebruiken en na gebruik op de daartoe bestemde plaats op te bergen, een en ander voor zover niet krachtens deze wet is bepaald dat werknemers niet verplicht zijn beschermingsmiddelen als vorenbedoeld te gebruiken;\nc. de op arbeidsmiddelen of anderszins aangebrachte beveiligingen niet te veranderen of buiten noodzaak weg te halen en deze op de juiste wijze te gebruiken;\nd. mede te werken aan het voor hem georganiseerde onderricht bedoeld in artikel 8;\ne. de door hem opgemerkte gevaren voor de veiligheid of de gezondheid terstond ter kennis te brengen aan de werkgever of degene die namens deze ter plaatse met de leiding is belast;\nf. de werkgever en de de werknemers en de andere deskundige personen, bedoeld in artikel 13, eerste tot en met derde lid, de personen, bedoeld in artikel 14, eerste lid, en de arbodienst, indien nodig bij te staan bij de uitvoering van hun verplichtingen en taken op grond van deze wet.\n",
+              "text": "Artikel 11. Algemene verplichtingen van de werknemers\n\na. arbeidsmiddelen en gevaarlijke stoffen op de juiste wijze te gebruiken;\nb. de hem ter beschikking gestelde persoonlijke beschermingsmiddelen op de juiste wijze te gebruiken en na gebruik op de daartoe bestemde plaats op te bergen, een en ander voor zover niet krachtens deze wet is bepaald dat werknemers niet verplicht zijn beschermingsmiddelen als vorenbedoeld te gebruiken;\nc. de op arbeidsmiddelen of anderszins aangebrachte beveiligingen niet te veranderen of buiten noodzaak weg te halen en deze op de juiste wijze te gebruiken;\nd. mede te werken aan het voor hem georganiseerde onderricht bedoeld in artikel 8;\ne. de door hem opgemerkte gevaren voor de veiligheid of de gezondheid terstond ter kennis te brengen aan de werkgever of degene die namens deze ter plaatse met de leiding is belast;\nf. de werkgever en de de werknemers en de andere deskundige personen, bedoeld in artikel 13, eerste tot en met derde lid, de personen, bedoeld in artikel 14, eerste lid, en de arbodienst, indien nodig bij te staan bij de uitvoering van hun verplichtingen en taken op grond van deze wet.\n",
               "whs_topics": [
                 {
                   "id": "ppe",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "training",
                   "relevance": "high",
                   "match_count": 3
                 },
@@ -505,12 +460,17 @@
                   "id": "risk_assessment",
                   "relevance": "high",
                   "match_count": 1
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 6,
-                "level": "critical",
-                "high_keyword_matches": 2,
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
@@ -567,7 +527,7 @@
               "id": "45db5b945f4ce041",
               "number": "13",
               "title": "Artikel 13. Bijstand deskundige werknemers op het gebied van preventie en bescherming",
-              "text": "**Artikel 13. Bijstand deskundige werknemers op het gebied van preventie en bescherming**\n\n1 De werkgever laat zich ten aanzien van de naleving van zijn verplichtingen op grond van deze wet bijstaan door een of meer deskundige werknemers. Indien in het bedrijf of de inrichting van de werkgever een ondernemingsraad of personeelsvertegenwoordiging is ingesteld, wordt de keuze voor de deskundige werknemer, bedoeld in de eerste zin, en diens positionering, bepaald met instemming van die ondernemingsraad of personeelsvertegenwoordiging. Artikel 27, derde tot en met zesde lid, van de Wet op de ondernemingsraden is van overeenkomstige toepassing.\n2 Voorzover de mogelijkheden onvoldoende zijn om de bijstand binnen het bedrijf of de inrichting te organiseren, wordt de bijstand verleend door een combinatie van deskundige werknemers en andere deskundige personen.\n3 Indien er geen mogelijkheden zijn om de bijstand binnen het bedrijf of de inrichting te organiseren, wordt de bijstand verleend door andere deskundige personen.\n4 De werknemers en de andere deskundige personen beschikken over een zodanige deskundigheid, ervaring en uitrusting, zijn zodanig in aantal, gedurende zoveel tijd beschikbaar en zodanig georganiseerd, dat zij de bijstand naar behoren kunnen verlenen.\n5 De werkgever stelt de werknemers in de gelegenheid de bijstand zelfstandig en onafhankelijk te verlenen. De werknemers worden uit hoofde van een juiste taakuitoefening niet benadeeld in hun positie in het bedrijf of de inrichting. Artikel 21, vierde zin, van de Wet op de ondernemingsraden is van overeenkomstige toepassing.\n6 De deskundige personen verlenen hun bijstand met behoud van hun zelfstandigheid en van hun onafhankelijkheid ten opzichte van de werkgever.\n7 Het verlenen van bijstand omvat in ieder geval:\na. het verlenen van medewerking aan het verrichten en opstellen van een risico-inventarisatie en -evaluatie als bedoeld in artikel 5 ;\nb. het adviseren aan onderscheidenlijk nauw samenwerken met de deskundige personen, bedoeld in artikel 14, eerste lid , de ondernemingsraad of de personeelsvertegenwoordiging, of, bij het ontbreken daarvan, de belanghebbende werknemers, inzake de genomen en de te nemen maatregelen, gericht op een zo goed mogelijk arbeidsomstandighedenbeleid;\nc. de uitvoering van de maatregelen, bedoeld in onderdeel b, dan wel de medewerking daaraan.\n8 Een afschrift van een advies als bedoeld in het zevende lid, onderdeel b, wordt aan de werkgever gezonden.\n9 In de risico-inventarisatie en -evaluatie, bedoeld in artikel 5 , worden de maatregelen beschreven die nodig zijn om te voldoen aan het vierde en tiende lid.\n10 In afwijking van het eerste tot en met het derde lid, kunnen bij werkgevers met niet meer dan 25 werknemers de taken in het kader van de bijstand ook worden verricht door de werkgever zelf, indien deze natuurlijk persoon is, of door de directeur indien de werkgever rechtspersoon is, indien deze personen beschikken over voldoende deskundigheid, ervaring en uitrusting om deze taken naar behoren te vervullen.",
+              "text": "**Artikel 13. Bijstand deskundige werknemers op het gebied van preventie en bescherming**\n\n1 De werkgever laat zich ten aanzien van de naleving van zijn verplichtingen op grond van deze wet bijstaan door een of meer deskundige werknemers. Indien in het bedrijf of de inrichting van de werkgever een ondernemingsraad of personeelsvertegenwoordiging is ingesteld, wordt de keuze voor de deskundige werknemer, bedoeld in de eerste zin, en diens positionering, bepaald met instemming van die ondernemingsraad of personeelsvertegenwoordiging. Artikel 27, derde tot en met zesde lid, van de Wet op de ondernemingsraden is van overeenkomstige toepassing.\n2 Voorzover de mogelijkheden onvoldoende zijn om de bijstand binnen het bedrijf of de inrichting te organiseren, wordt de bijstand verleend door een combinatie van deskundige werknemers en andere deskundige personen.\n3 Indien er geen mogelijkheden zijn om de bijstand binnen het bedrijf of de inrichting te organiseren, wordt de bijstand verleend door andere deskundige personen.\n4 De werknemers en de andere deskundige personen beschikken over een zodanige deskundigheid, ervaring en uitrusting, zijn zodanig in aantal, gedurende zoveel tijd beschikbaar en zodanig georganiseerd, dat zij de bijstand naar behoren kunnen verlenen.\n5 De werkgever stelt de werknemers in de gelegenheid de bijstand zelfstandig en onafhankelijk te verlenen. De werknemers worden uit hoofde van een juiste taakuitoefening niet benadeeld in hun positie in het bedrijf of de inrichting. Artikel 21, vierde zin, van de Wet op de ondernemingsraden is van overeenkomstige toepassing.\n6 De deskundige personen verlenen hun bijstand met behoud van hun zelfstandigheid en van hun onafhankelijkheid ten opzichte van de werkgever.\n7 Het verlenen van bijstand omvat in ieder geval:\n\na. het verlenen van medewerking aan het verrichten en opstellen van een risico-inventarisatie en -evaluatie als bedoeld in artikel 5;\nb. het adviseren aan onderscheidenlijk nauw samenwerken met de deskundige personen, bedoeld in artikel 14, eerste lid, de ondernemingsraad of de personeelsvertegenwoordiging, of, bij het ontbreken daarvan, de belanghebbende werknemers, inzake de genomen en de te nemen maatregelen, gericht op een zo goed mogelijk arbeidsomstandighedenbeleid;\nc. de uitvoering van de maatregelen, bedoeld in onderdeel b, dan wel de medewerking daaraan.\n\n8 Een afschrift van een advies als bedoeld in het zevende lid, onderdeel b, wordt aan de werkgever gezonden.\n9 In de risico-inventarisatie en -evaluatie, bedoeld in artikel 5, worden de maatregelen beschreven die nodig zijn om te voldoen aan het vierde en tiende lid.\n10 In afwijking van het eerste tot en met het derde lid, kunnen bij werkgevers met niet meer dan 25 werknemers de taken in het kader van de bijstand ook worden verricht door de werkgever zelf, indien deze natuurlijk persoon is, of door de directeur indien de werkgever rechtspersoon is, indien deze personen beschikken over voldoende deskundigheid, ervaring en uitrusting om deze taken naar behoren te vervullen.\n",
               "whs_topics": [
                 {
                   "id": "employer_obligations",
@@ -647,7 +607,7 @@
               "id": "e8bd89e03119ef82",
               "number": "14a",
               "title": "Artikel 14a. Vangnetregeling aanvullende deskundige bijstand op het gebied van preventie",
-              "text": "Artikel 14a. Vangnetregeling aanvullende deskundige bijstand op het gebied van preventie\n\n1 Indien de bijstand bij de taken, bedoeld in artikel 14, eerste lid, niet is georganiseerd met toepassing van artikel 14, negende lid, wordt deze bijstand georganiseerd met inachtneming van dit artikel.\n2 De werkgever laat zich met betrekking tot de taken, bedoeld in artikel 14, eerste lid, bijstaan door een arbodienst, ten behoeve waarvan overeenkomstig artikel 20 een certificaat is afgegeven en die deel uitmaakt van de organisatie van het bedrijf of de inrichting.\n3 Voorzover de mogelijkheden onvoldoende zijn om de bijstand binnen het bedrijf of de inrichting te organiseren, wordt de bijstand verleend door een andere arbodienst ten behoeve waarvan, overeenkomstig artikel 20, een certificaat is afgegeven.\n4 De werknemers van een arbodienst werken nauw samen met en adviseren en verlenen medewerking aan de in artikel 13, eerste lid, genoemde deskundige personen, de ondernemingsraad of de personeelsvertegenwoordiging, of, bij het ontbreken daarvan, de belanghebbende werknemers, inzake te nemen, genomen en uit te voeren maatregelen gericht op een zo goed mogelijk arbeidsomstandighedenbeleid. Het niet naleven van deze verplichting door de werknemers van een arbodienst wordt aangemerkt als een overtreding.\n5 Artikel 13, vijfde en zesde lid, is van overeenkomstige toepassing.\n6 Artikel 14, tweede lid, onder a en onder d tot en met j, derde tot en met zevende lid en twaalfde tot en met vijftiende lid, is van toepassing.\n",
+              "text": "Artikel 14a. Vangnetregeling aanvullende deskundige bijstand op het gebied van preventie\n\n1 Indien de bijstand bij de taken, bedoeld in artikel 14, eerste lid, niet is georganiseerd met toepassing van artikel 14, negende lid, wordt deze bijstand georganiseerd met inachtneming van dit artikel.\n2 De werkgever laat zich met betrekking tot de taken, bedoeld in artikel 14, eerste lid, bijstaan door een arbodienst, ten behoeve waarvan overeenkomstig artikel 20 een certificaat is afgegeven en die deel uitmaakt van de organisatie van het bedrijf of de inrichting.\n3 Voorzover de mogelijkheden onvoldoende zijn om de bijstand binnen het bedrijf of de inrichting te organiseren, wordt de bijstand verleend door een andere arbodienst ten behoeve waarvan, overeenkomstig artikel 20, een certificaat is afgegeven.\n4 De werknemers van een arbodienst werken nauw samen met en adviseren en verlenen medewerking aan de in artikel 13, eerste lid, genoemde deskundige personen, de ondernemingsraad of de personeelsvertegenwoordiging, of, bij het ontbreken daarvan, de belanghebbende werknemers, inzake te nemen, genomen en uit te voeren maatregelen gericht op een zo goed mogelijk arbeidsomstandighedenbeleid. Het niet naleven van deze verplichting door de werknemers van een arbodienst wordt aangemerkt als een overtreding.\n5 Artikel 13, vijfde en zesde lid, is van overeenkomstige toepassing.\n6 Artikel 14, tweede lid, onder a en onder d tot en met j, derde tot en met zevende lid en twaalfde tot en met vijftiende lid, is van toepassing.",
               "whs_topics": [
                 {
                   "id": "employer_obligations",
@@ -727,7 +687,7 @@
               "id": "c731643741dc1fca",
               "number": "15a",
               "title": "Artikel 15a. Informatierechten deskundige werknemers en personen, bedrijfshulpverleners",
-              "text": "Artikel 15a. Informatierechten deskundige werknemers en personen, bedrijfshulpverleners\n\nDe werkgever zorgt ervoor dat de deskundige werknemers en de andere deskundige personen, bedoeld in artikel 13, de personen, bedoeld in artikel 14, eerste lid, de bedrijfshulpverleners, bedoeld in artikel 15, en de arbodienst kennis kunnen nemen van:\na. de ongevalsrapportages en de lijst van arbeidsongevallen, bedoeld in artikel 9;\nb. een eis als bedoeld in artikel 27, eerste lid;\nc. een bevel als bedoeld in artikel 28, eerste lid;\nd. een bevel als bedoeld in artikel 28a, tweede lid;\ne. een beschikking tot oplegging van een last onder bestuursdwang of tot oplegging van een last onder dwangsom als bedoeld in artikel 28b;\nf. een verzoek om ontheffing als bedoeld in artikel 30, tweede lid;\ng. een rapport als bedoeld in artikel 36, eerste lid;\nh. een beschikking als bedoeld in artikel 37, eerste lid.\n",
+              "text": "Artikel 15a. Informatierechten deskundige werknemers en personen, bedrijfshulpverleners\n\na. de ongevalsrapportages en de lijst van arbeidsongevallen, bedoeld in artikel 9 ;\nb. een eis als bedoeld in artikel 27, eerste lid ;\nc. een bevel als bedoeld in artikel 28, eerste lid ;\nd. een bevel als bedoeld in artikel 28a, tweede lid ;\ne. een beschikking tot oplegging van een last onder bestuursdwang of tot oplegging van een last onder dwangsom als bedoeld in artikel 28b ;\nf. een verzoek om ontheffing als bedoeld in artikel 30, tweede lid ;\ng. een rapport als bedoeld in artikel 36, eerste lid ;\nh. een beschikking als bedoeld in artikel 37, eerste lid .\n",
               "whs_topics": [
                 {
                   "id": "employee_rights",
@@ -735,17 +695,12 @@
                   "match_count": 3
                 },
                 {
-                  "id": "prevention_services",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
                   "id": "incident_reporting",
                   "relevance": "high",
                   "match_count": 1
                 },
                 {
-                  "id": "employer_obligations",
+                  "id": "prevention_services",
                   "relevance": "high",
                   "match_count": 1
                 }
@@ -803,76 +758,6 @@
                 "level": "critical",
                 "high_keyword_matches": 3,
                 "medium_keyword_matches": 2
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "21575bd152cdf289",
-              "number": "17",
-              "title": "Artikel 17. Maatwerk door werkgevers en werknemers",
-              "text": "Artikel 17. Maatwerk door werkgevers en werknemers\n\nBij algemene maatregel van bestuur kan, met inachtneming van in die maatregel gegeven voorschriften, worden bepaald dat aan een of meer van de krachtens deze wet vastgestelde bepalingen op een andere wijze kan worden voldaan dan in die bepalingen is aangegeven, echter uitsluitend bij collectieve regeling als bedoeld in artikel 1:3, eerste lid van de Arbeidstijdenwet, dan wel een regeling waaromtrent de werkgever schriftelijk overeenstemming heeft bereikt met de ondernemingsraad of de personeelsvertegenwoordiging. Daarbij wordt te allen tijde in acht genomen dat geen afbreuk wordt gedaan aan het beschermingsniveau van de in de eerste volzin bedoelde bepalingen.\n",
-              "whs_topics": [
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "ppe",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "working_hours",
-                  "relevance": "medium",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "788c41d6f22e4670",
-              "number": "18",
-              "title": "Artikel 18. Arbeidsgezondheidskundig onderzoek",
-              "text": "De werkgever stelt de werknemers periodiek in de gelegenheid een onderzoek te ondergaan, dat erop is gericht de risico's die de arbeid voor de gezondheid van de werknemers met zich brengt zoveel mogelijk te voorkomen of te beperken.",
-              "whs_topics": [
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 3
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -974,26 +859,6 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
-            {
-              "id": "fdb1b4412e66b6a3",
-              "number": "23",
-              "title": "Artikel 23. Taakverwaarlozing",
-              "text": "Bij algemene maatregel van bestuur kunnen voorzieningen worden getroffen voor het geval de krachtens artikel 20, tweede lid , aangewezen instellingen hun uit deze wet voortvloeiende verplichtingen niet naar behoren nakomen.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
             }
           ]
         },
@@ -1040,56 +905,6 @@
                 "level": "medium",
                 "high_keyword_matches": 0,
                 "medium_keyword_matches": 2
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "ce623a91071ccae9",
-              "number": "25",
-              "title": "Artikel 25. Toezicht op instellingen",
-              "text": "Onze Minister ziet toe op de rechtmatige en doeltreffende uitvoering van het bepaalde bij en krachtens deze wet door krachtens artikel 20, tweede lid , aangewezen instellingen.",
-              "whs_topics": [
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "e8088b010a22443d",
-              "number": "26",
-              "title": "Artikel 26. Geheimhouding",
-              "text": "De toezichthouders zijn, behoudens tegenover hen aan wier gezag zij uit kracht van hun ambt zijn onderworpen, verplicht tot geheimhouding van de namen van de personen door wie een klacht is ingediend of aangifte is gedaan van een overtreding van deze wet en de daarop berustende bepalingen, behoudens wanneer deze personen hun schriftelijk hebben verklaard tegen de mededeling van hun namen geen bedenkingen te hebben.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "penalties",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
               },
               "paragraphs": []
             },
@@ -1167,7 +982,7 @@
               "id": "7fcf836c43155620",
               "number": "28a",
               "title": "Artikel 28a. Bevel stillegging van werk in verband met recidive",
-              "text": "Artikel 28a. Bevel stillegging van werk in verband met recidive\n\n1 Een daartoe door Onze Minister aangewezen, onder hem ressorterende ambtenaar kan, nadat een overtreding van een voorschrift of verbod bij of krachtens deze wet is geconstateerd die bestuurlijk beboetbaar is gesteld of op grond van de Wet op de economische delicten strafbaar is gesteld, aan de werkgever of de zelfstandige een schriftelijke waarschuwing geven dat bij herhaling van de overtreding of bij een latere overtreding van eenzelfde in de waarschuwing aangegeven wettelijke verplichting of verbod of bij of krachtens algemene maatregel van bestuur aan te wijzen soortgelijke verplichtingen of verboden, door hem een bevel kan worden opgelegd dat door hem aangewezen werkzaamheden voor ten hoogste drie maanden worden gestaakt dan wel niet mogen worden aangevangen. De artikelen 24, tweede lid, en 27, vierde lid, zijn van overeenkomstige toepassing.\n2 Indien een waarschuwing als bedoeld in het eerste lid is gegeven en herhaling van de overtreding of een latere overtreding als bedoeld in het eerste lid is geconstateerd, kan door de ambtenaar, bedoeld in het eerste lid, aan de werkgever of de zelfstandige bij beschikking een bevel als bedoeld in het eerste lid worden opgelegd dat wordt opgevolgd met ingang van het in de beschikking aangeven tijdstip. Deze beschikking wordt niet gegeven zolang wegens de eerste overtreding, bedoeld in het eerste lid, nog niet een bestuurlijke boete is opgelegd of een proces-verbaal is opgemaakt.\n3 De constatering van de overtreding, bedoeld in het eerste of tweede lid, wordt vastgelegd in een boeterapport of proces-verbaal.\n4 De waarschuwing, bedoeld in het eerste lid, vervalt indien na de dagtekening van de waarschuwing vijf jaren zijn verstreken.\n5 De ambtenaar, bedoeld in het eerste lid, is bevoegd met betrekking tot het bevel, bedoeld in het tweede lid, de nodige maatregelen te treffen, de nodige aanwijzingen te geven en de hulp van de sterke arm in te roepen.\n6 Ieder wie zulks aangaat is verplicht zich te gedragen overeenkomstig een bevel als bedoeld in het tweede lid en een maatregel of aanwijzing als bedoeld in het vijfde lid.\n7 Bij of krachtens algemene maatregel van bestuur worden nadere regels gesteld met betrekking tot het eerste en tweede lid.",
+              "text": "**Artikel 28a. Bevel stillegging van werk in verband met recidive**\n\n1 Een daartoe door Onze Minister aangewezen, onder hem ressorterende ambtenaar kan, nadat een overtreding van een voorschrift of verbod bij of krachtens deze wet is geconstateerd die bestuurlijk beboetbaar is gesteld of op grond van de Wet op de economische delicten strafbaar is gesteld, aan de werkgever of de zelfstandige een schriftelijke waarschuwing geven dat bij herhaling van de overtreding of bij een latere overtreding van eenzelfde in de waarschuwing aangegeven wettelijke verplichting of verbod of bij of krachtens algemene maatregel van bestuur aan te wijzen soortgelijke verplichtingen of verboden, door hem een bevel kan worden opgelegd dat door hem aangewezen werkzaamheden voor ten hoogste drie maanden worden gestaakt dan wel niet mogen worden aangevangen. De artikelen 24, tweede lid, en 27, vierde lid, zijn van overeenkomstige toepassing.\n2 Indien een waarschuwing als bedoeld in het eerste lid is gegeven en herhaling van de overtreding of een latere overtreding als bedoeld in het eerste lid is geconstateerd, kan door de ambtenaar, bedoeld in het eerste lid, aan de werkgever of de zelfstandige bij beschikking een bevel als bedoeld in het eerste lid worden opgelegd dat wordt opgevolgd met ingang van het in de beschikking aangeven tijdstip. Deze beschikking wordt niet gegeven zolang wegens de eerste overtreding, bedoeld in het eerste lid, nog niet een bestuurlijke boete is opgelegd of een proces-verbaal is opgemaakt.\n3 De constatering van de overtreding, bedoeld in het eerste of tweede lid, wordt vastgelegd in een boeterapport of proces-verbaal.\n4 De waarschuwing, bedoeld in het eerste lid, vervalt indien na de dagtekening van de waarschuwing vijf jaren zijn verstreken.\n5 De ambtenaar, bedoeld in het eerste lid, is bevoegd met betrekking tot het bevel, bedoeld in het tweede lid, de nodige maatregelen te treffen, de nodige aanwijzingen te geven en de hulp van de sterke arm in te roepen.\n6 Ieder wie zulks aangaat is verplicht zich te gedragen overeenkomstig een bevel als bedoeld in het tweede lid en een maatregel of aanwijzing als bedoeld in het vijfde lid.\n7 Bij of krachtens algemene maatregel van bestuur worden nadere regels gesteld met betrekking tot het eerste en tweede lid.",
               "whs_topics": [
                 {
                   "id": "employer_obligations",
@@ -1189,20 +1004,6 @@
                 "score": 2,
                 "level": "medium",
                 "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "25f7b23d1ef57469",
-              "number": "28b",
-              "title": "Artikel 28b. Last onder bestuursdwang",
-              "text": "Onze Minister is bevoegd tot oplegging van een last onder bestuursdwang ter zake van de naleving van de artikelen 24, negende lid , 28, eerste lid , en 28a, tweede lid , en de daartoe bij algemene maatregel van bestuur aangewezen bepalingen krachtens deze wet. Artikel 24, tweede lid, is van overeenkomstige toepassing.",
-              "whs_topics": [],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -1293,7 +1094,7 @@
               "id": "1be661c157895fe6",
               "number": "30",
               "title": "Artikel 30. Vrijstelling en ontheffing",
-              "text": "Artikel 30. Vrijstelling en ontheffing\n\n1 Onze Minister kan met betrekking tot categorieën van bedrijven, inrichtingen, personen, of arbeidsverhoudingen vrijstelling verlenen van de voorschriften zoals die bij of krachtens de artikelen 5 , 12 tot en met 18 en 20 zijn vastgesteld.\n2 Een daartoe aangewezen toezichthouder kan met betrekking tot een individueel bedrijf of inrichting ontheffing verlenen van de in het eerste lid bedoelde voorschriften, tenzij met betrekking tot een dergelijk voorschrift een eis is gesteld.\n3 Bij algemene maatregel van bestuur kunnen regelen worden gesteld inzake het verlenen van vrijstellingen of ontheffingen als bedoeld in het eerste onderscheidenlijk tweede lid.\n4 Een vrijstelling of een ontheffing kan onder beperkingen worden verleend.\n5 Aan een vrijstelling of een ontheffing kunnen voorschriften worden verbonden.\n6 Een vrijstelling onderscheidenlijk ontheffing kan worden ingetrokken wanneer:\na. een of meer der redenen waarom zij is verleend is of zijn vervallen;\nb. een of meer van de daaraan verbonden voorschriften niet wordt of worden nageleefd;\nc. zich na de verlening zodanige feiten of omstandigheden voordoen dat, indien deze ten tijde van de verlening bekend waren geweest, de vrijstelling of ontheffing niet of niet in die vorm zou zijn verleend.\n6 Een vrijstelling onderscheidenlijk ontheffing kan worden ingetrokken wanneer:\na. een of meer der redenen waarom zij is verleend is of zijn vervallen;\nb. een of meer van de daaraan verbonden voorschriften niet wordt of worden nageleefd;\nc. zich na de verlening zodanige feiten of omstandigheden voordoen dat, indien deze ten tijde van de verlening bekend waren geweest, de vrijstelling of ontheffing niet of niet in die vorm zou zijn verleend.",
+              "text": "Artikel 30. Vrijstelling en ontheffing\n\n1 Onze Minister kan met betrekking tot categorieën van bedrijven, inrichtingen, personen, of arbeidsverhoudingen vrijstelling verlenen van de voorschriften zoals die bij of krachtens de artikelen 5 , 12 tot en met 18 en 20 zijn vastgesteld.\n2 Een daartoe aangewezen toezichthouder kan met betrekking tot een individueel bedrijf of inrichting ontheffing verlenen van de in het eerste lid bedoelde voorschriften, tenzij met betrekking tot een dergelijk voorschrift een eis is gesteld.\n3 Bij algemene maatregel van bestuur kunnen regelen worden gesteld inzake het verlenen van vrijstellingen of ontheffingen als bedoeld in het eerste onderscheidenlijk tweede lid.\n4 Een vrijstelling of een ontheffing kan onder beperkingen worden verleend.\n5 Aan een vrijstelling of een ontheffing kunnen voorschriften worden verbonden.\n6 Een vrijstelling onderscheidenlijk ontheffing kan worden ingetrokken wanneer:\na. een of meer der redenen waarom zij is verleend is of zijn vervallen;\nb. een of meer van de daaraan verbonden voorschriften niet wordt of worden nageleefd;\nc. zich na de verlening zodanige feiten of omstandigheden voordoen dat, indien deze ten tijde van de verlening bekend waren geweest, de vrijstelling of ontheffing niet of niet in die vorm zou zijn verleend.",
               "whs_topics": [
                 {
                   "id": "workplace_design",
@@ -1332,46 +1133,6 @@
           "title_en": "Chapter 7 - Sanctions",
           "sections": [
             {
-              "id": "f12e03ab6b496d49",
-              "number": "32",
-              "title": "Artikel 32. Strafbepaling",
-              "text": "Het is de werkgever verboden handelingen te verrichten of na te laten in strijd met deze wet of de daarop berustende bepalingen indien daardoor, naar hij weet of redelijkerwijs moet weten, levensgevaar of ernstige schade aan de gezondheid van een of meer werknemers ontstaat of te verwachten is.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "penalties",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
               "id": "c32f89050e636cc3",
               "number": "33",
               "title": "Artikel 33. Overtredingen",
@@ -1395,7 +1156,7 @@
               "id": "a3cee359c40a2fba",
               "number": "34",
               "title": "Artikel 34. Hoogte bestuurlijke boete en recidive",
-              "text": "**Artikel 34. Hoogte bestuurlijke boete en recidive**\n\n1 Een daartoe door Onze Minister aangewezen, onder hem ressorterende ambtenaar legt de bestuurlijke boete op aan de overtreder op wie de verplichtingen rusten die voortvloeien uit deze wet en de daarop berustende bepalingen, voor zover het niet naleven daarvan is aangeduid als overtreding.\n2 De ambtenaar, bedoeld in het eerste lid, is niet reeds aangewezen als toezichthouder.\n3 De bestuurlijke boete die voor een overtreding kan worden opgelegd bedraagt ten hoogste het bedrag van de vijfde categorie, bedoeld in artikel 23, vierde lid, van het Wetboek van Strafrecht.\n4 De bestuurlijke boete die voor een overtreding van artikel 6, eerste lid, of voor het niet naleven van een voorschrift of verbod bij of krachtens de algemene maatregel van bestuur, bedoeld in artikel 6, eerste lid, voor zover aangemerkt als overtreding, kan worden opgelegd bedraagt ten hoogste het bedrag van de zesde categorie, bedoeld in artikel 23, vierde lid, van het Wetboek van Strafrecht.\n5 Onverminderd het derde en vierde lid verhoogt de op grond van het eerste lid aangewezen ambtenaar de op te leggen bestuurlijke boete met 100 procent van het boetebedrag, vastgesteld op grond van het tiende lid, indien binnen een tijdvak van vijf jaar voorafgaand aan de dag van constatering van de overtreding een eerdere overtreding, bestaande uit het niet naleven van eenzelfde wettelijke verplichting of verbod of het niet naleven van bij of krachtens algemene maatregel van bestuur aan te wijzen soortgelijke verplichtingen en verboden, is geconstateerd en de bestuurlijke boete wegens de eerdere overtreding onherroepelijk is geworden.\n6 De verhoging van de bestuurlijke boete, bedoeld in het vijfde lid, bedraagt 200 procent indien zowel de overtreding als de eerdere overtreding, bedoeld in dat lid, bij of krachtens algemene maatregel van bestuur zijn aangewezen als ernstige overtredingen.\n7 Onverminderd het derde en vierde lid verhoogt de op grond van het eerste lid aangewezen ambtenaar de op te leggen bestuurlijke boete met 200 procent van het boetebedrag, vastgesteld op grond van het tiende lid, indien binnen een tijdvak van vijf jaar voorafgaand aan de dag van constatering van de overtreding twee maal een eerdere overtreding, bestaande uit het niet naleven van eenzelfde wettelijke verplichting of verbod of het niet naleven van bij of krachtens algemene maatregel van bestuur aan te wijzen soortgelijke verplichtingen en verboden, is geconstateerd en de bestuurlijke boeten wegens de eerdere overtredingen onherroepelijk zijn geworden.\n8 Voor de toepassing van het vijfde en zevende lid wordt met een onherroepelijke bestuurlijke boete gelijkgesteld een onherroepelijke strafrechtelijke sanctie wegens een overtreding als bedoeld in artikel 6, derde lid.\n9 In afwijking van het vijfde en zevende lid is het tijdvak van vijf jaar in die leden tien jaar indien de onherroepelijke boetes, bedoeld in die leden, zijn opgelegd wegens bij of krachtens algemene maatregel van bestuur aangewezen ernstige overtredingen.\n10 Onze Minister stelt beleidsregels vast waarin de boetebedragen voor de overtredingen worden vastgesteld. Artikel 5:53 van de Algemene wet bestuursrecht is van toepassing indien een artikel gesteld bij of krachtens deze wet op grond waarvan een bestuurlijke boete kan worden opgelegd, niet is nageleefd.\n11 In afwijking van artikel 8:69 van de Algemene wet bestuursrecht kan de rechter in beroep of hoger beroep de hoogte van de boete ook ten nadele van de belanghebbende wijzigen.\n",
+              "text": "**Artikel 34. Hoogte bestuurlijke boete en recidive**\n\n1 Een daartoe door Onze Minister aangewezen, onder hem ressorterende ambtenaar legt de bestuurlijke boete op aan de overtreder op wie de verplichtingen rusten die voortvloeien uit deze wet en de daarop berustende bepalingen, voor zover het niet naleven daarvan is aangeduid als overtreding.\n2 De ambtenaar, bedoeld in het eerste lid, is niet reeds aangewezen als toezichthouder.\n3 De bestuurlijke boete die voor een overtreding kan worden opgelegd bedraagt ten hoogste het bedrag van de vijfde categorie, bedoeld in artikel 23, vierde lid, van het Wetboek van Strafrecht.\n4 De bestuurlijke boete die voor een overtreding van artikel 6, eerste lid, of voor het niet naleven van een voorschrift of verbod bij of krachtens de algemene maatregel van bestuur, bedoeld in artikel 6, eerste lid, voor zover aangemerkt als overtreding, kan worden opgelegd bedraagt ten hoogste het bedrag van de zesde categorie, bedoeld in artikel 23, vierde lid, van het Wetboek van Strafrecht.\n5 Onverminderd het derde en vierde lid verhoogt de op grond van het eerste lid aangewezen ambtenaar de op te leggen bestuurlijke boete met 100 procent van het boetebedrag, vastgesteld op grond van het tiende lid, indien binnen een tijdvak van vijf jaar voorafgaand aan de dag van constatering van de overtreding een eerdere overtreding, bestaande uit het niet naleven van eenzelfde wettelijke verplichting of verbod of het niet naleven van bij of krachtens algemene maatregel van bestuur aan te wijzen soortgelijke verplichtingen en verboden, is geconstateerd en de bestuurlijke boete wegens de eerdere overtreding onherroepelijk is geworden.\n6 De verhoging van de bestuurlijke boete, bedoeld in het vijfde lid, bedraagt 200 procent indien zowel de overtreding als de eerdere overtreding, bedoeld in dat lid, bij of krachtens algemene maatregel van bestuur zijn aangewezen als ernstige overtredingen.\n7 Onverminderd het derde en vierde lid verhoogt de op grond van het eerste lid aangewezen ambtenaar de op te leggen bestuurlijke boete met 200 procent van het boetebedrag, vastgesteld op grond van het tiende lid, indien binnen een tijdvak van vijf jaar voorafgaand aan de dag van constatering van de overtreding twee maal een eerdere overtreding, bestaande uit het niet naleven van eenzelfde wettelijke verplichting of verbod of het niet naleven van bij of krachtens algemene maatregel van bestuur aan te wijzen soortgelijke verplichtingen en verboden, is geconstateerd en de bestuurlijke boeten wegens de eerdere overtredingen onherroepelijk zijn geworden.\n8 Voor de toepassing van het vijfde en zevende lid wordt met een onherroepelijke bestuurlijke boete gelijkgesteld een onherroepelijke strafrechtelijke sanctie wegens een overtreding als bedoeld in artikel 6, derde lid.\n9 In afwijking van het vijfde en zevende lid is het tijdvak van vijf jaar in die leden tien jaar indien de onherroepelijke boetes, bedoeld in die leden, zijn opgelegd wegens bij of krachtens algemene maatregel van bestuur aangewezen ernstige overtredingen.\n10 Onze Minister stelt beleidsregels vast waarin de boetebedragen voor de overtredingen worden vastgesteld. Artikel 5:53 van de Algemene wet bestuursrecht is van toepassing indien een artikel gesteld bij of krachtens deze wet op grond waarvan een bestuurlijke boete kan worden opgelegd, niet is nageleefd.\n11 In afwijking van artikel 8:69 van de Algemene wet bestuursrecht kan de rechter in beroep of hoger beroep de hoogte van de boete ook ten nadele van de belanghebbende wijzigen.",
               "whs_topics": [
                 {
                   "id": "penalties",
@@ -1445,125 +1206,140 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
-            {
-              "id": "899189f58b2d3e3b",
-              "number": "37",
-              "title": "Artikel 37. Boetebeschikking",
-              "text": "Een afschrift van de boetebeschikking wordt toegezonden of uitgereikt aan de andere bij de overtreding betrokken persoon of personen, bedoeld in artikel 36, eerste lid , en in voorkomend geval, desgevraagd aan zijn of hun nabestaande of nabestaanden.",
-              "whs_topics": [
-                {
-                  "id": "penalties",
-                  "relevance": "high",
-                  "match_count": 2
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "5dfbb1ae57ab90b7",
-              "number": "38",
-              "title": "Artikel 38. Inlichtingenplicht jegens de boeteoplegger",
-              "text": "Degene aan wie een bestuurlijke boete is opgelegd is verplicht desgevraagd aan de daartoe op grond van artikel 34, eerste lid , aangewezen ambtenaar de inlichtingen te verstrekken die voor de tenuitvoerlegging van de boete van belang zijn.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "penalties",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "3c2348da21643bef",
-              "number": "43",
-              "title": "Artikel 43. Terugbetaling",
-              "text": "Indien een bestuurlijke boete ten onrechte is opgelegd, wordt deze binnen zes weken nadat is vastgesteld dat de bestuurlijke boete ten onrechte is opgelegd, aan de rechthebbende terugbetaald.",
-              "whs_topics": [
-                {
-                  "id": "penalties",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "d24d6946ff5d0792",
+      "version": "1.0.0",
+      "type": "law",
+      "jurisdiction": "NL",
+      "abbreviation": "Arbobesluit",
+      "title": "Arbeidsomstandighedenbesluit",
+      "title_en": "Arbeidsomstandighedenbesluit",
+      "category": "Core Safety",
+      "implements_eu_directive": "89/391/EEG",
+      "source": {
+        "url": "https://wetten.overheid.nl/BWBR0008498/",
+        "title": "Arbeidsomstandighedenbesluit",
+        "authority": "wetten.overheid.nl",
+        "robots_txt_compliant": true
+      },
+      "scraping": {
+        "scraped_at": "2025-12-17T22:19:51.816272",
+        "scraper_version": "7.1.0"
+      },
+      "whs_summary": {
+        "total_sections": 6,
+        "logistics_relevance_distribution": {
+          "critical": 2,
+          "high": 2,
+          "medium": 2,
+          "low": 0
         },
+        "top_whs_topics": [
+          [
+            "workplace_design",
+            4
+          ],
+          [
+            "ppe",
+            3
+          ],
+          [
+            "risk_assessment",
+            3
+          ],
+          [
+            "employee_rights",
+            3
+          ],
+          [
+            "health_surveillance",
+            3
+          ],
+          [
+            "ergonomics",
+            2
+          ],
+          [
+            "incident_reporting",
+            2
+          ],
+          [
+            "employer_obligations",
+            2
+          ],
+          [
+            "special_groups",
+            1
+          ],
+          [
+            "hazardous_substances",
+            1
+          ]
+        ],
+        "critical_sections_count": 4
+      },
+      "chapters": [
         {
-          "id": "nl-arbowet-ch8",
-          "number": "8",
-          "title": "Hoofdstuk 8 - Overgangs- en slotbepalingen",
-          "title_en": "Chapter 8 - Transitional and Final Provisions",
+          "id": "nl-arbobesluit-main",
+          "number": "1",
+          "title": "Hoofdinhoud",
+          "title_en": "Main Content",
           "sections": [
             {
-              "id": "ad0ddcfbd5863fb3",
-              "number": "44",
-              "title": "Artikel 44. Kosten",
-              "text": "De kosten die zijn verbonden aan de naleving van de regels die bij of krachtens deze wet zijn gesteld, worden niet ten laste van de werknemers gebracht.",
+              "id": "7f3854f3429de1ad",
+              "number": "1",
+              "title": "Artikel 1. 1. Definities algemeen",
+              "text": "**Artikel 1. 1. Definities algemeen**\n\n1 In dit besluit en de daarop berustende bepalingen wordt verstaan onder wet: Arbeidsomstandighedenwet.\n\n2 In dit besluit en de daarop berustende bepalingen wordt verstaan onder:\na. bouwplaats: elke tijdelijke of mobiele arbeidsplaats waar civieltechnische werken of bouwwerken tot stand worden gebracht, waarvan een niet-uitputtende lijst is opgenomen in bijlage I bij de richtlijn, bedoeld in artikel 2.23, onder a;\nb. bouwwerk: een civieltechnisch werk of bouwwerk als bedoeld onder a;\nc. opdrachtgever:\n1°. voor de toepassing van hoofdstuk 2, afdeling 5, en artikel 9:6:\ni. degene voor wiens rekening een bouwwerk tot stand wordt gebracht, dan wel;\nii. op wiens initiatief een bouwwerk tot stand wordt gebracht, dan wel;\niii. de onder i en ii bedoelden tezamen;\n2°. voor de toepassing van artikel 9.5: degene voor wiens rekening een zelfstandige of werkgever als bedoeld in artikel 16, zevende lid, onderdeel b, van de wet, arbeid verricht;\nd. opdrachtgever-consument: de natuurlijke persoon die niet handelt in de uitoefening van een beroep of bedrijf, voor wiens rekening een bouwwerk tot stand wordt gebracht;\ne. ontwerpende partij: degene die zich jegens de opdrachtgever, bedoeld in onderdeel c, sub 1° of de opdrachtgever-consument verbonden heeft om in het bouwproces de ontwerpende functie te vervullen;\nf. uitvoerende partij: degene die zich jegens de opdrachtgever, bedoeld in onderdeel c, sub 1° of de opdrachtgever-consument verbonden heeft om in het bouwproces de uitvoerende functie te vervullen.\n\n3 In dit besluit en de daarop berustende bepalingen wordt verstaan onder:\na. arbeidsplaats in de winningsindustrie: iedere arbeidsplaats die direkt of indirekt verband houdt met de winningsindustrie in dagbouw, de ondergrondse winningsindustrie of de winningsindustrie die delfstoffen wint met behulp van boringen, waaronder het opsporen en de winning van koolwaterstoffen;\nb. delfstoffen: een natuurlijke concentratie of afzetting van ertsen, mineralen of substanties van organische oorsprong in of op de bodem, in vaste, vloeibare of gasvormige toestand, met inbegrip van op de bodem of onmiddellijk onder de oppervlakte daarvan aanwezige schelpen, grind, zand en klei;\nc. winningsindustrie in dagbouw: elke industrie die:\n1°. delfstoffen wint in de open lucht;\n2°. prospectiewerkzaamheden verricht met het oog op de winning van delfstoffen in de open lucht, of\n3°. delfstoffen gereed maakt voor de verkoop, met uitzondering van werkzaamheden in verband met de verwerking van deze delfstoffen;\nd. ondergrondse winningsindustrie: elke industrie die:\n1°. ondergronds delfstoffen wint anders dan door middel van boorgaten;\n2°. prospectiewerkzaamheden verricht met het oog op deze winning;\n3°. delfstoffen gereed maakt voor de verkoop, met uitzondering van werkzaamheden in verband met de verwerking van deze delfstoffen, of\n4°. stoffen opslaat als bedoeld in artikel 1, onder i, van de Mijnbouwwet.\ne. winningsindustrie die delfstoffen wint met behulp van boringen:elke industrie die:\n1°. delfstoffen wint door middel van boorgaten;\n2°. prospectiewerkzaamheden verricht met het oog op deze winning;\n3°. delfstoffen gereed maakt voor de verkoop, met uitzondering van werkzaamheden in verband met de verwerking van deze delfstoffen;\n4°. stoffen opslaat als bedoeld in artikel 1, onder i, van de Mijnbouwwet, of\n5°. aardwarmte opspoort of wint als bedoeld in artikel 1, onder g en h, van de Mijnbouwwet.\nf. winningsindustrie voor het opsporen en de winning van koolwaterstoffen: winningsindustrie als bedoeld in onderdeel e die koolwaterstoffen opspoort en wint;\ng. mijnbouwinstallatie: een installatie als bedoeld in artikel 1, onder o, van de Mijnbouwwet.\n\n4 In dit besluit en de daarop berustende bepalingen wordt verstaan onder:\na. fysieke belasting: de door een werknemer in verband met de arbeid in te nemen werkhouding, uit te voeren bewegingen of uit te oefenen krachten, onder meer bestaande uit het tillen, neerzetten, duwen, trekken, dragen of op een andere wijze verplaatsen of ondersteunen van een of meer lasten;\nb. persoonlijk beschermingsmiddel: iedere uitrusting die bestemd is om door de werknemer gedragen of vastgehouden te worden teneinde hem te beschermen tegen een of meer gevaren die zijn veiligheid of gezondheid op het werk kunnen bedreigen alsmede alle aanvullingen of accessoires die daartoe kunnen bijdragen met uitzondering van:\n1°. gewone en uniforme werkkleding die niet specifiek bedoeld is om de veiligheid en de gezondheid van de werknemer te beschermen;\n2°. sportuitrusting;\n3°. zelfverdedigings- of afschrikkingsmateriaal, en\n4°. draagbare apparaten voor het opsporen en signaleren van gevaren en belastingsfactoren;\nc. veiligheids- of gezondheidssignalering: een signalering die, toegepast op een bepaald object, een bepaalde activiteit of een bepaalde situatie door middel van een bord, een kleur, een lichtsignaal, een akoestisch signaal, een mondelinge mededeling of een hand- of armsein een aanwijzing of een voorschrift verstrekt met betrekking tot de veiligheid of gezondheid op het werk.\n\n5 In dit besluit en de daarop berustende bepalingen wordt verstaan onder:\na. EG-verordening indeling, etikettering en verpakking van stoffen en mengsels: verordening (EG) nr. 1272/2008 van het Europees Parlement en de Raad van de Europese Unie van 16 december 2008 betreffende de indeling, etikettering en verpakking van stoffen en mengsels tot wijziging en intrekking van de Richtlijnen 67/548/EEG en 1999/45/EG en tot wijziging van Verordening (EG) nr. 1907/2006 (PbEG 2008, L 353);\nb. gevaarlijke stoffen: stoffen of mengsels waaraan werknemers bij de arbeid worden of kunnen worden blootgesteld die vanwege de eigenschappen van of de omstandigheden waaronder die stoffen of mengsels voorkomen gevaar voor de veiligheid of gezondheid kunnen opleveren;\nc. mengsel: een mengsel of oplossing bestaande uit twee of meer stoffen.\n\n6 In dit besluit en de daarop berustende bepalingen wordt verstaan onder:\na. jeugdige werknemer: een werknemer jonger dan 18 jaar;\nb. zwangere werknemer: de werknemer die zwanger is en de werkgever hiervan in kennis heeft gesteld;\nc. werknemer tijdens de lactatie: de werknemer die haar kind borstvoeding geeft en haar werkgever hiervan in kennis heeft gesteld.\n\n7 In dit besluit en de daarop berustende bepalingen wordt verstaan onder certificerende instelling: een door Onze Minister krachtens artikel 20, tweede lid, van de wet aangewezen instelling die beslist over de afgifte van een certificaat als bedoeld in artikel 20, eerste lid, van de wet.\n\n8 In dit besluit en de daarop berustende bepalingen wordt verstaan onder:\na. Register veilig werken met explosieve stoffen: het register, genoemd in artikel 1.5j, eerste lid, onderdeel a;\nb. [Red: Dit onderdeel is nog niet in werking getreden;]\nc. [Red: Dit onderdeel is nog niet in werking getreden;]\nd. Register civiele duikarbeid: het register, genoemd in artikel 1.5j, eerste lid, onderdeel d;\ne. Register duikarbeid brandweer en politie: het register, genoemd in artikel 1.5j, eerste lid, onderdeel e;\nf. Register kraanmachinisten: het register, genoemd in artikel 1.5j, eerste lid, onderdeel f.\n",
               "whs_topics": [
                 {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "cd92cd3b084877d4",
-              "number": "45",
-              "title": "Artikel 45. Overgangsbepaling",
-              "text": "Artikel 45. Overgangsbepaling\n\nOp schriftelijke afspraken die zijn gemaakt overeenkomstig artikel 14, vierde lid, zoals dat artikellid luidde de dag voorafgaand aan het tijdstip van inwerkingtreding van de Wet van 25 januari 2017 tot wijziging van de Arbeidsomstandighedenwet in verband met de versterking van de betrokkenheid van de werkgevers en werknemers bij de arbodienstverlening, de preventie in het bedrijf of de inrichting van de werkgever, en de randvoorwaarden voor het handelen van de bedrijfsarts (Stb. 2017, 22), blijft artikel 14, vierde lid, zoals dat artikellid luidde de dag voorafgaand aan het tijdstip van inwerkingtreding van die wet, van toepassing tot de datum waarop die afspraken expireren, doch uiterlijk tot een jaar na inwerkingtreding van die wet. Tot dat tijdstip is artikel 14, vijfde lid, niet van toepassing.\n",
-              "whs_topics": [
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
                 {
                   "id": "workplace_design",
                   "relevance": "high",
                   "match_count": 2
                 },
                 {
-                  "id": "prevention_services",
+                  "id": "ergonomics",
                   "relevance": "high",
                   "match_count": 2
                 },
                 {
-                  "id": "documentation",
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "risk_assessment",
                   "relevance": "high",
                   "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 9,
+                "level": "critical",
+                "high_keyword_matches": 4,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "8e7da384f606b402",
+              "number": "2",
+              "title": "Artikel 2. 1. Melding gegevens",
+              "text": "**Artikel 2. Melding gegevens**\n\n1 Indien een werkgever of opdrachtgever ingevolge het bij of krachtens de wet bepaalde een melding moet doen aan de toezichthouder, doet hij dat langs elektronische weg. Indien zich een zodanige storing van het netwerk voordoet dat de werkgever of opdrachtgever de gegevens niet binnen de gestelde termijn kan leveren aan de toezichthouder, vindt de melding op een andere geschikte wijze plaats.\n2 In afwijking van het eerste lid doet een werkgever een melding telefonisch bij de toezichthouder bij arbeidsongevallen die leiden tot de dood van de werknemer.",
+              "whs_topics": [
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 2
                 },
                 {
                   "id": "employer_obligations",
@@ -1585,13 +1361,365 @@
               "paragraphs": []
             },
             {
-              "id": "5a4e4ba43b03643c",
-              "number": "46",
-              "title": "Artikel 46. Citeertitel",
-              "text": "Deze wet wordt aangehaald als: Arbeidsomstandighedenwet.",
+              "id": "1c372ad88a0162bd",
+              "number": "3",
+              "title": "Artikel 3. 1. Begrippen",
+              "text": "**Artikel 3. 1. Begrippen**\n\na. elektrische installatie: een samenstel van elektrisch materieel, leidingen en bijbehoren van leidingen;\nb. elektrisch materieel: delen of gedeelten van een elektrische installatie die dienen voor de opwekking, het transport en de toepassing van elektrische energie;\nc. explosieve atmosfeer: een mengsel van lucht en brandbare stoffen in de vorm van gassen, dampen, nevels of stof, onder atmosferische omstandigheden waarin de verbranding zich na ontsteking uitbreidt tot het gehele niet verbrande mengsel;\nd. gebruik van elektriciteit: iedere activiteit met betrekking tot een elektrische installatie waaronder in ieder geval wordt begrepen de bouw, ingebruikneming of buitengebruikstelling, bediening, reparatie, ombouwing, onderhoud en inspectie alsmede het werken in de nabijheid van een elektrische installatie;\ne. hoogspanning: een spanning waarvan de waarde bij wisselspanning hoger is dan 1000 volt effectief tussen de fasen of 600 volt effectief tussen een fase en aarde en bij gelijkspanning hoger is dan 1500 volt tussen de polen of 900 volt tussen een van de polen en aarde;\nf. laagspanning: een spanning met een waarde lager dan hoogspanning.\n",
               "whs_topics": [
                 {
                   "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c33cd2c59de7bb95",
+              "number": "4",
+              "title": "Artikel 4. 1. Definities",
+              "text": "**Artikel 4. 1. Definities**\n\n– biologische grenswaarde: limiet van de concentratie in het passende biologische medium van een gevaarlijke stof, de metabolieten daarvan of een indicator van het effect van de betreffende stof;\n– grenswaarde: 1°. de limiet van de concentratie of van het tijdgewogen gemiddelde van de concentratie voor een gevaarlijke stof in de individuele ademhalingszone van een werknemer gedurende een gespecificeerde referentieperiode; 2°. biologische grenswaarde;\n1°. de limiet van de concentratie of van het tijdgewogen gemiddelde van de concentratie voor een gevaarlijke stof in de individuele ademhalingszone van een werknemer gedurende een gespecificeerde referentieperiode;\n2°. biologische grenswaarde;\n– ongewilde gebeurtenis: een plotselinge situatie, ongeval, voorval of noodsituatie die gevaar oplevert voor veiligheid en gezondheid van de werknemer of zijn omgeving, en die gelet op de toegepaste stoffen, procédés en maatregelen niet is voorzien.\n",
+              "whs_topics": [
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "da3874ec5f0b9fd9",
+              "number": "6",
+              "title": "Artikel 6. 1. Temperatuur",
+              "text": "**Artikel 6. 1. Temperatuur**\n\n1 Rekening houdend met de aard van de werkzaamheden die door de werknemers worden verricht en de fysieke belasting die daar het gevolg van is, veroorzaakt de temperatuur op de arbeidsplaats geen schade aan de gezondheid van de werknemers.\n2 Indien door de temperatuur op de arbeidsplaats of door ongunstige weersomstandigheden toch schade aan de gezondheid van de werknemers kan ontstaan, worden persoonlijke beschermingsmiddelen ter beschikking gesteld. Indien de ter beschikking gestelde persoonlijke beschermingsmiddelen schade aan de gezondheid niet kunnen voorkomen, wordt de duur van de arbeid in een zodanige mate beperkt of wordt de arbeid met een zodanige frequentie afgewisseld door een tijdelijk verblijf op een plaats waar een temperatuur heerst als bedoeld in het eerste lid, dat geen schade aan de gezondheid ontstaat.\n",
+              "whs_topics": [
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "ergonomics",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "2afc455ec3ee798d",
+              "number": "8",
+              "title": "Artikel 8. 1. Algemene vereisten persoonlijk beschermingsmiddel",
+              "text": "**Artikel 8. Algemene vereisten persoonlijk beschermingsmiddel**\n\n1 Een door de werkgever aan de werknemer ter beschikking gesteld persoonlijk beschermingsmiddel is in overeenstemming met de betreffende bepalingen inzake ontwerp, constructie en gebruik op het gebied van veiligheid en gezondheid, bedoeld in de Verordening (EU) 2016/425 van het Europees Parlement en de Raad van 9 maart 2016 betreffende persoonlijke beschermingsmiddelen en tot intrekking van Richtlijn 89/686/EEG van de Raad (PbEU 2016, L 81) en bedoeld in de Richtlijn (EU) 89/656 van de Raad van 30 november 1989 betreffende de minimumvoorschriften inzake veiligheid en gezondheid voor het gebruik op het werk van persoonlijke beschermingsmiddelen door de werknemers (PbEU 1989, L 393).\n\n2 In alle gevallen moet een persoonlijk beschermingsmiddel:\n* a. geschikt zijn voor de te vermijden gevaren, zonder zelf een vergroot gevaar in te houden;\n* b. beantwoorden aan de bestaande omstandigheden op de arbeidsplaats;\n* c. afgestemd zijn op de ergonomische eisen en de vereisten met betrekking tot de gezondheid van de werknemers;\n* d. na de nodige aanpassingen geschikt zijn voor de drager.\n\n3 Indien verschillende gevaren het tegelijkertijd dragen van meer dan één persoonlijk beschermingsmiddel noodzakelijk maken, zijn deze persoonlijke beschermingsmiddelen op elkaar afgestemd en blijven zij doelmatig tegen het betreffende gevaar of de betreffende gevaren.\n\n4 De keuze van het persoonlijk beschermingsmiddel en de wijze waarop dit gebruikt moet worden, met name wat betreft de duur van het dragen, worden bepaald afhankelijk van de ernst van het gevaar, de frequentie van de blootstelling aan het gevaar en de kenmerken van de arbeidsplaats van iedere werknemer afzonderlijk alsmede van de doelmatigheid van het persoonlijk beschermingsmiddel.\n\n5 Een persoonlijk beschermingsmiddel is in beginsel bestemd voor gebruik door één persoon. Indien de omstandigheden vereisen dat een persoonlijk beschermingsmiddel door meer dan één persoon gebruikt wordt, worden doeltreffende maatregelen genomen, opdat een dergelijk gebruik geen gezondheids- of hygiëneproblemen oplevert voor de onderscheiden gebruikers.\n\n6 Adequate gegevens over ieder persoonlijk beschermingsmiddel, nodig voor de toepassing van het eerste, tweede, derde en vierde lid, zijn in het bedrijf of de inrichting beschikbaar en worden zonodig doorgegeven.\n\n7 Persoonlijke beschermingsmiddelen worden slechts voor de beoogde doeleinden gebruikt.\n\n8 Persoonlijke beschermingsmiddelen worden overeenkomstig de gebruiksaanwijzing gebruikt.",
+              "whs_topics": [
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 7,
+                "level": "critical",
+                "high_keyword_matches": 3,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ba692c5f28e882e6",
+      "version": "1.0.0",
+      "type": "law",
+      "jurisdiction": "NL",
+      "abbreviation": "Arboregeling",
+      "title": "Arbeidsomstandighedenregeling",
+      "title_en": "Arbeidsomstandighedenregeling",
+      "category": "Core Safety",
+      "implements_eu_directive": "89/391/EEG",
+      "source": {
+        "url": "https://wetten.overheid.nl/BWBR0008587/",
+        "title": "Arbeidsomstandighedenregeling",
+        "authority": "wetten.overheid.nl",
+        "robots_txt_compliant": true
+      },
+      "scraping": {
+        "scraped_at": "2025-12-17T22:20:00.019186",
+        "scraper_version": "7.1.0"
+      },
+      "whs_summary": {
+        "total_sections": 6,
+        "logistics_relevance_distribution": {
+          "critical": 2,
+          "high": 1,
+          "medium": 1,
+          "low": 2
+        },
+        "top_whs_topics": [
+          [
+            "health_surveillance",
+            3
+          ],
+          [
+            "incident_reporting",
+            1
+          ],
+          [
+            "risk_assessment",
+            1
+          ],
+          [
+            "prevention_services",
+            1
+          ],
+          [
+            "employee_rights",
+            1
+          ],
+          [
+            "workplace_design",
+            1
+          ],
+          [
+            "work_equipment",
+            1
+          ],
+          [
+            "documentation",
+            1
+          ],
+          [
+            "ergonomics",
+            1
+          ],
+          [
+            "first_aid",
+            1
+          ]
+        ],
+        "critical_sections_count": 3
+      },
+      "chapters": [
+        {
+          "id": "nl-arboregeling-main",
+          "number": "1",
+          "title": "Hoofdinhoud",
+          "title_en": "Main Content",
+          "sections": [
+            {
+              "id": "bc4b58596d8c9c87",
+              "number": "2",
+              "title": "Artikel 2. 0. Vastlegging preventiebeleid voor zware ongevallen",
+              "text": "**Artikel 2. 0. Vastlegging preventiebeleid voor zware ongevallen**\n\na. de hoofdlijnen van de aard en de omvang van de risico’s van zware ongevallen;\nb. de beginselen die ten grondslag liggen aan het veiligheidsbeheersysteem en die inzicht bieden in de samenhang tussen het beleid en het veiligheids-beheersysteem;\nc. de criteria die worden toegepast bij de vaststelling van de risico’s van zware ongevallen; en\nd. de beginselen die ten grondslag liggen aan de maatregelen die zijn getroffen om zware ongevallen te voorkomen en die inzicht bieden in de samenhang tussen die maatregelen en de risico’s van zware ongevallen.\n",
+              "whs_topics": [
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 5,
+                "level": "critical",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 3
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ab1e711a478e8a86",
+              "number": "4",
+              "title": "Artikel 4. 1. Definities",
+              "text": "**Artikel 4. 1. Definities**\n\na. brandbare vloeistoffen: vloeistoffen waarvan het vlampunt niet hoger is dan 100°C;\nb. K0-, K1- en K2-vloeistoffen: brandbare vloeistoffen, met een vlampunt lager of gelijk aan 55°C, waaronder mede begrepen brandbare gassen, al dan niet in vloeibare vorm, voor zover niet begrepen onder KT-vloeistoffen;\nc. K3-vloeistoffen: brandbare vloeistoffen, geen KT-vloeistoffen zijnde, waarvan het vlampunt hoger is dan 55°C;\nd. KT-vloeistoffen: brandbare vloeistoffen, waaronder mede begrepen brandbare gassen, al dan niet in vloeibare vorm, welke gevaar voor vergiftiging, bedwelming of verstikking kunnen opleveren;\ne. T-vloeistoffen: vloeistoffen, niet zijnde brandbare vloeistoffen, waaronder mede begrepen gassen, al dan niet in vloeibare vorm, welke gevaar voor vergiftiging bedwelming of verstikking kunnen opleveren;\nf. K1-ruimte: een tot een schip behorende ruimte waarin K0-, K1- of K2-vloeistoffen en geen KT-vloeistoffen of resten daarvan anders dan in verpakking voorkomen;\ng. K3-ruimte: een tot een schip behorende ruimte waarin geen andere brandbare vloeistoffen dan K3-vloeistoffen of resten daarvan anders dan in verpakking voorkomen;\nh. KT-ruimte:een tot een schip behorende ruimte waarin KT-vloeistoffen of resten daarvan anders dan in verpakking voorkomen;\ni. T-ruimte: een tot een schip behorende ruimte waarin T-vloeistoffen en geen KT-vloeistoffen of resten daarvan anders dan in verpakking voorkomen;\nj. K1-schip: een schip waarvan een of meer van de ladingtanks een K1-ruimte is of voor het schoonmaken daarvan was;\nk. K3-schip: een schip, in de ladingtanks waarvan noch andere brandbare vloeistoffen dan K3-vloeistoffen geen T-vloeistoffen of resten van een van die vloeistoffen anders dan in verpakking voorkomen;\nl. KT-schip: een schip waarvan een of meer van de ladingtanks een KT-ruimte is of voor het schoonmaken daarvan was;\nm. T-schip: een schip, niet zijnde een K1- of KT-schip, waarvan een of meer van de ladingtanks een T-ruimte is of voor het schoonmaken daarvan was;\nn. vuur: vuur, vonkvorming, open licht of elk oppervlak met een temperatuur welke gelijk is aan of hoger is dan de minimumontstekingstemperatuur van de vloeistoffen of de gassen die de ladingtanks bevatten of waarvan resten in die tanks voorkomen;\no. werk met vuur: werkzaamheden waarbij vuur wordt gebruikt of kan ontstaan;\np. koud werk: werkzaamheden waarbij geen vuur wordt gebruikt of kan ontstaan;\nq. schoonmaken: iedere handeling die gericht is op of verband houdt met het schoon-, gasvrij- of droogmaken van een K1-, KT-, K3- of T-ruimte;\nr. ladingzone: de ladingtanks en alle rechtstreeks aan deze tanks grenzende tanks of andere ruimten, welke als afscheiding dienen tussen de ladingtanks en de overige ruimten van het schip;\ns. gasdeskundige: een deskundig persoon als bedoeld in artikel 3.5h, derde lid, van het besluit die voldoet aan artikel 4.14 ;\nt. veiligheids- en gezondheidsverklaring: een door een gasdeskundige na een doeltreffend onderzoek afgegeven verklaring als bedoeld in artikel 3.5h, derde lid, van het besluit , overeenkomstig een van de bij bijlage IX van deze regeling vastgestelde modellen.\n",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ed84e1dfb2b83d48",
+              "number": "5",
+              "title": "Artikel 5. 1. Apparatuur en meubilair",
+              "text": "Artikel 5. 1. Apparatuur en meubilair\na. de tekens op het beeldscherm zijn voldoende scherp, duidelijk van vorm en voldoende groot, met voldoende afstand tussen de tekens en de regels;\nb. het beeld op het beeldscherm is stabiel;\nc. de luminantie van of het contrast tussen de tekens en de achtergrond is gemakkelijk door de gebruiker bij te stellen;\nd. het beeldscherm is vrij te plaatsen en gemakkelijk verstelbaar en kantelbaar;\ne. het beeldscherm is vrij van voor de gebruiker hinderlijke glans en spiegelingen;\nf. het toetsenbord kan hellend worden geplaatst en vormt geen geheel met het beeldscherm;\ng. er is voor het toetsenbord voldoende ruimte voor handen en armen van de gebruiker;\nh. het toetsenbord heeft een mat oppervlak;\ni. de indeling van het toetsenbord en de vorm van de toetsen zijn gericht op vergemakkelijking van het gebruik;\nj. de symbolen op de toetsen zijn voldoende contrastrijk en vanuit een normale werkhouding voldoende leesbaar;\nk. de werktafel of het werkvlak maakt een comfortabele houding van de gebruiker mogelijk en heeft een reflectiearm oppervlak, is voldoende groot en maakt een flexibele opstelling van beeldscherm, toetsenbord, documenten en accessoires mogelijk;\nl. een voor het werk noodzakelijke documenthouder is stabiel en regelbaar en zodanig geplaatst dat oncomfortabele hoofd- en oogbewegingen tot een minimum zijn beperkt;\nm. de werkstoel is stabiel, heeft een in hoogte verstelbare zitting en een rugleuning, waarvan de hoogte en hellingshoek verstelbaar zijn en geeft de gebruiker bewegingsvrijheid en een comfortabele werkhouding;\nn. indien de gebruiker dat wenst wordt een voetensteun aangebracht.",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "60044402403f8e8a",
+              "number": "6",
+              "title": "Artikel 6. 1. Eisen voor registratie of herregistratie van duikers, duikploegleiders,",
+              "text": "**Artikel 6. 1. Eisen voor registratie of herregistratie van duikers, duikploegleiders,**\n\n1 In dit artikel wordt verstaan onder:\n– aangedreven gereedschappen: arbeidsmiddelen die pneumatisch, hydraulisch, mechanisch of elektrisch dan wel via munitie worden aangedreven en aanvullend bewustzijn vereisen voor de duikploeg en van de duiker ten aanzien van veiligheidsmaatregelen voor zichzelf dan wel voor zijn omgeving aan de oppervlakte, in het water en tijdens de duikarbeid;\n– geconditioneerde omstandigheden: omgeving waar op voorhand met behulp van een risicoanalyse ingeschat kan worden dat er geen sprake zal zijn van een voorzienbare kans dat de duiker in moeilijkheden zal geraken tijdens de duikarbeid en waarbij ten minste wordt voldaan aan elk van de volgende criteria:\na. de maximaal bereikbare diepte bedraagt 9 meter;\nb. het onderwaterzicht bedraagt ten minste 4 meter, indien de omvang van de betreffende faciliteit dit mogelijk maakt;\nc. de stroomsnelheid bedraagt maximaal 0,5 meter per seconde; en\nd. er is te allen tijde de mogelijkheid tot vrije opstijging;\n– gesloten duikklok: een afzinkbare kamer, afsluitbaar door middel van één of twee deuren, bedoeld voor het transport van duikers tussen de onder water gelegen werkplek en de aan de oppervlakte gesitueerde compressiekamer;\n– hogedrukluchtvoorziening vanaf de oppervlakte: luchtvoorziening vanaf de oppervlakte die gekoppeld wordt aan de meegedragen SCUBA ademgasvoorziening en waarbij de ademlucht pas bij de meegedragen ademgasvoorziening, niet zijnde een ademgasvoorziening als bedoeld bij SSE, wordt gereduceerd tot lage druk;\n– lichte werkzaamheden: werkzaamheden uitgevoerd tijdens duikarbeid met niet aangedreven gereedschappen;\n– niet aangedreven gereedschappen: arbeidsmiddelen die met de hand worden ingezet en enkel door middel van het inzetten van spierkracht het beoogde effect realiseren;\n– no-deco duiktijd: tijdsduur waarbij op basis van duikdiepte en duiktijd geen decompressiestop is benodigd;\n– open duikklok: open duikklok die is voorzien van een droge ruimte gevuld met ademlucht waar geademd kan worden;\n– scopecategorie: een groepering van scopes op basis van gedeelde kenmerken, waarbij de volgende scopecategorieën worden onderscheiden:\na. scopecategorie A, bestaande uit de scopes, genoemd in het tweede lid, onderdelen a tot en met d, en het derde lid, onderdelen a tot en met c, die zich kenmerken door lichte werkzaamheden zonder aangedreven gereedschappen waarbij voornamelijk mobiliteit van de duiker van belang is voor zijn werkzaamheden;\nb. scopecategorie B, bestaande uit de scopes, genoemd in het tweede lid, onderdelen e tot en met g, en het derde lid, onderdelen d tot en met f, die zich kenmerken door zware werkzaamheden waarbij de duiker voornamelijk statisch zijn werkzaamheden uitvoert; en\nc. scopecategorie C, bestaande uit de scopes, genoemd in het tweede lid, onderdeel h, en het vierde lid, onderdeel g, die zich kenmerken door zware werkzaamheden waarbij de duiker vanuit een gesloten duikklok gebruik maakt van ademgassen die ten behoeve van het ademen op grotere dieptes samengesteld zijn;\n– SCUBA: Self Contained Underwater Breathing Apparatus, zijnde een verzamelnaam voor duikmaterieel dat zich kenmerkt door ademgasvoorziening vanuit cilinders die door de duiker meegedragen worden;\n– SSE: Surface Supplied Equipment, zijnde een verzamelnaam voor duiksystemen die standaard voorzien zijn van ademgasvoorziening vanaf de oppervlakte, waarbij een of meer duikers aangesloten zijn op een duikpaneel, en die geschikt zijn voor de uitvoering van zware werkzaamheden in de scopecategorie B;\n– zware werkzaamheden: werkzaamheden uitgevoerd tijdens duikarbeid waarbij de omstandigheden, de aard van de werkzaamheden of het gebruik van aangedreven gereedschappen leiden tot aanvullende risico's welke gemitigeerd worden door het gebruik van een SSE duikuitrusting.\n\n2 Een duiker is in het bezit van een bewijs van registratie of herregistratie in het Register civiele duikarbeid of in het Register duikarbeid brandweer en politie, en is geregistreerd op basis van het Registratieschema duiker, zoals vastgesteld door het bestuur van de Stichting Werken Onder Overdruk op 1 oktober 2024 en door de minister is gepubliceerd in de Staatscourant van 12 december 2024 (Stcrt. 2024, 39678), voor de scope:\na. A9, indien hij lichte werkzaamheden uitvoert met een SCUBA duikuitrusting tot een diepte van 9 meter, binnen de grenzen van no-deco duiktijden, onder geconditioneerde omstandigheden;\nb. A15, indien hij lichte werkzaamheden uitvoert met een SCUBA duikuitrusting, tot een diepte van 15 meter, binnen de grenzen van no-deco duiktijden;\nc. A15OLV, indien hij lichte werkzaamheden uitvoert met een SCUBA duikuitrusting met aansluiting op een hogedrukluchtvoorziening vanaf de oppervlakte, tot een diepte van 15 meter, binnen de grenzen van no-deco duiktijden;\nd. A30, indien hij lichte werkzaamheden uitvoert met een SCUBA duikuitrusting tot en met een diepte van 30 meter;\ne. B30, indien hij zware werkzaamheden uitvoert met een SSE duikuitrusting, tot en met een diepte van 30 meter;\nf. B50R, indien hij zware werkzaamheden uitvoert met een SSE duikuitrusting, tot en met een diepte van 50 meter;\ng. B50, indien hij zware werkzaamheden uitvoert met een SSE duikuitrusting, inclusief het duiken vanuit een open duikklok, tot en met een diepte van 50 meter; en\nh. C, indien hij zware werkzaamheden uitvoert met een SSE duikuitrusting, inclusief het duiken vanuit een gesloten duikklok.\n\n3 Een duiker die is geregistreerd voor de scope A30, B50R of B50 kan, in afwijking van het tweede lid, bij het verrichten van werkzaamheden die vallen binnen de scope waarvoor hij is geregistreerd, in incidentele gevallen dieper duiken dan de maximale diepte die is gekoppeld aan de betreffende scope, mits wordt voldaan aan de voorwaarden in paragraaf 5.8 van het registratieschema, genoemd in het tweede lid.\n\n4 Een duikploegleider is in het bezit van een bewijs van registratie of herregistratie in het Register civiele duikarbeid of in het Register duikarbeid brandweer en politie, en is geregistreerd op basis van het Registratieschema duikploegleider, zoals vastgesteld door het bestuur van de Stichting Werken Onder Overdruk op 1 oktober 2024 en door de minister is gepubliceerd in de Staatscourant van 12 december 2024 (Stcrt. 2024, 39683), voor de scope:\na. A9, indien hij leiding geeft aan de uitvoering van lichte werkzaamheden met een SCUBA duikuitrusting tot een diepte van 9 meter, binnen de grenzen van no-deco duiktijden, onder geconditioneerde omstandigheden;\nb. A15, indien hij leiding geeft aan de uitvoering van lichte werkzaamheden met een SCUBA duikuitrusting tot een diepte van 15 meter, binnen de grenzen van no-deco duiktijden;\nc. A30, indien hij leiding geeft aan de uitvoering van lichte werkzaamheden met een SCUBA duikuitrusting tot en met een diepte van 30 meter;\nd. B30, indien hij leiding geeft aan de uitvoering van zware werkzaamheden met een SSE duikuitrusting, tot en met een diepte van 30 meter;\ne. B50R, indien hij leiding geeft aan de uitvoering van zware werkzaamheden met een SSE duikuitrusting, tot en met een diepte van 50 meter;\nf. B50, indien hij leiding geeft aan de uitvoering van zware werkzaamheden met een SSE duikuitrusting, inclusief het duiken vanuit een open duikklok, tot en met een diepte van 50 meter; en\ng. C, indien hij leiding geeft aan de uitvoering van zware werkzaamheden met een SSE duikuitrusting, inclusief het duiken vanuit een gesloten duikklok.\n\n5 Een duikploegleider mag leiding geven aan werkzaamheden als bedoeld in het tweede lid, onderdeel c, waarbij gebruik wordt gemaakt van een aansluiting op een hogedrukluchtvoorziening vanaf de oppervlakte, indien hij is geregistreerd voor een of meer van de scopes, genoemd in het vierde lid, onderdelen b tot en met g, en bij deze registratie of herregistratie tevens de aantekening ‘A15OLV’ is geregistreerd.\n\n6 De aantekening, bedoeld in het vijfde lid, wordt geregistreerd indien is voldaan aan de daarvoor geldende eisen in het registratieschema, genoemd in het vierde lid.\n\n7 Een duiker die is geregistreerd voor een van de scopes, genoemd in het tweede lid, mag naast de duikarbeid die valt binnen de betreffende scope tevens duikarbeid verrichten die valt binnen de scopes, genoemd in de onderdelen van het tweede lid die voorafgaan aan het onderdeel dat betrekking heeft op de scope waarin de duiker is geregistreerd, met uitzondering van scope A15OLV. De eerste zin is van overeenkomstige toepassing op een duikploegleider die is geregistreerd voor een van de scopes, genoemd in het vierde lid.\n\n8 Een duikmedisch begeleider is in het bezit van een bewijs van registratie of herregistratie in het Register civiele duikarbeid of in het Register duikarbeid brandweer en politie, en is geregistreerd op basis van het Registratieschema duikmedisch begeleider, zoals vastgesteld door het bestuur van de Stichting Werken Onder Overdruk op 1 oktober 2024 en door de minister is gepubliceerd in de Staatscourant van 12 december 2024 (Stcrt. 2024, 39685), voor de scope:\na. B1, indien hij medische begeleiding uitvoert bij duikarbeid in de duikerscopes A9, A15 en A15OLV binnen de grenzen van no-deco duiktijden; en\nb. B2, indien hij medische begeleiding uitvoert bij duikarbeid in de duikerscopes A30 en de scopecategorieën B en C.\n\n9 Een duikerarts is in het bezit van een bewijs van registratie of herregistratie in het Register civiele duikarbeid en is geregistreerd op basis van het Registratieschema duikerarts, zoals vastgesteld door het bestuur van de Stichting Werken Onder Overdruk op 1 oktober 2024en door de minister is gepubliceerd in de Staatscourant van 12 december 2024 (Stcrt. 2024, 39687), voor de scope:\na. duikerarts A, indien hij arbeidsgezondheidskundige onderzoeken als bedoeld in artikel 6.14a, tweede lid, van het besluit uitvoert die niet voortkomen uit een wijziging in de lichamelijke of geestelijke toestand van de persoon die wordt onderzocht; en\nb. duikerarts B, indien hij arbeidsgezondheidskundige onderzoeken als bedoeld in artikel 6.14a, eerste, tweede en zesde lid, van het besluit uitvoert.\n\n10 Dit artikel is niet van toepassing op arbeid verricht door defensiepersoneel.\n",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "ergonomics",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 10,
+                "level": "critical",
+                "high_keyword_matches": 4,
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ecbbad7c615feabf",
+              "number": "8",
+              "title": "Artikel 8. 1. Vereisten",
+              "text": "1 Veiligheids- of gezondheidssignalering als bedoeld in artikel 8.4 van het besluit voldoet aan het tweede lid en de artikelen 8.2 tot en met 8.29 .\n2 Veiligheids- of gezondheidssignalering wordt, al naar gelang het geval, geregeld schoongemaakt, onderhouden, geverifieerd en gerepareerd of zo nodig vervangen, met het oog op het behoud van hun intrinsieke of functionele kwaliteiten.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "f10a0feef676ad9c",
+              "number": "9",
+              "title": "Artikel 9. 1. Overgangsbepaling duiker, duikploegleider, duikmedisch begeleider en",
+              "text": "**Artikel 9. Overgangsbepaling duiker, duikploegleider, duikmedisch begeleider en**\n\n1 De persoon die op 1 februari 2025 beschikt over een geldig certificaat duikarbeid wordt op zijn verzoek voor de resterende geldigheidsduur van dat certificaat, afhankelijk van de sector waarin hij werkzaam is, ingeschreven in het Register civiele duikarbeid of het Register duikarbeid brandweer en politie, in de volgende scope, bedoeld in artikel 6.1, tweede lid :\na. A9, indien hij over een certificaat voor subcategorie A1 beschikt;\nb. A15, indien hij over een certificaat voor subcategorie A2 beschikt;\nc. A30, indien hij over een certificaat voor subcategorie A3 beschikt;\nd. A15OLV, indien hij over een certificaat voor subcategorie B1 beschikt;\ne. B30, indien hij over een certificaat voor subcategorie B2 beschikt;\nf. B50R, indien hij over een certificaat voor subcategorie B3 beschikt;\ng. B50, indien hij over een certificaat voor subcategorie B4 beschikt;\nh. C, indien hij over een certificaat voor categorie C beschikt.\n\n2 De persoon die op 1 februari 2025 beschikt over een geldig certificaat duikploegleider wordt op zijn verzoek voor de resterende geldigheidsduur van dat certificaat ingeschreven in het Register civiele duikarbeid in de volgende scope, bedoeld in artikel 6.1, vierde lid :\na. A9, indien hij over een certificaat voor subcategorie A1 beschikt;\nb. A15, indien hij over een certificaat voor subcategorie A2 beschikt;\nc. A30, indien hij over een certificaat voor subcategorie A3 beschikt;\nd. A15, indien hij over een certificaat voor subcategorie B1 beschikt;\ne. B30, indien hij over een certificaat voor subcategorie B2 beschikt;\nf. B50R, indien hij over een certificaat voor subcategorie B3 beschikt;\ng. B50, indien hij over een certificaat voor subcategorie B4 beschikt;\nh. C, indien hij over een certificaat voor categorie C beschikt.\n\n3 De persoon die op 1 februari 2025 beschikt over een geldig certificaat brandweerduikploegleider wordt op zijn verzoek voor de resterende geldigheidsduur van dat certificaat ingeschreven in het Register duikarbeid brandweer en politie in de scope A15, bedoeld in artikel 6.1, vierde lid.\n\n4 De persoon die op 1 februari 2025 beschikt over een geldig certificaat duikmedisch begeleider wordt op zijn verzoek voor de resterende geldigheidsduur van dat certificaat, afhankelijk van de sector waarin hij werkzaam is, ingeschreven in het Register civiele duikarbeid of het Register duikarbeid brandweer en politie, in de volgende scope, bedoeld in artikel 6.1, achtste lid :\na. B1, indien hij over een certificaat EHBO duikarbeid beschikt;\nb. B2, indien hij over een certificaat mad A beschikt.\n\n5 De persoon die op 1 februari 2025 beschikt over een geldig certificaat duikerarts wordt op zijn verzoek voor de resterende geldigheidsduur van dat certificaat ingeschreven in het Register civiele duikarbeid in de volgende scope, bedoeld in artikel 6.1, negende lid :\na. duikerarts A, indien hij over een certificaat duikerarts A beschikt;\nb. duikerarts B, indien hij over een certificaat duikerarts B beschikt.\n\n6 Indien sinds de afgifte van het certificaat, bedoeld in het eerste, tweede en derde lid, een periode van meer dan 24 maanden is verstreken, wordt een verzoek als bedoeld in die leden slechts ingewilligd als door de houder van het certificaat is aangetoond dat hij in de periode van 24 maanden vanaf de datum van afgifte van het certificaat:\na. heeft voldaan aan de op het certificaat van toepassing zijnde eindterm in paragraaf 11.2.1. van bijlage XVIc van de regeling, zoals deze luidde op 31 januari 2025, indien het certificaat een certificaat is als bedoeld in het eerste lid;\nb. als duikploegleider deel heeft genomen aan ten minste 20 duiken in de categorie van duikarbeid waarvoor het certificaat is afgegeven, indien het certificaat een certificaat is als bedoeld in het tweede lid voor subcategorieën A1, A2 of B1 dan wel een certificaat is als bedoeld in het derde lid;\nc. als duikploegleider deel heeft genomen aan ten minste 30 duiken in de categorie van duikarbeid waarvoor het certificaat is afgegeven, indien het certificaat een certificaat is als bedoeld in het tweede lid en is afgegeven voor een andere subcategorie dan die genoemd in onderdeel b.\n",
+              "whs_topics": [
+                {
+                  "id": "first_aid",
                   "relevance": "high",
                   "match_count": 1
                 }
