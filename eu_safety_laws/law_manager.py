@@ -1318,21 +1318,32 @@ class NLScraper(Scraper):
             r'Sla het regelingonderdeel op',
             r'\[Wijziging\(en\)[^\]]*\]',
             r'wijzigingenoverzicht',
+            r'Selecteer[\s\S]*?geldig',
+            r'Vergelijk met',
+            r'https?://[^\s]+',
         ]
         boilerplate_regex = re.compile('|'.join(boilerplate_patterns), re.IGNORECASE)
 
-        # Find all artikel divs - these contain the actual article content
-        # wetten.overheid.nl uses div.artikel for article containers
-        artikel_divs = soup.find_all('div', class_=re.compile(r'^artikel$'))
+        # Method 1: Find div.artikel containers with ID pattern Hoofdstuk*_Artikel*
+        # Structure: div.artikel > [header div with h4] + [ul.artikel_leden with actual content]
+        artikel_containers = soup.find_all('div', id=re.compile(r'Hoofdstuk\d+_Artikel\d+[a-z]?$', re.IGNORECASE))
 
-        for artikel_div in artikel_divs:
-            # Find the h4 header within the div
-            header = artikel_div.find('h4')
-            if not header:
-                continue
+        # Fallback: find by class if ID search fails
+        if not artikel_containers:
+            artikel_containers = soup.find_all('div', class_='artikel')
 
-            header_text = header.get_text(strip=True)
-            match = re.search(r'Artikel\s+(\d+[a-z]?)', header_text, re.IGNORECASE)
+        for container in artikel_containers:
+            # Get article number from ID or from h4 header
+            container_id = container.get('id', '')
+            match = re.search(r'Artikel(\d+[a-z]?)', container_id, re.IGNORECASE)
+
+            if not match:
+                # Try finding h4 in the container
+                h4 = container.find('h4')
+                if h4:
+                    h4_text = h4.get_text(strip=True)
+                    match = re.search(r'Artikel\s+(\d+[a-z]?)', h4_text, re.IGNORECASE)
+
             if not match:
                 continue
 
@@ -1341,36 +1352,80 @@ class NLScraper(Scraper):
                 continue
             seen_sections.add(section_num)
 
-            # Extract title after article number
-            title_match = re.search(r'Artikel\s+\d+[a-z]?\.?\s*(.+)', header_text, re.IGNORECASE)
-            article_title = title_match.group(1).strip() if title_match else ""
+            # Get article title from h4
+            article_title = ""
+            h4 = container.find('h4')
+            if h4:
+                h4_text = h4.get_text(strip=True)
+                title_match = re.search(r'Artikel\s+\d+[a-z]?\.?\s*(.+)', h4_text, re.IGNORECASE)
+                article_title = title_match.group(1).strip() if title_match else ""
 
-            # Get all text content from the artikel div
-            full_div_text = artikel_div.get_text(separator='\n', strip=True)
+            # Extract content from ul.artikel_leden or p.lid elements
+            content_parts = []
 
-            # Clean up the text: remove boilerplate and clean whitespace
-            cleaned_lines = []
-            for line in full_div_text.split('\n'):
-                line = line.strip()
-                # Skip empty lines and boilerplate
-                if not line or len(line) < 3:
-                    continue
-                if boilerplate_regex.search(line):
-                    continue
-                # Skip lines that are just the header repeated
-                if line == header_text:
-                    continue
-                # Skip UI action items
-                if line in ['...', '.']:
-                    continue
-                cleaned_lines.append(line)
+            # Find the content ul (class contains 'artikel_leden')
+            content_uls = container.find_all('ul', class_=lambda c: c and 'artikel_leden' in ' '.join(c) if c else False)
 
-            # Join and further clean the text
-            full_text = '\n'.join(cleaned_lines)
-            # Remove excessive whitespace
+            for ul in content_uls:
+                # Get all p.lid paragraphs (the actual law text)
+                for p in ul.find_all('p', class_=lambda c: c and 'lid' in ' '.join(c) if c else False):
+                    p_text = p.get_text(separator=' ', strip=True)
+                    if p_text and len(p_text) > 5:
+                        p_text = re.sub(r'\s+', ' ', p_text)
+                        content_parts.append(p_text)
+
+                # Also get p.al elements (sub-definitions)
+                for p in ul.find_all('p', class_='al'):
+                    p_text = p.get_text(separator=' ', strip=True)
+                    if p_text and len(p_text) > 5:
+                        p_text = re.sub(r'\s+', ' ', p_text)
+                        content_parts.append(p_text)
+
+                # Get labeled paragraphs too
+                for p in ul.find_all('p', class_='labeled'):
+                    p_text = p.get_text(separator=' ', strip=True)
+                    if p_text and len(p_text) > 5:
+                        p_text = re.sub(r'\s+', ' ', p_text)
+                        content_parts.append(p_text)
+
+            # Fallback: if no content found, try all p and li elements in container
+            if not content_parts:
+                for elem in container.find_all(['p', 'li']):
+                    # Skip elements in the header div
+                    parent_classes = ' '.join(elem.parent.get('class', []) if elem.parent else [])
+                    if 'article__header' in parent_classes:
+                        continue
+                    elem_text = elem.get_text(separator=' ', strip=True)
+                    if elem_text and len(elem_text) > 10:
+                        elem_text = re.sub(r'\s+', ' ', elem_text)
+                        content_parts.append(elem_text)
+
+            # Deduplicate while preserving order (nested li may duplicate)
+            seen_parts = set()
+            unique_parts = []
+            for part in content_parts:
+                # Use first 100 chars for comparison to handle slight variations
+                key = part[:100].lower()
+                if key not in seen_parts:
+                    seen_parts.add(key)
+                    unique_parts.append(part)
+
+            # Join and clean the text
+            full_text = '\n'.join(unique_parts)
+
+            # Remove boilerplate
+            for pattern in boilerplate_patterns:
+                full_text = re.sub(pattern, '', full_text, flags=re.IGNORECASE)
+
+            # Clean up whitespace
             full_text = re.sub(r'\n{3,}', '\n\n', full_text)
-            # Remove the article header from the beginning if present
-            full_text = re.sub(r'^Artikel\s+\d+[a-z]?\.?\s*[^\n]*\n*', '', full_text, flags=re.IGNORECASE)
+            full_text = re.sub(r'[ \t]+', ' ', full_text)
+            full_text = full_text.strip()
+
+            # Skip if we only got boilerplate
+            if len(full_text) < 20:
+                log_warning(f"Article {section_num} has very short content ({len(full_text)} chars)")
+                continue
 
             whs_topics = self._classify_whs_topics(full_text, article_title)
             logistics_relevance = self._calculate_logistics_relevance(full_text, article_title)
@@ -1384,6 +1439,40 @@ class NLScraper(Scraper):
                 "amazon_logistics_relevance": logistics_relevance,
                 "paragraphs": []
             })
+
+        # Method 2: Fallback - try finding content via anchor IDs (Hoofdstuk1_Artikel1 pattern)
+        if not sections:
+            log_info("Trying alternative parsing via anchor IDs...")
+            for anchor in soup.find_all('a', id=re.compile(r'Artikel\d+', re.IGNORECASE)):
+                anchor_id = anchor.get('id', '')
+                match = re.search(r'Artikel(\d+[a-z]?)', anchor_id, re.IGNORECASE)
+                if not match:
+                    continue
+
+                section_num = match.group(1)
+                if section_num in seen_sections:
+                    continue
+                seen_sections.add(section_num)
+
+                # Find the parent container and extract text
+                parent = anchor.find_parent(['div', 'section', 'li'])
+                if parent:
+                    full_text = parent.get_text(separator='\n', strip=True)
+                    # Apply boilerplate cleanup
+                    for pattern in boilerplate_patterns:
+                        full_text = re.sub(pattern, '', full_text, flags=re.IGNORECASE)
+                    full_text = re.sub(r'\n{3,}', '\n\n', full_text).strip()
+
+                    if len(full_text) > 20:
+                        sections.append({
+                            "id": generate_id(f"{abbrev}-{section_num}"),
+                            "number": section_num,
+                            "title": f"Artikel {section_num}",
+                            "text": full_text[:15000],
+                            "whs_topics": self._classify_whs_topics(full_text, ""),
+                            "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
+                            "paragraphs": []
+                        })
 
         # Sort sections by number
         sections.sort(key=lambda s: get_section_number(s))
