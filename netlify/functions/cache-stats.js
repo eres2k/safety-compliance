@@ -10,10 +10,11 @@ export async function handler(event, context) {
   }
 
   try {
+    // On Netlify: auto-configured. Locally: needs NETLIFY_AUTH_TOKEN + SITE_ID
     const store = getStore({
       name: "ai-cache",
       siteID: context.site?.id || process.env.SITE_ID,
-      token: process.env.NETLIFY_BLOBS_TOKEN || context.clientContext?.identity?.token
+      token: process.env.NETLIFY_AUTH_TOKEN || context.clientContext?.identity?.token
     })
 
     if (!store) {
