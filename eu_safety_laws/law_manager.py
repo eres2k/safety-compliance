@@ -6,17 +6,33 @@ EU Safety Laws Database Manager
 A unified CLI tool for managing EU safety law databases (AT, DE, NL).
 
 Commands:
-    scrape      - Scrape laws from official government sources
-    clean       - Clean scraped content using AI (Gemini) or regex
-    restructure - Reorganize laws into official chapter structure
-    build       - Build/export the complete database
-    status      - Show database status and statistics
-    all         - Run complete pipeline: scrape -> clean -> restructure -> build
+    scrape        - Scrape laws from official government sources
+    check-updates - Check which laws have changed since last scrape
+    clean         - Clean scraped content using AI (Gemini) or regex
+    restructure   - Reorganize laws into official chapter structure
+    build         - Build/export the complete database
+    status        - Show database status and statistics
+    all           - Run complete pipeline: scrape -> clean -> restructure -> build
 
 Usage:
+    # Basic scraping
     python law_manager.py scrape --country AT
     python law_manager.py scrape --country AT --laws 3    # Fetch 3 laws for AT
     python law_manager.py scrape --all --laws 5           # Fetch 5 laws per country
+
+    # Interactive menu to select laws
+    python law_manager.py scrape --country AT --menu      # Show menu to select laws
+    python law_manager.py scrape --country DE --menu --check-updates  # Menu with update status
+
+    # Check for and apply updates
+    python law_manager.py check-updates --country AT      # Show which AT laws changed
+    python law_manager.py check-updates --all             # Check all countries
+    python law_manager.py scrape --country AT --check-updates  # Only scrape changed laws
+
+    # Select specific laws
+    python law_manager.py scrape --country AT --select ASchG,AZG  # Scrape specific laws
+
+    # Other commands
     python law_manager.py clean --all --fast
     python law_manager.py restructure --all
     python law_manager.py build
@@ -120,11 +136,11 @@ class Config:
             "base_url": "https://wetten.overheid.nl",
             "authority": "wetten.overheid.nl",
             "main_laws": {
-                "Arbowet": "/BWBR0010346/",           # Working Conditions Act
-                "Arbobesluit": "/BWBR0008498/",      # Working Conditions Decree
-                "Arboregeling": "/BWBR0008587/",    # Working Conditions Regulation
-                "Arbeidstijdenwet": "/BWBR0007671/", # Working Time Act
-                "ATB": "/BWBR0007687/",              # Working Time Decree
+                "Arbowet": "/BWBR0010346/geldend",           # Working Conditions Act
+                "Arbobesluit": "/BWBR0008498/geldend",      # Working Conditions Decree
+                "Arboregeling": "/BWBR0008587/geldend",    # Working Conditions Regulation
+                "Arbeidstijdenwet": "/BWBR0007671/geldend", # Working Time Act
+                "ATB": "/BWBR0007687/geldend",              # Working Time Decree
             }
         }
     })
@@ -244,6 +260,29 @@ def generate_id(text: str) -> str:
     return hashlib.md5(text.encode()).hexdigest()[:16]
 
 
+def generate_content_hash(doc: Dict[str, Any]) -> str:
+    """Generate a content hash for update detection.
+
+    This hash is based on the actual law content (sections text),
+    not metadata like scrape timestamps. Used to detect when
+    law content has actually changed.
+    """
+    content_parts = []
+
+    # Include chapter/section text in hash
+    for chapter in doc.get('chapters', []):
+        for section in chapter.get('sections', []):
+            content_parts.append(section.get('text', ''))
+
+    # Also include full_text if present
+    if doc.get('full_text'):
+        content_parts.append(doc['full_text'])
+
+    # Create a stable hash of all content
+    content = ''.join(content_parts)
+    return hashlib.sha256(content.encode()).hexdigest()[:32]
+
+
 def get_api_key() -> Optional[str]:
     """Get Gemini API key from environment or .env file."""
     api_key = os.environ.get('GEMINI_API_KEY')
@@ -301,6 +340,230 @@ def save_database(country: str, db: Dict[str, Any], backup: bool = True) -> None
     with open(db_path, 'w', encoding='utf-8') as f:
         json.dump(db, f, ensure_ascii=False, indent=2)
     log_success(f"Saved: {db_path}")
+
+
+def get_law_names(country: str) -> Dict[str, str]:
+    """Get dictionary of law abbreviations and their full names for a country."""
+    law_names = {
+        "AT": {
+            "ASchG": "ArbeitnehmerInnenschutzgesetz (Worker Protection Act)",
+            "AZG": "Arbeitszeitgesetz (Working Time Act)",
+            "ARG": "Arbeitsruhegesetz (Rest Period Act)",
+            "MSchG": "Mutterschutzgesetz (Maternity Protection Act)",
+            "KJBG": "Kinder- und Jugendlichenbeschäftigungsgesetz (Youth Employment)",
+            "AStV": "Arbeitsstättenverordnung (Workplace Regulation)",
+            "AM-VO": "Arbeitsmittelverordnung (Work Equipment Regulation)",
+            "DOK-VO": "Dokumentationsverordnung (Documentation Regulation)",
+        },
+        "DE": {
+            "ArbSchG": "Arbeitsschutzgesetz (Occupational Safety Act)",
+            "ASiG": "Arbeitssicherheitsgesetz (Workplace Safety Act)",
+            "ArbZG": "Arbeitszeitgesetz (Working Time Act)",
+            "MuSchG": "Mutterschutzgesetz (Maternity Protection Act)",
+            "JArbSchG": "Jugendarbeitsschutzgesetz (Youth Labor Protection)",
+            "ArbStättV": "Arbeitsstättenverordnung (Workplace Ordinance)",
+            "BetrSichV": "Betriebssicherheitsverordnung (Industrial Safety)",
+            "GefStoffV": "Gefahrstoffverordnung (Hazardous Substances)",
+        },
+        "NL": {
+            "Arbowet": "Arbeidsomstandighedenwet (Working Conditions Act)",
+            "Arbobesluit": "Arbeidsomstandighedenbesluit (Working Conditions Decree)",
+            "Arboregeling": "Arbeidsomstandighedenregeling (Working Conditions Reg.)",
+            "Arbeidstijdenwet": "Arbeidstijdenwet (Working Time Act)",
+            "ATB": "Arbeidstijdenbesluit (Working Time Decree)",
+        }
+    }
+    return law_names.get(country, {})
+
+
+def check_for_updates(country: str) -> Dict[str, Any]:
+    """Check which laws have updates available.
+
+    Compares content hashes of freshly scraped laws against stored ones.
+    Returns dict with 'new', 'updated', and 'unchanged' law lists.
+    """
+    if not HAS_REQUESTS or not HAS_BS4:
+        log_error("requests and beautifulsoup4 required for update checking")
+        return {"new": [], "updated": [], "unchanged": [], "error": True}
+
+    db = load_database(country)
+    existing_docs = {d.get('abbreviation'): d for d in db.get('documents', [])}
+
+    scraper_class = SCRAPERS.get(country)
+    if not scraper_class:
+        return {"new": [], "updated": [], "unchanged": [], "error": True}
+
+    results = {"new": [], "updated": [], "unchanged": []}
+
+    main_laws = list(CONFIG.sources.get(country, {}).get('main_laws', {}).items())
+    log_info(f"Checking {len(main_laws)} {country} laws for updates...")
+
+    pbar = create_progress_bar(len(main_laws), f"Checking {country}")
+
+    for abbrev, path in main_laws:
+        pbar.set_description(f"Checking {abbrev}")
+
+        # Quick fetch to check for changes
+        scraper = scraper_class(law_limit=1)
+        url = urljoin(scraper.base_url, path)
+        html = scraper.fetch_url(url)
+
+        if html:
+            # Parse the law to get content hash
+            if country == "AT":
+                doc = scraper._parse_ris_law_full(html, abbrev, url)
+            elif country == "DE":
+                doc = scraper._parse_german_law_full(html, abbrev, url)
+            elif country == "NL":
+                doc = scraper._parse_dutch_law_full(html, abbrev, url)
+            else:
+                doc = None
+
+            if doc:
+                new_hash = doc.get('content_hash', '')
+                existing_doc = existing_docs.get(abbrev)
+
+                if not existing_doc:
+                    results['new'].append({
+                        'abbreviation': abbrev,
+                        'sections': doc.get('whs_summary', {}).get('total_sections', 0)
+                    })
+                elif existing_doc.get('content_hash') != new_hash:
+                    results['updated'].append({
+                        'abbreviation': abbrev,
+                        'old_hash': existing_doc.get('content_hash', 'N/A')[:8],
+                        'new_hash': new_hash[:8],
+                        'last_scraped': existing_doc.get('scraping', {}).get('scraped_at', 'N/A')[:10]
+                    })
+                else:
+                    results['unchanged'].append({
+                        'abbreviation': abbrev,
+                        'hash': new_hash[:8]
+                    })
+
+        time.sleep(CONFIG.rate_limit_delay)
+        pbar.update(1)
+
+    pbar.close()
+    return results
+
+
+def interactive_law_menu(country: str, check_updates: bool = False) -> List[str]:
+    """Display an interactive menu for selecting laws to scrape.
+
+    Args:
+        country: Country code (AT, DE, NL)
+        check_updates: If True, show update status alongside each law
+
+    Returns:
+        List of law abbreviations selected by user
+    """
+    main_laws = list(CONFIG.sources.get(country, {}).get('main_laws', {}).keys())
+    law_names = get_law_names(country)
+    db = load_database(country)
+    existing_docs = {d.get('abbreviation'): d for d in db.get('documents', [])}
+
+    update_info = {}
+    if check_updates:
+        log_info("Checking for updates (this may take a moment)...")
+        update_results = check_for_updates(country)
+        for item in update_results.get('new', []):
+            update_info[item['abbreviation']] = ('NEW', Colors.GREEN)
+        for item in update_results.get('updated', []):
+            update_info[item['abbreviation']] = ('UPDATE', Colors.YELLOW)
+        for item in update_results.get('unchanged', []):
+            update_info[item['abbreviation']] = ('OK', Colors.DIM)
+
+    print(f"\n{Colors.CYAN}{'=' * 60}{Colors.RESET}")
+    print(f"{Colors.BOLD}Select {country} Laws to Scrape{Colors.RESET}")
+    print(f"{Colors.CYAN}{'=' * 60}{Colors.RESET}\n")
+
+    # Display laws with numbers
+    for i, abbrev in enumerate(main_laws, 1):
+        name = law_names.get(abbrev, abbrev)
+        existing = existing_docs.get(abbrev)
+        status_parts = []
+
+        # Show if already in database
+        if existing:
+            scraped_at = existing.get('scraping', {}).get('scraped_at', '')[:10]
+            sections = existing.get('whs_summary', {}).get('total_sections', 0)
+            status_parts.append(f"{Colors.DIM}[{sections} sections, scraped {scraped_at}]{Colors.RESET}")
+        else:
+            status_parts.append(f"{Colors.DIM}[not scraped]{Colors.RESET}")
+
+        # Show update status if available
+        if abbrev in update_info:
+            status_text, color = update_info[abbrev]
+            status_parts.append(f"{color}[{status_text}]{Colors.RESET}")
+
+        status = ' '.join(status_parts)
+        print(f"  {Colors.BOLD}{i:2}{Colors.RESET}. {abbrev:12} - {name}")
+        if status:
+            print(f"      {status}")
+
+    print(f"\n{Colors.CYAN}{'-' * 60}{Colors.RESET}")
+    print(f"  {Colors.BOLD} a{Colors.RESET}. Select ALL laws")
+    print(f"  {Colors.BOLD} u{Colors.RESET}. Select only laws with UPDATES (requires check)")
+    print(f"  {Colors.BOLD} n{Colors.RESET}. Select only NEW laws (not yet scraped)")
+    print(f"  {Colors.BOLD} q{Colors.RESET}. Quit (cancel)")
+    print(f"{Colors.CYAN}{'-' * 60}{Colors.RESET}")
+    print(f"\n{Colors.DIM}Enter numbers separated by commas (e.g., 1,3,5) or a/u/n/q:{Colors.RESET}")
+
+    while True:
+        try:
+            user_input = input(f"{Colors.CYAN}> {Colors.RESET}").strip().lower()
+
+            if user_input == 'q':
+                return []
+
+            if user_input == 'a':
+                return main_laws
+
+            if user_input == 'u':
+                # Select only updated laws
+                if not update_info:
+                    log_warning("No update check performed. Running check now...")
+                    update_results = check_for_updates(country)
+                    updated = [item['abbreviation'] for item in update_results.get('updated', [])]
+                    new = [item['abbreviation'] for item in update_results.get('new', [])]
+                    return updated + new
+                else:
+                    return [abbrev for abbrev, (status, _) in update_info.items()
+                            if status in ('UPDATE', 'NEW')]
+
+            if user_input == 'n':
+                # Select only new (not yet scraped) laws
+                return [abbrev for abbrev in main_laws if abbrev not in existing_docs]
+
+            # Parse comma-separated numbers
+            selections = []
+            for part in user_input.replace(' ', '').split(','):
+                if '-' in part:
+                    # Handle ranges like 1-3
+                    start, end = map(int, part.split('-'))
+                    selections.extend(range(start, end + 1))
+                else:
+                    selections.append(int(part))
+
+            # Validate and convert to abbreviations
+            selected_laws = []
+            for num in selections:
+                if 1 <= num <= len(main_laws):
+                    selected_laws.append(main_laws[num - 1])
+                else:
+                    log_warning(f"Invalid selection: {num}")
+
+            if selected_laws:
+                return selected_laws
+
+            log_warning("No valid selections. Try again.")
+
+        except ValueError:
+            log_warning("Invalid input. Enter numbers, 'a', 'u', 'n', or 'q'.")
+        except KeyboardInterrupt:
+            print()
+            return []
 
 
 # =============================================================================
@@ -498,8 +761,15 @@ class ATScraper(Scraper):
             return []
 
         documents = []
-        main_laws = list(self.config.get('main_laws', {}).items())
-        laws_to_fetch = main_laws[:self.law_limit] if self.law_limit else main_laws
+        main_laws = dict(self.config.get('main_laws', {}))
+
+        # Support for selected_laws attribute (from menu or --select)
+        if hasattr(self, 'selected_laws') and self.selected_laws:
+            laws_to_fetch = [(abbrev, main_laws[abbrev]) for abbrev in self.selected_laws if abbrev in main_laws]
+        elif self.law_limit:
+            laws_to_fetch = list(main_laws.items())[:self.law_limit]
+        else:
+            laws_to_fetch = list(main_laws.items())
 
         log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available AT laws")
 
@@ -565,6 +835,30 @@ class ATScraper(Scraper):
         topics.sort(key=lambda x: (-x["match_count"], x["relevance"] != "high"))
         return topics[:5]  # Return top 5 topics
 
+    def _extract_toc_titles(self, soup) -> Dict[str, str]:
+        """Extract section titles from the RIS table of contents (Inhaltsverzeichnis).
+
+        The RIS page has a table of contents that maps § numbers to their titles.
+        Structure: <td>§ 40.</td><td>Gefährliche Arbeitsstoffe</td>
+        """
+        toc_titles = {}
+
+        # Find the table of contents (class InhaltEintrag entries)
+        for row in soup.find_all('tr'):
+            cells = row.find_all('td')
+            if len(cells) >= 2:
+                first_cell = cells[0].get_text(strip=True)
+                # Match § followed by number (e.g., "§ 40." or "§ 40a.")
+                match = re.match(r'§\s*(\d+[a-z]?)\.?', first_cell)
+                if match:
+                    section_num = match.group(1)
+                    # Get title from second cell
+                    title_text = cells[1].get_text(strip=True)
+                    if title_text and len(title_text) > 1:
+                        toc_titles[section_num] = title_text
+
+        return toc_titles
+
     def _parse_ris_law_full(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
         """Parse an Austrian law from RIS HTML with full text extraction."""
         soup = BeautifulSoup(html, 'html.parser')
@@ -572,6 +866,11 @@ class ATScraper(Scraper):
         # Extract title
         title_elem = soup.find('h1') or soup.find('title')
         title = title_elem.get_text(strip=True) if title_elem else abbrev
+
+        # FIRST: Extract titles from the table of contents (Inhaltsverzeichnis)
+        toc_titles = self._extract_toc_titles(soup)
+        if toc_titles:
+            log_info(f"  Found {len(toc_titles)} section titles in table of contents")
 
         # Remove navigation/boilerplate elements
         for elem in soup.find_all(['nav', 'header', 'footer', 'script', 'style']):
@@ -596,34 +895,22 @@ class ATScraper(Scraper):
                     continue
                 seen_sections.add(section_num)
 
-                # Get title from following h3, h4, or h5 (RIS uses h5 for section titles like "Geltungsbereich")
-                section_title = ""
-                # First try siblings
-                next_elem = h2.find_next_sibling()
-                while next_elem and next_elem.name not in ['h2']:
-                    if next_elem.name in ['h3', 'h4', 'h5']:
-                        candidate = next_elem.get_text(strip=True)
-                        # Skip if it's just another § reference, chapter heading, or generic placeholder
-                        if (not re.match(r'^§\s*\d+', candidate) and
-                            not re.match(r'^\d+\.\s*Abschnitt', candidate) and
-                            candidate.lower() not in ['text', 'inhalt', 'content']):
-                            section_title = candidate
-                            break
-                    next_elem = next_elem.find_next_sibling()
+                # Get title from table of contents (primary source)
+                section_title = toc_titles.get(section_num, "")
 
-                # Fallback: search all following elements (not just siblings) for h5 title
+                # Fallback: try to find title from following h3, h4, or h5 if not in TOC
                 if not section_title:
-                    next_h2 = h2.find_next('h2')
-                    for h5 in h2.find_all_next('h5'):
-                        # Stop if we've passed the next h2
-                        if next_h2 and h5.sourceline and next_h2.sourceline and h5.sourceline > next_h2.sourceline:
-                            break
-                        candidate = h5.get_text(strip=True)
-                        if (candidate and len(candidate) > 2 and
-                            not re.match(r'^§\s*\d+', candidate) and
-                            candidate.lower() not in ['text', 'inhalt', 'content']):
-                            section_title = candidate
-                            break
+                    next_elem = h2.find_next_sibling()
+                    while next_elem and next_elem.name not in ['h2']:
+                        if next_elem.name in ['h3', 'h4', 'h5']:
+                            candidate = next_elem.get_text(strip=True)
+                            # Skip if it's just another § reference, chapter heading, or generic placeholder
+                            if (not re.match(r'^§\s*\d+', candidate) and
+                                not re.match(r'^\d+\.\s*Abschnitt', candidate) and
+                                candidate.lower() not in ['text', 'inhalt', 'content']):
+                                section_title = candidate
+                                break
+                        next_elem = next_elem.find_next_sibling()
 
                 # Collect all content until next h2 with §
                 content_parts = []
@@ -751,7 +1038,7 @@ class ATScraper(Scraper):
         # Organize into official chapter structure
         chapters = self._organize_into_chapters(sections, abbrev)
 
-        return {
+        doc = {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
             "version": "1.0.0",
             "type": "law",
@@ -773,6 +1060,9 @@ class ATScraper(Scraper):
             "whs_summary": self._generate_whs_summary(sections),
             "chapters": chapters
         }
+        # Add content hash for update detection
+        doc["content_hash"] = generate_content_hash(doc)
+        return doc
 
     def _calculate_logistics_relevance(self, text: str, title: str) -> Dict[str, Any]:
         """Calculate relevance score for Amazon Logistics WHS context."""
@@ -917,8 +1207,15 @@ class DEScraper(Scraper):
             return []
 
         documents = []
-        main_laws = list(self.config.get('main_laws', {}).items())
-        laws_to_fetch = main_laws[:self.law_limit] if self.law_limit else main_laws
+        main_laws = dict(self.config.get('main_laws', {}))
+
+        # Support for selected_laws attribute (from menu or --select)
+        if hasattr(self, 'selected_laws') and self.selected_laws:
+            laws_to_fetch = [(abbrev, main_laws[abbrev]) for abbrev in self.selected_laws if abbrev in main_laws]
+        elif self.law_limit:
+            laws_to_fetch = list(main_laws.items())[:self.law_limit]
+        else:
+            laws_to_fetch = list(main_laws.items())
 
         log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available DE laws")
 
@@ -1156,7 +1453,7 @@ class DEScraper(Scraper):
         sections.sort(key=lambda s: get_section_number(s))
         chapters = self._organize_into_chapters(sections, abbrev)
 
-        return {
+        doc = {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
             "version": "1.0.0",
             "type": "law",
@@ -1171,6 +1468,9 @@ class DEScraper(Scraper):
             "whs_summary": self._generate_whs_summary(sections),
             "chapters": chapters
         }
+        # Add content hash for update detection
+        doc["content_hash"] = generate_content_hash(doc)
+        return doc
 
     def _organize_into_chapters(self, sections: List[Dict], abbrev: str) -> List[Dict]:
         """Organize sections into official chapter structure."""
@@ -1270,8 +1570,15 @@ class NLScraper(Scraper):
             return []
 
         documents = []
-        main_laws = list(self.config.get('main_laws', {}).items())
-        laws_to_fetch = main_laws[:self.law_limit] if self.law_limit else main_laws
+        main_laws = dict(self.config.get('main_laws', {}))
+
+        # Support for selected_laws attribute (from menu or --select)
+        if hasattr(self, 'selected_laws') and self.selected_laws:
+            laws_to_fetch = [(abbrev, main_laws[abbrev]) for abbrev in self.selected_laws if abbrev in main_laws]
+        elif self.law_limit:
+            laws_to_fetch = list(main_laws.items())[:self.law_limit]
+        else:
+            laws_to_fetch = list(main_laws.items())
 
         log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available NL laws")
 
@@ -1413,49 +1720,65 @@ class NLScraper(Scraper):
                 title_match = re.search(r'Artikel\s+\d+[a-z]?\.?\s*(.+)', h4_text, re.IGNORECASE)
                 article_title = title_match.group(1).strip() if title_match else ""
 
-            # Extract content from ul.artikel_leden or p.lid elements
+            # Extract content from ul with artikel_leden class or list--law class
             content_parts = []
 
-            # Find the content ul (class contains 'artikel_leden')
-            content_uls = container.find_all('ul', class_=lambda c: c and 'artikel_leden' in ' '.join(c) if c else False)
+            # Find all content ULs - look for class containing 'artikel_leden' or 'list--law'
+            content_uls = []
+            for ul in container.find_all('ul'):
+                ul_classes = ul.get('class', [])
+                if ul_classes:
+                    class_str = ' '.join(ul_classes) if isinstance(ul_classes, list) else ul_classes
+                    if 'artikel_leden' in class_str or 'list--law' in class_str:
+                        content_uls.append(ul)
 
+            # Extract content from these ULs
             for ul in content_uls:
-                # Get all p.lid paragraphs (the actual law text)
-                for p in ul.find_all('p', class_=lambda c: c and 'lid' in ' '.join(c) if c else False):
+                # Get ALL paragraphs within these content ULs
+                for p in ul.find_all('p', recursive=True):
+                    p_classes = p.get('class', [])
+                    class_str = ' '.join(p_classes) if isinstance(p_classes, list) else (p_classes or '')
+
+                    # Skip action-related paragraphs
+                    if 'action' in class_str.lower():
+                        continue
+
                     p_text = p.get_text(separator=' ', strip=True)
                     if p_text and len(p_text) > 5:
+                        # Remove lid number prefixes like "1 " at start
+                        p_text = re.sub(r'^\d+[a-z]?\s+', '', p_text)
                         p_text = re.sub(r'\s+', ' ', p_text)
                         content_parts.append(p_text)
 
-                # Also get p.al elements (sub-definitions)
-                for p in ul.find_all('p', class_='al'):
+            # If no content found via ULs, try direct paragraph extraction
+            if not content_parts:
+                # Find all paragraphs directly in the container (outside header)
+                for p in container.find_all('p', recursive=True):
+                    # Skip header elements
+                    parent = p.find_parent(['div'])
+                    if parent:
+                        parent_classes = ' '.join(parent.get('class', []) if parent.get('class') else [])
+                        if 'header' in parent_classes.lower():
+                            continue
+
                     p_text = p.get_text(separator=' ', strip=True)
-                    if p_text and len(p_text) > 5:
+                    if p_text and len(p_text) > 10:
                         p_text = re.sub(r'\s+', ' ', p_text)
                         content_parts.append(p_text)
 
-                # Get labeled paragraphs too
-                for p in ul.find_all('p', class_='labeled'):
-                    p_text = p.get_text(separator=' ', strip=True)
-                    if p_text and len(p_text) > 5:
-                        p_text = re.sub(r'\s+', ' ', p_text)
-                        content_parts.append(p_text)
-
-            # Also check for additional content outside ul.artikel_leden
-            # This catches content in other structures within the article container
-            for elem in container.find_all(['p', 'li'], recursive=True):
-                # Skip elements in the header div
-                parent_classes = ' '.join(elem.parent.get('class', []) if elem.parent else [])
-                if 'article__header' in parent_classes:
+            # Also check li elements for content
+            for li in container.find_all('li', recursive=True):
+                # Skip action list items
+                li_classes = li.get('class', [])
+                class_str = ' '.join(li_classes) if isinstance(li_classes, list) else (li_classes or '')
+                if 'action' in class_str.lower():
                     continue
-                # Skip if already captured via ul.artikel_leden (check class)
-                elem_classes = ' '.join(elem.get('class', []) if elem.get('class') else [])
-                if any(c in elem_classes for c in ['lid', 'al', 'labeled']):
-                    continue
-                elem_text = elem.get_text(separator=' ', strip=True)
-                if elem_text and len(elem_text) > 10:
-                    elem_text = re.sub(r'\s+', ' ', elem_text)
-                    content_parts.append(elem_text)
+
+                # Get direct text (not from nested elements already captured)
+                li_text = li.get_text(separator=' ', strip=True)
+                if li_text and len(li_text) > 10:
+                    li_text = re.sub(r'\s+', ' ', li_text)
+                    content_parts.append(li_text)
 
             # Deduplicate while preserving order (nested li may duplicate)
             # Use full text hash to avoid losing similar-starting but different paragraphs
@@ -1480,13 +1803,35 @@ class NLScraper(Scraper):
             full_text = re.sub(r'[ \t]+', ' ', full_text)
             full_text = full_text.strip()
 
-            # Skip if we only got boilerplate
-            if len(full_text) < 20:
-                log_warning(f"Article {section_num} has very short content ({len(full_text)} chars)")
-                continue
+            # Check if this is a repealed article (Vervallen = repealed in Dutch)
+            is_repealed = False
+            repealed_text = ""
+            # Look for header div with various class patterns (article__header, header--law, etc.)
+            header_div = container.find('div', class_=lambda c: c and any('header' in cls.lower() for cls in c) if c else False)
+            if not header_div:
+                # Also try finding the h4 parent
+                h4_parent = h4.parent if h4 else None
+                if h4_parent and h4_parent.name == 'div':
+                    header_div = h4_parent
+            if header_div:
+                header_text = header_div.get_text(strip=True)
+                repealed_match = re.search(r'\[Vervallen\s+per\s+([^\]]+)\]', header_text)
+                if repealed_match:
+                    is_repealed = True
+                    repealed_text = f"[Dit artikel is vervallen per {repealed_match.group(1)}]"
+                    full_text = repealed_text
 
-            whs_topics = self._classify_whs_topics(full_text, article_title)
-            logistics_relevance = self._calculate_logistics_relevance(full_text, article_title)
+            # Handle articles with no content
+            if len(full_text) < 20:
+                if is_repealed:
+                    # Repealed articles are expected to be empty
+                    full_text = repealed_text if repealed_text else "[Artikel vervallen]"
+                else:
+                    log_warning(f"Article {section_num} has very short content ({len(full_text)} chars)")
+                    continue
+
+            whs_topics = self._classify_whs_topics(full_text, article_title) if not is_repealed else []
+            logistics_relevance = self._calculate_logistics_relevance(full_text, article_title) if not is_repealed else {"score": 0, "level": "low"}
 
             sections.append({
                 "id": generate_id(f"{abbrev}-{section_num}"),
@@ -1538,7 +1883,7 @@ class NLScraper(Scraper):
         # Organize into chapters (Hoofdstukken)
         chapters = self._organize_into_chapters(sections, abbrev)
 
-        return {
+        doc = {
             "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
             "version": "1.0.0",
             "type": "law",
@@ -1553,6 +1898,9 @@ class NLScraper(Scraper):
             "whs_summary": self._generate_whs_summary(sections),
             "chapters": chapters
         }
+        # Add content hash for update detection
+        doc["content_hash"] = generate_content_hash(doc)
+        return doc
 
     def _organize_into_chapters(self, sections: List[Dict], abbrev: str) -> List[Dict]:
         """Organize sections into official chapter structure (Hoofdstukken)."""
@@ -1958,6 +2306,9 @@ def cmd_scrape(args) -> int:
     """Run the scrape command."""
     countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
     law_limit = getattr(args, 'laws', None)
+    use_menu = getattr(args, 'menu', False)
+    check_updates_flag = getattr(args, 'check_updates', False)
+    select_laws = getattr(args, 'select', None)
 
     for country in countries:
         log_header(f"Scraping {country} Laws")
@@ -1967,7 +2318,57 @@ def cmd_scrape(args) -> int:
             log_error(f"No scraper for {country}")
             continue
 
-        scraper = scraper_class(law_limit=law_limit)
+        # Determine which laws to scrape
+        selected_laws = None
+
+        if use_menu:
+            # Interactive menu mode
+            selected_laws = interactive_law_menu(country, check_updates=check_updates_flag)
+            if not selected_laws:
+                log_info(f"No laws selected for {country}, skipping...")
+                continue
+            log_info(f"Selected laws: {', '.join(selected_laws)}")
+
+        elif check_updates_flag:
+            # Check for updates and only scrape changed laws
+            log_info("Checking for updates...")
+            update_results = check_for_updates(country)
+
+            # Get laws that need updating
+            selected_laws = []
+            for item in update_results.get('new', []):
+                selected_laws.append(item['abbreviation'])
+                log_info(f"  NEW: {item['abbreviation']}")
+            for item in update_results.get('updated', []):
+                selected_laws.append(item['abbreviation'])
+                log_info(f"  UPDATE: {item['abbreviation']} (hash changed)")
+
+            if not selected_laws:
+                log_success(f"All {country} laws are up to date!")
+                continue
+
+            log_info(f"Found {len(selected_laws)} law(s) needing update")
+
+        elif select_laws:
+            # Manual selection via --select
+            selected_laws = [s.strip() for s in select_laws.split(',')]
+            main_laws = list(CONFIG.sources.get(country, {}).get('main_laws', {}).keys())
+            # Validate selections
+            invalid = [s for s in selected_laws if s not in main_laws]
+            if invalid:
+                log_warning(f"Unknown laws ignored: {', '.join(invalid)}")
+            selected_laws = [s for s in selected_laws if s in main_laws]
+            if not selected_laws:
+                log_error(f"No valid laws selected for {country}")
+                continue
+
+        # Create scraper with selected laws or law limit
+        if selected_laws:
+            scraper = scraper_class(law_limit=None)
+            scraper.selected_laws = selected_laws
+        else:
+            scraper = scraper_class(law_limit=law_limit)
+
         documents = scraper.scrape()
 
         if documents:
@@ -1985,6 +2386,47 @@ def cmd_scrape(args) -> int:
             db['metadata']['document_count'] = len(db['documents'])
             db['metadata']['generated_at'] = datetime.now().isoformat()
             save_database(country, db)
+
+    return 0
+
+
+def cmd_check_updates(args) -> int:
+    """Run the check-updates command to see which laws have changed."""
+    countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
+
+    for country in countries:
+        log_header(f"Checking {country} for Updates")
+
+        results = check_for_updates(country)
+
+        if results.get('error'):
+            log_error(f"Error checking {country}")
+            continue
+
+        # Display results
+        print()
+        if results['new']:
+            print(f"{Colors.GREEN}NEW laws (not in database):{Colors.RESET}")
+            for item in results['new']:
+                print(f"  + {item['abbreviation']} ({item['sections']} sections)")
+
+        if results['updated']:
+            print(f"\n{Colors.YELLOW}UPDATED laws (content changed):{Colors.RESET}")
+            for item in results['updated']:
+                print(f"  ~ {item['abbreviation']} (hash: {item['old_hash']} -> {item['new_hash']}, last scraped: {item['last_scraped']})")
+
+        if results['unchanged']:
+            print(f"\n{Colors.DIM}UNCHANGED laws:{Colors.RESET}")
+            for item in results['unchanged']:
+                print(f"  = {item['abbreviation']} (hash: {item['hash']})")
+
+        # Summary
+        total = len(results['new']) + len(results['updated']) + len(results['unchanged'])
+        needs_update = len(results['new']) + len(results['updated'])
+        print(f"\n{Colors.CYAN}Summary: {needs_update}/{total} laws need updating{Colors.RESET}")
+
+        if needs_update > 0:
+            print(f"\n{Colors.DIM}Run 'python law_manager.py scrape --country {country} --check-updates' to update only changed laws{Colors.RESET}")
 
     return 0
 
@@ -2087,6 +2529,12 @@ def main():
     scrape_parser.add_argument('--all', action='store_true', help='Scrape all countries')
     scrape_parser.add_argument('--laws', type=int, default=1, metavar='N',
                                help='Number of laws to fetch per country (default: 1, max varies by country)')
+    scrape_parser.add_argument('--menu', action='store_true',
+                               help='Interactive menu to select which laws to scrape')
+    scrape_parser.add_argument('--check-updates', action='store_true',
+                               help='Only scrape laws that have changed since last scrape')
+    scrape_parser.add_argument('--select', type=str, metavar='LAWS',
+                               help='Comma-separated list of law abbreviations to scrape (e.g., ASchG,AZG)')
 
     # Clean command
     clean_parser = subparsers.add_parser('clean', help='Clean scraped content')
@@ -2106,6 +2554,11 @@ def main():
     # Status command
     status_parser = subparsers.add_parser('status', help='Show database status')
 
+    # Check-updates command
+    check_updates_parser = subparsers.add_parser('check-updates', help='Check which laws have changed')
+    check_updates_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to check')
+    check_updates_parser.add_argument('--all', action='store_true', help='Check all countries')
+
     # All command (complete pipeline)
     all_parser = subparsers.add_parser('all', help='Run complete pipeline')
     all_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to process')
@@ -2124,7 +2577,7 @@ def main():
         return 1
 
     # Validate country selection
-    if args.command in ['scrape', 'clean', 'restructure', 'all']:
+    if args.command in ['scrape', 'clean', 'restructure', 'all', 'check-updates']:
         if not getattr(args, 'all', False) and not getattr(args, 'country', None):
             print(f"Error: --country or --all is required for {args.command}")
             return 1
@@ -2136,6 +2589,7 @@ def main():
         'restructure': cmd_restructure,
         'build': cmd_build,
         'status': cmd_status,
+        'check-updates': cmd_check_updates,
         'all': cmd_all,
     }
 
