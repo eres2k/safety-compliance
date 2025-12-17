@@ -1,15 +1,15 @@
 {
   "metadata": {
     "country": "NL",
-    "generated_at": "2025-12-17T23:27:06.313859",
+    "generated_at": "2025-12-18T00:23:04.958237",
     "document_count": 5,
     "error_count": 0,
-    "cleaned_at": "2025-12-17T23:31:00.544578",
-    "restructured_at": "2025-12-17T23:31:36.254802"
+    "cleaned_at": "2025-12-18T00:23:04.978081",
+    "restructured_at": "2025-12-18T00:23:04.996251"
   },
   "documents": [
     {
-      "id": "8ef4e08afb374be1",
+      "id": "9bc4f1e1a5f4bfe7",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -25,7 +25,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-17T23:26:43.737804",
+        "scraped_at": "2025-12-18T00:22:52.119560",
         "scraper_version": "7.1.0"
       },
       "whs_summary": {
@@ -1905,7 +1905,7 @@
       "content_hash": "850d82e7497f4492bb64ed145134dded"
     },
     {
-      "id": "3ea12cfdb7d25c07",
+      "id": "647a1c11ce8566d8",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -1921,7 +1921,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-17T23:26:48.314407",
+        "scraped_at": "2025-12-18T00:22:56.609576",
         "scraper_version": "7.1.0"
       },
       "whs_summary": {
@@ -2269,7 +2269,7 @@
       "content_hash": "1e1ac7123cb74f5bbc9b75dae4a17e6a"
     },
     {
-      "id": "2ed6a8946311ec71",
+      "id": "de99dfdc7023e4da",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -2285,7 +2285,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-17T23:26:55.931526",
+        "scraped_at": "2025-12-18T00:23:00.236982",
         "scraper_version": "7.1.0"
       },
       "whs_summary": {
@@ -2546,7 +2546,7 @@
       "content_hash": "80b9d12f7f6e62d5fb27144f11540620"
     },
     {
-      "id": "338c6901e67f008b",
+      "id": "fddc2da4e52048e9",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -2562,7 +2562,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-17T23:27:00.328459",
+        "scraped_at": "2025-12-18T00:23:01.949213",
         "scraper_version": "7.1.0"
       },
       "whs_summary": {
@@ -2944,7 +2944,7 @@
       "content_hash": "a4a68dcd09848d68e6b32f3d5adb4e65"
     },
     {
-      "id": "47e4dfe60dfb7c9a",
+      "id": "9ff2c23eadd4c844",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -2960,7 +2960,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-17T23:27:05.812095",
+        "scraped_at": "2025-12-18T00:23:04.455536",
         "scraper_version": "7.1.0"
       },
       "whs_summary": {
