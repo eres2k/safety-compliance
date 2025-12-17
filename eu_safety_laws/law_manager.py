@@ -656,7 +656,7 @@ class ATScraper(Scraper):
                     "id": generate_id(f"{abbrev}-{section_num}"),
                     "number": section_num,
                     "title": f"§ {section_num}. {section_title}".strip().rstrip('.'),
-                    "text": full_text[:15000],  # Increased limit for full text
+                    "text": full_text[:50000],  # Increased limit for full text
                     "whs_topics": whs_topics,
                     "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, section_title),
                     "paragraphs": []
@@ -694,7 +694,7 @@ class ATScraper(Scraper):
                         "id": generate_id(f"{abbrev}-{section_num}"),
                         "number": section_num,
                         "title": f"§ {section_num}. {section_title}".strip().rstrip('.'),
-                        "text": full_text[:15000],
+                        "text": full_text[:50000],
                         "whs_topics": whs_topics,
                         "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, section_title),
                         "paragraphs": []
@@ -728,7 +728,7 @@ class ATScraper(Scraper):
                         "id": generate_id(f"{abbrev}-{section_num}"),
                         "number": section_num,
                         "title": f"§ {section_num}",
-                        "text": full_text[:10000],
+                        "text": full_text[:50000],
                         "whs_topics": whs_topics,
                         "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
                         "paragraphs": []
@@ -1038,6 +1038,7 @@ class DEScraper(Scraper):
             soup = BeautifulSoup(html, 'html.parser')
 
             # Look for sections in the full page
+            # Collect all paragraphs (Absätze) for each section
             for div in soup.find_all('div', class_='jurAbsatz'):
                 # Find the section number from nearby header
                 header = div.find_previous(['h2', 'h3', 'h4'])
@@ -1047,7 +1048,11 @@ class DEScraper(Scraper):
                     if match:
                         section_num = match.group(1)
                         content = div.get_text(separator='\n', strip=True)
-                        if section_num not in section_contents or len(content) > len(section_contents[section_num]):
+                        # Append to existing content instead of replacing
+                        # This ensures all paragraphs (1), (2), etc. are captured
+                        if section_num in section_contents:
+                            section_contents[section_num] += '\n\n' + content
+                        else:
                             section_contents[section_num] = content
 
             if section_contents:
@@ -1130,7 +1135,7 @@ class DEScraper(Scraper):
                 "id": generate_id(f"{abbrev}-{link_info['number']}"),
                 "number": link_info["number"],
                 "title": f"§ {link_info['number']}. {link_info['title'].replace('§ ' + link_info['number'], '').strip()}".rstrip('.'),
-                "text": content[:15000] if content else link_info["title"],
+                "text": content[:50000] if content else link_info["title"],
                 "whs_topics": whs_topics,
                 "amazon_logistics_relevance": logistics_relevance,
                 "paragraphs": []
@@ -1471,7 +1476,7 @@ class NLScraper(Scraper):
                 "id": generate_id(f"{abbrev}-{section_num}"),
                 "number": section_num,
                 "title": f"Artikel {section_num}. {article_title}".rstrip('.'),
-                "text": full_text[:15000],
+                "text": full_text[:50000],
                 "whs_topics": whs_topics,
                 "amazon_logistics_relevance": logistics_relevance,
                 "paragraphs": []
@@ -1505,7 +1510,7 @@ class NLScraper(Scraper):
                             "id": generate_id(f"{abbrev}-{section_num}"),
                             "number": section_num,
                             "title": f"Artikel {section_num}",
-                            "text": full_text[:15000],
+                            "text": full_text[:50000],
                             "whs_topics": self._classify_whs_topics(full_text, ""),
                             "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
                             "paragraphs": []
