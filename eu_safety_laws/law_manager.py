@@ -656,7 +656,7 @@ class ATScraper(Scraper):
                     "id": generate_id(f"{abbrev}-{section_num}"),
                     "number": section_num,
                     "title": f"§ {section_num}. {section_title}".strip().rstrip('.'),
-                    "text": full_text[:15000],  # Increased limit for full text
+                    "text": full_text[:50000],  # Increased limit for full text
                     "whs_topics": whs_topics,
                     "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, section_title),
                     "paragraphs": []
@@ -678,14 +678,25 @@ class ATScraper(Scraper):
                     title_match = re.search(r'§\s*\d+[a-z]?\.?\s*(.+)', text)
                     section_title = title_match.group(1) if title_match else ""
 
-                    # Collect content
+                    # Collect content - use sibling iteration to avoid mixing sections
                     content_parts = []
-                    parent = h4.find_parent(['div', 'section', 'article'])
-                    if parent:
-                        for elem in parent.find_all(['p', 'li', 'ol']):
-                            elem_text = elem.get_text(strip=True)
+                    # Iterate through siblings after the h4 until we hit another section header
+                    for sibling in h4.find_next_siblings():
+                        # Stop at next section header (h2, h3, h4 with §)
+                        if sibling.name in ['h2', 'h3', 'h4']:
+                            sib_text = sibling.get_text(strip=True)
+                            if re.search(r'§\s*\d+', sib_text):
+                                break
+                        # Extract text from paragraphs and list items
+                        if sibling.name in ['p', 'li', 'div']:
+                            elem_text = sibling.get_text(strip=True)
                             if elem_text and len(elem_text) > 10:
                                 content_parts.append(elem_text)
+                        elif sibling.name in ['ol', 'ul']:
+                            for li in sibling.find_all('li'):
+                                li_text = li.get_text(strip=True)
+                                if li_text and len(li_text) > 10:
+                                    content_parts.append(li_text)
 
                     full_text = '\n\n'.join(content_parts)
                     whs_topics = self._classify_whs_topics(full_text, section_title)
@@ -694,7 +705,7 @@ class ATScraper(Scraper):
                         "id": generate_id(f"{abbrev}-{section_num}"),
                         "number": section_num,
                         "title": f"§ {section_num}. {section_title}".strip().rstrip('.'),
-                        "text": full_text[:15000],
+                        "text": full_text[:50000],
                         "whs_topics": whs_topics,
                         "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, section_title),
                         "paragraphs": []
@@ -728,7 +739,7 @@ class ATScraper(Scraper):
                         "id": generate_id(f"{abbrev}-{section_num}"),
                         "number": section_num,
                         "title": f"§ {section_num}",
-                        "text": full_text[:10000],
+                        "text": full_text[:50000],
                         "whs_topics": whs_topics,
                         "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
                         "paragraphs": []
@@ -1038,6 +1049,7 @@ class DEScraper(Scraper):
             soup = BeautifulSoup(html, 'html.parser')
 
             # Look for sections in the full page
+            # Collect all paragraphs (Absätze) for each section
             for div in soup.find_all('div', class_='jurAbsatz'):
                 # Find the section number from nearby header
                 header = div.find_previous(['h2', 'h3', 'h4'])
@@ -1047,7 +1059,11 @@ class DEScraper(Scraper):
                     if match:
                         section_num = match.group(1)
                         content = div.get_text(separator='\n', strip=True)
-                        if section_num not in section_contents or len(content) > len(section_contents[section_num]):
+                        # Append to existing content instead of replacing
+                        # This ensures all paragraphs (1), (2), etc. are captured
+                        if section_num in section_contents:
+                            section_contents[section_num] += '\n\n' + content
+                        else:
                             section_contents[section_num] = content
 
             if section_contents:
@@ -1130,7 +1146,7 @@ class DEScraper(Scraper):
                 "id": generate_id(f"{abbrev}-{link_info['number']}"),
                 "number": link_info["number"],
                 "title": f"§ {link_info['number']}. {link_info['title'].replace('§ ' + link_info['number'], '').strip()}".rstrip('.'),
-                "text": content[:15000] if content else link_info["title"],
+                "text": content[:50000] if content else link_info["title"],
                 "whs_topics": whs_topics,
                 "amazon_logistics_relevance": logistics_relevance,
                 "paragraphs": []
@@ -1425,24 +1441,29 @@ class NLScraper(Scraper):
                         p_text = re.sub(r'\s+', ' ', p_text)
                         content_parts.append(p_text)
 
-            # Fallback: if no content found, try all p and li elements in container
-            if not content_parts:
-                for elem in container.find_all(['p', 'li']):
-                    # Skip elements in the header div
-                    parent_classes = ' '.join(elem.parent.get('class', []) if elem.parent else [])
-                    if 'article__header' in parent_classes:
-                        continue
-                    elem_text = elem.get_text(separator=' ', strip=True)
-                    if elem_text and len(elem_text) > 10:
-                        elem_text = re.sub(r'\s+', ' ', elem_text)
-                        content_parts.append(elem_text)
+            # Also check for additional content outside ul.artikel_leden
+            # This catches content in other structures within the article container
+            for elem in container.find_all(['p', 'li'], recursive=True):
+                # Skip elements in the header div
+                parent_classes = ' '.join(elem.parent.get('class', []) if elem.parent else [])
+                if 'article__header' in parent_classes:
+                    continue
+                # Skip if already captured via ul.artikel_leden (check class)
+                elem_classes = ' '.join(elem.get('class', []) if elem.get('class') else [])
+                if any(c in elem_classes for c in ['lid', 'al', 'labeled']):
+                    continue
+                elem_text = elem.get_text(separator=' ', strip=True)
+                if elem_text and len(elem_text) > 10:
+                    elem_text = re.sub(r'\s+', ' ', elem_text)
+                    content_parts.append(elem_text)
 
             # Deduplicate while preserving order (nested li may duplicate)
+            # Use full text hash to avoid losing similar-starting but different paragraphs
             seen_parts = set()
             unique_parts = []
             for part in content_parts:
-                # Use first 100 chars for comparison to handle slight variations
-                key = part[:100].lower()
+                # Use hash of full text to properly identify duplicates
+                key = hash(part.strip().lower())
                 if key not in seen_parts:
                     seen_parts.add(key)
                     unique_parts.append(part)
@@ -1471,7 +1492,7 @@ class NLScraper(Scraper):
                 "id": generate_id(f"{abbrev}-{section_num}"),
                 "number": section_num,
                 "title": f"Artikel {section_num}. {article_title}".rstrip('.'),
-                "text": full_text[:15000],
+                "text": full_text[:50000],
                 "whs_topics": whs_topics,
                 "amazon_logistics_relevance": logistics_relevance,
                 "paragraphs": []
@@ -1505,7 +1526,7 @@ class NLScraper(Scraper):
                             "id": generate_id(f"{abbrev}-{section_num}"),
                             "number": section_num,
                             "title": f"Artikel {section_num}",
-                            "text": full_text[:15000],
+                            "text": full_text[:50000],
                             "whs_topics": self._classify_whs_topics(full_text, ""),
                             "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
                             "paragraphs": []

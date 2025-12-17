@@ -541,6 +541,16 @@ function formatLawText(text) {
       continue
     }
 
+    // Paragraph numbers like (1), (2), (3) - German Absätze
+    // These are distinct paragraphs within a section and should be highlighted
+    const absatzMatch = line.match(/^\((\d+[a-z]?)\)\s*(.*)/)
+    if (absatzMatch) {
+      flushList()
+      flushParagraph()
+      elements.push({ type: 'absatz', number: absatzMatch[1], content: absatzMatch[2] || '' })
+      continue
+    }
+
     // Numbered list items (1., 2., etc. or a), b), etc.)
     const numberedMatch = line.match(/^(\d+\.|[a-z]\)|[a-z]\.|[ivxIVX]+\.)\s+(.+)/)
     if (numberedMatch) {
@@ -597,6 +607,18 @@ function FormattedText({ text, searchTerm = '' }) {
               <h4 key={idx} className="font-semibold text-whs-orange-600 dark:text-whs-orange-400 mt-6 first:mt-0">
                 {highlightText(el.content, searchTerm)}
               </h4>
+            )
+          case 'absatz':
+            // German paragraph (Absatz) with number like (1), (2) - styled with border for visibility
+            return (
+              <div key={idx} className="border-l-4 border-whs-orange-400 dark:border-whs-orange-600 pl-4 py-2 bg-gray-50 dark:bg-gray-800/50 rounded-r">
+                <span className="inline-block bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 px-2 py-0.5 rounded text-sm font-semibold mr-2">
+                  ({el.number})
+                </span>
+                <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {highlightText(el.content, searchTerm)}
+                </span>
+              </div>
             )
           case 'list':
             return (
