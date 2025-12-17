@@ -136,11 +136,11 @@ class Config:
             "base_url": "https://wetten.overheid.nl",
             "authority": "wetten.overheid.nl",
             "main_laws": {
-                "Arbowet": "/BWBR0010346/",           # Working Conditions Act
-                "Arbobesluit": "/BWBR0008498/",      # Working Conditions Decree
-                "Arboregeling": "/BWBR0008587/",    # Working Conditions Regulation
-                "Arbeidstijdenwet": "/BWBR0007671/", # Working Time Act
-                "ATB": "/BWBR0007687/",              # Working Time Decree
+                "Arbowet": "/BWBR0010346/geldend",           # Working Conditions Act
+                "Arbobesluit": "/BWBR0008498/geldend",      # Working Conditions Decree
+                "Arboregeling": "/BWBR0008587/geldend",    # Working Conditions Regulation
+                "Arbeidstijdenwet": "/BWBR0007671/geldend", # Working Time Act
+                "ATB": "/BWBR0007687/geldend",              # Working Time Decree
             }
         }
     })
@@ -835,6 +835,30 @@ class ATScraper(Scraper):
         topics.sort(key=lambda x: (-x["match_count"], x["relevance"] != "high"))
         return topics[:5]  # Return top 5 topics
 
+    def _extract_toc_titles(self, soup) -> Dict[str, str]:
+        """Extract section titles from the RIS table of contents (Inhaltsverzeichnis).
+
+        The RIS page has a table of contents that maps § numbers to their titles.
+        Structure: <td>§ 40.</td><td>Gefährliche Arbeitsstoffe</td>
+        """
+        toc_titles = {}
+
+        # Find the table of contents (class InhaltEintrag entries)
+        for row in soup.find_all('tr'):
+            cells = row.find_all('td')
+            if len(cells) >= 2:
+                first_cell = cells[0].get_text(strip=True)
+                # Match § followed by number (e.g., "§ 40." or "§ 40a.")
+                match = re.match(r'§\s*(\d+[a-z]?)\.?', first_cell)
+                if match:
+                    section_num = match.group(1)
+                    # Get title from second cell
+                    title_text = cells[1].get_text(strip=True)
+                    if title_text and len(title_text) > 1:
+                        toc_titles[section_num] = title_text
+
+        return toc_titles
+
     def _parse_ris_law_full(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
         """Parse an Austrian law from RIS HTML with full text extraction."""
         soup = BeautifulSoup(html, 'html.parser')
@@ -842,6 +866,11 @@ class ATScraper(Scraper):
         # Extract title
         title_elem = soup.find('h1') or soup.find('title')
         title = title_elem.get_text(strip=True) if title_elem else abbrev
+
+        # FIRST: Extract titles from the table of contents (Inhaltsverzeichnis)
+        toc_titles = self._extract_toc_titles(soup)
+        if toc_titles:
+            log_info(f"  Found {len(toc_titles)} section titles in table of contents")
 
         # Remove navigation/boilerplate elements
         for elem in soup.find_all(['nav', 'header', 'footer', 'script', 'style']):
@@ -866,34 +895,22 @@ class ATScraper(Scraper):
                     continue
                 seen_sections.add(section_num)
 
-                # Get title from following h3, h4, or h5 (RIS uses h5 for section titles like "Geltungsbereich")
-                section_title = ""
-                # First try siblings
-                next_elem = h2.find_next_sibling()
-                while next_elem and next_elem.name not in ['h2']:
-                    if next_elem.name in ['h3', 'h4', 'h5']:
-                        candidate = next_elem.get_text(strip=True)
-                        # Skip if it's just another § reference, chapter heading, or generic placeholder
-                        if (not re.match(r'^§\s*\d+', candidate) and
-                            not re.match(r'^\d+\.\s*Abschnitt', candidate) and
-                            candidate.lower() not in ['text', 'inhalt', 'content']):
-                            section_title = candidate
-                            break
-                    next_elem = next_elem.find_next_sibling()
+                # Get title from table of contents (primary source)
+                section_title = toc_titles.get(section_num, "")
 
-                # Fallback: search all following elements (not just siblings) for h5 title
+                # Fallback: try to find title from following h3, h4, or h5 if not in TOC
                 if not section_title:
-                    next_h2 = h2.find_next('h2')
-                    for h5 in h2.find_all_next('h5'):
-                        # Stop if we've passed the next h2
-                        if next_h2 and h5.sourceline and next_h2.sourceline and h5.sourceline > next_h2.sourceline:
-                            break
-                        candidate = h5.get_text(strip=True)
-                        if (candidate and len(candidate) > 2 and
-                            not re.match(r'^§\s*\d+', candidate) and
-                            candidate.lower() not in ['text', 'inhalt', 'content']):
-                            section_title = candidate
-                            break
+                    next_elem = h2.find_next_sibling()
+                    while next_elem and next_elem.name not in ['h2']:
+                        if next_elem.name in ['h3', 'h4', 'h5']:
+                            candidate = next_elem.get_text(strip=True)
+                            # Skip if it's just another § reference, chapter heading, or generic placeholder
+                            if (not re.match(r'^§\s*\d+', candidate) and
+                                not re.match(r'^\d+\.\s*Abschnitt', candidate) and
+                                candidate.lower() not in ['text', 'inhalt', 'content']):
+                                section_title = candidate
+                                break
+                        next_elem = next_elem.find_next_sibling()
 
                 # Collect all content until next h2 with §
                 content_parts = []
@@ -1703,49 +1720,65 @@ class NLScraper(Scraper):
                 title_match = re.search(r'Artikel\s+\d+[a-z]?\.?\s*(.+)', h4_text, re.IGNORECASE)
                 article_title = title_match.group(1).strip() if title_match else ""
 
-            # Extract content from ul.artikel_leden or p.lid elements
+            # Extract content from ul with artikel_leden class or list--law class
             content_parts = []
 
-            # Find the content ul (class contains 'artikel_leden')
-            content_uls = container.find_all('ul', class_=lambda c: c and 'artikel_leden' in ' '.join(c) if c else False)
+            # Find all content ULs - look for class containing 'artikel_leden' or 'list--law'
+            content_uls = []
+            for ul in container.find_all('ul'):
+                ul_classes = ul.get('class', [])
+                if ul_classes:
+                    class_str = ' '.join(ul_classes) if isinstance(ul_classes, list) else ul_classes
+                    if 'artikel_leden' in class_str or 'list--law' in class_str:
+                        content_uls.append(ul)
 
+            # Extract content from these ULs
             for ul in content_uls:
-                # Get all p.lid paragraphs (the actual law text)
-                for p in ul.find_all('p', class_=lambda c: c and 'lid' in ' '.join(c) if c else False):
+                # Get ALL paragraphs within these content ULs
+                for p in ul.find_all('p', recursive=True):
+                    p_classes = p.get('class', [])
+                    class_str = ' '.join(p_classes) if isinstance(p_classes, list) else (p_classes or '')
+
+                    # Skip action-related paragraphs
+                    if 'action' in class_str.lower():
+                        continue
+
                     p_text = p.get_text(separator=' ', strip=True)
                     if p_text and len(p_text) > 5:
+                        # Remove lid number prefixes like "1 " at start
+                        p_text = re.sub(r'^\d+[a-z]?\s+', '', p_text)
                         p_text = re.sub(r'\s+', ' ', p_text)
                         content_parts.append(p_text)
 
-                # Also get p.al elements (sub-definitions)
-                for p in ul.find_all('p', class_='al'):
+            # If no content found via ULs, try direct paragraph extraction
+            if not content_parts:
+                # Find all paragraphs directly in the container (outside header)
+                for p in container.find_all('p', recursive=True):
+                    # Skip header elements
+                    parent = p.find_parent(['div'])
+                    if parent:
+                        parent_classes = ' '.join(parent.get('class', []) if parent.get('class') else [])
+                        if 'header' in parent_classes.lower():
+                            continue
+
                     p_text = p.get_text(separator=' ', strip=True)
-                    if p_text and len(p_text) > 5:
+                    if p_text and len(p_text) > 10:
                         p_text = re.sub(r'\s+', ' ', p_text)
                         content_parts.append(p_text)
 
-                # Get labeled paragraphs too
-                for p in ul.find_all('p', class_='labeled'):
-                    p_text = p.get_text(separator=' ', strip=True)
-                    if p_text and len(p_text) > 5:
-                        p_text = re.sub(r'\s+', ' ', p_text)
-                        content_parts.append(p_text)
-
-            # Also check for additional content outside ul.artikel_leden
-            # This catches content in other structures within the article container
-            for elem in container.find_all(['p', 'li'], recursive=True):
-                # Skip elements in the header div
-                parent_classes = ' '.join(elem.parent.get('class', []) if elem.parent else [])
-                if 'article__header' in parent_classes:
+            # Also check li elements for content
+            for li in container.find_all('li', recursive=True):
+                # Skip action list items
+                li_classes = li.get('class', [])
+                class_str = ' '.join(li_classes) if isinstance(li_classes, list) else (li_classes or '')
+                if 'action' in class_str.lower():
                     continue
-                # Skip if already captured via ul.artikel_leden (check class)
-                elem_classes = ' '.join(elem.get('class', []) if elem.get('class') else [])
-                if any(c in elem_classes for c in ['lid', 'al', 'labeled']):
-                    continue
-                elem_text = elem.get_text(separator=' ', strip=True)
-                if elem_text and len(elem_text) > 10:
-                    elem_text = re.sub(r'\s+', ' ', elem_text)
-                    content_parts.append(elem_text)
+
+                # Get direct text (not from nested elements already captured)
+                li_text = li.get_text(separator=' ', strip=True)
+                if li_text and len(li_text) > 10:
+                    li_text = re.sub(r'\s+', ' ', li_text)
+                    content_parts.append(li_text)
 
             # Deduplicate while preserving order (nested li may duplicate)
             # Use full text hash to avoid losing similar-starting but different paragraphs
@@ -1770,13 +1803,35 @@ class NLScraper(Scraper):
             full_text = re.sub(r'[ \t]+', ' ', full_text)
             full_text = full_text.strip()
 
-            # Skip if we only got boilerplate
-            if len(full_text) < 20:
-                log_warning(f"Article {section_num} has very short content ({len(full_text)} chars)")
-                continue
+            # Check if this is a repealed article (Vervallen = repealed in Dutch)
+            is_repealed = False
+            repealed_text = ""
+            # Look for header div with various class patterns (article__header, header--law, etc.)
+            header_div = container.find('div', class_=lambda c: c and any('header' in cls.lower() for cls in c) if c else False)
+            if not header_div:
+                # Also try finding the h4 parent
+                h4_parent = h4.parent if h4 else None
+                if h4_parent and h4_parent.name == 'div':
+                    header_div = h4_parent
+            if header_div:
+                header_text = header_div.get_text(strip=True)
+                repealed_match = re.search(r'\[Vervallen\s+per\s+([^\]]+)\]', header_text)
+                if repealed_match:
+                    is_repealed = True
+                    repealed_text = f"[Dit artikel is vervallen per {repealed_match.group(1)}]"
+                    full_text = repealed_text
 
-            whs_topics = self._classify_whs_topics(full_text, article_title)
-            logistics_relevance = self._calculate_logistics_relevance(full_text, article_title)
+            # Handle articles with no content
+            if len(full_text) < 20:
+                if is_repealed:
+                    # Repealed articles are expected to be empty
+                    full_text = repealed_text if repealed_text else "[Artikel vervallen]"
+                else:
+                    log_warning(f"Article {section_num} has very short content ({len(full_text)} chars)")
+                    continue
+
+            whs_topics = self._classify_whs_topics(full_text, article_title) if not is_repealed else []
+            logistics_relevance = self._calculate_logistics_relevance(full_text, article_title) if not is_repealed else {"score": 0, "level": "low"}
 
             sections.append({
                 "id": generate_id(f"{abbrev}-{section_num}"),
