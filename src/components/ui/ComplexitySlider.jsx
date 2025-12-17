@@ -1,19 +1,22 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 
-const COMPLEXITY_LEVELS = [
-  { id: 'legal', label: 'Legal Text', icon: '⚖️', description: 'Original legal language' },
-  { id: 'manager', label: 'Manager Summary', icon: '📋', description: 'Key obligations & deadlines' },
-  { id: 'associate', label: 'Toolbox Talk', icon: '🦺', description: 'Simple worker instructions' }
+// Default complexity levels with English fallbacks
+const getComplexityLevels = (t) => [
+  { id: 'legal', label: t?.complexity?.legal || 'Legal Text', icon: '⚖️', description: t?.complexity?.legalDescription || 'Original legal language' },
+  { id: 'manager', label: t?.complexity?.manager || 'Manager Summary', icon: '📋', description: t?.complexity?.managerDescription || 'Key obligations & deadlines' },
+  { id: 'associate', label: t?.complexity?.associate || 'Toolbox Talk', icon: '🦺', description: t?.complexity?.associateDescription || 'Simple worker instructions' }
 ]
 
 export function ComplexitySlider({
   currentLevel = 'legal',
   onLevelChange,
   isLoading = false,
-  disabled = false
+  disabled = false,
+  t = {}
 }) {
   const [activeLevel, setActiveLevel] = useState(currentLevel)
   const sliderRef = useRef(null)
+  const complexityLevels = getComplexityLevels(t)
 
   useEffect(() => {
     setActiveLevel(currentLevel)
@@ -25,12 +28,12 @@ export function ComplexitySlider({
     onLevelChange?.(levelId)
   }, [disabled, isLoading, onLevelChange])
 
-  const activeIndex = COMPLEXITY_LEVELS.findIndex(l => l.id === activeLevel)
+  const activeIndex = complexityLevels.findIndex(l => l.id === activeLevel)
 
   return (
     <div className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-      <span className="text-sm px-2 text-gray-500 dark:text-gray-400">Reading:</span>
-      {COMPLEXITY_LEVELS.map((level) => (
+      <span className="text-sm px-2 text-gray-500 dark:text-gray-400">{t?.complexity?.reading || 'Reading:'}</span>
+      {complexityLevels.map((level) => (
         <button
           key={level.id}
           onClick={() => handleLevelChange(level.id)}
@@ -56,7 +59,7 @@ export function ComplexitySlider({
 }
 
 // Simplified content display component
-export function SimplifiedContent({ content, level, isLoading }) {
+export function SimplifiedContent({ content, level, isLoading, t = {} }) {
   if (isLoading) {
     return (
       <div className="animate-pulse space-y-2">
@@ -74,19 +77,19 @@ export function SimplifiedContent({ content, level, isLoading }) {
       bg: 'bg-gray-50 dark:bg-gray-800',
       border: 'border-gray-200 dark:border-gray-700',
       icon: '⚖️',
-      title: 'Original Legal Text'
+      title: t?.complexity?.legalFull || 'Original Legal Text'
     },
     manager: {
       bg: 'bg-blue-50 dark:bg-blue-900/20',
       border: 'border-blue-200 dark:border-blue-800',
       icon: '📋',
-      title: 'Manager Summary'
+      title: t?.complexity?.manager || 'Manager Summary'
     },
     associate: {
       bg: 'bg-green-50 dark:bg-green-900/20',
       border: 'border-green-200 dark:border-green-800',
       icon: '🦺',
-      title: 'Toolbox Talk'
+      title: t?.complexity?.associate || 'Toolbox Talk'
     }
   }
 

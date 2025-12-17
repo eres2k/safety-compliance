@@ -49,7 +49,28 @@
     "optional": "Optioneel",
     "error": "Fout",
     "success": "Succes",
-    "close": "Sluiten"
+    "close": "Sluiten",
+    "all": "Alle",
+    "compare": "Vergelijken",
+    "compareAll": "Alle",
+    "compareAllCountries": "Dit artikel vergelijken in alle 3 landen",
+    "compareTwoCountries": "Dit artikel vergelijken met een ander land",
+    "filterBySection": "Filteren op artikel nr./titel...",
+    "fullTextSearch": "Zoeken in deze wet..."
+  },
+  "complexity": {
+    "reading": "Weergave:",
+    "legal": "Wettekst",
+    "legalDescription": "Originele wettekst",
+    "legalFull": "Originele Wettekst",
+    "viewOriginal": "Bekijk originele wettekst",
+    "manager": "Manager Samenvatting",
+    "managerDescription": "Belangrijke verplichtingen & deadlines",
+    "associate": "Toolbox Talk",
+    "associateDescription": "Eenvoudige werkinstructies"
+  },
+  "sections": {
+    "title": "Artikelen"
   },
   "industries": {
     "logistics": "Logistiek & Magazijn",

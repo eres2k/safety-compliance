@@ -49,7 +49,28 @@
     "optional": "Optional",
     "error": "Error",
     "success": "Success",
-    "close": "Close"
+    "close": "Close",
+    "all": "All",
+    "compare": "Compare",
+    "compareAll": "All",
+    "compareAllCountries": "Compare this section across all 3 countries",
+    "compareTwoCountries": "Compare this section with another country",
+    "filterBySection": "Filter by section number/title...",
+    "fullTextSearch": "Full text search in this law..."
+  },
+  "complexity": {
+    "reading": "Reading:",
+    "legal": "Legal Text",
+    "legalDescription": "Original legal language",
+    "legalFull": "Original Legal Text",
+    "viewOriginal": "View original legal text",
+    "manager": "Manager Summary",
+    "managerDescription": "Key obligations & deadlines",
+    "associate": "Toolbox Talk",
+    "associateDescription": "Simple worker instructions"
+  },
+  "sections": {
+    "title": "Sections"
   },
   "industries": {
     "logistics": "Logistics & Warehousing",

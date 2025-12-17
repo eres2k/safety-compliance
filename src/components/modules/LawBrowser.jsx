@@ -907,6 +907,37 @@ export function LawBrowser({ onBack }) {
     }
   }, [allLaws, searchTerm, selectedCategory, currentPage, pageSize])
 
+  // Helper function to extract section title from text content when database title is incomplete
+  const extractTitleFromText = (text, sectionNumber) => {
+    if (!text) return ''
+
+    // Try to find the title from the text content
+    // Pattern 1: "§ X. Title" or "§ X Title" at the beginning
+    const numberPattern = sectionNumber.replace(/[§\s.]/g, '').replace(/([a-z])/i, '$1?')
+    const patterns = [
+      // "Geltungsbereich\n§ 1." - title before section number
+      new RegExp(`^([A-ZÄÖÜ][a-zäöüß]+(?:\\s+[A-Za-zäöüßÄÖÜ]+)*)\\s*\\n\\s*§\\s*${numberPattern}`, 'im'),
+      // "§ 1. Geltungsbereich" - title after section number on same line
+      new RegExp(`§\\s*${numberPattern}\\.?\\s+([A-ZÄÖÜ][^\\n]{3,50})`, 'im'),
+      // ABSCHNITT N\nTitle - look for title after ABSCHNITT header
+      /ABSCHNITT\s+\d+[a-z]?\s*\n([A-ZÄÖÜ][^\n]{3,50})/im
+    ]
+
+    for (const pattern of patterns) {
+      const match = text.match(pattern)
+      if (match && match[1]) {
+        let title = match[1].trim()
+        // Clean up - remove section number patterns and parenthetical starts
+        title = title.replace(/^\(?\d+\)?\s*/, '').trim()
+        title = title.replace(/^§\s*\d+[a-z]?\.?\s*/i, '').trim()
+        if (title && title.length > 2 && title.length < 100) {
+          return title
+        }
+      }
+    }
+    return ''
+  }
+
   // Parse sections for selected law - use pre-parsed chapters if available
   const lawSections = useMemo(() => {
     if (!selectedLaw) return []
@@ -917,12 +948,20 @@ export function LawBrowser({ onBack }) {
       for (const chapter of selectedLaw.chapters) {
         if (chapter.sections) {
           for (const section of chapter.sections) {
+            // Extract title from database or from text content
+            let sectionTitle = section.title?.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+\.?)\s*/i, '').trim() || ''
+
+            // If title is empty or just whitespace, try to extract from text content
+            if (!sectionTitle && section.text) {
+              sectionTitle = extractTitleFromText(section.text, section.number)
+            }
+
             sections.push({
               id: section.id,
               number: section.number?.startsWith('§') || section.number?.startsWith('Artikel')
                 ? section.number
                 : (framework === 'NL' ? `Artikel ${section.number}` : `§ ${section.number}`),
-              title: section.title?.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+\.?)\s*/i, '').trim() || '',
+              title: sectionTitle,
               content: section.text || '',
               rawNumber: section.number,
               abschnitt: {
@@ -1394,13 +1433,13 @@ export function LawBrowser({ onBack }) {
             <Card className="h-full overflow-hidden">
               <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
                 <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                  Sections ({filteredSections.length}/{lawSections.length})
+                  {t.sections?.title || 'Sections'} ({filteredSections.length}/{lawSections.length})
                 </h3>
                 <input
                   type="text"
                   value={searchInLaw}
                   onChange={(e) => setSearchInLaw(e.target.value)}
-                  placeholder="Filter by section number/title..."
+                  placeholder={t.common?.filterBySection || "Filter by section number/title..."}
                   className="mt-2 w-full px-2 py-1 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-whs-orange-500"
                 />
                 {/* Relevance Filter */}
@@ -1417,7 +1456,7 @@ export function LawBrowser({ onBack }) {
                             : `${RELEVANCE_LEVELS[level]?.bgColor || ''} ${RELEVANCE_LEVELS[level]?.textColor || ''} hover:opacity-80`
                       }`}
                     >
-                      {level === 'all' ? 'All' : RELEVANCE_LEVELS[level]?.label}
+                      {level === 'all' ? (t.common?.all || 'All') : RELEVANCE_LEVELS[level]?.label}
                     </button>
                   ))}
                 </div>
@@ -1447,17 +1486,18 @@ export function LawBrowser({ onBack }) {
                         <button
                           onClick={() => toggleChapter(chapterKey)}
                           className="w-full px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-whs-dark-600 transition-colors sticky top-0 z-10"
+                          title={chapterTitle}
                         >
                           <svg
-                            className={`w-4 h-4 transition-transform ${isChapterExpanded ? 'rotate-90' : ''}`}
+                            className={`w-4 h-4 flex-shrink-0 transition-transform ${isChapterExpanded ? 'rotate-90' : ''}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                           </svg>
-                          <span className="flex-1 text-left truncate">{chapterTitle}</span>
-                          <span className="text-gray-400 dark:text-gray-500">({sections.length})</span>
+                          <span className="flex-1 text-left line-clamp-2">{chapterTitle}</span>
+                          <span className="text-gray-400 dark:text-gray-500 flex-shrink-0">({sections.length})</span>
                         </button>
 
                         {/* Sections within chapter - only shown when expanded */}
@@ -1486,7 +1526,7 @@ export function LawBrowser({ onBack }) {
                                   )}
                                 </div>
                                 {section.title && (
-                                  <div className="text-xs line-clamp-1 mt-0.5 opacity-75">{highlightText(section.title, searchInLaw)}</div>
+                                  <div className="text-xs line-clamp-2 mt-0.5 opacity-75" title={section.title}>{highlightText(section.title, searchInLaw)}</div>
                                 )}
                               </button>
                               {/* Compare buttons for each section */}
@@ -1497,10 +1537,10 @@ export function LawBrowser({ onBack }) {
                                     openComparisonModal('multi', section)
                                   }}
                                   className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors"
-                                  title="Compare this section across all 3 countries"
+                                  title={t.common?.compareAllCountries || "Compare this section across all 3 countries"}
                                 >
                                   <span>🌍</span>
-                                  <span>All</span>
+                                  <span>{t.common?.compareAll || 'All'}</span>
                                 </button>
                                 <button
                                   onClick={(e) => {
@@ -1509,10 +1549,10 @@ export function LawBrowser({ onBack }) {
                                     openComparisonModal('cross', section)
                                   }}
                                   className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
-                                  title="Compare this section with another country"
+                                  title={t.common?.compareTwoCountries || "Compare this section with another country"}
                                 >
                                   <span>↔️</span>
-                                  <span>Compare</span>
+                                  <span>{t.common?.compare || 'Compare'}</span>
                                 </button>
                               </div>
                             </div>
@@ -1591,7 +1631,7 @@ export function LawBrowser({ onBack }) {
                         type="text"
                         value={contentSearchTerm}
                         onChange={(e) => setContentSearchTerm(e.target.value)}
-                        placeholder="Full text search in this law..."
+                        placeholder={t.common?.fullTextSearch || "Full text search in this law..."}
                         className="w-full pl-9 pr-8 py-2 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-whs-orange-500 focus:border-transparent"
                       />
                       {contentSearchTerm && (
@@ -1723,6 +1763,7 @@ export function LawBrowser({ onBack }) {
                                             currentLevel={sectionComplexityLevels[section.id] || 'legal'}
                                             onLevelChange={(level) => handleComplexityChange(level, section)}
                                             isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                            t={t}
                                           />
                                         </div>
 
@@ -1735,6 +1776,7 @@ export function LawBrowser({ onBack }) {
                                               content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
                                               level={sectionComplexityLevels[section.id]}
                                               isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                              t={t}
                                             />
                                           )}
                                           {/* Show original text link when viewing simplified */}
@@ -1743,7 +1785,7 @@ export function LawBrowser({ onBack }) {
                                               onClick={() => handleComplexityChange('legal', section)}
                                               className="mt-3 text-xs text-gray-500 dark:text-gray-400 hover:text-whs-orange-500 underline"
                                             >
-                                              View original legal text
+                                              {t.complexity?.viewOriginal || 'View original legal text'}
                                             </button>
                                           )}
                                         </div>
