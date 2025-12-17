@@ -2510,16 +2510,619 @@ def cmd_all(args) -> int:
 
 
 # =============================================================================
+# Interactive Menu System
+# =============================================================================
+
+def clear_screen():
+    """Clear the terminal screen."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def print_menu_header():
+    """Print the main menu header."""
+    clear_screen()
+    print(f"""
+{Colors.BLUE}╔══════════════════════════════════════════════════════════════╗
+║                                                                ║
+║   {Colors.BOLD}🏛️  EU SAFETY LAWS DATABASE MANAGER  🏛️{Colors.RESET}{Colors.BLUE}                    ║
+║                                                                ║
+║   {Colors.DIM}Version {CONFIG.scraper_version}{Colors.RESET}{Colors.BLUE}                                               ║
+║   {Colors.DIM}Countries: 🇦🇹 Austria  🇩🇪 Germany  🇳🇱 Netherlands{Colors.RESET}{Colors.BLUE}          ║
+║                                                                ║
+╚══════════════════════════════════════════════════════════════╝{Colors.RESET}
+""")
+
+
+def get_user_input(prompt: str, valid_options: List[str] = None, allow_empty: bool = False) -> str:
+    """Get validated user input."""
+    while True:
+        try:
+            user_input = input(f"{Colors.CYAN}{prompt}{Colors.RESET}").strip()
+            if not user_input and not allow_empty:
+                continue
+            if valid_options and user_input.lower() not in [o.lower() for o in valid_options]:
+                print(f"{Colors.YELLOW}Invalid option. Please choose from: {', '.join(valid_options)}{Colors.RESET}")
+                continue
+            return user_input
+        except (KeyboardInterrupt, EOFError):
+            print(f"\n{Colors.YELLOW}Cancelled.{Colors.RESET}")
+            return ''
+
+
+def select_from_menu(title: str, options: List[Tuple[str, str, str]], back_option: bool = True) -> str:
+    """
+    Display a menu and get user selection.
+    options: List of (key, label, description)
+    Returns the selected key or '' for back/cancel.
+    """
+    print(f"\n{Colors.BOLD}{Colors.WHITE}{title}{Colors.RESET}\n")
+
+    for i, (key, label, desc) in enumerate(options, 1):
+        print(f"  {Colors.CYAN}[{i}]{Colors.RESET} {Colors.BOLD}{label}{Colors.RESET}")
+        if desc:
+            print(f"      {Colors.DIM}{desc}{Colors.RESET}")
+
+    if back_option:
+        print(f"\n  {Colors.YELLOW}[0]{Colors.RESET} ← Back / Cancel")
+
+    print()
+    valid = [str(i) for i in range(0 if back_option else 1, len(options) + 1)]
+    choice = get_user_input("Enter your choice: ", valid)
+
+    if not choice or choice == '0':
+        return ''
+
+    return options[int(choice) - 1][0]
+
+
+def select_country() -> str:
+    """Show country selection menu."""
+    options = [
+        ('AT', '🇦🇹 Austria (AT)', f'{len(CONFIG.sources["AT"]["main_laws"])} laws available'),
+        ('DE', '🇩🇪 Germany (DE)', f'{len(CONFIG.sources["DE"]["main_laws"])} laws available'),
+        ('NL', '🇳🇱 Netherlands (NL)', f'{len(CONFIG.sources["NL"]["main_laws"])} laws available'),
+        ('ALL', '🌍 All Countries', 'Process all three countries'),
+    ]
+    return select_from_menu("Select Country", options)
+
+
+def select_laws_for_country(country: str) -> List[str]:
+    """Show law selection menu for a specific country."""
+    laws = CONFIG.sources[country]["main_laws"]
+    law_names = {
+        # Austrian laws
+        "ASchG": "Worker Protection Act",
+        "AZG": "Working Time Act",
+        "ARG": "Rest Period Act",
+        "MSchG": "Maternity Protection Act",
+        "KJBG": "Child and Youth Employment Act",
+        "AStV": "Workplace Regulation",
+        "AM-VO": "Work Equipment Regulation",
+        "DOK-VO": "Documentation Regulation",
+        # German laws
+        "ArbSchG": "Occupational Safety Act",
+        "ASiG": "Workplace Safety Act",
+        "ArbZG": "Working Time Act",
+        "MuSchG": "Maternity Protection Act",
+        "JArbSchG": "Youth Labor Protection Act",
+        "ArbStättV": "Workplace Ordinance",
+        "BetrSichV": "Industrial Safety Regulation",
+        "GefStoffV": "Hazardous Substances Ordinance",
+        # Dutch laws
+        "Arbowet": "Working Conditions Act",
+        "Arbobesluit": "Working Conditions Decree",
+        "Arboregeling": "Working Conditions Regulation",
+        "Arbeidstijdenwet": "Working Time Act",
+        "ATB": "Working Time Decree",
+    }
+
+    options = [('ALL', '📚 All Laws', f'Scrape all {len(laws)} laws')]
+    for abbr in laws.keys():
+        name = law_names.get(abbr, "")
+        options.append((abbr, f"📄 {abbr}", name))
+
+    print(f"\n{Colors.BOLD}Available laws for {country}:{Colors.RESET}")
+    selected = select_from_menu(f"Select Laws for {country}", options)
+
+    if selected == 'ALL':
+        return list(laws.keys())
+    elif selected:
+        return [selected]
+    return []
+
+
+def menu_scrape():
+    """Interactive scrape menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}📥 SCRAPE LAWS{Colors.RESET}")
+    print(f"{Colors.DIM}Download laws from official government sources{Colors.RESET}\n")
+
+    country = select_country()
+    if not country:
+        return
+
+    countries = ['AT', 'DE', 'NL'] if country == 'ALL' else [country]
+
+    # For each country, select laws
+    selected_laws = {}
+    for c in countries:
+        laws = select_laws_for_country(c)
+        if laws:
+            selected_laws[c] = laws
+        elif country != 'ALL':
+            return  # User cancelled
+
+    if not selected_laws:
+        return
+
+    # Confirm
+    print(f"\n{Colors.BOLD}Ready to scrape:{Colors.RESET}")
+    for c, laws in selected_laws.items():
+        print(f"  {c}: {', '.join(laws)}")
+
+    confirm = get_user_input("\nProceed? [Y/n]: ", allow_empty=True)
+    if confirm.lower() == 'n':
+        return
+
+    # Create args-like object and run
+    class Args:
+        def __init__(self):
+            self.country = None
+            self.all = False
+            self.laws = 999
+            self.menu = False
+            self.check_updates = False
+            self.select = None
+
+    for c, laws in selected_laws.items():
+        args = Args()
+        args.country = c
+        args.select = ','.join(laws)
+        cmd_scrape(args)
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_clean():
+    """Interactive clean menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}🧹 CLEAN DATA{Colors.RESET}")
+    print(f"{Colors.DIM}Clean and format scraped law content{Colors.RESET}\n")
+
+    country = select_country()
+    if not country:
+        return
+
+    # Select cleaning mode
+    options = [
+        ('ai', '🤖 AI Cleaning (Recommended)', 'Use Gemini AI to clean and format text'),
+        ('fast', '⚡ Fast AI Cleaning', 'AI for main content only, regex for the rest'),
+        ('regex', '📝 Regex Only', 'No AI, use pattern matching only'),
+    ]
+    mode = select_from_menu("Select Cleaning Mode", options)
+    if not mode:
+        return
+
+    class Args:
+        def __init__(self):
+            self.country = None
+            self.all = False
+            self.no_ai = False
+            self.fast = False
+
+    if country == 'ALL':
+        for c in ['AT', 'DE', 'NL']:
+            args = Args()
+            args.country = c
+            args.no_ai = (mode == 'regex')
+            args.fast = (mode == 'fast')
+            cmd_clean(args)
+    else:
+        args = Args()
+        args.country = country
+        args.no_ai = (mode == 'regex')
+        args.fast = (mode == 'fast')
+        cmd_clean(args)
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_restructure():
+    """Interactive restructure menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}🔧 RESTRUCTURE DATA{Colors.RESET}")
+    print(f"{Colors.DIM}Reorganize laws into official chapter structure{Colors.RESET}\n")
+
+    country = select_country()
+    if not country:
+        return
+
+    class Args:
+        def __init__(self):
+            self.country = None
+            self.all = False
+
+    if country == 'ALL':
+        for c in ['AT', 'DE', 'NL']:
+            args = Args()
+            args.country = c
+            cmd_restructure(args)
+    else:
+        args = Args()
+        args.country = country
+        cmd_restructure(args)
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_build():
+    """Interactive build menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}🏗️ BUILD DATABASE{Colors.RESET}")
+    print(f"{Colors.DIM}Compile all data into master database{Colors.RESET}\n")
+
+    confirm = get_user_input("Build master database? [Y/n]: ", allow_empty=True)
+    if confirm.lower() == 'n':
+        return
+
+    build_master_database()
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_status():
+    """Interactive status menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}📊 DATABASE STATUS{Colors.RESET}\n")
+
+    class Args:
+        pass
+
+    cmd_status(Args())
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_check_updates():
+    """Interactive check updates menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}🔄 CHECK FOR UPDATES{Colors.RESET}")
+    print(f"{Colors.DIM}Check if laws have changed since last scrape{Colors.RESET}\n")
+
+    country = select_country()
+    if not country:
+        return
+
+    class Args:
+        def __init__(self):
+            self.country = None
+            self.all = False
+
+    if country == 'ALL':
+        for c in ['AT', 'DE', 'NL']:
+            args = Args()
+            args.country = c
+            cmd_check_updates(args)
+    else:
+        args = Args()
+        args.country = country
+        cmd_check_updates(args)
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_full_pipeline():
+    """Interactive full pipeline menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}🚀 FULL PIPELINE{Colors.RESET}")
+    print(f"{Colors.DIM}Run complete: Scrape → Clean → Restructure → Build{Colors.RESET}\n")
+
+    country = select_country()
+    if not country:
+        return
+
+    # Options
+    options = [
+        ('full', '🤖 Full Pipeline with AI', 'Best quality, uses AI cleaning'),
+        ('fast', '⚡ Fast Pipeline', 'Quicker, AI for main content only'),
+        ('basic', '📝 Basic Pipeline', 'No AI, regex cleaning only'),
+    ]
+    mode = select_from_menu("Select Pipeline Mode", options)
+    if not mode:
+        return
+
+    class Args:
+        def __init__(self):
+            self.country = None
+            self.all = False
+            self.no_ai = False
+            self.fast = False
+            self.skip_scrape = False
+            self.skip_build = False
+            self.laws = 999
+
+    if country == 'ALL':
+        for c in ['AT', 'DE', 'NL']:
+            args = Args()
+            args.country = c
+            args.no_ai = (mode == 'basic')
+            args.fast = (mode == 'fast')
+            cmd_all(args)
+    else:
+        args = Args()
+        args.country = country
+        args.no_ai = (mode == 'basic')
+        args.fast = (mode == 'fast')
+        cmd_all(args)
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_wikipedia():
+    """Interactive Wikipedia scraper menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}📖 WIKIPEDIA SCRAPER{Colors.RESET}")
+    print(f"{Colors.DIM}Scrape related Wikipedia articles for laws{Colors.RESET}\n")
+
+    country = select_country()
+    if not country:
+        return
+
+    countries = ['AT', 'DE', 'NL'] if country == 'ALL' else [country]
+
+    for c in countries:
+        log_section(f"Scraping Wikipedia articles for {c}")
+        scrape_wikipedia_for_country(c)
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_settings():
+    """Interactive settings menu."""
+    print_menu_header()
+    print(f"{Colors.BOLD}⚙️ SETTINGS{Colors.RESET}\n")
+
+    print(f"  {Colors.CYAN}API Key:{Colors.RESET} {'✓ Set' if os.environ.get('GEMINI_API_KEY') else '✗ Not set'}")
+    print(f"  {Colors.CYAN}Scraper Version:{Colors.RESET} {CONFIG.scraper_version}")
+    print(f"  {Colors.CYAN}Request Timeout:{Colors.RESET} {CONFIG.request_timeout}s")
+    print(f"  {Colors.CYAN}Rate Limit Delay:{Colors.RESET} {CONFIG.rate_limit_delay}s")
+    print(f"  {Colors.CYAN}Max Retries:{Colors.RESET} {CONFIG.max_retries}")
+    print(f"  {Colors.CYAN}AI Model:{Colors.RESET} {CONFIG.gemini_model}")
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def interactive_menu():
+    """Main interactive menu loop."""
+    while True:
+        print_menu_header()
+
+        options = [
+            ('scrape', '📥 Scrape Laws', 'Download laws from government sources'),
+            ('clean', '🧹 Clean Data', 'Clean and format scraped content'),
+            ('restructure', '🔧 Restructure', 'Organize into chapter structure'),
+            ('build', '🏗️ Build Database', 'Compile master database'),
+            ('status', '📊 View Status', 'Show database statistics'),
+            ('updates', '🔄 Check Updates', 'Check for law changes'),
+            ('pipeline', '🚀 Full Pipeline', 'Run complete workflow'),
+            ('wikipedia', '📖 Wikipedia', 'Scrape related Wikipedia articles'),
+            ('settings', '⚙️ Settings', 'View configuration'),
+        ]
+
+        print(f"{Colors.BOLD}MAIN MENU{Colors.RESET}\n")
+
+        for i, (key, label, desc) in enumerate(options, 1):
+            print(f"  {Colors.CYAN}[{i}]{Colors.RESET} {label}")
+            print(f"      {Colors.DIM}{desc}{Colors.RESET}")
+
+        print(f"\n  {Colors.RED}[0]{Colors.RESET} Exit")
+
+        print()
+        valid = [str(i) for i in range(0, len(options) + 1)]
+        choice = get_user_input("Enter your choice: ", valid)
+
+        if not choice or choice == '0':
+            print(f"\n{Colors.GREEN}Goodbye! 👋{Colors.RESET}\n")
+            return 0
+
+        menu_key = options[int(choice) - 1][0]
+
+        menu_actions = {
+            'scrape': menu_scrape,
+            'clean': menu_clean,
+            'restructure': menu_restructure,
+            'build': menu_build,
+            'status': menu_status,
+            'updates': menu_check_updates,
+            'pipeline': menu_full_pipeline,
+            'wikipedia': menu_wikipedia,
+            'settings': menu_settings,
+        }
+
+        if menu_key in menu_actions:
+            menu_actions[menu_key]()
+
+
+# =============================================================================
+# Wikipedia Scraper
+# =============================================================================
+
+def get_wikipedia_search_terms(country: str, law_abbr: str) -> List[str]:
+    """Get Wikipedia search terms for a law."""
+    search_terms = {
+        "AT": {
+            "ASchG": ["ArbeitnehmerInnenschutzgesetz", "Arbeitsschutz Österreich"],
+            "AZG": ["Arbeitszeitgesetz Österreich"],
+            "ARG": ["Arbeitsruhegesetz"],
+            "MSchG": ["Mutterschutzgesetz Österreich"],
+            "KJBG": ["Kinder- und Jugendlichen-Beschäftigungsgesetz"],
+        },
+        "DE": {
+            "ArbSchG": ["Arbeitsschutzgesetz", "Arbeitsschutz Deutschland"],
+            "ASiG": ["Arbeitssicherheitsgesetz"],
+            "ArbZG": ["Arbeitszeitgesetz"],
+            "MuSchG": ["Mutterschutzgesetz"],
+            "JArbSchG": ["Jugendarbeitsschutzgesetz"],
+            "ArbStättV": ["Arbeitsstättenverordnung"],
+            "BetrSichV": ["Betriebssicherheitsverordnung"],
+            "GefStoffV": ["Gefahrstoffverordnung"],
+        },
+        "NL": {
+            "Arbowet": ["Arbeidsomstandighedenwet", "Arbowet"],
+            "Arbobesluit": ["Arbobesluit"],
+            "Arbeidstijdenwet": ["Arbeidstijdenwet"],
+        },
+    }
+    return search_terms.get(country, {}).get(law_abbr, [law_abbr])
+
+
+def scrape_wikipedia_article(search_term: str, lang: str = "de") -> Optional[Dict[str, Any]]:
+    """Scrape a Wikipedia article by search term."""
+    if not HAS_REQUESTS or not HAS_BS4:
+        log_error("requests and beautifulsoup4 required for Wikipedia scraping")
+        return None
+
+    try:
+        # Search Wikipedia API first
+        search_url = f"https://{lang}.wikipedia.org/w/api.php"
+        search_params = {
+            "action": "query",
+            "list": "search",
+            "srsearch": search_term,
+            "format": "json",
+            "srlimit": 1
+        }
+
+        response = requests.get(search_url, params=search_params, timeout=30)
+        response.raise_for_status()
+        search_data = response.json()
+
+        if not search_data.get("query", {}).get("search"):
+            log_warning(f"No Wikipedia article found for: {search_term}")
+            return None
+
+        page_title = search_data["query"]["search"][0]["title"]
+
+        # Fetch the actual HTML page
+        page_url = f"https://{lang}.wikipedia.org/wiki/{page_title.replace(' ', '_')}"
+        html_response = requests.get(page_url, timeout=30)
+        html_response.raise_for_status()
+
+        soup = BeautifulSoup(html_response.text, 'html.parser')
+
+        # Extract main content
+        content_div = soup.find('div', {'id': 'mw-content-text'})
+        if not content_div:
+            return None
+
+        # Remove unwanted elements
+        for elem in content_div.find_all(['script', 'style', 'nav', 'footer']):
+            elem.decompose()
+
+        # Get the cleaned HTML
+        article_html = str(content_div)
+
+        # Get summary (first paragraph)
+        first_para = content_div.find('p', class_=lambda x: x != 'mw-empty-elt')
+        summary = first_para.get_text(strip=True) if first_para else ""
+
+        return {
+            "title": page_title,
+            "url": page_url,
+            "language": lang,
+            "summary": summary[:500],
+            "html_content": article_html,
+            "scraped_at": datetime.now().isoformat()
+        }
+
+    except Exception as e:
+        log_error(f"Error scraping Wikipedia for '{search_term}': {e}")
+        return None
+
+
+def scrape_wikipedia_for_country(country: str):
+    """Scrape Wikipedia articles for all laws of a country."""
+    laws = CONFIG.sources[country]["main_laws"]
+    wiki_dir = CONFIG.base_path / country.lower() / "wikipedia"
+    wiki_dir.mkdir(parents=True, exist_ok=True)
+
+    # Determine Wikipedia language
+    lang_map = {"AT": "de", "DE": "de", "NL": "nl"}
+    lang = lang_map.get(country, "en")
+
+    results = {}
+
+    for law_abbr in laws.keys():
+        search_terms = get_wikipedia_search_terms(country, law_abbr)
+        log_info(f"Searching Wikipedia for {law_abbr}...")
+
+        for term in search_terms:
+            article = scrape_wikipedia_article(term, lang)
+            if article:
+                results[law_abbr] = article
+                log_success(f"Found: {article['title']}")
+
+                # Save HTML file
+                html_file = wiki_dir / f"{law_abbr}_wiki.html"
+                with open(html_file, 'w', encoding='utf-8') as f:
+                    f.write(f"""<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+    <meta charset="UTF-8">
+    <title>{article['title']} - Wikipedia</title>
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=site.styles&only=styles">
+    <style>
+        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }}
+        .wiki-source {{ background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 20px; }}
+        .wiki-source a {{ color: #0645ad; }}
+    </style>
+</head>
+<body>
+    <div class="wiki-source">
+        <strong>Source:</strong> <a href="{article['url']}" target="_blank">{article['url']}</a>
+        <br><small>Scraped: {article['scraped_at']}</small>
+    </div>
+    {article['html_content']}
+</body>
+</html>""")
+                break
+
+        time.sleep(CONFIG.rate_limit_delay)
+
+    # Save index file
+    index_file = wiki_dir / "wiki_index.json"
+    index_data = {
+        "country": country,
+        "language": lang,
+        "scraped_at": datetime.now().isoformat(),
+        "articles": {k: {"title": v["title"], "url": v["url"], "summary": v["summary"]}
+                     for k, v in results.items()}
+    }
+
+    with open(index_file, 'w', encoding='utf-8') as f:
+        json.dump(index_data, f, indent=2, ensure_ascii=False)
+
+    log_success(f"Saved {len(results)} Wikipedia articles for {country}")
+    return results
+
+
+# =============================================================================
 # Main Entry Point
 # =============================================================================
 
 def main():
     """Main entry point."""
+    # If no arguments provided, show interactive menu
+    if len(sys.argv) == 1:
+        return interactive_menu()
+
     parser = argparse.ArgumentParser(
         description='EU Safety Laws Database Manager',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__
     )
+
+    # Add --menu flag for interactive mode
+    parser.add_argument('--menu', '-m', action='store_true',
+                        help='Launch interactive menu')
 
     subparsers = parser.add_subparsers(dest='command', help='Commands')
 
@@ -2549,15 +3152,20 @@ def main():
     restructure_parser.add_argument('--all', action='store_true', help='Restructure all countries')
 
     # Build command
-    build_parser = subparsers.add_parser('build', help='Build master database')
+    subparsers.add_parser('build', help='Build master database')
 
     # Status command
-    status_parser = subparsers.add_parser('status', help='Show database status')
+    subparsers.add_parser('status', help='Show database status')
 
     # Check-updates command
     check_updates_parser = subparsers.add_parser('check-updates', help='Check which laws have changed')
     check_updates_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to check')
     check_updates_parser.add_argument('--all', action='store_true', help='Check all countries')
+
+    # Wikipedia command
+    wiki_parser = subparsers.add_parser('wikipedia', help='Scrape related Wikipedia articles')
+    wiki_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to scrape Wikipedia for')
+    wiki_parser.add_argument('--all', action='store_true', help='Scrape Wikipedia for all countries')
 
     # All command (complete pipeline)
     all_parser = subparsers.add_parser('all', help='Run complete pipeline')
@@ -2572,17 +3180,28 @@ def main():
 
     args = parser.parse_args()
 
+    # If --menu flag used, show interactive menu
+    if getattr(args, 'menu', False) and not args.command:
+        return interactive_menu()
+
     if not args.command:
         parser.print_help()
         return 1
 
     # Validate country selection
-    if args.command in ['scrape', 'clean', 'restructure', 'all', 'check-updates']:
+    if args.command in ['scrape', 'clean', 'restructure', 'all', 'check-updates', 'wikipedia']:
         if not getattr(args, 'all', False) and not getattr(args, 'country', None):
             print(f"Error: --country or --all is required for {args.command}")
             return 1
 
     # Run command
+    def cmd_wikipedia(args):
+        """Wikipedia scraping command."""
+        countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
+        for country in countries:
+            scrape_wikipedia_for_country(country)
+        return 0
+
     commands = {
         'scrape': cmd_scrape,
         'clean': cmd_clean,
@@ -2590,6 +3209,7 @@ def main():
         'build': cmd_build,
         'status': cmd_status,
         'check-updates': cmd_check_updates,
+        'wikipedia': cmd_wikipedia,
         'all': cmd_all,
     }
 

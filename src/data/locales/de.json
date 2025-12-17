@@ -49,7 +49,28 @@
     "optional": "Optional",
     "error": "Fehler",
     "success": "Erfolg",
-    "close": "Schließen"
+    "close": "Schließen",
+    "all": "Alle",
+    "compare": "Vergleichen",
+    "compareAll": "Alle",
+    "compareAllCountries": "Diesen Abschnitt in allen 3 Ländern vergleichen",
+    "compareTwoCountries": "Diesen Abschnitt mit einem anderen Land vergleichen",
+    "filterBySection": "Nach Abschnitt-Nr./Titel filtern...",
+    "fullTextSearch": "Volltextsuche in diesem Gesetz..."
+  },
+  "complexity": {
+    "reading": "Ansicht:",
+    "legal": "Gesetzestext",
+    "legalDescription": "Originaler Gesetzestext",
+    "legalFull": "Originaler Gesetzestext",
+    "viewOriginal": "Original-Gesetzestext anzeigen",
+    "manager": "WHS-Zusammenfassung",
+    "managerDescription": "Amazon WHS Pflichten & Compliance-Anforderungen",
+    "associate": "Einfach erklärt",
+    "associateDescription": "Einfache Erklärung für jedermann"
+  },
+  "sections": {
+    "title": "Abschnitte"
   },
   "industries": {
     "logistics": "Logistik & Lagerhaltung",

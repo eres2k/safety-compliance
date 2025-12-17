@@ -20,6 +20,7 @@
     "tag:semantic:index": "node scripts/generate-semantic-tags.js --index"
   },
   "dependencies": {
+    "@netlify/blobs": "^8.1.0",
     "mermaid": "^11.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

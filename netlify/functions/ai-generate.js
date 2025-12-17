@@ -1,3 +1,18 @@
+import { getStore } from "@netlify/blobs"
+
+// Cache TTL: 48 hours in seconds
+const CACHE_TTL_SECONDS = 48 * 60 * 60
+
+// Generate a cache key from prompt and system prompt
+function generateCacheKey(prompt, systemPrompt) {
+  const combined = `${prompt || ''}_${systemPrompt || ''}`
+  // Create a simple hash - use base64 encoding of first 200 chars
+  const hash = Buffer.from(combined.substring(0, 200)).toString('base64')
+    .replace(/[^a-zA-Z0-9]/g, '')
+    .substring(0, 64)
+  return `ai_cache_${hash}`
+}
+
 // Retry helper with exponential backoff
 async function fetchWithRetry(url, options, maxRetries = 3) {
   for (let i = 0; i < maxRetries; i++) {
@@ -25,7 +40,7 @@ async function fetchWithRetry(url, options, maxRetries = 3) {
   }
 }
 
-export async function handler(event) {
+export async function handler(event, context) {
   // Only allow POST
   if (event.httpMethod !== 'POST') {
     return {
@@ -47,12 +62,53 @@ export async function handler(event) {
   }
 
   try {
-    const { prompt, systemPrompt } = JSON.parse(event.body)
+    const { prompt, systemPrompt, skipCache } = JSON.parse(event.body)
 
     if (!prompt) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: 'Prompt is required' })
+      }
+    }
+
+    // Initialize Netlify Blobs store
+    // On Netlify: auto-configured. Locally: needs NETLIFY_AUTH_TOKEN + SITE_ID
+    const store = getStore({
+      name: "ai-cache",
+      siteID: context.site?.id || process.env.SITE_ID,
+      token: process.env.NETLIFY_AUTH_TOKEN || context.clientContext?.identity?.token
+    })
+
+    const cacheKey = generateCacheKey(prompt, systemPrompt)
+
+    // Check cache first (unless skipCache is true)
+    if (!skipCache && store) {
+      try {
+        const cached = await store.get(cacheKey, { type: 'json' })
+        if (cached && cached.response && cached.timestamp) {
+          const age = Date.now() - cached.timestamp
+          const ageHours = Math.round(age / (1000 * 60 * 60))
+
+          // Check if cache is still valid (48 hours)
+          if (age < CACHE_TTL_SECONDS * 1000) {
+            console.log(`Cache hit for key ${cacheKey} (${ageHours}h old)`)
+            return {
+              statusCode: 200,
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Cache': 'HIT',
+                'X-Cache-Age': `${ageHours}h`
+              },
+              body: JSON.stringify({
+                response: cached.response,
+                cached: true,
+                cacheAge: `${ageHours}h`
+              })
+            }
+          }
+        }
+      } catch (cacheError) {
+        console.log('Cache read error (non-fatal):', cacheError.message)
       }
     }
 
@@ -97,12 +153,30 @@ export async function handler(event) {
       }
     }
 
+    // Store in cache
+    if (store) {
+      try {
+        await store.setJSON(cacheKey, {
+          response: generatedText,
+          timestamp: Date.now(),
+          promptHash: cacheKey
+        })
+        console.log(`Cached response for key ${cacheKey}`)
+      } catch (cacheError) {
+        console.log('Cache write error (non-fatal):', cacheError.message)
+      }
+    }
+
     return {
       statusCode: 200,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Cache': 'MISS'
       },
-      body: JSON.stringify({ response: generatedText })
+      body: JSON.stringify({
+        response: generatedText,
+        cached: false
+      })
     }
   } catch (error) {
     console.error('Function error:', error)

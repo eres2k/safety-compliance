@@ -813,6 +813,12 @@ export function LawBrowser({ onBack }) {
   // Comparison Modal state
   const [comparisonModal, setComparisonModal] = useState({ open: false, type: null, section: null })
 
+  // Wikipedia Modal state
+  const [wikiModal, setWikiModal] = useState({ open: false, lawAbbr: null })
+  const [wikiIndex, setWikiIndex] = useState({}) // { lawAbbr: { title, url, summary } }
+  const [wikiContent, setWikiContent] = useState(null) // HTML content for modal
+  const [wikiLoading, setWikiLoading] = useState(false)
+
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
 
@@ -833,6 +839,44 @@ export function LawBrowser({ onBack }) {
       return () => clearTimeout(timer)
     }
   }, [framework, prevFramework])
+
+  // Load Wikipedia index for current framework
+  useEffect(() => {
+    async function loadWikiIndex() {
+      try {
+        const countryCode = framework.toLowerCase()
+        const response = await fetch(`/eu_safety_laws/${countryCode}/wikipedia/wiki_index.json`)
+        if (response.ok) {
+          const data = await response.json()
+          setWikiIndex(data.articles || {})
+        }
+      } catch (e) {
+        // Wikipedia index not available - not an error
+        setWikiIndex({})
+      }
+    }
+    loadWikiIndex()
+  }, [framework])
+
+  // Function to open Wikipedia modal
+  const openWikiModal = async (lawAbbr) => {
+    setWikiModal({ open: true, lawAbbr })
+    setWikiLoading(true)
+    setWikiContent(null)
+
+    try {
+      const countryCode = framework.toLowerCase()
+      const response = await fetch(`/eu_safety_laws/${countryCode}/wikipedia/${lawAbbr}_wiki.html`)
+      if (response.ok) {
+        const html = await response.text()
+        setWikiContent(html)
+      }
+    } catch (e) {
+      console.error('Error loading Wikipedia article:', e)
+    } finally {
+      setWikiLoading(false)
+    }
+  }
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -907,6 +951,37 @@ export function LawBrowser({ onBack }) {
     }
   }, [allLaws, searchTerm, selectedCategory, currentPage, pageSize])
 
+  // Helper function to extract section title from text content when database title is incomplete
+  const extractTitleFromText = (text, sectionNumber) => {
+    if (!text) return ''
+
+    // Try to find the title from the text content
+    // Pattern 1: "§ X. Title" or "§ X Title" at the beginning
+    const numberPattern = sectionNumber.replace(/[§\s.]/g, '').replace(/([a-z])/i, '$1?')
+    const patterns = [
+      // "Geltungsbereich\n§ 1." - title before section number
+      new RegExp(`^([A-ZÄÖÜ][a-zäöüß]+(?:\\s+[A-Za-zäöüßÄÖÜ]+)*)\\s*\\n\\s*§\\s*${numberPattern}`, 'im'),
+      // "§ 1. Geltungsbereich" - title after section number on same line
+      new RegExp(`§\\s*${numberPattern}\\.?\\s+([A-ZÄÖÜ][^\\n]{3,50})`, 'im'),
+      // ABSCHNITT N\nTitle - look for title after ABSCHNITT header
+      /ABSCHNITT\s+\d+[a-z]?\s*\n([A-ZÄÖÜ][^\n]{3,50})/im
+    ]
+
+    for (const pattern of patterns) {
+      const match = text.match(pattern)
+      if (match && match[1]) {
+        let title = match[1].trim()
+        // Clean up - remove section number patterns and parenthetical starts
+        title = title.replace(/^\(?\d+\)?\s*/, '').trim()
+        title = title.replace(/^§\s*\d+[a-z]?\.?\s*/i, '').trim()
+        if (title && title.length > 2 && title.length < 100) {
+          return title
+        }
+      }
+    }
+    return ''
+  }
+
   // Parse sections for selected law - use pre-parsed chapters if available
   const lawSections = useMemo(() => {
     if (!selectedLaw) return []
@@ -917,12 +992,20 @@ export function LawBrowser({ onBack }) {
       for (const chapter of selectedLaw.chapters) {
         if (chapter.sections) {
           for (const section of chapter.sections) {
+            // Extract title from database or from text content
+            let sectionTitle = section.title?.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+\.?)\s*/i, '').trim() || ''
+
+            // If title is empty or just whitespace, try to extract from text content
+            if (!sectionTitle && section.text) {
+              sectionTitle = extractTitleFromText(section.text, section.number)
+            }
+
             sections.push({
               id: section.id,
               number: section.number?.startsWith('§') || section.number?.startsWith('Artikel')
                 ? section.number
                 : (framework === 'NL' ? `Artikel ${section.number}` : `§ ${section.number}`),
-              title: section.title?.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+\.?)\s*/i, '').trim() || '',
+              title: sectionTitle,
               content: section.text || '',
               rawNumber: section.number,
               abschnitt: {
@@ -1351,6 +1434,9 @@ export function LawBrowser({ onBack }) {
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${typeColors[law.type] || typeColors.law}`}>
                       {law.abbreviation || law.abbr || law.type}
                     </span>
+                    {wikiIndex[law.abbreviation] && (
+                      <span className="text-xs" title="Wikipedia article available">📖</span>
+                    )}
                   </div>
                   <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
                     {law.title}
@@ -1394,13 +1480,13 @@ export function LawBrowser({ onBack }) {
             <Card className="h-full overflow-hidden">
               <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
                 <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                  Sections ({filteredSections.length}/{lawSections.length})
+                  {t.sections?.title || 'Sections'} ({filteredSections.length}/{lawSections.length})
                 </h3>
                 <input
                   type="text"
                   value={searchInLaw}
                   onChange={(e) => setSearchInLaw(e.target.value)}
-                  placeholder="Filter by section number/title..."
+                  placeholder={t.common?.filterBySection || "Filter by section number/title..."}
                   className="mt-2 w-full px-2 py-1 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-whs-orange-500"
                 />
                 {/* Relevance Filter */}
@@ -1417,7 +1503,7 @@ export function LawBrowser({ onBack }) {
                             : `${RELEVANCE_LEVELS[level]?.bgColor || ''} ${RELEVANCE_LEVELS[level]?.textColor || ''} hover:opacity-80`
                       }`}
                     >
-                      {level === 'all' ? 'All' : RELEVANCE_LEVELS[level]?.label}
+                      {level === 'all' ? (t.common?.all || 'All') : RELEVANCE_LEVELS[level]?.label}
                     </button>
                   ))}
                 </div>
@@ -1447,17 +1533,18 @@ export function LawBrowser({ onBack }) {
                         <button
                           onClick={() => toggleChapter(chapterKey)}
                           className="w-full px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-whs-dark-600 transition-colors sticky top-0 z-10"
+                          title={chapterTitle}
                         >
                           <svg
-                            className={`w-4 h-4 transition-transform ${isChapterExpanded ? 'rotate-90' : ''}`}
+                            className={`w-4 h-4 flex-shrink-0 transition-transform ${isChapterExpanded ? 'rotate-90' : ''}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                           </svg>
-                          <span className="flex-1 text-left truncate">{chapterTitle}</span>
-                          <span className="text-gray-400 dark:text-gray-500">({sections.length})</span>
+                          <span className="flex-1 text-left line-clamp-2">{chapterTitle}</span>
+                          <span className="text-gray-400 dark:text-gray-500 flex-shrink-0">({sections.length})</span>
                         </button>
 
                         {/* Sections within chapter - only shown when expanded */}
@@ -1486,7 +1573,7 @@ export function LawBrowser({ onBack }) {
                                   )}
                                 </div>
                                 {section.title && (
-                                  <div className="text-xs line-clamp-1 mt-0.5 opacity-75">{highlightText(section.title, searchInLaw)}</div>
+                                  <div className="text-xs line-clamp-2 mt-0.5 opacity-75" title={section.title}>{highlightText(section.title, searchInLaw)}</div>
                                 )}
                               </button>
                               {/* Compare buttons for each section */}
@@ -1497,10 +1584,10 @@ export function LawBrowser({ onBack }) {
                                     openComparisonModal('multi', section)
                                   }}
                                   className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors"
-                                  title="Compare this section across all 3 countries"
+                                  title={t.common?.compareAllCountries || "Compare this section across all 3 countries"}
                                 >
                                   <span>🌍</span>
-                                  <span>All</span>
+                                  <span>{t.common?.compareAll || 'All'}</span>
                                 </button>
                                 <button
                                   onClick={(e) => {
@@ -1509,10 +1596,10 @@ export function LawBrowser({ onBack }) {
                                     openComparisonModal('cross', section)
                                   }}
                                   className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
-                                  title="Compare this section with another country"
+                                  title={t.common?.compareTwoCountries || "Compare this section with another country"}
                                 >
                                   <span>↔️</span>
-                                  <span>Compare</span>
+                                  <span>{t.common?.compare || 'Compare'}</span>
                                 </button>
                               </div>
                             </div>
@@ -1570,11 +1657,22 @@ export function LawBrowser({ onBack }) {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                          title="View official source"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </a>
+                      )}
+                      {wikiIndex[selectedLaw.abbreviation] && (
+                        <button
+                          onClick={() => openWikiModal(selectedLaw.abbreviation)}
+                          className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors flex items-center gap-1"
+                          title={`Wikipedia: ${wikiIndex[selectedLaw.abbreviation]?.title || selectedLaw.abbreviation}`}
+                        >
+                          <span className="text-sm">📖</span>
+                          <span className="text-xs font-medium">Wiki</span>
+                        </button>
                       )}
                     </div>
                   </div>
@@ -1591,7 +1689,7 @@ export function LawBrowser({ onBack }) {
                         type="text"
                         value={contentSearchTerm}
                         onChange={(e) => setContentSearchTerm(e.target.value)}
-                        placeholder="Full text search in this law..."
+                        placeholder={t.common?.fullTextSearch || "Full text search in this law..."}
                         className="w-full pl-9 pr-8 py-2 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-whs-orange-500 focus:border-transparent"
                       />
                       {contentSearchTerm && (
@@ -1723,6 +1821,7 @@ export function LawBrowser({ onBack }) {
                                             currentLevel={sectionComplexityLevels[section.id] || 'legal'}
                                             onLevelChange={(level) => handleComplexityChange(level, section)}
                                             isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                            t={t}
                                           />
                                         </div>
 
@@ -1735,6 +1834,7 @@ export function LawBrowser({ onBack }) {
                                               content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
                                               level={sectionComplexityLevels[section.id]}
                                               isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                              t={t}
                                             />
                                           )}
                                           {/* Show original text link when viewing simplified */}
@@ -1743,7 +1843,7 @@ export function LawBrowser({ onBack }) {
                                               onClick={() => handleComplexityChange('legal', section)}
                                               className="mt-3 text-xs text-gray-500 dark:text-gray-400 hover:text-whs-orange-500 underline"
                                             >
-                                              View original legal text
+                                              {t.complexity?.viewOriginal || 'View original legal text'}
                                             </button>
                                           )}
                                         </div>
@@ -1907,6 +2007,64 @@ export function LawBrowser({ onBack }) {
                   onClose={closeComparisonModal}
                   onCompare={(target) => handleCrossBorderCompare(target, comparisonModal.section)}
                 />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Wikipedia Modal */}
+      {wikiModal.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-whs-dark-700 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📖</span>
+                <div>
+                  <h2 className="text-lg font-bold">
+                    Wikipedia: {wikiIndex[wikiModal.lawAbbr]?.title || wikiModal.lawAbbr}
+                  </h2>
+                  {wikiIndex[wikiModal.lawAbbr]?.url && (
+                    <a
+                      href={wikiIndex[wikiModal.lawAbbr].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/80 hover:text-white underline"
+                    >
+                      Open in Wikipedia ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+              <button
+                onClick={() => setWikiModal({ open: false, lawAbbr: null })}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="flex-1 overflow-y-auto">
+              {wikiLoading ? (
+                <div className="flex items-center justify-center h-64">
+                  <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+                </div>
+              ) : wikiContent ? (
+                <iframe
+                  srcDoc={wikiContent}
+                  className="w-full h-full min-h-[60vh]"
+                  title="Wikipedia Article"
+                  sandbox="allow-same-origin"
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center h-64 text-gray-500 dark:text-gray-400">
+                  <p>No Wikipedia article available for this law.</p>
+                  <p className="text-sm mt-2">Try running the Wikipedia scraper first.</p>
+                </div>
               )}
             </div>
           </div>
