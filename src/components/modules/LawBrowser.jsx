@@ -813,6 +813,12 @@ export function LawBrowser({ onBack }) {
   // Comparison Modal state
   const [comparisonModal, setComparisonModal] = useState({ open: false, type: null, section: null })
 
+  // Wikipedia Modal state
+  const [wikiModal, setWikiModal] = useState({ open: false, lawAbbr: null })
+  const [wikiIndex, setWikiIndex] = useState({}) // { lawAbbr: { title, url, summary } }
+  const [wikiContent, setWikiContent] = useState(null) // HTML content for modal
+  const [wikiLoading, setWikiLoading] = useState(false)
+
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
 
@@ -833,6 +839,44 @@ export function LawBrowser({ onBack }) {
       return () => clearTimeout(timer)
     }
   }, [framework, prevFramework])
+
+  // Load Wikipedia index for current framework
+  useEffect(() => {
+    async function loadWikiIndex() {
+      try {
+        const countryCode = framework.toLowerCase()
+        const response = await fetch(`/eu_safety_laws/${countryCode}/wikipedia/wiki_index.json`)
+        if (response.ok) {
+          const data = await response.json()
+          setWikiIndex(data.articles || {})
+        }
+      } catch (e) {
+        // Wikipedia index not available - not an error
+        setWikiIndex({})
+      }
+    }
+    loadWikiIndex()
+  }, [framework])
+
+  // Function to open Wikipedia modal
+  const openWikiModal = async (lawAbbr) => {
+    setWikiModal({ open: true, lawAbbr })
+    setWikiLoading(true)
+    setWikiContent(null)
+
+    try {
+      const countryCode = framework.toLowerCase()
+      const response = await fetch(`/eu_safety_laws/${countryCode}/wikipedia/${lawAbbr}_wiki.html`)
+      if (response.ok) {
+        const html = await response.text()
+        setWikiContent(html)
+      }
+    } catch (e) {
+      console.error('Error loading Wikipedia article:', e)
+    } finally {
+      setWikiLoading(false)
+    }
+  }
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
@@ -1390,6 +1434,9 @@ export function LawBrowser({ onBack }) {
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${typeColors[law.type] || typeColors.law}`}>
                       {law.abbreviation || law.abbr || law.type}
                     </span>
+                    {wikiIndex[law.abbreviation] && (
+                      <span className="text-xs" title="Wikipedia article available">📖</span>
+                    )}
                   </div>
                   <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
                     {law.title}
@@ -1610,11 +1657,22 @@ export function LawBrowser({ onBack }) {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                          title="View official source"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </a>
+                      )}
+                      {wikiIndex[selectedLaw.abbreviation] && (
+                        <button
+                          onClick={() => openWikiModal(selectedLaw.abbreviation)}
+                          className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors flex items-center gap-1"
+                          title={`Wikipedia: ${wikiIndex[selectedLaw.abbreviation]?.title || selectedLaw.abbreviation}`}
+                        >
+                          <span className="text-sm">📖</span>
+                          <span className="text-xs font-medium">Wiki</span>
+                        </button>
                       )}
                     </div>
                   </div>
@@ -1949,6 +2007,64 @@ export function LawBrowser({ onBack }) {
                   onClose={closeComparisonModal}
                   onCompare={(target) => handleCrossBorderCompare(target, comparisonModal.section)}
                 />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Wikipedia Modal */}
+      {wikiModal.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-whs-dark-700 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📖</span>
+                <div>
+                  <h2 className="text-lg font-bold">
+                    Wikipedia: {wikiIndex[wikiModal.lawAbbr]?.title || wikiModal.lawAbbr}
+                  </h2>
+                  {wikiIndex[wikiModal.lawAbbr]?.url && (
+                    <a
+                      href={wikiIndex[wikiModal.lawAbbr].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/80 hover:text-white underline"
+                    >
+                      Open in Wikipedia ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+              <button
+                onClick={() => setWikiModal({ open: false, lawAbbr: null })}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="flex-1 overflow-y-auto">
+              {wikiLoading ? (
+                <div className="flex items-center justify-center h-64">
+                  <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+                </div>
+              ) : wikiContent ? (
+                <iframe
+                  srcDoc={wikiContent}
+                  className="w-full h-full min-h-[60vh]"
+                  title="Wikipedia Article"
+                  sandbox="allow-same-origin"
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center h-64 text-gray-500 dark:text-gray-400">
+                  <p>No Wikipedia article available for this law.</p>
+                  <p className="text-sm mt-2">Try running the Wikipedia scraper first.</p>
+                </div>
               )}
             </div>
           </div>
