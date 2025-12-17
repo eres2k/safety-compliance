@@ -148,6 +148,259 @@ class Config:
 
 CONFIG = Config()
 
+# Custom sources configuration file
+CUSTOM_SOURCES_FILE = CONFIG.base_path / "custom_sources.json"
+
+
+def load_custom_sources() -> Dict[str, Any]:
+    """Load custom sources configuration from file."""
+    default = {
+        "version": "1.0",
+        "enabled_sources": {},  # country -> [enabled law abbreviations]
+        "disabled_sources": {},  # country -> [disabled law abbreviations]
+        "custom_sources": {},  # country -> {abbr: {url, name, description, enabled}}
+        "created_at": datetime.now().isoformat(),
+        "updated_at": datetime.now().isoformat()
+    }
+
+    if CUSTOM_SOURCES_FILE.exists():
+        try:
+            with open(CUSTOM_SOURCES_FILE, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                # Ensure all required keys exist
+                for key in default:
+                    if key not in data:
+                        data[key] = default[key]
+                return data
+        except Exception:
+            pass
+    return default
+
+
+def save_custom_sources(data: Dict[str, Any]) -> bool:
+    """Save custom sources configuration to file."""
+    try:
+        data["updated_at"] = datetime.now().isoformat()
+        with open(CUSTOM_SOURCES_FILE, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        return True
+    except Exception as e:
+        log_error(f"Failed to save custom sources: {e}")
+        return False
+
+
+def get_enabled_sources(country: str) -> Dict[str, str]:
+    """Get enabled sources for a country (built-in + custom, minus disabled)."""
+    custom_data = load_custom_sources()
+
+    # Start with built-in sources
+    sources = dict(CONFIG.sources.get(country, {}).get("main_laws", {}))
+
+    # Remove disabled sources
+    disabled = custom_data.get("disabled_sources", {}).get(country, [])
+    for abbr in disabled:
+        sources.pop(abbr, None)
+
+    # Add custom enabled sources
+    custom = custom_data.get("custom_sources", {}).get(country, {})
+    for abbr, info in custom.items():
+        if info.get("enabled", True):
+            sources[abbr] = info.get("url", "")
+
+    return sources
+
+
+def is_source_enabled(country: str, abbr: str) -> bool:
+    """Check if a specific source is enabled."""
+    custom_data = load_custom_sources()
+
+    # Check if explicitly disabled
+    disabled = custom_data.get("disabled_sources", {}).get(country, [])
+    if abbr in disabled:
+        return False
+
+    # Check if it's a custom source
+    custom = custom_data.get("custom_sources", {}).get(country, {})
+    if abbr in custom:
+        return custom[abbr].get("enabled", True)
+
+    # Built-in sources are enabled by default
+    return abbr in CONFIG.sources.get(country, {}).get("main_laws", {})
+
+
+def toggle_source(country: str, abbr: str, enabled: bool) -> bool:
+    """Enable or disable a source."""
+    custom_data = load_custom_sources()
+
+    # Check if it's a custom source
+    if country in custom_data.get("custom_sources", {}) and abbr in custom_data["custom_sources"][country]:
+        custom_data["custom_sources"][country][abbr]["enabled"] = enabled
+    else:
+        # Handle built-in sources
+        if country not in custom_data["disabled_sources"]:
+            custom_data["disabled_sources"][country] = []
+
+        if enabled:
+            # Remove from disabled list
+            if abbr in custom_data["disabled_sources"][country]:
+                custom_data["disabled_sources"][country].remove(abbr)
+        else:
+            # Add to disabled list
+            if abbr not in custom_data["disabled_sources"][country]:
+                custom_data["disabled_sources"][country].append(abbr)
+
+    return save_custom_sources(custom_data)
+
+
+def add_custom_source(country: str, abbr: str, url: str, name: str, description: str = "") -> bool:
+    """Add a new custom source."""
+    custom_data = load_custom_sources()
+
+    if country not in custom_data["custom_sources"]:
+        custom_data["custom_sources"][country] = {}
+
+    custom_data["custom_sources"][country][abbr] = {
+        "url": url,
+        "name": name,
+        "description": description,
+        "enabled": True,
+        "created_at": datetime.now().isoformat(),
+        "source_type": "custom"
+    }
+
+    return save_custom_sources(custom_data)
+
+
+def remove_custom_source(country: str, abbr: str) -> bool:
+    """Remove a custom source."""
+    custom_data = load_custom_sources()
+
+    if country in custom_data.get("custom_sources", {}) and abbr in custom_data["custom_sources"][country]:
+        del custom_data["custom_sources"][country][abbr]
+        return save_custom_sources(custom_data)
+
+    return False
+
+
+def get_all_sources_with_status(country: str) -> List[Dict[str, Any]]:
+    """Get all sources (built-in and custom) with their status."""
+    custom_data = load_custom_sources()
+    sources = []
+
+    # Law names for display
+    law_names = {
+        "ASchG": "Worker Protection Act",
+        "AZG": "Working Time Act",
+        "ARG": "Rest Period Act",
+        "MSchG": "Maternity Protection Act",
+        "KJBG": "Child and Youth Employment Act",
+        "AStV": "Workplace Regulation",
+        "AM-VO": "Work Equipment Regulation",
+        "DOK-VO": "Documentation Regulation",
+        "ArbSchG": "Occupational Safety Act",
+        "ASiG": "Workplace Safety Act",
+        "MuSchG": "Maternity Protection Act",
+        "JArbSchG": "Youth Labor Protection Act",
+        "ArbStättV": "Workplace Ordinance",
+        "BetrSichV": "Industrial Safety Regulation",
+        "GefStoffV": "Hazardous Substances Ordinance",
+        "Arbowet": "Working Conditions Act",
+        "Arbobesluit": "Working Conditions Decree",
+        "Arboregeling": "Working Conditions Regulation",
+        "Arbeidstijdenwet": "Working Time Act",
+        "ATB": "Working Time Decree",
+    }
+
+    # Built-in sources
+    builtin = CONFIG.sources.get(country, {}).get("main_laws", {})
+    disabled = custom_data.get("disabled_sources", {}).get(country, [])
+
+    for abbr, url in builtin.items():
+        sources.append({
+            "abbr": abbr,
+            "name": law_names.get(abbr, abbr),
+            "url": url,
+            "enabled": abbr not in disabled,
+            "type": "built-in",
+            "description": ""
+        })
+
+    # Custom sources
+    custom = custom_data.get("custom_sources", {}).get(country, {})
+    for abbr, info in custom.items():
+        sources.append({
+            "abbr": abbr,
+            "name": info.get("name", abbr),
+            "url": info.get("url", ""),
+            "enabled": info.get("enabled", True),
+            "type": "custom",
+            "description": info.get("description", "")
+        })
+
+    return sources
+
+
+def suggest_sources_with_ai(country: str, topic: str) -> Optional[List[Dict[str, Any]]]:
+    """Use AI to suggest additional sources based on a topic."""
+    if not HAS_GENAI:
+        log_error("google-generativeai package required for AI suggestions")
+        return None
+
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        log_error("GEMINI_API_KEY environment variable required")
+        return None
+
+    try:
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel(CONFIG.gemini_model)
+
+        country_names = {"AT": "Austria", "DE": "Germany", "NL": "Netherlands"}
+        country_name = country_names.get(country, country)
+
+        prompt = f"""You are an expert in European workplace safety and health regulations.
+
+I need to find official government sources for workplace safety laws related to "{topic}" in {country_name}.
+
+Current sources we already have for {country}:
+{json.dumps(list(CONFIG.sources.get(country, {}).get('main_laws', {}).keys()), indent=2)}
+
+Please suggest 1-3 additional official government sources that:
+1. Are from official government websites (not third-party)
+2. Relate to workplace safety, health, or the specific topic
+3. Are actually accessible and scrapeable
+4. Have not been listed above
+
+Return your response as a JSON array with this format:
+[
+  {{
+    "abbr": "short abbreviation",
+    "name": "Full name of the law/regulation",
+    "url": "full URL to the official source",
+    "description": "Brief description of what it covers",
+    "relevance": "high/medium/low"
+  }}
+]
+
+If no additional relevant sources exist, return an empty array [].
+Only return the JSON array, no other text."""
+
+        response = model.generate_content(prompt)
+        text = response.text.strip()
+
+        # Extract JSON from response
+        if "```json" in text:
+            text = text.split("```json")[1].split("```")[0].strip()
+        elif "```" in text:
+            text = text.split("```")[1].split("```")[0].strip()
+
+        suggestions = json.loads(text)
+        return suggestions if isinstance(suggestions, list) else []
+
+    except Exception as e:
+        log_error(f"AI suggestion failed: {e}")
+        return None
+
 
 # =============================================================================
 # Terminal Output Helpers
@@ -694,6 +947,37 @@ class Scraper:
         # Number of laws to fetch (None = all)
         self.law_limit = law_limit
 
+        # Merge custom sources into config's main_laws
+        self._merge_custom_sources()
+
+    def _merge_custom_sources(self):
+        """Merge custom sources into the config's main_laws and respect enabled/disabled state."""
+        custom_data = load_custom_sources()
+        custom_sources = custom_data.get("custom_sources", {}).get(self.country, {})
+        disabled_sources = custom_data.get("disabled_sources", {}).get(self.country, [])
+
+        # Create a copy of main_laws to avoid modifying CONFIG
+        if 'main_laws' in self.config:
+            self.config = dict(self.config)
+            self.config['main_laws'] = dict(self.config['main_laws'])
+        else:
+            self.config['main_laws'] = {}
+
+        # Remove disabled built-in sources
+        for abbr in disabled_sources:
+            self.config['main_laws'].pop(abbr, None)
+
+        # Add enabled custom sources
+        for abbr, info in custom_sources.items():
+            if info.get("enabled", True):
+                self.config['main_laws'][abbr] = info.get("url", "")
+
+    def _get_full_url(self, path: str) -> str:
+        """Get full URL, handling both relative paths and absolute URLs."""
+        if path.startswith('http://') or path.startswith('https://'):
+            return path
+        return urljoin(self.base_url, path)
+
     def scrape(self) -> List[Dict[str, Any]]:
         """Scrape laws for this country. Override in subclass."""
         raise NotImplementedError
@@ -775,7 +1059,7 @@ class ATScraper(Scraper):
 
         for abbrev, path in laws_to_fetch:
             log_info(f"Scraping {abbrev} with full text extraction...")
-            url = urljoin(self.base_url, path)
+            url = self._get_full_url(path)
             html = self.fetch_url(url)
 
             if html:
@@ -1221,7 +1505,7 @@ class DEScraper(Scraper):
 
         for abbrev, path in laws_to_fetch:
             log_info(f"Scraping {abbrev} with full text extraction...")
-            url = urljoin(self.base_url, path)
+            url = self._get_full_url(path)
             html = self.fetch_url(url)
 
             if html:
@@ -1584,7 +1868,7 @@ class NLScraper(Scraper):
 
         for abbrev, path in laws_to_fetch:
             log_info(f"Scraping {abbrev} with full text extraction...")
-            url = urljoin(self.base_url, path)
+            url = self._get_full_url(path)
             html = self.fetch_url(url)
 
             if html:
@@ -2352,12 +2636,14 @@ def cmd_scrape(args) -> int:
         elif select_laws:
             # Manual selection via --select
             selected_laws = [s.strip() for s in select_laws.split(',')]
-            main_laws = list(CONFIG.sources.get(country, {}).get('main_laws', {}).keys())
+            # Include both built-in and custom sources
+            all_sources = get_all_sources_with_status(country)
+            valid_abbrs = [s['abbr'] for s in all_sources]
             # Validate selections
-            invalid = [s for s in selected_laws if s not in main_laws]
+            invalid = [s for s in selected_laws if s not in valid_abbrs]
             if invalid:
                 log_warning(f"Unknown laws ignored: {', '.join(invalid)}")
-            selected_laws = [s for s in selected_laws if s in main_laws]
+            selected_laws = [s for s in selected_laws if s in valid_abbrs]
             if not selected_laws:
                 log_error(f"No valid laws selected for {country}")
                 continue
@@ -2577,10 +2863,19 @@ def select_from_menu(title: str, options: List[Tuple[str, str, str]], back_optio
 
 def select_country() -> str:
     """Show country selection menu."""
+    # Get enabled source counts
+    at_sources = get_all_sources_with_status("AT")
+    de_sources = get_all_sources_with_status("DE")
+    nl_sources = get_all_sources_with_status("NL")
+
+    at_enabled = len([s for s in at_sources if s['enabled']])
+    de_enabled = len([s for s in de_sources if s['enabled']])
+    nl_enabled = len([s for s in nl_sources if s['enabled']])
+
     options = [
-        ('AT', '🇦🇹 Austria (AT)', f'{len(CONFIG.sources["AT"]["main_laws"])} laws available'),
-        ('DE', '🇩🇪 Germany (DE)', f'{len(CONFIG.sources["DE"]["main_laws"])} laws available'),
-        ('NL', '🇳🇱 Netherlands (NL)', f'{len(CONFIG.sources["NL"]["main_laws"])} laws available'),
+        ('AT', '🇦🇹 Austria (AT)', f'{at_enabled}/{len(at_sources)} sources enabled'),
+        ('DE', '🇩🇪 Germany (DE)', f'{de_enabled}/{len(de_sources)} sources enabled'),
+        ('NL', '🇳🇱 Netherlands (NL)', f'{nl_enabled}/{len(nl_sources)} sources enabled'),
         ('ALL', '🌍 All Countries', 'Process all three countries'),
     ]
     return select_from_menu("Select Country", options)
@@ -2588,44 +2883,29 @@ def select_country() -> str:
 
 def select_laws_for_country(country: str) -> List[str]:
     """Show law selection menu for a specific country."""
-    laws = CONFIG.sources[country]["main_laws"]
-    law_names = {
-        # Austrian laws
-        "ASchG": "Worker Protection Act",
-        "AZG": "Working Time Act",
-        "ARG": "Rest Period Act",
-        "MSchG": "Maternity Protection Act",
-        "KJBG": "Child and Youth Employment Act",
-        "AStV": "Workplace Regulation",
-        "AM-VO": "Work Equipment Regulation",
-        "DOK-VO": "Documentation Regulation",
-        # German laws
-        "ArbSchG": "Occupational Safety Act",
-        "ASiG": "Workplace Safety Act",
-        "ArbZG": "Working Time Act",
-        "MuSchG": "Maternity Protection Act",
-        "JArbSchG": "Youth Labor Protection Act",
-        "ArbStättV": "Workplace Ordinance",
-        "BetrSichV": "Industrial Safety Regulation",
-        "GefStoffV": "Hazardous Substances Ordinance",
-        # Dutch laws
-        "Arbowet": "Working Conditions Act",
-        "Arbobesluit": "Working Conditions Decree",
-        "Arboregeling": "Working Conditions Regulation",
-        "Arbeidstijdenwet": "Working Time Act",
-        "ATB": "Working Time Decree",
-    }
+    # Get all sources with status (includes custom sources and enabled/disabled state)
+    all_sources = get_all_sources_with_status(country)
+    enabled_sources = [s for s in all_sources if s['enabled']]
 
-    options = [('ALL', '📚 All Laws', f'Scrape all {len(laws)} laws')]
-    for abbr in laws.keys():
-        name = law_names.get(abbr, "")
-        options.append((abbr, f"📄 {abbr}", name))
+    # Count enabled sources for display
+    enabled_count = len(enabled_sources)
+    total_count = len(all_sources)
 
-    print(f"\n{Colors.BOLD}Available laws for {country}:{Colors.RESET}")
+    options = [('ALL', '📚 All Enabled Sources', f'Scrape all {enabled_count} enabled sources')]
+    options.append(('ENABLED', '✓ Only Enabled', f'Scrape {enabled_count} enabled sources'))
+
+    for src in all_sources:
+        status = "✓" if src['enabled'] else "✗"
+        type_tag = "[custom]" if src['type'] == 'custom' else ""
+        label = f"{status} {src['abbr']} {type_tag}".strip()
+        options.append((src['abbr'], f"📄 {label}", src['name']))
+
+    print(f"\n{Colors.BOLD}Available sources for {country}:{Colors.RESET}")
+    print(f"{Colors.DIM}({enabled_count}/{total_count} enabled - manage in Sources menu){Colors.RESET}")
     selected = select_from_menu(f"Select Laws for {country}", options)
 
-    if selected == 'ALL':
-        return list(laws.keys())
+    if selected == 'ALL' or selected == 'ENABLED':
+        return [s['abbr'] for s in enabled_sources]
     elif selected:
         return [selected]
     return []
@@ -2875,6 +3155,286 @@ def menu_wikipedia():
     input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
 
 
+def menu_sources():
+    """Interactive sources management menu."""
+    while True:
+        print_menu_header()
+        print(f"{Colors.BOLD}📚 MANAGE SOURCES{Colors.RESET}")
+        print(f"{Colors.DIM}Configure which sources to use for scraping{Colors.RESET}\n")
+
+        options = [
+            ('view', '👁️ View Sources', 'See all sources and their status'),
+            ('toggle', '🔀 Toggle Sources', 'Enable or disable sources'),
+            ('add', '➕ Add Custom Source', 'Add a new source manually'),
+            ('ai', '🤖 AI Suggestions', 'Get AI-powered source suggestions'),
+            ('remove', '🗑️ Remove Custom Source', 'Remove a custom source'),
+        ]
+
+        for i, (key, label, desc) in enumerate(options, 1):
+            print(f"  {Colors.CYAN}[{i}]{Colors.RESET} {label}")
+            print(f"      {Colors.DIM}{desc}{Colors.RESET}")
+
+        print(f"\n  {Colors.YELLOW}[0]{Colors.RESET} ← Back")
+
+        valid = [str(i) for i in range(0, len(options) + 1)]
+        choice = get_user_input("\nEnter your choice: ", valid)
+
+        if not choice or choice == '0':
+            return
+
+        action = options[int(choice) - 1][0]
+
+        if action == 'view':
+            menu_sources_view()
+        elif action == 'toggle':
+            menu_sources_toggle()
+        elif action == 'add':
+            menu_sources_add()
+        elif action == 'ai':
+            menu_sources_ai_suggest()
+        elif action == 'remove':
+            menu_sources_remove()
+
+
+def menu_sources_view():
+    """View all sources with their status."""
+    print_menu_header()
+    print(f"{Colors.BOLD}📚 VIEW SOURCES{Colors.RESET}\n")
+
+    country = select_country()
+    if not country:
+        return
+
+    countries = ['AT', 'DE', 'NL'] if country == 'ALL' else [country]
+
+    for c in countries:
+        country_flags = {"AT": "🇦🇹", "DE": "🇩🇪", "NL": "🇳🇱"}
+        print(f"\n{Colors.BOLD}{country_flags.get(c, '')} {c} Sources:{Colors.RESET}")
+        print(f"{Colors.DIM}{'-' * 50}{Colors.RESET}")
+
+        sources = get_all_sources_with_status(c)
+        for src in sources:
+            status = f"{Colors.GREEN}✓{Colors.RESET}" if src['enabled'] else f"{Colors.RED}✗{Colors.RESET}"
+            type_badge = f"{Colors.CYAN}[built-in]{Colors.RESET}" if src['type'] == 'built-in' else f"{Colors.MAGENTA}[custom]{Colors.RESET}"
+            print(f"  {status} {Colors.BOLD}{src['abbr']}{Colors.RESET} - {src['name']} {type_badge}")
+            if src['description']:
+                print(f"      {Colors.DIM}{src['description']}{Colors.RESET}")
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_sources_toggle():
+    """Toggle sources on/off."""
+    print_menu_header()
+    print(f"{Colors.BOLD}🔀 TOGGLE SOURCES{Colors.RESET}\n")
+
+    country = select_country()
+    if not country or country == 'ALL':
+        if country == 'ALL':
+            print(f"{Colors.YELLOW}Please select a specific country{Colors.RESET}")
+            input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+        return
+
+    while True:
+        print(f"\n{Colors.BOLD}Sources for {country}:{Colors.RESET}")
+        sources = get_all_sources_with_status(country)
+
+        for i, src in enumerate(sources, 1):
+            status = f"{Colors.GREEN}ON {Colors.RESET}" if src['enabled'] else f"{Colors.RED}OFF{Colors.RESET}"
+            type_badge = f"{Colors.DIM}[built-in]{Colors.RESET}" if src['type'] == 'built-in' else f"{Colors.MAGENTA}[custom]{Colors.RESET}"
+            print(f"  [{i}] {status} {Colors.BOLD}{src['abbr']}{Colors.RESET} - {src['name']} {type_badge}")
+
+        print(f"\n  {Colors.YELLOW}[0]{Colors.RESET} ← Done")
+
+        valid = [str(i) for i in range(0, len(sources) + 1)]
+        choice = get_user_input("\nEnter number to toggle: ", valid)
+
+        if not choice or choice == '0':
+            return
+
+        idx = int(choice) - 1
+        src = sources[idx]
+        new_state = not src['enabled']
+
+        if toggle_source(country, src['abbr'], new_state):
+            state_text = "enabled" if new_state else "disabled"
+            log_success(f"Source {src['abbr']} {state_text}")
+        else:
+            log_error(f"Failed to toggle {src['abbr']}")
+
+
+def menu_sources_add():
+    """Add a custom source."""
+    print_menu_header()
+    print(f"{Colors.BOLD}➕ ADD CUSTOM SOURCE{Colors.RESET}\n")
+
+    # Select country
+    options = [
+        ('AT', '🇦🇹 Austria', ''),
+        ('DE', '🇩🇪 Germany', ''),
+        ('NL', '🇳🇱 Netherlands', ''),
+    ]
+    country = select_from_menu("Select Country", options)
+    if not country:
+        return
+
+    print(f"\n{Colors.BOLD}Enter source details:{Colors.RESET}\n")
+
+    abbr = get_user_input("Abbreviation (e.g., BioStoffV): ").strip()
+    if not abbr:
+        return
+
+    name = get_user_input("Full name: ").strip()
+    if not name:
+        return
+
+    url = get_user_input("URL: ").strip()
+    if not url:
+        return
+
+    description = get_user_input("Description (optional): ", allow_empty=True).strip()
+
+    print(f"\n{Colors.BOLD}Adding source:{Colors.RESET}")
+    print(f"  Country: {country}")
+    print(f"  Abbreviation: {abbr}")
+    print(f"  Name: {name}")
+    print(f"  URL: {url}")
+    if description:
+        print(f"  Description: {description}")
+
+    confirm = get_user_input("\nConfirm? [Y/n]: ", allow_empty=True)
+    if confirm.lower() == 'n':
+        return
+
+    if add_custom_source(country, abbr, url, name, description):
+        log_success(f"Added custom source: {abbr}")
+    else:
+        log_error("Failed to add source")
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_sources_ai_suggest():
+    """Get AI-powered source suggestions."""
+    print_menu_header()
+    print(f"{Colors.BOLD}🤖 AI SOURCE SUGGESTIONS{Colors.RESET}\n")
+
+    if not os.environ.get("GEMINI_API_KEY"):
+        log_error("GEMINI_API_KEY not set. Please set it to use AI suggestions.")
+        input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+        return
+
+    # Select country
+    options = [
+        ('AT', '🇦🇹 Austria', ''),
+        ('DE', '🇩🇪 Germany', ''),
+        ('NL', '🇳🇱 Netherlands', ''),
+    ]
+    country = select_from_menu("Select Country", options)
+    if not country:
+        return
+
+    topic = get_user_input("\nEnter a topic (e.g., 'hazardous materials', 'fire safety'): ").strip()
+    if not topic:
+        return
+
+    log_info(f"Asking AI for source suggestions about '{topic}' in {country}...")
+    print()
+
+    suggestions = suggest_sources_with_ai(country, topic)
+
+    if not suggestions:
+        print(f"{Colors.YELLOW}No suggestions found or AI request failed.{Colors.RESET}")
+        input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+        return
+
+    print(f"\n{Colors.BOLD}AI Suggestions:{Colors.RESET}\n")
+
+    for i, sugg in enumerate(suggestions, 1):
+        relevance_colors = {"high": Colors.GREEN, "medium": Colors.YELLOW, "low": Colors.DIM}
+        rel_color = relevance_colors.get(sugg.get('relevance', 'medium'), Colors.DIM)
+
+        print(f"  {Colors.CYAN}[{i}]{Colors.RESET} {Colors.BOLD}{sugg.get('abbr', 'N/A')}{Colors.RESET}")
+        print(f"      Name: {sugg.get('name', 'N/A')}")
+        print(f"      URL: {sugg.get('url', 'N/A')}")
+        print(f"      Relevance: {rel_color}{sugg.get('relevance', 'N/A')}{Colors.RESET}")
+        if sugg.get('description'):
+            print(f"      {Colors.DIM}{sugg['description']}{Colors.RESET}")
+        print()
+
+    # Ask to add any
+    add_choice = get_user_input("Enter number to add, or 'a' for all, or Enter to skip: ", allow_empty=True)
+
+    if not add_choice:
+        return
+
+    to_add = []
+    if add_choice.lower() == 'a':
+        to_add = suggestions
+    elif add_choice.isdigit():
+        idx = int(add_choice) - 1
+        if 0 <= idx < len(suggestions):
+            to_add = [suggestions[idx]]
+
+    for sugg in to_add:
+        if add_custom_source(country, sugg.get('abbr', ''), sugg.get('url', ''), sugg.get('name', ''), sugg.get('description', '')):
+            log_success(f"Added: {sugg.get('abbr')}")
+        else:
+            log_error(f"Failed to add: {sugg.get('abbr')}")
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
+def menu_sources_remove():
+    """Remove a custom source."""
+    print_menu_header()
+    print(f"{Colors.BOLD}🗑️ REMOVE CUSTOM SOURCE{Colors.RESET}\n")
+
+    # Select country
+    options = [
+        ('AT', '🇦🇹 Austria', ''),
+        ('DE', '🇩🇪 Germany', ''),
+        ('NL', '🇳🇱 Netherlands', ''),
+    ]
+    country = select_from_menu("Select Country", options)
+    if not country:
+        return
+
+    # Get custom sources only
+    sources = [s for s in get_all_sources_with_status(country) if s['type'] == 'custom']
+
+    if not sources:
+        print(f"{Colors.YELLOW}No custom sources found for {country}.{Colors.RESET}")
+        input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+        return
+
+    print(f"\n{Colors.BOLD}Custom sources for {country}:{Colors.RESET}\n")
+    for i, src in enumerate(sources, 1):
+        print(f"  [{i}] {Colors.BOLD}{src['abbr']}{Colors.RESET} - {src['name']}")
+
+    print(f"\n  {Colors.YELLOW}[0]{Colors.RESET} ← Cancel")
+
+    valid = [str(i) for i in range(0, len(sources) + 1)]
+    choice = get_user_input("\nEnter number to remove: ", valid)
+
+    if not choice or choice == '0':
+        return
+
+    idx = int(choice) - 1
+    src = sources[idx]
+
+    confirm = get_user_input(f"Remove {src['abbr']}? [y/N]: ", allow_empty=True)
+    if confirm.lower() != 'y':
+        return
+
+    if remove_custom_source(country, src['abbr']):
+        log_success(f"Removed: {src['abbr']}")
+    else:
+        log_error(f"Failed to remove: {src['abbr']}")
+
+    input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
+
+
 def menu_settings():
     """Interactive settings menu."""
     print_menu_header()
@@ -2904,6 +3464,7 @@ def interactive_menu():
             ('updates', '🔄 Check Updates', 'Check for law changes'),
             ('pipeline', '🚀 Full Pipeline', 'Run complete workflow'),
             ('wikipedia', '📖 Wikipedia', 'Scrape related Wikipedia articles'),
+            ('sources', '📚 Manage Sources', 'Add/remove sources, toggle on/off'),
             ('settings', '⚙️ Settings', 'View configuration'),
         ]
 
@@ -2934,6 +3495,7 @@ def interactive_menu():
             'updates': menu_check_updates,
             'pipeline': menu_full_pipeline,
             'wikipedia': menu_wikipedia,
+            'sources': menu_sources,
             'settings': menu_settings,
         }
 
@@ -2980,6 +3542,14 @@ def scrape_wikipedia_article(search_term: str, lang: str = "de") -> Optional[Dic
         log_error("requests and beautifulsoup4 required for Wikipedia scraping")
         return None
 
+    # Wikipedia requires a proper User-Agent header
+    # See: https://meta.wikimedia.org/wiki/User-Agent_policy
+    headers = {
+        'User-Agent': 'EU-Safety-Laws-Database/7.1.0 (https://github.com/safety-compliance; contact@example.com) Python/requests',
+        'Accept': 'application/json',
+        'Accept-Language': 'en-US,en;q=0.9,de;q=0.8,nl;q=0.7',
+    }
+
     try:
         # Search Wikipedia API first
         search_url = f"https://{lang}.wikipedia.org/w/api.php"
@@ -2991,7 +3561,7 @@ def scrape_wikipedia_article(search_term: str, lang: str = "de") -> Optional[Dic
             "srlimit": 1
         }
 
-        response = requests.get(search_url, params=search_params, timeout=30)
+        response = requests.get(search_url, params=search_params, headers=headers, timeout=30)
         response.raise_for_status()
         search_data = response.json()
 
@@ -3003,7 +3573,12 @@ def scrape_wikipedia_article(search_term: str, lang: str = "de") -> Optional[Dic
 
         # Fetch the actual HTML page
         page_url = f"https://{lang}.wikipedia.org/wiki/{page_title.replace(' ', '_')}"
-        html_response = requests.get(page_url, timeout=30)
+        html_headers = {
+            'User-Agent': 'EU-Safety-Laws-Database/7.1.0 (https://github.com/safety-compliance; contact@example.com) Python/requests',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9,de;q=0.8,nl;q=0.7',
+        }
+        html_response = requests.get(page_url, headers=html_headers, timeout=30)
         html_response.raise_for_status()
 
         soup = BeautifulSoup(html_response.text, 'html.parser')
