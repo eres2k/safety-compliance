@@ -1,15 +1,15 @@
 {
   "metadata": {
     "country": "DE",
-    "generated_at": "2025-12-18T02:01:21.710569",
+    "generated_at": "2025-12-18T02:58:48.450922",
     "document_count": 7,
     "error_count": 0,
-    "cleaned_at": "2025-12-18T02:03:17.547358",
-    "restructured_at": "2025-12-18T02:03:17.578128"
+    "cleaned_at": "2025-12-18T03:00:50.062850",
+    "restructured_at": "2025-12-18T03:00:50.095036"
   },
   "documents": [
     {
-      "id": "30a82e4525f8030f",
+      "id": "1795a79045a4ea22",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -25,7 +25,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T02:00:42.384335",
+        "scraped_at": "2025-12-18T02:58:07.865190",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -1203,7 +1203,7 @@
       "content_hash": "941e5916c8ae5e058d705a41da4a4d68"
     },
     {
-      "id": "a4d0ac88f4e69dc4",
+      "id": "bba287e057c59c74",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -1219,7 +1219,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T02:00:58.789473",
+        "scraped_at": "2025-12-18T02:58:24.997800",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -1965,7 +1965,7 @@
       "content_hash": "a7625884bafe9952cf85e5eab23d2367"
     },
     {
-      "id": "1c083c7eceda236e",
+      "id": "914c54e06217caa6",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -1981,7 +1981,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T02:01:01.111417",
+        "scraped_at": "2025-12-18T02:58:26.760331",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -2902,7 +2902,7 @@
       "content_hash": "c46393c83662e6489dce3b9f998dd742"
     },
     {
-      "id": "2df3f1373b37f599",
+      "id": "a25f44574e0faaaf",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -2918,7 +2918,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T02:01:21.155463",
+        "scraped_at": "2025-12-18T02:58:46.897463",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -4193,7 +4193,7 @@
               "id": "d26d632938b1db6d",
               "number": "35",
               "title": "§ 35. Außerordentliche Nachuntersuchung",
-              "text": "§ 35. Außerordentliche Nachuntersuchung:\n(1) Der Arzt soll eine außerordentliche Nachuntersuchung anordnen, wenn eine Untersuchung ergibt, dass\n1. ein Jugendlicher hinter dem seinem Alter entsprechenden Entwicklungsstand zurückgeblieben ist,\n2. gesundheitliche Schwächen oder Schäden vorhanden sind,\n3. die Auswirkungen der Beschäftigung auf die Gesundheit oder Entwicklung des Jugendlichen noch nicht zu übersehen sind.\n\n(2) Die in § 33 Abs. 1 festgelegten Fristen werden durch die Anordnung einer außerordentlichen Nachuntersuchung nicht berührt.",
+              "text": "§ 35. Außerordentliche Nachuntersuchung:\n(1) Der Arzt soll eine außerordentliche Nachuntersuchung anordnen, wenn eine Untersuchung ergibt, daß\n1. ein Jugendlicher hinter dem seinem Alter entsprechenden Entwicklungsstand zurückgeblieben ist,\n2. gesundheitliche Schwächen oder Schäden vorhanden sind,\n3. die Auswirkungen der Beschäftigung auf die Gesundheit oder Entwicklung des Jugendlichen noch nicht zu übersehen sind.\n\n(2) Die in § 33 Abs. 1 festgelegten Fristen werden durch die Anordnung einer außerordentlichen Nachuntersuchung nicht berührt.",
               "whs_topics": [
                 {
                   "id": "health_surveillance",
@@ -5038,7 +5038,7 @@
       "content_hash": "7fdd26f6dc1efdf244735eb7b003391b"
     },
     {
-      "id": "7fa8cbcde5303575",
+      "id": "cd1f827aa5084122",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -5054,7 +5054,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T02:00:56.611887",
+        "scraped_at": "2025-12-18T02:58:21.940245",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -5512,7 +5512,7 @@
       "content_hash": "d5605cf71482026614ec8eedcfaebe0e"
     },
     {
-      "id": "dd50d9641310cafe",
+      "id": "3472640d138e1ed5",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -5528,7 +5528,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T02:01:14.194434",
+        "scraped_at": "2025-12-18T02:58:39.540482",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -6470,7 +6470,7 @@
       "content_hash": "90e97f5b6c48b8007cb0f454cd3b67c1"
     },
     {
-      "id": "dc988d11f72c94fe",
+      "id": "0b913e263a0b5a8f",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -6486,7 +6486,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T02:01:21.704807",
+        "scraped_at": "2025-12-18T02:58:48.445178",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -7841,6 +7841,48 @@
         }
       ],
       "content_hash": "e829557f776bdbf259a9339abbdf0504"
+    },
+    {
+      "id": "6360a620d5bab93e",
+      "version": "1.0.0",
+      "type": "law",
+      "jurisdiction": "DE",
+      "abbreviation": "TRBS 1111",
+      "title": "TRBS 1111",
+      "title_en": "TRBS 1111",
+      "category": "Core Safety",
+      "implements_eu_directive": "89/391/EWG",
+      "source": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1111.pdf?__blob=publicationFile&v=4",
+        "title": "TRBS 1111",
+        "authority": "gesetze-im-internet.de",
+        "robots_txt_compliant": true
+      },
+      "scraping": {
+        "scraped_at": "2025-12-18T02:58:47.962236",
+        "scraper_version": "7.3.0"
+      },
+      "whs_summary": {
+        "total_sections": 0,
+        "logistics_relevance_distribution": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0
+        },
+        "top_whs_topics": [],
+        "critical_sections_count": 0
+      },
+      "chapters": [
+        {
+          "id": "de-trbs 1111-main",
+          "number": "1",
+          "title": "Hauptteil",
+          "title_en": "Main Part",
+          "sections": []
+        }
+      ],
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
     }
   ]
 }

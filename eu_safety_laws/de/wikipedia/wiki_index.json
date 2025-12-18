@@ -1,7 +1,7 @@
 {
   "country": "DE",
   "language": "de",
-  "scraped_at": "2025-12-18T01:53:49.147992",
+  "scraped_at": "2025-12-18T02:51:36.527610",
   "articles": {
     "ArbSchG": {
       "title": "Arbeitsschutzgesetz",
@@ -50,7 +50,7 @@
       "title": "Arbeitsschutz",
       "url": "https://de.wikipedia.org/wiki/Arbeitsschutz",
       "summary": "Arbeitsschutzsind in derArbeitswissenschaftund imArbeitsrechtalle Maßnahmen desArbeitgeberszur Verhütung vonArbeitsunfällenund arbeitsbedingtenGesundheitsgefahreneinschließlich Maßnahmen der menschengerechtenArbeitsgestaltung.\nDieseLegaldefinitionaus§ 2Abs. 1ArbSchGlegt das Tätigkeitsgebiet der Arbeitgeber beim Arbeitsschutz fest. Arbeitsschutz ist einePrävention, durch die Arbeitsunfälle verhindert undgesundheitsgefährdendeArbeitsbelastungenundArbeitsumgebungenvermieden werden sollen. In diesem",
-      "reason": "Provides a general overview of workplace safety regulations in Germany, which is essential background information for understanding specific laws like ASchG.",
+      "reason": "General workplace safety overview, provides a broad context for understanding the law's objectives.",
       "priority": "high"
     },
     {
@@ -58,15 +58,15 @@
       "title": "Gefährdungsbeurteilung",
       "url": "https://de.wikipedia.org/wiki/Gefährdungsbeurteilung",
       "summary": "DieGefährdungsbeurteilungbeschreibt den Prozess der systematischen Ermittlung und Bewertung aller relevanten Gefährdungen, denen die Beschäftigten im Zuge ihrer beruflichen Tätigkeit ausgesetzt sind. Hinzu kommen die Ableitung und Umsetzung aller zum Schutz der Sicherheit und der Gesundheit erforderlichen Maßnahmen, die anschließend hinsichtlich ihrer Wirksamkeit überprüft werden müssen. Das Ziel besteht darin, Gefährdungen bei der Arbeit frühzeitig zu erkennen und diesen präventiv, das heißt no",
-      "reason": "Risk assessment (Gefährdungsbeurteilung) is a core component of the ASchG and fundamental to ensuring workplace safety, particularly in environments like Amazon warehouses.",
+      "reason": "Risk assessment (Gefährdungsbeurteilung) is a core component of German workplace safety legislation.",
       "priority": "high"
     },
     {
       "law_abbr": "ASchG",
-      "title": "Berufsgenossenschaft",
-      "url": "https://de.wikipedia.org/wiki/Berufsgenossenschaft",
-      "summary": "Diegewerblichen Berufsgenossenschaftensind die Träger dergesetzlichen Unfallversicherungfür die Unternehmen der deutschen Privatwirtschaft und deren Beschäftigte. Daneben gibt es dieLandwirtschaftliche Berufsgenossenschaftals Teil derSVLFG.",
-      "reason": "Berufsgenossenschaften are key institutions involved in workplace safety and accident insurance. Understanding their role is crucial.",
+      "title": "Persönliche Schutzausrüstung",
+      "url": "https://de.wikipedia.org/wiki/Persönliche_Schutzausrüstung",
+      "summary": "Persönliche Schutzausrüstung(PSA) bezeichnet imArbeitsschutzund in derVerkehrssicherheitSchutzkleidungund andere Ausstattungsstücke zum Selbstschutz bei potentiell gesundheitsgefährdendenTätigkeiten.",
+      "reason": "Personal Protective Equipment (PSA) is a major topic regarding employee safety, particularly relevant in warehouse environments.",
       "priority": "medium"
     }
   ]
