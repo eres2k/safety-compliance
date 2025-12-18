@@ -3322,11 +3322,32 @@ def menu_wikipedia():
     if not country:
         return
 
+    # Ask about AI suggestions
+    print(f"\n{Colors.BOLD}AI-Powered Suggestions{Colors.RESET}")
+    print(f"{Colors.DIM}Use Gemini AI to suggest additional relevant Wikipedia articles{Colors.RESET}")
+    print(f"{Colors.DIM}based on your scraped law content (requires GEMINI_API_KEY){Colors.RESET}\n")
+
+    print("  [1] 📖 Standard - Predefined search terms only")
+    print(f"  [2] ✨ {Colors.GREEN}AI-Enhanced{Colors.RESET} - Include AI-suggested articles")
+    print()
+
+    use_ai = False
+    choice = input(f"{Colors.BOLD}Select mode [1]: {Colors.RESET}").strip()
+    if choice == '2':
+        if not os.getenv('GEMINI_API_KEY'):
+            log_warning("GEMINI_API_KEY not set. Using standard mode.")
+        else:
+            use_ai = True
+            log_info("AI suggestions enabled")
+
     countries = ['AT', 'DE', 'NL'] if country == 'ALL' else [country]
 
     for c in countries:
         log_section(f"Scraping Wikipedia articles for {c}")
-        scrape_wikipedia_for_country(c)
+        if use_ai:
+            scrape_wikipedia_with_ai_suggestions(c)
+        else:
+            scrape_wikipedia_for_country(c)
 
     input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
 
