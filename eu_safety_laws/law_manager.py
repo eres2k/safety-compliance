@@ -101,11 +101,11 @@ except ImportError:
 class Config:
     """Global configuration for the law manager."""
     base_path: Path = field(default_factory=lambda: Path(__file__).parent)
-    scraper_version: str = "7.4.0"  # Upgraded to gemini-3-flash with optimized rate limits
+    scraper_version: str = "7.4.1"  # Fixed gemini-3-flash-preview model name
     request_timeout: int = 60  # Increased for larger responses from Gemini 3
     rate_limit_delay: float = 0.1  # 100ms base delay between requests
     max_retries: int = 3
-    gemini_model: str = "gemini-3-flash"  # Using direct REST API (v1) for Gemini 3
+    gemini_model: str = "gemini-3-flash-preview"  # Correct model name for Gemini 3 Flash
     # Parallel processing settings (optimized for Gemini 3 Flash limits)
     # Rate Limits: 1K RPM, 1M TPM, 10K RPD
     max_parallel_scrapes: int = 4  # Concurrent law scrapes (non-AI)

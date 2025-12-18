@@ -27,7 +27,7 @@ const __dirname = path.dirname(__filename)
 const CONFIG = {
   dataDir: path.join(__dirname, '../src/data/laws'),
   outputDir: path.join(__dirname, '../src/data/laws'),
-  geminiModel: 'gemini-3-flash',
+  geminiModel: 'gemini-3-flash-preview',
   maxRetries: 3,
   retryDelayMs: 1000,
   rateLimitDelayMs: 100, // 100ms between requests (~600 RPM with margin)
