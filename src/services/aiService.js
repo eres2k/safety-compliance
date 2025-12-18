@@ -429,71 +429,58 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Analyze THIS SPECIFIC legal text and create TWO COMPLETELY DIFFERENT versions.
+  const prompt = `Analyze this EXACT legal text and create summaries. You MUST quote specific phrases and cite paragraph numbers from the text below.
 
-CRITICAL: You MUST analyze the ACTUAL TEXT PROVIDED below. DO NOT give generic WHS advice.
-- If this section is about a committee/administrative body → explain what THIS committee does
-- If this section defines terms → list THESE specific definitions
-- If this section describes procedures → explain THIS specific procedure
-- If this section has no direct WHS obligations → say "This section is administrative/procedural" and explain what it actually covers
+SECTION: ${sectionTitle || 'Regulation'}
+
+<<<LEGAL TEXT START>>>
+${lawText.substring(0, 3000)}
+<<<LEGAL TEXT END>>>
+
+STRICT RULES:
+1. ONLY discuss what is written in the text above - DO NOT add generic safety advice
+2. QUOTE specific words/phrases from the text (e.g., "The text states '...'")
+3. If text mentions "(1)", "(2)" etc., cite them as "Abs. 1", "Abs. 2"
+4. If text mentions "1.", "2.", cite them as "Punkt 1", "Punkt 2"
+5. If this section is about scope/definitions/administrative matters - SAY THAT
 
 ===VERSION 1: WHS SUMMARY (for safety managers)===
-Analyze THE SPECIFIC TEXT and write:
 
 **What this section covers:**
-- [1-2 sentences describing what THIS SPECIFIC section is about]
+- [Summarize in 1-2 sentences what THIS text is about - quote key terms]
 
 **Key requirements from this text:**
-- [List ACTUAL requirements found in THIS text WITH exact citations like (§ X Abs. Y)]
-- [If no direct requirements, write "Administrative provision - see details below"]
+- [List SPECIFIC requirements from THIS text with citations]
+- [If text has no requirements, write: "This section is [scope/definitions/administrative] - no direct requirements"]
 
-**Compliance relevance:**
-- [How does THIS specific text affect Amazon operations? Be specific!]
-- [If it's about a committee/definitions/procedures, explain its indirect relevance]
+**Compliance relevance for Amazon:**
+- [How does the SPECIFIC content above apply to warehouse operations?]
 
-**Documentation/Actions needed:**
-- [What does THIS section require? Cite the paragraph!]
-- [If administrative, write "No direct documentation requirements"]
+**Documentation/Actions:**
+- [What does THIS text require? Cite the paragraph!]
 
-IMPORTANT:
-- Reference the ACTUAL content of this law section
-- Use exact citations from THIS text (§ X Abs. Y, Punkt Z)
-- If the section is about committees, definitions, or administrative procedures, SAY SO
-- Do NOT give generic WHS advice that isn't in this text
+===VERSION 2: EXPLAIN LIKE I'M 5===
+Explain what THIS TEXT says using simple words a 5-year-old knows:
+- 5 bullet points with emoji
+- Each under 10 words
+- Be playful and reference what the text actually says!
 
-===VERSION 2: EXPLAIN LIKE I'M 5 (completely different!)===
-Explain what THIS SPECIFIC TEXT is about like you're talking to a small child:
-- Use words a 5-year-old knows (no: compliance, obligations, regulations, employee, employer)
-- Focus on what THIS section actually says, not generic safety rules
-- Maximum 5 SHORT bullet points with fun emoji
-- Each point under 10 words
-- Be playful and simple!
-
-Example for a committee section: "👥 Some grown-ups meet to talk about keeping work safe!"
-Example for definitions: "📖 This part explains what big words mean!"
-Example for safety rules: "👷 Big people at work need helmets to protect their heads!"
-
-Section: ${sectionTitle || 'Regulation'}
-
-Legal text to analyze:
-${lawText.substring(0, 2500)}
-
-OUTPUT FORMAT (use these EXACT headers on their own line):
+OUTPUT (use EXACT headers):
 ---MANAGER---
 **What this section covers:**
-- [description of THIS section]
+- ...
 
 **Key requirements from this text:**
-- [actual requirements or "Administrative provision"]
+- ...
 
-**Compliance relevance:**
-- [relevance to operations]
+**Compliance relevance for Amazon:**
+- ...
 
-**Documentation/Actions needed:**
-- [actions or "No direct requirements"]
+**Documentation/Actions:**
+- ...
 
 ---ASSOCIATE---
-[5 simple emoji bullet points about THIS specific section]`
+[5 emoji bullet points]`
 
   const response = await generateAIResponse(prompt, framework, language)
 

@@ -13,7 +13,7 @@ Commands:
     restructure   - Reorganize laws into official chapter structure
     build         - Build/export the complete database
     status        - Show database status and statistics
-    all           - Run complete pipeline: scrape -> clean -> restructure -> build
+    all           - Run complete pipeline: scrape -> clean -> restructure -> wikipedia -> build
     wikipedia     - Scrape related Wikipedia articles (with --ai-suggest for AI recommendations)
 
 Usage:
@@ -1074,6 +1074,8 @@ class Scraper:
         self.authority = self.config.get('authority', '')
         # Number of laws to fetch (None = all)
         self.law_limit = law_limit
+        # Track current law being scraped for AI URL correction on sub-page failures
+        self._current_law_abbr = None
 
         # Merge custom sources into config's main_laws
         self._merge_custom_sources()
@@ -1116,6 +1118,9 @@ class Scraper:
             log_error("requests package required for scraping. Install with: pip install requests")
             return None
 
+        # Use instance variable as fallback if law_abbr not provided
+        effective_law_abbr = law_abbr or self._current_law_abbr
+
         timeout = timeout or CONFIG.request_timeout
         last_error_type = None
         last_http_status = None
@@ -1153,12 +1158,12 @@ class Scraper:
         log_error(f"Failed to fetch after {CONFIG.max_retries} attempts: {url}")
 
         # AUTOMATIC AI URL CORRECTION after all retries fail
-        if law_abbr:
+        if effective_law_abbr:
             error_code = last_http_status or 0
             error_desc = f"{last_error_type}" + (f" (HTTP {last_http_status})" if last_http_status else "")
-            log_info(f"🤖 Attempting AI URL correction for {law_abbr} after {error_desc} errors...")
+            log_info(f"🤖 Attempting AI URL correction for {effective_law_abbr} after {error_desc} errors...")
 
-            ai_result = find_correct_url_with_ai(self.country, law_abbr, url, error_code)
+            ai_result = find_correct_url_with_ai(self.country, effective_law_abbr, url, error_code)
 
             if ai_result and ai_result.get('url'):
                 new_url = ai_result['url']
@@ -1171,15 +1176,15 @@ class Scraper:
                     response.raise_for_status()
 
                     # URL works! Update the database
-                    log_success(f"✅ AI-corrected URL works for {law_abbr}!")
-                    update_source_url(self.country, law_abbr, new_url, ai_result.get('name'))
+                    log_success(f"✅ AI-corrected URL works for {effective_law_abbr}!")
+                    update_source_url(self.country, effective_law_abbr, new_url, ai_result.get('name'))
 
                     return response.text
                 except Exception as ai_err:
                     log_warning(f"❌ AI-suggested URL also failed: {ai_err}")
             else:
                 reason = ai_result.get('reason', 'unknown reason') if ai_result else 'AI returned no result'
-                log_warning(f"❌ AI could not find alternative URL for {law_abbr}: {reason}")
+                log_warning(f"❌ AI could not find alternative URL for {effective_law_abbr}: {reason}")
 
         return None
 
@@ -1214,6 +1219,8 @@ class ATScraper(Scraper):
 
     def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
         """Scrape a single law - used for parallel processing."""
+        # Set current law for AI URL correction on sub-page failures
+        self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
         html = self.fetch_url(url, law_abbr=abbrev)
@@ -1679,6 +1686,8 @@ class DEScraper(Scraper):
 
     def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
         """Scrape a single law - used for parallel processing."""
+        # Set current law for AI URL correction on sub-page failures
+        self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
         html = self.fetch_url(url, law_abbr=abbrev)
@@ -2059,6 +2068,8 @@ class NLScraper(Scraper):
 
     def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
         """Scrape a single law - used for parallel processing."""
+        # Set current law for AI URL correction on sub-page failures
+        self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
         html = self.fetch_url(url, law_abbr=abbrev)
@@ -3120,9 +3131,17 @@ def cmd_all(args) -> int:
         log_info("Step 3: Restructuring...")
         restructure_database(country)
 
+        # Wikipedia
+        if not getattr(args, 'skip_wiki', False):
+            log_info("Step 4: Fetching Wikipedia articles...")
+            if not args.no_ai:
+                scrape_wikipedia_with_ai_suggestions(country)
+            else:
+                scrape_wikipedia_for_country(country)
+
     # Build master
     if not args.skip_build:
-        log_info("Step 4: Building master database...")
+        log_info("Step 5: Building master database...")
         build_master_database()
 
     log_success("Pipeline complete!")
@@ -4420,6 +4439,7 @@ def main():
     all_parser.add_argument('--fast', action='store_true', help='Fast cleaning mode')
     all_parser.add_argument('--skip-scrape', action='store_true', help='Skip scraping step')
     all_parser.add_argument('--skip-build', action='store_true', help='Skip master database build')
+    all_parser.add_argument('--skip-wiki', action='store_true', help='Skip Wikipedia fetching step')
     all_parser.add_argument('--laws', type=int, default=1, metavar='N',
                             help='Number of laws to fetch per country (default: 1, max varies by country)')
 

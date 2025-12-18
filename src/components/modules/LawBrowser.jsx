@@ -578,8 +578,28 @@ function formatLawText(text) {
       continue
     }
 
-    // Numbered list items (1., 2., etc. or a), b), etc.)
-    const numberedMatch = line.match(/^(\d+\.|[a-z]\)|[a-z]\.|[ivxIVX]+\.)\s+(.+)/)
+    // Dutch "lid" format: "1. content" or "2. content" at start of line (article subsections)
+    const dutchLidMatch = line.match(/^(\d+)\.\s+(.+)/)
+    if (dutchLidMatch && !line.match(/^(\d+)\.\s*Abschnitt/i)) {
+      flushAbsatz()
+      flushList()
+      flushParagraph()
+      currentAbsatz = { type: 'absatz', number: dutchLidMatch[1], content: dutchLidMatch[2] || '', subItems: [] }
+      elements.push(currentAbsatz)
+      continue
+    }
+
+    // Dutch definition with colon: "term: definition;" - treat as a definition item
+    const definitionMatch = line.match(/^([a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ\s\-]+):\s*(.+)/)
+    if (definitionMatch && !line.startsWith('http') && line.length < 500) {
+      flushParagraph()
+      inList = true
+      listItems.push({ marker: '•', content: `**${definitionMatch[1]}:** ${definitionMatch[2]}` })
+      continue
+    }
+
+    // Numbered list items (1., 2., etc. or a), b), etc. or a., b., etc.)
+    const numberedMatch = line.match(/^([a-z]\)|[a-z]\.|[ivxIVX]+\.)\s+(.+)/)
     if (numberedMatch) {
       flushParagraph()
       inList = true
@@ -635,14 +655,14 @@ function FormattedText({ text, searchTerm = '' }) {
 
   // Helper to render list items (handles both string and {marker, content} formats)
   const renderListItems = (items, isSubList = false) => (
-    <ol className={`space-y-1 ${isSubList ? 'mt-1.5 ml-3 border-l border-gray-300 dark:border-gray-600 pl-2' : 'list-decimal list-inside pl-3'} text-xs text-gray-700 dark:text-gray-300`}>
+    <ol className={`space-y-1.5 ${isSubList ? 'mt-2 ml-4 border-l-2 border-gray-300 dark:border-gray-600 pl-3' : 'list-decimal list-inside pl-4'} text-sm text-gray-700 dark:text-gray-300`}>
       {items.map((item, i) => {
         const content = typeof item === 'string' ? item : item.content
         const marker = typeof item === 'object' ? item.marker : null
         return (
           <li key={i} className="leading-relaxed">
             {marker && (
-              <span className="inline-block min-w-[1.5rem] font-medium text-gray-600 dark:text-gray-400 mr-1 text-xs">
+              <span className="inline-block min-w-[2rem] font-medium text-gray-600 dark:text-gray-400 mr-1">
                 {marker}
               </span>
             )}
@@ -654,12 +674,12 @@ function FormattedText({ text, searchTerm = '' }) {
   )
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {elements.map((el, idx) => {
         switch (el.type) {
           case 'section':
             return (
-              <h4 key={idx} className="text-sm font-semibold text-whs-orange-600 dark:text-whs-orange-400 mt-4 first:mt-0">
+              <h4 key={idx} className="text-base font-semibold text-whs-orange-600 dark:text-whs-orange-400 mt-5 first:mt-0">
                 {highlightText(el.content, searchTerm)}
               </h4>
             )
@@ -667,12 +687,12 @@ function FormattedText({ text, searchTerm = '' }) {
             // German paragraph (Absatz) with number like (1), (2) - styled with border for visibility
             // Now supports subItems (numbered points that belong to the Absatz)
             return (
-              <div key={idx} className="border-l-2 border-whs-orange-300 dark:border-whs-orange-700 pl-3 py-1.5 bg-gray-50 dark:bg-gray-800/50 rounded-r my-1">
+              <div key={idx} className="border-l-3 border-whs-orange-400 dark:border-whs-orange-600 pl-4 py-2 bg-gray-50 dark:bg-gray-800/50 rounded-r my-2">
                 <div className="flex items-start gap-2">
-                  <span className="inline-block bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 px-1.5 py-0.5 rounded text-xs font-semibold flex-shrink-0">
+                  <span className="inline-block bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 px-2 py-0.5 rounded text-sm font-semibold flex-shrink-0">
                     ({el.number})
                   </span>
-                  <span className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                     {highlightText(el.content, searchTerm)}
                   </span>
                 </div>
@@ -689,7 +709,7 @@ function FormattedText({ text, searchTerm = '' }) {
           case 'paragraph':
           default:
             return (
-              <p key={idx} className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p key={idx} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                 {highlightText(el.content, searchTerm)}
               </p>
             )
@@ -1861,11 +1881,11 @@ export function LawBrowser({ onBack }) {
                                         >
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                         </svg>
-                                        <span className="text-sm font-bold text-whs-orange-500 flex-shrink-0">
+                                        <span className="text-base font-bold text-whs-orange-500 flex-shrink-0">
                                           {section.number}
                                         </span>
                                         {section.title && (
-                                          <h3 className="text-xs font-medium text-gray-900 dark:text-white leading-tight">
+                                          <h3 className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">
                                             {highlightText(section.title, contentSearchTerm)}
                                           </h3>
                                         )}
