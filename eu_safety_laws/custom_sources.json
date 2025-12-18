@@ -59,7 +59,7 @@
     },
     "DE": {
       "DGUV Vorschrift 1": {
-        "url": "https://www.dguv.de/publikationen/vorschriften-regeln-informationen/vorschriften/dguv-vorschrift-1/index.jsp",
+        "url": "https://publikationen.dguv.de/regelwerk/dguv-vorschriften/2909/dguv-vorschrift-1",
         "name": "Grundsätze der Prävention",
         "description": "This regulation outlines the fundamental principles of prevention for occupational safety and health in Germany. While issued by the DGUV (German Social Accident Insurance), it is based on and implements statutory requirements and is crucial for workplace safety. It covers responsibilities of employers and employees and establishes the framework for risk assessments and preventive measures.",
         "enabled": true,
@@ -67,12 +67,14 @@
         "source_type": "custom"
       },
       "BildscharbV": {
-        "url": "https://www.gesetze-im-internet.de/bildscharbv/",
-        "name": "Verordnung über Sicherheit und Gesundheitsschutz bei der Arbeit an Bildschirmgeräten",
-        "description": "This regulation (Bildschirmarbeitsverordnung) specifically addresses the safety and health protection of employees working with display screen equipment (VDTs). It covers ergonomic requirements, workstation design, breaks, and eye exams.",
-        "enabled": true,
+        "url": "https://www.gesetze-im-internet.de/arbst_ttv_2004/",
+        "name": "Bildschirmarbeitsverordnung (repealed - now in ArbStättV Anhang 6)",
+        "description": "The Bildschirmarbeitsverordnung was repealed in 2016. Its contents were transferred to Appendix 6 (Anhang 6) of the Arbeitsstättenverordnung (ArbStättV). Since July 2024, ASR A6 'Bildschirmarbeit' provides additional technical specifications.",
+        "enabled": false,
         "created_at": "2025-12-18T01:18:07.386751",
-        "source_type": "custom"
+        "source_type": "custom",
+        "repealed": true,
+        "repealed_note": "Integrated into ArbStättV Anhang 6 since 2016"
       },
       "TRBS 1111": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1111.pdf?__blob=publicationFile&v=8",

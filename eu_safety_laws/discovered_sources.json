@@ -4,7 +4,7 @@
   "sources": [
     {
       "name": "Arbeitsschutzgesetz (ArbSchG)",
-      "url": "https://www.gesetze-im-internet.de/arbshg/index.html",
+      "url": "https://www.gesetze-im-internet.de/arbschg/",
       "country": "DE",
       "language": "de",
       "source_type": "law",
@@ -18,7 +18,7 @@
     },
     {
       "name": "Arbeitsstättenverordnung (ArbStättV)",
-      "url": "https://www.gesetze-im-internet.de/arbstättv/index.html",
+      "url": "https://www.gesetze-im-internet.de/arbst_ttv_2004/",
       "country": "DE",
       "language": "de",
       "source_type": "ordinance",
@@ -32,7 +32,7 @@
     },
     {
       "name": "Gefahrstoffverordnung (GefStoffV)",
-      "url": "https://www.gesetze-im-internet.de/gefstoffs জৈv/index.html",
+      "url": "https://www.gesetze-im-internet.de/gefstoffv_2010/",
       "country": "DE",
       "language": "de",
       "source_type": "ordinance",
@@ -46,7 +46,7 @@
     },
     {
       "name": "Betriebssicherheitsverordnung (BetrSichV)",
-      "url": "https://www.gesetze-im-internet.de/betrsichv/index.html",
+      "url": "https://www.gesetze-im-internet.de/betrsichv_2015/",
       "country": "DE",
       "language": "de",
       "source_type": "ordinance",
