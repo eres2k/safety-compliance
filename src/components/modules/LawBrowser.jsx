@@ -1719,18 +1719,6 @@ export function LawBrowser({ onBack }) {
                       {selectedLaw.title_en && (
                         <p className="text-white/80 text-sm mt-1">{selectedLaw.title_en}</p>
                       )}
-                      {/* Wikipedia article link shown inline with title */}
-                      {wikiIndex[selectedLaw.abbreviation] && (
-                        <button
-                          onClick={() => openWikiModal(selectedLaw.abbreviation)}
-                          className="inline-flex items-center gap-1 mt-1 text-white/70 hover:text-white text-xs transition-colors"
-                        >
-                          <span>📖</span>
-                          <span className="underline">
-                            {wikiIndex[selectedLaw.abbreviation]?.title || 'Wikipedia article'}
-                          </span>
-                        </button>
-                      )}
                     </div>
                     <div className="flex gap-2">
                       <button
@@ -1756,19 +1744,25 @@ export function LawBrowser({ onBack }) {
                           </svg>
                         </a>
                       )}
-                      {wikiIndex[selectedLaw.abbreviation] && (
-                        <button
-                          onClick={() => openWikiModal(selectedLaw.abbreviation)}
-                          className="px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors flex items-center gap-2"
-                          title={`Wikipedia: ${wikiIndex[selectedLaw.abbreviation]?.title || selectedLaw.abbreviation}`}
-                        >
-                          <span className="text-base">📖</span>
-                          <span className="text-sm font-medium hidden sm:inline truncate max-w-[150px]">
-                            {wikiIndex[selectedLaw.abbreviation]?.title || 'Wikipedia'}
-                          </span>
-                          <span className="text-sm font-medium sm:hidden">Wiki</span>
-                        </button>
-                      )}
+                      <button
+                        onClick={() => wikiIndex[selectedLaw.abbreviation] && openWikiModal(selectedLaw.abbreviation)}
+                        disabled={!wikiIndex[selectedLaw.abbreviation]}
+                        className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-2 ${
+                          wikiIndex[selectedLaw.abbreviation]
+                            ? 'bg-white/10 hover:bg-white/20 cursor-pointer'
+                            : 'bg-white/5 opacity-40 cursor-not-allowed'
+                        }`}
+                        title={wikiIndex[selectedLaw.abbreviation]
+                          ? `Wikipedia: ${wikiIndex[selectedLaw.abbreviation]?.title || selectedLaw.abbreviation}`
+                          : 'No Wikipedia article available'
+                        }
+                      >
+                        <span className="text-base">📖</span>
+                        <span className="text-sm font-medium hidden sm:inline truncate max-w-[150px]">
+                          {wikiIndex[selectedLaw.abbreviation]?.title || 'Wikipedia'}
+                        </span>
+                        <span className="text-sm font-medium sm:hidden">Wiki</span>
+                      </button>
                     </div>
                   </div>
                 </div>
