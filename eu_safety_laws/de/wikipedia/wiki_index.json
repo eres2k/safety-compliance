@@ -1,7 +1,7 @@
 {
   "country": "DE",
   "language": "de",
-  "scraped_at": "2025-12-18T04:06:19.255146",
+  "scraped_at": "2025-12-18T16:13:25.155252",
   "articles": {
     "ArbSchG": {
       "title": "Arbeitsschutzgesetz",
@@ -44,30 +44,5 @@
       "summary": "DieGefahrstoffverordnung(GefStoffV) ist eine deutsche Verordnung zum Schutz vorgefährlichen Stoffenim deutschenArbeitsschutz. DieVerordnungsermächtigungist imChemikaliengesetz(ChemG) enthalten. Seit 2005 ist auch dasArbeitsschutzgesetzgesetzliche Grundlage für die GefStoffV."
     }
   },
-  "ai_suggested_articles": [
-    {
-      "law_abbr": "ASchG",
-      "title": "Arbeitsschutz",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsschutz",
-      "summary": "Arbeitsschutzsind in derArbeitswissenschaftund imArbeitsrechtalle Maßnahmen desArbeitgeberszur Verhütung vonArbeitsunfällenund arbeitsbedingtenGesundheitsgefahreneinschließlich Maßnahmen der menschengerechtenArbeitsgestaltung.\nDieseLegaldefinitionaus§ 2Abs. 1ArbSchGlegt das Tätigkeitsgebiet der Arbeitgeber beim Arbeitsschutz fest. Arbeitsschutz ist einePrävention, durch die Arbeitsunfälle verhindert undgesundheitsgefährdendeArbeitsbelastungenundArbeitsumgebungenvermieden werden sollen. In diesem",
-      "reason": "Provides a general overview of workplace safety regulations, fundamental for understanding the ASchG.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "ASchG",
-      "title": "Gefährdungsbeurteilung",
-      "url": "https://de.wikipedia.org/wiki/Gefährdungsbeurteilung",
-      "summary": "DieGefährdungsbeurteilungbeschreibt den Prozess der systematischen Ermittlung und Bewertung aller relevanten Gefährdungen, denen die Beschäftigten im Zuge ihrer beruflichen Tätigkeit ausgesetzt sind. Hinzu kommen die Ableitung und Umsetzung aller zum Schutz der Sicherheit und der Gesundheit erforderlichen Maßnahmen, die anschließend hinsichtlich ihrer Wirksamkeit überprüft werden müssen. Das Ziel besteht darin, Gefährdungen bei der Arbeit frühzeitig zu erkennen und diesen präventiv, das heißt no",
-      "reason": "Risk assessment (Gefährdungsbeurteilung) is a cornerstone of the ASchG and crucial for identifying and mitigating workplace hazards in logistics/warehousing.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "ASchG",
-      "title": "Berufsgenossenschaft",
-      "url": "https://de.wikipedia.org/wiki/Berufsgenossenschaft",
-      "summary": "Diegewerblichen Berufsgenossenschaftensind die Träger dergesetzlichen Unfallversicherungfür die Unternehmen der deutschen Privatwirtschaft und deren Beschäftigte. Daneben gibt es dieLandwirtschaftliche Berufsgenossenschaftals Teil derSVLFG.",
-      "reason": "Berufsgenossenschaften (occupational accident insurance funds) play a key role in implementing and enforcing workplace safety regulations in Germany, including sectors like logistics.",
-      "priority": "medium"
-    }
-  ]
+  "ai_suggested_articles": []
 }

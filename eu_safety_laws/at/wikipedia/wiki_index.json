@@ -1,7 +1,7 @@
 {
   "country": "AT",
   "language": "de",
-  "scraped_at": "2025-12-18T04:03:01.855729",
+  "scraped_at": "2025-12-18T16:10:05.079110",
   "articles": {
     "ASchG": {
       "title": "ArbeitnehmerInnenschutzgesetz",
@@ -44,30 +44,5 @@
       "summary": "EinGefahrstoffverzeichnisgibt einen Überblick über die in einem Betrieb (sinngemäß auch Schule, Amt, Apotheke …) verwendetenGefahrstoffe."
     }
   },
-  "ai_suggested_articles": [
-    {
-      "law_abbr": "ASchG",
-      "title": "Arbeitsschutz",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsschutz",
-      "summary": "Arbeitsschutzsind in derArbeitswissenschaftund imArbeitsrechtalle Maßnahmen desArbeitgeberszur Verhütung vonArbeitsunfällenund arbeitsbedingtenGesundheitsgefahreneinschließlich Maßnahmen der menschengerechtenArbeitsgestaltung.\nDieseLegaldefinitionaus§ 2Abs. 1ArbSchGlegt das Tätigkeitsgebiet der Arbeitgeber beim Arbeitsschutz fest. Arbeitsschutz ist einePrävention, durch die Arbeitsunfälle verhindert undgesundheitsgefährdendeArbeitsbelastungenundArbeitsumgebungenvermieden werden sollen. In diesem",
-      "reason": "General overview of workplace safety regulations in Austria. Provides essential background.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "ASchG",
-      "title": "Gefährdungsbeurteilung",
-      "url": "https://de.wikipedia.org/wiki/Gefährdungsbeurteilung",
-      "summary": "DieGefährdungsbeurteilungbeschreibt den Prozess der systematischen Ermittlung und Bewertung aller relevanten Gefährdungen, denen die Beschäftigten im Zuge ihrer beruflichen Tätigkeit ausgesetzt sind. Hinzu kommen die Ableitung und Umsetzung aller zum Schutz der Sicherheit und der Gesundheit erforderlichen Maßnahmen, die anschließend hinsichtlich ihrer Wirksamkeit überprüft werden müssen. Das Ziel besteht darin, Gefährdungen bei der Arbeit frühzeitig zu erkennen und diesen präventiv, das heißt no",
-      "reason": "Risk assessment is a central concept in the ASchG. Understanding it is crucial.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "ASchG",
-      "title": "Arbeitsinspektion",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsinspektion",
-      "summary": "Arbeitsinspektionist in vielenStaatendie Bezeichnung derBehörde, welche die Erfüllung gesetzlicher Bestimmungen zumArbeitsschutzinUnternehmenüberwacht. Die Bezeichnung dieser Kontrollbehörde ist je nachStaatunterschiedlich, z. B. in Deutschland alsGewerbeaufsicht, in Österreich alsArbeitsinspektoratoder inGroßbritannienalsHealth and Safety Executive(HSE).",
-      "reason": "The Austrian Labour Inspectorate is responsible for enforcing the ASchG.",
-      "priority": "medium"
-    }
-  ]
+  "ai_suggested_articles": []
 }
