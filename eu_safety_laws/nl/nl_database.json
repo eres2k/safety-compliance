@@ -1,15 +1,15 @@
 {
   "metadata": {
     "country": "NL",
-    "generated_at": "2025-12-18T00:23:04.958237",
-    "document_count": 5,
+    "generated_at": "2025-12-18T01:34:21.242997",
+    "document_count": 6,
     "error_count": 0,
     "cleaned_at": "2025-12-18T00:23:04.978081",
     "restructured_at": "2025-12-18T00:23:04.996251"
   },
   "documents": [
     {
-      "id": "9bc4f1e1a5f4bfe7",
+      "id": "33cdc62145ae1644",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -25,8 +25,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:22:52.119560",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:34:17.952066",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 72,
@@ -1905,7 +1905,7 @@
       "content_hash": "850d82e7497f4492bb64ed145134dded"
     },
     {
-      "id": "647a1c11ce8566d8",
+      "id": "5f7a94631f4930b3",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -1921,8 +1921,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:22:56.609576",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:34:21.229977",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 9,
@@ -2269,7 +2269,7 @@
       "content_hash": "1e1ac7123cb74f5bbc9b75dae4a17e6a"
     },
     {
-      "id": "de99dfdc7023e4da",
+      "id": "51f2ea5c945d2965",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -2285,8 +2285,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:23:00.236982",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:34:19.766287",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 9,
@@ -2546,7 +2546,7 @@
       "content_hash": "80b9d12f7f6e62d5fb27144f11540620"
     },
     {
-      "id": "fddc2da4e52048e9",
+      "id": "73fda681b6a21de8",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -2562,8 +2562,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:23:01.949213",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:34:18.252401",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 12,
@@ -2944,7 +2944,7 @@
       "content_hash": "a4a68dcd09848d68e6b32f3d5adb4e65"
     },
     {
-      "id": "9ff2c23eadd4c844",
+      "id": "d47a5ca28410c8ba",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "NL",
@@ -2960,8 +2960,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:23:04.455536",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:34:20.094545",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 7,
@@ -3202,6 +3202,119 @@
         }
       ],
       "content_hash": "80f805292948c1528a7ea0c30eee66fe"
+    },
+    {
+      "id": "45adf3688b892162",
+      "version": "1.0.0",
+      "type": "law",
+      "jurisdiction": "NL",
+      "abbreviation": "REACH",
+      "title": "Contributieverordening september tot en met december 2011",
+      "title_en": "Contributieverordening september tot en met december 2011",
+      "category": "Core Safety",
+      "implements_eu_directive": "89/391/EEG",
+      "source": {
+        "url": "https://wetten.overheid.nl/jci1.3:c:BWBR0030341&z=2024-01-01&g=2024-01-01",
+        "title": "Contributieverordening september tot en met december 2011",
+        "authority": "wetten.overheid.nl",
+        "robots_txt_compliant": true
+      },
+      "scraping": {
+        "scraped_at": "2025-12-18T01:34:19.085657",
+        "scraper_version": "7.2.0"
+      },
+      "whs_summary": {
+        "total_sections": 5,
+        "logistics_relevance_distribution": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 5
+        },
+        "top_whs_topics": [],
+        "critical_sections_count": 0
+      },
+      "chapters": [
+        {
+          "id": "nl-reach-main",
+          "number": "1",
+          "title": "Hoofdinhoud",
+          "title_en": "Main Content",
+          "sections": [
+            {
+              "id": "f36c2ac92f1d754e",
+              "number": "1",
+              "title": "Artikel 1. ",
+              "text": "De contributie voor de contributiegroepen, bedoeld in artikel 2, eerste lid, van de Algemene Contributieverordening 2007 bedraagt:\nContributiegroep\nH (openbaar accountants)\nM (intern accountants en overheidsaccountants)\nL (accountants in business)\nG (leden die niet actief bij het arbeidsproces betrokken zijn)",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "2537a7a989613445",
+              "number": "2",
+              "title": "Artikel 2. ",
+              "text": "Het percentage, bedoeld in artikel 6, eerste lid, van de Algemene Contributieverordening 2007 wordt vastgesteld op: vier.",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "e77dc3f25d77d130",
+              "number": "3",
+              "title": "Artikel 3. ",
+              "text": "De Contributieverordening 2011/2012 van 1 september 2011 (Stcrt. 2010, 21423) wordt ingetrokken.",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "3215417b39360c28",
+              "number": "4",
+              "title": "Artikel 4. ",
+              "text": "Deze verordening treedt in werking op 1 september 2011.",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "cd06d301aee10d54",
+              "number": "5",
+              "title": "Artikel 5. ",
+              "text": "Deze verordening wordt aangehaald als: Contributieverordening september tot en met december 2011.",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        }
+      ],
+      "content_hash": "b8d24c1cced007ed564af35a48330e3b"
     }
   ]
 }

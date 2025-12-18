@@ -1,7 +1,7 @@
 {
   "metadata": {
     "country": "DE",
-    "generated_at": "2025-12-18T00:22:50.921579",
+    "generated_at": "2025-12-18T01:34:16.800024",
     "document_count": 7,
     "error_count": 0,
     "cleaned_at": "2025-12-18T00:22:50.953865",
@@ -9,7 +9,7 @@
   },
   "documents": [
     {
-      "id": "5398fbd045b64067",
+      "id": "54c57aafeca80e4a",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -25,8 +25,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:20:34.273441",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:33:33.621930",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 29,
@@ -1203,7 +1203,7 @@
       "content_hash": "941e5916c8ae5e058d705a41da4a4d68"
     },
     {
-      "id": "8c26a8d7c95e13ad",
+      "id": "610aa7af7c386038",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -1219,8 +1219,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:20:51.882414",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:33:50.622681",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 23,
@@ -1965,7 +1965,7 @@
       "content_hash": "a7625884bafe9952cf85e5eab23d2367"
     },
     {
-      "id": "6b464b482a5dc89c",
+      "id": "7b986c391dda3ae7",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -1981,8 +1981,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:21:11.364225",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:33:52.162850",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 27,
@@ -2902,7 +2902,7 @@
       "content_hash": "c46393c83662e6489dce3b9f998dd742"
     },
     {
-      "id": "e043ac2ecc30e061",
+      "id": "a153dd73feeedf25",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -2918,8 +2918,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:21:56.998425",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:34:13.275896",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 68,
@@ -5038,7 +5038,7 @@
       "content_hash": "7fdd26f6dc1efdf244735eb7b003391b"
     },
     {
-      "id": "bc44dfd3c7687f87",
+      "id": "b647cd4369a34356",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -5054,8 +5054,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:22:07.636705",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:33:47.413992",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 10,
@@ -5512,7 +5512,7 @@
       "content_hash": "d5605cf71482026614ec8eedcfaebe0e"
     },
     {
-      "id": "25c6bdd86d9a637b",
+      "id": "c90a012127d9b8a7",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -5528,8 +5528,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:22:25.536881",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:34:05.199970",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 24,
@@ -6470,7 +6470,7 @@
       "content_hash": "90e97f5b6c48b8007cb0f454cd3b67c1"
     },
     {
-      "id": "d3a06343dbb9470c",
+      "id": "ee183720ae8cc493",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -6486,8 +6486,8 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T00:22:50.415503",
-        "scraper_version": "7.1.0"
+        "scraped_at": "2025-12-18T01:34:16.785097",
+        "scraper_version": "7.2.0"
       },
       "whs_summary": {
         "total_sections": 37,
