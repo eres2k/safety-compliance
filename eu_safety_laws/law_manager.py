@@ -447,25 +447,38 @@ For {country_name}:
   PRIMARY: Use RIS (ris.bka.gv.at) with format /GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=XXXXX
   - The Gesetzesnummer is a unique ID for each law (e.g., 10008910 for ASchG)
   - Alternative RIS format: /eli/bgbl/YYYY/N/geldend or search-based URLs
-  ALTERNATIVE SOURCES (if RIS fails):
-  - jusline.at: Format https://www.jusline.at/gesetz/LAWNAME (e.g., /gesetz/aschg for ASchG)
-  - arbeitsinspektorat.gv.at: Work safety specific laws and regulations
-  Note: Alternative sources may have different text formatting. Prefer RIS if possible.
+  ALTERNATIVE SOURCES (try in this order if RIS fails):
+  1. jusline.at: https://www.jusline.at/gesetz/LAWNAME (e.g., /gesetz/aschg) - comprehensive law database with clean formatting
+  2. arbeitsinspektorat.gv.at: Labor Inspectorate - work safety laws and regulations
+  3. sozialministerium.at: Ministry of Social Affairs - employment and safety regulations
+  4. auva.at: Austrian Workers Compensation Board (AUVA) - workplace safety standards and guidelines
+  5. wko.at: Austrian Economic Chamber - business law texts and regulations
+  6. arbeiterkammer.at: Chamber of Labor - employee protection laws and information
+  7. oesterreich.gv.at: Official government portal with legal information
+  8. help.gv.at: Government help portal with simplified legal texts
+  Note: Alternative sources may have different formatting. Prefer RIS > jusline.at > others.
 - DE (Germany):
   PRIMARY: Use gesetze-im-internet.de with format /lawname/ (lowercase)
   - Example: /arbschg/ for Arbeitsschutzgesetz
   - Some laws have year suffixes: /muschg_2018/
-  ALTERNATIVE SOURCES (if primary fails):
-  - dejure.org: Format https://dejure.org/gesetze/LAWNAME (e.g., /gesetze/ArbSchG)
-  - buzer.de: Format https://www.buzer.de/gesetz/XXXX.htm (law database with clean formatting)
-  Note: Alternative sources may have different text formatting. Prefer gesetze-im-internet.de if possible.
+  ALTERNATIVE SOURCES (try in this order if primary fails):
+  1. dejure.org: https://dejure.org/gesetze/LAWNAME (e.g., /gesetze/ArbSchG) - comprehensive with cross-references
+  2. buzer.de: https://www.buzer.de/gesetz/XXXX.htm - clean formatting, historical versions
+  3. bmas.de: Federal Ministry of Labour - official work safety regulations
+  4. baua.de: Federal Institute for Occupational Safety - technical standards
+  5. dguv.de: German Social Accident Insurance - DGUV regulations and rules
+  6. gesetze-bayern.de: Bavarian law portal (also has federal laws)
+  Note: Alternative sources may have different formatting. Prefer gesetze-im-internet.de > dejure.org > others.
 - NL (Netherlands):
   PRIMARY: Use wetten.overheid.nl with format /BWBRXXXXXXX/geldend
   - BWBR numbers are unique identifiers (e.g., BWBR0010346 for Arbowet)
-  ALTERNATIVE SOURCES (if primary fails):
-  - arboportaal.nl: Work safety specific laws and guidelines
-  - rijksoverheid.nl: Government portal with legal documents
-  Note: Alternative sources may have different text formatting. Prefer wetten.overheid.nl if possible.
+  ALTERNATIVE SOURCES (try in this order if primary fails):
+  1. arboportaal.nl: Labor authority portal - work safety laws and guidelines
+  2. rijksoverheid.nl: Government portal with legal documents
+  3. inspectie.szw.nl: Labor Inspectorate - safety regulations
+  4. nen.nl: Dutch standards institute - safety standards (may require subscription)
+  5. fnv.nl: Trade union federation - employee rights summaries
+  Note: Alternative sources may have different formatting. Prefer wetten.overheid.nl > arboportaal.nl > others.
 
 IMPORTANT: Verify the URL format is correct for the country. Double-check the law identifier.
 
@@ -1392,8 +1405,10 @@ class ATScraper(Scraper):
             if 'jusline.at' in url:
                 log_info(f"  Using Jusline parser for {abbrev}")
                 doc = self._parse_jusline_law(html, abbrev, url)
-            elif 'arbeitsinspektorat' in url:
-                log_info(f"  Using Arbeitsinspektorat parser for {abbrev}")
+            elif any(domain in url for domain in ['arbeitsinspektorat', 'sozialministerium', 'auva.at', 'wko.at', 'arbeiterkammer', 'oesterreich.gv.at', 'help.gv.at']):
+                # Generic parser for Austrian government/institutional sources
+                source_name = next((d for d in ['arbeitsinspektorat', 'sozialministerium', 'auva', 'wko', 'arbeiterkammer', 'oesterreich', 'help'] if d in url), 'Generic')
+                log_info(f"  Using {source_name} parser for {abbrev}")
                 doc = self._parse_generic_law(html, abbrev, url)
             else:
                 # Default: RIS parser
@@ -2014,8 +2029,10 @@ class DEScraper(Scraper):
             if 'dejure.org' in url:
                 log_info(f"  Using Dejure parser for {abbrev}")
                 doc = self._parse_dejure_law(html, abbrev, url)
-            elif 'buzer.de' in url:
-                log_info(f"  Using Buzer parser for {abbrev}")
+            elif any(domain in url for domain in ['buzer.de', 'bmas.de', 'baua.de', 'dguv.de', 'gesetze-bayern.de']):
+                # Generic parser for German alternative sources
+                source_name = next((d.split('.')[0] for d in ['buzer.de', 'bmas.de', 'baua.de', 'dguv.de', 'gesetze-bayern.de'] if d in url), 'Generic')
+                log_info(f"  Using {source_name} parser for {abbrev}")
                 doc = self._parse_generic_de_law(html, abbrev, url)
             else:
                 # Default: gesetze-im-internet.de parser
@@ -2505,12 +2522,11 @@ class NLScraper(Scraper):
 
         if html:
             # Detect source and use appropriate parser
-            if 'arboportaal.nl' in url:
-                log_info(f"  Using Arboportaal parser for {abbrev}")
-                doc = self._parse_generic_nl_law(html, abbrev, url, "arboportaal.nl")
-            elif 'rijksoverheid.nl' in url:
-                log_info(f"  Using Rijksoverheid parser for {abbrev}")
-                doc = self._parse_generic_nl_law(html, abbrev, url, "rijksoverheid.nl")
+            alt_nl_sources = ['arboportaal.nl', 'rijksoverheid.nl', 'inspectie.szw.nl', 'nen.nl', 'fnv.nl']
+            matched_source = next((s for s in alt_nl_sources if s in url), None)
+            if matched_source:
+                log_info(f"  Using {matched_source} parser for {abbrev}")
+                doc = self._parse_generic_nl_law(html, abbrev, url, matched_source)
             else:
                 # Default: wetten.overheid.nl parser
                 doc = self._parse_dutch_law_full(html, abbrev, url)
