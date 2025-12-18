@@ -1248,7 +1248,9 @@ export function LawBrowser({ onBack }) {
     setActiveSimplifySectionId(section.id)
 
     try {
-      const sectionTitle = `${section.number}${section.title ? ` - ${section.title}` : ''}`
+      // Include law abbreviation in title to ensure unique cache key across different laws
+      const lawAbbr = selectedLaw?.abbreviation || selectedLaw?.abbr || ''
+      const sectionTitle = `${lawAbbr} ${section.number}${section.title ? ` - ${section.title}` : ''}`
 
       // Use combined function to get BOTH levels in one API call
       const response = await simplifyForBothLevels(section.content, sectionTitle)
@@ -1517,11 +1519,11 @@ export function LawBrowser({ onBack }) {
                     )}
                   </div>
                   <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
-                    {law.title}
+                    {law.title_en || law.shortTitle || getShortenedLawName(law)}
                   </h4>
-                  {law.title_en && (
+                  {law.title && law.title !== law.title_en && (
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
-                      {law.title_en}
+                      {law.title.length > 60 ? law.title.substring(0, 60) + '...' : law.title}
                     </p>
                   )}
                 </button>
