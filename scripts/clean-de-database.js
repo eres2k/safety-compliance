@@ -16,16 +16,16 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Configuration - Optimized for Gemini 3.0 Flash (1K RPM, 1M TPM, 10K RPD)
+// Configuration - Optimized for Gemini 2.5 Flash (2K RPM, 4M TPM)
 const CONFIG = {
   inputFile: path.join(__dirname, '../eu_safety_laws/de/de_database.json'),
   outputFile: path.join(__dirname, '../eu_safety_laws/de/de_database_cleaned.json'),
   backupFile: path.join(__dirname, '../eu_safety_laws/de/de_database_backup.json'),
-  geminiModel: 'gemini-3-flash-preview',
+  geminiModel: 'gemini-2.5-flash',
   maxRetries: 3,
   retryDelayMs: 2000,
-  rateLimitDelayMs: 100, // 100ms between requests (~600 RPM with margin)
-  maxOutputTokens: 8192, // Gemini 3 supports larger outputs
+  rateLimitDelayMs: 50,
+  maxOutputTokens: 8192,
 }
 
 // ANSI colors for console output
@@ -86,8 +86,8 @@ function getApiKey() {
  * Call Gemini API
  */
 async function callGemini(apiKey, prompt, systemPrompt) {
-  // Use v1 API for gemini-3-flash support
-  const url = `https://generativelanguage.googleapis.com/v1/models/${CONFIG.geminiModel}:generateContent?key=${apiKey}`
+  // Use v1beta API for gemini-2.5-flash
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${CONFIG.geminiModel}:generateContent?key=${apiKey}`
 
   const response = await fetch(url, {
     method: 'POST',

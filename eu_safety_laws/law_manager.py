@@ -101,17 +101,17 @@ except ImportError:
 class Config:
     """Global configuration for the law manager."""
     base_path: Path = field(default_factory=lambda: Path(__file__).parent)
-    scraper_version: str = "7.4.1"  # Fixed gemini-3-flash-preview model name
-    request_timeout: int = 60  # Increased for larger responses from Gemini 3
+    scraper_version: str = "7.5.0"  # Fallback to stable gemini-2.5-flash
+    request_timeout: int = 60
     rate_limit_delay: float = 0.1  # 100ms base delay between requests
     max_retries: int = 3
-    gemini_model: str = "gemini-3-flash-preview"  # Correct model name for Gemini 3 Flash
-    # Parallel processing settings (optimized for Gemini 3 Flash limits)
-    # Rate Limits: 1K RPM, 1M TPM, 10K RPD
+    gemini_model: str = "gemini-2.5-flash"  # Stable model
+    # Parallel processing settings (optimized for Gemini 2.5 Flash limits)
+    # Rate Limits: 2K RPM, 4M TPM
     max_parallel_scrapes: int = 4  # Concurrent law scrapes (non-AI)
-    max_parallel_ai_requests: int = 5  # Reduced from 10 - stay well under 1K RPM
-    ai_rate_limit_delay: float = 0.1  # 100ms between AI batches (~600 RPM with margin)
-    ai_max_tokens: int = 8192  # Gemini 3 supports larger context windows
+    max_parallel_ai_requests: int = 10  # Gemini 2.5 supports higher RPM
+    ai_rate_limit_delay: float = 0.05  # 50ms between AI batches
+    ai_max_tokens: int = 8192
 
     # Source URLs - laws are ordered by relevance (first = most important)
     sources: Dict[str, Dict[str, str]] = field(default_factory=lambda: {
@@ -708,7 +708,7 @@ def call_gemini_api(prompt: str, temperature: float = 0.3, max_tokens: int = Non
         return None
 
     try:
-        url = f"https://generativelanguage.googleapis.com/v1/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
 
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
@@ -2669,7 +2669,7 @@ def clean_text_with_ai(api_key: str, text: str, title: str, country: str) -> str
     prompt = f'{system_prompt}\n\nClean this law text for "{title}":\n\n{text[:30000]}'
 
     # Use v1 API for gemini-3-flash support
-    url = f"https://generativelanguage.googleapis.com/v1/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"temperature": 0.1, "maxOutputTokens": CONFIG.ai_max_tokens}
@@ -2713,7 +2713,7 @@ Clean these {len(sections)} law text sections. Return each cleaned section prefi
 
     try:
         # Use v1 API for gemini-3-flash support
-        url = f"https://generativelanguage.googleapis.com/v1/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {"temperature": 0.1, "maxOutputTokens": CONFIG.ai_max_tokens}
@@ -4271,7 +4271,7 @@ Requirements:
         log_info(f"Asking AI to suggest Wikipedia sources for {country}...")
 
         # Use v1 API for gemini-3-flash support
-        url = f"https://generativelanguage.googleapis.com/v1/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {"temperature": 0.3, "maxOutputTokens": CONFIG.ai_max_tokens}
