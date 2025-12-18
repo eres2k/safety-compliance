@@ -1168,25 +1168,34 @@ export function LawBrowser({ onBack }) {
   const extractTitleFromText = (text, sectionNumber) => {
     if (!text) return ''
 
-    // Try to find the title from the text content
-    // Pattern 1: "§ X. Title" or "§ X Title" at the beginning
+    // Normalize spacing issues (common in AT laws: "§ 3 . " instead of "§ 3. ")
+    const normalizedText = text.replace(/\s+\.\s+/g, '. ').replace(/\s+\./g, '.')
+
+    // Get just the number part for pattern matching
     const numberPattern = sectionNumber.replace(/[§\s.]/g, '').replace(/([a-z])/i, '$1?')
+
     const patterns = [
+      // "§ 1. Geltungsbereich" or "§ 3. Jugendliche im Sinne..." - title after section number
+      new RegExp(`§\\s*${numberPattern}\\.?\\s+([A-ZÄÖÜ][a-zäöüßA-ZÄÖÜ\\s]+?)(?:\\s+(?:im Sinne|gemäß|nach|sind|ist|haben|wird|werden|kann|darf)|\\.|$)`, 'im'),
+      // Simpler pattern: "§ X. Title" where title is capitalized phrase
+      new RegExp(`§\\s*${numberPattern}\\.?\\s+([A-ZÄÖÜ][a-zäöüß]+(?:\\s+[a-zäöüßA-ZÄÖÜ]+){0,5})`, 'im'),
       // "Geltungsbereich\n§ 1." - title before section number
       new RegExp(`^([A-ZÄÖÜ][a-zäöüß]+(?:\\s+[A-Za-zäöüßÄÖÜ]+)*)\\s*\\n\\s*§\\s*${numberPattern}`, 'im'),
-      // "§ 1. Geltungsbereich" - title after section number on same line
-      new RegExp(`§\\s*${numberPattern}\\.?\\s+([A-ZÄÖÜ][^\\n]{3,50})`, 'im'),
+      // For NL: "Artikel X. Title"
+      new RegExp(`Artikel\\s*${numberPattern}\\.?\\s+([A-Za-z][^\\n]{3,50})`, 'im'),
       // ABSCHNITT N\nTitle - look for title after ABSCHNITT header
       /ABSCHNITT\s+\d+[a-z]?\s*\n([A-ZÄÖÜ][^\n]{3,50})/im
     ]
 
     for (const pattern of patterns) {
-      const match = text.match(pattern)
+      const match = normalizedText.match(pattern)
       if (match && match[1]) {
         let title = match[1].trim()
         // Clean up - remove section number patterns and parenthetical starts
         title = title.replace(/^\(?\d+\)?\s*/, '').trim()
         title = title.replace(/^§\s*\d+[a-z]?\.?\s*/i, '').trim()
+        // Remove trailing punctuation
+        title = title.replace(/[.,:;]$/, '').trim()
         if (title && title.length > 2 && title.length < 100) {
           return title
         }
@@ -1230,27 +1239,26 @@ export function LawBrowser({ onBack }) {
   const cleanSectionTitle = (title, sectionNumber, jurisdiction) => {
     if (!title) return ''
 
-    let cleaned = title
+    let cleaned = title.trim()
 
-    // Remove "Artikel X." or "§ X." prefix first (handles "Artikel 1. :1. Begrippen")
+    // Step 1: Remove "Artikel X." or "§ X." prefix (handles "Artikel 1. :1. Begrippen", "§ 3. Title")
     cleaned = cleaned.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+[a-z]?\.?)\s*/i, '').trim()
 
-    // For NL laws: Remove Dutch internal numbering patterns
-    // Patterns like ":1.", ":1:", "1:1", "1:1:", "2:1" at start of title
-    // These are chapter:article references that got scraped into the title
-    cleaned = cleaned.replace(/^:?\d*:?\d+[a-z]?[.:]\s*/i, '').trim()
+    // Step 2: Remove Dutch internal numbering patterns at start
+    // Handle ":1", ":1.", ":1:" patterns (colon + digits + optional punctuation)
+    cleaned = cleaned.replace(/^:\d+[a-z]?[.:]?\s*/i, '').trim()
 
-    // Also remove patterns like "1:1" without trailing punctuation
-    cleaned = cleaned.replace(/^\d+:\d+[a-z]?\s*/i, '').trim()
+    // Handle "1:1", "2:1" patterns (digits + colon + digits)
+    cleaned = cleaned.replace(/^\d+:\d+[a-z]?[.:]?\s*/i, '').trim()
 
-    // Remove standalone single digits at the end that match the section number (e.g., "Artikel 35. 5" -> "")
-    const numMatch = sectionNumber?.match(/\d+$/)
-    if (numMatch && cleaned === numMatch[0]) {
+    // Step 3: Remove standalone single/double digits that are just article number echoes
+    // e.g., "5" from "Artikel 35. 5", "0" from "Artikel 40. 0"
+    if (/^\d{1,2}$/.test(cleaned)) {
       cleaned = ''
     }
 
-    // Handle AT "§ 0" preamble sections - provide a meaningful label
-    if (jurisdiction === 'AT' && sectionNumber === '0' && (!cleaned || cleaned === '§ 0')) {
+    // Step 4: Handle AT "§ 0" preamble sections
+    if (jurisdiction === 'AT' && sectionNumber === '0' && !cleaned) {
       cleaned = 'Langtitel'
     }
 
