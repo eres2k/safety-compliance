@@ -430,14 +430,15 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
 Write a professional WHS summary with these EXACT sections:
 
 **Key WHS obligations:**
-- [List specific compliance requirements with paragraph references]
+- [List specific compliance requirements WITH LEGAL CITATIONS like (§ 3 Abs. 1), (§ 4 Z 2), or (Art. 3.1)]
 
 **Compliance deadlines:**
-- [List specific deadlines, frequencies, or "Ongoing" if continuous]
+- [List specific deadlines, frequencies, or "Ongoing" if continuous - CITE the paragraph]
 
 **Documentation required:**
-- [List required records and documentation]
+- [List required records and documentation WITH legal source citation]
 
+IMPORTANT: Every obligation MUST include the exact legal reference (e.g., "§ 3 Abs. 2 Z 1" for AT/DE, "Artikel 3.1" for NL).
 Keep it under 150 words. Focus on actionable compliance for Amazon logistics.
 
 ===VERSION 2: EXPLAIN LIKE I'M 5 (completely different!)===
@@ -523,9 +524,10 @@ RULES:
 1. Extract key compliance obligations and deadlines relevant to Amazon logistics operations
 2. Use bullet points for clarity
 3. Format: "Key WHS obligations: [list]" then "Compliance deadlines: [list]" then "Documentation required: [list]"
-4. Keep it under 150 words
-5. Focus on actionable compliance requirements for delivery station operations
-6. Include specific numbers (e.g., "every 12 months", "within 3 days")
+4. ALWAYS include legal citations (e.g., "§ 3 Abs. 2 Z 1" for AT/DE, "Artikel 3.1" for NL) for each obligation
+5. Keep it under 150 words
+6. Focus on actionable compliance requirements for delivery station operations
+7. Include specific numbers (e.g., "every 12 months", "within 3 days")
 
 Section: ${sectionTitle || 'Regulation'}
 

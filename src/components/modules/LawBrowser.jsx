@@ -496,6 +496,7 @@ function getCleanLawText(text) {
 }
 
 // Format text with proper structure (paragraphs, lists, etc.)
+// Handles German legal formatting where numbered items (1., 2.) belong to their parent Absatz
 function formatLawText(text) {
   if (!text) return null
 
@@ -504,6 +505,7 @@ function formatLawText(text) {
   let currentParagraph = []
   let inList = false
   let listItems = []
+  let currentAbsatz = null // Track current Absatz for attaching sub-items
 
   const flushParagraph = () => {
     if (currentParagraph.length > 0) {
@@ -517,24 +519,47 @@ function formatLawText(text) {
 
   const flushList = () => {
     if (listItems.length > 0) {
-      elements.push({ type: 'list', items: [...listItems] })
+      // If we have a current Absatz, attach list items to it
+      if (currentAbsatz && elements.length > 0 && elements[elements.length - 1] === currentAbsatz) {
+        currentAbsatz.subItems = [...listItems]
+      } else {
+        elements.push({ type: 'list', items: [...listItems] })
+      }
       listItems = []
       inList = false
+    }
+  }
+
+  const flushAbsatz = () => {
+    if (currentAbsatz) {
+      flushList()
+      currentAbsatz = null
     }
   }
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim()
 
-    // Empty line - end current paragraph
+    // Empty line - end current paragraph/list but preserve Absatz context for following items
     if (!line) {
       flushList()
       flushParagraph()
+      // Check if next non-empty line is a numbered item that belongs to current Absatz
+      let nextNonEmpty = i + 1
+      while (nextNonEmpty < lines.length && !lines[nextNonEmpty].trim()) nextNonEmpty++
+      if (nextNonEmpty < lines.length) {
+        const nextLine = lines[nextNonEmpty].trim()
+        // If next line is NOT a numbered item (1., 2., a), etc.), end Absatz context
+        if (!nextLine.match(/^(\d+\.|[a-z]\)|[a-z]\.|[ivxIVX]+\.)\s+/)) {
+          flushAbsatz()
+        }
+      }
       continue
     }
 
     // Section headers (§ or Artikel)
     if (/^(§\s*\d+[a-z]?|Art\.?\s*\d+|Artikel\s*\d+)/i.test(line)) {
+      flushAbsatz()
       flushList()
       flushParagraph()
       elements.push({ type: 'section', content: line })
@@ -545,9 +570,11 @@ function formatLawText(text) {
     // These are distinct paragraphs within a section and should be highlighted
     const absatzMatch = line.match(/^\((\d+[a-z]?)\)\s*(.*)/)
     if (absatzMatch) {
+      flushAbsatz()
       flushList()
       flushParagraph()
-      elements.push({ type: 'absatz', number: absatzMatch[1], content: absatzMatch[2] || '' })
+      currentAbsatz = { type: 'absatz', number: absatzMatch[1], content: absatzMatch[2] || '', subItems: [] }
+      elements.push(currentAbsatz)
       continue
     }
 
@@ -556,7 +583,7 @@ function formatLawText(text) {
     if (numberedMatch) {
       flushParagraph()
       inList = true
-      listItems.push(numberedMatch[2])
+      listItems.push({ marker: numberedMatch[1], content: numberedMatch[2] })
       continue
     }
 
@@ -565,16 +592,23 @@ function formatLawText(text) {
     if (bulletMatch) {
       flushParagraph()
       inList = true
-      listItems.push(bulletMatch[1])
+      listItems.push({ marker: '•', content: bulletMatch[1] })
       continue
     }
 
     // Ziffer patterns (Z 1, Z 2, etc.)
-    const zifferMatch = line.match(/^Z\s+\d+[.:]\s*(.+)/)
+    const zifferMatch = line.match(/^(Z\s+\d+)[.:]\s*(.+)/)
     if (zifferMatch) {
       flushParagraph()
       inList = true
-      listItems.push(zifferMatch[1] || line)
+      listItems.push({ marker: zifferMatch[1], content: zifferMatch[2] || line })
+      continue
+    }
+
+    // Regular text - if we're in an Absatz and have accumulated text, append to content
+    if (currentAbsatz && !inList && currentParagraph.length === 0) {
+      // Continuation of Absatz content
+      currentAbsatz.content += (currentAbsatz.content ? ' ' : '') + line
       continue
     }
 
@@ -585,6 +619,7 @@ function formatLawText(text) {
     currentParagraph.push(line)
   }
 
+  flushAbsatz()
   flushList()
   flushParagraph()
 
@@ -598,6 +633,26 @@ function FormattedText({ text, searchTerm = '' }) {
     return <div className="whitespace-pre-wrap">{highlightText(text, searchTerm)}</div>
   }
 
+  // Helper to render list items (handles both string and {marker, content} formats)
+  const renderListItems = (items, isSubList = false) => (
+    <ol className={`space-y-1.5 ${isSubList ? 'mt-2 ml-4 border-l-2 border-gray-300 dark:border-gray-600 pl-3' : 'list-decimal list-inside pl-4'} text-gray-700 dark:text-gray-300`}>
+      {items.map((item, i) => {
+        const content = typeof item === 'string' ? item : item.content
+        const marker = typeof item === 'object' ? item.marker : null
+        return (
+          <li key={i} className="leading-relaxed">
+            {marker && (
+              <span className="inline-block min-w-[2rem] font-medium text-gray-600 dark:text-gray-400 mr-1">
+                {marker}
+              </span>
+            )}
+            <span>{highlightText(content, searchTerm)}</span>
+          </li>
+        )
+      })}
+    </ol>
+  )
+
   return (
     <div className="space-y-4">
       {elements.map((el, idx) => {
@@ -610,23 +665,26 @@ function FormattedText({ text, searchTerm = '' }) {
             )
           case 'absatz':
             // German paragraph (Absatz) with number like (1), (2) - styled with border for visibility
+            // Now supports subItems (numbered points that belong to the Absatz)
             return (
               <div key={idx} className="border-l-4 border-whs-orange-400 dark:border-whs-orange-600 pl-4 py-2 bg-gray-50 dark:bg-gray-800/50 rounded-r">
-                <span className="inline-block bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 px-2 py-0.5 rounded text-sm font-semibold mr-2">
-                  ({el.number})
-                </span>
-                <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {highlightText(el.content, searchTerm)}
-                </span>
+                <div>
+                  <span className="inline-block bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 px-2 py-0.5 rounded text-sm font-semibold mr-2">
+                    ({el.number})
+                  </span>
+                  <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {highlightText(el.content, searchTerm)}
+                  </span>
+                </div>
+                {/* Render sub-items (numbered points belonging to this Absatz) */}
+                {el.subItems && el.subItems.length > 0 && renderListItems(el.subItems, true)}
               </div>
             )
           case 'list':
             return (
-              <ul key={idx} className="list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300">
-                {el.items.map((item, i) => (
-                  <li key={i} className="leading-relaxed">{highlightText(item, searchTerm)}</li>
-                ))}
-              </ul>
+              <div key={idx}>
+                {renderListItems(el.items)}
+              </div>
             )
           case 'paragraph':
           default:
@@ -1639,6 +1697,18 @@ export function LawBrowser({ onBack }) {
                       {selectedLaw.title_en && (
                         <p className="text-white/80 text-sm mt-1">{selectedLaw.title_en}</p>
                       )}
+                      {/* Wikipedia article link shown inline with title */}
+                      {wikiIndex[selectedLaw.abbreviation] && (
+                        <button
+                          onClick={() => openWikiModal(selectedLaw.abbreviation)}
+                          className="inline-flex items-center gap-1 mt-1 text-white/70 hover:text-white text-xs transition-colors"
+                        >
+                          <span>📖</span>
+                          <span className="underline">
+                            {wikiIndex[selectedLaw.abbreviation]?.title || 'Wikipedia article'}
+                          </span>
+                        </button>
+                      )}
                     </div>
                     <div className="flex gap-2">
                       <button
@@ -1667,11 +1737,14 @@ export function LawBrowser({ onBack }) {
                       {wikiIndex[selectedLaw.abbreviation] && (
                         <button
                           onClick={() => openWikiModal(selectedLaw.abbreviation)}
-                          className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors flex items-center gap-1"
+                          className="px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors flex items-center gap-2"
                           title={`Wikipedia: ${wikiIndex[selectedLaw.abbreviation]?.title || selectedLaw.abbreviation}`}
                         >
-                          <span className="text-sm">📖</span>
-                          <span className="text-xs font-medium">Wiki</span>
+                          <span className="text-base">📖</span>
+                          <span className="text-sm font-medium hidden sm:inline truncate max-w-[150px]">
+                            {wikiIndex[selectedLaw.abbreviation]?.title || 'Wikipedia'}
+                          </span>
+                          <span className="text-sm font-medium sm:hidden">Wiki</span>
                         </button>
                       )}
                     </div>
