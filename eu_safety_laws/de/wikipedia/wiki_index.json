@@ -1,155 +1,48 @@
 {
   "country": "DE",
   "language": "de",
-  "scraped_at": "2025-12-18T18:04:53.425207",
+  "scraped_at": "2025-12-18T19:35:28.495631",
   "articles": {
     "ArbSchG": {
       "title": "Arbeitsschutzgesetz",
       "url": "https://de.wikipedia.org/wiki/Arbeitsschutzgesetz",
-      "summary": "Das Arbeitsschutzgesetz (Abkürzung ArbSchG) ist ein deutsches Gesetz zur Umsetzung der Richtlinie 89/391/EWG (Arbeitsschutz-Rahmenrichtlinie). Das Arbeitssicherheitsgesetz ist das „Controlling-Gesetz" zum Arbeitsschutzgesetz."
+      "summary": "DasArbeitsschutzgesetz(AbkürzungArbSchG) ist ein deutsches Gesetz zur Umsetzung derRichtlinie 89/391/EWG (Arbeitsschutz-Rahmenrichtlinie).\nDasArbeitssicherheitsgesetzist das „Controlling-Gesetz“ zum Arbeitsschutzgesetz."
     },
     "ASiG": {
       "title": "Arbeitssicherheitsgesetz",
       "url": "https://de.wikipedia.org/wiki/Arbeitssicherheitsgesetz",
-      "summary": "Das deutsche Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit – kurz Arbeitssicherheitsgesetz (ASiG) – regelt die Pflichten der Arbeitgeber zur Bestellung von Betriebsärzten, Sicherheitsingenieuren und anderen Fachkräften für Arbeitssicherheit."
+      "summary": "Das deutscheGesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit– kurzArbeitssicherheitsgesetz(ASiG) – vom 12. Dezember 1973, zuletzt geändert durch Artikel 226 der Verordnung vom 31. Oktober 2006, regelt die Pflichten derArbeitgeberzur Bestellung vonBetriebsärzten,Sicherheitsingenieurenund anderenFachkräften für Arbeitssicherheit, definiert deren Aufgaben und betriebliche Position und fordert die betriebliche Zusammenarbeit beim Arbeitsschutz und bei der "
     },
     "ArbZG": {
       "title": "Arbeitszeitgesetz",
       "url": "https://de.wikipedia.org/wiki/Arbeitszeitgesetz",
-      "summary": "Das deutsche Arbeitszeitgesetz betrifft den öffentlich-rechtlichen Arbeitsschutz von Arbeitnehmern. Es begrenzt die höchstzulässige tägliche Arbeitszeit, setzt Mindestruhepausen und Mindestruhezeiten fest."
+      "summary": "Das deutscheArbeitszeitgesetzbetrifft den öffentlich-rechtlichen Arbeitsschutz vonArbeitnehmern. Es begrenzt die höchstzulässige täglicheArbeitszeit, es setzt Mindestruhepausen während der Arbeitszeit und Mindestruhezeiten zwischen Beendigung und Wiederaufnahme der Arbeit sowie die Arbeitsruhe an Sonn- und Feiertagen fest. Zudem enthält es Schutzvorschriften zur Nachtarbeit. Das Gesetz ist fürArbeitgeberund Arbeitnehmer verbindlich."
     },
     "MuSchG": {
       "title": "Mutterschutzgesetz",
       "url": "https://de.wikipedia.org/wiki/Mutterschutzgesetz",
-      "summary": "Das deutsche Mutterschutzgesetz (MuSchG) schützt die Gesundheit von Frauen in Anstellung, Studium oder Ausbildung und ihrer Kinder während der Schwangerschaft, nach der Entbindung und in der Stillzeit."
+      "summary": "Das deutscheMutterschutzgesetz(MuSchG) schützt die Gesundheit von Frauen in Anstellung, Studium oder Ausbildung und ihrer Kinder während derSchwangerschaft, nach derEntbindungund in derStillzeit."
     },
     "JArbSchG": {
       "title": "Jugendarbeitsschutzgesetz",
       "url": "https://de.wikipedia.org/wiki/Jugendarbeitsschutzgesetz",
-      "summary": "Das Jugendarbeitsschutzgesetz (JArbSchG) ist ein deutsches Gesetz zum Schutz von arbeitenden Kindern und Jugendlichen. Es zählt zu den Gesetzen des sozialen Arbeitsschutzes."
+      "summary": "DasJugendarbeitsschutzgesetz(JArbSchG) ist ein deutsches Gesetz zum Schutz von arbeitendenKindernundJugendlichen. Es zählt zu den Gesetzen des sozialenArbeitsschutzes."
     },
     "ArbStättV": {
       "title": "Arbeitsstättenverordnung (Deutschland)",
       "url": "https://de.wikipedia.org/wiki/Arbeitsstättenverordnung_(Deutschland)",
-      "summary": "Die deutsche Verordnung über Arbeitsstätten (Arbeitsstättenverordnung - ArbStättV) enthält Mindestvorschriften für die Sicherheit und den Gesundheitsschutz der Beschäftigten beim Einrichten und Betreiben von Arbeitsstätten."
+      "summary": "Die deutscheVerordnung über Arbeitsstätten (Arbeitsstättenverordnung - ArbStättV)enthält Mindestvorschriften für die Sicherheit und den Gesundheitsschutz der Beschäftigten beim Einrichten und Betreiben vonArbeitsstätteneinschließlichBaustellen."
     },
     "BetrSichV": {
       "title": "Betriebssicherheitsverordnung",
       "url": "https://de.wikipedia.org/wiki/Betriebssicherheitsverordnung",
-      "summary": "Die Betriebssicherheitsverordnung (BetrSichV) regelt in Deutschland die Bereitstellung von Arbeitsmitteln durch den Arbeitgeber und die Benutzung von Arbeitsmitteln durch die Beschäftigten bei der Arbeit."
+      "summary": "DieBetriebssicherheitsverordnung(BetrSichV) ist die deutsche Umsetzung derRichtlinie 89/655/EWG(Arbeitsmittelrichtlinie), später ersetzt durchRichtlinie 2009/104/EG, und regelt inDeutschlanddie Bereitstellung von Arbeitsmitteln durch den Arbeitgeber, die Benutzung von Arbeitsmitteln durch die Beschäftigten bei der Arbeit sowie die Errichtung und den Betrieb vonüberwachungsbedürftigen Anlagenim Sinne desArbeitsschutzes. Das in ihr enthaltene Schutzkonzept ist auf alle von Arbeitsmitteln ausgehend"
     },
     "GefStoffV": {
       "title": "Gefahrstoffverordnung",
       "url": "https://de.wikipedia.org/wiki/Gefahrstoffverordnung",
-      "summary": "Die Gefahrstoffverordnung (GefStoffV) ist eine deutsche Verordnung zum Schutz vor gefährlichen Stoffen im deutschen Arbeitsschutz."
-    },
-    "DGUV": {
-      "title": "Deutsche Gesetzliche Unfallversicherung",
-      "url": "https://de.wikipedia.org/wiki/Deutsche_Gesetzliche_Unfallversicherung",
-      "summary": "Die Deutsche Gesetzliche Unfallversicherung (DGUV) ist der Spitzenverband der gewerblichen Berufsgenossenschaften und der Unfallversicherungsträger der öffentlichen Hand."
-    },
-    "LasthandhabV": {
-      "title": "Lastenhandhabungsverordnung",
-      "url": "https://de.wikipedia.org/wiki/Lastenhandhabungsverordnung",
-      "summary": "Die Lastenhandhabungsverordnung (LasthandhabV) regelt den Schutz der Beschäftigten vor Gefährdungen durch manuelle Handhabung von Lasten."
-    },
-    "PSA-BV": {
-      "title": "PSA-Benutzungsverordnung",
-      "url": "https://de.wikipedia.org/wiki/Persönliche_Schutzausrüstung",
-      "summary": "Die PSA-Benutzungsverordnung regelt die Bereitstellung und Verwendung persönlicher Schutzausrüstungen bei der Arbeit."
-    },
-    "LärmVibrationsArbSchV": {
-      "title": "Lärm- und Vibrations-Arbeitsschutzverordnung",
-      "url": "https://de.wikipedia.org/wiki/Lärm-_und_Vibrations-Arbeitsschutzverordnung",
-      "summary": "Die Lärm- und Vibrations-Arbeitsschutzverordnung schützt Beschäftigte vor Gefährdungen durch Lärm und Vibrationen am Arbeitsplatz."
+      "summary": "DieGefahrstoffverordnung(GefStoffV) ist eine deutsche Verordnung zum Schutz vorgefährlichen Stoffenim deutschenArbeitsschutz. DieVerordnungsermächtigungist imChemikaliengesetz(ChemG) enthalten. Seit 2005 ist auch dasArbeitsschutzgesetzgesetzliche Grundlage für die GefStoffV."
     }
   },
-  "ai_suggested_articles": [],
-  "whs_crosslinks": {
-    "Gefährdungsbeurteilung": {
-      "title": "Gefährdungsbeurteilung",
-      "url": "https://de.wikipedia.org/wiki/Gefährdungsbeurteilung",
-      "summary": "Die Gefährdungsbeurteilung ist die systematische Ermittlung und Bewertung von Gefährdungen der Beschäftigten."
-    },
-    "Arbeitsunfall": {
-      "title": "Arbeitsunfall",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsunfall",
-      "summary": "Ein Arbeitsunfall ist ein Unfall, den eine versicherte Person infolge ihrer versicherten Tätigkeit erleidet."
-    },
-    "Berufskrankheit": {
-      "title": "Berufskrankheit",
-      "url": "https://de.wikipedia.org/wiki/Berufskrankheit",
-      "summary": "Eine Berufskrankheit ist eine Krankheit, die durch die berufliche Tätigkeit verursacht wird."
-    },
-    "Ergonomie": {
-      "title": "Ergonomie",
-      "url": "https://de.wikipedia.org/wiki/Ergonomie",
-      "summary": "Ergonomie ist die Wissenschaft von der Anpassung der Arbeitsbedingungen an den Menschen."
-    },
-    "Gefahrstoff": {
-      "title": "Gefahrstoff",
-      "url": "https://de.wikipedia.org/wiki/Gefahrstoff",
-      "summary": "Gefahrstoffe sind Stoffe, Gemische oder Erzeugnisse, die gefährliche Eigenschaften haben."
-    },
-    "Lärm": {
-      "title": "Lärm",
-      "url": "https://de.wikipedia.org/wiki/Lärm",
-      "summary": "Lärm ist unerwünschter Schall, der die Gesundheit und das Wohlbefinden beeinträchtigen kann."
-    },
-    "Arbeitsmedizin": {
-      "title": "Arbeitsmedizin",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsmedizin",
-      "summary": "Die Arbeitsmedizin befasst sich mit der Wechselwirkung zwischen Arbeit und Gesundheit."
-    },
-    "Erste Hilfe": {
-      "title": "Erste Hilfe",
-      "url": "https://de.wikipedia.org/wiki/Erste_Hilfe",
-      "summary": "Erste Hilfe umfasst lebensrettende Sofortmaßnahmen bei Notfällen."
-    },
-    "Brandschutz": {
-      "title": "Brandschutz",
-      "url": "https://de.wikipedia.org/wiki/Brandschutz",
-      "summary": "Brandschutz umfasst alle Maßnahmen zur Verhütung und Bekämpfung von Bränden."
-    },
-    "Schutzkleidung": {
-      "title": "Schutzkleidung",
-      "url": "https://de.wikipedia.org/wiki/Schutzkleidung",
-      "summary": "Schutzkleidung dient dem Schutz vor arbeitsbedingten Gefahren."
-    },
-    "Fachkraft für Arbeitssicherheit": {
-      "title": "Fachkraft für Arbeitssicherheit",
-      "url": "https://de.wikipedia.org/wiki/Fachkraft_für_Arbeitssicherheit",
-      "summary": "Die Fachkraft für Arbeitssicherheit berät den Arbeitgeber in Fragen der Arbeitssicherheit."
-    },
-    "Betriebsarzt": {
-      "title": "Betriebsarzt",
-      "url": "https://de.wikipedia.org/wiki/Betriebsarzt",
-      "summary": "Der Betriebsarzt ist ein Arzt, der den Arbeitgeber beim Gesundheitsschutz unterstützt."
-    },
-    "Sicherheitsunterweisung": {
-      "title": "Unterweisung (Arbeitsschutz)",
-      "url": "https://de.wikipedia.org/wiki/Unterweisung_(Arbeitsschutz)",
-      "summary": "Die Sicherheitsunterweisung informiert Arbeitnehmer über Gefahren und Schutzmaßnahmen."
-    },
-    "Berufsgenossenschaft": {
-      "title": "Berufsgenossenschaft",
-      "url": "https://de.wikipedia.org/wiki/Berufsgenossenschaft",
-      "summary": "Berufsgenossenschaften sind Träger der gesetzlichen Unfallversicherung für Unternehmen der gewerblichen Wirtschaft."
-    },
-    "Arbeitsplatzgrenzwert": {
-      "title": "Arbeitsplatzgrenzwert",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsplatzgrenzwert",
-      "summary": "Der Arbeitsplatzgrenzwert (AGW) ist die Konzentration eines Stoffes in der Luft am Arbeitsplatz, bei der eine Gesundheitsbeeinträchtigung nicht zu erwarten ist."
-    },
-    "Gabelstapler": {
-      "title": "Gabelstapler",
-      "url": "https://de.wikipedia.org/wiki/Gabelstapler",
-      "summary": "Ein Gabelstapler ist ein Flurförderzeug zum Heben, Transportieren und Stapeln von Lasten."
-    },
-    "Fluchtwege": {
-      "title": "Fluchtweg",
-      "url": "https://de.wikipedia.org/wiki/Fluchtweg",
-      "summary": "Fluchtwege sind Wege, die im Gefahrenfall das schnelle und sichere Verlassen von Gebäuden ermöglichen."
-    }
-  }
+  "ai_suggested_articles": []
 }

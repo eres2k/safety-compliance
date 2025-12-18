@@ -21,12 +21,13 @@
         "source_type": "custom"
       },
       "PSA-V": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20009119",
-        "name": "Persönliche Schutzausrüstung-Verordnung 2015",
-        "description": "Regulates the selection, provision, use, maintenance, and storage of personal protective equipment (PPE) to protect employees from health and safety risks.",
+        "url": "https://www.jusline.at/gesetz/psa-v",
+        "name": "Verordnung über den Schutz der Arbeitnehmer/innen vor Gefahren durch physikalische Einwirkungen",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "created_at": "2025-12-18T16:31:35.867103",
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T19:11:27.136401",
+        "original_url_failed": true
       },
       "VbA": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008545",
@@ -37,12 +38,13 @@
         "source_type": "custom"
       },
       "BauKG": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008543",
-        "name": "Bauarbeitenkoordinationsgesetz (BauKG)",
-        "description": "Establishes rules for the coordination of safety and health protection on construction sites, particularly when multiple employers are involved, to prevent accidents and health risks.",
+        "url": "/Dokument.wxe?Abfrage=Bundesnormen&Dokumentnummer=NOR40008543",
+        "name": "Bundesgesetz über die Koordination von Sicherheits- und Gesundheitsschutz auf Baustellen (Bauarbeitenkoordinationsgesetz - BauKG)",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "created_at": "2025-12-18T16:23:40.814869",
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T19:11:53.343509",
+        "original_url_failed": true
       },
       "GefStoffV": {
         "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001710",
@@ -227,15 +229,16 @@
         "source_type": "custom"
       },
       "LastenhandhabV": {
-        "url": "https://www.gesetze-im-internet.de/lastenhandhabv/",
-        "name": "Lastenhandhabungsverordnung",
-        "description": "This ordinance aims to protect employees from health risks, particularly musculoskeletal disorders, when manually handling loads in the workplace, requiring employers to assess risks and implement appropriate measures.",
+        "url": "/lasthandhabv/",
+        "name": "Verordnung über Sicherheit und Gesundheitsschutz bei der manuellen Handhabung von Lasten bei der Arbeit (Lastenhandhabungsverordnung - LasthandhabV)",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "created_at": "2025-12-18T17:41:02.678389",
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T19:29:50.317683",
+        "original_url_failed": true
       }
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-18T18:05:21.026676"
+  "updated_at": "2025-12-18T19:29:50.317690"
 }

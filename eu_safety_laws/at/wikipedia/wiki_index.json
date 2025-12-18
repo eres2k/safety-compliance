@@ -1,130 +1,48 @@
 {
   "country": "AT",
   "language": "de",
-  "scraped_at": "2025-12-18T18:00:12.505962",
+  "scraped_at": "2025-12-18T19:28:04.367301",
   "articles": {
     "ASchG": {
       "title": "ArbeitnehmerInnenschutzgesetz",
       "url": "https://de.wikipedia.org/wiki/ArbeitnehmerInnenschutzgesetz",
-      "summary": "Das österreichische Bundesgesetz über Sicherheit und Gesundheitsschutz bei der Arbeit (ArbeitnehmerInnenschutzgesetz – ASchG) – kurz ArbeitnehmerInnenschutzgesetz (ASchG) – BGBl. Nr. 450/1994 ist die wichtigste grundlegende Rechtsvorschrift für den „technischen und hygienischen Arbeitnehmerschutz" in Österreich. Es trat mit 1. Jänner 1995 in Kraft."
+      "summary": "Das österreichischeBundesgesetz über Sicherheit und Gesundheitsschutz bei der Arbeit (ArbeitnehmerInnenschutzgesetz – ASchG)– kurzArbeitnehmerInnenschutzgesetz(ASchG) –BGBl. Nr. 450/1994ist die wichtigste grundlegende Rechtsvorschrift für den „technischen und hygienischen Arbeitnehmerschutz“ in Österreich. Es trat mit 1. Jänner 1995 in Kraft."
     },
     "AZG": {
       "title": "Arbeitszeitgesetz (Österreich)",
       "url": "https://de.wikipedia.org/wiki/Arbeitszeitgesetz_(Österreich)",
-      "summary": "Das Arbeitszeitgesetz reglementiert die Arbeitszeiten der Arbeitnehmer. Die Ergänzung für die wöchentliche Ruhezeit und die Feiertagsruhe ist das Arbeitsruhegesetz."
+      "summary": "DasArbeitszeitgesetzreglementiert die Arbeitszeiten derArbeitnehmer.[1]Die Ergänzung für die wöchentliche Ruhezeit und die Feiertagsruhe ist dasArbeitsruhegesetz."
     },
     "ARG": {
       "title": "Arbeitsruhegesetz",
       "url": "https://de.wikipedia.org/wiki/Arbeitsruhegesetz",
-      "summary": "Das Arbeitsruhegesetz reglementiert die Ruhezeiten (u. a. Wochenendruhe, Wochenruhe, Ersatzruhe und Feiertagsruhe) der Arbeitnehmer in Österreich."
+      "summary": "DasArbeitsruhegesetzreglementiert die Ruhezeiten (u. a. Wochenendruhe, Wochenruhe, Ersatzruhe und Feiertagsruhe) derArbeitnehmerin Österreich.[1]"
     },
     "MSchG": {
-      "title": "Mutterschutzgesetz (Österreich)",
-      "url": "https://de.wikipedia.org/wiki/Mutterschutzgesetz_(Österreich)",
-      "summary": "Das österreichische Mutterschutzgesetz (MSchG) regelt den arbeitsrechtlichen Schutz von werdenden und stillenden Müttern. Es beinhaltet Beschäftigungsverbote, Schutzfristen vor und nach der Geburt sowie Kündigungsschutz."
+      "title": "Nichtraucherschutzgesetze in Österreich",
+      "url": "https://de.wikipedia.org/wiki/Nichtraucherschutzgesetze_in_Österreich",
+      "summary": "DasTabak- und Nichtraucherinnen- bzw. Nichtraucherschutzgesetzdient demNichtraucherschutz, also dem Schutz von Nichtrauchern vor demPassivrauchen. Die Situation inÖsterreichist gekennzeichnet durch einen vergleichsweise hohen Anteil an Rauchern unter den Heranwachsenden, insbesondere in den Großstädten. Die politische Gestaltung des Nichtraucherschutzes bedurfte mehrerer Anläufe."
     },
     "KJBG": {
-      "title": "Kinder- und Jugendbeschäftigungsgesetz",
-      "url": "https://de.wikipedia.org/wiki/Kinderarbeit",
-      "summary": "Das Kinder- und Jugendbeschäftigungsgesetz (KJBG) regelt in Österreich den Schutz von Kindern und Jugendlichen bei der Beschäftigung. Es enthält Bestimmungen zu Arbeitszeiten, verbotenen Tätigkeiten und Ruhezeiten für junge Arbeitnehmer."
+      "title": "Wochenarbeitszeit",
+      "url": "https://de.wikipedia.org/wiki/Wochenarbeitszeit",
+      "summary": "DieWochenarbeitszeitbezeichnet die durchschnittliche Anzahl der Stunden, die einArbeitnehmerin einer Woche ohneFeiertagearbeitet. Sie ist häufig Gegenstand vonTarifverhandlungenund speziellenArbeitszeitmodellen.\nMan unterscheidet:"
     },
     "AStV": {
-      "title": "Arbeitsstättenverordnung",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsstätte",
-      "summary": "Die Arbeitsstättenverordnung enthält Mindestvorschriften für die Sicherheit und den Gesundheitsschutz der Beschäftigten beim Einrichten und Betreiben von Arbeitsstätten einschließlich Baustellen."
+      "title": "Arbeitsstättenverordnung (Deutschland)",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsstättenverordnung_(Deutschland)",
+      "summary": "Die deutscheVerordnung über Arbeitsstätten (Arbeitsstättenverordnung - ArbStättV)enthält Mindestvorschriften für die Sicherheit und den Gesundheitsschutz der Beschäftigten beim Einrichten und Betreiben vonArbeitsstätteneinschließlichBaustellen."
     },
     "AM-VO": {
-      "title": "Arbeitsmittelverordnung",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsmittel",
-      "summary": "Die Arbeitsmittelverordnung (AM-VO) regelt die sichere Verwendung von Arbeitsmitteln. Als Arbeitsmittel gelten Maschinen, Geräte, Werkzeuge und Anlagen, die bei der Arbeit verwendet werden."
+      "title": "Betriebsanweisung",
+      "url": "https://de.wikipedia.org/wiki/Betriebsanweisung",
+      "summary": "DieBetriebsanweisung(BA) ist im Gegensatz zu einerBetriebsanleitungein Dokument, welches ausschließlich auf Gefahren hinweisen und Schutzmaßnahmen aufzeigen soll."
     },
     "DOK-VO": {
-      "title": "Dokumentationsverordnung",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsschutz",
-      "summary": "Die Dokumentationsverordnung (DOK-VO) regelt die Dokumentationspflichten im Bereich des Arbeitnehmerschutzes, einschließlich der Aufzeichnung von Sicherheits- und Gesundheitsschutzdokumenten."
-    },
-    "PSA-V": {
-      "title": "Persönliche Schutzausrüstung",
-      "url": "https://de.wikipedia.org/wiki/Persönliche_Schutzausrüstung",
-      "summary": "Die PSA-Verordnung regelt die Bereitstellung und Verwendung persönlicher Schutzausrüstungen am Arbeitsplatz. PSA schützt Arbeitnehmer vor Gefahren für Sicherheit und Gesundheit."
-    },
-    "GKV": {
-      "title": "Grenzwerteverordnung",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsplatzgrenzwert",
-      "summary": "Die Grenzwerteverordnung legt Grenzwerte für Gefahrstoffe am Arbeitsplatz fest. MAK-Werte und TRK-Werte definieren maximale Konzentrationen gefährlicher Substanzen."
-    },
-    "B-BSG": {
-      "title": "Bundes-Bedienstetenschutzgesetz",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsschutz",
-      "summary": "Das Bundes-Bedienstetenschutzgesetz (B-BSG) regelt den Arbeitnehmerschutz für Bundesbedienstete in Österreich."
+      "title": "Gefahrstoffverzeichnis",
+      "url": "https://de.wikipedia.org/wiki/Gefahrstoffverzeichnis",
+      "summary": "EinGefahrstoffverzeichnisgibt einen Überblick über die in einem Betrieb (sinngemäß auch Schule, Amt, Apotheke …) verwendetenGefahrstoffe."
     }
   },
-  "ai_suggested_articles": [],
-  "whs_crosslinks": {
-    "Gefährdungsbeurteilung": {
-      "title": "Gefährdungsbeurteilung",
-      "url": "https://de.wikipedia.org/wiki/Gefährdungsbeurteilung",
-      "summary": "Die Gefährdungsbeurteilung ist die systematische Ermittlung und Bewertung von Gefährdungen der Beschäftigten."
-    },
-    "Arbeitsunfall": {
-      "title": "Arbeitsunfall",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsunfall",
-      "summary": "Ein Arbeitsunfall ist ein Unfall, den eine versicherte Person infolge ihrer versicherten Tätigkeit erleidet."
-    },
-    "Berufskrankheit": {
-      "title": "Berufskrankheit",
-      "url": "https://de.wikipedia.org/wiki/Berufskrankheit",
-      "summary": "Eine Berufskrankheit ist eine Krankheit, die durch die berufliche Tätigkeit verursacht wird."
-    },
-    "Ergonomie": {
-      "title": "Ergonomie",
-      "url": "https://de.wikipedia.org/wiki/Ergonomie",
-      "summary": "Ergonomie ist die Wissenschaft von der Anpassung der Arbeitsbedingungen an den Menschen."
-    },
-    "Gefahrstoff": {
-      "title": "Gefahrstoff",
-      "url": "https://de.wikipedia.org/wiki/Gefahrstoff",
-      "summary": "Gefahrstoffe sind Stoffe, Gemische oder Erzeugnisse, die gefährliche Eigenschaften haben."
-    },
-    "Lärm": {
-      "title": "Lärm",
-      "url": "https://de.wikipedia.org/wiki/Lärm",
-      "summary": "Lärm ist unerwünschter Schall, der die Gesundheit und das Wohlbefinden beeinträchtigen kann."
-    },
-    "Arbeitsmedizin": {
-      "title": "Arbeitsmedizin",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsmedizin",
-      "summary": "Die Arbeitsmedizin befasst sich mit der Wechselwirkung zwischen Arbeit und Gesundheit."
-    },
-    "Erste Hilfe": {
-      "title": "Erste Hilfe",
-      "url": "https://de.wikipedia.org/wiki/Erste_Hilfe",
-      "summary": "Erste Hilfe umfasst lebensrettende Sofortmaßnahmen bei Notfällen."
-    },
-    "Brandschutz": {
-      "title": "Brandschutz",
-      "url": "https://de.wikipedia.org/wiki/Brandschutz",
-      "summary": "Brandschutz umfasst alle Maßnahmen zur Verhütung und Bekämpfung von Bränden."
-    },
-    "Schutzkleidung": {
-      "title": "Schutzkleidung",
-      "url": "https://de.wikipedia.org/wiki/Schutzkleidung",
-      "summary": "Schutzkleidung dient dem Schutz vor arbeitsbedingten Gefahren."
-    },
-    "Sicherheitsfachkraft": {
-      "title": "Fachkraft für Arbeitssicherheit",
-      "url": "https://de.wikipedia.org/wiki/Fachkraft_für_Arbeitssicherheit",
-      "summary": "Die Sicherheitsfachkraft berät den Arbeitgeber in Fragen der Arbeitssicherheit."
-    },
-    "Betriebsarzt": {
-      "title": "Betriebsarzt",
-      "url": "https://de.wikipedia.org/wiki/Betriebsarzt",
-      "summary": "Der Betriebsarzt ist ein Arzt, der den Arbeitgeber beim Gesundheitsschutz unterstützt."
-    },
-    "Sicherheitsunterweisung": {
-      "title": "Unterweisung (Arbeitsschutz)",
-      "url": "https://de.wikipedia.org/wiki/Unterweisung_(Arbeitsschutz)",
-      "summary": "Die Sicherheitsunterweisung informiert Arbeitnehmer über Gefahren und Schutzmaßnahmen."
-    }
-  }
+  "ai_suggested_articles": []
 }
