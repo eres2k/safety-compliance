@@ -58,30 +58,50 @@ export function ComplexitySlider({
   )
 }
 
-// Parse WHS Summary sections from content
+// Parse WHS Summary sections from content (supports both old and new formats)
 function parseWHSSections(content) {
   const sections = {
-    obligations: [],
-    deadlines: [],
-    documentation: []
+    overview: [],
+    requirements: [],
+    relevance: [],
+    actions: []
   }
 
-  // Try to parse structured sections
-  const obligationsMatch = content.match(/(?:\*\*)?Key WHS obligations:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Compliance deadlines|(?:\*\*)?Documentation required|$)/i)
-  const deadlinesMatch = content.match(/(?:\*\*)?Compliance deadlines:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Documentation required|$)/i)
-  const documentationMatch = content.match(/(?:\*\*)?Documentation required:?(?:\*\*)?[\s\n]*([\s\S]*?)$/i)
+  // Try to parse new structured format from AI
+  const overviewMatch = content.match(/(?:\*\*)?What this section covers:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Key requirements|(?:\*\*)?Compliance relevance|$)/i)
+  const requirementsMatch = content.match(/(?:\*\*)?Key requirements from this text:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Compliance relevance|(?:\*\*)?Documentation|$)/i)
+  const relevanceMatch = content.match(/(?:\*\*)?Compliance relevance:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Documentation|$)/i)
+  const actionsMatch = content.match(/(?:\*\*)?Documentation\/Actions needed:?(?:\*\*)?[\s\n]*([\s\S]*?)$/i)
+
+  // Fallback to old format (Key WHS obligations, Compliance deadlines, Documentation required)
+  const oldObligationsMatch = content.match(/(?:\*\*)?Key WHS obligations:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Compliance deadlines|(?:\*\*)?Documentation required|$)/i)
+  const oldDeadlinesMatch = content.match(/(?:\*\*)?Compliance deadlines:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Documentation required|$)/i)
+  const oldDocumentationMatch = content.match(/(?:\*\*)?Documentation required:?(?:\*\*)?[\s\n]*([\s\S]*?)$/i)
 
   const parseBullets = (text) => {
     if (!text) return []
     return text
       .split(/[\n\r]+/)
       .map(line => line.replace(/^[\s*•\-–]+/, '').trim())
-      .filter(line => line.length > 0 && !line.match(/^(?:\*\*)?(?:Key WHS|Compliance|Documentation)/i))
+      .filter(line => line.length > 0 && !line.match(/^(?:\*\*)?(?:Key WHS|Compliance|Documentation|What this|Key requirements|Actions)/i))
   }
 
-  if (obligationsMatch) sections.obligations = parseBullets(obligationsMatch[1])
-  if (deadlinesMatch) sections.deadlines = parseBullets(deadlinesMatch[1])
-  if (documentationMatch) sections.documentation = parseBullets(documentationMatch[1])
+  // Try new format first
+  if (overviewMatch) sections.overview = parseBullets(overviewMatch[1])
+  if (requirementsMatch) sections.requirements = parseBullets(requirementsMatch[1])
+  if (relevanceMatch) sections.relevance = parseBullets(relevanceMatch[1])
+  if (actionsMatch) sections.actions = parseBullets(actionsMatch[1])
+
+  // Fallback to old format
+  if (oldObligationsMatch && sections.requirements.length === 0) {
+    sections.requirements = parseBullets(oldObligationsMatch[1])
+  }
+  if (oldDeadlinesMatch && sections.relevance.length === 0) {
+    sections.relevance = parseBullets(oldDeadlinesMatch[1])
+  }
+  if (oldDocumentationMatch && sections.actions.length === 0) {
+    sections.actions = parseBullets(oldDocumentationMatch[1])
+  }
 
   return sections
 }
@@ -168,7 +188,7 @@ export function SimplifiedContent({ content, level, isLoading, t = {}, wikiArtic
   // For manager level, parse and display structured WHS sections
   if (level === 'manager') {
     const sections = parseWHSSections(content)
-    const hasStructuredContent = sections.obligations.length > 0 || sections.deadlines.length > 0 || sections.documentation.length > 0
+    const hasStructuredContent = sections.overview.length > 0 || sections.requirements.length > 0 || sections.relevance.length > 0 || sections.actions.length > 0
 
     return (
       <div className={`rounded-xl p-4 ${config.bg} border ${config.border} shadow-sm`}>
@@ -180,22 +200,28 @@ export function SimplifiedContent({ content, level, isLoading, t = {}, wikiArtic
         {hasStructuredContent ? (
           <div className="space-y-3">
             <WHSSection
-              icon="✅"
-              title={t?.whs?.obligations || "Key WHS Obligations"}
-              items={sections.obligations}
-              color="orange"
-            />
-            <WHSSection
-              icon="📅"
-              title={t?.whs?.deadlines || "Compliance Deadlines"}
-              items={sections.deadlines}
+              icon="📋"
+              title={t?.whs?.overview || "What This Section Covers"}
+              items={sections.overview}
               color="blue"
             />
             <WHSSection
-              icon="📄"
-              title={t?.whs?.documentation || "Documentation Required"}
-              items={sections.documentation}
+              icon="✅"
+              title={t?.whs?.requirements || "Key Requirements"}
+              items={sections.requirements}
+              color="orange"
+            />
+            <WHSSection
+              icon="🏭"
+              title={t?.whs?.relevance || "Compliance Relevance"}
+              items={sections.relevance}
               color="purple"
+            />
+            <WHSSection
+              icon="📄"
+              title={t?.whs?.actions || "Documentation/Actions Needed"}
+              items={sections.actions}
+              color="blue"
             />
           </div>
         ) : (
