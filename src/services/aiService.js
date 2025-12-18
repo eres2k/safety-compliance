@@ -16,14 +16,29 @@ const LANGUAGE_CONTEXT = {
 const CACHE_PREFIX = 'ai_cache_'
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
 
+// Simple hash function (djb2) for consistent cache keys
+function simpleHash(str) {
+  let hash = 5381
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) + str.charCodeAt(i)
+    hash = hash & hash // Convert to 32bit integer
+  }
+  return Math.abs(hash).toString(36)
+}
+
 function generateCacheKey(type, ...args) {
-  // Put short identifiers (framework, language, title) FIRST to avoid truncation
-  // Reorder: [lawText, sectionTitle, framework, language] -> [framework, language, sectionTitle, lawText(truncated)]
+  // Build a unique identifier from all args
+  // For simplify_both: [lawText, sectionTitle, framework, language]
+  // Use framework + language + full sectionTitle + hash of lawText for uniqueness
   const reorderedArgs = args.length >= 4
-    ? [args[2], args[3], args[1], args[0]?.substring(0, 100) || ''] // framework, language, title, lawText(100)
+    ? [args[2], args[3], args[1], simpleHash(args[0] || '')] // framework, language, title, hash(lawText)
     : args
-  const hash = reorderedArgs.join('|').substring(0, 200)
-  return `${CACHE_PREFIX}${type}_${btoa(hash).substring(0, 50)}`
+  const keyParts = reorderedArgs.join('|')
+  // Use hash of the full key parts + prefix of sectionTitle for readability
+  const hash = simpleHash(keyParts)
+  const sectionTitle = args.length >= 4 ? args[1] : ''
+  const readablePart = sectionTitle.substring(0, 30).replace(/[^a-zA-Z0-9§]/g, '_')
+  return `${CACHE_PREFIX}${type}_${readablePart}_${hash}`
 }
 
 function getCachedResponse(cacheKey) {
