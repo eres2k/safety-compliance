@@ -122,9 +122,9 @@ export async function handler(event, context) {
       }
     }
 
-    // Use gemini-3-flash via v1 API
+    // Use gemini-3-flash via v1beta API
     const response = await fetchWithRetry(
-      `https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: {
