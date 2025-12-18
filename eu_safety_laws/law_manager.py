@@ -3849,29 +3849,74 @@ def interactive_menu():
 # =============================================================================
 
 def get_wikipedia_search_terms(country: str, law_abbr: str) -> List[str]:
-    """Get Wikipedia search terms for a law."""
+    """Get Wikipedia search terms for a law.
+
+    Extended to include all laws from each country's database with
+    specific search terms optimized for finding relevant Wikipedia articles.
+    """
     search_terms = {
         "AT": {
+            # Core safety laws
             "ASchG": ["ArbeitnehmerInnenschutzgesetz", "Arbeitsschutz Österreich"],
-            "AZG": ["Arbeitszeitgesetz Österreich"],
-            "ARG": ["Arbeitsruhegesetz"],
-            "MSchG": ["Mutterschutzgesetz Österreich"],
-            "KJBG": ["Kinder- und Jugendlichen-Beschäftigungsgesetz"],
+            "AZG": ["Arbeitszeitgesetz (Österreich)", "Arbeitszeitgesetz Österreich"],
+            "ARG": ["Arbeitsruhegesetz", "Arbeitsruhe Österreich"],
+            "MSchG": ["Mutterschutzgesetz (Österreich)", "Mutterschutz Österreich"],
+            "KJBG": ["Kinder- und Jugendlichen-Beschäftigungsgesetz", "Jugendarbeitsschutz Österreich"],
+            # Additional AT laws
+            "AStV": ["Arbeitsstättenverordnung (Österreich)", "Arbeitsstätten Österreich"],
+            "AM-VO": ["Arbeitsmittelverordnung", "Arbeitsmittel Österreich"],
+            "DOK-VO": ["Dokumentationsverordnung Arbeitsschutz", "Gefahrstoffverzeichnis"],
+            "PSA-V": ["Persönliche Schutzausrüstung", "PSA Verordnung Österreich"],
+            "BauV": ["Bauarbeiterschutzverordnung", "Bauarbeiten Sicherheit Österreich"],
+            "VOLV": ["Verordnung optische Strahlung", "Laserschutz"],
+            "VEXAT": ["Verordnung explosionsfähige Atmosphären", "Explosionsschutz Österreich"],
+            "GKV": ["Grenzwerteverordnung", "Arbeitsplatzgrenzwert Österreich"],
+            "VGÜ": ["Verordnung Gesundheitsüberwachung", "Gesundheitsüberwachung Arbeitsplatz"],
+            "KennV": ["Kennzeichnungsverordnung", "Sicherheitskennzeichnung"],
+            "ESV": ["Elektroschutzverordnung", "Elektrosicherheit Österreich"],
+            "BS-V": ["Bildschirmarbeitsverordnung", "Bildschirmarbeit Gesundheit"],
+            "SFK": ["Sicherheitsfachkraft", "Sicherheitsfachkraft Österreich"],
+            "ASV": ["Arbeitsstoffverordnung", "Gefahrstoffe Arbeitsplatz"],
         },
         "DE": {
+            # Core safety laws
             "ArbSchG": ["Arbeitsschutzgesetz", "Arbeitsschutz Deutschland"],
-            "ASiG": ["Arbeitssicherheitsgesetz"],
-            "ArbZG": ["Arbeitszeitgesetz"],
-            "MuSchG": ["Mutterschutzgesetz"],
-            "JArbSchG": ["Jugendarbeitsschutzgesetz"],
-            "ArbStättV": ["Arbeitsstättenverordnung"],
-            "BetrSichV": ["Betriebssicherheitsverordnung"],
-            "GefStoffV": ["Gefahrstoffverordnung"],
+            "ASiG": ["Arbeitssicherheitsgesetz", "Betriebsarzt Sicherheitsingenieur"],
+            "ArbZG": ["Arbeitszeitgesetz", "Arbeitszeit Deutschland"],
+            "MuSchG": ["Mutterschutzgesetz", "Mutterschutz Deutschland"],
+            "JArbSchG": ["Jugendarbeitsschutzgesetz", "Jugendarbeitsschutz"],
+            # Regulations (Verordnungen)
+            "ArbStättV": ["Arbeitsstättenverordnung", "Arbeitsstätten Deutschland"],
+            "BetrSichV": ["Betriebssicherheitsverordnung", "Betriebssicherheit"],
+            "GefStoffV": ["Gefahrstoffverordnung", "Gefahrstoffe Deutschland"],
+            "BildscharbV": ["Bildschirmarbeitsverordnung", "Bildschirmarbeit"],
+            "LärmVibrationsArbSchV": ["Lärm- und Vibrations-Arbeitsschutzverordnung", "Lärmschutz Arbeitsplatz"],
+            "LasthandhabV": ["Lastenhandhabungsverordnung", "Lastenhandhabung"],
+            "PSA-BV": ["PSA-Benutzungsverordnung", "Persönliche Schutzausrüstung"],
+            "ArbMedVV": ["Arbeitsmedizinische Vorsorge", "Arbeitsmedizinische Vorsorge"],
+            "BioStoffV": ["Biostoffverordnung", "Biologische Arbeitsstoffe"],
+            "OStrV": ["Arbeitsschutzverordnung künstliche optische Strahlung", "Laserschutz Arbeitsplatz"],
+            # DGUV rules
+            "DGUV": ["Deutsche Gesetzliche Unfallversicherung", "DGUV Vorschriften"],
+            "DGUV-V1": ["DGUV Vorschrift 1", "Grundsätze der Prävention"],
+            "DGUV-V3": ["DGUV Vorschrift 3", "Elektrische Anlagen und Betriebsmittel"],
         },
         "NL": {
+            # Core Arbo laws
             "Arbowet": ["Arbeidsomstandighedenwet", "Arbowet"],
-            "Arbobesluit": ["Arbobesluit"],
-            "Arbeidstijdenwet": ["Arbeidstijdenwet"],
+            "Arbobesluit": ["Arbeidsomstandighedenbesluit", "Arbobesluit"],
+            "Arboregeling": ["Arbeidsomstandighedenregeling", "Arboregeling"],
+            # Working time laws
+            "Arbeidstijdenwet": ["Arbeidstijdenwet", "Werktijd Nederland"],
+            "ATB": ["Arbeidstijdenbesluit", "Arbeidstijden regels"],
+            # Chemical/substances
+            "REACH": ["REACH-verordening", "REACH chemische stoffen"],
+            # Additional NL safety topics
+            "WMS": ["Wet milieubeheer stoffen", "Gevaarlijke stoffen Nederland"],
+            "RI&E": ["Risico-inventarisatie en -evaluatie", "RI&E Nederland"],
+            "BHV": ["Bedrijfshulpverlening", "BHV Nederland"],
+            "PBM": ["Persoonlijke beschermingsmiddelen", "PBM arbeidsveiligheid"],
+            "ARIE": ["Aanvullende risico-inventarisatie", "ARIE regeling"],
         },
     }
     return search_terms.get(country, {}).get(law_abbr, [law_abbr])
