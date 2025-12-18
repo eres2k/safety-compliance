@@ -271,16 +271,35 @@ export async function generateAIResponse(prompt, framework, language) {
 
     if (!response.ok) {
       let errorMessage = 'AI request failed'
+      let errorDetails = ''
       try {
         const error = await response.json()
-        errorMessage = error.message || error.details || 'AI service error'
+        errorMessage = error.message || 'AI service error'
+        errorDetails = error.details || ''
+
+        // Log detailed error for debugging
+        console.error('[AI Service] Error response:', {
+          status: response.status,
+          message: errorMessage,
+          details: errorDetails,
+          model: error.model
+        })
       } catch {
-        errorMessage = `AI service error (${response.status})`
+        errorMessage = `AI service error (HTTP ${response.status})`
       }
-      throw new Error(errorMessage)
+
+      // Create user-friendly error with details
+      const fullError = errorDetails ? `${errorMessage}: ${errorDetails}` : errorMessage
+      throw new Error(fullError)
     }
 
     const data = await response.json()
+
+    // Log successful response info
+    if (data.model) {
+      console.log('[AI Service] Response from model:', data.model, data.cached ? '(cached)' : '')
+    }
+
     return data.response
   })
 }

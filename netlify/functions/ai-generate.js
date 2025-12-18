@@ -1,15 +1,18 @@
 import { getStore } from "@netlify/blobs"
 
 // ============================================
-// Optimized for Gemini 3.0 Flash
+// Optimized for Gemini 2.0 Flash (stable)
+// Gemini 3.0 Flash released Dec 17, 2025 - using 2.0 for stability
 // Rate Limits: 1K RPM, 1M TPM, 10K RPD
 // ============================================
 
 // Cache TTL: 48 hours - important to stay within daily limits
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
-// Model configuration - Gemini 3 Flash
-const GEMINI_MODEL = 'gemini-3-flash'
+// Model configuration - using stable Gemini 2.0 Flash
+// Options: 'gemini-2.0-flash', 'gemini-2.5-flash', 'gemini-1.5-flash-latest'
+const GEMINI_MODEL = 'gemini-2.0-flash'
+const FALLBACK_MODEL = 'gemini-1.5-flash-latest'  // Fallback if primary fails
 const MAX_OUTPUT_TOKENS = 8192
 const TEMPERATURE = 0.2  // Lower temperature for more consistent legal analysis
 
@@ -122,10 +125,12 @@ export async function handler(event, context) {
       }
     }
 
-    // Use gemini-3-flash via v1beta API
-    const response = await fetchWithRetry(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
-      {
+    // Helper function to call Gemini API with a specific model
+    async function callGeminiAPI(model) {
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
+      console.log(`Calling Gemini API with model: ${model}`)
+
+      return fetchWithRetry(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -138,17 +143,49 @@ export async function handler(event, context) {
             maxOutputTokens: MAX_OUTPUT_TOKENS
           }
         })
-      }
-    )
+      })
+    }
+
+    // Try primary model first, then fallback if it fails
+    let response = await callGeminiAPI(GEMINI_MODEL)
+    let usedModel = GEMINI_MODEL
+
+    // If primary model fails with 404 (model not found) or 400 (bad request), try fallback
+    if (!response.ok && (response.status === 404 || response.status === 400)) {
+      console.log(`Primary model ${GEMINI_MODEL} failed with ${response.status}, trying fallback: ${FALLBACK_MODEL}`)
+      response = await callGeminiAPI(FALLBACK_MODEL)
+      usedModel = FALLBACK_MODEL
+    }
 
     if (!response.ok) {
-      const errorData = await response.json()
-      console.error('Gemini API error:', errorData)
+      let errorData = {}
+      try {
+        errorData = await response.json()
+      } catch (e) {
+        errorData = { error: { message: `HTTP ${response.status}` } }
+      }
+      console.error(`Gemini API error (model: ${usedModel}):`, errorData)
+
+      // Provide more specific error messages
+      let errorMessage = 'AI service error'
+      const details = errorData.error?.message || 'Unknown error'
+
+      if (response.status === 429) {
+        errorMessage = 'Rate limit exceeded - please wait a moment'
+      } else if (response.status === 404) {
+        errorMessage = 'AI model not available - contact support'
+      } else if (response.status === 403) {
+        errorMessage = 'API access denied - check API key configuration'
+      } else if (response.status >= 500) {
+        errorMessage = 'AI service temporarily unavailable'
+      }
+
       return {
         statusCode: response.status,
         body: JSON.stringify({
-          message: 'AI service error',
-          details: errorData.error?.message || 'Unknown error'
+          message: errorMessage,
+          details: details,
+          model: usedModel
         })
       }
     }
@@ -157,11 +194,22 @@ export async function handler(event, context) {
     const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text
 
     if (!generatedText) {
+      // Check for safety filters or other blocked responses
+      const blockReason = data.candidates?.[0]?.finishReason
+      const safetyRatings = data.candidates?.[0]?.safetyRatings
+      console.error('No text generated. Finish reason:', blockReason, 'Safety:', safetyRatings)
+
       return {
         statusCode: 500,
-        body: JSON.stringify({ message: 'No response generated from AI' })
+        body: JSON.stringify({
+          message: 'No response generated from AI',
+          details: blockReason === 'SAFETY' ? 'Content blocked by safety filters' : 'Empty response from model',
+          model: usedModel
+        })
       }
     }
+
+    console.log(`Successfully generated response using model: ${usedModel}`)
 
     // Store in cache
     if (store) {
@@ -169,7 +217,8 @@ export async function handler(event, context) {
         await store.setJSON(cacheKey, {
           response: generatedText,
           timestamp: Date.now(),
-          promptHash: cacheKey
+          promptHash: cacheKey,
+          model: usedModel
         })
         console.log(`Cached response for key ${cacheKey}`)
       } catch (cacheError) {
@@ -181,11 +230,13 @@ export async function handler(event, context) {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
-        'X-Cache': 'MISS'
+        'X-Cache': 'MISS',
+        'X-Model': usedModel
       },
       body: JSON.stringify({
         response: generatedText,
-        cached: false
+        cached: false,
+        model: usedModel
       })
     }
   } catch (error) {
