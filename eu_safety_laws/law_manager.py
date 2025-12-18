@@ -134,7 +134,7 @@ class Config:
                 "ArbSchG": "/arbschg/",           # Occupational Safety Act
                 "ASiG": "/asig/",                 # Workplace Safety Act
                 "ArbZG": "/arbzg/",               # Working Time Act
-                "MuSchG": "/muschg/",             # Maternity Protection Act
+                "MuSchG": "/muschg_2018/",        # Maternity Protection Act
                 "JArbSchG": "/jarbschg/",         # Youth Labor Protection Act
                 "ArbStättV": "/arbst_ttv_2004/",  # Workplace Ordinance
                 "BetrSichV": "/betrsichv_2015/",  # Industrial Safety Regulation
@@ -1831,14 +1831,27 @@ class DEScraper(Scraper):
             "medium_keyword_matches": medium_matches
         }
 
-    def _try_full_html_page(self, base_url: str, abbrev: str) -> Dict[str, str]:
+    def _try_full_html_page(self, base_url: str, abbrev: str, main_page_html: str = None) -> Dict[str, str]:
         """Try to fetch full law content from HTML full version page."""
         section_contents = {}
 
-        # Try the BJNR full page
+        # Dynamically extract the correct BJNR from the main page HTML
+        bjnr_id = None
+        if main_page_html:
+            # Look for BJNR pattern in links on the main page
+            bjnr_match = re.search(r'(BJNR\d+)\.html', main_page_html)
+            if bjnr_match:
+                bjnr_id = bjnr_match.group(1)
+
+        if not bjnr_id:
+            # If we can't find the BJNR, skip full page extraction
+            # Individual section pages will be used instead
+            return section_contents
+
+        # Try the BJNR full page with dynamically extracted ID
         full_urls = [
-            urljoin(base_url, 'BJNR124610996.html'),  # ArbSchG specific
-            urljoin(base_url, 'index.html#BJNR124610996'),
+            urljoin(base_url, f'{bjnr_id}.html'),
+            urljoin(base_url, f'index.html#{bjnr_id}'),
         ]
 
         for full_url in full_urls:
@@ -1902,7 +1915,7 @@ class DEScraper(Scraper):
 
         # Try to get full content from full HTML page first
         log_info(f"Trying to fetch full HTML version...")
-        full_page_contents = self._try_full_html_page(url, abbrev)
+        full_page_contents = self._try_full_html_page(url, abbrev, html)
 
         # If full page didn't work, try individual section pages
         if not full_page_contents:
