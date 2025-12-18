@@ -123,8 +123,8 @@ class Config:
                 "MSchG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008464",      # Maternity Protection Act
                 "KJBG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008632",       # Child and Youth Employment Act
                 "AStV": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001927",       # Workplace Regulation
-                "AM-VO": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001933",      # Work Equipment Regulation
-                "DOK-VO": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001602",     # Documentation Regulation
+                "AM-VO": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20000727",      # Work Equipment Regulation (Arbeitsmittelverordnung)
+                "DOK-VO": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009021",     # Documentation Regulation (Sicherheits- und Gesundheitsschutzdokumente)
             }
         },
         "DE": {

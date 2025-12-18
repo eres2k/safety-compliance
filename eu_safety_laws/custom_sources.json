@@ -5,24 +5,24 @@
   "custom_sources": {
     "AT": {
       "BauV": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008367",
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008904",
         "name": "Bauarbeiterschutzverordnung",
         "description": "Regulation concerning the protection of construction workers. Covers specific safety requirements for construction sites and construction work, aiming to prevent accidents and health hazards in the construction industry. Includes provisions on scaffolding, excavation, demolition, and other construction-related activities.",
         "enabled": true,
         "created_at": "2025-12-18T02:50:08.876565",
         "source_type": "custom"
       },
-      "EKAV": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20007594",
-        "name": "Elektrotechnische  Arbeitnehmerschutzverordnung 2011 (Electrical Engineering Employee Protection Ordinance 2011)",
-        "description": "Ordinance regarding safety regulations for electrical work activities. Covers requirements for qualified electricians, safety procedures, and protective equipment.",
+      "ESV 2012": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20007682",
+        "name": "Elektroschutzverordnung 2012 (Electrical Safety Regulation 2012)",
+        "description": "Regulation regarding safety requirements for electrical work activities. Covers requirements for qualified electricians (Elektrofachkraft), safety procedures, and protective equipment for work on electrical installations.",
         "enabled": true,
         "created_at": "2025-12-18T00:42:55.567687",
         "source_type": "custom"
       },
       "PSA-V": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20002319",
-        "name": "Persönliche Schutzausrüstungsverordnung",
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20008821",
+        "name": "Verordnung Persönliche Schutzausrüstung",
         "description": "Regulation concerning Personal Protective Equipment (PPE) in the workplace. Defines the requirements for the provision and use of PPE to protect workers from risks to their health and safety. It covers various types of PPE and the employer's obligations regarding its selection, maintenance, and worker training.",
         "enabled": true,
         "created_at": "2025-12-18T02:50:08.887801",
