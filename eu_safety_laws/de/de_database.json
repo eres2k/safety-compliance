@@ -7,7 +7,8 @@
     "cleaned_at": "2025-12-18T19:35:16.952190",
     "restructured_at": "2025-12-18T19:35:16.991017",
     "sections_restructured_at": "2025-12-18T17:53:41.001Z",
-    "auto_sections_at": "2025-12-18T17:52:16.040Z"
+    "auto_sections_at": "2025-12-18T17:52:16.040Z",
+    "chapters_reorganized_at": "2025-12-18T22:57:30.220Z"
   },
   "documents": [
     {
@@ -86,8 +87,8 @@
         {
           "id": "de-arbschg-ch1",
           "number": "1",
-          "title": "Erster Abschnitt - Allgemeine Vorschriften",
-          "title_en": "First Section - General Provisions",
+          "title": "1. Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
             {
               "id": "121c1aedd31978d8",
@@ -169,8 +170,8 @@
         {
           "id": "de-arbschg-ch2",
           "number": "2",
-          "title": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
-          "title_en": "Second Section - Employer Obligations",
+          "title": "2. Abschnitt - Pflichten des Arbeitgebers",
+          "title_en": "Section 2 - Employer Obligations",
           "sections": [
             {
               "id": "b5f84057d3e22189",
@@ -632,8 +633,8 @@
         {
           "id": "de-arbschg-ch3",
           "number": "3",
-          "title": "Dritter Abschnitt - Pflichten und Rechte der Beschäftigten",
-          "title_en": "Third Section - Duties and Rights of Employees",
+          "title": "3. Abschnitt - Pflichten und Rechte der Beschäftigten",
+          "title_en": "Section 3 - Obligations and Rights of Employees",
           "sections": [
             {
               "id": "513253ea32df23a5",
@@ -750,8 +751,8 @@
         {
           "id": "de-arbschg-ch4",
           "number": "4",
-          "title": "Vierter Abschnitt - Verordnungsermächtigungen",
-          "title_en": "Fourth Section - Authorization for Ordinances",
+          "title": "4. Abschnitt - Verordnungsermächtigungen",
+          "title_en": "Section 4 - Enabling Provisions",
           "sections": [
             {
               "id": "9c0517abb2ee72af",
@@ -858,96 +859,8 @@
         {
           "id": "de-arbschg-ch5",
           "number": "5",
-          "title": "Fünfter Abschnitt - Gemeinsame deutsche Arbeitsschutzstrategie",
-          "title_en": "Fifth Section - Common German Occupational Safety Strategy",
-          "sections": [
-            {
-              "id": "bfee520609b96cf6",
-              "number": "20a",
-              "title": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie",
-              "text": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie:\n(1) Nach den Bestimmungen dieses Abschnitts entwickeln Bund, Länder und Unfallversicherungsträger im Interesse eines wirksamen Arbeitsschutzes eine gemeinsame deutsche Arbeitsschutzstrategie und gewährleisten ihre Umsetzung und Fortschreibung. Mit der Wahrnehmung der ihnen gesetzlich zugewiesenen Aufgaben zur Verhütung von Arbeitsunfällen, Berufskrankheiten und arbeitsbedingten Gesundheitsgefahren sowie zur menschengerechten Gestaltung der Arbeit tragen Bund, Länder und Unfallversicherungsträger dazu bei, die Ziele der gemeinsamen deutschen Arbeitsschutzstrategie zu erreichen.\n\n(2) Die gemeinsame deutsche Arbeitsschutzstrategie umfasst\n1. die Entwicklung gemeinsamer Arbeitsschutzziele,\n2. die Festlegung vorrangiger Handlungsfelder und von Eckpunkten für Arbeitsprogramme sowie deren Ausführung nach einheitlichen Grundsätzen,\n3. die Evaluierung der Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme mit geeigneten Kennziffern,\n4. die Festlegung eines abgestimmten Vorgehens der für den Arbeitsschutz zuständigen Landesbehörden und der Unfallversicherungsträger bei der Beratung und Überwachung der Betriebe,\n5. die Herstellung eines verständlichen, überschaubaren und abgestimmten Vorschriften- und Regelwerks.",
-              "whs_topics": [
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "incident_reporting",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "prevention_services",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 3,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "871931181e3faadb",
-              "number": "20b",
-              "title": "§ 20b. Nationale Arbeitsschutzkonferenz",
-              "text": "§ 20b. Nationale Arbeitsschutzkonferenz:\n(1) Die Aufgabe der Entwicklung, Steuerung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie nach § 20a Abs. 1 Satz 1 wird von der Nationalen Arbeitsschutzkonferenz wahrgenommen. Sie setzt sich aus jeweils drei stimmberechtigten Vertretern von Bund, Ländern und den Unfallversicherungsträgern zusammen und bestimmt für jede Gruppe drei Stellvertreter. Außerdem entsenden die Spitzenorganisationen der Arbeitgeber und Arbeitnehmer für die Behandlung von Angelegenheiten nach § 20a Abs. 2 Nr. 1 bis 3 und 5 jeweils bis zu drei Vertreter in die Nationale Arbeitsschutzkonferenz; sie nehmen mit beratender Stimme an den Sitzungen teil. Die Nationale Arbeitsschutzkonferenz gibt sich eine Geschäftsordnung; darin werden insbesondere die Arbeitsweise und das Beschlussverfahren festgelegt. Die Geschäftsordnung muss einstimmig angenommen werden.\n\n(2) Alle Einrichtungen, die mit Sicherheit und Gesundheit bei der Arbeit befasst sind, können der Nationalen Arbeitsschutzkonferenz Vorschläge für Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme unterbreiten.\n\n(3) Die Nationale Arbeitsschutzkonferenz wird durch ein Arbeitsschutzforum unterstützt, das in der Regel einmal jährlich stattfindet. Am Arbeitsschutzforum sollen sachverständige Vertreter der Spitzenorganisationen der Arbeitgeber und Arbeitnehmer, der Berufs- und Wirtschaftsverbände, der Wissenschaft, der Kranken- und Rentenversicherungsträger, von Einrichtungen im Bereich Sicherheit und Gesundheit bei der Arbeit sowie von Einrichtungen, die der Förderung der Beschäftigungsfähigkeit dienen, teilnehmen. Das Arbeitsschutzforum hat die Aufgabe, eine frühzeitige und aktive Teilhabe der sachverständigen Fachöffentlichkeit an der Entwicklung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie sicherzustellen und die Nationale Arbeitsschutzkonferenz entsprechend zu beraten.\n\n(4) Einzelheiten zum Verfahren der Einreichung von Vorschlägen nach Absatz 2 und zur Durchführung des Arbeitsschutzforums nach Absatz 3 werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz geregelt.\n\n(5) Die Geschäfte der Nationalen Arbeitsschutzkonferenz und des Arbeitsschutzforums führt die Bundesanstalt für Arbeitsschutz und Arbeitsmedizin. Einzelheiten zu Arbeitsweise und Verfahren werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz festgelegt.",
-              "whs_topics": [
-                {
-                  "id": "prevention_services",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "incident_reporting",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 3,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            }
-          ]
-        },
-        {
-          "id": "de-arbschg-ch6",
-          "number": "6",
-          "title": "Sechster Abschnitt - Schlußvorschriften",
-          "title_en": "Sixth Section - Final Provisions",
+          "title": "5. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 5 - Final Provisions",
           "sections": [
             {
               "id": "34c86436dccafdfe",
@@ -1200,6 +1113,94 @@
               "paragraphs": []
             }
           ]
+        },
+        {
+          "id": "de-arbschg-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "bfee520609b96cf6",
+              "number": "20a",
+              "title": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie",
+              "text": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie:\n(1) Nach den Bestimmungen dieses Abschnitts entwickeln Bund, Länder und Unfallversicherungsträger im Interesse eines wirksamen Arbeitsschutzes eine gemeinsame deutsche Arbeitsschutzstrategie und gewährleisten ihre Umsetzung und Fortschreibung. Mit der Wahrnehmung der ihnen gesetzlich zugewiesenen Aufgaben zur Verhütung von Arbeitsunfällen, Berufskrankheiten und arbeitsbedingten Gesundheitsgefahren sowie zur menschengerechten Gestaltung der Arbeit tragen Bund, Länder und Unfallversicherungsträger dazu bei, die Ziele der gemeinsamen deutschen Arbeitsschutzstrategie zu erreichen.\n\n(2) Die gemeinsame deutsche Arbeitsschutzstrategie umfasst\n1. die Entwicklung gemeinsamer Arbeitsschutzziele,\n2. die Festlegung vorrangiger Handlungsfelder und von Eckpunkten für Arbeitsprogramme sowie deren Ausführung nach einheitlichen Grundsätzen,\n3. die Evaluierung der Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme mit geeigneten Kennziffern,\n4. die Festlegung eines abgestimmten Vorgehens der für den Arbeitsschutz zuständigen Landesbehörden und der Unfallversicherungsträger bei der Beratung und Überwachung der Betriebe,\n5. die Herstellung eines verständlichen, überschaubaren und abgestimmten Vorschriften- und Regelwerks.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "871931181e3faadb",
+              "number": "20b",
+              "title": "§ 20b. Nationale Arbeitsschutzkonferenz",
+              "text": "§ 20b. Nationale Arbeitsschutzkonferenz:\n(1) Die Aufgabe der Entwicklung, Steuerung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie nach § 20a Abs. 1 Satz 1 wird von der Nationalen Arbeitsschutzkonferenz wahrgenommen. Sie setzt sich aus jeweils drei stimmberechtigten Vertretern von Bund, Ländern und den Unfallversicherungsträgern zusammen und bestimmt für jede Gruppe drei Stellvertreter. Außerdem entsenden die Spitzenorganisationen der Arbeitgeber und Arbeitnehmer für die Behandlung von Angelegenheiten nach § 20a Abs. 2 Nr. 1 bis 3 und 5 jeweils bis zu drei Vertreter in die Nationale Arbeitsschutzkonferenz; sie nehmen mit beratender Stimme an den Sitzungen teil. Die Nationale Arbeitsschutzkonferenz gibt sich eine Geschäftsordnung; darin werden insbesondere die Arbeitsweise und das Beschlussverfahren festgelegt. Die Geschäftsordnung muss einstimmig angenommen werden.\n\n(2) Alle Einrichtungen, die mit Sicherheit und Gesundheit bei der Arbeit befasst sind, können der Nationalen Arbeitsschutzkonferenz Vorschläge für Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme unterbreiten.\n\n(3) Die Nationale Arbeitsschutzkonferenz wird durch ein Arbeitsschutzforum unterstützt, das in der Regel einmal jährlich stattfindet. Am Arbeitsschutzforum sollen sachverständige Vertreter der Spitzenorganisationen der Arbeitgeber und Arbeitnehmer, der Berufs- und Wirtschaftsverbände, der Wissenschaft, der Kranken- und Rentenversicherungsträger, von Einrichtungen im Bereich Sicherheit und Gesundheit bei der Arbeit sowie von Einrichtungen, die der Förderung der Beschäftigungsfähigkeit dienen, teilnehmen. Das Arbeitsschutzforum hat die Aufgabe, eine frühzeitige und aktive Teilhabe der sachverständigen Fachöffentlichkeit an der Entwicklung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie sicherzustellen und die Nationale Arbeitsschutzkonferenz entsprechend zu beraten.\n\n(4) Einzelheiten zum Verfahren der Einreichung von Vorschlägen nach Absatz 2 und zur Durchführung des Arbeitsschutzforums nach Absatz 3 werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz geregelt.\n\n(5) Die Geschäfte der Nationalen Arbeitsschutzkonferenz und des Arbeitsschutzforums führt die Bundesanstalt für Arbeitsschutz und Arbeitsmedizin. Einzelheiten zu Arbeitsweise und Verfahren werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz festgelegt.",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            }
+          ]
         }
       ],
       "content_hash": "941e5916c8ae5e058d705a41da4a4d68"
@@ -1278,10 +1279,10 @@
       },
       "chapters": [
         {
-          "id": "de-asig-main",
+          "id": "de-asig-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
             {
               "id": "a8e1ea41050a36b7",
@@ -1317,7 +1318,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Betriebsärzte",
+          "title_en": "Section 2 - Company Physicians",
+          "sections": [
             {
               "id": "0042ca132560c204",
               "number": "2",
@@ -1427,7 +1436,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Fachkräfte für Arbeitssicherheit",
+          "title_en": "Section 3 - Safety Specialists",
+          "sections": [
             {
               "id": "0b9a84b4b14c8f98",
               "number": "5",
@@ -1537,7 +1554,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Gemeinsame Vorschriften",
+          "title_en": "Section 4 - Common Provisions",
+          "sections": [
             {
               "id": "73aae563c388ac71",
               "number": "8",
@@ -1772,7 +1797,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 5 - Final Provisions",
+          "sections": [
             {
               "id": "0a47727f68a15e1c",
               "number": "15",
@@ -2040,10 +2073,10 @@
       },
       "chapters": [
         {
-          "id": "de-arbzg-main",
+          "id": "de-arbzg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
             {
               "id": "94fdee2cf3b631c1",
@@ -2119,7 +2152,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Werktägliche Arbeitszeit und arbeitsfreie Zeiten",
+          "title_en": "Section 2 - Daily Working Time and Rest Periods",
+          "sections": [
             {
               "id": "f83bb6699b18cd12",
               "number": "3",
@@ -2309,7 +2350,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Sonn- und Feiertagsruhe",
+          "title_en": "Section 3 - Sunday and Holiday Rest",
+          "sections": [
             {
               "id": "9609b01406c858da",
               "number": "9",
@@ -2464,7 +2513,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Ausnahmen in besonderen Fällen",
+          "title_en": "Section 4 - Exceptions in Special Cases",
+          "sections": [
             {
               "id": "83353a02260a006d",
               "number": "14",
@@ -2539,7 +2596,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Section 5 - Implementation of the Act",
+          "sections": [
             {
               "id": "d19fe3aeac7d4049",
               "number": "16",
@@ -2639,7 +2704,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Sonderregelungen",
+          "title_en": "Section 6 - Special Regulations",
+          "sections": [
             {
               "id": "dd366c834a790b9b",
               "number": "19",
@@ -2734,47 +2807,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
-            {
-              "id": "4a54b8daa3276d3c",
-              "number": "21a",
-              "title": "§ 21a. Beschäftigung im Straßentransport",
-              "text": "§ 21a. Beschäftigung im Straßentransport:\n(1) Für die Beschäftigung von Arbeitnehmern als Fahrer oder Beifahrer bei Straßenverkehrstätigkeiten im Sinne der Verordnung (EG) Nr. 561/2006 des Europäischen Parlaments und des Rates vom 15. März 2006 zur Harmonisierung bestimmter Sozialvorschriften im Straßenverkehr und zur Änderung der Verordnungen (EWG) Nr. 3821/85 und (EG) Nr. 2135/98 des Rates sowie zur Aufhebung der Verordnung (EWG) Nr. 3820/85 des Rates (ABl. EG Nr. L 102 S. 1) oder des Europäischen Übereinkommens über die Arbeit des im internationalen Straßenverkehr beschäftigten Fahrpersonals (AETR) vom 1. Juli 1970 (BGBl. II 1974 S. 1473) in ihren jeweiligen Fassungen gelten die Vorschriften dieses Gesetzes, soweit nicht die folgenden Absätze abweichende Regelungen enthalten. Die Vorschriften der Verordnung (EG) Nr. 561/2006 und des AETR bleiben unberührt.\n\n(2) Eine Woche im Sinne dieser Vorschriften ist der Zeitraum von Montag 0 Uhr bis Sonntag 24 Uhr.\n\n(3) Abweichend von § 2 Abs. 1 ist keine Arbeitszeit:\n1. die Zeit, während derer sich ein Arbeitnehmer am Arbeitsplatz bereithalten muss, um seine Tätigkeit aufzunehmen,\n2. die Zeit, während derer sich ein Arbeitnehmer bereithalten muss, um seine Tätigkeit auf Anweisung aufnehmen zu können, ohne sich an seinem Arbeitsplatz aufhalten zu müssen;\n3. für Arbeitnehmer, die sich beim Fahren abwechseln, die während der Fahrt neben dem Fahrer oder in einer Schlafkabine verbrachte Zeit.\nFür die Zeiten nach Satz 1 Nr. 1 und 2 gilt dies nur, wenn der Zeitraum und dessen voraussichtliche Dauer im Voraus, spätestens unmittelbar vor Beginn des betreffenden Zeitraums bekannt ist. Die in Satz 1 genannten Zeiten sind keine Ruhezeiten. Die in Satz 1 Nr. 1 und 2 genannten Zeiten sind keine Ruhepausen.\n\n(4) Die Arbeitszeit darf 48 Stunden wöchentlich nicht überschreiten. Sie kann auf bis zu 60 Stunden verlängert werden, wenn innerhalb von vier Kalendermonaten oder 16 Wochen im Durchschnitt 48 Stunden wöchentlich nicht überschritten werden.\n\n(5) Die Ruhezeiten bestimmen sich nach den Vorschriften der Europäischen Gemeinschaften für Kraftfahrer und Beifahrer sowie nach dem AETR. Dies gilt auch für Auszubildende und Praktikanten.\n\n(6) In einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung kann zugelassen werden,\n1. nähere Einzelheiten zu den in Absatz 3 Satz 1 Nr. 1, 2 und Satz 2 genannten Voraussetzungen zu regeln,\n2. abweichend von Absatz 4 sowie den §§ 3 und 6 Abs. 2 die Arbeitszeit festzulegen, wenn objektive, technische oder arbeitszeitorganisatorische Gründe vorliegen. Dabei darf die Arbeitszeit 48 Stunden wöchentlich im Durchschnitt von sechs Kalendermonaten nicht überschreiten.\n§ 7 Abs. 1 Nr. 2 und Abs. 2a gilt nicht. § 7 Abs. 3 gilt entsprechend.\n\n(7) Der Arbeitgeber ist verpflichtet, die Arbeitszeit der Arbeitnehmer aufzuzeichnen. Die Aufzeichnungen sind mindestens zwei Jahre aufzubewahren. Der Arbeitgeber hat dem Arbeitnehmer auf Verlangen eine Kopie der Aufzeichnungen seiner Arbeitszeit auszuhändigen.\n\n(8) Zur Berechnung der Arbeitszeit fordert der Arbeitgeber den Arbeitnehmer schriftlich auf, ihm eine Aufstellung der bei einem anderen Arbeitgeber geleisteten Arbeitszeit vorzulegen. Der Arbeitnehmer legt diese Angaben schriftlich vor.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "working_hours",
-                  "relevance": "medium",
-                  "match_count": 3
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 4,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 2
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch7",
+          "number": "7",
+          "title": "7. Abschnitt - Straf- und Bußgeldvorschriften",
+          "title_en": "Section 7 - Penal and Fine Provisions",
+          "sections": [
             {
               "id": "e0cedcdea0bbe35c",
               "number": "22",
@@ -2844,7 +2885,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch8",
+          "number": "8",
+          "title": "8. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 8 - Final Provisions",
+          "sections": [
             {
               "id": "df2f4feca11d51c5",
               "number": "24",
@@ -2895,6 +2944,54 @@
                 "level": "low",
                 "high_keyword_matches": 0,
                 "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "4a54b8daa3276d3c",
+              "number": "21a",
+              "title": "§ 21a. Beschäftigung im Straßentransport",
+              "text": "§ 21a. Beschäftigung im Straßentransport:\n(1) Für die Beschäftigung von Arbeitnehmern als Fahrer oder Beifahrer bei Straßenverkehrstätigkeiten im Sinne der Verordnung (EG) Nr. 561/2006 des Europäischen Parlaments und des Rates vom 15. März 2006 zur Harmonisierung bestimmter Sozialvorschriften im Straßenverkehr und zur Änderung der Verordnungen (EWG) Nr. 3821/85 und (EG) Nr. 2135/98 des Rates sowie zur Aufhebung der Verordnung (EWG) Nr. 3820/85 des Rates (ABl. EG Nr. L 102 S. 1) oder des Europäischen Übereinkommens über die Arbeit des im internationalen Straßenverkehr beschäftigten Fahrpersonals (AETR) vom 1. Juli 1970 (BGBl. II 1974 S. 1473) in ihren jeweiligen Fassungen gelten die Vorschriften dieses Gesetzes, soweit nicht die folgenden Absätze abweichende Regelungen enthalten. Die Vorschriften der Verordnung (EG) Nr. 561/2006 und des AETR bleiben unberührt.\n\n(2) Eine Woche im Sinne dieser Vorschriften ist der Zeitraum von Montag 0 Uhr bis Sonntag 24 Uhr.\n\n(3) Abweichend von § 2 Abs. 1 ist keine Arbeitszeit:\n1. die Zeit, während derer sich ein Arbeitnehmer am Arbeitsplatz bereithalten muss, um seine Tätigkeit aufzunehmen,\n2. die Zeit, während derer sich ein Arbeitnehmer bereithalten muss, um seine Tätigkeit auf Anweisung aufnehmen zu können, ohne sich an seinem Arbeitsplatz aufhalten zu müssen;\n3. für Arbeitnehmer, die sich beim Fahren abwechseln, die während der Fahrt neben dem Fahrer oder in einer Schlafkabine verbrachte Zeit.\nFür die Zeiten nach Satz 1 Nr. 1 und 2 gilt dies nur, wenn der Zeitraum und dessen voraussichtliche Dauer im Voraus, spätestens unmittelbar vor Beginn des betreffenden Zeitraums bekannt ist. Die in Satz 1 genannten Zeiten sind keine Ruhezeiten. Die in Satz 1 Nr. 1 und 2 genannten Zeiten sind keine Ruhepausen.\n\n(4) Die Arbeitszeit darf 48 Stunden wöchentlich nicht überschreiten. Sie kann auf bis zu 60 Stunden verlängert werden, wenn innerhalb von vier Kalendermonaten oder 16 Wochen im Durchschnitt 48 Stunden wöchentlich nicht überschritten werden.\n\n(5) Die Ruhezeiten bestimmen sich nach den Vorschriften der Europäischen Gemeinschaften für Kraftfahrer und Beifahrer sowie nach dem AETR. Dies gilt auch für Auszubildende und Praktikanten.\n\n(6) In einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung kann zugelassen werden,\n1. nähere Einzelheiten zu den in Absatz 3 Satz 1 Nr. 1, 2 und Satz 2 genannten Voraussetzungen zu regeln,\n2. abweichend von Absatz 4 sowie den §§ 3 und 6 Abs. 2 die Arbeitszeit festzulegen, wenn objektive, technische oder arbeitszeitorganisatorische Gründe vorliegen. Dabei darf die Arbeitszeit 48 Stunden wöchentlich im Durchschnitt von sechs Kalendermonaten nicht überschreiten.\n§ 7 Abs. 1 Nr. 2 und Abs. 2a gilt nicht. § 7 Abs. 3 gilt entsprechend.\n\n(7) Der Arbeitgeber ist verpflichtet, die Arbeitszeit der Arbeitnehmer aufzuzeichnen. Die Aufzeichnungen sind mindestens zwei Jahre aufzubewahren. Der Arbeitgeber hat dem Arbeitnehmer auf Verlangen eine Kopie der Aufzeichnungen seiner Arbeitszeit auszuhändigen.\n\n(8) Zur Berechnung der Arbeitszeit fordert der Arbeitgeber den Arbeitnehmer schriftlich auf, ihm eine Aufstellung der bei einem anderen Arbeitgeber geleisteten Arbeitszeit vorzulegen. Der Arbeitnehmer legt diese Angaben schriftlich vor.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             }
@@ -2977,10 +3074,10 @@
       },
       "chapters": [
         {
-          "id": "de-jarbschg-main",
+          "id": "de-jarbschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
             {
               "id": "bc5ac20570f82863",
@@ -3115,7 +3212,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Beschäftigung von Kindern",
+          "title_en": "Section 2 - Employment of Children",
+          "sections": [
             {
               "id": "381704476bc9202b",
               "number": "5",
@@ -3220,7 +3325,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Beschäftigung Jugendlicher",
+          "title_en": "Section 3 - Employment of Young Persons",
+          "sections": [
             {
               "id": "15ff104de53f8602",
               "number": "8",
@@ -4540,7 +4653,473 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Gesundheitliche Betreuung",
+          "title_en": "Section 4 - Health Care",
+          "sections": [
+            {
+              "id": "42212d0d9e4467e0",
+              "number": "32",
+              "title": "§ 32. Erstuntersuchung",
+              "text": "(1) Ein Jugendlicher, der in das Berufsleben eintritt, darf nur beschäftigt werden, wenn\n1.\ner innerhalb der letzten vierzehn Monate von einem Arzt untersucht worden ist (Erstuntersuchung) und\n2.\ndem Arbeitgeber eine von diesem Arzt ausgestellte Bescheinigung vorliegt.\n\n(2) Absatz 1 gilt nicht für eine nur geringfügige oder eine nicht länger als zwei Monate dauernde Beschäftigung mit leichten Arbeiten, von denen keine gesundheitlichen Nachteile für den Jugendlichen zu befürchten sind.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
             },
+            {
+              "id": "b91d133838111879",
+              "number": "33",
+              "title": "§ 33. Erste Nachuntersuchung",
+              "text": "§ 33. Erste Nachuntersuchung:\n(1) Ein Jahr nach Aufnahme der ersten Beschäftigung hat sich der Arbeitgeber die Bescheinigung eines Arztes darüber vorlegen zu lassen, daß der Jugendliche nachuntersucht worden ist (erste Nachuntersuchung). Die Nachuntersuchung darf nicht länger als drei Monate zurückliegen. Der Arbeitgeber soll den Jugendlichen neun Monate nach Aufnahme der ersten Beschäftigung nachdrücklich auf den Zeitpunkt, bis zu dem der Jugendliche ihm die ärztliche Bescheinigung nach Satz 1 vorzulegen hat, hinweisen und ihn auffordern, die Nachuntersuchung bis dahin durchführen zu lassen.\n\n(2) Legt der Jugendliche die Bescheinigung nicht nach Ablauf eines Jahres vor, hat ihn der Arbeitgeber innerhalb eines Monats unter Hinweis auf das Beschäftigungsverbot nach Absatz 3 schriftlich aufzufordern, ihm die Bescheinigung vorzulegen. Je eine Durchschrift des Aufforderungsschreibens hat der Arbeitgeber dem Personensorgeberechtigten und dem Betriebs- oder Personalrat zuzusenden.\n\n(3) Der Jugendliche darf nach Ablauf von 14 Monaten nach Aufnahme der ersten Beschäftigung nicht weiterbeschäftigt werden, solange er die Bescheinigung nicht vorgelegt hat.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "eba3792478266ba5",
+              "number": "34",
+              "title": "§ 34. Weitere Nachuntersuchungen",
+              "text": "Nach Ablauf jedes weiteren Jahres nach der ersten Nachuntersuchung kann sich der Jugendliche erneut nachuntersuchen lassen (weitere Nachuntersuchungen). Der Arbeitgeber soll ihn auf diese Möglichkeit rechtzeitig hinweisen und darauf hinwirken, daß der Jugendliche ihm die Bescheinigung über die weitere Nachuntersuchung vorlegt.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "d26d632938b1db6d",
+              "number": "35",
+              "title": "§ 35. Außerordentliche Nachuntersuchung",
+              "text": "§ 35. Außerordentliche Nachuntersuchung:\n(1) Der Arzt soll eine außerordentliche Nachuntersuchung anordnen, wenn eine Untersuchung ergibt, daß\n1. ein Jugendlicher hinter dem seinem Alter entsprechenden Entwicklungsstand zurückgeblieben ist,\n2. gesundheitliche Schwächen oder Schäden vorhanden sind,\n3. die Auswirkungen der Beschäftigung auf die Gesundheit oder Entwicklung des Jugendlichen noch nicht zu übersehen sind.\n\n(2) Die in § 33 Abs. 1 festgelegten Fristen werden durch die Anordnung einer außerordentlichen Nachuntersuchung nicht berührt.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "213d6349d197dae3",
+              "number": "36",
+              "title": "§ 36. Ärztliche Untersuchungen und Wechsel des Arbeitgebers",
+              "text": "Wechselt der Jugendliche den Arbeitgeber, so darf ihn der neue Arbeitgeber erst beschäftigen, wenn ihm die Bescheinigung über die Erstuntersuchung (§ 32 Abs. 1) und, falls seit der Aufnahme der Beschäftigung ein Jahr vergangen ist, die Bescheinigung über die erste Nachuntersuchung (§ 33) vorliegen.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "b69be63bd37ee043",
+              "number": "37",
+              "title": "§ 37. Inhalt und Durchführung der ärztlichen Untersuchungen",
+              "text": "§ 37. Inhalt und Durchführung der ärztlichen Untersuchungen:\n(1) Die ärztlichen Untersuchungen haben sich auf den Gesundheits- und Entwicklungsstand und die körperliche Beschaffenheit, die Nachuntersuchungen außerdem auf die Auswirkungen der Beschäftigung auf Gesundheit und Entwicklung des Jugendlichen zu erstrecken.\n\n(2) Der Arzt hat unter Berücksichtigung der Krankheitsvorgeschichte des Jugendlichen auf Grund der Untersuchungen zu beurteilen,\n1. ob die Gesundheit oder die Entwicklung des Jugendlichen durch die Ausführung bestimmter Arbeiten oder durch die Beschäftigung während bestimmter Zeiten gefährdet wird,\n2. ob besondere der Gesundheit dienende Maßnahmen einschließlich Maßnahmen zur Verbesserung des Impfstatus erforderlich sind,\n3. ob eine außerordentliche Nachuntersuchung (§ 35 Abs. 1) erforderlich ist.\n\n(3) Der Arzt hat schriftlich festzuhalten:\n1. den Untersuchungsbefund,\n2. die Arbeiten, durch deren Ausführung er die Gesundheit oder die Entwicklung des Jugendlichen für gefährdet hält,\n3. die besonderen der Gesundheit dienenden Maßnahmen einschließlich Maßnahmen zur Verbesserung des Impfstatus,\n4. die Anordnung einer außerordentlichen Nachuntersuchung (§ 35 Abs. 1).",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "ergonomics",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "0041dd4ed903bc54",
+              "number": "38",
+              "title": "§ 38. Ergänzungsuntersuchung",
+              "text": "Kann der Arzt den Gesundheits- und Entwicklungsstand des Jugendlichen nur beurteilen, wenn das Ergebnis einer Ergänzungsuntersuchung durch einen anderen Arzt oder einen Zahnarzt vorliegt, so hat er die Ergänzungsuntersuchung zu veranlassen und ihre Notwendigkeit schriftlich zu begründen.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c2fa085a55ab2ea7",
+              "number": "39",
+              "title": "§ 39. Mitteilung, Bescheinigung",
+              "text": "§ 39. Mitteilung, Bescheinigung:\n(1) Der Arzt hat dem Personensorgeberechtigten schriftlich mitzuteilen:\n1. das wesentliche Ergebnis der Untersuchung,\n2. die Arbeiten, durch deren Ausführung er die Gesundheit oder die Entwicklung des Jugendlichen für gefährdet hält,\n3. die besonderen der Gesundheit dienenden Maßnahmen einschließlich Maßnahmen zur Verbesserung des Impfstatus,\n4. die Anordnung einer außerordentlichen Nachuntersuchung (§ 35 Abs. 1).\n\n(2) Der Arzt hat eine für den Arbeitgeber bestimmte Bescheinigung darüber auszustellen, daß die Untersuchung stattgefunden hat und darin die Arbeiten zu vermerken, durch deren Ausführung er die Gesundheit oder die Entwicklung des Jugendlichen für gefährdet hält.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "7769dabd2342e010",
+              "number": "40",
+              "title": "§ 40. Bescheinigung mit Gefährdungsvermerk",
+              "text": "(1) Enthält die Bescheinigung des Arztes (§ 39 Abs. 2) einen Vermerk über Arbeiten, durch deren Ausführung er die Gesundheit oder die Entwicklung des Jugendlichen für gefährdet hält, so darf der Jugendliche mit solchen Arbeiten nicht beschäftigt werden.\n\n(2) Die Aufsichtsbehörde kann die Beschäftigung des Jugendlichen mit den in der Bescheinigung des Arztes (§ 39 Abs. 2) vermerkten Arbeiten im Einvernehmen mit einem Arzt zulassen und die Zulassung mit Auflagen verbinden.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "43f8dbc350850902",
+              "number": "41",
+              "title": "§ 41. Aufbewahren der ärztlichen Bescheinigungen",
+              "text": "(1) Der Arbeitgeber hat die ärztlichen Bescheinigungen bis zur Beendigung der Beschäftigung, längstens jedoch bis zur Vollendung des 18. Lebensjahrs des Jugendlichen aufzubewahren und der Aufsichtsbehörde sowie der Berufsgenossenschaft auf Verlangen zur Einsicht vorzulegen oder einzusenden.\n\n(2) Scheidet der Jugendliche aus dem Beschäftigungsverhältnis aus, so hat ihm der Arbeitgeber die Bescheinigungen auszuhändigen.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "de739321278f8dd3",
+              "number": "42",
+              "title": "§ 42. Eingreifen der Aufsichtsbehörde",
+              "text": "Die Aufsichtsbehörde hat, wenn die dem Jugendlichen übertragenen Arbeiten Gefahren für seine Gesundheit befürchten lassen, dies dem Personensorgeberechtigten und dem Arbeitgeber mitzuteilen und den Jugendlichen aufzufordern, sich durch einen von ihr ermächtigten Arzt untersuchen zu lassen.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "958c6a8ff135d546",
+              "number": "43",
+              "title": "§ 43. Freistellung für Untersuchungen",
+              "text": "Der Arbeitgeber hat den Jugendlichen für die Durchführung der ärztlichen Untersuchungen nach diesem Abschnitt freizustellen. Ein Entgeltausfall darf hierdurch nicht eintreten.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "4b821ca0d629dbe3",
+              "number": "44",
+              "title": "§ 44. Kosten der Untersuchungen",
+              "text": "Die Kosten der Untersuchungen trägt das Land.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "09de42fae9fb7491",
+              "number": "45",
+              "title": "§ 45. Gegenseitige Unterrichtung der Ärzte",
+              "text": "§ 45. Gegenseitige Unterrichtung der Ärzte:\n(1) Die Ärzte, die Untersuchungen nach diesem Abschnitt vorgenommen haben, müssen, wenn der Personensorgeberechtigte und der Jugendliche damit einverstanden sind, 1. dem staatlichen Gewerbearzt, 2. dem Arzt, der einen Jugendlichen nach diesem Abschnitt nachuntersucht, auf Verlangen die Aufzeichnungen über die Untersuchungsbefunde zur Einsicht aushändigen.\n\n(2) Unter den Voraussetzungen des Absatzes 1 kann der Amtsarzt des Gesundheitsamts einem Arzt, der einen Jugendlichen nach diesem Abschnitt untersucht, Einsicht in andere in seiner Dienststelle vorhandene Unterlagen über Gesundheit und Entwicklung des Jugendlichen gewähren.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "0bfbf11435d4d77b",
+              "number": "46",
+              "title": "§ 46. Ermächtigungen",
+              "text": "§ 46. Ermächtigungen:\n(1) Das Bundesministerium für Arbeit und Soziales kann zum Zweck einer gleichmäßigen und wirksamen gesundheitlichen Betreuung durch Rechtsverordnung mit Zustimmung des Bundesrates Vorschriften über die Durchführung der ärztlichen Untersuchungen und über die für die Aufzeichnungen der Untersuchungsbefunde, die Bescheinigungen und Mitteilungen zu verwendenden Vordrucke erlassen.\n\n(2) Die Landesregierung kann durch Rechtsverordnung 1. zur Vermeidung von mehreren Untersuchungen innerhalb eines kurzen Zeitraums aus verschiedenen Anlässen bestimmen, daß die Untersuchungen nach den §§ 32 bis 34 zusammen mit Untersuchungen nach anderen Vorschriften durchzuführen sind, und hierbei von der Frist des § 32 Abs. 1 Nr. 1 bis zu drei Monaten abweichen, 2. zur Vereinfachung der Abrechnung a) Pauschbeträge für die Kosten der ärztlichen Untersuchungen im Rahmen der geltenden Gebührenordnungen festsetzen, b) Vorschriften über die Erstattung der Kosten beim Zusammentreffen mehrerer Untersuchungen nach Nummer 1 erlassen.",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Section 5 - Implementation of the Act",
+          "sections": [
             {
               "id": "f08b4f37ab60d8d2",
               "number": "47",
@@ -4894,6 +5473,54 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Straf- und Bußgeldvorschriften",
+          "title_en": "Section 6 - Penal and Fine Provisions",
+          "sections": [
+            {
+              "id": "1c9f7946670ddbe9",
+              "number": "58",
+              "title": "§ 58. Bußgeld- und Strafvorschriften",
+              "text": "§ 58. Bußgeld- und Strafvorschriften:\n(1) Ordnungswidrig handelt, wer als Arbeitgeber vorsätzlich oder fahrlässig\n1. entgegen § 5 Abs. 1, auch in Verbindung mit § 2 Abs. 3, ein Kind oder einen Jugendlichen, der der Vollzeitschulpflicht unterliegt, beschäftigt,\n2. entgegen § 5 Abs. 3 Satz 1 oder Satz 3, jeweils auch in Verbindung mit § 2 Abs. 3, ein Kind über 13 Jahre oder einen Jugendlichen, der der Vollzeitschulpflicht unterliegt, in anderer als der zugelassenen Weise beschäftigt,\n3. (weggefallen)\n4. entgegen § 7 Satz 1 Nr. 2, auch in Verbindung mit einer Rechtsverordnung nach § 26 Nr. 1, ein Kind, das der Vollzeitschulpflicht nicht mehr unterliegt, in anderer als der zugelassenen Weise beschäftigt,\n5. entgegen § 8 einen Jugendlichen über die zulässige Dauer der Arbeitszeit hinaus beschäftigt,\n6. entgegen § 9 Absatz 1 einen Jugendlichen beschäftigt oder nicht freistellt,\n7. entgegen § 10 Abs. 1 einen Jugendlichen für die Teilnahme an Prüfungen oder Ausbildungsmaßnahmen oder an dem Arbeitstag, der der schriftlichen Abschlußprüfung unmittelbar vorangeht, nicht freistellt,\n8. entgegen § 11 Abs. 1 oder 2 Ruhepausen nicht, nicht mit der vorgeschriebenen Mindestdauer oder nicht in der vorgeschriebenen zeitlichen Lage gewährt,\n9. entgegen § 12 einen Jugendlichen über die zulässige Schichtzeit hinaus beschäftigt,\n10. entgegen § 13 die Mindestfreizeit nicht gewährt,\n11. entgegen § 14 Abs. 1 einen Jugendlichen außerhalb der Zeit von 6 bis 20 Uhr oder entgegen § 14 Abs. 7 Satz 3 vor Ablauf der Mindestfreizeit beschäftigt,\n12. entgegen § 15 einen Jugendlichen an mehr als fünf Tagen in der Woche beschäftigt,\n13. entgegen § 16 Abs. 1 einen Jugendlichen an Samstagen beschäftigt oder entgegen § 16 Abs. 3 Satz 1 den Jugendlichen nicht freistellt,\n14. entgegen § 17 Abs. 1 einen Jugendlichen an Sonntagen beschäftigt oder entgegen § 17 Abs. 2 Satz 2 Halbsatz 2 oder Abs. 3 Satz 1 den Jugendlichen nicht freistellt,\n15. entgegen § 18 Abs. 1 einen Jugendlichen am 24. oder 31. Dezember nach 14 Uhr oder an gesetzlichen Feiertagen beschäftigt oder entgegen § 18 Abs. 3 nicht freistellt,\n16. entgegen § 19 Abs. 1, auch in Verbindung mit Abs. 2 Satz 1 oder 2, oder entgegen § 19 Abs. 3 Satz 2 oder Abs. 4 Satz 2 Urlaub nicht oder nicht mit der vorgeschriebenen Dauer gewährt,\n17. entgegen § 21 Abs. 2 die geleistete Mehrarbeit durch Verkürzung der Arbeitszeit nicht ausgleicht,\n18. entgegen § 22 Abs. 1, auch in Verbindung mit einer Rechtsverordnung nach § 26 Nr. 1, einen Jugendlichen mit den dort genannten Arbeiten beschäftigt,\n19. entgegen § 23 Abs. 1, auch in Verbindung mit einer Rechtsverordnung nach § 26 Nr. 1, einen Jugendlichen mit Arbeiten mit Lohnanreiz, in einer Arbeitsgruppe mit Erwachsenen, deren Entgelt vom Ergebnis ihrer Arbeit abhängt, oder mit tempoabhängigen Arbeiten beschäftigt,\n20. entgegen § 24 Abs. 1, auch in Verbindung mit einer Rechtsverordnung nach § 26 Nr. 1, einen Jugendlichen mit Arbeiten unter Tage beschäftigt,\n21. entgegen § 31 Abs. 2 Satz 2 einem Jugendlichen ein dort genanntes Getränk, Tabakwaren oder ein dort genanntes Erzeugnis gibt,\n22. entgegen § 32 Abs. 1 einen Jugendlichen ohne ärztliche Bescheinigung über die Erstuntersuchung beschäftigt,\n23. entgegen § 33 Abs. 3 einen Jugendlichen ohne ärztliche Bescheinigung über die erste Nachuntersuchung weiterbeschäftigt,\n24. entgegen § 36 einen Jugendlichen ohne Vorlage der erforderlichen ärztlichen Bescheinigungen beschäftigt,\n25. entgegen § 40 Abs. 1 einen Jugendlichen mit Arbeiten beschäftigt, durch deren Ausführung der Arzt nach der von ihm erteilten Bescheinigung die Gesundheit oder die Entwicklung des Jugendlichen für gefährdet hält,\n26. einer Rechtsverordnung nach\na) § 26 Nr. 2 oder\nb) § 28 Abs. 2\nzuwiderhandelt, soweit sie für einen bestimmten Tatbestand auf diese Bußgeldvorschrift verweist,\n27. einer vollziehbaren Anordnung der Aufsichtsbehörde nach § 6 Abs. 3, § 27 Abs. 1 Satz 2 oder Abs. 2, § 28 Abs. 3 oder § 30 Abs. 2 zuwiderhandelt,\n28. einer vollziehbaren Auflage der Aufsichtsbehörde nach § 6 Abs. 1, § 14 Abs. 7, § 27 Abs. 3 oder § 40 Abs. 2, jeweils in Verbindung mit § 54 Abs. 1, zuwiderhandelt,\n29. einer vollziehbaren Anordnung oder Auflage der Aufsichtsbehörde auf Grund einer Rechtsverordnung nach § 26 Nr. 2 oder § 28 Abs. 2 zuwiderhandelt, soweit die Rechtsverordnung für einen bestimmten Tatbestand auf die Bußgeldvorschrift verweist.\n\n(2) Ordnungswidrig handelt, wer vorsätzlich oder fahrlässig entgegen § 25 Abs. 1 Satz 1 oder Abs. 2 Satz 1 einen Jugendlichen beschäftigt, beaufsichtigt, anweist oder ausbildet, obwohl ihm dies verboten ist, oder einen anderen, dem dies verboten ist, mit der Beaufsichtigung, Anweisung oder Ausbildung eines Jugendlichen beauftragt.\n\n(3) Absatz 1 Nr. 4, 6 bis 29 und Absatz 2 gelten auch für die Beschäftigung von Kindern (§ 2 Abs. 1) oder Jugendlichen, die der Vollzeitschulpflicht unterliegen (§ 2 Abs. 3), nach § 5 Abs. 2. Absatz 1 Nr. 6 bis 29 und Absatz 2 gelten auch für die Beschäftigung von Kindern, die der Vollzeitschulpflicht nicht mehr unterliegen, nach § 7 Satz 1 Nr. 2.",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
             },
             {
               "id": "ae29e3305617f708",
@@ -4954,7 +5581,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch7",
+          "number": "7",
+          "title": "7. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 7 - Final Provisions",
+          "sections": [
             {
               "id": "7aeb39d7ef4ca9ae",
               "number": "61",
@@ -5113,10 +5748,10 @@
       },
       "chapters": [
         {
-          "id": "de-arbstättv-main",
+          "id": "de-arbstättv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Ziel, Anwendungsbereich, Begriffsbestimmungen",
+          "title_en": "Section 1 - Purpose, Scope, Definitions",
           "sections": [
             {
               "id": "a7e3a2c22422469e",
@@ -5197,7 +5832,15 @@
                 "medium_keyword_matches": 7
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbstättv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Übergreifende Anforderungen",
+          "title_en": "Section 2 - General Requirements",
+          "sections": [
             {
               "id": "57b1f0a691b2dda5",
               "number": "3",
@@ -5317,7 +5960,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbstättv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Besondere Anforderungen",
+          "title_en": "Section 3 - Special Requirements",
+          "sections": [
             {
               "id": "ccb1a661b54d782d",
               "number": "5",
@@ -5392,7 +6043,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbstättv-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 4 - Final Provisions",
+          "sections": [
             {
               "id": "dcfcbc5d4b91463b",
               "number": "7",
@@ -5587,10 +6246,10 @@
       },
       "chapters": [
         {
-          "id": "de-betrsichv-main",
+          "id": "de-betrsichv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Anwendungsbereich und Begriffsbestimmungen",
+          "title_en": "Section 1 - Scope and Definitions",
           "sections": [
             {
               "id": "bc574c5d636e94cf",
@@ -5671,7 +6330,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-betrsichv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "title_en": "Section 2 - Risk Assessment and Protective Measures",
+          "sections": [
             {
               "id": "76a2a68aeb163347",
               "number": "3",
@@ -5951,7 +6618,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-betrsichv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "title_en": "Section 3 - Additional Provisions for Installations Subject to Monitoring",
+          "sections": [
             {
               "id": "506f587a3f46108b",
               "number": "10",
@@ -6316,7 +6991,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-betrsichv-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Vollzugsregelungen und Schlussvorschriften",
+          "title_en": "Section 4 - Implementation Rules and Final Provisions",
+          "sections": [
             {
               "id": "4ee28962682028a0",
               "number": "20",
@@ -6555,10 +7238,10 @@
       },
       "chapters": [
         {
-          "id": "de-gefstoffv-main",
+          "id": "de-gefstoffv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Zielsetzung, Anwendungsbereich und Begriffsbestimmungen",
+          "title_en": "Section 1 - Purpose, Scope and Definitions",
           "sections": [
             {
               "id": "aa5101336eb944c9",
@@ -6634,7 +7317,15 @@
                 "medium_keyword_matches": 6
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Gefahrstoffinformation",
+          "title_en": "Section 2 - Hazardous Substance Information",
+          "sections": [
             {
               "id": "d4139bcd6ac9e3fa",
               "number": "3",
@@ -6734,47 +7425,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
-            {
-              "id": "faa39c0ba7c3bf19",
-              "number": "5a",
-              "title": "§ 5a. Besondere Mitwirkungs- und Informationspflichten für Veranlasser von Tätigkeiten an baulichen oder technischen Anlagen",
-              "text": "§ 5a. Besondere Mitwirkungs- und Informationspflichten für Veranlasser von Tätigkeiten an baulichen oder technischen Anlagen:\n(1) Derjenige, der Tätigkeiten an baulichen oder technischen Anlagen veranlasst (Veranlasser), hat vor Beginn der Tätigkeiten dem ausführenden Unternehmen alle ihm vorliegenden Informationen zur Bau- oder Nutzungsgeschichte über vorhandene oder vermutete Gefahrstoffe schriftlich oder elektronisch zur Verfügung zu stellen. Der Veranlasser hat sich zur Informationsbeschaffung in zumutbarem Aufwand der ihm zugänglichen Unterlagen zu bedienen. Gefahrstoffe im Sinne von Satz 1 sind solche, die durch die Tätigkeiten freigesetzt werden und zu einer besonderen Gesundheitsgefährdung führen können.\n\n(2) Damit festgestellt werden kann, ob Asbest vorliegt, hat der Veranlasser vor Beginn der Tätigkeiten an Objekten mit Baujahr zwischen 1993 und 1996 das Datum des Baubeginns des Objekts oder das Baujahr des Objekts, sofern das genaue Datum des Baubeginns nicht bekannt ist, an das ausführende Unternehmen schriftlich oder elektronisch zu übermitteln. Bei Objekten mit Baujahr vor 1993 oder nach 1996 reicht die Angabe des Baujahrs aus.\n\n(3) Weiterreichende Informations-, Schutz- oder Überwachungspflichten, die sich für den Veranlasser nach anderen Rechtsvorschriften ergeben, bleiben unberührt.\n\n(4) Die Absätze 1 bis 3 gelten auch für private Haushalte.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Gefährdungsbeurteilung und Grundpflichten",
+          "title_en": "Section 3 - Risk Assessment and Basic Obligations",
+          "sections": [
             {
               "id": "119c0bbfe1065fb0",
               "number": "6",
@@ -6854,7 +7513,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Schutzmaßnahmen",
+          "title_en": "Section 4 - Protective Measures",
+          "sections": [
             {
               "id": "244ffc674929921e",
               "number": "8",
@@ -7254,6 +7921,404 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Verbote und Beschränkungen",
+          "title_en": "Section 5 - Prohibitions and Restrictions",
+          "sections": [
+            {
+              "id": "8d695111617ba426",
+              "number": "16",
+              "title": "§ 16. Herstellungs- und Verwendungsbeschränkungen",
+              "text": "(1) Herstellungs- und Verwendungsbeschränkungen für bestimmte Stoffe, Gemische und Erzeugnisse ergeben sich aus Artikel 67 in Verbindung mit Anhang XVII der Verordnung (EG) Nr. 1907/2006.\n\n(2) Nach Maßgabe des Anhangs II bestehen weitere Herstellungs- und Verwendungsbeschränkungen für dort genannte Stoffe, Gemische und Erzeugnisse.\n\n(3) Der Arbeitgeber darf in Heimarbeit beschäftigte Personen nur Tätigkeiten mit geringer Gefährdung im Sinne des § 6 Absatz 13 ausüben lassen.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "7bea281597138994",
+              "number": "17",
+              "title": "§ 17. Nationale Ausnahmen von Beschränkungsregelungen nach der Verordnung (EG) Nr. 1907/2006",
+              "text": "§ 17. Nationale Ausnahmen von Beschränkungsregelungen nach der Verordnung (EG) Nr. 1907/2006:\n(1) Für am 1. Dezember 2010 bestehende Anlagen gelten die Beschränkungen nach Artikel 67 in Verbindung mit Anhang XVII Nummer 6 der Verordnung (EG) Nr. 1907/2006 bis zum 1. Juli 2025 nicht für das Verwenden chrysotilhaltiger Diaphragmen für die Chloralkalielektrolyse oder für das Verwenden von Chrysotil, das ausschließlich zur Wartung dieser Diaphragmen eingesetzt wird, wenn\n1. keine asbestfreien Ersatzstoffe, Gemische oder Erzeugnisse auf dem Markt angeboten werden oder\n2. die Verwendung der asbestfreien Ersatzstoffe, Gemische oder Erzeugnisse zu einer unzumutbaren Härte führen würde\nund die Konzentration der Asbestfasern in der Luft am Arbeitsplatz unterhalb von 1 000 Fasern je Kubikmeter liegt. Betreiber von Anlagen, die von der Regelung nach Satz 1 Gebrauch machen, übermitteln der Bundesstelle für Chemikalien bis zum 31. Januar eines jeden Kalenderjahres einen Bericht, aus dem die Menge an Chrysotil hervorgeht, die in Diaphragmen, die unter diese Ausnahmeregelung fallen, im Vorjahr verwendet wurde. Die Ergebnisse der Arbeitsplatzmessungen sind in den Bericht aufzunehmen. Die Bundesstelle für Chemikalien übermittelt der Europäischen Kommission eine Kopie des Berichts.\n\n(2) Das Verwendungsverbot nach Artikel 67 in Verbindung mit Anhang XVII Nummer 16 und 17 der Verordnung (EG) Nr. 1907/2006 gilt nicht für die Verwendung der dort genannten Bleiverbindungen in Farben, die zur Erhaltung oder originalgetreuen Wiederherstellung von Kunstwerken und historischen Bestandteilen oder von Einrichtungen denkmalgeschützter Gebäude bestimmt sind, wenn die Verwendung von Ersatzstoffen nicht möglich ist.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "edd5cae9b728ced7",
+              "number": "18",
+              "title": "§ 18. Unterrichtung der Behörde",
+              "text": "§ 18. Unterrichtung der Behörde:\n(1) Der Arbeitgeber hat der zuständigen Behörde unverzüglich anzuzeigen\n1. jeden Unfall und jede Betriebsstörung, die bei Tätigkeiten mit Gefahrstoffen zu einer ernsten Gesundheitsschädigung von Beschäftigten geführt haben,\n2. Krankheits- und Todesfälle, bei denen konkrete Anhaltspunkte dafür bestehen, dass sie durch die Tätigkeit mit Gefahrstoffen verursacht worden sind, mit der genauen Angabe der Tätigkeit und der Gefährdungsbeurteilung nach § 6.\nLassen sich die für die Anzeige nach Satz 1 erforderlichen Angaben gleichwertig aus Anzeigen nach anderen Rechtsvorschriften entnehmen, kann die Anzeigepflicht auch durch Übermittlung von Kopien dieser Anzeigen an die zuständige Behörde erfüllt werden. Der Arbeitgeber hat den betroffenen Beschäftigten oder ihrer Vertretung Kopien der Anzeigen nach Satz 1 oder Satz 2 zur Kenntnis zu geben.\n\n(2) Unbeschadet des § 22 des Arbeitsschutzgesetzes hat der Arbeitgeber der zuständigen Behörde auf Verlangen Folgendes mitzuteilen:\n1. das Ergebnis der Gefährdungsbeurteilung nach § 6 und die ihr zugrunde liegenden Informationen, einschließlich der Dokumentation der Gefährdungsbeurteilung,\n2. die Tätigkeiten, bei denen Beschäftigte tatsächlich oder möglicherweise gegenüber Gefahrstoffen exponiert worden sind, und die Anzahl dieser Beschäftigten,\n3. die nach § 13 des Arbeitsschutzgesetzes verantwortlichen Personen,\n4. die durchgeführten Schutz- und Vorsorgemaßnahmen, einschließlich der Betriebsanweisungen,\n5. eine Kopie des Maßnahmenplans nach § 10 Absatz 5 bei Tätigkeiten im Bereich mittleren oder hohen Risikos.\n\n(3) Der Arbeitgeber hat der zuständigen Behörde bei Tätigkeiten mit krebserzeugenden, keimzellmutagenen oder reproduktionstoxischen Gefahrstoffen der Kategorie 1A oder 1B zusätzlich auf Verlangen Folgendes mitzuteilen:\n1. das Ergebnis der Substitutionsprüfung,\n2. Informationen über\na) ausgeübte Tätigkeiten und angewandte industrielle Verfahren und die Gründe für die Verwendung dieser Gefahrstoffe,\nb) die Menge der hergestellten oder verwendeten Gefahrstoffe,\nc) die Art der zu verwendenden Schutzausrüstung,\nd) Art und Ausmaß der Exposition,\ne) durchgeführte Substitutionen.\n\n(4) Auf Verlangen der zuständigen Behörde ist die nach Anhang II der Verordnung (EG) Nr. 1907/2006 geforderte Fachkunde für die Erstellung von Sicherheitsdatenblättern nachzuweisen.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 5,
+                "level": "critical",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 3
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 6 - Final Provisions",
+          "sections": [
+            {
+              "id": "c0d4703809fa3747",
+              "number": "19",
+              "title": "§ 19. Behördliche Ausnahmen, Anordnungen und Befugnisse",
+              "text": "§ 19. Behördliche Ausnahmen, Anordnungen und Befugnisse:\n(1) Die zuständige Behörde kann auf schriftlichen oder elektronischen Antrag des Arbeitgebers Ausnahmen von den §§ 6 bis 15 zulassen, wenn die Anwendung dieser Vorschriften im Einzelfall zu einer unverhältnismäßigen Härte führen würde und die Abweichung mit dem Schutz der Beschäftigten vereinbar ist. § 11 Absatz 6 bleibt unberührt. Der Arbeitgeber hat der zuständigen Behörde im Antrag darzulegen:\n1. den Grund für die Beantragung der Ausnahme,\n2. die jährlich zu verwendende Menge des Gefahrstoffs,\n3. die betroffenen Tätigkeiten und Verfahren,\n4. die Zahl der voraussichtlich betroffenen Beschäftigten,\n5. die geplanten Maßnahmen zur Gewährleistung des Gesundheitsschutzes und der Sicherheit der betroffenen Beschäftigten,\n6. die technischen und organisatorischen Maßnahmen, die zur Verringerung oder Vermeidung einer Exposition der Beschäftigten ergriffen werden sollen.\n\n(2) Eine Ausnahme nach Absatz 1 kann auch im Zusammenhang mit Verwaltungsverfahren nach anderen Rechtsvorschriften beantragt werden.\n\n(3) Die zuständige Behörde kann unbeschadet des § 23 des Chemikaliengesetzes im Einzelfall Maßnahmen anordnen, die der Hersteller, Lieferant oder Arbeitgeber zu ergreifen hat, um die Pflichten nach den Abschnitten 2 bis 5 dieser Verordnung zu erfüllen; dabei kann sie insbesondere anordnen, dass der Arbeitgeber\n1. die zur Bekämpfung besonderer Gefahren notwendigen Maßnahmen ergreifen muss,\n2. festzustellen hat, ob und in welchem Umfang eine vermutete Gefahr tatsächlich besteht und welche Maßnahmen zur Bekämpfung der Gefahr ergriffen werden müssen,\n3. die Arbeit, bei der die Beschäftigten gefährdet sind, einstellen zu lassen hat, wenn der Arbeitgeber die zur Bekämpfung der Gefahr angeordneten notwendigen Maßnahmen nicht unverzüglich oder nicht innerhalb der gesetzten Frist ergreift.\nBei Gefahr im Verzug können die Anordnungen auch gegenüber weisungsberechtigten Personen im Betrieb erlassen werden.\n\n(4) Der zuständigen Behörde ist auf Verlangen ein Nachweis vorzulegen, dass die Gefährdungsbeurteilung fachkundig nach § 6 Absatz 9 erstellt wurde.\n\n(5) Die zuständige Behörde kann dem Arbeitgeber untersagen, Tätigkeiten mit Gefahrstoffen auszuüben oder ausüben zu lassen, und insbesondere eine Stilllegung der betroffenen Arbeitsbereiche anordnen, wenn der Arbeitgeber der Mitteilungspflicht nach § 18 Absatz 2 Nummer 1 nicht nachkommt.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c9b0d798e2053443",
+              "number": "19a",
+              "title": "§ 19a. Anerkennung ausländischer Qualifikationen",
+              "text": "§ 19a. Anerkennung ausländischer Qualifikationen:\n(1) Die zuständige Behörde erkennt auf Antrag an, dass eine ausländische Aus- oder Weiterbildung dem Erwerb einer Sachkunde im Sinne von § 2 Absatz 17 gleichwertig ist, wenn durch sie Kenntnisse erlangt wurden, die den Sachkundeanforderungen der nach § 20 Absatz 4 bekanntgegebenen Regeln und Erkenntnissen entsprechen.\n\n(2) Die Behörde entscheidet über die Gleichwertigkeit einer ausländischen Qualifikation auf Grundlage der ihr vorliegenden oder zusätzlich vom Antragsteller vorgelegten Nachweise. Die Nachweise sind in deutscher Sprache beizubringen. Die Gleichwertigkeit wird durch eine Bescheinigung bestätigt.",
+              "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "d4c1610a3263e07c",
+              "number": "20",
+              "title": "§ 20. Ausschuss für Gefahrstoffe",
+              "text": "§ 20. Ausschuss für Gefahrstoffe:\n(1) Beim Bundesministerium für Arbeit und Soziales wird ein Ausschuss für Gefahrstoffe (AGS) gebildet, in dem geeignete Personen vonseiten der Arbeitgeber, der Gewerkschaften, der Landesbehörden, der gesetzlichen Unfallversicherung und weitere geeignete Personen, insbesondere aus der Wissenschaft, vertreten sein sollen. Die Gesamtzahl der Mitglieder soll 21 Personen nicht überschreiten. Für jedes Mitglied ist ein stellvertretendes Mitglied zu benennen. Die Mitgliedschaft im Ausschuss für Gefahrstoffe ist ehrenamtlich.\n\n(2) Das Bundesministerium für Arbeit und Soziales beruft die Mitglieder des Ausschusses und die stellvertretenden Mitglieder. Der Ausschuss gibt sich eine Geschäftsordnung und wählt die Vorsitzende oder den Vorsitzenden aus seiner Mitte. Die Geschäftsordnung und die Wahl der oder des Vorsitzenden bedürfen der Zustimmung des Bundesministeriums für Arbeit und Soziales.\n\n(3) Zu den Aufgaben des Ausschusses gehört es:\n1. den Stand der Wissenschaft, Technik, Arbeitsmedizin und Arbeitshygiene sowie sonstige gesicherte Erkenntnisse für Tätigkeiten mit Gefahrstoffen einschließlich deren Einstufung und Kennzeichnung zu ermitteln und entsprechende Empfehlungen auszusprechen,\n2. zu ermitteln, wie die in dieser Verordnung gestellten Anforderungen erfüllt werden können und dazu die dem jeweiligen Stand von Technik und Medizin entsprechenden Regeln und Erkenntnisse zu erarbeiten,\n3. das Bundesministerium für Arbeit und Soziales in allen Fragen zu Gefahrstoffen und zur Chemikaliensicherheit zu beraten und\n4. Grenzwerte und Konzentrationen nach § 2 Absatz 8 bis 9 sowie entsprechende Ermittlungs- und Messverfahren vorzuschlagen und regelmäßig zu überprüfen, wobei\na) bei der Festlegung dieser Grenzwerte und Konzentrationen sicherzustellen ist, dass der Schutz der Gesundheit der Beschäftigten gewahrt ist,\nb) für jeden Stoff, für den ein Arbeitsplatzgrenzwert oder ein biologischer Grenzwert in Rechtsakten der Europäischen Union festgelegt worden ist, unter Berücksichtigung dieses Grenzwerts ein nationaler Grenzwert vorzuschlagen ist; dabei sind die entsprechenden Bestimmungen der folgenden Richtlinien in der jeweils geltenden Fassung zu berücksichtigen:\naa) Richtlinie 98/24/EG des Rates vom 7. April 1998 zum Schutz von Gesundheit und Sicherheit der Arbeitnehmer vor der Gefährdung durch chemische Arbeitsstoffe bei der Arbeit (vierzehnte Einzelrichtlinie im Sinne des Artikels 16 Absatz 1 der Richtlinie 89/391/EWG) (ABl. L 131 vom 5.5.1998, S. 11), die zuletzt durch die Verordnung (EU) 2019/1243 (ABl. L 198 vom 25.7.2019, S. 241) geändert worden ist, einschließlich der Richtlinien über Arbeitsplatzgrenzwerte, die nach Artikel 3 Absatz 2 der Richtlinie 98/24/EG erlassen wurden,\nbb) Richtlinie 2004/37/EG des Europäischen Parlaments und des Rates vom 29. April 2004 über den Schutz der Arbeitnehmer gegen Gefährdung durch Karzinogene oder Mutagene bei der Arbeit (Sechste Einzelrichtlinie im Sinne von Artikel 16 Absatz 1 der Richtlinie 89/391/EWG des Rates) (kodifizierte Fassung) (ABl. L 158 vom 30.4.2004, S. 50), die zuletzt durch die Richtlinie (EU) 2022/431 (ABl. L 088 vom 16.3.2022, S. 1) geändert worden ist, sowie\ncc) Richtlinie 2009/148/EG des Europäischen Parlaments und des Rates vom 30. November 2009 über den Schutz der Arbeitnehmer gegen Gefährdung durch Asbest am Arbeitsplatz (ABl. L 330 vom 16.12.2009, S. 28), die zuletzt durch die Verordnung (EU) 2019/1243 (ABl. L 198 vom 25.7.2019, S. 241) geändert worden ist.\nDas Arbeitsprogramm des Ausschusses für Gefahrstoffe wird mit dem Bundesministerium für Arbeit und Soziales abgestimmt, wobei die Letztentscheidungsbefugnis beim Bundesministerium für Arbeit und Soziales liegt. Der Ausschuss arbeitet eng mit den anderen Ausschüssen beim Bundesministerium für Arbeit und Soziales zusammen.\n\n(4) Nach Prüfung kann das Bundesministerium für Arbeit und Soziales\n1. die vom Ausschuss für Gefahrstoffe ermittelten Regeln und Erkenntnisse nach Absatz 3 Satz 1 Nummer 2 sowie die Grenzwerte und Konzentrationen nach Absatz 3 Satz 1 Nummer 4 im Gemeinsamen Ministerialblatt bekannt geben und\n2. die Empfehlungen nach Absatz 3 Satz 1 Nummer 1 sowie die Beratungsergebnisse nach Absatz 3 Satz 1 Nummer 3 in geeigneter Weise veröffentlichen.\n\n(5) Die Bundesministerien sowie die obersten Landesbehörden können zu den Sitzungen des Ausschusses Vertreterinnen oder Vertreter entsenden. Auf Verlangen ist diesen in der Sitzung das Wort zu erteilen.\n\n(6) Die Bundesanstalt für Arbeitsschutz und Arbeitsmedizin führt die Geschäfte des Ausschusses.",
+              "whs_topics": [
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "52df5ee2aa85860b",
+              "number": "21",
+              "title": "§ 21. Chemikaliengesetz – Anzeigen",
+              "text": "§ 21. Chemikaliengesetz – Anzeigen:\nOrdnungswidrig im Sinne des § 26 Absatz 1 Nummer 8 Buchstabe b des Chemikaliengesetzes handelt, wer vorsätzlich oder fahrlässig\n1. (weggefallen)\n2. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.3 Absatz 1 oder Absatz 2 eine Anzeige nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig erstattet,\n3. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.3 Absatz 3 eine Änderung nicht oder nicht rechtzeitig anzeigt,\n3a. entgegen § 10a Absatz 5 Satz 1 eine Mitteilung nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig macht,\n3b. entgegen § 11a Absatz 4 Satz 1 in Verbindung mit Anhang I Nummer 3.5 Absatz 2 oder Absatz 3 Satz 1 eine Anzeige nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig erstattet,\n4. entgegen § 15c Absatz 2 Satz 1 oder Satz 3, § 15d Absatz 3 Satz 1, § 15g Absatz 3 Satz 3 oder § 18 Absatz 1 eine Anzeige nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig erstattet oder\n5. entgegen § 15d Absatz 1 Satz 5 oder § 18 Absatz 2 eine Mitteilung nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig macht.",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c8202853b50ac5dc",
+              "number": "22",
+              "title": "§ 22. Chemikaliengesetz – Tätigkeiten",
+              "text": "§ 22. Chemikaliengesetz – Tätigkeiten:\n(1) Ordnungswidrig im Sinne des § 26 Absatz 1 Nummer 8 Buchstabe b des Chemikaliengesetzes handelt, wer vorsätzlich oder fahrlässig\n1. entgegen § 5a Absatz 2 Satz 1 das Datum des Baubeginns oder das Baujahr des Objekts nicht, nicht richtig, nicht vollständig, nicht in der vorgeschriebenen Art und Weise oder nicht rechtzeitig übermittelt,\n1a. entgegen § 6 Absatz 8 Satz 1 eine Gefährdungsbeurteilung nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig dokumentiert,\n2. entgegen § 6 Absatz 12 Satz 1 ein Gefahrstoffverzeichnis nicht, nicht richtig oder nicht vollständig führt,\n3. entgegen § 7 Absatz 1 eine Tätigkeit aufnehmen lässt,\n4. entgegen § 7 Absatz 5 Satz 2 das Verwenden von belastender persönlicher Schutzausrüstung als Dauermaßnahme anwendet,\n5. entgegen § 7 Absatz 7 Satz 1 die Funktion und die Wirksamkeit der technischen Schutzmaßnahmen nicht oder nicht rechtzeitig überprüft,\n6. entgegen § 8 Absatz 2 Satz 3 eine Tätigkeit ausüben lässt,\n7. entgegen § 8 Absatz 3 Satz 2 einen Bereich nicht oder nicht rechtzeitig einrichtet,\n8. entgegen § 8 Absatz 5 Satz 3 Gefahrstoffe aufbewahrt oder lagert,\n9. (weggefallen)\n10. (weggefallen)\n11. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.1 Absatz 2 Stoffe oder Gemische der Gruppe A lagert oder befördert,\n12. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.1 Absatz 3 brennbare Materialien lagert,\n13. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.2 Absatz 3 Stoffe oder Gemische nicht oder nicht rechtzeitig in Teilmengen unterteilt,\n14. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.3 Absatz 5 Stoffe oder Gemische lagert,\n15. entgegen § 9 Absatz 3 Satz 2 oder § 9 Absatz 4 eine persönliche Schutzausrüstung nicht oder nicht rechtzeitig bereitstellt,\n15a. entgegen § 9 Absatz 5 nicht gewährleistet, dass getrennte Aufbewahrungsmöglichkeiten zur Verfügung stehen,\n16. entgegen § 10 Absatz 2 Satz 1 Nummer 5 nicht sicherstellt, dass abgesaugte Luft nicht zurückgeführt wird,\n17. entgegen § 10 Absatz 3 Nummer 2 Atemschutz nicht oder nicht richtig zur Verfügung stellt,\n17a. entgegen § 10a Absatz 1 Satz 1 ein Verzeichnis nicht, nicht richtig oder nicht vollständig führt,\n17b. entgegen § 10a Absatz 2 Satz 1 ein Verzeichnis nicht oder nicht für die vorgeschriebene Dauer aufbewahrt,\n17c. entgegen § 10a Absatz 6 Nummer 2 nicht sicherstellt, dass ein Beschäftigter oder eine Vertretung unterrichtet und informiert wird,\n17d. entgegen § 11a Absatz 1 Satz 1 Nummer 6 in Verbindung mit Anhang I Nummer 3.2 Satz 1 einen Arbeitsplan nicht oder nicht rechtzeitig erstellt,\n17e. entgegen § 11a Absatz 5 Satz 1 Nummer 1 erster Halbsatz nicht sicherstellt, dass eine dort genannte Aufgabe durch eine dort genannte Person erfolgt,\n17f. entgegen § 11a Absatz 5 Satz 1 Nummer 2 erster Halbsatz nicht sicherstellt, dass eine Tätigkeit durch eine dort genannte Person beaufsichtigt wird,\n18. entgegen § 12 Absatz 1 Satz 3 in Verbindung mit Anhang I Nummer 1.3 Absatz 2 Satz 1 das Rauchen oder die Verwendung von offenem Feuer oder offenem Licht nicht verbietet,\n19. entgegen § 12 Absatz 1 Satz 3 in Verbindung mit Anhang I Nummer 1.5 Absatz 4 oder Nummer 1.6 Absatz 5 einen dort genannten Bereich nicht oder nicht richtig kennzeichnet,\n19a. entgegen § 12 Absatz 4 Satz 2 in Verbindung mit Anhang III Nummer 2.3 Absatz 1 Satz 1 eine Tätigkeit mit einem organischen Peroxid ausüben lässt,\n19b. entgegen § 12 Absatz 4 Satz 2 in Verbindung mit Anhang III Nummer 2.6 Satz 2 Buchstabe a nicht sicherstellt, dass ein dort genanntes Gebäude oder ein dort genannter Raum in Sicherheitsbauweise errichtet wird,\n19c. entgegen § 12 Absatz 4 Satz 2 in Verbindung mit Anhang III Nummer 2.7 einen dort genannten Bereich nicht oder nicht rechtzeitig festlegt,\n20. entgegen § 13 Absatz 2 Satz 1 eine dort genannte Maßnahme nicht oder nicht rechtzeitig ergreift,\n21. entgegen § 13 Absatz 3 Satz 1 einen Beschäftigten nicht oder nicht rechtzeitig ausstattet,\n22. entgegen § 13 Absatz 4 Warn- und sonstige Kommunikationseinrichtungen nicht zur Verfügung stellt,\n23. entgegen § 13 Absatz 5 Satz 1 nicht sicherstellt, dass Informationen über Notfallmaßnahmen zur Verfügung stehen,\n24. entgegen § 14 Absatz 1 Satz 1 nicht sicherstellt, dass den Beschäftigten eine schriftliche Betriebsanweisung in der vorgeschriebenen Weise zugänglich gemacht wird,\n25. entgegen § 14 Absatz 2 Satz 1 nicht sicherstellt, dass die Beschäftigten über auftretende Gefährdungen und entsprechende Schutzmaßnahmen mündlich unterwiesen werden,\n26. (weggefallen)\n27. (weggefallen)\n28. (weggefallen)\n29. entgegen § 15c Absatz 3 Satz 1 ein Biozid-Produkt verwendet,\n29a. ohne Erlaubnis nach § 15d Absatz 1 Satz 1 eine Begasung durchführt,\n30. entgegen § 15d Absatz 4 Satz 2 Nummer 2 Buchstabe a nicht sicherstellt, dass die Begasung von einer dort genannten Person durchgeführt wird,\n31. entgegen § 15d Absatz 4 Satz 2 Nummer 2 Buchstabe c nicht sicherstellt, dass neben dem Befähigungsscheininhaber eine weitere sachkundige Person anwesend ist.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "first_aid",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 9,
+                "level": "critical",
+                "high_keyword_matches": 4,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "2219e58c049984e4",
+              "number": "23",
+              "title": "§ 23. (weggefallen)",
+              "text": "§ 23 (weggefallen)",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ff98073d9cd3b322",
+              "number": "24",
+              "title": "§ 24. Chemikaliengesetz – Herstellungs- und Verwendungsbeschränkungen",
+              "text": "§ 24. Chemikaliengesetz – Herstellungs- und Verwendungsbeschränkungen:\n(1) Ordnungswidrig im Sinne des § 26 Absatz 1 Nummer 7 Buchstabe a des Chemikaliengesetzes handelt, wer vorsätzlich oder fahrlässig\n1. entgegen § 15a Absatz 2 Satz 1 ein Biozid-Produkt in den Fällen des § 15a Absatz 2 Satz 2 Nummer 2 oder 3 nicht richtig verwendet oder\n2. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 6 Absatz 1 einen dort aufgeführten Stoff verwendet.\n\n(2) Nach § 27 Absatz 1 Nummer 1, Absatz 2 bis 4 des Chemikaliengesetzes wird bestraft, wer vorsätzlich oder fahrlässig\n1. entgegen § 11 Absatz 1 Satz 1 Nummer 1 einen Rohstoff, ein Gemisch oder ein Erzeugnis gewinnt, aufbereitet, weiterverarbeitet oder wiederverwendet,\n2. entgegen § 11 Absatz 1 Satz 1 Nummer 2 erster Halbsatz oder Nummer 3 asbesthaltige Materialien verwendet oder an asbesthaltigen Materialien tätig wird,\n3. ohne Zulassung nach § 11a Absatz 3 Satz 1 oder § 25 Absatz 4 erster Halbsatz eine dort genannte Tätigkeit ausübt,\n4. (weggefallen)\n5. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 2 Absatz 1 die dort aufgeführten Stoffe oder Gemische herstellt,\n6. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 3 Absatz 1 die dort aufgeführten Erzeugnisse verwendet,\n7. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 4 Absatz 1, Absatz 3 Satz 1 oder Absatz 4 die dort aufgeführten Kühlschmierstoffe oder Korrosionsschutzmittel verwendet oder\n8. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 5 Absatz 1 die dort aufgeführten Stoffe, Gemische oder Erzeugnisse herstellt oder verwendet.",
+              "whs_topics": [
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ce4d52f43dc7f086",
+              "number": "25",
+              "title": "§ 25. Übergangsvorschriften",
+              "text": "§ 25. Übergangsvorschriften:\n(1) Auf die Verwendung von Biozid-Produkten, die unter die Übergangsregelung des § 28 Absatz 8 des Chemikaliengesetzes fallen, finden folgende Vorschriften keine Anwendung soweit deren Erfüllung einer solchen Zulassung nach der Verordnung (EU) Nr. 528/2012 bedarf:\n1. § 15a Absatz 2 Satz 2 Nummer 4,\n2. § 15b Absatz 1 Nummer 2 Buchstabe a und Absatz 3,\n3. § 15c Absatz 1 Nummer 2.\nFür diese Biozid-Produkte sind bis zur Erteilung einer Zulassung die entsprechenden nach § 20 Absatz 4 bekanntgegebenen Regeln und Erkenntnisse zu berücksichtigen.\n\n(2) Für eine Verwendung von Biozid-Produkten nach § 15c Absatz 1 oder nach § 15d, die bis zum 30. September 2021 ohne Sachkunde ausgeübt werden konnte, ist die Sachkunde spätestens bis zum 28. Juli 2027 nachzuweisen.\n\n(3) § 10 Absatz 6 findet ab dem 1. Januar 2024 Anwendung, frühestens jedoch drei Jahre nachdem der jeweilige Arbeitsplatzgrenzwert oder die Toleranzkonzentration nach § 20 Absatz 4 bekannt gegeben wurde. Während dieser Übergangsfrist hat der Arbeitgeber mindestens die Maßnahmen nach § 10 Absatz 2 und 3 zu treffen.\n\n(4) Unbeschadet von § 11a Absatz 3 Satz 1 gilt die Zulassungspflicht nach Anhang I Nummer 2.4.2 Absatz 4 in der am 1. Januar 2022 geltenden Fassung für Abbruch- und Sanierungsarbeiten fort und entfällt, wenn sie nach den in § 20 Absatz 4 bekannt gegebenen Regeln einem niedrigen oder mittleren Risiko zugeordnet wurden oder wenn der Arbeitgeber eine entsprechende Zuordnung durch fachkundige Ermittlung der Exposition nachweisen kann.\n\n(5) Bei Tätigkeiten mit Asbest sind die Sachkunde nach § 11a Absatz 5 Satz 1 Nummer 1 und die Fachkunde nach § 11a Absatz 5 Nummer 3 bis zum 5. Dezember 2027 nachzuweisen.\n\n(6) Bei Tätigkeiten mit Asbest, die nach der am 1. Januar 2022 geltenden Fassung ohne weisungsbefugte sachkundige Person ausgeübt werden konnten, findet § 11a Absatz 5 Satz 1 Nummer 2 ab dem 5. Dezember 2027 Anwendung.\n\n(7) Für anerkannte Sachkunden nach Anhang I Nummer 4.4 Absatz 1 Satz 3 und gleichgestellte Sachkunden nach Anhang I Nummer 4.4 Absatz 2 ist der Abschluss eines behördlich anerkannten Fortbildungslehrgangs erstmals abweichend von Anhang I Nummer 4.4 Absatz 5 spätestens bis zum 28. Juli 2027 nachzuweisen.\n\n(8) Zulassungen, die nach Anhang I Nummer 2.4.2 in der am 1. Januar 2022 geltenden Fassung erteilt wurden, gelten fort bis zum 5. Dezember 2028. Betriebe, die mit dem 5. Dezember 2024 erstmals einer Zulassung nach § 11a Absatz 3 bedürfen, haben diese spätestens bis zum 5. Dezember 2025 zu beantragen. Die zulassungsrelevanten Anforderungen der nach § 20 Absatz 4 bekannt gegebenen Regeln und Erkenntnisse sind bereits während der Übergangsfrist zu berücksichtigen.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "faa39c0ba7c3bf19",
+              "number": "5a",
+              "title": "§ 5a. Besondere Mitwirkungs- und Informationspflichten für Veranlasser von Tätigkeiten an baulichen oder technischen Anlagen",
+              "text": "§ 5a. Besondere Mitwirkungs- und Informationspflichten für Veranlasser von Tätigkeiten an baulichen oder technischen Anlagen:\n(1) Derjenige, der Tätigkeiten an baulichen oder technischen Anlagen veranlasst (Veranlasser), hat vor Beginn der Tätigkeiten dem ausführenden Unternehmen alle ihm vorliegenden Informationen zur Bau- oder Nutzungsgeschichte über vorhandene oder vermutete Gefahrstoffe schriftlich oder elektronisch zur Verfügung zu stellen. Der Veranlasser hat sich zur Informationsbeschaffung in zumutbarem Aufwand der ihm zugänglichen Unterlagen zu bedienen. Gefahrstoffe im Sinne von Satz 1 sind solche, die durch die Tätigkeiten freigesetzt werden und zu einer besonderen Gesundheitsgefährdung führen können.\n\n(2) Damit festgestellt werden kann, ob Asbest vorliegt, hat der Veranlasser vor Beginn der Tätigkeiten an Objekten mit Baujahr zwischen 1993 und 1996 das Datum des Baubeginns des Objekts oder das Baujahr des Objekts, sofern das genaue Datum des Baubeginns nicht bekannt ist, an das ausführende Unternehmen schriftlich oder elektronisch zu übermitteln. Bei Objekten mit Baujahr vor 1993 oder nach 1996 reicht die Angabe des Baujahrs aus.\n\n(3) Weiterreichende Informations-, Schutz- oder Überwachungspflichten, die sich für den Veranlasser nach anderen Rechtsvorschriften ergeben, bleiben unberührt.\n\n(4) Die Absätze 1 bis 3 gelten auch für private Haushalte.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "hazardous_substances",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
             },
             {
               "id": "3f812b60dc3b8175",
@@ -7514,340 +8579,6 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
-            {
-              "id": "8d695111617ba426",
-              "number": "16",
-              "title": "§ 16. Herstellungs- und Verwendungsbeschränkungen",
-              "text": "(1) Herstellungs- und Verwendungsbeschränkungen für bestimmte Stoffe, Gemische und Erzeugnisse ergeben sich aus Artikel 67 in Verbindung mit Anhang XVII der Verordnung (EG) Nr. 1907/2006.\n\n(2) Nach Maßgabe des Anhangs II bestehen weitere Herstellungs- und Verwendungsbeschränkungen für dort genannte Stoffe, Gemische und Erzeugnisse.\n\n(3) Der Arbeitgeber darf in Heimarbeit beschäftigte Personen nur Tätigkeiten mit geringer Gefährdung im Sinne des § 6 Absatz 13 ausüben lassen.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "7bea281597138994",
-              "number": "17",
-              "title": "§ 17. Nationale Ausnahmen von Beschränkungsregelungen nach der Verordnung (EG) Nr. 1907/2006",
-              "text": "§ 17. Nationale Ausnahmen von Beschränkungsregelungen nach der Verordnung (EG) Nr. 1907/2006:\n(1) Für am 1. Dezember 2010 bestehende Anlagen gelten die Beschränkungen nach Artikel 67 in Verbindung mit Anhang XVII Nummer 6 der Verordnung (EG) Nr. 1907/2006 bis zum 1. Juli 2025 nicht für das Verwenden chrysotilhaltiger Diaphragmen für die Chloralkalielektrolyse oder für das Verwenden von Chrysotil, das ausschließlich zur Wartung dieser Diaphragmen eingesetzt wird, wenn\n1. keine asbestfreien Ersatzstoffe, Gemische oder Erzeugnisse auf dem Markt angeboten werden oder\n2. die Verwendung der asbestfreien Ersatzstoffe, Gemische oder Erzeugnisse zu einer unzumutbaren Härte führen würde\nund die Konzentration der Asbestfasern in der Luft am Arbeitsplatz unterhalb von 1 000 Fasern je Kubikmeter liegt. Betreiber von Anlagen, die von der Regelung nach Satz 1 Gebrauch machen, übermitteln der Bundesstelle für Chemikalien bis zum 31. Januar eines jeden Kalenderjahres einen Bericht, aus dem die Menge an Chrysotil hervorgeht, die in Diaphragmen, die unter diese Ausnahmeregelung fallen, im Vorjahr verwendet wurde. Die Ergebnisse der Arbeitsplatzmessungen sind in den Bericht aufzunehmen. Die Bundesstelle für Chemikalien übermittelt der Europäischen Kommission eine Kopie des Berichts.\n\n(2) Das Verwendungsverbot nach Artikel 67 in Verbindung mit Anhang XVII Nummer 16 und 17 der Verordnung (EG) Nr. 1907/2006 gilt nicht für die Verwendung der dort genannten Bleiverbindungen in Farben, die zur Erhaltung oder originalgetreuen Wiederherstellung von Kunstwerken und historischen Bestandteilen oder von Einrichtungen denkmalgeschützter Gebäude bestimmt sind, wenn die Verwendung von Ersatzstoffen nicht möglich ist.",
-              "whs_topics": [
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "edd5cae9b728ced7",
-              "number": "18",
-              "title": "§ 18. Unterrichtung der Behörde",
-              "text": "§ 18. Unterrichtung der Behörde:\n(1) Der Arbeitgeber hat der zuständigen Behörde unverzüglich anzuzeigen\n1. jeden Unfall und jede Betriebsstörung, die bei Tätigkeiten mit Gefahrstoffen zu einer ernsten Gesundheitsschädigung von Beschäftigten geführt haben,\n2. Krankheits- und Todesfälle, bei denen konkrete Anhaltspunkte dafür bestehen, dass sie durch die Tätigkeit mit Gefahrstoffen verursacht worden sind, mit der genauen Angabe der Tätigkeit und der Gefährdungsbeurteilung nach § 6.\nLassen sich die für die Anzeige nach Satz 1 erforderlichen Angaben gleichwertig aus Anzeigen nach anderen Rechtsvorschriften entnehmen, kann die Anzeigepflicht auch durch Übermittlung von Kopien dieser Anzeigen an die zuständige Behörde erfüllt werden. Der Arbeitgeber hat den betroffenen Beschäftigten oder ihrer Vertretung Kopien der Anzeigen nach Satz 1 oder Satz 2 zur Kenntnis zu geben.\n\n(2) Unbeschadet des § 22 des Arbeitsschutzgesetzes hat der Arbeitgeber der zuständigen Behörde auf Verlangen Folgendes mitzuteilen:\n1. das Ergebnis der Gefährdungsbeurteilung nach § 6 und die ihr zugrunde liegenden Informationen, einschließlich der Dokumentation der Gefährdungsbeurteilung,\n2. die Tätigkeiten, bei denen Beschäftigte tatsächlich oder möglicherweise gegenüber Gefahrstoffen exponiert worden sind, und die Anzahl dieser Beschäftigten,\n3. die nach § 13 des Arbeitsschutzgesetzes verantwortlichen Personen,\n4. die durchgeführten Schutz- und Vorsorgemaßnahmen, einschließlich der Betriebsanweisungen,\n5. eine Kopie des Maßnahmenplans nach § 10 Absatz 5 bei Tätigkeiten im Bereich mittleren oder hohen Risikos.\n\n(3) Der Arbeitgeber hat der zuständigen Behörde bei Tätigkeiten mit krebserzeugenden, keimzellmutagenen oder reproduktionstoxischen Gefahrstoffen der Kategorie 1A oder 1B zusätzlich auf Verlangen Folgendes mitzuteilen:\n1. das Ergebnis der Substitutionsprüfung,\n2. Informationen über\na) ausgeübte Tätigkeiten und angewandte industrielle Verfahren und die Gründe für die Verwendung dieser Gefahrstoffe,\nb) die Menge der hergestellten oder verwendeten Gefahrstoffe,\nc) die Art der zu verwendenden Schutzausrüstung,\nd) Art und Ausmaß der Exposition,\ne) durchgeführte Substitutionen.\n\n(4) Auf Verlangen der zuständigen Behörde ist die nach Anhang II der Verordnung (EG) Nr. 1907/2006 geforderte Fachkunde für die Erstellung von Sicherheitsdatenblättern nachzuweisen.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "prevention_services",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 2
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 5,
-                "level": "critical",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 3
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "c0d4703809fa3747",
-              "number": "19",
-              "title": "§ 19. Behördliche Ausnahmen, Anordnungen und Befugnisse",
-              "text": "§ 19. Behördliche Ausnahmen, Anordnungen und Befugnisse:\n(1) Die zuständige Behörde kann auf schriftlichen oder elektronischen Antrag des Arbeitgebers Ausnahmen von den §§ 6 bis 15 zulassen, wenn die Anwendung dieser Vorschriften im Einzelfall zu einer unverhältnismäßigen Härte führen würde und die Abweichung mit dem Schutz der Beschäftigten vereinbar ist. § 11 Absatz 6 bleibt unberührt. Der Arbeitgeber hat der zuständigen Behörde im Antrag darzulegen:\n1. den Grund für die Beantragung der Ausnahme,\n2. die jährlich zu verwendende Menge des Gefahrstoffs,\n3. die betroffenen Tätigkeiten und Verfahren,\n4. die Zahl der voraussichtlich betroffenen Beschäftigten,\n5. die geplanten Maßnahmen zur Gewährleistung des Gesundheitsschutzes und der Sicherheit der betroffenen Beschäftigten,\n6. die technischen und organisatorischen Maßnahmen, die zur Verringerung oder Vermeidung einer Exposition der Beschäftigten ergriffen werden sollen.\n\n(2) Eine Ausnahme nach Absatz 1 kann auch im Zusammenhang mit Verwaltungsverfahren nach anderen Rechtsvorschriften beantragt werden.\n\n(3) Die zuständige Behörde kann unbeschadet des § 23 des Chemikaliengesetzes im Einzelfall Maßnahmen anordnen, die der Hersteller, Lieferant oder Arbeitgeber zu ergreifen hat, um die Pflichten nach den Abschnitten 2 bis 5 dieser Verordnung zu erfüllen; dabei kann sie insbesondere anordnen, dass der Arbeitgeber\n1. die zur Bekämpfung besonderer Gefahren notwendigen Maßnahmen ergreifen muss,\n2. festzustellen hat, ob und in welchem Umfang eine vermutete Gefahr tatsächlich besteht und welche Maßnahmen zur Bekämpfung der Gefahr ergriffen werden müssen,\n3. die Arbeit, bei der die Beschäftigten gefährdet sind, einstellen zu lassen hat, wenn der Arbeitgeber die zur Bekämpfung der Gefahr angeordneten notwendigen Maßnahmen nicht unverzüglich oder nicht innerhalb der gesetzten Frist ergreift.\nBei Gefahr im Verzug können die Anordnungen auch gegenüber weisungsberechtigten Personen im Betrieb erlassen werden.\n\n(4) Der zuständigen Behörde ist auf Verlangen ein Nachweis vorzulegen, dass die Gefährdungsbeurteilung fachkundig nach § 6 Absatz 9 erstellt wurde.\n\n(5) Die zuständige Behörde kann dem Arbeitgeber untersagen, Tätigkeiten mit Gefahrstoffen auszuüben oder ausüben zu lassen, und insbesondere eine Stilllegung der betroffenen Arbeitsbereiche anordnen, wenn der Arbeitgeber der Mitteilungspflicht nach § 18 Absatz 2 Nummer 1 nicht nachkommt.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "c9b0d798e2053443",
-              "number": "19a",
-              "title": "§ 19a. Anerkennung ausländischer Qualifikationen",
-              "text": "§ 19a. Anerkennung ausländischer Qualifikationen:\n(1) Die zuständige Behörde erkennt auf Antrag an, dass eine ausländische Aus- oder Weiterbildung dem Erwerb einer Sachkunde im Sinne von § 2 Absatz 17 gleichwertig ist, wenn durch sie Kenntnisse erlangt wurden, die den Sachkundeanforderungen der nach § 20 Absatz 4 bekanntgegebenen Regeln und Erkenntnissen entsprechen.\n\n(2) Die Behörde entscheidet über die Gleichwertigkeit einer ausländischen Qualifikation auf Grundlage der ihr vorliegenden oder zusätzlich vom Antragsteller vorgelegten Nachweise. Die Nachweise sind in deutscher Sprache beizubringen. Die Gleichwertigkeit wird durch eine Bescheinigung bestätigt.",
-              "whs_topics": [
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "training",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "d4c1610a3263e07c",
-              "number": "20",
-              "title": "§ 20. Ausschuss für Gefahrstoffe",
-              "text": "§ 20. Ausschuss für Gefahrstoffe:\n(1) Beim Bundesministerium für Arbeit und Soziales wird ein Ausschuss für Gefahrstoffe (AGS) gebildet, in dem geeignete Personen vonseiten der Arbeitgeber, der Gewerkschaften, der Landesbehörden, der gesetzlichen Unfallversicherung und weitere geeignete Personen, insbesondere aus der Wissenschaft, vertreten sein sollen. Die Gesamtzahl der Mitglieder soll 21 Personen nicht überschreiten. Für jedes Mitglied ist ein stellvertretendes Mitglied zu benennen. Die Mitgliedschaft im Ausschuss für Gefahrstoffe ist ehrenamtlich.\n\n(2) Das Bundesministerium für Arbeit und Soziales beruft die Mitglieder des Ausschusses und die stellvertretenden Mitglieder. Der Ausschuss gibt sich eine Geschäftsordnung und wählt die Vorsitzende oder den Vorsitzenden aus seiner Mitte. Die Geschäftsordnung und die Wahl der oder des Vorsitzenden bedürfen der Zustimmung des Bundesministeriums für Arbeit und Soziales.\n\n(3) Zu den Aufgaben des Ausschusses gehört es:\n1. den Stand der Wissenschaft, Technik, Arbeitsmedizin und Arbeitshygiene sowie sonstige gesicherte Erkenntnisse für Tätigkeiten mit Gefahrstoffen einschließlich deren Einstufung und Kennzeichnung zu ermitteln und entsprechende Empfehlungen auszusprechen,\n2. zu ermitteln, wie die in dieser Verordnung gestellten Anforderungen erfüllt werden können und dazu die dem jeweiligen Stand von Technik und Medizin entsprechenden Regeln und Erkenntnisse zu erarbeiten,\n3. das Bundesministerium für Arbeit und Soziales in allen Fragen zu Gefahrstoffen und zur Chemikaliensicherheit zu beraten und\n4. Grenzwerte und Konzentrationen nach § 2 Absatz 8 bis 9 sowie entsprechende Ermittlungs- und Messverfahren vorzuschlagen und regelmäßig zu überprüfen, wobei\na) bei der Festlegung dieser Grenzwerte und Konzentrationen sicherzustellen ist, dass der Schutz der Gesundheit der Beschäftigten gewahrt ist,\nb) für jeden Stoff, für den ein Arbeitsplatzgrenzwert oder ein biologischer Grenzwert in Rechtsakten der Europäischen Union festgelegt worden ist, unter Berücksichtigung dieses Grenzwerts ein nationaler Grenzwert vorzuschlagen ist; dabei sind die entsprechenden Bestimmungen der folgenden Richtlinien in der jeweils geltenden Fassung zu berücksichtigen:\naa) Richtlinie 98/24/EG des Rates vom 7. April 1998 zum Schutz von Gesundheit und Sicherheit der Arbeitnehmer vor der Gefährdung durch chemische Arbeitsstoffe bei der Arbeit (vierzehnte Einzelrichtlinie im Sinne des Artikels 16 Absatz 1 der Richtlinie 89/391/EWG) (ABl. L 131 vom 5.5.1998, S. 11), die zuletzt durch die Verordnung (EU) 2019/1243 (ABl. L 198 vom 25.7.2019, S. 241) geändert worden ist, einschließlich der Richtlinien über Arbeitsplatzgrenzwerte, die nach Artikel 3 Absatz 2 der Richtlinie 98/24/EG erlassen wurden,\nbb) Richtlinie 2004/37/EG des Europäischen Parlaments und des Rates vom 29. April 2004 über den Schutz der Arbeitnehmer gegen Gefährdung durch Karzinogene oder Mutagene bei der Arbeit (Sechste Einzelrichtlinie im Sinne von Artikel 16 Absatz 1 der Richtlinie 89/391/EWG des Rates) (kodifizierte Fassung) (ABl. L 158 vom 30.4.2004, S. 50), die zuletzt durch die Richtlinie (EU) 2022/431 (ABl. L 088 vom 16.3.2022, S. 1) geändert worden ist, sowie\ncc) Richtlinie 2009/148/EG des Europäischen Parlaments und des Rates vom 30. November 2009 über den Schutz der Arbeitnehmer gegen Gefährdung durch Asbest am Arbeitsplatz (ABl. L 330 vom 16.12.2009, S. 28), die zuletzt durch die Verordnung (EU) 2019/1243 (ABl. L 198 vom 25.7.2019, S. 241) geändert worden ist.\nDas Arbeitsprogramm des Ausschusses für Gefahrstoffe wird mit dem Bundesministerium für Arbeit und Soziales abgestimmt, wobei die Letztentscheidungsbefugnis beim Bundesministerium für Arbeit und Soziales liegt. Der Ausschuss arbeitet eng mit den anderen Ausschüssen beim Bundesministerium für Arbeit und Soziales zusammen.\n\n(4) Nach Prüfung kann das Bundesministerium für Arbeit und Soziales\n1. die vom Ausschuss für Gefahrstoffe ermittelten Regeln und Erkenntnisse nach Absatz 3 Satz 1 Nummer 2 sowie die Grenzwerte und Konzentrationen nach Absatz 3 Satz 1 Nummer 4 im Gemeinsamen Ministerialblatt bekannt geben und\n2. die Empfehlungen nach Absatz 3 Satz 1 Nummer 1 sowie die Beratungsergebnisse nach Absatz 3 Satz 1 Nummer 3 in geeigneter Weise veröffentlichen.\n\n(5) Die Bundesministerien sowie die obersten Landesbehörden können zu den Sitzungen des Ausschusses Vertreterinnen oder Vertreter entsenden. Auf Verlangen ist diesen in der Sitzung das Wort zu erteilen.\n\n(6) Die Bundesanstalt für Arbeitsschutz und Arbeitsmedizin führt die Geschäfte des Ausschusses.",
-              "whs_topics": [
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 3
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 3
-                },
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "prevention_services",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 2
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "52df5ee2aa85860b",
-              "number": "21",
-              "title": "§ 21. Chemikaliengesetz – Anzeigen",
-              "text": "§ 21. Chemikaliengesetz – Anzeigen:\nOrdnungswidrig im Sinne des § 26 Absatz 1 Nummer 8 Buchstabe b des Chemikaliengesetzes handelt, wer vorsätzlich oder fahrlässig\n1. (weggefallen)\n2. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.3 Absatz 1 oder Absatz 2 eine Anzeige nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig erstattet,\n3. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.3 Absatz 3 eine Änderung nicht oder nicht rechtzeitig anzeigt,\n3a. entgegen § 10a Absatz 5 Satz 1 eine Mitteilung nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig macht,\n3b. entgegen § 11a Absatz 4 Satz 1 in Verbindung mit Anhang I Nummer 3.5 Absatz 2 oder Absatz 3 Satz 1 eine Anzeige nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig erstattet,\n4. entgegen § 15c Absatz 2 Satz 1 oder Satz 3, § 15d Absatz 3 Satz 1, § 15g Absatz 3 Satz 3 oder § 18 Absatz 1 eine Anzeige nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig erstattet oder\n5. entgegen § 15d Absatz 1 Satz 5 oder § 18 Absatz 2 eine Mitteilung nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig macht.",
-              "whs_topics": [
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "c8202853b50ac5dc",
-              "number": "22",
-              "title": "§ 22. Chemikaliengesetz – Tätigkeiten",
-              "text": "§ 22. Chemikaliengesetz – Tätigkeiten:\n(1) Ordnungswidrig im Sinne des § 26 Absatz 1 Nummer 8 Buchstabe b des Chemikaliengesetzes handelt, wer vorsätzlich oder fahrlässig\n1. entgegen § 5a Absatz 2 Satz 1 das Datum des Baubeginns oder das Baujahr des Objekts nicht, nicht richtig, nicht vollständig, nicht in der vorgeschriebenen Art und Weise oder nicht rechtzeitig übermittelt,\n1a. entgegen § 6 Absatz 8 Satz 1 eine Gefährdungsbeurteilung nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig dokumentiert,\n2. entgegen § 6 Absatz 12 Satz 1 ein Gefahrstoffverzeichnis nicht, nicht richtig oder nicht vollständig führt,\n3. entgegen § 7 Absatz 1 eine Tätigkeit aufnehmen lässt,\n4. entgegen § 7 Absatz 5 Satz 2 das Verwenden von belastender persönlicher Schutzausrüstung als Dauermaßnahme anwendet,\n5. entgegen § 7 Absatz 7 Satz 1 die Funktion und die Wirksamkeit der technischen Schutzmaßnahmen nicht oder nicht rechtzeitig überprüft,\n6. entgegen § 8 Absatz 2 Satz 3 eine Tätigkeit ausüben lässt,\n7. entgegen § 8 Absatz 3 Satz 2 einen Bereich nicht oder nicht rechtzeitig einrichtet,\n8. entgegen § 8 Absatz 5 Satz 3 Gefahrstoffe aufbewahrt oder lagert,\n9. (weggefallen)\n10. (weggefallen)\n11. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.1 Absatz 2 Stoffe oder Gemische der Gruppe A lagert oder befördert,\n12. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.1 Absatz 3 brennbare Materialien lagert,\n13. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.2 Absatz 3 Stoffe oder Gemische nicht oder nicht rechtzeitig in Teilmengen unterteilt,\n14. entgegen § 8 Absatz 8 in Verbindung mit Anhang I Nummer 5.4.2.3 Absatz 5 Stoffe oder Gemische lagert,\n15. entgegen § 9 Absatz 3 Satz 2 oder § 9 Absatz 4 eine persönliche Schutzausrüstung nicht oder nicht rechtzeitig bereitstellt,\n15a. entgegen § 9 Absatz 5 nicht gewährleistet, dass getrennte Aufbewahrungsmöglichkeiten zur Verfügung stehen,\n16. entgegen § 10 Absatz 2 Satz 1 Nummer 5 nicht sicherstellt, dass abgesaugte Luft nicht zurückgeführt wird,\n17. entgegen § 10 Absatz 3 Nummer 2 Atemschutz nicht oder nicht richtig zur Verfügung stellt,\n17a. entgegen § 10a Absatz 1 Satz 1 ein Verzeichnis nicht, nicht richtig oder nicht vollständig führt,\n17b. entgegen § 10a Absatz 2 Satz 1 ein Verzeichnis nicht oder nicht für die vorgeschriebene Dauer aufbewahrt,\n17c. entgegen § 10a Absatz 6 Nummer 2 nicht sicherstellt, dass ein Beschäftigter oder eine Vertretung unterrichtet und informiert wird,\n17d. entgegen § 11a Absatz 1 Satz 1 Nummer 6 in Verbindung mit Anhang I Nummer 3.2 Satz 1 einen Arbeitsplan nicht oder nicht rechtzeitig erstellt,\n17e. entgegen § 11a Absatz 5 Satz 1 Nummer 1 erster Halbsatz nicht sicherstellt, dass eine dort genannte Aufgabe durch eine dort genannte Person erfolgt,\n17f. entgegen § 11a Absatz 5 Satz 1 Nummer 2 erster Halbsatz nicht sicherstellt, dass eine Tätigkeit durch eine dort genannte Person beaufsichtigt wird,\n18. entgegen § 12 Absatz 1 Satz 3 in Verbindung mit Anhang I Nummer 1.3 Absatz 2 Satz 1 das Rauchen oder die Verwendung von offenem Feuer oder offenem Licht nicht verbietet,\n19. entgegen § 12 Absatz 1 Satz 3 in Verbindung mit Anhang I Nummer 1.5 Absatz 4 oder Nummer 1.6 Absatz 5 einen dort genannten Bereich nicht oder nicht richtig kennzeichnet,\n19a. entgegen § 12 Absatz 4 Satz 2 in Verbindung mit Anhang III Nummer 2.3 Absatz 1 Satz 1 eine Tätigkeit mit einem organischen Peroxid ausüben lässt,\n19b. entgegen § 12 Absatz 4 Satz 2 in Verbindung mit Anhang III Nummer 2.6 Satz 2 Buchstabe a nicht sicherstellt, dass ein dort genanntes Gebäude oder ein dort genannter Raum in Sicherheitsbauweise errichtet wird,\n19c. entgegen § 12 Absatz 4 Satz 2 in Verbindung mit Anhang III Nummer 2.7 einen dort genannten Bereich nicht oder nicht rechtzeitig festlegt,\n20. entgegen § 13 Absatz 2 Satz 1 eine dort genannte Maßnahme nicht oder nicht rechtzeitig ergreift,\n21. entgegen § 13 Absatz 3 Satz 1 einen Beschäftigten nicht oder nicht rechtzeitig ausstattet,\n22. entgegen § 13 Absatz 4 Warn- und sonstige Kommunikationseinrichtungen nicht zur Verfügung stellt,\n23. entgegen § 13 Absatz 5 Satz 1 nicht sicherstellt, dass Informationen über Notfallmaßnahmen zur Verfügung stehen,\n24. entgegen § 14 Absatz 1 Satz 1 nicht sicherstellt, dass den Beschäftigten eine schriftliche Betriebsanweisung in der vorgeschriebenen Weise zugänglich gemacht wird,\n25. entgegen § 14 Absatz 2 Satz 1 nicht sicherstellt, dass die Beschäftigten über auftretende Gefährdungen und entsprechende Schutzmaßnahmen mündlich unterwiesen werden,\n26. (weggefallen)\n27. (weggefallen)\n28. (weggefallen)\n29. entgegen § 15c Absatz 3 Satz 1 ein Biozid-Produkt verwendet,\n29a. ohne Erlaubnis nach § 15d Absatz 1 Satz 1 eine Begasung durchführt,\n30. entgegen § 15d Absatz 4 Satz 2 Nummer 2 Buchstabe a nicht sicherstellt, dass die Begasung von einer dort genannten Person durchgeführt wird,\n31. entgegen § 15d Absatz 4 Satz 2 Nummer 2 Buchstabe c nicht sicherstellt, dass neben dem Befähigungsscheininhaber eine weitere sachkundige Person anwesend ist.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "ppe",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "first_aid",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 9,
-                "level": "critical",
-                "high_keyword_matches": 4,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "2219e58c049984e4",
-              "number": "23",
-              "title": "§ 23. (weggefallen)",
-              "text": "§ 23 (weggefallen)",
-              "whs_topics": [],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "ff98073d9cd3b322",
-              "number": "24",
-              "title": "§ 24. Chemikaliengesetz – Herstellungs- und Verwendungsbeschränkungen",
-              "text": "§ 24. Chemikaliengesetz – Herstellungs- und Verwendungsbeschränkungen:\n(1) Ordnungswidrig im Sinne des § 26 Absatz 1 Nummer 7 Buchstabe a des Chemikaliengesetzes handelt, wer vorsätzlich oder fahrlässig\n1. entgegen § 15a Absatz 2 Satz 1 ein Biozid-Produkt in den Fällen des § 15a Absatz 2 Satz 2 Nummer 2 oder 3 nicht richtig verwendet oder\n2. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 6 Absatz 1 einen dort aufgeführten Stoff verwendet.\n\n(2) Nach § 27 Absatz 1 Nummer 1, Absatz 2 bis 4 des Chemikaliengesetzes wird bestraft, wer vorsätzlich oder fahrlässig\n1. entgegen § 11 Absatz 1 Satz 1 Nummer 1 einen Rohstoff, ein Gemisch oder ein Erzeugnis gewinnt, aufbereitet, weiterverarbeitet oder wiederverwendet,\n2. entgegen § 11 Absatz 1 Satz 1 Nummer 2 erster Halbsatz oder Nummer 3 asbesthaltige Materialien verwendet oder an asbesthaltigen Materialien tätig wird,\n3. ohne Zulassung nach § 11a Absatz 3 Satz 1 oder § 25 Absatz 4 erster Halbsatz eine dort genannte Tätigkeit ausübt,\n4. (weggefallen)\n5. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 2 Absatz 1 die dort aufgeführten Stoffe oder Gemische herstellt,\n6. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 3 Absatz 1 die dort aufgeführten Erzeugnisse verwendet,\n7. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 4 Absatz 1, Absatz 3 Satz 1 oder Absatz 4 die dort aufgeführten Kühlschmierstoffe oder Korrosionsschutzmittel verwendet oder\n8. entgegen § 16 Absatz 2 in Verbindung mit Anhang II Nummer 5 Absatz 1 die dort aufgeführten Stoffe, Gemische oder Erzeugnisse herstellt oder verwendet.",
-              "whs_topics": [
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "ce4d52f43dc7f086",
-              "number": "25",
-              "title": "§ 25. Übergangsvorschriften",
-              "text": "§ 25. Übergangsvorschriften:\n(1) Auf die Verwendung von Biozid-Produkten, die unter die Übergangsregelung des § 28 Absatz 8 des Chemikaliengesetzes fallen, finden folgende Vorschriften keine Anwendung soweit deren Erfüllung einer solchen Zulassung nach der Verordnung (EU) Nr. 528/2012 bedarf:\n1. § 15a Absatz 2 Satz 2 Nummer 4,\n2. § 15b Absatz 1 Nummer 2 Buchstabe a und Absatz 3,\n3. § 15c Absatz 1 Nummer 2.\nFür diese Biozid-Produkte sind bis zur Erteilung einer Zulassung die entsprechenden nach § 20 Absatz 4 bekanntgegebenen Regeln und Erkenntnisse zu berücksichtigen.\n\n(2) Für eine Verwendung von Biozid-Produkten nach § 15c Absatz 1 oder nach § 15d, die bis zum 30. September 2021 ohne Sachkunde ausgeübt werden konnte, ist die Sachkunde spätestens bis zum 28. Juli 2027 nachzuweisen.\n\n(3) § 10 Absatz 6 findet ab dem 1. Januar 2024 Anwendung, frühestens jedoch drei Jahre nachdem der jeweilige Arbeitsplatzgrenzwert oder die Toleranzkonzentration nach § 20 Absatz 4 bekannt gegeben wurde. Während dieser Übergangsfrist hat der Arbeitgeber mindestens die Maßnahmen nach § 10 Absatz 2 und 3 zu treffen.\n\n(4) Unbeschadet von § 11a Absatz 3 Satz 1 gilt die Zulassungspflicht nach Anhang I Nummer 2.4.2 Absatz 4 in der am 1. Januar 2022 geltenden Fassung für Abbruch- und Sanierungsarbeiten fort und entfällt, wenn sie nach den in § 20 Absatz 4 bekannt gegebenen Regeln einem niedrigen oder mittleren Risiko zugeordnet wurden oder wenn der Arbeitgeber eine entsprechende Zuordnung durch fachkundige Ermittlung der Exposition nachweisen kann.\n\n(5) Bei Tätigkeiten mit Asbest sind die Sachkunde nach § 11a Absatz 5 Satz 1 Nummer 1 und die Fachkunde nach § 11a Absatz 5 Nummer 3 bis zum 5. Dezember 2027 nachzuweisen.\n\n(6) Bei Tätigkeiten mit Asbest, die nach der am 1. Januar 2022 geltenden Fassung ohne weisungsbefugte sachkundige Person ausgeübt werden konnten, findet § 11a Absatz 5 Satz 1 Nummer 2 ab dem 5. Dezember 2027 Anwendung.\n\n(7) Für anerkannte Sachkunden nach Anhang I Nummer 4.4 Absatz 1 Satz 3 und gleichgestellte Sachkunden nach Anhang I Nummer 4.4 Absatz 2 ist der Abschluss eines behördlich anerkannten Fortbildungslehrgangs erstmals abweichend von Anhang I Nummer 4.4 Absatz 5 spätestens bis zum 28. Juli 2027 nachzuweisen.\n\n(8) Zulassungen, die nach Anhang I Nummer 2.4.2 in der am 1. Januar 2022 geltenden Fassung erteilt wurden, gelten fort bis zum 5. Dezember 2028. Betriebe, die mit dem 5. Dezember 2024 erstmals einer Zulassung nach § 11a Absatz 3 bedürfen, haben diese spätestens bis zum 5. Dezember 2025 zu beantragen. Die zulassungsrelevanten Anforderungen der nach § 20 Absatz 4 bekannt gegebenen Regeln und Erkenntnisse sind bereits während der Übergangsfrist zu berücksichtigen.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 3,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
             }
           ]
         }
@@ -7970,10 +8701,10 @@
       },
       "chapters": [
         {
-          "id": "de-muschg-main",
+          "id": "de-muschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
             {
               "id": "ebcc46f763a6faa6",
@@ -8054,7 +8785,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Gesundheitsschutz",
+          "title_en": "Section 2 - Health Protection",
+          "sections": [
             {
               "id": "4619138200d69892",
               "number": "3",
@@ -8544,7 +9283,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Kündigungsschutz",
+          "title_en": "Section 3 - Dismissal Protection",
+          "sections": [
             {
               "id": "9aedc136c5436397",
               "number": "17",
@@ -8574,7 +9321,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Leistungen",
+          "title_en": "Section 4 - Benefits",
+          "sections": [
             {
               "id": "d1d26807d4dcf225",
               "number": "18",
@@ -8741,7 +9496,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Section 5 - Implementation of the Act",
+          "sections": [
             {
               "id": "f0c52c0bd3fd8665",
               "number": "26",
@@ -8961,7 +9724,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Bußgeldvorschriften, Straftaten",
+          "title_en": "Section 6 - Fines and Criminal Offences",
+          "sections": [
             {
               "id": "051ab626d34f7342",
               "number": "32",
@@ -9149,10 +9920,10 @@
       },
       "chapters": [
         {
-          "id": "de-lärmvibrationsarbschv-main",
+          "id": "de-lärmvibrationsarbschv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Anwendungsbereich und Begriffsbestimmungen",
+          "title_en": "Section 1 - Scope and Definitions",
           "sections": [
             {
               "id": "bef900859a813243",
@@ -9233,7 +10004,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-lärmvibrationsarbschv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Ermittlung und Bewertung",
+          "title_en": "Section 2 - Determination and Assessment",
+          "sections": [
             {
               "id": "c21f7a14c1919b3c",
               "number": "3",
@@ -9348,7 +10127,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-lärmvibrationsarbschv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Schutzmaßnahmen",
+          "title_en": "Section 3 - Protective Measures",
+          "sections": [
             {
               "id": "03c16a4b7627ab02",
               "number": "6",
@@ -9553,7 +10340,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-lärmvibrationsarbschv-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 4 - Final Provisions",
+          "sections": [
             {
               "id": "ec3267383ca20cef",
               "number": "12",
@@ -9791,10 +10586,10 @@
       },
       "chapters": [
         {
-          "id": "de-biostoffv-main",
+          "id": "de-biostoffv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Anwendungsbereich und Begriffsbestimmungen",
+          "title_en": "Section 1 - Scope and Definitions",
           "sections": [
             {
               "id": "2d3fb4fe06dd45ba",
@@ -9910,7 +10705,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-biostoffv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Gefährdungsbeurteilung, Grundpflichten und Schutzmaßnahmen",
+          "title_en": "Section 2 - Risk Assessment, Basic Obligations and Protective Measures",
+          "sections": [
             {
               "id": "9cca0ed62f9c727c",
               "number": "4",
@@ -10180,7 +10983,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-biostoffv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Besondere Schutzmaßnahmen",
+          "title_en": "Section 3 - Special Protective Measures",
+          "sections": [
             {
               "id": "9b2242cc62d5b1ad",
               "number": "11",
@@ -10400,7 +11211,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-biostoffv-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 4 - Final Provisions",
+          "sections": [
             {
               "id": "8212a83817ad8d4b",
               "number": "17",
@@ -10675,10 +11494,10 @@
       },
       "chapters": [
         {
-          "id": "de-arbmedvv-main",
+          "id": "de-arbmedvv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
             {
               "id": "d9c25a19b74da879",
@@ -10744,7 +11563,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbmedvv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Durchführung der arbeitsmedizinischen Vorsorge",
+          "title_en": "Section 2 - Implementation of Occupational Health Care",
+          "sections": [
             {
               "id": "ab84c406e2be3be4",
               "number": "3",
@@ -10959,7 +11786,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbmedvv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 3 - Final Provisions",
+          "sections": [
             {
               "id": "e7c1d98497ccc19c",
               "number": "8",
@@ -11159,10 +11994,10 @@
       },
       "chapters": [
         {
-          "id": "de-lastenhandhabv-main",
+          "id": "de-lastenhandhabv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Verordnung - Lastenhandhabungsverordnung",
+          "title_en": "Regulation - Manual Handling Regulation",
           "sections": [
             {
               "id": "7ffc22054e0aaac2",

@@ -8,7 +8,8 @@
     "restructured_at": "2025-12-18T19:27:51.066806",
     "titles_updated_at": "2025-12-18T21:52:10.901Z",
     "sections_restructured_at": "2025-12-18T17:53:41.037Z",
-    "auto_sections_at": "2025-12-18T17:52:16.079Z"
+    "auto_sections_at": "2025-12-18T17:52:16.079Z",
+    "chapters_reorganized_at": "2025-12-18T22:57:30.151Z"
   },
   "documents": [
     {
@@ -5031,51 +5032,11 @@
       },
       "chapters": [
         {
-          "id": "at-azg-main",
+          "id": "at-azg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Geltungsbereich",
+          "title_en": "Section 1 - Scope",
           "sections": [
-            {
-              "id": "2a701c8aa377a819",
-              "number": "0",
-              "title": "§ 0",
-              "text": "[SECTION_1]§ 1. (1) Die Bestimmungen dieses Bundesgesetzes gelten für die Beschäftigung von Arbeitnehmern (Lehrlingen), die das 18 . Lebensjahr vollendet haben . (2) Ausgenommen vom Geltungsbereich dieses Bundesgesetzes sind: 1 . Arbeitnehmer, die in einem Arbeitsverhältnis zu einer Gebietskörperschaft, zu einer Stiftung, zu einem Fonds oder zu einer Anstalt stehen, sofern diese Einrichtungen von Organen einer Gebietskörperschaft oder von Personen verwaltet werden, die hiezu von Organen einer Gebietskörperschaft bestellt sind ; die Bestimmungen dieses Bundesgesetzes gelten jedoch für Arbeitnehmer, die nicht im Bereich der Hoheitsverwaltung tätig sind, sofern für ihr Arbeitsverhältnis ein Kollektivvertrag wirksam ist ; 2 . Arbeitnehmerinnen und Arbeitnehmer im Sinne des Landarbeitsgesetzes 2021, BGBl . I Nr . 78/2021 ; 3 . Arbeitnehmer, für die die Vorschriften des Bäckereiarbeiter/innengesetzes 1996, BGBl . Nr . 410, gelten ; 4 . Arbeitnehmer, für die die Vorschriften des Hausgehilfen- und Hausangestelltengesetzes, BGBl . Nr . 235/1962 , gelten ; 5 . Arbeitnehmer, a) für die die Vorschriften des Hausbesorgergesetzes, BGBl . Nr . 1",
-              "whs_topics": [
-                {
-                  "id": "working_hours",
-                  "relevance": "medium",
-                  "match_count": 4
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 3
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "training",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 7,
-                "level": "critical",
-                "high_keyword_matches": 2,
-                "medium_keyword_matches": 3
-              },
-              "paragraphs": []
-            },
             {
               "id": "e997d6efd74ad24f",
               "number": "1",
@@ -5170,7 +5131,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-azg-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Arbeitszeit",
+          "title_en": "Section 2 - Working Time",
+          "sections": [
             {
               "id": "14c31f9fdd38c93b",
               "number": "3",
@@ -5843,27 +5812,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
-            {
-              "id": "ba2a6f6b92298bec",
-              "number": "14a",
-              "title": "§ 14a. Lenkzeit",
-              "text": "§ 14a. Lenkzeit:\n(1) Innerhalb der zulässigen Arbeitszeit darf die gesamte tägliche Lenkzeit zwischen zwei Ruhezeiten acht Stunden nicht überschreiten . Der Kollektivvertrag, für Betriebe, für die kein Kollektivvertrag wirksam ist, die Betriebsvereinbarung, kann zulassen, dass die Lenkzeit bis auf neun Stunden, zweimal wöchentlich jedoch bis auf zehn Stunden ausgedehnt wird . (2) Innerhalb einer Woche darf die gesamte Lenkzeit 48 Stunden nicht überschreiten . Innerhalb eines Zeitraumes von zwei aufeinander folgenden Wochen darf die Lenkzeit 90 Stunden nicht überschreiten . (3) Bei Unterbrechung der täglichen Ruhezeit bei kombinierter Beförderung beginnt eine neue tägliche Lenkzeit nach Ablauf der gesamten Ruhezeit .",
-              "whs_topics": [
-                {
-                  "id": "working_hours",
-                  "relevance": "medium",
-                  "match_count": 2
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 5,
-                "level": "critical",
-                "high_keyword_matches": 2,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-azg-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Nacht- und Schichtarbeit",
+          "title_en": "Section 3 - Night and Shift Work",
+          "sections": [
             {
               "id": "2e24564bc29df57a",
               "number": "15",
@@ -6775,7 +6732,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-azg-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Besondere Bestimmungen",
+          "title_en": "Section 4 - Special Provisions",
+          "sections": [
             {
               "id": "33136a99cd1e6145",
               "number": "20",
@@ -7090,7 +7055,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-azg-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Verfahrens- und Strafbestimmungen",
+          "title_en": "Section 5 - Procedural and Penal Provisions",
+          "sections": [
             {
               "id": "23b9bad334c5e2ca",
               "number": "29",
@@ -7180,6 +7153,116 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "at-azg-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Schlussbestimmungen",
+          "title_en": "Section 6 - Final Provisions",
+          "sections": [
+            {
+              "id": "83116b2b61cbf0ea",
+              "number": "33",
+              "title": "§ 33. Durchführung",
+              "text": "Inkrafttreten und Vollziehung § 33 . (1) Dieses Bundesgesetz tritt, soweit im folgenden nicht anderes bestimmt wird, am 5 . Jänner 1970 in Kraft . (2) Die Bestimmung des § 12 Abs . 3 betreffend die ununterbrochene Wochenruhe tritt mit der gemäß § 12 Abs . 4 zu erlassenden Verordnung in Kraft . Die Bestimmung des betreffend die ununterbrochene Wochenruhe tritt mit der gemäß zu erlassenden Verordnung in Kraft . (3) Mit der Vollziehung dieses Bundesgesetzes sind betraut: 1 . hinsichtlich § 26 Abs . 7 und § 27 Abs . 3 die Bundesministerin bzw . der Bundesminister für Finanzen ; hinsichtlich und die Bundesministerin bzw . ; 2 . hinsichtlich des § 15f die Bundesministerin bzw . der Bundesminister für Justiz ; hinsichtlich des f, die Bundesministerin bzw . ; 3 . hinsichtlich des § 15e Abs . 2 die Bundesregierung ; hinsichtlich des e, die Bundesregierung ; 4 . im Übrigen die Bundesministerin bzw . der Bundesminister für Arbeit . (4) Die Bundesministerin bzw . der Bundesminister für Arbeit ist auch mit der Vollziehung der Verordnung (EG) Nr . 561/2006 und der Verordnung (EU) Nr . 165/2014 betraut .",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "2c220f31c7614851",
+              "number": "34",
+              "title": "§ 34. Verweisungen",
+              "text": "Inkrafttreten von Novellen § 34 . (1) § 11 in der Fassung des Bundesgesetzes BGBl . Nr . 473/1992 tritt mit 1 . Jänner 1993 in Kraft . in der Fassung des Bundesgesetzes tritt mit 1 . . (2) Die §§ 19b, 19c, 19d, 20 Abs . 1 und 32a in der Fassung des Bundesgesetzes BGBl . Nr . 833/1992 treten mit 1 . . Die Paragraphen 19 b,, 19c, 19d, 20 und 32a in der Fassung des Bundesgesetzes treten mit 1 . . (3) § 19c Abs . 5a in der Fassung des Bundesgesetzes BGBl . Nr . 335/1993 tritt mit 1 . Juli 1993 in Kraft . c, a, in der Fassung des Bundesgesetzes tritt mit 1 . Juli 1993 in Kraft . (4) Die §§ 3 Abs . 1, 4 Abs . 1 bis 6, 8 und 9, 4a, 4b, 4c, 5, 5a, 6 Abs . 1 und 1a, 8 Abs . 5, 9, 12 Abs . 2a und 2b, 13, 14, 15, 15a bis 15e, 16, 17 Abs . 1, 2, 5, 6 und Überschrift, 18 Abs . 1 und 2, 19 Abs . 3, 20 Abs . 1 erster Halbsatz, 25, 26, 27 Abs . 2, 28, 32a, 32b, 32c und 33 Abs . 2, in der Fassung des Bundesgesetzes BGBl . Nr . 446/1994 treten mit 1 . Juli 1994 in Kraft . Mit diesem Tag tritt auch § 19 Abs . 4 außer Kraft . Verordnungen gemäß § 15e können bereits vor diesem Zeitpunkt erlassen werden, sie treten jedoch frühestens gemeinsam mit § 15e in Kraft . Die Paragraphen 3, , 4 bis 6, 8 und 9, 4a, 4b, 4c, 5, 5a, 6 und 1a, 8 , 9, 12 a und 2b, 13, 14, 15, 15a bis 15e, 16, 17 , 2, 5, 6 und Überschrift, 18 und 2, 19 , 20 erster Halbsatz, 25, 26, 27 , 28, 32a, 32b, 32c und 33 , in der Fassung des Bundesgesetzes treten mit 1 . Juli 1994 in Kraft . Mit diesem Tag tritt auch außer Kraft . Verordnungen gemäß e, können bereits vor diesem Zeitpunkt erlassen werden, sie treten jedoch frühestens gemeinsam mit e, in Kraft . (5) § 24 in der Fassung des Bundesgesetzes BGBl . Nr . 446/1994 tritt mit 1 . Jänner 1995 in Kraft . . . (6) § 4 Abs . 8 und 9 in der Fassung des Bundesgesetzes BGBl . Nr . 417/1996 tritt mit 1 . Juli 1996 in Kraft . und 9 in der Fassung des Bundesgesetzes tritt mit 1 . Juli 1996 in Kraft . (7) § 1 Abs . 2 Z 9 und 10, § 9 Abs . 2 und 3, § 20 Abs . 1, § 23, § 27 Abs . 2, § 28 Abs . 1 Z 1, 2 und 7, § 29 Abs . 2 und § 32b in der Fassung des Bundesgesetzes BGBl . I Nr . 8/1997 treten mit 1 . Jänner 1997 in Kraft . § 19 tritt mit Ablauf des 31 . Dezember 1996 außer Kraft . und 10, und 3, , , , , 2 und 7, und b, in der Fassung des Bundesgesetzes treten mit 1 . . tritt mit Ablauf des 31 . . (8) § 1 Abs . 2 Z 2, 3 und 5, § 4, § 4a, § 5, § 5a Abs . 4, § 6 Abs . 1 und 1a, § 7 Abs . 2 bis 6, § 8 Abs . 2 und 4, § 9 Abs . 1 bis 3, § 10, § 11 Abs . 1 und 5, § 12 Abs . 1, 2 und 2b, § 14, § 14a, § 15, § 16, § 17 Abs . 4, § 18 Abs . 1, § 19b Abs . 3 und 4, §§ 19c bis 19g, § 20 Abs . 1, § 20a, § 20b, § 26 Abs . 1 und 7, § 27, § 28 Abs . 1, Abs . 1a Z 3 und 10, Abs . 1b Z 1, § 32a, § 32b und § 32c, in der Fassung des Bundesgesetzes BGBl . I Nr . 46/1997 , treten mit 1 . Mai 1997 in Kraft . Mit diesem Zeitpunkt treten § 28 Abs . 1a Z 11 und § 32 außer Kraft . , 3 und 5, , a,, , a, , und 1a, bis 6, und 4, bis 3, , und 5, , 2 und 2b, , a,, , , , , b, und 4, Paragraphen 19 c bis 19g, , a,, b,, und 7, , , a, und 10, b, , a,, b und c,, in der Fassung des Bundesgesetzes , treten mit 1 . Mai 1997 in Kraft . Mit diesem Zeitpunkt treten a, und außer Kraft . (9) § 9 Abs . 4 und 5, in der Fassung des Bundesgesetzes BGBl . I Nr . . Jänner 1998 in Kraft . und 5, in der Fassung des Bundesgesetzes , treten mit 1 . . (10) § 9 Abs . 2, 3 und 5, § 19a, § 20 Abs . 1, § 27 Abs . 4 und § 28 Abs . 1 Z 1 bis 8, in der Fassung des Bundesgesetzes BGBl . I Nr . 88/1999 treten mit 1 . Jänner 2000 in Kraft . , 3 und 5, a,, , und bis 8, in der Fassung des Bundesgesetzes treten mit 1 . . (11) § 1 Abs . 2 Z 5 und § 19 in der Fassung des Bundesgesetzes BGBl . I Nr . 37/2000 treten mit 1 . Juli 2000 in Kraft . und in der Fassung des Bundesgesetzes treten mit 1 . Juli 2000 in Kraft . (12) § 28 Abs . 1 bis 1b in der Fassung des Bundesgesetzes BGBl . I Nr . 98/2001 tritt mit 1 . Jänner 2002 in Kraft . bis 1b in der Fassung des Bundesgesetzes tritt mit 1 . . (13) § 1 Abs . 2 Z 5 lit . b in der Fassung des Bundesgesetzes BGBl . I Nr . 162/2001 tritt mit 1 . . . . (14) § 12a, § 12b, § 12c, § 12d, § 14 Abs . 3, § 19a Abs . 5 und 8, § 20 Abs . 1, § 23, § 24, § 25 Abs . 1, § 28 Abs . 1 sowie § 32c Abs . 3 in der Fassung des Bundesgesetzes BGBl . I Nr . 122/2002 treten mit 1 . August 2002 in Kraft . a,, b,, c,, d,, , a, und 8, , , , , sowie c, in der Fassung des Bundesgesetzes treten mit 1 . . (15) § 18 Abs . 1, 4 und 5, § 18a, § 18b, § 18c, § 18d, § 20 Abs . 1, § 23, § 28 Abs . 1 Z 2, 3 und 4, sowie § 32 in der Fassung des Bundesgesetzes BGBl . I Nr . 30/2004 treten mit 1 . Mai 2004 in Kraft . , 4 und 5, a,, b,, c,, d,, , , , 3 und 4, sowie in der Fassung des Bundesgesetzes treten mit 1 . Mai 2004 in Kraft . (16) § 19d Abs . 8 in der Fassung des Bundesgesetzes BGBl . I Nr . 64/2004 tritt mit 1 . Juli 2004 in Kraft . d, in der Fassung des Bundesgesetzes tritt mit 1 . Juli 2004 in Kraft . (17) § 18e, § 28 Abs . 1c und 2 sowie § 32 Z 5 in der Fassung des Bundesgesetzes BGBl . I Nr . 159/2004 treten mit 1 . Jänner 2005 in Kraft . Gleichzeitig tritt § 1 Abs . 2 Z 7 außer Kraft . e,, c und 2 sowie in der Fassung des Bundesgesetzes treten mit 1 . . Gleichzeitig tritt außer Kraft . (18) Die §§ 13, 15d, 17 Abs . 2, 5 und 6, 17a, 17b sowie 28 Abs . 1b und 3 in der Fassung des Bundesgesetzes BGBl . I Nr . 175/2004 treten mit 5 . Mai 2005 in Kraft . Die Paragraphen 13,, 15d, 17 , 5 und 6, 17a, 17b sowie 28 b und 3 in der Fassung des Bundesgesetzes treten mit 5 . Mai 2005 in Kraft . (19) Die §§ 6 Abs . 1, 9 Abs . 2, 3 und 5 Z 3, 13 Abs . 1, 13a Abs . 1, 13b, 13c, 14, 17a Abs . 1 und 3, 17c, 18 Abs . 1, 18e, 20, 23, 28 Abs . 5, 32 Z 1 und 6, 32b und 32c Abs . 4 und 5 in der Fassung des Bundesgesetzes BGBl . I Nr . 138/2006 treten mit 1 . Juli 2006 in Kraft . Mit diesem Zeitpunkt tritt § 13 Abs . 4 außer Kraft . Die Paragraphen 6, , 9 , 3 und 5 , 13 , 13a , 13b, 13c, 14, 17a und 3, 17c, 18 , 18e, 20, 23, 28 , 32 und 6, 32b und 32c und 5 in der Fassung des Bundesgesetzes treten mit 1 . Juli 2006 in Kraft . Mit diesem Zeitpunkt tritt außer Kraft . (20) Die §§ 13 Abs . 2 und 3, 13a Abs . 2 und 3, 14a, 15 bis 15f, 16 Abs . 1, 17 Abs . 6, 24 Z 3, 28 Abs . 1a bis 4 sowie § 33 Abs . 5 in der Fassung des Bundesgesetzes BGBl . I Nr . 138/2006 treten mit 11 . April 2007 in Kraft . . 5 außer Kraft . Die Paragraphen 13, und 3, 13a und 3, 14a, 15 bis 15f, 16 , 17 , 24 , 28 a bis 4 sowie in der Fassung des Bundesgesetzes treten mit 11 . April 2007 in Kraft . . (21) § 1a, § 4, § 4a Abs . 2 und 4, § 4b Abs . 4, § 5a Abs . 4, § 6 Abs . 1a, § 7 Abs . 4, 4a, 6 und 6a, § 9 Abs . 2, § 15f Z 3, § 18 Abs . 5, § 19d Abs . 1, 2, 3a bis 3f und 8, § 19f, § 26 Abs . 8 sowie § 28 in der Fassung des Bundesgesetzes BGBl . I Nr . 61/2007 treten mit 1 . Jänner 2008 in Kraft . § 26 Abs . 8 ist nur auf Verfallsfristen anzuwenden, die ab diesem Zeitpunkt zu laufen beginnen würden . a,, , a, und 4, b, , a, , a,, , 4a, 6 und 6a, , f, , , d, , 2, 3a bis 3f und 8, f,, sowie in der Fassung des Bundesgesetzes treten mit 1 . . ist nur auf Verfallsfristen anzuwenden, die ab diesem Zeitpunkt zu laufen beginnen würden . (22) § 18 Abs . 1 Z 1, § 18a samt Überschrift, § 18e, Unterabschnitt 5a, § 20, § 23, § 24, § 32 sowie § 32c Abs . 6 in der Fassung des Bundesgesetzes BGBl . I Nr . 124/2008 treten am 16 . Juli 2008 in Kraft . § 28 Abs . 1 Z 3, Abs . 2 und Abs . 7 tritt mit dem der Kundmachung folgenden Tag in Kraft . , a, samt Überschrift, e,, Unterabschnitt 5a, , , , sowie c, in der Fassung des Bundesgesetzes treten am 16 . Juli 2008 in Kraft . , und tritt mit dem der Kundmachung folgenden Tag in Kraft . (23) § 2 Abs . 3, § 13 Abs . 1 Z 2 und 6 und Abs . 2 bis 4, § 15e Abs . 1, § 17, § 28 Abs . 3a und 4 bis 6, § 32 Z 7 und 8 sowie § 32c Abs . 7, in der Fassung des Bundesgesetzes BGBl . I Nr . 149/2009 , treten mit 1 . Jänner 2010 in Kraft . , und 6 und bis 4, e, , , a, und 4 bis 6, und 8 sowie c, , in der Fassung des Bundesgesetzes , treten mit 1 . . (24) § 33 Abs . 3 lit . f und g sowie Abs . 4 in der Fassung des 2 . Stabilitätsgesetzes 2012, BGBl . I Nr . 35/2012 , tritt mit 1 . Juli 2012 in Kraft ; gleichzeitig tritt § 33 Abs . 3 lit . a und b außer Kraft . und g sowie in der Fassung des 2 . Stabilitätsgesetzes 2012, , tritt mit 1 . Juli 2012 in Kraft ; gleichzeitig tritt und b außer Kraft . (25) Die §§ 11 Abs . 4 und 12a Abs . . I Nr . 3/2013 treten mit 1 . Jänner 2013 in Kraft . Die Paragraphen 11, und 12a in der Fassung des Bundesgesetzes treten mit 1 . . (26) § 27 und § 33 Abs . . I Nr . 71/2013 treten mit 1 . Jänner 2014 in Kraft . . . (27) § 26 Abs . 3, 5, 5a, 8 und 9 in der Fassung des Bundesgesetzes BGBl . I Nr . 94/2014 tritt mit 1 . Jänner 2015 in Kraft . Mit diesem Zeitpunkt entfällt § 11 Abs . 8 bis 10 . , 5, 5a, 8 und 9 in der Fassung des Bundesgesetzes tritt mit 1 . . Mit diesem Zeitpunkt entfällt bis 10 . (28) § 13 Abs . 1 Z 4 und 5 sowie § 32c Abs . 9 treten mit 2 . März 2015 in Kraft . und 5 sowie c, treten mit 2 . März 2015 in Kraft . (29) § 13 Abs . 1 Z 2 sowie Abs . 3, § 15e Abs . 1, § 17 Abs . 1, § 17a Abs . 1 Z 2 und Abs . 2, § 24 Z 4, § 28 Abs . 5 Z 6 und 8 sowie § 33 Abs . 4 in der Fassung des Bundesgesetzes BGBl . I Nr . 94/2014 treten am Tag des Inkrafttretens der Durchführungsrechtsakte der Kommission der Europäischen Union gemäß Art . 4 Abs . 8, 6 Abs . 5, 11 Abs . 1, 12 Abs . 7, 14, 21 Abs . 3, 22 Abs . 5, 31 Abs . 5 sowie 39 Abs . 3 der Verordnung (EU) Nr . 165/2014 in Kraft, frühestens jedoch mit 2 . März 2016 . Gleiches gilt für das Außerkrafttreten von § 32c Abs . 9 . Der Bundesminister für Arbeit, Soziales und Konsumentenschutz hat den Zeitpunkt des Inkrafttretens der genannten Durchführungsrechtsakte im Bundesgesetzblatt I kundzumachen . (Anm . : vgl . K, BGBl . I Nr . 42/2016 ) sowie , e, , , a, und , , und 8 sowie in der Fassung des Bundesgesetzes treten am Tag des Inkrafttretens der Durchführungsrechtsakte der Kommission der Europäischen Union gemäß Artikel 4, , 6 , 11 , 12 , 14, 21 , 22 , 31 sowie 39 der Verordnung (EU) Nr . . März 2016 . Gleiches gilt für das Außerkrafttreten von c, Der Bundesminister für Arbeit, Soziales und Konsumentenschutz hat den Zeitpunkt des Inkrafttretens der genannten Durchführungsrechtsakte im Bundesgesetzblatt römisch eins kundzumachen . Anmerkung,  vergleiche K, )\n\n(30) § 12, § 15 Abs . 1a, § 15d, § 19d Abs . 2a, § 20 Abs . 1, § 20b Abs . 1 und 6, § 26 Abs . 2a, § 27 Abs . 3 sowie § 28 Abs . 1 und 2 in der Fassung des Bundesgesetzes BGBl . I Nr . 152/2015 treten mit 1 . Jänner 2016 in Kraft . , a,, d,, d, a,, , b, und 6, a,, sowie und 2 in der Fassung des Bundesgesetzes treten mit 1 . . (31) § 18e Abs . 1 Z 1 und 1a, Abs . 2 Z 1 und 2 sowie Abs . 3 und 4, § 24 Z 5 und § 28 Abs . 7 Z 2 in der Fassung BGBl . I Nr . 152/2015 treten mit 18 . Februar 2016 in Kraft . Gleichzeitig tritt § 18e Abs . 5 außer Kraft . e, und 1a, und 2 sowie und 4, und in der Fassung treten mit 18 . . Gleichzeitig tritt e, außer Kraft . (32) § 9 Abs . 2, § 13c Abs . 5 und 6, § 18 Abs . 1 Z 4, § 18a Abs . 2, § 18b, § 20 Abs . 1, § 23, § 28 Abs . 1 Z 3, Abs . 2 Z 1, 3 und 7, Abs . 6 und Abs . 8 sowie § 32 Z 8 und 9 in der Fassung des Bundesgesetzes BGBl . I Nr . 114/2016 treten mit 1 . Jänner 2017 in Kraft . , c, und 6, , a, , b,, , , , , 3 und 7, und sowie und 9 in der Fassung des Bundesgesetzes treten mit 1 . . (33) § 19d Abs . . I Nr . 30/2017 tritt mit 1 . Juli 2017 in Kraft . . Juli 2017 in Kraft . (34) § 17c Abs . 1 in der Fassung des Deregulierungsgesetzes 2017, BGBl . I Nr . 40/2017 , tritt mit 1 . Juli 2017 in Kraft . § 24 samt Überschrift tritt mit Ablauf des 30 . Juni 2017 außer Kraft . c, in der Fassung des Deregulierungsgesetzes 2017, , tritt mit 1 . Juli 2017 in Kraft . samt Überschrift tritt mit Ablauf des 30 . . (35) § 11 Abs . 6, § 20 Abs . 2, § 28 Abs . 2 Z 6 sowie § 32c Abs . . I Nr . 126/2017 treten mit 1 . August 2017 in Kraft . Mit diesem Zeitpunkt tritt § 11 Abs . 7 außer Kraft . , , sowie c, und 9 in der Fassung des Bundesgesetzes treten mit 1 . . . (36) § 9 Abs . 5 Z 4, die Überschrift zu § 19a, § 19a Abs . 1 bis 2d, Abs . 4 erster Satz, Abs . 5 erster Satz sowie Abs . 6 bis 9 in der Fassung des Bundesgesetzes BGBl . I Nr . 127/2017 treten mit 1 . Jänner 2018 in Kraft . , die Überschrift zu a,, a, bis 2d, erster Satz, erster Satz sowie bis 9 in der Fassung des Bundesgesetzes treten mit 1 . . (37) § 1 Abs . 2 Z 7 und 8, § 4 Abs . 7, § 4b Abs . 4 und 5, § 7 Abs . 1, 5 und 6, § 8 Abs . 1 und 2, § 9 Abs . 1 bis 3, § 10 Abs . 4, § 12 Abs . 2a, § 18 Abs . 2, § 19a Abs . 8, § 19b Abs . 3 Z 3 und 5, § 20a Abs . 2, § 26 Abs . 2a, § 28 Abs . 1 Z 3 und Abs . 2 Z 1 sowie § 32c Abs . 10, in der Fassung des Bundesgesetzes BGBl . I Nr . 53/2018 , treten mit 1 . September 2018 in Kraft . Mit diesem Zeitpunkt entfallen auch § 7 Abs . 2, 4 und 4a sowie § 20b Abs . 6 . und 8, , b, und 5, , 5 und 6, und 2, bis 3, , a,, , a, , b, und 5, a, , a,, und sowie c, , in der Fassung des Bundesgesetzes , treten mit 1 . . Mit diesem Zeitpunkt entfallen auch , 4 und 4a sowie b,\n\n(38) § 1 Abs . 2 Z 2, § 15c, § 15d Abs . 3, § 17, § 17a Abs . 1, § 17b, § 18e Abs . 3 Z 3, § 19a Abs . 8, § 19b Abs . 3, § 19f Abs . 1 Z 1, § 20 Abs . 1, § 28 Abs . 3 Z 9, § 28 Abs . 5 Z 4, 6, 8 und 9, § 28 Abs . 7 Z 3, § 32 Z 8, sowie § 33 Abs . 3 und 4 in der Fassung BGBl . I Nr . 58/2022 , treten mit 1 . Juni 2022, § 13 Abs . 1 Z 2 lit . a tritt mit 1 . Juli 2026 in Kraft . Die Frist in § 17 Abs . 4 beträgt bis zum Ablauf des 30 . Dezember 2024 28 Tage . , c,, d, , , a, , b,, e, , a, , b, , f, , , , , 6, 8 und 9, , , sowie und 4 in der Fassung , treten mit 1 . Juni 2022, tritt mit 1 . Juli 2026 in Kraft . Die Frist in beträgt bis zum Ablauf des 30 . . (39) § 19d Abs . 2a und 2b in der Fassung des Bundesgesetzes BGBl . I Nr . 189/2023 tritt mit dem auf die Kundmachung folgenden Tag in Kraft . d, a, und 2b in der Fassung des Bundesgesetzes tritt mit dem auf die Kundmachung folgenden Tag in Kraft . (40) § 13 Abs . 4 und § 32 Z 8 in der Fassung des Bundesgesetzes BGBl . I Nr . 19/2025 treten mit dem der Kundmachung folgenden Tag in Kraft . und in der Fassung des Bundesgesetzes treten mit dem der Kundmachung folgenden Tag in Kraft .",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "at-azg-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "2a701c8aa377a819",
+              "number": "0",
+              "title": "§ 0",
+              "text": "[SECTION_1]§ 1. (1) Die Bestimmungen dieses Bundesgesetzes gelten für die Beschäftigung von Arbeitnehmern (Lehrlingen), die das 18 . Lebensjahr vollendet haben . (2) Ausgenommen vom Geltungsbereich dieses Bundesgesetzes sind: 1 . Arbeitnehmer, die in einem Arbeitsverhältnis zu einer Gebietskörperschaft, zu einer Stiftung, zu einem Fonds oder zu einer Anstalt stehen, sofern diese Einrichtungen von Organen einer Gebietskörperschaft oder von Personen verwaltet werden, die hiezu von Organen einer Gebietskörperschaft bestellt sind ; die Bestimmungen dieses Bundesgesetzes gelten jedoch für Arbeitnehmer, die nicht im Bereich der Hoheitsverwaltung tätig sind, sofern für ihr Arbeitsverhältnis ein Kollektivvertrag wirksam ist ; 2 . Arbeitnehmerinnen und Arbeitnehmer im Sinne des Landarbeitsgesetzes 2021, BGBl . I Nr . 78/2021 ; 3 . Arbeitnehmer, für die die Vorschriften des Bäckereiarbeiter/innengesetzes 1996, BGBl . Nr . 410, gelten ; 4 . Arbeitnehmer, für die die Vorschriften des Hausgehilfen- und Hausangestelltengesetzes, BGBl . Nr . 235/1962 , gelten ; 5 . Arbeitnehmer, a) für die die Vorschriften des Hausbesorgergesetzes, BGBl . Nr . 1",
+              "whs_topics": [
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 4
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 7,
+                "level": "critical",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 3
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ba2a6f6b92298bec",
+              "number": "14a",
+              "title": "§ 14a. Lenkzeit",
+              "text": "§ 14a. Lenkzeit:\n(1) Innerhalb der zulässigen Arbeitszeit darf die gesamte tägliche Lenkzeit zwischen zwei Ruhezeiten acht Stunden nicht überschreiten . Der Kollektivvertrag, für Betriebe, für die kein Kollektivvertrag wirksam ist, die Betriebsvereinbarung, kann zulassen, dass die Lenkzeit bis auf neun Stunden, zweimal wöchentlich jedoch bis auf zehn Stunden ausgedehnt wird . (2) Innerhalb einer Woche darf die gesamte Lenkzeit 48 Stunden nicht überschreiten . Innerhalb eines Zeitraumes von zwei aufeinander folgenden Wochen darf die Lenkzeit 90 Stunden nicht überschreiten . (3) Bei Unterbrechung der täglichen Ruhezeit bei kombinierter Beförderung beginnt eine neue tägliche Lenkzeit nach Ablauf der gesamten Ruhezeit .",
+              "whs_topics": [
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 5,
+                "level": "critical",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
             },
             {
               "id": "c82df5626664c294",
@@ -7246,40 +7329,6 @@
                 "level": "critical",
                 "high_keyword_matches": 1,
                 "medium_keyword_matches": 3
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "83116b2b61cbf0ea",
-              "number": "33",
-              "title": "§ 33. Durchführung",
-              "text": "Inkrafttreten und Vollziehung § 33 . (1) Dieses Bundesgesetz tritt, soweit im folgenden nicht anderes bestimmt wird, am 5 . Jänner 1970 in Kraft . (2) Die Bestimmung des § 12 Abs . 3 betreffend die ununterbrochene Wochenruhe tritt mit der gemäß § 12 Abs . 4 zu erlassenden Verordnung in Kraft . Die Bestimmung des betreffend die ununterbrochene Wochenruhe tritt mit der gemäß zu erlassenden Verordnung in Kraft . (3) Mit der Vollziehung dieses Bundesgesetzes sind betraut: 1 . hinsichtlich § 26 Abs . 7 und § 27 Abs . 3 die Bundesministerin bzw . der Bundesminister für Finanzen ; hinsichtlich und die Bundesministerin bzw . ; 2 . hinsichtlich des § 15f die Bundesministerin bzw . der Bundesminister für Justiz ; hinsichtlich des f, die Bundesministerin bzw . ; 3 . hinsichtlich des § 15e Abs . 2 die Bundesregierung ; hinsichtlich des e, die Bundesregierung ; 4 . im Übrigen die Bundesministerin bzw . der Bundesminister für Arbeit . (4) Die Bundesministerin bzw . der Bundesminister für Arbeit ist auch mit der Vollziehung der Verordnung (EG) Nr . 561/2006 und der Verordnung (EU) Nr . 165/2014 betraut .",
-              "whs_topics": [],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "2c220f31c7614851",
-              "number": "34",
-              "title": "§ 34. Verweisungen",
-              "text": "Inkrafttreten von Novellen § 34 . (1) § 11 in der Fassung des Bundesgesetzes BGBl . Nr . 473/1992 tritt mit 1 . Jänner 1993 in Kraft . in der Fassung des Bundesgesetzes tritt mit 1 . . (2) Die §§ 19b, 19c, 19d, 20 Abs . 1 und 32a in der Fassung des Bundesgesetzes BGBl . Nr . 833/1992 treten mit 1 . . Die Paragraphen 19 b,, 19c, 19d, 20 und 32a in der Fassung des Bundesgesetzes treten mit 1 . . (3) § 19c Abs . 5a in der Fassung des Bundesgesetzes BGBl . Nr . 335/1993 tritt mit 1 . Juli 1993 in Kraft . c, a, in der Fassung des Bundesgesetzes tritt mit 1 . Juli 1993 in Kraft . (4) Die §§ 3 Abs . 1, 4 Abs . 1 bis 6, 8 und 9, 4a, 4b, 4c, 5, 5a, 6 Abs . 1 und 1a, 8 Abs . 5, 9, 12 Abs . 2a und 2b, 13, 14, 15, 15a bis 15e, 16, 17 Abs . 1, 2, 5, 6 und Überschrift, 18 Abs . 1 und 2, 19 Abs . 3, 20 Abs . 1 erster Halbsatz, 25, 26, 27 Abs . 2, 28, 32a, 32b, 32c und 33 Abs . 2, in der Fassung des Bundesgesetzes BGBl . Nr . 446/1994 treten mit 1 . Juli 1994 in Kraft . Mit diesem Tag tritt auch § 19 Abs . 4 außer Kraft . Verordnungen gemäß § 15e können bereits vor diesem Zeitpunkt erlassen werden, sie treten jedoch frühestens gemeinsam mit § 15e in Kraft . Die Paragraphen 3, , 4 bis 6, 8 und 9, 4a, 4b, 4c, 5, 5a, 6 und 1a, 8 , 9, 12 a und 2b, 13, 14, 15, 15a bis 15e, 16, 17 , 2, 5, 6 und Überschrift, 18 und 2, 19 , 20 erster Halbsatz, 25, 26, 27 , 28, 32a, 32b, 32c und 33 , in der Fassung des Bundesgesetzes treten mit 1 . Juli 1994 in Kraft . Mit diesem Tag tritt auch außer Kraft . Verordnungen gemäß e, können bereits vor diesem Zeitpunkt erlassen werden, sie treten jedoch frühestens gemeinsam mit e, in Kraft . (5) § 24 in der Fassung des Bundesgesetzes BGBl . Nr . 446/1994 tritt mit 1 . Jänner 1995 in Kraft . . . (6) § 4 Abs . 8 und 9 in der Fassung des Bundesgesetzes BGBl . Nr . 417/1996 tritt mit 1 . Juli 1996 in Kraft . und 9 in der Fassung des Bundesgesetzes tritt mit 1 . Juli 1996 in Kraft . (7) § 1 Abs . 2 Z 9 und 10, § 9 Abs . 2 und 3, § 20 Abs . 1, § 23, § 27 Abs . 2, § 28 Abs . 1 Z 1, 2 und 7, § 29 Abs . 2 und § 32b in der Fassung des Bundesgesetzes BGBl . I Nr . 8/1997 treten mit 1 . Jänner 1997 in Kraft . § 19 tritt mit Ablauf des 31 . Dezember 1996 außer Kraft . und 10, und 3, , , , , 2 und 7, und b, in der Fassung des Bundesgesetzes treten mit 1 . . tritt mit Ablauf des 31 . . (8) § 1 Abs . 2 Z 2, 3 und 5, § 4, § 4a, § 5, § 5a Abs . 4, § 6 Abs . 1 und 1a, § 7 Abs . 2 bis 6, § 8 Abs . 2 und 4, § 9 Abs . 1 bis 3, § 10, § 11 Abs . 1 und 5, § 12 Abs . 1, 2 und 2b, § 14, § 14a, § 15, § 16, § 17 Abs . 4, § 18 Abs . 1, § 19b Abs . 3 und 4, §§ 19c bis 19g, § 20 Abs . 1, § 20a, § 20b, § 26 Abs . 1 und 7, § 27, § 28 Abs . 1, Abs . 1a Z 3 und 10, Abs . 1b Z 1, § 32a, § 32b und § 32c, in der Fassung des Bundesgesetzes BGBl . I Nr . 46/1997 , treten mit 1 . Mai 1997 in Kraft . Mit diesem Zeitpunkt treten § 28 Abs . 1a Z 11 und § 32 außer Kraft . , 3 und 5, , a,, , a, , und 1a, bis 6, und 4, bis 3, , und 5, , 2 und 2b, , a,, , , , , b, und 4, Paragraphen 19 c bis 19g, , a,, b,, und 7, , , a, und 10, b, , a,, b und c,, in der Fassung des Bundesgesetzes , treten mit 1 . Mai 1997 in Kraft . Mit diesem Zeitpunkt treten a, und außer Kraft . (9) § 9 Abs . 4 und 5, in der Fassung des Bundesgesetzes BGBl . I Nr . . Jänner 1998 in Kraft . und 5, in der Fassung des Bundesgesetzes , treten mit 1 . . (10) § 9 Abs . 2, 3 und 5, § 19a, § 20 Abs . 1, § 27 Abs . 4 und § 28 Abs . 1 Z 1 bis 8, in der Fassung des Bundesgesetzes BGBl . I Nr . 88/1999 treten mit 1 . Jänner 2000 in Kraft . , 3 und 5, a,, , und bis 8, in der Fassung des Bundesgesetzes treten mit 1 . . (11) § 1 Abs . 2 Z 5 und § 19 in der Fassung des Bundesgesetzes BGBl . I Nr . 37/2000 treten mit 1 . Juli 2000 in Kraft . und in der Fassung des Bundesgesetzes treten mit 1 . Juli 2000 in Kraft . (12) § 28 Abs . 1 bis 1b in der Fassung des Bundesgesetzes BGBl . I Nr . 98/2001 tritt mit 1 . Jänner 2002 in Kraft . bis 1b in der Fassung des Bundesgesetzes tritt mit 1 . . (13) § 1 Abs . 2 Z 5 lit . b in der Fassung des Bundesgesetzes BGBl . I Nr . 162/2001 tritt mit 1 . . . . (14) § 12a, § 12b, § 12c, § 12d, § 14 Abs . 3, § 19a Abs . 5 und 8, § 20 Abs . 1, § 23, § 24, § 25 Abs . 1, § 28 Abs . 1 sowie § 32c Abs . 3 in der Fassung des Bundesgesetzes BGBl . I Nr . 122/2002 treten mit 1 . August 2002 in Kraft . a,, b,, c,, d,, , a, und 8, , , , , sowie c, in der Fassung des Bundesgesetzes treten mit 1 . . (15) § 18 Abs . 1, 4 und 5, § 18a, § 18b, § 18c, § 18d, § 20 Abs . 1, § 23, § 28 Abs . 1 Z 2, 3 und 4, sowie § 32 in der Fassung des Bundesgesetzes BGBl . I Nr . 30/2004 treten mit 1 . Mai 2004 in Kraft . , 4 und 5, a,, b,, c,, d,, , , , 3 und 4, sowie in der Fassung des Bundesgesetzes treten mit 1 . Mai 2004 in Kraft . (16) § 19d Abs . 8 in der Fassung des Bundesgesetzes BGBl . I Nr . 64/2004 tritt mit 1 . Juli 2004 in Kraft . d, in der Fassung des Bundesgesetzes tritt mit 1 . Juli 2004 in Kraft . (17) § 18e, § 28 Abs . 1c und 2 sowie § 32 Z 5 in der Fassung des Bundesgesetzes BGBl . I Nr . 159/2004 treten mit 1 . Jänner 2005 in Kraft . Gleichzeitig tritt § 1 Abs . 2 Z 7 außer Kraft . e,, c und 2 sowie in der Fassung des Bundesgesetzes treten mit 1 . . Gleichzeitig tritt außer Kraft . (18) Die §§ 13, 15d, 17 Abs . 2, 5 und 6, 17a, 17b sowie 28 Abs . 1b und 3 in der Fassung des Bundesgesetzes BGBl . I Nr . 175/2004 treten mit 5 . Mai 2005 in Kraft . Die Paragraphen 13,, 15d, 17 , 5 und 6, 17a, 17b sowie 28 b und 3 in der Fassung des Bundesgesetzes treten mit 5 . Mai 2005 in Kraft . (19) Die §§ 6 Abs . 1, 9 Abs . 2, 3 und 5 Z 3, 13 Abs . 1, 13a Abs . 1, 13b, 13c, 14, 17a Abs . 1 und 3, 17c, 18 Abs . 1, 18e, 20, 23, 28 Abs . 5, 32 Z 1 und 6, 32b und 32c Abs . 4 und 5 in der Fassung des Bundesgesetzes BGBl . I Nr . 138/2006 treten mit 1 . Juli 2006 in Kraft . Mit diesem Zeitpunkt tritt § 13 Abs . 4 außer Kraft . Die Paragraphen 6, , 9 , 3 und 5 , 13 , 13a , 13b, 13c, 14, 17a und 3, 17c, 18 , 18e, 20, 23, 28 , 32 und 6, 32b und 32c und 5 in der Fassung des Bundesgesetzes treten mit 1 . Juli 2006 in Kraft . Mit diesem Zeitpunkt tritt außer Kraft . (20) Die §§ 13 Abs . 2 und 3, 13a Abs . 2 und 3, 14a, 15 bis 15f, 16 Abs . 1, 17 Abs . 6, 24 Z 3, 28 Abs . 1a bis 4 sowie § 33 Abs . 5 in der Fassung des Bundesgesetzes BGBl . I Nr . 138/2006 treten mit 11 . April 2007 in Kraft . . 5 außer Kraft . Die Paragraphen 13, und 3, 13a und 3, 14a, 15 bis 15f, 16 , 17 , 24 , 28 a bis 4 sowie in der Fassung des Bundesgesetzes treten mit 11 . April 2007 in Kraft . . (21) § 1a, § 4, § 4a Abs . 2 und 4, § 4b Abs . 4, § 5a Abs . 4, § 6 Abs . 1a, § 7 Abs . 4, 4a, 6 und 6a, § 9 Abs . 2, § 15f Z 3, § 18 Abs . 5, § 19d Abs . 1, 2, 3a bis 3f und 8, § 19f, § 26 Abs . 8 sowie § 28 in der Fassung des Bundesgesetzes BGBl . I Nr . 61/2007 treten mit 1 . Jänner 2008 in Kraft . § 26 Abs . 8 ist nur auf Verfallsfristen anzuwenden, die ab diesem Zeitpunkt zu laufen beginnen würden . a,, , a, und 4, b, , a, , a,, , 4a, 6 und 6a, , f, , , d, , 2, 3a bis 3f und 8, f,, sowie in der Fassung des Bundesgesetzes treten mit 1 . . ist nur auf Verfallsfristen anzuwenden, die ab diesem Zeitpunkt zu laufen beginnen würden . (22) § 18 Abs . 1 Z 1, § 18a samt Überschrift, § 18e, Unterabschnitt 5a, § 20, § 23, § 24, § 32 sowie § 32c Abs . 6 in der Fassung des Bundesgesetzes BGBl . I Nr . 124/2008 treten am 16 . Juli 2008 in Kraft . § 28 Abs . 1 Z 3, Abs . 2 und Abs . 7 tritt mit dem der Kundmachung folgenden Tag in Kraft . , a, samt Überschrift, e,, Unterabschnitt 5a, , , , sowie c, in der Fassung des Bundesgesetzes treten am 16 . Juli 2008 in Kraft . , und tritt mit dem der Kundmachung folgenden Tag in Kraft . (23) § 2 Abs . 3, § 13 Abs . 1 Z 2 und 6 und Abs . 2 bis 4, § 15e Abs . 1, § 17, § 28 Abs . 3a und 4 bis 6, § 32 Z 7 und 8 sowie § 32c Abs . 7, in der Fassung des Bundesgesetzes BGBl . I Nr . 149/2009 , treten mit 1 . Jänner 2010 in Kraft . , und 6 und bis 4, e, , , a, und 4 bis 6, und 8 sowie c, , in der Fassung des Bundesgesetzes , treten mit 1 . . (24) § 33 Abs . 3 lit . f und g sowie Abs . 4 in der Fassung des 2 . Stabilitätsgesetzes 2012, BGBl . I Nr . 35/2012 , tritt mit 1 . Juli 2012 in Kraft ; gleichzeitig tritt § 33 Abs . 3 lit . a und b außer Kraft . und g sowie in der Fassung des 2 . Stabilitätsgesetzes 2012, , tritt mit 1 . Juli 2012 in Kraft ; gleichzeitig tritt und b außer Kraft . (25) Die §§ 11 Abs . 4 und 12a Abs . . I Nr . 3/2013 treten mit 1 . Jänner 2013 in Kraft . Die Paragraphen 11, und 12a in der Fassung des Bundesgesetzes treten mit 1 . . (26) § 27 und § 33 Abs . . I Nr . 71/2013 treten mit 1 . Jänner 2014 in Kraft . . . (27) § 26 Abs . 3, 5, 5a, 8 und 9 in der Fassung des Bundesgesetzes BGBl . I Nr . 94/2014 tritt mit 1 . Jänner 2015 in Kraft . Mit diesem Zeitpunkt entfällt § 11 Abs . 8 bis 10 . , 5, 5a, 8 und 9 in der Fassung des Bundesgesetzes tritt mit 1 . . Mit diesem Zeitpunkt entfällt bis 10 . (28) § 13 Abs . 1 Z 4 und 5 sowie § 32c Abs . 9 treten mit 2 . März 2015 in Kraft . und 5 sowie c, treten mit 2 . März 2015 in Kraft . (29) § 13 Abs . 1 Z 2 sowie Abs . 3, § 15e Abs . 1, § 17 Abs . 1, § 17a Abs . 1 Z 2 und Abs . 2, § 24 Z 4, § 28 Abs . 5 Z 6 und 8 sowie § 33 Abs . 4 in der Fassung des Bundesgesetzes BGBl . I Nr . 94/2014 treten am Tag des Inkrafttretens der Durchführungsrechtsakte der Kommission der Europäischen Union gemäß Art . 4 Abs . 8, 6 Abs . 5, 11 Abs . 1, 12 Abs . 7, 14, 21 Abs . 3, 22 Abs . 5, 31 Abs . 5 sowie 39 Abs . 3 der Verordnung (EU) Nr . 165/2014 in Kraft, frühestens jedoch mit 2 . März 2016 . Gleiches gilt für das Außerkrafttreten von § 32c Abs . 9 . Der Bundesminister für Arbeit, Soziales und Konsumentenschutz hat den Zeitpunkt des Inkrafttretens der genannten Durchführungsrechtsakte im Bundesgesetzblatt I kundzumachen . (Anm . : vgl . K, BGBl . I Nr . 42/2016 ) sowie , e, , , a, und , , und 8 sowie in der Fassung des Bundesgesetzes treten am Tag des Inkrafttretens der Durchführungsrechtsakte der Kommission der Europäischen Union gemäß Artikel 4, , 6 , 11 , 12 , 14, 21 , 22 , 31 sowie 39 der Verordnung (EU) Nr . . März 2016 . Gleiches gilt für das Außerkrafttreten von c, Der Bundesminister für Arbeit, Soziales und Konsumentenschutz hat den Zeitpunkt des Inkrafttretens der genannten Durchführungsrechtsakte im Bundesgesetzblatt römisch eins kundzumachen . Anmerkung,  vergleiche K, )\n\n(30) § 12, § 15 Abs . 1a, § 15d, § 19d Abs . 2a, § 20 Abs . 1, § 20b Abs . 1 und 6, § 26 Abs . 2a, § 27 Abs . 3 sowie § 28 Abs . 1 und 2 in der Fassung des Bundesgesetzes BGBl . I Nr . 152/2015 treten mit 1 . Jänner 2016 in Kraft . , a,, d,, d, a,, , b, und 6, a,, sowie und 2 in der Fassung des Bundesgesetzes treten mit 1 . . (31) § 18e Abs . 1 Z 1 und 1a, Abs . 2 Z 1 und 2 sowie Abs . 3 und 4, § 24 Z 5 und § 28 Abs . 7 Z 2 in der Fassung BGBl . I Nr . 152/2015 treten mit 18 . Februar 2016 in Kraft . Gleichzeitig tritt § 18e Abs . 5 außer Kraft . e, und 1a, und 2 sowie und 4, und in der Fassung treten mit 18 . . Gleichzeitig tritt e, außer Kraft . (32) § 9 Abs . 2, § 13c Abs . 5 und 6, § 18 Abs . 1 Z 4, § 18a Abs . 2, § 18b, § 20 Abs . 1, § 23, § 28 Abs . 1 Z 3, Abs . 2 Z 1, 3 und 7, Abs . 6 und Abs . 8 sowie § 32 Z 8 und 9 in der Fassung des Bundesgesetzes BGBl . I Nr . 114/2016 treten mit 1 . Jänner 2017 in Kraft . , c, und 6, , a, , b,, , , , , 3 und 7, und sowie und 9 in der Fassung des Bundesgesetzes treten mit 1 . . (33) § 19d Abs . . I Nr . 30/2017 tritt mit 1 . Juli 2017 in Kraft . . Juli 2017 in Kraft . (34) § 17c Abs . 1 in der Fassung des Deregulierungsgesetzes 2017, BGBl . I Nr . 40/2017 , tritt mit 1 . Juli 2017 in Kraft . § 24 samt Überschrift tritt mit Ablauf des 30 . Juni 2017 außer Kraft . c, in der Fassung des Deregulierungsgesetzes 2017, , tritt mit 1 . Juli 2017 in Kraft . samt Überschrift tritt mit Ablauf des 30 . . (35) § 11 Abs . 6, § 20 Abs . 2, § 28 Abs . 2 Z 6 sowie § 32c Abs . . I Nr . 126/2017 treten mit 1 . August 2017 in Kraft . Mit diesem Zeitpunkt tritt § 11 Abs . 7 außer Kraft . , , sowie c, und 9 in der Fassung des Bundesgesetzes treten mit 1 . . . (36) § 9 Abs . 5 Z 4, die Überschrift zu § 19a, § 19a Abs . 1 bis 2d, Abs . 4 erster Satz, Abs . 5 erster Satz sowie Abs . 6 bis 9 in der Fassung des Bundesgesetzes BGBl . I Nr . 127/2017 treten mit 1 . Jänner 2018 in Kraft . , die Überschrift zu a,, a, bis 2d, erster Satz, erster Satz sowie bis 9 in der Fassung des Bundesgesetzes treten mit 1 . . (37) § 1 Abs . 2 Z 7 und 8, § 4 Abs . 7, § 4b Abs . 4 und 5, § 7 Abs . 1, 5 und 6, § 8 Abs . 1 und 2, § 9 Abs . 1 bis 3, § 10 Abs . 4, § 12 Abs . 2a, § 18 Abs . 2, § 19a Abs . 8, § 19b Abs . 3 Z 3 und 5, § 20a Abs . 2, § 26 Abs . 2a, § 28 Abs . 1 Z 3 und Abs . 2 Z 1 sowie § 32c Abs . 10, in der Fassung des Bundesgesetzes BGBl . I Nr . 53/2018 , treten mit 1 . September 2018 in Kraft . Mit diesem Zeitpunkt entfallen auch § 7 Abs . 2, 4 und 4a sowie § 20b Abs . 6 . und 8, , b, und 5, , 5 und 6, und 2, bis 3, , a,, , a, , b, und 5, a, , a,, und sowie c, , in der Fassung des Bundesgesetzes , treten mit 1 . . Mit diesem Zeitpunkt entfallen auch , 4 und 4a sowie b,\n\n(38) § 1 Abs . 2 Z 2, § 15c, § 15d Abs . 3, § 17, § 17a Abs . 1, § 17b, § 18e Abs . 3 Z 3, § 19a Abs . 8, § 19b Abs . 3, § 19f Abs . 1 Z 1, § 20 Abs . 1, § 28 Abs . 3 Z 9, § 28 Abs . 5 Z 4, 6, 8 und 9, § 28 Abs . 7 Z 3, § 32 Z 8, sowie § 33 Abs . 3 und 4 in der Fassung BGBl . I Nr . 58/2022 , treten mit 1 . Juni 2022, § 13 Abs . 1 Z 2 lit . a tritt mit 1 . Juli 2026 in Kraft . Die Frist in § 17 Abs . 4 beträgt bis zum Ablauf des 30 . Dezember 2024 28 Tage . , c,, d, , , a, , b,, e, , a, , b, , f, , , , , 6, 8 und 9, , , sowie und 4 in der Fassung , treten mit 1 . Juni 2022, tritt mit 1 . Juli 2026 in Kraft . Die Frist in beträgt bis zum Ablauf des 30 . . (39) § 19d Abs . 2a und 2b in der Fassung des Bundesgesetzes BGBl . I Nr . 189/2023 tritt mit dem auf die Kundmachung folgenden Tag in Kraft . d, a, und 2b in der Fassung des Bundesgesetzes tritt mit dem auf die Kundmachung folgenden Tag in Kraft . (40) § 13 Abs . 4 und § 32 Z 8 in der Fassung des Bundesgesetzes BGBl . I Nr . 19/2025 treten mit dem der Kundmachung folgenden Tag in Kraft . und in der Fassung des Bundesgesetzes treten mit dem der Kundmachung folgenden Tag in Kraft .",
-              "whs_topics": [
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
               },
               "paragraphs": []
             }
@@ -7744,51 +7793,11 @@
       },
       "chapters": [
         {
-          "id": "at-mschg-main",
+          "id": "at-mschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
-            {
-              "id": "8bfebb2f07b55d1d",
-              "number": "0",
-              "title": "§ 0",
-              "text": "Langtitel Mutterschutzgesetz 1979 - MSchG",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 4
-                },
-                {
-                  "id": "working_hours",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "training",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 2
-              },
-              "paragraphs": []
-            },
             {
               "id": "a879e2b370bf1295",
               "number": "1",
@@ -7822,77 +7831,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
-            {
-              "id": "cef2e3b825893e8c",
-              "number": "2a",
-              "title": "§ 2a. Ermittlung, Beurteilung und Verhütung von Gefahren, Pflichten des Dienstgebers",
-              "text": "Abschnitt 2 Evaluierung Ermittlung, Beurteilung und Verhütung von Gefahren, Pflichten des Dienstgebers § 2a.\n\n(1) Der Dienstgeber hat bei der Beschäftigung von Dienstnehmerinnen über die nach dem ArbeitnehmerInnenschutzgesetz - ASchG, BGBl. Nr. 450/1994, vorgesehenen Pflichten hinaus für Arbeitsplätze, an denen Frauen beschäftigt werden, die Gefahren für die Sicherheit und Gesundheit von werdenden und stillenden Müttern und ihre Auswirkungen auf die Schwangerschaft oder das Stillen zu ermitteln und zu beurteilen. (2) Bei dieser Ermittlung und Beurteilung sind insbesondere Art, Ausmaß und Dauer der Einwirkung auf und Belastung für werdende bzw. stillende Mütter durch 1. Stöße, Erschütterungen oder Bewegungen; 2. Bewegen schwerer Lasten von Hand, gefahrenträchtig insbesondere für den Rücken- und Lendenwirbelbereich; 3. Lärm; 4. ionisierende und nicht ionisierende Strahlungen; 5. extreme Kälte und Hitze; 6. Bewegungen und Körperhaltungen, geistige und körperliche Ermüdung und sonstige mit der Tätigkeit der Dienstnehmerin verbundene körperliche Belastung; 7. biologische Arbeitsstoffe im Sinne des § 40 Abs. 5 Z 2 bis 4 ASchG, soweit bekannt ist, daß diese Stoffe oder die im Falle einer durch sie hervorgerufenen Schädigung anzuwendenden therapeutischen Maßnahmen die Gesundheit der werdenden Mutter oder des werdenden Kindes gefährden; 8. gesundheitsgefährdende Arbeitsstoffe; (Anm.: Z 9 aufgehoben durch BGBl. I Nr. 60/2015) 10. Bergbauarbeiten unter Tage; 11. Arbeiten in Druckluft (Luft mit einem Überdruck von mehr als 0,1 bar), insbesondere in Druckkammern und beim Tauchen zu berücksichtigen. (3) Die Ermittlung und Beurteilung der Gefahren ist den sich ändernden Gegebenheiten anzupassen. Eine Überprüfung und erforderlichenfalls eine Anpassung hat insbesondere 1. bei Einführung neuer Arbeitsmittel, Arbeitsstoffe oder Arbeitsverfahren, 2. bei neuen Erkenntnissen über den Stand der Technik und auf dem Gebiet der Arbeitsgestaltung oder 3. auf begründetes Verlangen des Arbeitsinspektorates zu erfolgen. (4) Bei der Ermittlung und Beurteilung der Gefahren und der Festlegung der Maßnahmen sind erforderlichenfalls Sicherheitsfachkräfte und Arbeitsmediziner heranzuziehen. Diese können auch mit der Ermittlung und Beurteilung der Gefahren beauftragt werden. (5) Der Dienstgeber ist verpflichtet, die Ergebnisse der Ermittlung und Beurteilung der Gefahren sowie die zu ergreifenden Maßnahmen nach § 2b schriftlich festzuhalten (Sicherheits- und Gesundheitsschutzdokumente) und alle Dienstnehmerinnen oder den Betriebsrat und die Sicherheitsvertrauenspersonen über die Ergebnisse und Maßnahmen zu unterrichten.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 4
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "work_equipment",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 5,
-                "level": "critical",
-                "high_keyword_matches": 2,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "98ccb41f03b75640",
-              "number": "2b",
-              "title": "§ 2b. Maßnahmen bei Gefährdung",
-              "text": "Beachte für folgende Bestimmung zum Inkrafttretensdatum vgl. § 40 Abs. 4 und 5 idF BGBl. Nr. 434/1995\n\nMaßnahmen bei Gefährdung § 2b.\n\n(1) Ergibt die Beurteilung Gefahren für die Sicherheit oder Gesundheit von werdenden oder stillenden Müttern oder mögliche nachteilige Auswirkungen auf die Schwangerschaft oder das Stillen, so hat der Dienstgeber diese Gefahren und Auswirkungen durch Änderung der Beschäftigung auszuschließen. (2) Ist eine Änderung der Arbeitsbedingungen aus objektiven Gründen nicht möglich oder dem Dienstgeber oder der Dienstnehmerin nicht zumutbar, so ist die Dienstnehmerin auf einem anderen Arbeitsplatz zu beschäftigen. Besteht kein geeigneter Arbeitsplatz, so ist die Dienstnehmerin von der Arbeit freizustellen.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-mschg-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "title_en": "Section 2 - Employment Prohibitions and Restrictions",
+          "sections": [
             {
               "id": "bcf4904450866bad",
               "number": "3",
@@ -8202,7 +8149,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-mschg-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "title_en": "Section 3 - Dismissal Protection",
+          "sections": [
             {
               "id": "754d20ae4b6789ee",
               "number": "10a",
@@ -8747,7 +8702,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-mschg-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Entgelt und sonstige Leistungen",
+          "title_en": "Section 4 - Pay and Other Benefits",
+          "sections": [
             {
               "id": "476ce9d53291f388",
               "number": "16",
@@ -8891,21 +8854,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
-            {
-              "id": "3b829f0fbfb4e7a7",
-              "number": "22a",
-              "title": "§ 22a",
-              "text": "§ 22a . a, Beamtinnen und Vertragsbedienstete, die gemäß § 3 Abs . 3 nicht beschäftigt werden dürfen, haben keinen Anspruch nach § 14 Abs . 2 für Zeiten, während derer ein Anspruch nach § 13d Gehaltsgesetz 1956 (GehG), BGBl Nr . 54 oder § 24b VBG besteht . Beamtinnen und Vertragsbedienstete, die gemäß nicht beschäftigt werden dürfen, haben keinen Anspruch nach für Zeiten, während derer ein Anspruch nach d, Gehaltsgesetz 1956 (GehG), Bundesgesetzblatt Nr . 54 oder b, VBG besteht .",
-              "whs_topics": [],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-mschg-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Aufsicht und Durchführung",
+          "title_en": "Section 5 - Supervision and Implementation",
+          "sections": [
             {
               "id": "7641a90bf6ea94ac",
               "number": "23",
@@ -8993,7 +8950,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-mschg-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Strafbestimmungen",
+          "title_en": "Section 6 - Penal Provisions",
+          "sections": [
             {
               "id": "23a89c8bdb0541a1",
               "number": "31",
@@ -9013,7 +8978,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-mschg-ch7",
+          "number": "7",
+          "title": "7. Abschnitt - Schlussbestimmungen",
+          "title_en": "Section 7 - Final Provisions",
+          "sections": [
             {
               "id": "ebf23f2c129d18d2",
               "number": "35",
@@ -9226,6 +9199,138 @@
               "paragraphs": []
             }
           ]
+        },
+        {
+          "id": "at-mschg-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "8bfebb2f07b55d1d",
+              "number": "0",
+              "title": "§ 0",
+              "text": "Langtitel Mutterschutzgesetz 1979 - MSchG",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 4
+                },
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "cef2e3b825893e8c",
+              "number": "2a",
+              "title": "§ 2a. Ermittlung, Beurteilung und Verhütung von Gefahren, Pflichten des Dienstgebers",
+              "text": "Abschnitt 2 Evaluierung Ermittlung, Beurteilung und Verhütung von Gefahren, Pflichten des Dienstgebers § 2a.\n\n(1) Der Dienstgeber hat bei der Beschäftigung von Dienstnehmerinnen über die nach dem ArbeitnehmerInnenschutzgesetz - ASchG, BGBl. Nr. 450/1994, vorgesehenen Pflichten hinaus für Arbeitsplätze, an denen Frauen beschäftigt werden, die Gefahren für die Sicherheit und Gesundheit von werdenden und stillenden Müttern und ihre Auswirkungen auf die Schwangerschaft oder das Stillen zu ermitteln und zu beurteilen. (2) Bei dieser Ermittlung und Beurteilung sind insbesondere Art, Ausmaß und Dauer der Einwirkung auf und Belastung für werdende bzw. stillende Mütter durch 1. Stöße, Erschütterungen oder Bewegungen; 2. Bewegen schwerer Lasten von Hand, gefahrenträchtig insbesondere für den Rücken- und Lendenwirbelbereich; 3. Lärm; 4. ionisierende und nicht ionisierende Strahlungen; 5. extreme Kälte und Hitze; 6. Bewegungen und Körperhaltungen, geistige und körperliche Ermüdung und sonstige mit der Tätigkeit der Dienstnehmerin verbundene körperliche Belastung; 7. biologische Arbeitsstoffe im Sinne des § 40 Abs. 5 Z 2 bis 4 ASchG, soweit bekannt ist, daß diese Stoffe oder die im Falle einer durch sie hervorgerufenen Schädigung anzuwendenden therapeutischen Maßnahmen die Gesundheit der werdenden Mutter oder des werdenden Kindes gefährden; 8. gesundheitsgefährdende Arbeitsstoffe; (Anm.: Z 9 aufgehoben durch BGBl. I Nr. 60/2015) 10. Bergbauarbeiten unter Tage; 11. Arbeiten in Druckluft (Luft mit einem Überdruck von mehr als 0,1 bar), insbesondere in Druckkammern und beim Tauchen zu berücksichtigen. (3) Die Ermittlung und Beurteilung der Gefahren ist den sich ändernden Gegebenheiten anzupassen. Eine Überprüfung und erforderlichenfalls eine Anpassung hat insbesondere 1. bei Einführung neuer Arbeitsmittel, Arbeitsstoffe oder Arbeitsverfahren, 2. bei neuen Erkenntnissen über den Stand der Technik und auf dem Gebiet der Arbeitsgestaltung oder 3. auf begründetes Verlangen des Arbeitsinspektorates zu erfolgen. (4) Bei der Ermittlung und Beurteilung der Gefahren und der Festlegung der Maßnahmen sind erforderlichenfalls Sicherheitsfachkräfte und Arbeitsmediziner heranzuziehen. Diese können auch mit der Ermittlung und Beurteilung der Gefahren beauftragt werden. (5) Der Dienstgeber ist verpflichtet, die Ergebnisse der Ermittlung und Beurteilung der Gefahren sowie die zu ergreifenden Maßnahmen nach § 2b schriftlich festzuhalten (Sicherheits- und Gesundheitsschutzdokumente) und alle Dienstnehmerinnen oder den Betriebsrat und die Sicherheitsvertrauenspersonen über die Ergebnisse und Maßnahmen zu unterrichten.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 4
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 5,
+                "level": "critical",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "98ccb41f03b75640",
+              "number": "2b",
+              "title": "§ 2b. Maßnahmen bei Gefährdung",
+              "text": "Beachte für folgende Bestimmung zum Inkrafttretensdatum vgl. § 40 Abs. 4 und 5 idF BGBl. Nr. 434/1995\n\nMaßnahmen bei Gefährdung § 2b.\n\n(1) Ergibt die Beurteilung Gefahren für die Sicherheit oder Gesundheit von werdenden oder stillenden Müttern oder mögliche nachteilige Auswirkungen auf die Schwangerschaft oder das Stillen, so hat der Dienstgeber diese Gefahren und Auswirkungen durch Änderung der Beschäftigung auszuschließen. (2) Ist eine Änderung der Arbeitsbedingungen aus objektiven Gründen nicht möglich oder dem Dienstgeber oder der Dienstnehmerin nicht zumutbar, so ist die Dienstnehmerin auf einem anderen Arbeitsplatz zu beschäftigen. Besteht kein geeigneter Arbeitsplatz, so ist die Dienstnehmerin von der Arbeit freizustellen.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "3b829f0fbfb4e7a7",
+              "number": "22a",
+              "title": "§ 22a",
+              "text": "§ 22a . a, Beamtinnen und Vertragsbedienstete, die gemäß § 3 Abs . 3 nicht beschäftigt werden dürfen, haben keinen Anspruch nach § 14 Abs . 2 für Zeiten, während derer ein Anspruch nach § 13d Gehaltsgesetz 1956 (GehG), BGBl Nr . 54 oder § 24b VBG besteht . Beamtinnen und Vertragsbedienstete, die gemäß nicht beschäftigt werden dürfen, haben keinen Anspruch nach für Zeiten, während derer ein Anspruch nach d, Gehaltsgesetz 1956 (GehG), Bundesgesetzblatt Nr . 54 oder b, VBG besteht .",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
         }
       ],
       "content_hash": "309f8b2efd0ffe9c3d4a4f7d96d3c4b2"
@@ -9303,31 +9408,11 @@
       },
       "chapters": [
         {
-          "id": "at-kjbg-main",
+          "id": "at-kjbg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
-            {
-              "id": "2b9b02e34903cb97",
-              "number": "0",
-              "title": "Präambel",
-              "text": "§ 0:\nLangtitel Bundesgesetz über die Beschäftigung von Kindern und Jugendlichen 1987 (Kinder- und Jugendlichen-Beschäftigungsgesetz 1987 – KJBG) StF: BGBl . Nr . 599/1987 (WV)",
-              "whs_topics": [
-                {
-                  "id": "special_groups",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
             {
               "id": "1ad7e943621035a1",
               "number": "1",
@@ -9417,7 +9502,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-kjbg-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "title_en": "Section 2 - Employment Prohibitions and Restrictions",
+          "sections": [
             {
               "id": "0a6768943f343e34",
               "number": "4",
@@ -9669,27 +9762,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
-            {
-              "id": "c8ab0593206becd2",
-              "number": "11a",
-              "title": "§ 11a",
-              "text": "§ 11a . a, Den Schülervertretern (§ 59 des Schulunterrichtsgesetzes, BGBl . Nr . 472/1986 ) und den Mitgliedern der Landes- und Bundesschülervertretung (§§ 6 und 21 des Schülervertretungengesetzes, BGBl . Nr . 284/1990 ) ist während der Unterrichtszeit die zur Erfüllung ihrer gesetzlichen Obliegenheiten, darüber hinaus die für die in die Arbeitszeit fallende Teilnahme an Landes- und Bundesschülervertretungssitzungen erforderliche Freizeit unter Fortzahlung des Entgelts zu gewähren . Den Schülervertretern und den Mitgliedern der Landes- und Bundesschülervertretung ist während der Unterrichtszeit die zur Erfüllung ihrer gesetzlichen Obliegenheiten, darüber hinaus die für die in die Arbeitszeit fallende Teilnahme an Landes- und Bundesschülervertretungssitzungen erforderliche Freizeit unter Fortzahlung des Entgelts zu gewähren .",
-              "whs_topics": [
-                {
-                  "id": "working_hours",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-kjbg-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Arbeitszeit",
+          "title_en": "Section 3 - Working Time",
+          "sections": [
             {
               "id": "33e8e663399ff031",
               "number": "12",
@@ -10034,27 +10115,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
-            {
-              "id": "7e72b19b39580e36",
-              "number": "21a",
-              "title": "§ 21a",
-              "text": "Beförderung höherer Geld- oder Sachwerte (Art . VI Abs . 7 der Kundmachung) (Art . römisch VI der Kundmachung) § 21a . a, Außerhalb des Betriebes dürfen Jugendliche nicht zur Beförderung höherer Geld- oder Sachwerte unter eigener Verantwortung herangezogen werden . ( BGBl . Nr . 229/1982 , Art . I Z 12) , Art . römisch eins )",
-              "whs_topics": [
-                {
-                  "id": "special_groups",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-kjbg-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Urlaub",
+          "title_en": "Section 4 - Leave",
+          "sections": [
             {
               "id": "137a1debf64c7a19",
               "number": "22",
@@ -10079,7 +10148,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-kjbg-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Strafbestimmungen",
+          "title_en": "Section 5 - Penal Provisions",
+          "sections": [
             {
               "id": "e8bb9ab35bbe1068",
               "number": "23",
@@ -10199,7 +10276,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-kjbg-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Behörden",
+          "title_en": "Section 6 - Authorities",
+          "sections": [
             {
               "id": "5eb46f44c936048b",
               "number": "26",
@@ -10309,57 +10394,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
-            {
-              "id": "024fe27891cfdf54",
-              "number": "27a",
-              "title": "§ 27a",
-              "text": "Anzeigepflicht § 27a . a,\n\n(1) Der Dienstgeber hat die Beschäftigung von Jugendlichen an aufeinanderfolgenden Sonntagen gemäß § 18 Abs . 3a dem Arbeitsinspektorat anzuzeigen . Diese Anzeige hat zu enthalten: Der Dienstgeber hat die Beschäftigung von Jugendlichen an aufeinanderfolgenden Sonntagen gemäß a, dem Arbeitsinspektorat anzuzeigen . Diese Anzeige hat zu enthalten: 1 . Den Zeitraum, für den die Beschäftigung an aufeinanderfolgenden Sonntagen vorgesehen ist sowie jenen Zeitraum, in dem die Jugendlichen an Sonntagen und an betrieblichen Sperrtagen im Sinne des § 19 Abs . 4 nicht beschäftigt werden, Den Zeitraum, für den die Beschäftigung an aufeinanderfolgenden Sonntagen vorgesehen ist sowie jenen Zeitraum, in dem die Jugendlichen an Sonntagen und an betrieblichen Sperrtagen im Sinne des nicht beschäftigt werden, 2 . Zeiten des Besuches einer lehrgangs- oder saisonmäßigen Berufsschule, soweit diese in den Zeitraum gemäß § 18 Abs . 3a fallen, Zeiten des Besuches einer lehrgangs- oder saisonmäßigen Berufsschule, soweit diese in den Zeitraum gemäß a, fallen, 3 . Familien- und Vornamen der Jugendlichen sowie das Geburtsdatum . (2) Die Anzeige gemäß Abs . 1 hat spätestens zwei Wochen vor Beginn der Beschäftigung Jugendlicher gemäß § 18 Abs . 3a zu erfolgen . Die Anzeige gemäß hat spätestens zwei Wochen vor Beginn der Beschäftigung Jugendlicher gemäß a, zu erfolgen . (3) Das Arbeitsinspektorat hat Anzeigen gemäß Abs . 1 auf Verlangen den gesetzlichen Interessenvertretungen der Arbeitgeber und Arbeitnehmer zugänglich zu machen . Das Arbeitsinspektorat hat Anzeigen gemäß auf Verlangen den gesetzlichen Interessenvertretungen der Arbeitgeber und Arbeitnehmer zugänglich zu machen .",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "special_groups",
-                  "relevance": "medium",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "9a69457a13b2498d",
-              "number": "27b",
-              "title": "§ 27b",
-              "text": "Gebührenfreiheit § 27b . b, Anzeigen gemäß § 20 Abs . 2 und § 27a sind von Stempel- und Rechtsgebühren des Bundes befreit . Anzeigen gemäß und a, sind von Stempel- und Rechtsgebühren des Bundes befreit .",
-              "whs_topics": [
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-kjbg-ch7",
+          "number": "7",
+          "title": "7. Abschnitt - Schluss- und Übergangsbestimmungen",
+          "title_en": "Section 7 - Final and Transitional Provisions",
+          "sections": [
             {
               "id": "843c1ea0ed7f832a",
               "number": "28",
@@ -10482,6 +10525,124 @@
               "paragraphs": []
             }
           ]
+        },
+        {
+          "id": "at-kjbg-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "2b9b02e34903cb97",
+              "number": "0",
+              "title": "Präambel",
+              "text": "§ 0:\nLangtitel Bundesgesetz über die Beschäftigung von Kindern und Jugendlichen 1987 (Kinder- und Jugendlichen-Beschäftigungsgesetz 1987 – KJBG) StF: BGBl . Nr . 599/1987 (WV)",
+              "whs_topics": [
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c8ab0593206becd2",
+              "number": "11a",
+              "title": "§ 11a",
+              "text": "§ 11a . a, Den Schülervertretern (§ 59 des Schulunterrichtsgesetzes, BGBl . Nr . 472/1986 ) und den Mitgliedern der Landes- und Bundesschülervertretung (§§ 6 und 21 des Schülervertretungengesetzes, BGBl . Nr . 284/1990 ) ist während der Unterrichtszeit die zur Erfüllung ihrer gesetzlichen Obliegenheiten, darüber hinaus die für die in die Arbeitszeit fallende Teilnahme an Landes- und Bundesschülervertretungssitzungen erforderliche Freizeit unter Fortzahlung des Entgelts zu gewähren . Den Schülervertretern und den Mitgliedern der Landes- und Bundesschülervertretung ist während der Unterrichtszeit die zur Erfüllung ihrer gesetzlichen Obliegenheiten, darüber hinaus die für die in die Arbeitszeit fallende Teilnahme an Landes- und Bundesschülervertretungssitzungen erforderliche Freizeit unter Fortzahlung des Entgelts zu gewähren .",
+              "whs_topics": [
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "7e72b19b39580e36",
+              "number": "21a",
+              "title": "§ 21a",
+              "text": "Beförderung höherer Geld- oder Sachwerte (Art . VI Abs . 7 der Kundmachung) (Art . römisch VI der Kundmachung) § 21a . a, Außerhalb des Betriebes dürfen Jugendliche nicht zur Beförderung höherer Geld- oder Sachwerte unter eigener Verantwortung herangezogen werden . ( BGBl . Nr . 229/1982 , Art . I Z 12) , Art . römisch eins )",
+              "whs_topics": [
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "024fe27891cfdf54",
+              "number": "27a",
+              "title": "§ 27a",
+              "text": "Anzeigepflicht § 27a . a,\n\n(1) Der Dienstgeber hat die Beschäftigung von Jugendlichen an aufeinanderfolgenden Sonntagen gemäß § 18 Abs . 3a dem Arbeitsinspektorat anzuzeigen . Diese Anzeige hat zu enthalten: Der Dienstgeber hat die Beschäftigung von Jugendlichen an aufeinanderfolgenden Sonntagen gemäß a, dem Arbeitsinspektorat anzuzeigen . Diese Anzeige hat zu enthalten: 1 . Den Zeitraum, für den die Beschäftigung an aufeinanderfolgenden Sonntagen vorgesehen ist sowie jenen Zeitraum, in dem die Jugendlichen an Sonntagen und an betrieblichen Sperrtagen im Sinne des § 19 Abs . 4 nicht beschäftigt werden, Den Zeitraum, für den die Beschäftigung an aufeinanderfolgenden Sonntagen vorgesehen ist sowie jenen Zeitraum, in dem die Jugendlichen an Sonntagen und an betrieblichen Sperrtagen im Sinne des nicht beschäftigt werden, 2 . Zeiten des Besuches einer lehrgangs- oder saisonmäßigen Berufsschule, soweit diese in den Zeitraum gemäß § 18 Abs . 3a fallen, Zeiten des Besuches einer lehrgangs- oder saisonmäßigen Berufsschule, soweit diese in den Zeitraum gemäß a, fallen, 3 . Familien- und Vornamen der Jugendlichen sowie das Geburtsdatum . (2) Die Anzeige gemäß Abs . 1 hat spätestens zwei Wochen vor Beginn der Beschäftigung Jugendlicher gemäß § 18 Abs . 3a zu erfolgen . Die Anzeige gemäß hat spätestens zwei Wochen vor Beginn der Beschäftigung Jugendlicher gemäß a, zu erfolgen . (3) Das Arbeitsinspektorat hat Anzeigen gemäß Abs . 1 auf Verlangen den gesetzlichen Interessenvertretungen der Arbeitgeber und Arbeitnehmer zugänglich zu machen . Das Arbeitsinspektorat hat Anzeigen gemäß auf Verlangen den gesetzlichen Interessenvertretungen der Arbeitgeber und Arbeitnehmer zugänglich zu machen .",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "9a69457a13b2498d",
+              "number": "27b",
+              "title": "§ 27b",
+              "text": "Gebührenfreiheit § 27b . b, Anzeigen gemäß § 20 Abs . 2 und § 27a sind von Stempel- und Rechtsgebühren des Bundes befreit . Anzeigen gemäß und a, sind von Stempel- und Rechtsgebühren des Bundes befreit .",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
         }
       ],
       "content_hash": "9f49327662bb51ae3a80ab96367f2686"
@@ -10523,10 +10684,10 @@
       },
       "chapters": [
         {
-          "id": "at-astv-main",
-          "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "id": "at-astv-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
           "sections": [
             {
               "id": "16365823600d9e39",
@@ -10916,51 +11077,11 @@
       },
       "chapters": [
         {
-          "id": "at-am-vo-main",
+          "id": "at-am-vo-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
-            {
-              "id": "5dd1799eb03599d0",
-              "number": "0",
-              "title": "§ 0",
-              "text": "§ 0:\nLangtitel Verordnung des Bundesministers für Wirtschaft und Arbeit über den Schutz der ArbeitnehmerInnen bei der Benutzung von Arbeitsmitteln (Arbeitsmittelverordnung - AM-VO) und mit der die Bauarbeiterschutzverordnung geändert wird\n\nPräambel/Promulgationsklausel Auf Grund der §§ 4, 6 Abs . 2, 12, 14, 17, 39 Abs . 1 und Abs . 2 sowie 95 Abs . 1 und Abs . 2 des ArbeitnehmerInnenschutzgesetzes (ASchG), BGBl . Nr . 450/1994 , zuletzt geändert durch BGBl . I Nr . 70/1999 , wird vom Bundesminister für Wirtschaft und Arbeit verordnet: Inhaltsverzeichnis 1 . Abschnitt Allgemeine Bestimmungen § 1 Anwendungsbereich § 2 Begriffsbestimmungen § 3 Sicherheits- und Gesundheitsanforderungen § 4 Information § 5 Unterweisung § 6 Prüfpflichten § 7 Abnahmeprüfung § 8 Wiederkehrende Prüfung § 9 Prüfung nach außergewöhnlichen Ereignissen § 10 Prüfung nach Aufstellung § 11 Prüfbefund § 12 Aufstellung § 13 Funktionskontrolle von Schutzeinrichtungen § 14 Erprobung § 15 Verwendung § 16 Wartung § 17 Besondere Arbeiten 2 . Abschnitt Besondere Regelungen für die Benutzung bestimmter Arbeitsmittel § 18 Arbeitsmittel zum Heben von Lasten § 19 Krane § 20 Hebebühnen, Hubtische, Ladebordwände § 21 Heben von ArbeitnehmerInnen § 22 Arbeitskörbe § 23 Selbstfahrende Arbeitsmittel, Ladevorrichtungen § 23a . a, Maßnahmen bei Arbeiten in kleinen, engen oder schlechtbelüfteten Räumen und Behältern § 23b . b, Arbeiten an Einrichtungen für die Lagerung von Schüttgütern § 24 Programmgesteuerte Arbeitsmittel § 25 Bearbeitungsmaschinen § 26 Geräte für autogenes Schweißen, Schneiden und verwandte Verfahren § 27 Stetigförderer § 28 Handwerkzeuge § 29 Bolzensetzgeräte § 30 Kompressoranlagen § 31 Zentrifugen § 32 Verbrennungskraftmaschinen § 33 Fahrbewilligung 3 . Abschnitt Leitern und Gerüste § 34 Allgemeine Bestimmungen über Leitern § 35 Festverlegte Leitern § 36 Anlegeleitern § 37 Stehleitern § 38 Mechanische Leitern § 39 Strickleitern § 40 Gerüste 4 . Abschnitt Beschaffenheit von Arbeitsmitteln § 41 Ergonomie von Arbeitsmitteln § 42 Steuersysteme von Arbeitsmitteln § 43 Gefahrenstellen an Arbeitsmitteln § 44 Gefahren, die von Arbeitsmitteln ausgehen können § 45 Ein- und Ausschaltvorrichtungen § 46 Not-Halt-Befehlsgeräte § 47 Standplätze, Aufstiege § 48 Feuerungsanlagen § 49 Leitungen und Armaturen § 50 Behälter § 51 Silos und Bunker für Schüttgüter § 52 Beschaffenheit von Arbeitsmitteln zum Heben von Lasten oder ArbeitnehmerInnen § 53 Beschaffenheit von selbstfahrenden Arbeitsmitteln § 53a a, Arbeitsplätze auf selbstfahrenden Arbeitsmitteln § 53b b, Überroll- und Kippschutz bei selbstfahrenden Arbeitsmitteln § 54 Beschaffenheit von Türen und Toren § 55 Beschaffenheit von Fahrtreppen und Fahrsteigen § 56 Beschaffenheit von Schleifmaschinen § 57 Beschaffenheit von Pressen, Stanzen und kraftbetriebenen Tafelscheren § 58 Beschaffenheit von Kompressoren § 59 Beschaffenheit von Geräten für autogenes Schweißen, Schneiden und verwandte Verfahren § 60 Beschaffenheit von Bolzensetzgeräten 5 . Abschnitt Schlussbestimmungen § 61 Aufhebung von Vorschriften § 62 Änderung der Bauarbeiterschutzverordnung § 63 Aufhebung von Bestimmungen der Allgemeinen Bergpolizeiverordnung und der Erdöl-Bergpolizeiverordnung § 64 Kundmachungen § 65 Inkrafttreten Anhang A: Vorschriften über Sicherheits- und Gesundheitsanforderungen – Inverkehrbringen von Arbeitsmitteln Anhang B: Vorschriften über Sicherheits- und Gesundheitsanforderungen – Aufstellung und Betrieb von Arbeitsmitteln Anhang C: Sicherheitsabstände im Sinne des § 43 Sicherheitsabstände im Sinne des",
-              "whs_topics": [
-                {
-                  "id": "work_equipment",
-                  "relevance": "high",
-                  "match_count": 4
-                },
-                {
-                  "id": "training",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "ergonomics",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 13,
-                "level": "critical",
-                "high_keyword_matches": 5,
-                "medium_keyword_matches": 3
-              },
-              "paragraphs": []
-            },
             {
               "id": "ddb630d0f6f501fc",
               "number": "1",
@@ -11150,7 +11271,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-am-vo-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Beschaffenheit von Arbeitsmitteln",
+          "title_en": "Section 2 - Condition of Work Equipment",
+          "sections": [
             {
               "id": "b09f0d1b03e7a423",
               "number": "6",
@@ -11490,7 +11619,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-am-vo-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Benutzung von Arbeitsmitteln",
+          "title_en": "Section 3 - Use of Work Equipment",
+          "sections": [
             {
               "id": "6d0d3045471f66bd",
               "number": "16",
@@ -12080,7 +12217,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-am-vo-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Besondere Arbeitsmittel",
+          "title_en": "Section 4 - Special Work Equipment",
+          "sections": [
             {
               "id": "5d097600be077428",
               "number": "31",
@@ -13037,7 +13182,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-am-vo-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Prüfungen",
+          "title_en": "Section 5 - Inspections",
+          "sections": [
             {
               "id": "b22c923ed9f298b2",
               "number": "61",
@@ -13163,6 +13316,54 @@
               "paragraphs": []
             }
           ]
+        },
+        {
+          "id": "at-am-vo-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "5dd1799eb03599d0",
+              "number": "0",
+              "title": "§ 0",
+              "text": "§ 0:\nLangtitel Verordnung des Bundesministers für Wirtschaft und Arbeit über den Schutz der ArbeitnehmerInnen bei der Benutzung von Arbeitsmitteln (Arbeitsmittelverordnung - AM-VO) und mit der die Bauarbeiterschutzverordnung geändert wird\n\nPräambel/Promulgationsklausel Auf Grund der §§ 4, 6 Abs . 2, 12, 14, 17, 39 Abs . 1 und Abs . 2 sowie 95 Abs . 1 und Abs . 2 des ArbeitnehmerInnenschutzgesetzes (ASchG), BGBl . Nr . 450/1994 , zuletzt geändert durch BGBl . I Nr . 70/1999 , wird vom Bundesminister für Wirtschaft und Arbeit verordnet: Inhaltsverzeichnis 1 . Abschnitt Allgemeine Bestimmungen § 1 Anwendungsbereich § 2 Begriffsbestimmungen § 3 Sicherheits- und Gesundheitsanforderungen § 4 Information § 5 Unterweisung § 6 Prüfpflichten § 7 Abnahmeprüfung § 8 Wiederkehrende Prüfung § 9 Prüfung nach außergewöhnlichen Ereignissen § 10 Prüfung nach Aufstellung § 11 Prüfbefund § 12 Aufstellung § 13 Funktionskontrolle von Schutzeinrichtungen § 14 Erprobung § 15 Verwendung § 16 Wartung § 17 Besondere Arbeiten 2 . Abschnitt Besondere Regelungen für die Benutzung bestimmter Arbeitsmittel § 18 Arbeitsmittel zum Heben von Lasten § 19 Krane § 20 Hebebühnen, Hubtische, Ladebordwände § 21 Heben von ArbeitnehmerInnen § 22 Arbeitskörbe § 23 Selbstfahrende Arbeitsmittel, Ladevorrichtungen § 23a . a, Maßnahmen bei Arbeiten in kleinen, engen oder schlechtbelüfteten Räumen und Behältern § 23b . b, Arbeiten an Einrichtungen für die Lagerung von Schüttgütern § 24 Programmgesteuerte Arbeitsmittel § 25 Bearbeitungsmaschinen § 26 Geräte für autogenes Schweißen, Schneiden und verwandte Verfahren § 27 Stetigförderer § 28 Handwerkzeuge § 29 Bolzensetzgeräte § 30 Kompressoranlagen § 31 Zentrifugen § 32 Verbrennungskraftmaschinen § 33 Fahrbewilligung 3 . Abschnitt Leitern und Gerüste § 34 Allgemeine Bestimmungen über Leitern § 35 Festverlegte Leitern § 36 Anlegeleitern § 37 Stehleitern § 38 Mechanische Leitern § 39 Strickleitern § 40 Gerüste 4 . Abschnitt Beschaffenheit von Arbeitsmitteln § 41 Ergonomie von Arbeitsmitteln § 42 Steuersysteme von Arbeitsmitteln § 43 Gefahrenstellen an Arbeitsmitteln § 44 Gefahren, die von Arbeitsmitteln ausgehen können § 45 Ein- und Ausschaltvorrichtungen § 46 Not-Halt-Befehlsgeräte § 47 Standplätze, Aufstiege § 48 Feuerungsanlagen § 49 Leitungen und Armaturen § 50 Behälter § 51 Silos und Bunker für Schüttgüter § 52 Beschaffenheit von Arbeitsmitteln zum Heben von Lasten oder ArbeitnehmerInnen § 53 Beschaffenheit von selbstfahrenden Arbeitsmitteln § 53a a, Arbeitsplätze auf selbstfahrenden Arbeitsmitteln § 53b b, Überroll- und Kippschutz bei selbstfahrenden Arbeitsmitteln § 54 Beschaffenheit von Türen und Toren § 55 Beschaffenheit von Fahrtreppen und Fahrsteigen § 56 Beschaffenheit von Schleifmaschinen § 57 Beschaffenheit von Pressen, Stanzen und kraftbetriebenen Tafelscheren § 58 Beschaffenheit von Kompressoren § 59 Beschaffenheit von Geräten für autogenes Schweißen, Schneiden und verwandte Verfahren § 60 Beschaffenheit von Bolzensetzgeräten 5 . Abschnitt Schlussbestimmungen § 61 Aufhebung von Vorschriften § 62 Änderung der Bauarbeiterschutzverordnung § 63 Aufhebung von Bestimmungen der Allgemeinen Bergpolizeiverordnung und der Erdöl-Bergpolizeiverordnung § 64 Kundmachungen § 65 Inkrafttreten Anhang A: Vorschriften über Sicherheits- und Gesundheitsanforderungen – Inverkehrbringen von Arbeitsmitteln Anhang B: Vorschriften über Sicherheits- und Gesundheitsanforderungen – Aufstellung und Betrieb von Arbeitsmitteln Anhang C: Sicherheitsabstände im Sinne des § 43 Sicherheitsabstände im Sinne des",
+              "whs_topics": [
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 4
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "ergonomics",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 13,
+                "level": "critical",
+                "high_keyword_matches": 5,
+                "medium_keyword_matches": 3
+              },
+              "paragraphs": []
+            }
+          ]
         }
       ],
       "content_hash": "ca56ce128f2c3e6f45e4850f9e019591"
@@ -13240,41 +13441,11 @@
       },
       "chapters": [
         {
-          "id": "at-esv 2012-main",
+          "id": "at-esv 2012-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
-            {
-              "id": "60dd7af84afa4263",
-              "number": "0",
-              "title": "§ 0",
-              "text": "§ 0:\nLangtitel Verordnung über den Schutz der Arbeitnehmer/innen vor Gefahren durch den elektrischen Strom (Elektroschutzverordnung 2012 – ESV 2012)\n\nPräambel/Promulgationsklausel Auf Grund der §§ 17, 20, 25 Abs . 7, 33 bis 38, 60 Abs . 1 und 118 Abs . 3 des ArbeitnehmerInnenschutzgesetzes – ASchG, BGBl . Nr . 450/1994 , zuletzt geändert durch das Bundesgesetz BGBl . I Nr . 51/2011 , wird verordnet: Inhaltsverzeichnis § 1 . Geltungsbereich und Begriffsbestimmungen 1 . Abschnitt: elektrische Anlagen und elektrische Betriebsmittel § 2 . Allgemeine Bestimmungen § 3 . Basisschutz (Schutz gegen direktes Berühren) § 4 . Fehlerschutz (Schutz bei indirektem Berühren) § 5 . Zusatzschutz durch Fehlerstrom-Schutzeinrichtungen § 6 . Leitungsroller § 7 . Kontrollen und Prüfungen § 8 . Prüfungen vor Inbetriebnahme § 9 . Wiederkehrende Prüfungen § 10 . Mindestinhalt der Prüfungen § 11 . Prüfbefunde 2 . Abschnitt: Arbeiten an oder in der Nähe von elektrischen Anlagen § 12 . Arbeiten im spannungsfreien Zustand § 13 . Arbeiten unter Spannung § 14 . Arbeiten in der Nähe unter Spannung stehender Teile 3 . Abschnitt: Blitzschutz und Schlussbestimmungen § 15 . Blitzschutz § 16 . Schlussbestimmungen Anhang 1: Gefahrenzone Anhang 2: Annäherungszone",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
             {
               "id": "1aa7b6c24b5eb2ff",
               "number": "1",
@@ -13413,7 +13584,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-esv 2012-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Schutzmaßnahmen",
+          "title_en": "Section 2 - Protective Measures",
+          "sections": [
             {
               "id": "f8d229ef30dfe36c",
               "number": "6",
@@ -13706,7 +13885,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-esv 2012-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Schlussbestimmungen",
+          "title_en": "Section 3 - Final Provisions",
+          "sections": [
             {
               "id": "7c84c970f6e6b8a8",
               "number": "16",
@@ -13715,6 +13902,44 @@
               "whs_topics": [
                 {
                   "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "at-esv 2012-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "60dd7af84afa4263",
+              "number": "0",
+              "title": "§ 0",
+              "text": "§ 0:\nLangtitel Verordnung über den Schutz der Arbeitnehmer/innen vor Gefahren durch den elektrischen Strom (Elektroschutzverordnung 2012 – ESV 2012)\n\nPräambel/Promulgationsklausel Auf Grund der §§ 17, 20, 25 Abs . 7, 33 bis 38, 60 Abs . 1 und 118 Abs . 3 des ArbeitnehmerInnenschutzgesetzes – ASchG, BGBl . Nr . 450/1994 , zuletzt geändert durch das Bundesgesetz BGBl . I Nr . 51/2011 , wird verordnet: Inhaltsverzeichnis § 1 . Geltungsbereich und Begriffsbestimmungen 1 . Abschnitt: elektrische Anlagen und elektrische Betriebsmittel § 2 . Allgemeine Bestimmungen § 3 . Basisschutz (Schutz gegen direktes Berühren) § 4 . Fehlerschutz (Schutz bei indirektem Berühren) § 5 . Zusatzschutz durch Fehlerstrom-Schutzeinrichtungen § 6 . Leitungsroller § 7 . Kontrollen und Prüfungen § 8 . Prüfungen vor Inbetriebnahme § 9 . Wiederkehrende Prüfungen § 10 . Mindestinhalt der Prüfungen § 11 . Prüfbefunde 2 . Abschnitt: Arbeiten an oder in der Nähe von elektrischen Anlagen § 12 . Arbeiten im spannungsfreien Zustand § 13 . Arbeiten unter Spannung § 14 . Arbeiten in der Nähe unter Spannung stehender Teile 3 . Abschnitt: Blitzschutz und Schlussbestimmungen § 15 . Blitzschutz § 16 . Schlussbestimmungen Anhang 1: Gefahrenzone Anhang 2: Annäherungszone",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
                   "relevance": "high",
                   "match_count": 1
                 },
@@ -13778,10 +14003,10 @@
       },
       "chapters": [
         {
-          "id": "at-psa-v-main",
+          "id": "at-psa-v-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
             {
               "id": "073e9b386e9f0256",
@@ -13857,7 +14082,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-psa-v-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Bereitstellung und Benutzung",
+          "title_en": "Section 2 - Provision and Use",
+          "sections": [
             {
               "id": "8bfea968daf8d0fd",
               "number": "4",
@@ -14036,51 +14269,11 @@
       },
       "chapters": [
         {
-          "id": "at-bauv-main",
+          "id": "at-bauv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
-            {
-              "id": "be85f03a722d1ff2",
-              "number": "0",
-              "title": "§ 0",
-              "text": "Langtitel Verordnung des Bundesministers für Arbeit, Soziales und Konsumentenschutz über Sicherheit und Gesundheitsschutz auf Baustellen und auf auswärtigen Arbeitsstellen (Bauarbeiterschutzverordnung – BauV) StF: BGBl . Nr . 340/1994\nPräambel/Promulgationsklausel Auf Grund der §§ 24 Abs . 1 bis 4 und 27 Abs . 7 des Arbeitnehmerschutzgesetzes, BGBl . Nr . 234/1972 , zuletzt geändert durch BGBl . Nr . 650/1989 , wird, soweit es sich um der Gewerbeordnung 1994, BGBl . Nr . 194 unterliegende Betriebe handelt, im Einvernehmen mit dem Bundesminister für wirtschaftliche Angelegenheiten und, soweit es sich um Betriebe handelt, die dem Bundesgesetz über die Verkehrs-Arbeitsinspektion, BGBl . Nr . 100/1988 , unterliegen, im Einvernehmen mit dem Bundesminister für öffentliche Wirtschaft und Verkehr, verordnet:\nI . HAUPTSTÜCK Allgemeine Anforderungen und Maßnahmen 1 . Abschnitt: Allgemeine Bestimmungen § 1 . Geltungsbereich § 2 . Begriffsbestimmungen § 3 . Meldung von Bauarbeiten § 3a . Anwendung der Grundsätze der Gefahrenverhütung auf Baustellen § 4 . Aufsicht und Koordination § 5 . Eignung der Arbeitnehmer § 6 . Arbeitsplätze und Verkehrswege § 7 . Absturzgefahr § 8 . Absturzsicherungen § 9 . Abgrenzungen § 10 . Schutzeinrichtungen § 11 . Gefahren durch Naturereignisse § 12 . Arbeiten an bestehenden Bauwerken § 13 . Allgemeine Bestimmungen über elektrische Anlagen und Betriebsmittel (Anm . : aufgehoben durch BGBl . II Nr . 33/2012 ) § 14 . Schutzabstände bei elektrischen Anlagen und Betriebsmitteln (Anm . . II Nr . 33/2012 ) § 15 . Lagerung § 16 . Transport-, Be- und Entladen 2 . Abschnitt: Arbeitsvorgänge und Arbeitsverfahren § 17 . Allgemeines § 18 . Lärm und Erschütterungen (Anm . . II Nr . 22/2006 ) § 19 . Allgemeine Bestimmungen über Arbeitsstoffe § 20 . Brandgefährliche und explosionsgefährliche Arbeitsstoffe § 21 . Gesundheitsgefährdende Arbeitsstoffe 3 . Abschnitt: Persönliche Schutzausrüstung § 22 . Allgemeines (Anm . : § 23 bis § 30 aufgehoben durch BGBl . II Nr . 77/2014 ) 4 . Abschnitt: Erste-Hilfe-Leistung, sanitäre Vorkehrungen und sonstige Einrichtungen § 31 . Erste-Hilfe-Leistung § 32 . Sanitätsräume § 33 . Trinkwasser § 34 . Waschgelegenheiten § 35 . Aborte § 36 . Aufenthaltsräume § 37 . Weitere Einrichtungen § 38 . Allgemeine Bestimmungen über Unterkünfte § 39 . Schlafräume in Unterkünften § 40 . Aufenthaltsräume in Unterkünften § 41 . Krankenstube 5 . Abschnitt: Brandschutzmaßnahmen § 42 . Allgemeines § 43 . Fußböden von Arbeitsplätzen, Aufenthaltsräumen und Unterkünften § 44 . Brennbare Abfälle und Rückstände § 45 . Feuerlöschmittel und Feuerlöschgeräte § 46 . Brandalarmeinrichtungen, Brandalarmplan, Brandschutzordnung § 47 . Brandschutz bei Einrichtung der Baustellen II . HAUPTSTÜCK Besondere Anforderungen und Maßnahmen 6 . Abschnitt: Erd- und Felsarbeiten § 48 . Aushub § 49 . Arbeitsraumbreite § 50 . Abböschen § 51 . Verbaumaßnahmen § 52 . Verbauarten § 53 . Bodenverfestigung § 54 . Abtragearbeiten 7 . Abschnitt: Gerüste § 55 . Allgemeines § 56 . Statischer Nachweis § 57 . Gerüstlagen § 58 . Arbeitsgerüste § 59 . Schutzgerüste § 60 . Aufstellen und Abtragen von Gerüsten § 61 . Prüfung von Gerüsten § 62 . Benützung von Gerüsten § 63 . Verwendungszweck von Gerüsten § 64 . Leitergerüste § 65 . Metallgerüste § 66 . Verfahrbare Standgerüste § 67 . Bockgerüste § 68 . Konsolgerüste § 69 . Ausschußgerüste § 70 . Gerüste für Arbeiten an Schornsteinen § 71 . Allgemeine Bestimmungen über Hängegerüste § 72 . Fahrbare und verf",
-              "whs_topics": [
-                {
-                  "id": "ppe",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "work_equipment",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "ergonomics",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "incident_reporting",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 26,
-                "level": "critical",
-                "high_keyword_matches": 11,
-                "medium_keyword_matches": 4
-              },
-              "paragraphs": []
-            },
             {
               "id": "db6a79a157e237b3",
               "number": "1",
@@ -14445,7 +14638,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bauv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Arbeitsplätze und Verkehrswege",
+          "title_en": "Section 2 - Workplaces and Traffic Routes",
+          "sections": [
             {
               "id": "8fb68b37cbeee93d",
               "number": "11",
@@ -14699,7 +14900,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bauv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Gerüste",
+          "title_en": "Section 3 - Scaffolding",
+          "sections": [
             {
               "id": "f9953b35c05168b7",
               "number": "31",
@@ -15752,7 +15961,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bauv-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Absturzsicherungen",
+          "title_en": "Section 4 - Fall Protection",
+          "sections": [
             {
               "id": "f3ccb808d20dbb9c",
               "number": "71",
@@ -16099,7 +16316,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bauv-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Erd- und Felsarbeiten",
+          "title_en": "Section 5 - Earth and Rock Work",
+          "sections": [
             {
               "id": "6f5675ba41ff4220",
               "number": "91",
@@ -16703,7 +16928,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bauv-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Abbrucharbeiten",
+          "title_en": "Section 6 - Demolition Work",
+          "sections": [
             {
               "id": "e4bb07fc4f9a7a33",
               "number": "111",
@@ -17098,7 +17331,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bauv-ch7",
+          "number": "7",
+          "title": "7. Abschnitt - Schlussbestimmungen",
+          "title_en": "Section 7 - Final Provisions",
+          "sections": [
             {
               "id": "0551b12d5b68bdaf",
               "number": "126",
@@ -17938,6 +18179,54 @@
               "paragraphs": []
             }
           ]
+        },
+        {
+          "id": "at-bauv-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "be85f03a722d1ff2",
+              "number": "0",
+              "title": "§ 0",
+              "text": "Langtitel Verordnung des Bundesministers für Arbeit, Soziales und Konsumentenschutz über Sicherheit und Gesundheitsschutz auf Baustellen und auf auswärtigen Arbeitsstellen (Bauarbeiterschutzverordnung – BauV) StF: BGBl . Nr . 340/1994\nPräambel/Promulgationsklausel Auf Grund der §§ 24 Abs . 1 bis 4 und 27 Abs . 7 des Arbeitnehmerschutzgesetzes, BGBl . Nr . 234/1972 , zuletzt geändert durch BGBl . Nr . 650/1989 , wird, soweit es sich um der Gewerbeordnung 1994, BGBl . Nr . 194 unterliegende Betriebe handelt, im Einvernehmen mit dem Bundesminister für wirtschaftliche Angelegenheiten und, soweit es sich um Betriebe handelt, die dem Bundesgesetz über die Verkehrs-Arbeitsinspektion, BGBl . Nr . 100/1988 , unterliegen, im Einvernehmen mit dem Bundesminister für öffentliche Wirtschaft und Verkehr, verordnet:\nI . HAUPTSTÜCK Allgemeine Anforderungen und Maßnahmen 1 . Abschnitt: Allgemeine Bestimmungen § 1 . Geltungsbereich § 2 . Begriffsbestimmungen § 3 . Meldung von Bauarbeiten § 3a . Anwendung der Grundsätze der Gefahrenverhütung auf Baustellen § 4 . Aufsicht und Koordination § 5 . Eignung der Arbeitnehmer § 6 . Arbeitsplätze und Verkehrswege § 7 . Absturzgefahr § 8 . Absturzsicherungen § 9 . Abgrenzungen § 10 . Schutzeinrichtungen § 11 . Gefahren durch Naturereignisse § 12 . Arbeiten an bestehenden Bauwerken § 13 . Allgemeine Bestimmungen über elektrische Anlagen und Betriebsmittel (Anm . : aufgehoben durch BGBl . II Nr . 33/2012 ) § 14 . Schutzabstände bei elektrischen Anlagen und Betriebsmitteln (Anm . . II Nr . 33/2012 ) § 15 . Lagerung § 16 . Transport-, Be- und Entladen 2 . Abschnitt: Arbeitsvorgänge und Arbeitsverfahren § 17 . Allgemeines § 18 . Lärm und Erschütterungen (Anm . . II Nr . 22/2006 ) § 19 . Allgemeine Bestimmungen über Arbeitsstoffe § 20 . Brandgefährliche und explosionsgefährliche Arbeitsstoffe § 21 . Gesundheitsgefährdende Arbeitsstoffe 3 . Abschnitt: Persönliche Schutzausrüstung § 22 . Allgemeines (Anm . : § 23 bis § 30 aufgehoben durch BGBl . II Nr . 77/2014 ) 4 . Abschnitt: Erste-Hilfe-Leistung, sanitäre Vorkehrungen und sonstige Einrichtungen § 31 . Erste-Hilfe-Leistung § 32 . Sanitätsräume § 33 . Trinkwasser § 34 . Waschgelegenheiten § 35 . Aborte § 36 . Aufenthaltsräume § 37 . Weitere Einrichtungen § 38 . Allgemeine Bestimmungen über Unterkünfte § 39 . Schlafräume in Unterkünften § 40 . Aufenthaltsräume in Unterkünften § 41 . Krankenstube 5 . Abschnitt: Brandschutzmaßnahmen § 42 . Allgemeines § 43 . Fußböden von Arbeitsplätzen, Aufenthaltsräumen und Unterkünften § 44 . Brennbare Abfälle und Rückstände § 45 . Feuerlöschmittel und Feuerlöschgeräte § 46 . Brandalarmeinrichtungen, Brandalarmplan, Brandschutzordnung § 47 . Brandschutz bei Einrichtung der Baustellen II . HAUPTSTÜCK Besondere Anforderungen und Maßnahmen 6 . Abschnitt: Erd- und Felsarbeiten § 48 . Aushub § 49 . Arbeitsraumbreite § 50 . Abböschen § 51 . Verbaumaßnahmen § 52 . Verbauarten § 53 . Bodenverfestigung § 54 . Abtragearbeiten 7 . Abschnitt: Gerüste § 55 . Allgemeines § 56 . Statischer Nachweis § 57 . Gerüstlagen § 58 . Arbeitsgerüste § 59 . Schutzgerüste § 60 . Aufstellen und Abtragen von Gerüsten § 61 . Prüfung von Gerüsten § 62 . Benützung von Gerüsten § 63 . Verwendungszweck von Gerüsten § 64 . Leitergerüste § 65 . Metallgerüste § 66 . Verfahrbare Standgerüste § 67 . Bockgerüste § 68 . Konsolgerüste § 69 . Ausschußgerüste § 70 . Gerüste für Arbeiten an Schornsteinen § 71 . Allgemeine Bestimmungen über Hängegerüste § 72 . Fahrbare und verf",
+              "whs_topics": [
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "work_equipment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "ergonomics",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 26,
+                "level": "critical",
+                "high_keyword_matches": 11,
+                "medium_keyword_matches": 4
+              },
+              "paragraphs": []
+            }
+          ]
         }
       ],
       "content_hash": "bde55e8faa011528bcab936e98d880dd"
@@ -18110,51 +18399,11 @@
       },
       "chapters": [
         {
-          "id": "at-lärmv-main",
+          "id": "at-lärmv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
-            {
-              "id": "b5f3301e99d5b363",
-              "number": "0",
-              "title": "§ 0",
-              "text": "Präambel/Promulgationsklausel Der Nationalrat hat beschlossen: Inhaltsverzeichnis 1 . Hauptstück Grundsätze und Anforderungen an Lebensmittel, Wasser für den menschlichen Gebrauch, Gebrauchsgegenstände und kosmetische Mittel 1 . Abschnitt Allgemeine Bestimmungen § 1 Geltungsbereich § 2 Zielbestimmung § 3 Begriffsbestimmungen § 4 Vollziehung von Verordnungen der Europäischen Union 2 . Abschnitt Lebensmittel § 5 Allgemeine Anforderungen § 6 Verordnungsermächtigung für Lebensmittel und Wasser für den menschlichen Gebrauch § 7 Verordnungsermächtigung in Krisenzeiten § 8 Meldung von Lebensmitteln für spezielle Gruppen § 9 Behandlung mit ionisierenden Strahlen 3 . Abschnitt Hygiene im Lebensmittelbereich § 10 Eintragung und Zulassung von Betrieben § 11 Direktvermarktung § 12 Einzelhandelsunternehmen § 13 Anpassung der Anforderungen für bestimmte Lebensmittelunternehmer § 14 Rohmilch 4 . Abschnitt Primärproduktion § 15 Verordnungsermächtigung 5 . Abschnitt Gebrauchsgegenstände und kosmetische Mittel § 16 Allgemeine Anforderungen an Gebrauchsgegenstände § 17 Zulassungsverfahren § 18 Allgemeine Anforderungen an kosmetische Mittel § 19 Verordnungsermächtigung für Gebrauchsgegenstände § 20 Verordnungsermä",
-              "whs_topics": [
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 3
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "first_aid",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "training",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 2,
-                "level": "medium",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
             {
               "id": "622130776533928c",
               "number": "1",
@@ -18283,7 +18532,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-lärmv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Lärm",
+          "title_en": "Section 2 - Noise",
+          "sections": [
             {
               "id": "38789d1ec4a262a4",
               "number": "6",
@@ -19570,7 +19827,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-lärmv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Vibrationen",
+          "title_en": "Section 3 - Vibrations",
+          "sections": [
             {
               "id": "cb9e056c43441264",
               "number": "51",
@@ -20826,7 +21091,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-lärmv-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Schlussbestimmungen",
+          "title_en": "Section 4 - Final Provisions",
+          "sections": [
             {
               "id": "1edaa3d9612bf891",
               "number": "101",
@@ -20951,6 +21224,54 @@
                 "score": 0,
                 "level": "low",
                 "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "at-lärmv-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "b5f3301e99d5b363",
+              "number": "0",
+              "title": "§ 0",
+              "text": "Präambel/Promulgationsklausel Der Nationalrat hat beschlossen: Inhaltsverzeichnis 1 . Hauptstück Grundsätze und Anforderungen an Lebensmittel, Wasser für den menschlichen Gebrauch, Gebrauchsgegenstände und kosmetische Mittel 1 . Abschnitt Allgemeine Bestimmungen § 1 Geltungsbereich § 2 Zielbestimmung § 3 Begriffsbestimmungen § 4 Vollziehung von Verordnungen der Europäischen Union 2 . Abschnitt Lebensmittel § 5 Allgemeine Anforderungen § 6 Verordnungsermächtigung für Lebensmittel und Wasser für den menschlichen Gebrauch § 7 Verordnungsermächtigung in Krisenzeiten § 8 Meldung von Lebensmitteln für spezielle Gruppen § 9 Behandlung mit ionisierenden Strahlen 3 . Abschnitt Hygiene im Lebensmittelbereich § 10 Eintragung und Zulassung von Betrieben § 11 Direktvermarktung § 12 Einzelhandelsunternehmen § 13 Anpassung der Anforderungen für bestimmte Lebensmittelunternehmer § 14 Rohmilch 4 . Abschnitt Primärproduktion § 15 Verordnungsermächtigung 5 . Abschnitt Gebrauchsgegenstände und kosmetische Mittel § 16 Allgemeine Anforderungen an Gebrauchsgegenstände § 17 Zulassungsverfahren § 18 Allgemeine Anforderungen an kosmetische Mittel § 19 Verordnungsermächtigung für Gebrauchsgegenstände § 20 Verordnungsermä",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "first_aid",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
@@ -21236,51 +21557,11 @@
       },
       "chapters": [
         {
-          "id": "at-bs-v-main",
+          "id": "at-bs-v-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
           "sections": [
-            {
-              "id": "5f6e84f412bf0320",
-              "number": "0",
-              "title": "§ 0",
-              "text": "§ 0:\nLangtitel Bundesgesetz über Sicherheit und Gesundheitsschutz bei der Arbeit (ArbeitnehmerInnenschutzgesetz – ASchG)\n\nPräambel/Promulgationsklausel INHALTSVERZEICHNIS 1 . Abschnitt: Allgemeine Bestimmungen § 1 . Geltungsbereich § 2 . Begriffsbestimmungen § 3 . Allgemeine Pflichten der Arbeitgeber § 4 . Ermittlung und Beurteilung der Gefahren Festlegung von Maßnahmen (Arbeitsplatzevaluierung) § 5 . Sicherheits- und Gesundheitsschutzdokumente § 6 . Einsatz der Arbeitnehmer § 7 . Grundsätze der Gefahrenverhütung § 8 . Koordination § 9 . Überlassung § 10 . Bestellung von Sicherheitsvertrauenspersonen § 11 . Aufgaben und Beteiligung der Sicherheitsvertrauenspersonen § 12 . Information § 13 . Anhörung und Beteiligung § 14 . Unterweisung § 15 . Pflichten der Arbeitnehmer § 16 . Aufzeichnungen und Berichte über Arbeitsunfälle § 17 . Instandhaltung, Reinigung, Prüfung § 18 . Verordnungen 2 . Abschnitt: Arbeitsstätten und Baustellen § 19 . Anwendungsbereich § 20 . Allgemeine Bestimmungen über Arbeitsstätten und Baustellen § 21 . Arbeitsstätten in Gebäuden § 22 . Arbeitsräume § 23 . Sonstige Betriebs",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 4
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "ppe",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 3
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 15,
-                "level": "critical",
-                "high_keyword_matches": 5,
-                "medium_keyword_matches": 5
-              },
-              "paragraphs": []
-            },
             {
               "id": "33df6fcee6186259",
               "number": "1",
@@ -21460,7 +21741,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bs-v-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Anforderungen an Bildschirmarbeitsplätze",
+          "title_en": "Section 2 - Requirements for VDU Workstations",
+          "sections": [
             {
               "id": "9bd9bfa11fabd092",
               "number": "6",
@@ -21855,7 +22144,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bs-v-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Arbeitsabläufe",
+          "title_en": "Section 3 - Work Processes",
+          "sections": [
             {
               "id": "398642ea6310a6ef",
               "number": "16",
@@ -22025,7 +22322,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bs-v-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Untersuchungen der Augen",
+          "title_en": "Section 4 - Eye Examinations",
+          "sections": [
             {
               "id": "0e657c5b91484643",
               "number": "21",
@@ -22210,7 +22515,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "at-bs-v-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Schlussbestimmungen",
+          "title_en": "Section 5 - Final Provisions",
+          "sections": [
             {
               "id": "5361b3f87e60f480",
               "number": "26",
@@ -26070,6 +26383,54 @@
                 "level": "low",
                 "high_keyword_matches": 0,
                 "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "at-bs-v-other",
+          "number": "X",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "5f6e84f412bf0320",
+              "number": "0",
+              "title": "§ 0",
+              "text": "§ 0:\nLangtitel Bundesgesetz über Sicherheit und Gesundheitsschutz bei der Arbeit (ArbeitnehmerInnenschutzgesetz – ASchG)\n\nPräambel/Promulgationsklausel INHALTSVERZEICHNIS 1 . Abschnitt: Allgemeine Bestimmungen § 1 . Geltungsbereich § 2 . Begriffsbestimmungen § 3 . Allgemeine Pflichten der Arbeitgeber § 4 . Ermittlung und Beurteilung der Gefahren Festlegung von Maßnahmen (Arbeitsplatzevaluierung) § 5 . Sicherheits- und Gesundheitsschutzdokumente § 6 . Einsatz der Arbeitnehmer § 7 . Grundsätze der Gefahrenverhütung § 8 . Koordination § 9 . Überlassung § 10 . Bestellung von Sicherheitsvertrauenspersonen § 11 . Aufgaben und Beteiligung der Sicherheitsvertrauenspersonen § 12 . Information § 13 . Anhörung und Beteiligung § 14 . Unterweisung § 15 . Pflichten der Arbeitnehmer § 16 . Aufzeichnungen und Berichte über Arbeitsunfälle § 17 . Instandhaltung, Reinigung, Prüfung § 18 . Verordnungen 2 . Abschnitt: Arbeitsstätten und Baustellen § 19 . Anwendungsbereich § 20 . Allgemeine Bestimmungen über Arbeitsstätten und Baustellen § 21 . Arbeitsstätten in Gebäuden § 22 . Arbeitsräume § 23 . Sonstige Betriebs",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 4
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 3
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 15,
+                "level": "critical",
+                "high_keyword_matches": 5,
+                "medium_keyword_matches": 5
               },
               "paragraphs": []
             }

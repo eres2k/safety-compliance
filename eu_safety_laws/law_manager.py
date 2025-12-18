@@ -1253,9 +1253,91 @@ STRUCTURE_MSCHG = [
     {"number": "7", "title": "7. Abschnitt - Schlussbestimmungen", "title_en": "Section 7 - Final Provisions", "section_range": (33, 35)},
 ]
 
-# Official structure: Austria ARG (Arbeitsruhegesetz)
+# Official structure: Austria ARG (Arbeitsruhegesetz) - single part law
 STRUCTURE_ARG = [
     {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 12)},
+]
+
+# Official structure: Austria AStV (Arbeitsstättenverordnung)
+STRUCTURE_ASTV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Arbeitsstätten in Gebäuden", "title_en": "Section 2 - Workplaces in Buildings", "section_range": (6, 25)},
+    {"number": "3", "title": "3. Abschnitt - Arbeitsstätten im Freien", "title_en": "Section 3 - Outdoor Workplaces", "section_range": (26, 32)},
+    {"number": "4", "title": "4. Abschnitt - Brandschutz", "title_en": "Section 4 - Fire Protection", "section_range": (33, 40)},
+    {"number": "5", "title": "5. Abschnitt - Erste Hilfe", "title_en": "Section 5 - First Aid", "section_range": (41, 45)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (46, 50)},
+]
+
+# Official structure: Austria AM-VO (Arbeitsmittelverordnung)
+STRUCTURE_AMVO = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Beschaffenheit von Arbeitsmitteln", "title_en": "Section 2 - Condition of Work Equipment", "section_range": (6, 15)},
+    {"number": "3", "title": "3. Abschnitt - Benutzung von Arbeitsmitteln", "title_en": "Section 3 - Use of Work Equipment", "section_range": (16, 30)},
+    {"number": "4", "title": "4. Abschnitt - Besondere Arbeitsmittel", "title_en": "Section 4 - Special Work Equipment", "section_range": (31, 60)},
+    {"number": "5", "title": "5. Abschnitt - Prüfungen", "title_en": "Section 5 - Inspections", "section_range": (61, 70)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (71, 80)},
+]
+
+# Official structure: Austria BauV (Bauarbeiterschutzverordnung)
+STRUCTURE_BAUV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 10)},
+    {"number": "2", "title": "2. Abschnitt - Arbeitsplätze und Verkehrswege", "title_en": "Section 2 - Workplaces and Traffic Routes", "section_range": (11, 30)},
+    {"number": "3", "title": "3. Abschnitt - Gerüste", "title_en": "Section 3 - Scaffolding", "section_range": (31, 70)},
+    {"number": "4", "title": "4. Abschnitt - Absturzsicherungen", "title_en": "Section 4 - Fall Protection", "section_range": (71, 90)},
+    {"number": "5", "title": "5. Abschnitt - Erd- und Felsarbeiten", "title_en": "Section 5 - Earth and Rock Work", "section_range": (91, 110)},
+    {"number": "6", "title": "6. Abschnitt - Abbrucharbeiten", "title_en": "Section 6 - Demolition Work", "section_range": (111, 125)},
+    {"number": "7", "title": "7. Abschnitt - Schlussbestimmungen", "title_en": "Section 7 - Final Provisions", "section_range": (126, 150)},
+]
+
+# Official structure: Austria BS-V (Bildschirmarbeitsverordnung)
+STRUCTURE_BSV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Anforderungen an Bildschirmarbeitsplätze", "title_en": "Section 2 - Requirements for VDU Workstations", "section_range": (6, 15)},
+    {"number": "3", "title": "3. Abschnitt - Arbeitsabläufe", "title_en": "Section 3 - Work Processes", "section_range": (16, 20)},
+    {"number": "4", "title": "4. Abschnitt - Untersuchungen der Augen", "title_en": "Section 4 - Eye Examinations", "section_range": (21, 25)},
+    {"number": "5", "title": "5. Abschnitt - Schlussbestimmungen", "title_en": "Section 5 - Final Provisions", "section_range": (26, 150)},
+]
+
+# Official structure: Austria PSA-V (PSA-Verordnung)
+STRUCTURE_PSAV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 3)},
+    {"number": "2", "title": "2. Abschnitt - Bereitstellung und Benutzung", "title_en": "Section 2 - Provision and Use", "section_range": (4, 7)},
+    {"number": "3", "title": "3. Abschnitt - Schlussbestimmungen", "title_en": "Section 3 - Final Provisions", "section_range": (8, 10)},
+]
+
+# Official structure: Austria DOK-VO (Dokumentationsverordnung)
+STRUCTURE_DOKVO = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 10)},
+]
+
+# Official structure: Austria ESV 2012 (Elektroschutzverordnung)
+STRUCTURE_ESV2012 = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Schutzmaßnahmen", "title_en": "Section 2 - Protective Measures", "section_range": (6, 15)},
+    {"number": "3", "title": "3. Abschnitt - Schlussbestimmungen", "title_en": "Section 3 - Final Provisions", "section_range": (16, 20)},
+]
+
+# Official structure: Austria VbA (Verordnung biologische Arbeitsstoffe)
+STRUCTURE_VBA = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 10)},
+]
+
+# Official structure: Austria LärmV (Verordnung Lärm und Vibrationen)
+STRUCTURE_LAERMV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Lärm", "title_en": "Section 2 - Noise", "section_range": (6, 50)},
+    {"number": "3", "title": "3. Abschnitt - Vibrationen", "title_en": "Section 3 - Vibrations", "section_range": (51, 100)},
+    {"number": "4", "title": "4. Abschnitt - Schlussbestimmungen", "title_en": "Section 4 - Final Provisions", "section_range": (101, 120)},
+]
+
+# Official structure: Austria GefStoffV (Grenzwerteverordnung)
+STRUCTURE_GEFSTOFFV = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 10)},
+]
+
+# Official structure: Austria BauKG (Bauarbeitenkoordinationsgesetz)
+STRUCTURE_BAUKG = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 15)},
 ]
 
 # Official structure: Germany ArbSchG (Arbeitsschutzgesetz)
@@ -1287,6 +1369,17 @@ LAW_STRUCTURES = {
         "AZG": STRUCTURE_AZG,
         "MSchG": STRUCTURE_MSCHG,
         "ARG": STRUCTURE_ARG,
+        "AStV": STRUCTURE_ASTV,
+        "AM-VO": STRUCTURE_AMVO,
+        "BauV": STRUCTURE_BAUV,
+        "BS-V": STRUCTURE_BSV,
+        "PSA-V": STRUCTURE_PSAV,
+        "DOK-VO": STRUCTURE_DOKVO,
+        "ESV 2012": STRUCTURE_ESV2012,
+        "VbA": STRUCTURE_VBA,
+        "LärmV": STRUCTURE_LAERMV,
+        "GefStoffV": STRUCTURE_GEFSTOFFV,
+        "BauKG": STRUCTURE_BAUKG,
     },
     "DE": {"ArbSchG": STRUCTURE_ARBSCHG},
     "NL": {"Arbowet": STRUCTURE_ARBOWET},
