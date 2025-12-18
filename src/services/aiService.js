@@ -442,58 +442,59 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `Analyze this EXACT legal text and create summaries. You MUST quote specific phrases and cite paragraph numbers from the text below.
+  // Validate that we have actual content to analyze
+  if (!lawText || lawText.trim().length < 20) {
+    return {
+      manager: `**What this section covers:**\n- Section "${sectionTitle}" - No content available for analysis\n\n**Key requirements:**\n- Unable to extract requirements - section content is empty or too short`,
+      associate: `📖 This section "${sectionTitle}" doesn't have content to explain yet.\n❓ Ask your manager for more information!`
+    }
+  }
 
-SECTION: ${sectionTitle || 'Regulation'}
+  const prompt = `You are analyzing a SPECIFIC legal section. Your job is to summarize ONLY what is written in the text below.
 
-<<<LEGAL TEXT START>>>
-${lawText.substring(0, 3000)}
-<<<LEGAL TEXT END>>>
+=== SECTION BEING ANALYZED ===
+Section: ${sectionTitle || 'Legal Provision'}
 
-STRICT RULES:
-1. ONLY discuss what is written in the text above - DO NOT add generic safety advice
-2. QUOTE specific words/phrases from the text (e.g., "The text states '...'")
-3. If text mentions "(1)", "(2)" etc., cite them as "Abs. 1", "Abs. 2"
-4. If text mentions "1.", "2.", cite them as "Punkt 1", "Punkt 2"
-5. If this section is about scope/definitions/administrative matters - SAY THAT
+--- BEGIN LEGAL TEXT ---
+${lawText.substring(0, 4000)}
+--- END LEGAL TEXT ---
 
-===VERSION 1: WHS SUMMARY (for safety managers)===
+=== CRITICAL INSTRUCTIONS ===
+1. ONLY summarize what appears in the text between "BEGIN LEGAL TEXT" and "END LEGAL TEXT"
+2. DO NOT invent requirements that are not in the text
+3. DO NOT add generic workplace safety advice
+4. If the text is about scope, definitions, or exceptions - say exactly that
+5. QUOTE actual phrases from the text using quotation marks
+6. Reference paragraph numbers: "(1)" = Abs. 1, "1." = Punkt 1, "§ X" = cite it
 
-**What this section covers:**
-- [Summarize in 1-2 sentences what THIS text is about - quote key terms]
+=== OUTPUT FORMAT ===
 
-**Key requirements from this text:**
-- [List SPECIFIC requirements from THIS text with citations]
-- [If text has no requirements, write: "This section is [scope/definitions/administrative] - no direct requirements"]
-
-**Compliance relevance for Amazon:**
-- [How does the SPECIFIC content above apply to warehouse operations?]
-
-**Documentation/Actions:**
-- [What does THIS text require? Cite the paragraph!]
-
-===VERSION 2: EXPLAIN LIKE I'M 5===
-Explain what THIS TEXT says using simple words a 5-year-old knows:
-- 5 bullet points with emoji
-- Each under 10 words
-- Be playful and reference what the text actually says!
-
-OUTPUT (use EXACT headers):
 ---MANAGER---
 **What this section covers:**
-- ...
+- [1-2 sentences describing what THIS specific text is about]
 
 **Key requirements from this text:**
-- ...
+- [List ONLY requirements that appear IN THE TEXT ABOVE]
+- [Quote the exact language where possible]
+- [If no actionable requirements, write: "This section covers [scope/definitions/exceptions/etc.] - no direct compliance requirements"]
 
 **Compliance relevance for Amazon:**
-- ...
+- [Connect the SPECIFIC content above to warehouse operations]
 
 **Documentation/Actions:**
-- ...
+- [List ONLY actions required by THIS text, with citations]
+- [If none, write: "No specific documentation requirements in this section"]
 
 ---ASSOCIATE---
-[5 emoji bullet points]`
+[5 simple bullet points with emoji explaining what THIS text says]
+- Each bullet under 10 words
+- Use words a child would understand
+- Reference actual content from the text above
+
+=== REMEMBER ===
+- Your summary must match the content provided
+- If someone reads your summary, they should recognize it matches the original text
+- Do not add information that is not in the text`
 
   const response = await generateAIResponse(prompt, framework, language)
 
@@ -542,21 +543,38 @@ export async function simplifyForManager(lawText, sectionTitle, framework, langu
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Rewrite this legal regulation as a concise WHS SUMMARY.
+  // Validate input
+  if (!lawText || lawText.trim().length < 20) {
+    return `**Section:** ${sectionTitle}\n\n**Status:** No content available for analysis.`
+  }
 
-RULES:
-1. Extract key compliance obligations and deadlines relevant to Amazon logistics operations
-2. Use bullet points for clarity
-3. Format: "Key WHS obligations: [list]" then "Compliance deadlines: [list]" then "Documentation required: [list]"
-4. ALWAYS include legal citations (e.g., "§ 3 Abs. 2 Z 1" for AT/DE, "Artikel 3.1" for NL) for each obligation
-5. Keep it under 150 words
-6. Focus on actionable compliance requirements for delivery station operations
-7. Include specific numbers (e.g., "every 12 months", "within 3 days")
+  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Analyze ONLY the legal text provided below.
 
-Section: ${sectionTitle || 'Regulation'}
+=== SECTION ===
+${sectionTitle || 'Legal Provision'}
 
-Legal text:
-${lawText.substring(0, 3000)}`
+--- BEGIN LEGAL TEXT ---
+${lawText.substring(0, 3000)}
+--- END LEGAL TEXT ---
+
+=== INSTRUCTIONS ===
+1. ONLY summarize what is written in the text above
+2. DO NOT add generic safety advice not in the text
+3. Quote specific phrases from the text
+4. Include legal citations (§ X Abs. Y) for each point
+5. If this section has no actionable requirements, say so clearly
+
+=== OUTPUT FORMAT ===
+**Key WHS obligations from this text:**
+- [List ONLY obligations that appear in the text above]
+
+**Compliance deadlines:**
+- [List ONLY deadlines mentioned in the text, or "None specified in this section"]
+
+**Documentation required:**
+- [List ONLY documentation requirements from the text, or "None specified in this section"]
+
+Keep it under 150 words. Be specific to THIS text.`
 
   const response = await generateAIResponse(prompt, framework, language)
   const normalizedResponse = normalizeNewlines(response)
@@ -570,29 +588,38 @@ export async function simplifyForAssociate(lawText, sectionTitle, framework, lan
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `Explain this safety regulation like you're talking to a 5-year-old child who knows nothing about work or laws.
+  // Validate input
+  if (!lawText || lawText.trim().length < 20) {
+    return `📖 This section "${sectionTitle}" doesn't have content to explain yet.\n❓ Ask your manager for more information!`
+  }
 
-RULES:
-1. Use ONLY words a 5-year-old knows - no: compliance, obligations, regulations, employee, employer, provisions
-2. Think: "The boss has to keep workers safe" instead of "employer obligations"
-3. Very short sentences - under 10 words each
-4. Maximum 5 bullet points with fun emoji
-5. Focus ONLY on the basic safety idea
-6. Be playful and simple!
+  const prompt = `Explain what THIS SPECIFIC text says using simple words a 5-year-old would understand.
 
-GOOD examples:
-- "👷 Big people at work need helmets to protect their heads!"
-- "⚠️ If something looks dangerous, tell a grown-up right away!"
-- "✅ Everyone gets breaks to rest and drink water!"
+=== TEXT TO EXPLAIN ===
+Section: ${sectionTitle || 'Safety Rule'}
 
-BAD examples (too formal):
+--- BEGIN TEXT ---
+${lawText.substring(0, 2000)}
+--- END TEXT ---
+
+=== INSTRUCTIONS ===
+1. Explain ONLY what the text above actually says
+2. Do NOT add general safety advice not in the text
+3. Use words a 5-year-old knows
+4. Maximum 5 bullet points with emoji
+5. Each bullet under 10 words
+6. Reference the actual content from the text
+
+=== GOOD EXAMPLES ===
+- "👷 Big people at work need helmets!"
+- "⚠️ Tell a grown-up if something looks dangerous!"
+- "✅ Everyone gets breaks to rest!"
+
+=== BAD EXAMPLES (too formal) ===
 - "Employers must ensure PPE compliance"
 - "Employees have the right to refuse unsafe work"
 
-Section: ${sectionTitle || 'Safety Rule'}
-
-Legal text:
-${lawText.substring(0, 2000)}`
+Your explanation must relate to the actual text provided above.`
 
   const response = await generateAIResponse(prompt, framework, language)
   const normalizedResponse = normalizeNewlines(response)
