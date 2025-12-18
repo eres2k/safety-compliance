@@ -5,7 +5,9 @@
     "document_count": 8,
     "error_count": 0,
     "cleaned_at": "2025-12-18T18:31:19.632814",
-    "restructured_at": "2025-12-18T18:31:19.705367"
+    "restructured_at": "2025-12-18T18:31:19.705367",
+    "auto_sections_at": "2025-12-18T17:52:16.116Z",
+    "sections_restructured_at": "2025-12-18T17:53:41.068Z"
   },
   "documents": [
     {
@@ -1978,10 +1980,10 @@
       },
       "chapters": [
         {
-          "id": "nl-arbobesluit-main",
+          "id": "nl-arbobesluit-ch1",
           "number": "1",
-          "title": "Hoofdinhoud",
-          "title_en": "Main Content",
+          "title": "Hoofdstuk 1 - Algemene bepalingen",
+          "title_en": "Section 1 - Algemene bepalingen",
           "sections": [
             {
               "id": "7f3854f3429de1ad",
@@ -2052,7 +2054,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch2",
+          "number": "2",
+          "title": "Hoofdstuk 2 - Arbozorg en organisatie van de arbeid",
+          "title_en": "Section 2 - Arbozorg en organisatie van de arbeid",
+          "sections": [
             {
               "id": "1c372ad88a0162bd",
               "number": "3",
@@ -2142,7 +2152,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch3",
+          "number": "3",
+          "title": "Hoofdstuk 3 - Inrichting arbeidsplaatsen",
+          "title_en": "Section 3 - Inrichting arbeidsplaatsen",
+          "sections": [
             {
               "id": "da3874ec5f0b9fd9",
               "number": "6",
@@ -2202,7 +2220,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch4",
+          "number": "4",
+          "title": "Hoofdstuk 4 - Gevaarlijke stoffen en biologische agentia",
+          "title_en": "Section 4 - Gevaarlijke stoffen en biologische agentia",
+          "sections": [
             {
               "id": "2afc455ec3ee798d",
               "number": "8",
@@ -2242,7 +2268,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch5",
+          "number": "5",
+          "title": "Hoofdstuk 5 - Overgangs- en slotbepalingen",
+          "title_en": "Section 5 - Overgangs- en slotbepalingen",
+          "sections": [
             {
               "id": "533d1030fb55ae07",
               "number": "9",
@@ -2619,10 +2653,10 @@
       },
       "chapters": [
         {
-          "id": "nl-arbeidstijdenwet-main",
+          "id": "nl-arbeidstijdenwet-ch1",
           "number": "1",
-          "title": "Hoofdinhoud",
-          "title_en": "Main Content",
+          "title": "Hoofdstuk 1 - Begripsbepalingen en toepassingsgebied",
+          "title_en": "Section 1 - Begripsbepalingen en toepassingsgebied",
           "sections": [
             {
               "id": "c56578efe31ff313",
@@ -2693,7 +2727,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch2",
+          "number": "2",
+          "title": "Hoofdstuk 2 - Arbeids- en rusttijden",
+          "title_en": "Section 2 - Arbeids- en rusttijden",
+          "sections": [
             {
               "id": "35ca494754a17ce0",
               "number": "4",
@@ -2813,7 +2855,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch3",
+          "number": "3",
+          "title": "Hoofdstuk 3 - Consignatie en bereikbaarheidsdienst",
+          "title_en": "Section 3 - Consignatie en bereikbaarheidsdienst",
+          "sections": [
             {
               "id": "868074aabc3c4970",
               "number": "8",
@@ -2868,7 +2918,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch4",
+          "number": "4",
+          "title": "Hoofdstuk 4 - Toezicht en handhaving",
+          "title_en": "Section 4 - Toezicht en handhaving",
+          "sections": [
             {
               "id": "d980231242baf3c4",
               "number": "10",
@@ -2923,7 +2981,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch5",
+          "number": "5",
+          "title": "Hoofdstuk 5 - Slotbepalingen",
+          "title_en": "Section 5 - Slotbepalingen",
+          "sections": [
             {
               "id": "b234522626348800",
               "number": "12",
@@ -3727,10 +3793,10 @@
       },
       "chapters": [
         {
-          "id": "nl-wor-main",
+          "id": "nl-wor-ch1",
           "number": "1",
-          "title": "Hoofdinhoud",
-          "title_en": "Main Content",
+          "title": "Hoofdstuk 1 - Begripsbepalingen",
+          "title_en": "Section 1 - Begripsbepalingen",
           "sections": [
             {
               "id": "7429e7b0ce61a5d8",
@@ -3751,7 +3817,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-wor-ch2",
+          "number": "2",
+          "title": "Hoofdstuk 2 - De instelling van ondernemingsraden",
+          "title_en": "Section 2 - De instelling van ondernemingsraden",
+          "sections": [
             {
               "id": "5fa525ee0ad860e4",
               "number": "2",
@@ -3874,7 +3948,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-wor-ch3",
+          "number": "3",
+          "title": "Hoofdstuk 3 - De samenstelling van de ondernemingsraad",
+          "title_en": "Section 3 - De samenstelling van de ondernemingsraad",
+          "sections": [
             {
               "id": "51f4ed00ae3aa071",
               "number": "6",
@@ -4087,7 +4169,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-wor-ch4",
+          "number": "4",
+          "title": "Hoofdstuk 4 - De werkwijze van de ondernemingsraad",
+          "title_en": "Section 4 - De werkwijze van de ondernemingsraad",
+          "sections": [
             {
               "id": "94e668a0913b0f8e",
               "number": "16",
@@ -4387,7 +4477,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-wor-ch5",
+          "number": "5",
+          "title": "Hoofdstuk 5 - Bevoegdheden van de ondernemingsraad",
+          "title_en": "Section 5 - Bevoegdheden van de ondernemingsraad",
+          "sections": [
             {
               "id": "7107cb120df288dd",
               "number": "25",
@@ -4957,7 +5055,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-wor-ch6",
+          "number": "6",
+          "title": "Hoofdstuk 6 - De bedrijfscommissies",
+          "title_en": "Section 6 - De bedrijfscommissies",
+          "sections": [
             {
               "id": "e3bbeb6f6b3ecbc8",
               "number": "36",
@@ -5248,7 +5354,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-wor-ch7",
+          "number": "7",
+          "title": "Hoofdstuk 7 - Bepalingen van bijzondere aard",
+          "title_en": "Section 7 - Bepalingen van bijzondere aard",
+          "sections": [
             {
               "id": "ed6082950d85a478",
               "number": "47",
@@ -5427,7 +5541,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-wor-ch8",
+          "number": "8",
+          "title": "Hoofdstuk 8 - Slotbepalingen",
+          "title_en": "Section 8 - Slotbepalingen",
+          "sections": [
             {
               "id": "fc6f5e476d159fbd",
               "number": "54",
@@ -7993,10 +8115,10 @@
       },
       "chapters": [
         {
-          "id": "nl-bw boek 7 titel 10-main",
-          "number": "1",
-          "title": "Hoofdinhoud",
-          "title_en": "Main Content",
+          "id": "nl-bw boek 7 titel 10-ch0",
+          "number": "0",
+          "title": "Allgemeine Bestimmungen",
+          "title_en": "Section 0",
           "sections": [
             {
               "id": "385f26548b118654",
@@ -8036,7 +8158,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-bw boek 7 titel 10-ch2",
+          "number": "2",
+          "title": "Afdeling 2 - van titel 1 van Boek 3 , tenzij op het tijdstip van de inschrijving levering van dat goed door de verkoper nog niet mogelijk zou zijn geweest wegens de in artikel 97 van Boek 3 vervatte uitsluiting van levering bij voorbaat van toekomstige registergoederen. Bij de koop van een tot woning bestemde onroerende zaak of bestanddeel daarvan kan, indien de koper een natuurlijk persoon is di",
+          "title_en": "Section 2",
+          "sections": [
             {
               "id": "543565adfd14c303",
               "number": "3",

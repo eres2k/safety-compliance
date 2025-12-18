@@ -52,6 +52,15 @@ const DE_SECTION_MAPPINGS = {
       { number: '4', title: 'Gemeinsame Vorschriften', sections: ['8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'] },
     ]
   },
+  'BetrSichV': {
+    abschnitte: [
+      { number: '1', title: 'Anwendungsbereich und Begriffsbestimmungen', sections: ['1', '2'] },
+      { number: '2', title: 'Gefährdungsbeurteilung und Schutzmaßnahmen', sections: ['3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'] },
+      { number: '3', title: 'Zusätzliche Vorschriften für überwachungsbedürftige Anlagen', sections: ['14', '15', '16', '17', '18', '19', '20'] },
+      { number: '4', title: 'Vollzugsregelungen und Ausschuss für Betriebssicherheit', sections: ['21'] },
+      { number: '5', title: 'Ordnungswidrigkeiten und Straftaten, Schlussvorschriften', sections: ['22', '23', '24'] },
+    ]
+  },
 }
 
 // Section mappings for Austrian laws
@@ -90,11 +99,32 @@ const AT_SECTION_MAPPINGS = {
 const NL_SECTION_MAPPINGS = {
   'Arbeidstijdenwet': {
     abschnitte: [
-      { number: '1', title: 'Begripsbepalingen en toepassingsgebied', sections: ['1:1', '1:2', '1:3', '1:4', '1:5', '1:6', '1:7', '1:8'] },
-      { number: '2', title: 'Arbeids- en rusttijden', sections: ['4:1', '4:2', '4:3', '4:4', '4:5', '4:6', '4:7', '4:8', '4:9', '5:1', '5:2', '5:3', '5:4', '5:5', '5:6', '5:7', '5:8', '5:9', '5:10', '5:11', '5:12', '5:13', '5:14', '5:15'] },
-      { number: '3', title: 'Nadere regels', sections: ['6:1', '6:2', '6:3', '6:4', '6:5'] },
-      { number: '4', title: 'Toezicht en handhaving', sections: ['8:1', '8:2', '8:3', '8:4', '8:5'] },
-      { number: '5', title: 'Slotbepalingen', sections: ['10:1', '10:2', '10:3', '10:4', '10:5', '10:6', '10:7', '10:8', '10:9', '10:10', '10:11', '10:12', '10:13', '10:14'] },
+      { number: '1', title: 'Begripsbepalingen en toepassingsgebied', sections: ['1', '2', '3'] },
+      { number: '2', title: 'Arbeids- en rusttijden', sections: ['4', '5', '6', '7'] },
+      { number: '3', title: 'Consignatie en bereikbaarheidsdienst', sections: ['8', '9'] },
+      { number: '4', title: 'Toezicht en handhaving', sections: ['10', '11'] },
+      { number: '5', title: 'Slotbepalingen', sections: ['12'] },
+    ]
+  },
+  'WOR': {
+    abschnitte: [
+      { number: '1', title: 'Begripsbepalingen', sections: ['1'] },
+      { number: '2', title: 'De instelling van ondernemingsraden', sections: ['2', '3', '4', '5', '5a'] },
+      { number: '3', title: 'De samenstelling van de ondernemingsraad', sections: ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15'] },
+      { number: '4', title: 'De werkwijze van de ondernemingsraad', sections: ['16', '17', '18', '19', '20', '21', '22', '22a', '23', '23a', '23b', '23c', '24'] },
+      { number: '5', title: 'Bevoegdheden van de ondernemingsraad', sections: ['25', '26', '27', '28', '29', '30', '31', '31a', '31b', '31c', '31d', '31e', '31f', '32', '32a', '32b', '32c', '33', '34', '35', '35a', '35b', '35c', '35d'] },
+      { number: '6', title: 'De bedrijfscommissies', sections: ['36', '36a', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '46a', '46b', '46c', '46d', '46e'] },
+      { number: '7', title: 'Bepalingen van bijzondere aard', sections: ['47', '48', '49', '49a', '50', '51', '52', '53', '53a', '53b', '53c'] },
+      { number: '8', title: 'Slotbepalingen', sections: ['54'] },
+    ]
+  },
+  'Arbobesluit': {
+    abschnitte: [
+      { number: '1', title: 'Algemene bepalingen', sections: ['1', '2'] },
+      { number: '2', title: 'Arbozorg en organisatie van de arbeid', sections: ['3', '4', '5'] },
+      { number: '3', title: 'Inrichting arbeidsplaatsen', sections: ['6', '7'] },
+      { number: '4', title: 'Gevaarlijke stoffen en biologische agentia', sections: ['8'] },
+      { number: '5', title: 'Overgangs- en slotbepalingen', sections: ['9'] },
     ]
   },
 }
