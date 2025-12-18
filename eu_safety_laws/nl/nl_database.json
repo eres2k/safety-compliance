@@ -5,7 +5,7 @@
     "document_count": 8,
     "error_count": 0,
     "cleaned_at": "2025-12-18T20:02:07.913857",
-    "restructured_at": "2025-12-18T20:02:07.985467",
+    "restructured_at": "2025-12-18T23:28:22.483Z",
     "auto_sections_at": "2025-12-18T17:52:16.116Z",
     "sections_restructured_at": "2025-12-18T17:53:41.068Z",
     "titles_updated_at": "2025-12-18T21:52:19.965Z"
@@ -1981,10 +1981,10 @@
       },
       "chapters": [
         {
-          "id": "nl-arbobesluit-main",
+          "id": "nl-arbobesluit-ch1",
           "number": "1",
-          "title": "Hoofdinhoud",
-          "title_en": "Main Content",
+          "title": "Hoofdstuk 1 - Definities en toepassingsgebied",
+          "title_en": "Chapter 1 - Definitions and Scope",
           "sections": [
             {
               "id": "7f3854f3429de1ad",
@@ -2025,7 +2025,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch2",
+          "number": "2",
+          "title": "Hoofdstuk 2 - Arbozorg en organisatie van de arbeid",
+          "title_en": "Chapter 2 - Working Conditions Care and Work Organization",
+          "sections": [
             {
               "id": "8e7da384f606b402",
               "number": "2",
@@ -2055,7 +2063,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch3",
+          "number": "3",
+          "title": "Hoofdstuk 3 - Inrichting arbeidsplaatsen",
+          "title_en": "Chapter 3 - Workplace Design",
+          "sections": [
             {
               "id": "1c372ad88a0162bd",
               "number": "3",
@@ -2075,7 +2091,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch4",
+          "number": "4",
+          "title": "Hoofdstuk 4 - Gevaarlijke stoffen en biologische agentia",
+          "title_en": "Chapter 4 - Hazardous Substances and Biological Agents",
+          "sections": [
             {
               "id": "c33cd2c59de7bb95",
               "number": "4",
@@ -2115,7 +2139,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch5",
+          "number": "5",
+          "title": "Hoofdstuk 5 - Fysische factoren",
+          "title_en": "Chapter 5 - Physical Factors",
+          "sections": [
             {
               "id": "79906d152812ad2f",
               "number": "5",
@@ -2145,7 +2177,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch6",
+          "number": "6",
+          "title": "Hoofdstuk 6 - Arbeidsmiddelen en specifieke werkzaamheden",
+          "title_en": "Chapter 6 - Work Equipment and Specific Work",
+          "sections": [
             {
               "id": "da3874ec5f0b9fd9",
               "number": "6",
@@ -2205,7 +2245,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch7",
+          "number": "7",
+          "title": "Hoofdstuk 7 - Bijzondere sectoren en bijzondere categorieën werknemers",
+          "title_en": "Chapter 7 - Special Sectors and Categories of Workers",
+          "sections": [
             {
               "id": "2afc455ec3ee798d",
               "number": "8",
@@ -2245,7 +2293,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbobesluit-ch8",
+          "number": "8",
+          "title": "Hoofdstuk 8 - Aanvullende voorschriften",
+          "title_en": "Chapter 8 - Additional Regulations",
+          "sections": [
             {
               "id": "533d1030fb55ae07",
               "number": "9",
@@ -2622,10 +2678,10 @@
       },
       "chapters": [
         {
-          "id": "nl-arbeidstijdenwet-main",
+          "id": "nl-arbeidstijdenwet-ch1",
           "number": "1",
-          "title": "Hoofdinhoud",
-          "title_en": "Main Content",
+          "title": "Hoofdstuk 1 - Algemene bepalingen",
+          "title_en": "Chapter 1 - General Provisions",
           "sections": [
             {
               "id": "c56578efe31ff313",
@@ -2656,7 +2712,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch2",
+          "number": "2",
+          "title": "Hoofdstuk 2 - Toepasselijkheid",
+          "title_en": "Chapter 2 - Applicability",
+          "sections": [
             {
               "id": "ff842fd71ae055fe",
               "number": "2",
@@ -2676,7 +2740,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch3",
+          "number": "3",
+          "title": "Hoofdstuk 3 - Arbeids- en rusttijden",
+          "title_en": "Chapter 3 - Working and Rest Time",
+          "sections": [
             {
               "id": "5c7b6c93cde71bbd",
               "number": "3",
@@ -2766,7 +2838,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch4",
+          "number": "4",
+          "title": "Hoofdstuk 4 - Arbeidstijd en rusttijd in bijzondere omstandigheden",
+          "title_en": "Chapter 4 - Working and Rest Time in Special Circumstances",
+          "sections": [
             {
               "id": "01936d08a7989348",
               "number": "6",
@@ -2796,7 +2876,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch5",
+          "number": "5",
+          "title": "Hoofdstuk 5 - Toezicht en opsporing",
+          "title_en": "Chapter 5 - Supervision and Detection",
+          "sections": [
             {
               "id": "93a2777f4c213763",
               "number": "7",
@@ -2836,7 +2924,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch6",
+          "number": "6",
+          "title": "Hoofdstuk 6 - Ontheffingen",
+          "title_en": "Chapter 6 - Exemptions",
+          "sections": [
             {
               "id": "f5400328f07cc7ce",
               "number": "9",
@@ -2871,7 +2967,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch7",
+          "number": "7",
+          "title": "Hoofdstuk 7 - Sanctiebepalingen",
+          "title_en": "Chapter 7 - Penalty Provisions",
+          "sections": [
             {
               "id": "d980231242baf3c4",
               "number": "10",
@@ -2926,7 +3030,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "nl-arbeidstijdenwet-ch8",
+          "number": "8",
+          "title": "Hoofdstuk 8 - Slotbepalingen",
+          "title_en": "Chapter 8 - Final Provisions",
+          "sections": [
             {
               "id": "b234522626348800",
               "number": "12",

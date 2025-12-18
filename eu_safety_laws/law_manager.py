@@ -1280,6 +1280,186 @@ STRUCTURE_ARBOWET = [
     {"number": "8", "title": "Hoofdstuk 8 - Overgangs- en slotbepalingen", "title_en": "Chapter 8 - Transitional and Final Provisions", "section_range": (44, 100)},
 ]
 
+# Official structure: Austria AStV (Arbeitsstättenverordnung) - 6 Abschnitte
+STRUCTURE_ASTV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 3)},
+    {"number": "2", "title": "2. Abschnitt - Anforderungen an Arbeitsstätten", "title_en": "Section 2 - Requirements for Workplaces", "section_range": (4, 20)},
+    {"number": "3", "title": "3. Abschnitt - Anforderungen an Arbeitsräume", "title_en": "Section 3 - Requirements for Work Rooms", "section_range": (21, 28)},
+    {"number": "4", "title": "4. Abschnitt - Sanitäre Anlagen und Aufenthaltsräume", "title_en": "Section 4 - Sanitary Facilities and Break Rooms", "section_range": (29, 40)},
+    {"number": "5", "title": "5. Abschnitt - Brandschutz und Erste Hilfe", "title_en": "Section 5 - Fire Protection and First Aid", "section_range": (41, 50)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (51, 55)},
+]
+
+# Official structure: Austria AM-VO (Arbeitsmittelverordnung) - 6 Abschnitte
+STRUCTURE_AMVO = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Anforderungen an Arbeitsmittel", "title_en": "Section 2 - Requirements for Work Equipment", "section_range": (6, 15)},
+    {"number": "3", "title": "3. Abschnitt - Benutzung von Arbeitsmitteln", "title_en": "Section 3 - Use of Work Equipment", "section_range": (16, 25)},
+    {"number": "4", "title": "4. Abschnitt - Prüfung und Wartung", "title_en": "Section 4 - Testing and Maintenance", "section_range": (26, 35)},
+    {"number": "5", "title": "5. Abschnitt - Besondere Arbeitsmittel", "title_en": "Section 5 - Special Work Equipment", "section_range": (36, 50)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (51, 60)},
+]
+
+# Official structure: Austria BauV (Bauarbeiterschutzverordnung) - 8 Abschnitte
+STRUCTURE_BAUV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Baustelleneinrichtung", "title_en": "Section 2 - Construction Site Equipment", "section_range": (6, 20)},
+    {"number": "3", "title": "3. Abschnitt - Absturzsicherung", "title_en": "Section 3 - Fall Protection", "section_range": (21, 40)},
+    {"number": "4", "title": "4. Abschnitt - Gerüste", "title_en": "Section 4 - Scaffolding", "section_range": (41, 80)},
+    {"number": "5", "title": "5. Abschnitt - Erd- und Felsarbeiten", "title_en": "Section 5 - Earth and Rock Work", "section_range": (81, 100)},
+    {"number": "6", "title": "6. Abschnitt - Abbrucharbeiten", "title_en": "Section 6 - Demolition Work", "section_range": (101, 120)},
+    {"number": "7", "title": "7. Abschnitt - Besondere Bauarbeiten", "title_en": "Section 7 - Special Construction Work", "section_range": (121, 150)},
+    {"number": "8", "title": "8. Abschnitt - Schlussbestimmungen", "title_en": "Section 8 - Final Provisions", "section_range": (151, 170)},
+]
+
+# Official structure: Austria BS-V (Bildschirmarbeitsverordnung) - 6 Abschnitte
+STRUCTURE_BSV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "2. Abschnitt - Anforderungen an Bildschirmarbeitsplätze", "title_en": "Section 2 - Requirements for Display Screen Workstations", "section_range": (3, 5)},
+    {"number": "3", "title": "3. Abschnitt - Anforderungen an die Bildschirmarbeit", "title_en": "Section 3 - Requirements for Display Screen Work", "section_range": (6, 8)},
+    {"number": "4", "title": "4. Abschnitt - Unterbrechungen und Untersuchungen", "title_en": "Section 4 - Breaks and Examinations", "section_range": (9, 11)},
+    {"number": "5", "title": "5. Abschnitt - Information und Unterweisung", "title_en": "Section 5 - Information and Instruction", "section_range": (12, 14)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (15, 18)},
+]
+
+# Official structure: Austria PSA-V (Verordnung Persönliche Schutzausrüstung) - 2 Abschnitte
+STRUCTURE_PSAV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 10)},
+    {"number": "2", "title": "2. Abschnitt - Schlussbestimmungen", "title_en": "Section 2 - Final Provisions", "section_range": (11, 15)},
+]
+
+# Official structure: Austria ESV 2012 (Elektroschutzverordnung 2012) - 4 Abschnitte
+STRUCTURE_ESV2012 = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 3)},
+    {"number": "2", "title": "2. Abschnitt - Sicherheitsmaßnahmen", "title_en": "Section 2 - Safety Measures", "section_range": (4, 10)},
+    {"number": "3", "title": "3. Abschnitt - Prüfungen und Qualifikationen", "title_en": "Section 3 - Tests and Qualifications", "section_range": (11, 18)},
+    {"number": "4", "title": "4. Abschnitt - Schlussbestimmungen", "title_en": "Section 4 - Final Provisions", "section_range": (19, 22)},
+]
+
+# Official structure: Austria LärmV (Verordnung Lärm und Vibrationen) - 5 Abschnitte
+STRUCTURE_LAERMV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "2. Abschnitt - Lärm", "title_en": "Section 2 - Noise", "section_range": (3, 7)},
+    {"number": "3", "title": "3. Abschnitt - Vibrationen", "title_en": "Section 3 - Vibrations", "section_range": (8, 12)},
+    {"number": "4", "title": "4. Abschnitt - Gemeinsame Bestimmungen", "title_en": "Section 4 - Common Provisions", "section_range": (13, 16)},
+    {"number": "5", "title": "5. Abschnitt - Schlussbestimmungen", "title_en": "Section 5 - Final Provisions", "section_range": (17, 20)},
+]
+
+# Official structure: Germany ASiG (Arbeitssicherheitsgesetz) - 5 Abschnitte
+STRUCTURE_ASIG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 1)},
+    {"number": "2", "title": "Zweiter Abschnitt - Betriebsärzte", "title_en": "Second Section - Company Physicians", "section_range": (2, 4)},
+    {"number": "3", "title": "Dritter Abschnitt - Fachkräfte für Arbeitssicherheit", "title_en": "Third Section - Occupational Safety Specialists", "section_range": (5, 7)},
+    {"number": "4", "title": "Vierter Abschnitt - Gemeinsame Vorschriften", "title_en": "Fourth Section - Common Provisions", "section_range": (8, 19)},
+    {"number": "5", "title": "Fünfter Abschnitt - Schlußvorschriften", "title_en": "Fifth Section - Final Provisions", "section_range": (20, 21)},
+]
+
+# Official structure: Germany ArbZG (Arbeitszeitgesetz) - 8 Abschnitte
+STRUCTURE_ARBZG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Werktägliche Arbeitszeit und arbeitsfreie Zeiten", "title_en": "Second Section - Daily Working Time and Rest Periods", "section_range": (3, 8)},
+    {"number": "3", "title": "Dritter Abschnitt - Sonn- und Feiertagsruhe", "title_en": "Third Section - Sunday and Holiday Rest", "section_range": (9, 13)},
+    {"number": "4", "title": "Vierter Abschnitt - Ausnahmen in besonderen Fällen", "title_en": "Fourth Section - Exceptions in Special Cases", "section_range": (14, 15)},
+    {"number": "5", "title": "Fünfter Abschnitt - Durchführung des Gesetzes", "title_en": "Fifth Section - Implementation", "section_range": (16, 17)},
+    {"number": "6", "title": "Sechster Abschnitt - Sonderregelungen", "title_en": "Sixth Section - Special Regulations", "section_range": (18, 21.99)},
+    {"number": "7", "title": "Siebter Abschnitt - Straf- und Bußgeldvorschriften", "title_en": "Seventh Section - Criminal and Penalty Provisions", "section_range": (22, 23)},
+    {"number": "8", "title": "Achter Abschnitt - Schlußvorschriften", "title_en": "Eighth Section - Final Provisions", "section_range": (24, 26)},
+]
+
+# Official structure: Germany JArbSchG (Jugendarbeitsschutzgesetz) - 5 Abschnitte
+STRUCTURE_JARBSCHG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeines", "title_en": "First Section - General", "section_range": (1, 4)},
+    {"number": "2", "title": "Zweiter Abschnitt - Beschäftigung von Kindern", "title_en": "Second Section - Employment of Children", "section_range": (5, 7)},
+    {"number": "3", "title": "Dritter Abschnitt - Beschäftigung Jugendlicher", "title_en": "Third Section - Employment of Young People", "section_range": (8, 46)},
+    {"number": "4", "title": "Vierter Abschnitt - Durchführung des Gesetzes", "title_en": "Fourth Section - Implementation", "section_range": (47, 58)},
+    {"number": "5", "title": "Fünfter Abschnitt - Straf- und Bußgeldvorschriften, Schlußvorschriften", "title_en": "Fifth Section - Criminal and Penalty Provisions, Final Provisions", "section_range": (59, 75)},
+]
+
+# Official structure: Germany ArbStättV (Arbeitsstättenverordnung) - 4 Abschnitte
+STRUCTURE_ARBSTAETTV = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Pflichten des Arbeitgebers", "title_en": "Second Section - Employer Obligations", "section_range": (3, 6)},
+    {"number": "3", "title": "Dritter Abschnitt - Besondere Anforderungen", "title_en": "Third Section - Special Requirements", "section_range": (7, 8)},
+    {"number": "4", "title": "Vierter Abschnitt - Schlußvorschriften", "title_en": "Fourth Section - Final Provisions", "section_range": (9, 11)},
+]
+
+# Official structure: Germany BetrSichV (Betriebssicherheitsverordnung) - 4 Abschnitte
+STRUCTURE_BETRSICHV = [
+    {"number": "1", "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen", "title_en": "First Section - Scope and Definitions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen", "title_en": "Second Section - Risk Assessment and Protective Measures", "section_range": (3, 13)},
+    {"number": "3", "title": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen", "title_en": "Third Section - Additional Requirements for Installations Subject to Monitoring", "section_range": (14, 20)},
+    {"number": "4", "title": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften", "title_en": "Fourth Section - Enforcement and Final Provisions", "section_range": (21, 24)},
+]
+
+# Official structure: Germany GefStoffV (Gefahrstoffverordnung) - 7 Abschnitte
+STRUCTURE_GEFSTOFFV = [
+    {"number": "1", "title": "Erster Abschnitt - Zielsetzung, Anwendungsbereich und Begriffsbestimmungen", "title_en": "First Section - Objectives, Scope and Definitions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gefahrstoffinformation", "title_en": "Second Section - Hazardous Substance Information", "section_range": (3, 5)},
+    {"number": "3", "title": "Dritter Abschnitt - Gefährdungsbeurteilung und Grundpflichten", "title_en": "Third Section - Risk Assessment and Basic Obligations", "section_range": (6, 7)},
+    {"number": "4", "title": "Vierter Abschnitt - Schutzmaßnahmen", "title_en": "Fourth Section - Protective Measures", "section_range": (8, 13)},
+    {"number": "5", "title": "Fünfter Abschnitt - Verbote und Beschränkungen", "title_en": "Fifth Section - Prohibitions and Restrictions", "section_range": (14, 17)},
+    {"number": "6", "title": "Sechster Abschnitt - Vollzugsregelungen und Ausschuss für Gefahrstoffe", "title_en": "Sixth Section - Enforcement and Committee for Hazardous Substances", "section_range": (18, 20)},
+    {"number": "7", "title": "Siebter Abschnitt - Ordnungswidrigkeiten und Straftaten", "title_en": "Seventh Section - Administrative Offenses and Criminal Offenses", "section_range": (21, 25)},
+]
+
+# Official structure: Germany MuSchG (Mutterschutzgesetz) - 6 Abschnitte
+STRUCTURE_MUSCHG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gesundheitsschutz", "title_en": "Second Section - Health Protection", "section_range": (3, 16)},
+    {"number": "3", "title": "Dritter Abschnitt - Kündigungsschutz", "title_en": "Third Section - Dismissal Protection", "section_range": (17, 17)},
+    {"number": "4", "title": "Vierter Abschnitt - Leistungen", "title_en": "Fourth Section - Benefits", "section_range": (18, 25)},
+    {"number": "5", "title": "Fünfter Abschnitt - Durchführung des Gesetzes", "title_en": "Fifth Section - Implementation", "section_range": (26, 31)},
+    {"number": "6", "title": "Sechster Abschnitt - Bußgeldvorschriften, Strafvorschriften", "title_en": "Sixth Section - Penalty and Criminal Provisions", "section_range": (32, 34)},
+]
+
+# Official structure: Germany LärmVibrationsArbSchV - 4 Abschnitte
+STRUCTURE_LAERMVIBRATIONSARBSCHV = [
+    {"number": "1", "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen", "title_en": "First Section - Scope and Definitions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Ermittlung und Bewertung der Gefährdung; Messungen", "title_en": "Second Section - Hazard Assessment and Measurements", "section_range": (3, 4)},
+    {"number": "3", "title": "Dritter Abschnitt - Schutzmaßnahmen", "title_en": "Third Section - Protective Measures", "section_range": (5, 12)},
+    {"number": "4", "title": "Vierter Abschnitt - Unterweisung und allgemeine Pflichten", "title_en": "Fourth Section - Instruction and General Duties", "section_range": (13, 18)},
+]
+
+# Official structure: Germany BioStoffV (Biostoffverordnung) - 4 Abschnitte
+STRUCTURE_BIOSTOFFV = [
+    {"number": "1", "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen", "title_en": "First Section - Scope and Definitions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen", "title_en": "Second Section - Risk Assessment and Protective Measures", "section_range": (3, 14)},
+    {"number": "3", "title": "Dritter Abschnitt - Zusätzliche Vorschriften", "title_en": "Third Section - Additional Provisions", "section_range": (15, 17)},
+    {"number": "4", "title": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften", "title_en": "Fourth Section - Enforcement and Final Provisions", "section_range": (18, 21)},
+]
+
+# Official structure: Germany ArbMedVV - 3 Abschnitte
+STRUCTURE_ARBMEDVV = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Arbeitsmedizinische Vorsorge", "title_en": "Second Section - Occupational Medical Care", "section_range": (3, 7)},
+    {"number": "3", "title": "Dritter Abschnitt - Schlußvorschriften", "title_en": "Third Section - Final Provisions", "section_range": (8, 11)},
+]
+
+# Official structure: Netherlands Arbobesluit - 9 Hoofdstukken
+STRUCTURE_ARBOBESLUIT = [
+    {"number": "1", "title": "Hoofdstuk 1 - Definities en toepassingsgebied", "title_en": "Chapter 1 - Definitions and Scope", "section_range": (1, 1.99)},
+    {"number": "2", "title": "Hoofdstuk 2 - Arbozorg en organisatie van de arbeid", "title_en": "Chapter 2 - Working Conditions Care and Work Organization", "section_range": (2, 2.99)},
+    {"number": "3", "title": "Hoofdstuk 3 - Inrichting arbeidsplaatsen", "title_en": "Chapter 3 - Workplace Design", "section_range": (3, 3.99)},
+    {"number": "4", "title": "Hoofdstuk 4 - Gevaarlijke stoffen en biologische agentia", "title_en": "Chapter 4 - Hazardous Substances and Biological Agents", "section_range": (4, 4.99)},
+    {"number": "5", "title": "Hoofdstuk 5 - Fysische factoren", "title_en": "Chapter 5 - Physical Factors", "section_range": (5, 5.99)},
+    {"number": "6", "title": "Hoofdstuk 6 - Arbeidsmiddelen en specifieke werkzaamheden", "title_en": "Chapter 6 - Work Equipment and Specific Work", "section_range": (6, 7.99)},
+    {"number": "7", "title": "Hoofdstuk 7 - Bijzondere sectoren en bijzondere categorieën werknemers", "title_en": "Chapter 7 - Special Sectors and Categories of Workers", "section_range": (8, 8.99)},
+    {"number": "8", "title": "Hoofdstuk 8 - Aanvullende voorschriften", "title_en": "Chapter 8 - Additional Regulations", "section_range": (9, 9.99)},
+    {"number": "9", "title": "Hoofdstuk 9 - Overgangs- en slotbepalingen", "title_en": "Chapter 9 - Transitional and Final Provisions", "section_range": (10, 15)},
+]
+
+# Official structure: Netherlands Arbeidstijdenwet - 8 Hoofdstukken
+STRUCTURE_ARBEIDSTIJDENWET = [
+    {"number": "1", "title": "Hoofdstuk 1 - Algemene bepalingen", "title_en": "Chapter 1 - General Provisions", "section_range": (1, 1.99)},
+    {"number": "2", "title": "Hoofdstuk 2 - Toepasselijkheid", "title_en": "Chapter 2 - Applicability", "section_range": (2, 2.99)},
+    {"number": "3", "title": "Hoofdstuk 3 - Arbeids- en rusttijden", "title_en": "Chapter 3 - Working and Rest Time", "section_range": (3, 5.99)},
+    {"number": "4", "title": "Hoofdstuk 4 - Arbeidstijd en rusttijd in bijzondere omstandigheden", "title_en": "Chapter 4 - Working and Rest Time in Special Circumstances", "section_range": (6, 6.99)},
+    {"number": "5", "title": "Hoofdstuk 5 - Toezicht en opsporing", "title_en": "Chapter 5 - Supervision and Detection", "section_range": (7, 8.99)},
+    {"number": "6", "title": "Hoofdstuk 6 - Ontheffingen", "title_en": "Chapter 6 - Exemptions", "section_range": (9, 9.99)},
+    {"number": "7", "title": "Hoofdstuk 7 - Sanctiebepalingen", "title_en": "Chapter 7 - Penalty Provisions", "section_range": (10, 11.99)},
+    {"number": "8", "title": "Hoofdstuk 8 - Slotbepalingen", "title_en": "Chapter 8 - Final Provisions", "section_range": (12, 15)},
+]
+
 LAW_STRUCTURES = {
     "AT": {
         "ASchG": STRUCTURE_ASCHG,
@@ -1287,9 +1467,32 @@ LAW_STRUCTURES = {
         "AZG": STRUCTURE_AZG,
         "MSchG": STRUCTURE_MSCHG,
         "ARG": STRUCTURE_ARG,
+        "AStV": STRUCTURE_ASTV,
+        "AM-VO": STRUCTURE_AMVO,
+        "BauV": STRUCTURE_BAUV,
+        "BS-V": STRUCTURE_BSV,
+        "PSA-V": STRUCTURE_PSAV,
+        "ESV 2012": STRUCTURE_ESV2012,
+        "LärmV": STRUCTURE_LAERMV,
     },
-    "DE": {"ArbSchG": STRUCTURE_ARBSCHG},
-    "NL": {"Arbowet": STRUCTURE_ARBOWET},
+    "DE": {
+        "ArbSchG": STRUCTURE_ARBSCHG,
+        "ASiG": STRUCTURE_ASIG,
+        "ArbZG": STRUCTURE_ARBZG,
+        "JArbSchG": STRUCTURE_JARBSCHG,
+        "ArbStättV": STRUCTURE_ARBSTAETTV,
+        "BetrSichV": STRUCTURE_BETRSICHV,
+        "GefStoffV": STRUCTURE_GEFSTOFFV,
+        "MuSchG": STRUCTURE_MUSCHG,
+        "LärmVibrationsArbSchV": STRUCTURE_LAERMVIBRATIONSARBSCHV,
+        "BioStoffV": STRUCTURE_BIOSTOFFV,
+        "ArbMedVV": STRUCTURE_ARBMEDVV,
+    },
+    "NL": {
+        "Arbowet": STRUCTURE_ARBOWET,
+        "Arbobesluit": STRUCTURE_ARBOBESLUIT,
+        "Arbeidstijdenwet": STRUCTURE_ARBEIDSTIJDENWET,
+    },
 }
 
 
