@@ -21,12 +21,12 @@ const inputVariants = {
     focus:ring-4 focus:ring-whs-orange-500/20
   `,
   glass: `
-    bg-white/10 dark:bg-white/5
+    bg-white/50 dark:bg-white/5
     backdrop-blur-md
-    border border-white/20 dark:border-white/10
+    border border-gray-200/50 dark:border-white/10
     focus:border-whs-orange-500/50 dark:focus:border-whs-orange-500/50
     focus:ring-4 focus:ring-whs-orange-500/20
-    text-white placeholder-white/60
+    text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-white/60
   `
 }
 

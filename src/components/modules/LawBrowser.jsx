@@ -1861,11 +1861,11 @@ export function LawBrowser({ onBack }) {
                                         >
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                         </svg>
-                                        <span className="text-2xl font-bold text-whs-orange-500">
+                                        <span className="text-base font-bold text-whs-orange-500">
                                           {section.number}
                                         </span>
                                         {section.title && (
-                                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-left">
+                                          <h3 className="text-sm font-semibold text-gray-900 dark:text-white text-left">
                                             {highlightText(section.title, contentSearchTerm)}
                                           </h3>
                                         )}
