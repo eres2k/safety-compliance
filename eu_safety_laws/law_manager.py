@@ -13,7 +13,7 @@ Commands:
     restructure   - Reorganize laws into official chapter structure
     build         - Build/export the complete database
     status        - Show database status and statistics
-    all           - Run complete pipeline: scrape -> clean -> restructure -> build
+    all           - Run complete pipeline: scrape -> clean -> restructure -> wikipedia -> build
     wikipedia     - Scrape related Wikipedia articles (with --ai-suggest for AI recommendations)
 
 Usage:
@@ -3131,9 +3131,17 @@ def cmd_all(args) -> int:
         log_info("Step 3: Restructuring...")
         restructure_database(country)
 
+        # Wikipedia
+        if not getattr(args, 'skip_wiki', False):
+            log_info("Step 4: Fetching Wikipedia articles...")
+            if not args.no_ai:
+                scrape_wikipedia_with_ai_suggestions(country)
+            else:
+                scrape_wikipedia_for_country(country)
+
     # Build master
     if not args.skip_build:
-        log_info("Step 4: Building master database...")
+        log_info("Step 5: Building master database...")
         build_master_database()
 
     log_success("Pipeline complete!")
@@ -4431,6 +4439,7 @@ def main():
     all_parser.add_argument('--fast', action='store_true', help='Fast cleaning mode')
     all_parser.add_argument('--skip-scrape', action='store_true', help='Skip scraping step')
     all_parser.add_argument('--skip-build', action='store_true', help='Skip master database build')
+    all_parser.add_argument('--skip-wiki', action='store_true', help='Skip Wikipedia fetching step')
     all_parser.add_argument('--laws', type=int, default=1, metavar='N',
                             help='Number of laws to fetch per country (default: 1, max varies by country)')
 
