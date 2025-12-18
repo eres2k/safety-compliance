@@ -1,18 +1,20 @@
 import { getStore } from "@netlify/blobs"
 
 // ============================================
-// Optimized for Gemini 2.5 Flash
-// - High throughput with improved accuracy
-// - Better instruction following
+// Optimized for Gemini 3.0 Flash
+// Rate Limits (gemini-3-flash):
+// - RPM: 1,000 requests per minute
+// - TPM: 1,000,000 tokens per minute
+// - RPD: 10,000 requests per day
 // ============================================
 
-// Cache TTL: 48 hours in seconds
+// Cache TTL: 48 hours - important to stay within daily limits
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
-// Model configuration - optimized for high throughput
+// Model configuration - optimized for gemini-3-flash capabilities
 const GEMINI_MODEL = 'gemini-3-flash'
-const MAX_OUTPUT_TOKENS = 4096  // Increased from 2048 for more complete responses
-const TEMPERATURE = 0.3
+const MAX_OUTPUT_TOKENS = 8192  // Gemini 3 supports larger outputs
+const TEMPERATURE = 0.2  // Lower temperature for more consistent legal analysis
 
 // Generate a cache key from prompt and system prompt
 function generateCacheKey(prompt, systemPrompt) {

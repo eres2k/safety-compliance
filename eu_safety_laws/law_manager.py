@@ -101,15 +101,17 @@ except ImportError:
 class Config:
     """Global configuration for the law manager."""
     base_path: Path = field(default_factory=lambda: Path(__file__).parent)
-    scraper_version: str = "7.3.0"  # Updated with AI Wikipedia suggestions and improved error handling
-    request_timeout: int = 30
-    rate_limit_delay: float = 0.1  # Reduced from 0.5s - Gemini supports 2K RPM
+    scraper_version: str = "7.4.0"  # Upgraded to gemini-3-flash with optimized rate limits
+    request_timeout: int = 60  # Increased for larger responses from Gemini 3
+    rate_limit_delay: float = 0.1  # 100ms base delay between requests
     max_retries: int = 3
-    gemini_model: str = "gemini-3-flash"  # Using direct REST API (v1) for newer models
-    # Parallel processing settings (optimized for Gemini 2K RPM / 4M TPM limits)
-    max_parallel_scrapes: int = 4  # Concurrent law scrapes
-    max_parallel_ai_requests: int = 10  # Concurrent AI requests
-    ai_rate_limit_delay: float = 0.05  # 50ms between AI batches (allows ~1200 RPM with margin)
+    gemini_model: str = "gemini-3-flash"  # Using direct REST API (v1) for Gemini 3
+    # Parallel processing settings (optimized for Gemini 3 Flash limits)
+    # Rate Limits: 1K RPM, 1M TPM, 10K RPD
+    max_parallel_scrapes: int = 4  # Concurrent law scrapes (non-AI)
+    max_parallel_ai_requests: int = 5  # Reduced from 10 - stay well under 1K RPM
+    ai_rate_limit_delay: float = 0.1  # 100ms between AI batches (~600 RPM with margin)
+    ai_max_tokens: int = 8192  # Gemini 3 supports larger context windows
 
     # Source URLs - laws are ordered by relevance (first = most important)
     sources: Dict[str, Dict[str, str]] = field(default_factory=lambda: {
@@ -685,11 +687,17 @@ def get_api_key() -> Optional[str]:
     return api_key
 
 
-def call_gemini_api(prompt: str, temperature: float = 0.3, max_tokens: int = 4096) -> Optional[str]:
+def call_gemini_api(prompt: str, temperature: float = 0.3, max_tokens: int = None) -> Optional[str]:
     """
     Call Gemini API directly via REST (v1 API) to support newer models like gemini-3-flash.
     Returns the generated text or None on error.
+
+    Uses CONFIG.ai_max_tokens (8192) by default for larger Gemini 3 context windows.
+    Uses CONFIG.request_timeout for API request timeout.
     """
+    if max_tokens is None:
+        max_tokens = CONFIG.ai_max_tokens
+
     if not HAS_REQUESTS:
         log_error("requests package required for Gemini API calls")
         return None
@@ -714,7 +722,7 @@ def call_gemini_api(prompt: str, temperature: float = 0.3, max_tokens: int = 409
             url,
             headers={"Content-Type": "application/json"},
             json=payload,
-            timeout=60
+            timeout=CONFIG.request_timeout
         )
 
         if response.status_code != 200:
@@ -2664,12 +2672,12 @@ def clean_text_with_ai(api_key: str, text: str, title: str, country: str) -> str
     url = f"https://generativelanguage.googleapis.com/v1/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192}
+        "generationConfig": {"temperature": 0.1, "maxOutputTokens": CONFIG.ai_max_tokens}
     }
 
     for attempt in range(CONFIG.max_retries):
         try:
-            response = requests.post(url, json=payload, timeout=120)
+            response = requests.post(url, json=payload, timeout=CONFIG.request_timeout * 2)  # Extended timeout for AI cleaning
             response.raise_for_status()
             return response.json()['candidates'][0]['content']['parts'][0]['text']
         except Exception as e:
@@ -2681,7 +2689,7 @@ def clean_text_with_ai(api_key: str, text: str, title: str, country: str) -> str
 
 
 def _clean_section_batch_with_ai(api_key: str, sections: List[Dict], country: str) -> List[str]:
-    """Clean multiple sections in a single AI call - optimized for Gemini 2K RPM limits."""
+    """Clean multiple sections in a single AI call - optimized for Gemini 3 Flash (1K RPM limit)."""
     if not sections:
         return []
 
@@ -2708,9 +2716,9 @@ Clean these {len(sections)} law text sections. Return each cleaned section prefi
         url = f"https://generativelanguage.googleapis.com/v1/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192}
+            "generationConfig": {"temperature": 0.1, "maxOutputTokens": CONFIG.ai_max_tokens}
         }
-        response = requests.post(url, json=payload, timeout=120)
+        response = requests.post(url, json=payload, timeout=CONFIG.request_timeout * 2)  # Extended for batch operations
         response.raise_for_status()
         result_text = response.json()['candidates'][0]['content']['parts'][0]['text']
 
@@ -4266,9 +4274,9 @@ Requirements:
         url = f"https://generativelanguage.googleapis.com/v1/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.3, "maxOutputTokens": 4096}
+            "generationConfig": {"temperature": 0.3, "maxOutputTokens": CONFIG.ai_max_tokens}
         }
-        response = requests.post(url, json=payload, timeout=120)
+        response = requests.post(url, json=payload, timeout=CONFIG.request_timeout * 2)  # Extended for AI operations
         response.raise_for_status()
         response_text = response.json()['candidates'][0]['content']['parts'][0]['text'].strip()
         # Remove markdown code blocks if present
