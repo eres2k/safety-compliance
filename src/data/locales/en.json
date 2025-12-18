@@ -145,5 +145,37 @@
   "footer": {
     "disclaimer": "For informational purposes only",
     "advice": "Always consult official sources and legal professionals for binding advice"
+  },
+  "lawTitles": {
+    "AT": {
+      "ASchG": { "de": "ArbeitnehmerInnenschutzgesetz", "en": "Employee Protection Act" },
+      "AZG": { "de": "Arbeitszeitgesetz", "en": "Working Hours Act" },
+      "ARG": { "de": "Arbeitsruhegesetz", "en": "Rest Period Act" },
+      "MSchG": { "de": "Mutterschutzgesetz", "en": "Maternity Protection Act" },
+      "KJBG": { "de": "Kinder- und Jugendlichen-Beschäftigungsgesetz", "en": "Child and Young Persons Employment Act" },
+      "AStV": { "de": "Arbeitsstättenverordnung", "en": "Workplace Ordinance" },
+      "DOK-VO": { "de": "Dokumentationsverordnung", "en": "Documentation Ordinance" },
+      "AM-VO": { "de": "Arbeitsmittelverordnung", "en": "Work Equipment Ordinance" },
+      "ESV 2012": { "de": "Elektroschutzverordnung 2012", "en": "Electrical Safety Ordinance 2012" },
+      "PSA-V": { "de": "PSA-Verordnung", "en": "Personal Protective Equipment Ordinance" },
+      "BauV": { "de": "Bauarbeiterschutzverordnung", "en": "Construction Worker Protection Ordinance" }
+    },
+    "DE": {
+      "ArbSchG": { "de": "Arbeitsschutzgesetz", "en": "Occupational Safety Act" },
+      "ASiG": { "de": "Arbeitssicherheitsgesetz", "en": "Occupational Safety Organization Act" },
+      "ArbZG": { "de": "Arbeitszeitgesetz", "en": "Working Hours Act" },
+      "MuSchG": { "de": "Mutterschutzgesetz", "en": "Maternity Protection Act" },
+      "JArbSchG": { "de": "Jugendarbeitsschutzgesetz", "en": "Youth Employment Protection Act" },
+      "ArbStättV": { "de": "Arbeitsstättenverordnung", "en": "Workplace Ordinance" },
+      "BetrSichV": { "de": "Betriebssicherheitsverordnung", "en": "Industrial Safety Ordinance" },
+      "GefStoffV": { "de": "Gefahrstoffverordnung", "en": "Hazardous Substances Ordinance" },
+      "TRBS": { "de": "Technische Regeln für Betriebssicherheit", "en": "Technical Rules for Industrial Safety" }
+    },
+    "NL": {
+      "Arbowet": { "nl": "Arbeidsomstandighedenwet", "en": "Working Conditions Act" },
+      "Arbobesluit": { "nl": "Arbeidsomstandighedenbesluit", "en": "Working Conditions Decree" },
+      "Arboregeling": { "nl": "Arbeidsomstandighedenregeling", "en": "Working Conditions Regulation" },
+      "BRZO": { "nl": "Besluit risico's zware ongevallen", "en": "Major Accidents Decree" }
+    }
   }
 }
