@@ -129,19 +129,17 @@ function formatJSONForDisplay(data) {
 }
 
 // ============================================
-// Optimized Rate Limiter for Gemini 2.0 Flash
-// Gemini limits: 2K RPM, 4M TPM, Unlimited RPD
-// Using 3 second delay allows ~20 RPM with safety margin for concurrent users
+// Rate Limiter for Content Generation
+// Using 30 second delay between requests
 // ============================================
-const RATE_LIMIT_MS = 3 * 1000 // 3 seconds (optimized from 60s for Gemini 2K RPM)
+const RATE_LIMIT_MS = 30 * 1000 // 30 seconds
 const MAX_CONCURRENT_REQUESTS = 5 // Allow up to 5 concurrent requests
 let lastRequestTime = 0
 let activeRequests = 0
 let requestQueue = Promise.resolve()
 
 /**
- * Enforces a global rate limit on Gemini API requests.
- * Optimized for Gemini 2K RPM - allows concurrent requests with short delays.
+ * Enforces a global rate limit on API requests.
  * Returns a promise that resolves when it's safe to make the next request.
  */
 async function waitForRateLimit() {
@@ -155,7 +153,7 @@ async function waitForRateLimit() {
   const waitTime = Math.max(0, RATE_LIMIT_MS - timeSinceLastRequest)
 
   if (waitTime > 0) {
-    console.log(`[Rate Limit] Waiting ${(waitTime / 1000).toFixed(1)}s before next Gemini request...`)
+    console.log(`[Rate Limit] Waiting ${(waitTime / 1000).toFixed(1)}s before next request...`)
     await new Promise(resolve => setTimeout(resolve, waitTime))
   }
 

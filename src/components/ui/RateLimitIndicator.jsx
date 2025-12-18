@@ -62,7 +62,7 @@ export function RateLimitIndicator({ variant = 'inline', onReady }) {
             </div>
           </div>
           <div>
-            <p className="text-sm font-medium text-white">AI Cooldown</p>
+            <p className="text-sm font-medium text-white">Processing Cooldown</p>
             <p className="text-xs text-gray-400">{status.remainingSeconds}s remaining</p>
           </div>
         </div>
@@ -105,7 +105,7 @@ export function RateLimitIndicator({ variant = 'inline', onReady }) {
         </svg>
       </div>
       <div className="flex-1">
-        <p className="text-sm font-medium text-whs-orange-400">AI Rate Limited</p>
+        <p className="text-sm font-medium text-whs-orange-400">Rate Limited</p>
         <p className="text-xs text-gray-400">Next request available in {status.remainingSeconds}s</p>
       </div>
       <div className="w-24 h-1.5 bg-whs-dark-700 rounded-full overflow-hidden">
