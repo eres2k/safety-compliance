@@ -1112,6 +1112,43 @@ STRUCTURE_ASCHG = [
     {"number": "10", "title": "10. Abschnitt - Schlussbestimmungen", "title_en": "Section 10 - Final Provisions", "section_range": (128, 132)},
 ]
 
+# Official structure: Austria KJBG (Kinder- und Jugendlichen-Beschäftigungsgesetz 1987)
+STRUCTURE_KJBG = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 3)},
+    {"number": "2", "title": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen", "title_en": "Section 2 - Employment Prohibitions and Restrictions", "section_range": (4, 11)},
+    {"number": "3", "title": "3. Abschnitt - Arbeitszeit", "title_en": "Section 3 - Working Time", "section_range": (12, 21)},
+    {"number": "4", "title": "4. Abschnitt - Urlaub", "title_en": "Section 4 - Leave", "section_range": (22, 22)},
+    {"number": "5", "title": "5. Abschnitt - Strafbestimmungen", "title_en": "Section 5 - Penal Provisions", "section_range": (23, 25)},
+    {"number": "6", "title": "6. Abschnitt - Behörden", "title_en": "Section 6 - Authorities", "section_range": (26, 27)},
+    {"number": "7", "title": "7. Abschnitt - Schluss- und Übergangsbestimmungen", "title_en": "Section 7 - Final and Transitional Provisions", "section_range": (28, 43)},
+]
+
+# Official structure: Austria AZG (Arbeitszeitgesetz)
+STRUCTURE_AZG = [
+    {"number": "1", "title": "1. Abschnitt - Geltungsbereich", "title_en": "Section 1 - Scope", "section_range": (1, 2)},
+    {"number": "2", "title": "2. Abschnitt - Arbeitszeit", "title_en": "Section 2 - Working Time", "section_range": (3, 14)},
+    {"number": "3", "title": "3. Abschnitt - Nacht- und Schichtarbeit", "title_en": "Section 3 - Night and Shift Work", "section_range": (15, 19.99)},
+    {"number": "4", "title": "4. Abschnitt - Besondere Bestimmungen", "title_en": "Section 4 - Special Provisions", "section_range": (20, 28)},
+    {"number": "5", "title": "5. Abschnitt - Verfahrens- und Strafbestimmungen", "title_en": "Section 5 - Procedural and Penal Provisions", "section_range": (29, 32)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (33, 36)},
+]
+
+# Official structure: Austria MSchG (Mutterschutzgesetz 1979)
+STRUCTURE_MSCHG = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen", "title_en": "Section 2 - Employment Prohibitions and Restrictions", "section_range": (3, 10)},
+    {"number": "3", "title": "3. Abschnitt - Kündigungs- und Entlassungsschutz", "title_en": "Section 3 - Dismissal Protection", "section_range": (10.01, 15.99)},
+    {"number": "4", "title": "4. Abschnitt - Entgelt und sonstige Leistungen", "title_en": "Section 4 - Pay and Other Benefits", "section_range": (16, 22)},
+    {"number": "5", "title": "5. Abschnitt - Aufsicht und Durchführung", "title_en": "Section 5 - Supervision and Implementation", "section_range": (23, 29)},
+    {"number": "6", "title": "6. Abschnitt - Strafbestimmungen", "title_en": "Section 6 - Penal Provisions", "section_range": (30, 32)},
+    {"number": "7", "title": "7. Abschnitt - Schlussbestimmungen", "title_en": "Section 7 - Final Provisions", "section_range": (33, 35)},
+]
+
+# Official structure: Austria ARG (Arbeitsruhegesetz)
+STRUCTURE_ARG = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 12)},
+]
+
 # Official structure: Germany ArbSchG (Arbeitsschutzgesetz)
 STRUCTURE_ARBSCHG = [
     {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
@@ -1135,7 +1172,13 @@ STRUCTURE_ARBOWET = [
 ]
 
 LAW_STRUCTURES = {
-    "AT": {"ASchG": STRUCTURE_ASCHG},
+    "AT": {
+        "ASchG": STRUCTURE_ASCHG,
+        "KJBG": STRUCTURE_KJBG,
+        "AZG": STRUCTURE_AZG,
+        "MSchG": STRUCTURE_MSCHG,
+        "ARG": STRUCTURE_ARG,
+    },
     "DE": {"ArbSchG": STRUCTURE_ARBSCHG},
     "NL": {"Arbowet": STRUCTURE_ARBOWET},
 }

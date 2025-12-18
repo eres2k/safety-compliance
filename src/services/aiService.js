@@ -4,10 +4,36 @@ const FRAMEWORK_CONTEXT = {
   NL: 'Dutch Arbowet (Arbeidsomstandighedenwet)'
 }
 
+// Map framework (jurisdiction) to the language for law content
+// Used to ensure law summaries are generated in the law's native language
+const FRAMEWORK_TO_LANGUAGE = {
+  AT: 'de',  // Austrian laws should be summarized in German
+  DE: 'de',  // German laws should be summarized in German
+  NL: 'nl'   // Dutch laws should be summarized in Dutch
+}
+
 const LANGUAGE_CONTEXT = {
   en: 'Respond in English.',
   de: 'Antworten Sie auf Deutsch. Alle Ausgaben müssen auf Deutsch sein.',
   nl: 'Antwoord in het Nederlands. Alle output moet in het Nederlands zijn.'
+}
+
+/**
+ * Get the appropriate output language for law-related content.
+ * For law summaries, use the law's native language (based on framework/jurisdiction).
+ * This ensures Austrian laws are summarized in German, Dutch laws in Dutch, etc.
+ *
+ * @param {string} framework - The jurisdiction (AT, DE, NL)
+ * @param {string} userLanguage - The user's preferred language (fallback)
+ * @returns {string} The language code to use for AI output
+ */
+function getLawOutputLanguage(framework, userLanguage) {
+  // For law content, prefer the framework's native language
+  if (framework && FRAMEWORK_TO_LANGUAGE[framework]) {
+    return FRAMEWORK_TO_LANGUAGE[framework]
+  }
+  // Fallback to user's language preference
+  return userLanguage || 'en'
 }
 
 // Language-specific labels for AI output formatting
@@ -42,7 +68,8 @@ const LANGUAGE_LABELS = {
 // AI Response Cache - Reduces token usage
 // ============================================
 // Increment CACHE_VERSION when cache format changes to invalidate old entries
-const CACHE_VERSION = 'v2_'
+// v3: Changed to use framework-derived language for law summaries (AT→de, NL→nl)
+const CACHE_VERSION = 'v3_'
 const CACHE_PREFIX = 'ai_cache_' + CACHE_VERSION
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
 
@@ -504,13 +531,17 @@ ${lawText.substring(0, 4000)}`
 // Feature 2: Legalese Complexity Slider - Simplify legal text
 // Combined function that returns BOTH levels in a single API call (saves ~50% tokens)
 export async function simplifyForBothLevels(lawText, sectionTitle, framework, language) {
-  // Check cache first
-  const cacheKey = generateCacheKey('simplify_both', lawText.substring(0, 500), sectionTitle, framework, language)
+  // Use the framework's native language for law content summaries
+  // This ensures Austrian laws are summarized in German, Dutch laws in Dutch, etc.
+  const outputLang = getLawOutputLanguage(framework, language)
+
+  // Check cache first - include outputLang in cache key since it affects output
+  const cacheKey = generateCacheKey('simplify_both', lawText.substring(0, 500), sectionTitle, framework, outputLang)
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  // Get language-specific labels
-  const labels = LANGUAGE_LABELS[language] || LANGUAGE_LABELS.en
+  // Get language-specific labels based on the output language
+  const labels = LANGUAGE_LABELS[outputLang] || LANGUAGE_LABELS.en
 
   // Validate that we have actual content to analyze
   if (!lawText || lawText.trim().length < 20) {
@@ -519,10 +550,10 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
       de: { manager: `**${labels.whatThisSectionCovers}:**\n- Abschnitt "${sectionTitle}" - Kein Inhalt zur Analyse verfügbar\n\n**Wichtige Anforderungen:**\n- Keine Anforderungen extrahierbar - Abschnittsinhalt ist leer oder zu kurz`, associate: `📖 Dieser Abschnitt "${sectionTitle}" hat noch keinen Inhalt zum Erklären.\n❓ Frag deinen Vorgesetzten für mehr Infos!` },
       nl: { manager: `**${labels.whatThisSectionCovers}:**\n- Artikel "${sectionTitle}" - Geen inhoud beschikbaar voor analyse\n\n**Belangrijke vereisten:**\n- Geen vereisten te extraheren - artikelinhoud is leeg of te kort`, associate: `📖 Dit artikel "${sectionTitle}" heeft nog geen inhoud om uit te leggen.\n❓ Vraag je manager voor meer informatie!` }
     }
-    return noContentMsg[language] || noContentMsg.en
+    return noContentMsg[outputLang] || noContentMsg.en
   }
 
-  // Language-specific prompt parts
+  // Language-specific prompt parts - use outputLang for consistent output
   const langInstructions = {
     en: 'Respond ENTIRELY in English.',
     de: 'Antworten Sie VOLLSTÄNDIG auf Deutsch. Alle Überschriften, Texte und Erklärungen müssen auf Deutsch sein.',
@@ -531,7 +562,7 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
 
   const prompt = `You are analyzing a SPECIFIC legal section. Your job is to summarize ONLY what is written in the text below.
 
-IMPORTANT: ${langInstructions[language] || langInstructions.en}
+IMPORTANT: ${langInstructions[outputLang] || langInstructions.en}
 
 === SECTION BEING ANALYZED ===
 Section: ${sectionTitle || 'Legal Provision'}
@@ -576,9 +607,9 @@ ${lawText.substring(0, 4000)}
 - Your summary must match the content provided
 - If someone reads your summary, they should recognize it matches the original text
 - Do not add information that is not in the text
-- ${langInstructions[language] || langInstructions.en}`
+- ${langInstructions[outputLang] || langInstructions.en}`
 
-  const response = await generateAIResponse(prompt, framework, language)
+  const response = await generateAIResponse(prompt, framework, outputLang)
 
   // Normalize escaped newlines
   const normalizedResponse = normalizeNewlines(response)
@@ -609,7 +640,7 @@ ${lawText.substring(0, 4000)}
       associateAmbiguous: `📖 Dit deel "${sectionTitle}" heeft belangrijke informatie.\n🔍 Volwassenen moeten dit goed lezen.\n❓ Vraag je baas wat het betekent!`
     }
   }
-  const msgs = fallbackMessages[language] || fallbackMessages.en
+  const msgs = fallbackMessages[outputLang] || fallbackMessages.en
 
   // Fallback if parsing fails - try to create meaningful defaults that reference the section
   if (!result.manager && !result.associate) {
