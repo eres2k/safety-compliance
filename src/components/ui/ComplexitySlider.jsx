@@ -58,8 +58,78 @@ export function ComplexitySlider({
   )
 }
 
+// Parse WHS Summary sections from content
+function parseWHSSections(content) {
+  const sections = {
+    obligations: [],
+    deadlines: [],
+    documentation: []
+  }
+
+  // Try to parse structured sections
+  const obligationsMatch = content.match(/(?:\*\*)?Key WHS obligations:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Compliance deadlines|(?:\*\*)?Documentation required|$)/i)
+  const deadlinesMatch = content.match(/(?:\*\*)?Compliance deadlines:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Documentation required|$)/i)
+  const documentationMatch = content.match(/(?:\*\*)?Documentation required:?(?:\*\*)?[\s\n]*([\s\S]*?)$/i)
+
+  const parseBullets = (text) => {
+    if (!text) return []
+    return text
+      .split(/[\n\r]+/)
+      .map(line => line.replace(/^[\s*•\-–]+/, '').trim())
+      .filter(line => line.length > 0 && !line.match(/^(?:\*\*)?(?:Key WHS|Compliance|Documentation)/i))
+  }
+
+  if (obligationsMatch) sections.obligations = parseBullets(obligationsMatch[1])
+  if (deadlinesMatch) sections.deadlines = parseBullets(deadlinesMatch[1])
+  if (documentationMatch) sections.documentation = parseBullets(documentationMatch[1])
+
+  return sections
+}
+
+// Parse ELI5 bullet points
+function parseELI5Content(content) {
+  return content
+    .split(/[\n\r]+/)
+    .map(line => line.replace(/^[\s*•\-–\d.]+/, '').trim())
+    .filter(line => line.length > 0)
+}
+
+// WHS Section Component
+function WHSSection({ icon, title, items, color }) {
+  if (!items || items.length === 0) return null
+
+  const colorClasses = {
+    orange: 'bg-orange-100 dark:bg-orange-900/30 border-orange-300 dark:border-orange-700',
+    blue: 'bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700',
+    purple: 'bg-purple-100 dark:bg-purple-900/30 border-purple-300 dark:border-purple-700'
+  }
+
+  const iconBg = {
+    orange: 'bg-orange-200 dark:bg-orange-800',
+    blue: 'bg-blue-200 dark:bg-blue-800',
+    purple: 'bg-purple-200 dark:bg-purple-800'
+  }
+
+  return (
+    <div className={`rounded-lg p-3 ${colorClasses[color]} border`}>
+      <div className="flex items-center gap-2 mb-2">
+        <span className={`w-6 h-6 rounded-full ${iconBg[color]} flex items-center justify-center text-sm`}>{icon}</span>
+        <h6 className="font-semibold text-gray-800 dark:text-gray-100 text-sm">{title}</h6>
+      </div>
+      <ul className="space-y-1.5 ml-8">
+        {items.map((item, idx) => (
+          <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2">
+            <span className="text-gray-400 mt-1">•</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 // Simplified content display component
-export function SimplifiedContent({ content, level, isLoading, t = {} }) {
+export function SimplifiedContent({ content, level, isLoading, t = {}, wikiArticles = [], onWikiClick }) {
   if (isLoading) {
     return (
       <div className="animate-pulse space-y-2">
@@ -80,13 +150,13 @@ export function SimplifiedContent({ content, level, isLoading, t = {} }) {
       title: t?.complexity?.legalFull || 'Original Legal Text'
     },
     manager: {
-      bg: 'bg-blue-50 dark:bg-blue-900/20',
+      bg: 'bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20',
       border: 'border-blue-200 dark:border-blue-800',
       icon: '📋',
       title: t?.complexity?.manager || 'WHS Summary'
     },
     associate: {
-      bg: 'bg-green-50 dark:bg-green-900/20',
+      bg: 'bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
       border: 'border-green-200 dark:border-green-800',
       icon: '💡',
       title: t?.complexity?.associate || "Explain like I'm 5"
@@ -95,6 +165,108 @@ export function SimplifiedContent({ content, level, isLoading, t = {} }) {
 
   const config = levelConfig[level] || levelConfig.legal
 
+  // For manager level, parse and display structured WHS sections
+  if (level === 'manager') {
+    const sections = parseWHSSections(content)
+    const hasStructuredContent = sections.obligations.length > 0 || sections.deadlines.length > 0 || sections.documentation.length > 0
+
+    return (
+      <div className={`rounded-xl p-4 ${config.bg} border ${config.border} shadow-sm`}>
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xl">{config.icon}</span>
+          <h5 className="font-bold text-gray-900 dark:text-white">{config.title}</h5>
+        </div>
+
+        {hasStructuredContent ? (
+          <div className="space-y-3">
+            <WHSSection
+              icon="✅"
+              title={t?.whs?.obligations || "Key WHS Obligations"}
+              items={sections.obligations}
+              color="orange"
+            />
+            <WHSSection
+              icon="📅"
+              title={t?.whs?.deadlines || "Compliance Deadlines"}
+              items={sections.deadlines}
+              color="blue"
+            />
+            <WHSSection
+              icon="📄"
+              title={t?.whs?.documentation || "Documentation Required"}
+              items={sections.documentation}
+              color="purple"
+            />
+          </div>
+        ) : (
+          <div className="text-gray-700 dark:text-gray-300 text-sm whitespace-pre-wrap leading-relaxed">
+            {content}
+          </div>
+        )}
+
+        {/* Related Wikipedia Articles */}
+        {wikiArticles && wikiArticles.length > 0 && (
+          <div className="mt-4 pt-3 border-t border-blue-200 dark:border-blue-700">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm">📖</span>
+              <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">
+                {t?.whs?.relatedWiki || "Related Wikipedia Articles"}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {wikiArticles.map((article, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => onWikiClick?.(article.abbr)}
+                  className="text-xs px-2 py-1 bg-white/50 dark:bg-gray-800/50 hover:bg-blue-100 dark:hover:bg-blue-900/50 rounded border border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300 transition-colors"
+                >
+                  📖 {article.title}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // For associate (ELI5) level, display friendly bullet points
+  if (level === 'associate') {
+    const bullets = parseELI5Content(content)
+
+    return (
+      <div className={`rounded-xl p-4 ${config.bg} border ${config.border} shadow-sm`}>
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xl">{config.icon}</span>
+          <h5 className="font-bold text-gray-900 dark:text-white">{config.title}</h5>
+        </div>
+
+        {bullets.length > 0 ? (
+          <div className="space-y-2">
+            {bullets.map((bullet, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-3 p-2 bg-white/50 dark:bg-gray-800/30 rounded-lg"
+              >
+                <span className="text-lg mt-0.5">
+                  {bullet.match(/^[^\w\s]/) ? bullet.charAt(0) : '👉'}
+                </span>
+                <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {bullet.replace(/^[^\w\s]\s*/, '')}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-gray-700 dark:text-gray-300 text-sm whitespace-pre-wrap leading-relaxed">
+            {content}
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // Default/legal level
   return (
     <div className={`rounded-lg p-4 ${config.bg} border ${config.border}`}>
       <div className="flex items-center gap-2 mb-3">

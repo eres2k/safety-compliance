@@ -2,6 +2,7 @@
 """
 EU Safety Laws Database Manager
 ===============================
+by Erwin Esener @eeesener
 
 A unified CLI tool for managing EU safety law databases (AT, DE, NL).
 
@@ -13,6 +14,7 @@ Commands:
     build         - Build/export the complete database
     status        - Show database status and statistics
     all           - Run complete pipeline: scrape -> clean -> restructure -> build
+    wikipedia     - Scrape related Wikipedia articles (with --ai-suggest for AI recommendations)
 
 Usage:
     # Basic scraping
@@ -32,6 +34,9 @@ Usage:
     # Select specific laws
     python law_manager.py scrape --country AT --select ASchG,AZG  # Scrape specific laws
 
+    # Wikipedia with AI suggestions
+    python law_manager.py wikipedia --country AT --ai-suggest  # AI suggests relevant articles
+
     # Other commands
     python law_manager.py clean --all --fast
     python law_manager.py restructure --all
@@ -40,7 +45,7 @@ Usage:
     python law_manager.py all --country DE --laws 2       # Full pipeline with 2 laws
 
 Environment:
-    GEMINI_API_KEY: Required for AI-powered cleaning (optional with --no-ai)
+    GEMINI_API_KEY: Required for AI-powered cleaning and Wikipedia suggestions
 
 Sources:
     AT: RIS (Rechtsinformationssystem) - ris.bka.gv.at
@@ -96,7 +101,7 @@ except ImportError:
 class Config:
     """Global configuration for the law manager."""
     base_path: Path = field(default_factory=lambda: Path(__file__).parent)
-    scraper_version: str = "7.2.0"  # Updated for parallel processing
+    scraper_version: str = "7.3.0"  # Updated with AI Wikipedia suggestions and improved error handling
     request_timeout: int = 30
     rate_limit_delay: float = 0.1  # Reduced from 0.5s - Gemini supports 2K RPM
     max_retries: int = 3
@@ -1000,17 +1005,24 @@ class Scraper:
                 response.raise_for_status()
                 return response.text
             except requests.exceptions.Timeout:
-                log_warning(f"Timeout on attempt {attempt + 1}/{CONFIG.max_retries}")
+                log_warning(f"Timeout on attempt {attempt + 1}/{CONFIG.max_retries}: {url}")
+            except requests.exceptions.ConnectionError as e:
+                log_warning(f"Connection error on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}")
             except requests.exceptions.HTTPError as e:
-                status = e.response.status_code if e.response else 'unknown'
-                log_warning(f"HTTP {status} on attempt {attempt + 1}/{CONFIG.max_retries}")
+                status = e.response.status_code if e.response else 'no response'
+                reason = e.response.reason if e.response else str(e)
+                log_warning(f"HTTP {status} ({reason}) on attempt {attempt + 1}/{CONFIG.max_retries}")
+            except requests.exceptions.RequestException as e:
+                # Catch all other request exceptions with useful info
+                log_warning(f"Request failed on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}: {e}")
             except Exception as e:
-                log_warning(f"Attempt {attempt + 1}/{CONFIG.max_retries} failed: {e}")
+                log_warning(f"Unexpected error on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}: {e}")
 
             if attempt < CONFIG.max_retries - 1:
                 wait_time = 2 ** attempt  # 1s, 2s, 4s
                 time.sleep(wait_time)
 
+        log_error(f"Failed to fetch after {CONFIG.max_retries} attempts: {url}")
         return None
 
 
@@ -3709,7 +3721,7 @@ def scrape_wikipedia_article(search_term: str, lang: str = "de") -> Optional[Dic
     # Wikipedia requires a proper User-Agent header
     # See: https://meta.wikimedia.org/wiki/User-Agent_policy
     headers = {
-        'User-Agent': 'EU-Safety-Laws-Database/7.1.0 (https://github.com/safety-compliance; contact@example.com) Python/requests',
+        'User-Agent': f'EU-Safety-Laws-Database/{CONFIG.scraper_version} (by Erwin Esener @eeesener; https://github.com/eres2k/safety-compliance) Python/requests',
         'Accept': 'application/json',
         'Accept-Language': 'en-US,en;q=0.9,de;q=0.8,nl;q=0.7',
     }
@@ -3738,7 +3750,7 @@ def scrape_wikipedia_article(search_term: str, lang: str = "de") -> Optional[Dic
         # Fetch the actual HTML page
         page_url = f"https://{lang}.wikipedia.org/wiki/{page_title.replace(' ', '_')}"
         html_headers = {
-            'User-Agent': 'EU-Safety-Laws-Database/7.1.0 (https://github.com/safety-compliance; contact@example.com) Python/requests',
+            'User-Agent': f'EU-Safety-Laws-Database/{CONFIG.scraper_version} (by Erwin Esener @eeesener; https://github.com/eres2k/safety-compliance) Python/requests',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.9,de;q=0.8,nl;q=0.7',
         }
@@ -3843,6 +3855,274 @@ def scrape_wikipedia_for_country(country: str):
     return results
 
 
+def ai_suggest_wikipedia_sources(country: str) -> List[Dict[str, Any]]:
+    """Use AI to suggest relevant Wikipedia articles based on law content."""
+    if not HAS_GENAI:
+        log_error("google-generativeai required for AI suggestions. Install with: pip install google-generativeai")
+        return []
+
+    api_key = os.getenv('GEMINI_API_KEY')
+    if not api_key:
+        log_error("GEMINI_API_KEY environment variable required for AI suggestions")
+        return []
+
+    # Load existing database to analyze content
+    db_path = CONFIG.base_path / country.lower() / f"{country.lower()}_database.json"
+    if not db_path.exists():
+        log_error(f"Database not found: {db_path}. Run 'scrape' first.")
+        return []
+
+    with open(db_path, 'r', encoding='utf-8') as f:
+        db = json.load(f)
+
+    # Extract key topics and terms from all laws
+    law_summaries = []
+    for law in db.get('items', []):
+        law_abbr = law.get('abbreviation', law.get('title', 'Unknown'))
+        title = law.get('title', '')
+
+        # Get key sections/topics
+        sections = []
+        for chapter in law.get('chapters', []):
+            for section in chapter.get('sections', [])[:5]:  # First 5 sections per chapter
+                if section.get('title'):
+                    sections.append(section['title'])
+
+        law_summaries.append({
+            'abbr': law_abbr,
+            'title': title,
+            'key_sections': sections[:15]  # Limit to 15 most important
+        })
+
+    # Configure Gemini
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel(CONFIG.gemini_model)
+
+    # Language mapping
+    lang_map = {"AT": "German", "DE": "German", "NL": "Dutch"}
+    lang = lang_map.get(country, "English")
+    wiki_lang = {"AT": "de", "DE": "de", "NL": "nl"}.get(country, "en")
+
+    prompt = f"""You are an expert in workplace health and safety regulations in {country}.
+
+Based on the following laws and their key sections, suggest relevant Wikipedia articles that would provide helpful background context for understanding these regulations.
+
+LAWS IN DATABASE:
+{json.dumps(law_summaries, indent=2, ensure_ascii=False)}
+
+For each law, suggest 1-3 relevant Wikipedia articles that cover:
+1. The law itself (if a Wikipedia article exists)
+2. Key concepts mentioned in the law (e.g., "risk assessment", "personal protective equipment", "working hours")
+3. Related institutions or regulatory bodies
+
+Return a JSON array with this exact format:
+[
+  {{
+    "law_abbr": "ASchG",
+    "suggestions": [
+      {{
+        "search_term": "Arbeitsschutz",
+        "reason": "General workplace safety overview",
+        "priority": "high"
+      }},
+      {{
+        "search_term": "Persönliche Schutzausrüstung",
+        "reason": "PPE is a major topic in this law",
+        "priority": "medium"
+      }}
+    ]
+  }}
+]
+
+Requirements:
+- Use {lang} Wikipedia search terms (they will be searched on {wiki_lang}.wikipedia.org)
+- Each suggestion should have search_term, reason, and priority (high/medium/low)
+- Focus on topics relevant to Amazon logistics/warehouse operations
+- Maximum 3 suggestions per law
+- Return ONLY valid JSON, no other text"""
+
+    try:
+        log_info(f"Asking AI to suggest Wikipedia sources for {country}...")
+        response = model.generate_content(prompt)
+
+        # Parse response
+        response_text = response.text.strip()
+        # Remove markdown code blocks if present
+        if response_text.startswith('```'):
+            response_text = response_text.split('```')[1]
+            if response_text.startswith('json'):
+                response_text = response_text[4:]
+        response_text = response_text.strip()
+
+        suggestions = json.loads(response_text)
+
+        # Flatten into list of search terms with metadata
+        all_suggestions = []
+        for law_entry in suggestions:
+            law_abbr = law_entry.get('law_abbr', '')
+            for suggestion in law_entry.get('suggestions', []):
+                all_suggestions.append({
+                    'law_abbr': law_abbr,
+                    'search_term': suggestion.get('search_term', ''),
+                    'reason': suggestion.get('reason', ''),
+                    'priority': suggestion.get('priority', 'medium')
+                })
+
+        log_success(f"AI suggested {len(all_suggestions)} Wikipedia sources")
+        return all_suggestions
+
+    except Exception as e:
+        log_error(f"AI suggestion failed: {e}")
+        return []
+
+
+def scrape_wikipedia_with_ai_suggestions(country: str):
+    """Scrape Wikipedia articles including AI-suggested sources."""
+    # First get AI suggestions
+    ai_suggestions = ai_suggest_wikipedia_sources(country)
+
+    # Get existing search terms
+    laws = CONFIG.sources[country]["main_laws"]
+    wiki_dir = CONFIG.base_path / country.lower() / "wikipedia"
+    wiki_dir.mkdir(parents=True, exist_ok=True)
+
+    # Language mapping
+    lang_map = {"AT": "de", "DE": "de", "NL": "nl"}
+    lang = lang_map.get(country, "en")
+
+    results = {}
+
+    # First scrape using predefined terms
+    log_info("Scraping predefined Wikipedia articles...")
+    for law_abbr in laws.keys():
+        search_terms = get_wikipedia_search_terms(country, law_abbr)
+
+        for term in search_terms:
+            article = scrape_wikipedia_article(term, lang)
+            if article:
+                results[law_abbr] = article
+                log_success(f"Found: {article['title']}")
+
+                # Save HTML file
+                html_file = wiki_dir / f"{law_abbr}_wiki.html"
+                with open(html_file, 'w', encoding='utf-8') as f:
+                    f.write(f"""<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+    <meta charset="UTF-8">
+    <title>{article['title']} - Wikipedia</title>
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=site.styles&only=styles">
+    <style>
+        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }}
+        .wiki-source {{ background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 20px; }}
+        .wiki-source a {{ color: #0645ad; }}
+    </style>
+</head>
+<body>
+    <div class="wiki-source">
+        <strong>Source:</strong> <a href="{article['url']}" target="_blank">{article['url']}</a>
+        <br><small>Scraped: {article['scraped_at']}</small>
+    </div>
+    {article['html_content']}
+</body>
+</html>""")
+                break
+
+        time.sleep(CONFIG.rate_limit_delay)
+
+    # Now scrape AI-suggested articles
+    if ai_suggestions:
+        log_info(f"Scraping {len(ai_suggestions)} AI-suggested Wikipedia articles...")
+
+        ai_results = {}
+        for suggestion in ai_suggestions:
+            search_term = suggestion['search_term']
+            law_abbr = suggestion['law_abbr']
+            priority = suggestion['priority']
+
+            # Skip if we already have this law covered
+            key = f"{law_abbr}_{search_term.replace(' ', '_')}"
+            if key in ai_results:
+                continue
+
+            log_info(f"  [{priority}] Searching: {search_term} (for {law_abbr})")
+            article = scrape_wikipedia_article(search_term, lang)
+
+            if article:
+                ai_results[key] = {
+                    **article,
+                    'law_abbr': law_abbr,
+                    'ai_suggested': True,
+                    'suggestion_reason': suggestion['reason'],
+                    'priority': priority
+                }
+                log_success(f"    Found: {article['title']}")
+
+                # Save HTML file with unique name
+                safe_term = search_term.replace(' ', '_').replace('/', '_')[:30]
+                html_file = wiki_dir / f"{law_abbr}_{safe_term}_wiki.html"
+                with open(html_file, 'w', encoding='utf-8') as f:
+                    f.write(f"""<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+    <meta charset="UTF-8">
+    <title>{article['title']} - Wikipedia</title>
+    <link rel="stylesheet" href="https://en.wikipedia.org/w/load.php?modules=site.styles&only=styles">
+    <style>
+        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }}
+        .wiki-source {{ background: #f8f9fa; padding: 10px; border-radius: 4px; margin-bottom: 20px; }}
+        .wiki-source a {{ color: #0645ad; }}
+        .ai-badge {{ background: #10b981; color: white; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-left: 8px; }}
+    </style>
+</head>
+<body>
+    <div class="wiki-source">
+        <strong>Source:</strong> <a href="{article['url']}" target="_blank">{article['url']}</a>
+        <span class="ai-badge">AI Suggested</span>
+        <br><small>Scraped: {article['scraped_at']}</small>
+        <br><small>Reason: {suggestion['reason']}</small>
+        <br><small>Related to: {law_abbr}</small>
+    </div>
+    {article['html_content']}
+</body>
+</html>""")
+
+            time.sleep(CONFIG.rate_limit_delay * 2)  # Slower rate for AI suggestions
+
+        # Merge AI results
+        results['_ai_suggestions'] = list(ai_results.values())
+
+    # Save enhanced index file
+    index_file = wiki_dir / "wiki_index.json"
+    ai_articles = results.pop('_ai_suggestions', [])
+
+    index_data = {
+        "country": country,
+        "language": lang,
+        "scraped_at": datetime.now().isoformat(),
+        "articles": {k: {"title": v["title"], "url": v["url"], "summary": v["summary"]}
+                     for k, v in results.items()},
+        "ai_suggested_articles": [
+            {
+                "law_abbr": a["law_abbr"],
+                "title": a["title"],
+                "url": a["url"],
+                "summary": a["summary"],
+                "reason": a.get("suggestion_reason", ""),
+                "priority": a.get("priority", "medium")
+            }
+            for a in ai_articles
+        ]
+    }
+
+    with open(index_file, 'w', encoding='utf-8') as f:
+        json.dump(index_data, f, indent=2, ensure_ascii=False)
+
+    total_articles = len(results) + len(ai_articles)
+    log_success(f"Saved {total_articles} Wikipedia articles for {country} ({len(ai_articles)} AI-suggested)")
+    return results
+
+
 # =============================================================================
 # Main Entry Point
 # =============================================================================
@@ -3905,6 +4185,8 @@ def main():
     wiki_parser = subparsers.add_parser('wikipedia', help='Scrape related Wikipedia articles')
     wiki_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to scrape Wikipedia for')
     wiki_parser.add_argument('--all', action='store_true', help='Scrape Wikipedia for all countries')
+    wiki_parser.add_argument('--ai-suggest', action='store_true',
+                             help='Use AI to suggest additional relevant Wikipedia articles based on law content')
 
     # All command (complete pipeline)
     all_parser = subparsers.add_parser('all', help='Run complete pipeline')
@@ -3937,8 +4219,14 @@ def main():
     def cmd_wikipedia(args):
         """Wikipedia scraping command."""
         countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
+        use_ai = getattr(args, 'ai_suggest', False)
+
         for country in countries:
-            scrape_wikipedia_for_country(country)
+            if use_ai:
+                log_info(f"Scraping Wikipedia for {country} with AI suggestions...")
+                scrape_wikipedia_with_ai_suggestions(country)
+            else:
+                scrape_wikipedia_for_country(country)
         return 0
 
     commands = {

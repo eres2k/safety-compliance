@@ -1835,6 +1835,12 @@ export function LawBrowser({ onBack }) {
                                               level={sectionComplexityLevels[section.id]}
                                               isLoading={simplifyLoading && activeSimplifySectionId === section.id}
                                               t={t}
+                                              wikiArticles={
+                                                sectionComplexityLevels[section.id] === 'manager' && selectedLaw?.abbreviation && wikiIndex[selectedLaw.abbreviation]
+                                                  ? [{ abbr: selectedLaw.abbreviation, title: wikiIndex[selectedLaw.abbreviation]?.title || selectedLaw.abbreviation }]
+                                                  : []
+                                              }
+                                              onWikiClick={openWikiModal}
                                             />
                                           )}
                                           {/* Show original text link when viewing simplified */}

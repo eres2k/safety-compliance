@@ -424,35 +424,51 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Create TWO versions of this regulation.
+  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Create TWO COMPLETELY DIFFERENT versions of this regulation.
 
-===WHS SUMMARY===
-Rewrite as a concise WHS SUMMARY for Amazon safety managers:
-- Extract key compliance obligations and deadlines relevant to Amazon logistics operations
-- Use bullet points for clarity
-- Format: "Key WHS obligations:" then "Compliance deadlines:" then "Documentation required:"
-- Keep it under 150 words
-- Focus on actionable compliance requirements for delivery station operations
+===VERSION 1: WHS SUMMARY (for safety managers)===
+Write a professional WHS summary with these EXACT sections:
 
-===EXPLAIN LIKE I'M 5===
-Rewrite in the simplest possible terms, as if explaining to a 5-year-old:
-- Use very simple words anyone can understand
-- Short sentences, no jargon at all
-- Maximum 5 bullet points, each under 10 words
-- Focus ONLY on the basic safety rule or idea
-- Add helpful emoji to make it memorable (⚠️ ✅ ❌ 👷 🚫)
+**Key WHS obligations:**
+- [List specific compliance requirements with paragraph references]
+
+**Compliance deadlines:**
+- [List specific deadlines, frequencies, or "Ongoing" if continuous]
+
+**Documentation required:**
+- [List required records and documentation]
+
+Keep it under 150 words. Focus on actionable compliance for Amazon logistics.
+
+===VERSION 2: EXPLAIN LIKE I'M 5 (completely different!)===
+Explain this like you're talking to a small child who knows nothing about work or laws:
+- Use words a 5-year-old knows (no: compliance, obligations, regulations, employee, employer)
+- Think: "The boss has to keep workers safe" instead of "employer obligations"
+- Maximum 5 SHORT bullet points with fun emoji
+- Each point under 10 words
+- Be playful and simple!
+
+Example good ELI5: "👷 Big people at work need helmets to protect their heads!"
+Example bad ELI5: "Employers must ensure PPE compliance." (too formal!)
 
 Section: ${sectionTitle || 'Regulation'}
 
 Legal text:
 ${lawText.substring(0, 2500)}
 
-OUTPUT FORMAT (use these exact headers):
+OUTPUT FORMAT (use these EXACT headers on their own line):
 ---MANAGER---
-[WHS summary here]
+**Key WHS obligations:**
+- [obligations here]
+
+**Compliance deadlines:**
+- [deadlines here]
+
+**Documentation required:**
+- [documentation here]
 
 ---ASSOCIATE---
-[simple explanation here]`
+[5 simple emoji bullet points for a child]`
 
   const response = await generateAIResponse(prompt, framework, language)
 
@@ -467,10 +483,27 @@ OUTPUT FORMAT (use these exact headers):
   if (managerMatch) result.manager = managerMatch[1].trim()
   if (associateMatch) result.associate = associateMatch[1].trim()
 
-  // Fallback if parsing fails - return full response for both
+  // Fallback if parsing fails - try to create meaningful defaults
   if (!result.manager && !result.associate) {
-    result.manager = normalizedResponse
-    result.associate = normalizedResponse
+    // If no headers found, check if content looks like manager or associate style
+    const hasManagerStyle = normalizedResponse.match(/(?:obligations|deadlines|documentation|compliance)/i)
+    const hasELI5Style = normalizedResponse.match(/[👷⚠️✅❌🚫💡🦺🏥📋]/)
+
+    if (hasManagerStyle && !hasELI5Style) {
+      result.manager = normalizedResponse
+      result.associate = '👉 This rule helps keep workers safe at work.\n⚠️ The boss must follow safety rules.\n✅ Everyone should know these rules.'
+    } else if (hasELI5Style && !hasManagerStyle) {
+      result.associate = normalizedResponse
+      result.manager = '**Key WHS obligations:**\n- Review and comply with applicable regulations\n\n**Compliance deadlines:**\n- Ongoing compliance required\n\n**Documentation required:**\n- Maintain compliance records'
+    } else {
+      // Genuinely ambiguous - provide distinct defaults
+      result.manager = normalizedResponse
+      result.associate = '👉 This is a safety rule for work.\n⚠️ It helps keep everyone safe.\n✅ Ask your boss if you have questions!'
+    }
+  } else if (!result.manager) {
+    result.manager = '**Key WHS obligations:**\n- Review section for specific requirements\n\n**Compliance deadlines:**\n- Check original text for deadlines\n\n**Documentation required:**\n- Maintain relevant records'
+  } else if (!result.associate) {
+    result.associate = '👉 This is a safety rule for work.\n⚠️ It helps keep everyone safe.\n✅ Ask your boss if you have questions!'
   }
 
   setCachedResponse(cacheKey, result)
@@ -511,16 +544,24 @@ export async function simplifyForAssociate(lawText, sectionTitle, framework, lan
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `Explain this safety regulation like you're talking to a 5-year-old child.
+  const prompt = `Explain this safety regulation like you're talking to a 5-year-old child who knows nothing about work or laws.
 
 RULES:
-1. Use the simplest words possible - no big or fancy words
-2. Very short sentences anyone can understand
-3. Maximum 5 bullet points
-4. Each point under 10 words
+1. Use ONLY words a 5-year-old knows - no: compliance, obligations, regulations, employee, employer, provisions
+2. Think: "The boss has to keep workers safe" instead of "employer obligations"
+3. Very short sentences - under 10 words each
+4. Maximum 5 bullet points with fun emoji
 5. Focus ONLY on the basic safety idea
-6. No legal words at all
-7. Add fun emoji to help remember (⚠️ ✅ ❌ 👷 🚫 💡)
+6. Be playful and simple!
+
+GOOD examples:
+- "👷 Big people at work need helmets to protect their heads!"
+- "⚠️ If something looks dangerous, tell a grown-up right away!"
+- "✅ Everyone gets breaks to rest and drink water!"
+
+BAD examples (too formal):
+- "Employers must ensure PPE compliance"
+- "Employees have the right to refuse unsafe work"
 
 Section: ${sectionTitle || 'Safety Rule'}
 
