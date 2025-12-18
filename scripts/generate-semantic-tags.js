@@ -23,17 +23,18 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Configuration - Optimized for Gemini 2.0 Flash (2K RPM, 4M TPM)
+// Configuration - Optimized for Gemini 3.0 Flash (1K RPM, 1M TPM, 10K RPD)
 const CONFIG = {
   dataDir: path.join(__dirname, '../src/data/laws'),
   outputDir: path.join(__dirname, '../src/data/laws'),
-  geminiModel: 'gemini-2.0-flash',
+  geminiModel: 'gemini-3-flash',
   maxRetries: 3,
   retryDelayMs: 1000,
-  rateLimitDelayMs: 200, // Reduced from 1500ms - Gemini supports 2K RPM (~33 req/sec)
-  batchSize: 10, // Increased from 5 - process more sections per API call
-  maxSectionsPerBatch: 10, // Increased from 5 - max sections per API call
-  maxParallelFiles: 3, // Process multiple law files in parallel
+  rateLimitDelayMs: 100, // 100ms between requests (~600 RPM with margin)
+  batchSize: 10, // Process 10 sections per API call
+  maxSectionsPerBatch: 10, // Max sections per API call
+  maxParallelFiles: 2, // Reduced parallel files to stay under 1K RPM limit
+  maxOutputTokens: 8192, // Gemini 3 supports larger outputs
 }
 
 // Available role tags
@@ -106,7 +107,7 @@ OUTPUT FORMAT (JSON array, one object per section, in order):
 Return ONLY the JSON array, no explanation, no markdown.`
 
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${CONFIG.geminiModel}:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1/models/${CONFIG.geminiModel}:generateContent?key=${apiKey}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -114,7 +115,7 @@ Return ONLY the JSON array, no explanation, no markdown.`
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
           temperature: 0.2,
-          maxOutputTokens: 1500, // Increased for batch response
+          maxOutputTokens: CONFIG.maxOutputTokens,
         },
       }),
     }

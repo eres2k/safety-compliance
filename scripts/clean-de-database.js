@@ -16,15 +16,16 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Configuration
+// Configuration - Optimized for Gemini 3.0 Flash (1K RPM, 1M TPM, 10K RPD)
 const CONFIG = {
   inputFile: path.join(__dirname, '../eu_safety_laws/de/de_database.json'),
   outputFile: path.join(__dirname, '../eu_safety_laws/de/de_database_cleaned.json'),
   backupFile: path.join(__dirname, '../eu_safety_laws/de/de_database_backup.json'),
-  geminiModel: 'gemini-2.5-flash',
+  geminiModel: 'gemini-3-flash',
   maxRetries: 3,
   retryDelayMs: 2000,
-  rateLimitDelayMs: 1000,
+  rateLimitDelayMs: 100, // 100ms between requests (~600 RPM with margin)
+  maxOutputTokens: 8192, // Gemini 3 supports larger outputs
 }
 
 // ANSI colors for console output
@@ -85,7 +86,8 @@ function getApiKey() {
  * Call Gemini API
  */
 async function callGemini(apiKey, prompt, systemPrompt) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${CONFIG.geminiModel}:generateContent?key=${apiKey}`
+  // Use v1 API for gemini-3-flash support
+  const url = `https://generativelanguage.googleapis.com/v1/models/${CONFIG.geminiModel}:generateContent?key=${apiKey}`
 
   const response = await fetch(url, {
     method: 'POST',
@@ -97,7 +99,7 @@ async function callGemini(apiKey, prompt, systemPrompt) {
       systemInstruction: systemPrompt ? { parts: [{ text: systemPrompt }] } : undefined,
       generationConfig: {
         temperature: 0.1,
-        maxOutputTokens: 8192,
+        maxOutputTokens: CONFIG.maxOutputTokens,
       },
     }),
   })
