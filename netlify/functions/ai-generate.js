@@ -10,7 +10,7 @@ import { getStore } from "@netlify/blobs"
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
 // Model configuration - optimized for high throughput
-const GEMINI_MODEL = 'gemini-2.5-flash'
+const GEMINI_MODEL = 'gemini-3-flash'
 const MAX_OUTPUT_TOKENS = 4096  // Increased from 2048 for more complete responses
 const TEMPERATURE = 0.3
 
@@ -123,9 +123,9 @@ export async function handler(event, context) {
       }
     }
 
-    // Use gemini-2.0-flash - optimized for high throughput (2K RPM, 4M TPM)
+    // Use gemini-3-flash via v1 API
     const response = await fetchWithRetry(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: {
