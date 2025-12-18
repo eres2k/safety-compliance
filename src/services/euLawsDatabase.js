@@ -9,6 +9,7 @@ import atLawsData from '../../eu_safety_laws/at/at_database.json'
 import deLawsData from '../../eu_safety_laws/de/de_database.json'
 import nlLawsData from '../../eu_safety_laws/nl/nl_database.json'
 import wikiLawsData from '../../eu_safety_laws/wiki_all/wiki_all_database.json'
+import statisticsData from '../../eu_safety_laws/statistics.json'
 
 // Database cache
 let lawsDatabase = null
@@ -684,7 +685,9 @@ export function getLawsStatistics(country = 'DE') {
       count,
       percentage: Math.round((count / db.items.length) * 100)
     })),
-    metadata: db.metadata
+    metadata: db.metadata,
+    lastUpdated: statisticsData?.generated_at || null,
+    globalStats: statisticsData?.statistics || null
   }
 }
 

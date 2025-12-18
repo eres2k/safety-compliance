@@ -32,12 +32,28 @@ export function Dashboard({ onModuleSelect }) {
   const { t, framework, currentFrameworkColor } = useApp()
 
   // Get statistics for the hero section
-  let stats = { totalLaws: 0, byType: [] }
+  let stats = { totalLaws: 0, byType: [], lastUpdated: null, globalStats: null }
   try {
     stats = getLawsStatistics(framework)
   } catch (e) {
     // Database not loaded yet, use defaults
   }
+
+  // Format the last updated date
+  const formatLastUpdated = (dateStr) => {
+    if (!dateStr) return null
+    try {
+      const date = new Date(dateStr)
+      return date.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      })
+    } catch {
+      return null
+    }
+  }
+  const lastUpdatedFormatted = formatLastUpdated(stats.lastUpdated)
 
   const modules = [
     {
@@ -138,7 +154,7 @@ export function Dashboard({ onModuleSelect }) {
             {/* Stats Cards */}
             <div className="flex gap-4">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center min-w-[100px]">
-                <p className="text-3xl font-bold text-white">{stats.totalLaws || '86'}+</p>
+                <p className="text-3xl font-bold text-white">{stats.globalStats?.total_documents || stats.totalLaws || '86'}+</p>
                 <p className="text-xs text-gray-400 mt-1">Laws</p>
               </div>
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center min-w-[100px]">
@@ -149,6 +165,12 @@ export function Dashboard({ onModuleSelect }) {
                 <p className="text-3xl font-bold text-whs-success-400">Full</p>
                 <p className="text-xs text-gray-400 mt-1">Text</p>
               </div>
+              {lastUpdatedFormatted && (
+                <div className="hidden md:block bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center min-w-[100px]">
+                  <p className="text-lg font-bold text-whs-orange-400">{lastUpdatedFormatted}</p>
+                  <p className="text-xs text-gray-400 mt-1">Last Updated</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
