@@ -411,6 +411,125 @@ Only return the JSON array, no other text."""
         return None
 
 
+def find_correct_url_with_ai(country: str, law_abbr: str, failed_url: str, http_status: int) -> Optional[Dict[str, Any]]:
+    """
+    Use AI to find the correct URL when HTTP errors occur.
+    Returns a dict with 'url', 'name', and 'confidence' if found.
+    """
+    if not HAS_GENAI:
+        log_warning("google-generativeai package required for AI URL correction")
+        return None
+
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        log_warning("GEMINI_API_KEY not set - cannot use AI to find correct URL")
+        return None
+
+    try:
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel(CONFIG.gemini_model)
+
+        country_names = {"AT": "Austria", "DE": "Germany", "NL": "Netherlands"}
+        country_name = country_names.get(country, country)
+
+        base_urls = {
+            "AT": "https://www.ris.bka.gv.at",
+            "DE": "https://www.gesetze-im-internet.de",
+            "NL": "https://wetten.overheid.nl"
+        }
+
+        prompt = f"""You are an expert in European legal databases. A URL for a workplace safety law has returned HTTP {http_status}.
+
+Country: {country_name}
+Law abbreviation: {law_abbr}
+Failed URL: {failed_url}
+Base URL for this country: {base_urls.get(country, 'unknown')}
+
+Please find the CORRECT, currently working URL for this law from official government sources.
+
+For {country_name}:
+- AT (Austria): Use RIS (ris.bka.gv.at) with format /GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=XXXXX
+- DE (Germany): Use gesetze-im-internet.de with format /lawname/
+- NL (Netherlands): Use wetten.overheid.nl with format /BWBRXXXXXXX/geldend
+
+Return your response as a JSON object with this format:
+{{
+  "url": "the correct full URL",
+  "name": "Full name of the law",
+  "path": "just the path part (without base URL)",
+  "confidence": "high/medium/low",
+  "reason": "brief explanation why this URL is correct"
+}}
+
+If you cannot find a working URL, return:
+{{
+  "url": null,
+  "confidence": "none",
+  "reason": "explanation why URL could not be found"
+}}
+
+Only return the JSON object, no other text."""
+
+        response = model.generate_content(prompt)
+        text = response.text.strip()
+
+        # Extract JSON from response
+        if "```json" in text:
+            text = text.split("```json")[1].split("```")[0].strip()
+        elif "```" in text:
+            text = text.split("```")[1].split("```")[0].strip()
+
+        result = json.loads(text)
+
+        if result.get('url') and result.get('confidence') in ['high', 'medium']:
+            log_info(f"AI found potential correct URL for {law_abbr}: {result.get('url')} (confidence: {result.get('confidence')})")
+            return result
+        else:
+            log_warning(f"AI could not find correct URL for {law_abbr}: {result.get('reason', 'unknown reason')}")
+            return None
+
+    except Exception as e:
+        log_error(f"AI URL correction failed: {e}")
+        return None
+
+
+def update_source_url(country: str, law_abbr: str, new_url: str, new_name: str = None) -> bool:
+    """Update the source URL in custom_sources.json when AI finds a correct URL."""
+    try:
+        custom_data = load_custom_sources()
+
+        if country not in custom_data.get("custom_sources", {}):
+            custom_data["custom_sources"][country] = {}
+
+        # Extract just the path from the URL
+        base_urls = {
+            "AT": "https://www.ris.bka.gv.at",
+            "DE": "https://www.gesetze-im-internet.de",
+            "NL": "https://wetten.overheid.nl"
+        }
+        base = base_urls.get(country, "")
+        path = new_url.replace(base, "") if base and new_url.startswith(base) else new_url
+
+        custom_data["custom_sources"][country][law_abbr] = {
+            "url": path,
+            "name": new_name or law_abbr,
+            "description": "URL auto-corrected by AI",
+            "enabled": True,
+            "ai_corrected": True,
+            "corrected_at": datetime.now().isoformat(),
+            "original_url_failed": True
+        }
+
+        if save_custom_sources(custom_data):
+            log_success(f"Updated {country}/{law_abbr} URL in custom_sources.json")
+            return True
+        return False
+
+    except Exception as e:
+        log_error(f"Failed to update source URL: {e}")
+        return False
+
+
 # =============================================================================
 # Terminal Output Helpers
 # =============================================================================
@@ -991,13 +1110,14 @@ class Scraper:
         """Scrape laws for this country. Override in subclass."""
         raise NotImplementedError
 
-    def fetch_url(self, url: str, timeout: int = None) -> Optional[str]:
+    def fetch_url(self, url: str, timeout: int = None, law_abbr: str = None) -> Optional[str]:
         """Fetch a URL with retries and exponential backoff."""
         if not HAS_REQUESTS:
             log_error("requests package required for scraping. Install with: pip install requests")
             return None
 
         timeout = timeout or CONFIG.request_timeout
+        last_http_error = None
 
         for attempt in range(CONFIG.max_retries):
             try:
@@ -1009,9 +1129,10 @@ class Scraper:
             except requests.exceptions.ConnectionError as e:
                 log_warning(f"Connection error on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}")
             except requests.exceptions.HTTPError as e:
-                status = e.response.status_code if e.response else 'no response'
+                status = e.response.status_code if e.response else 0
                 reason = e.response.reason if e.response else str(e)
                 log_warning(f"HTTP {status} ({reason}) on attempt {attempt + 1}/{CONFIG.max_retries}")
+                last_http_error = status
             except requests.exceptions.RequestException as e:
                 # Catch all other request exceptions with useful info
                 log_warning(f"Request failed on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}: {e}")
@@ -1023,6 +1144,29 @@ class Scraper:
                 time.sleep(wait_time)
 
         log_error(f"Failed to fetch after {CONFIG.max_retries} attempts: {url}")
+
+        # If we have a law abbreviation and an HTTP error, try AI URL correction
+        if law_abbr and last_http_error and last_http_error in [404, 410, 301, 302, 403]:
+            log_info(f"Attempting AI-based URL correction for {law_abbr}...")
+            ai_result = find_correct_url_with_ai(self.country, law_abbr, url, last_http_error)
+
+            if ai_result and ai_result.get('url'):
+                new_url = ai_result['url']
+                log_info(f"AI suggested URL: {new_url} - attempting to fetch...")
+
+                # Try fetching the AI-suggested URL
+                try:
+                    response = requests.get(new_url, timeout=timeout, headers=self.HTTP_HEADERS)
+                    response.raise_for_status()
+
+                    # URL works! Update the database
+                    log_success(f"AI-corrected URL works for {law_abbr}")
+                    update_source_url(self.country, law_abbr, new_url, ai_result.get('name'))
+
+                    return response.text
+                except Exception as e:
+                    log_warning(f"AI-suggested URL also failed: {e}")
+
         return None
 
 
@@ -1058,7 +1202,7 @@ class ATScraper(Scraper):
         """Scrape a single law - used for parallel processing."""
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
-        html = self.fetch_url(url)
+        html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
             doc = self._parse_ris_law_full(html, abbrev, url)
@@ -1523,7 +1667,7 @@ class DEScraper(Scraper):
         """Scrape a single law - used for parallel processing."""
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
-        html = self.fetch_url(url)
+        html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
             doc = self._parse_german_law_full(html, abbrev, url)
@@ -1903,7 +2047,7 @@ class NLScraper(Scraper):
         """Scrape a single law - used for parallel processing."""
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
-        html = self.fetch_url(url)
+        html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
             doc = self._parse_dutch_law_full(html, abbrev, url)
