@@ -189,6 +189,50 @@ function highlightText(text, searchTerm) {
   })
 }
 
+// Apply WHS crosslinks to text - makes WHS terms clickable
+// This function is applied within the component to have access to crosslink data and handlers
+function createCrosslinkHighlighter(crosslinks, onCrosslinkClick) {
+  if (!crosslinks || Object.keys(crosslinks).length === 0) {
+    return (text) => text
+  }
+
+  // Sort terms by length (longest first) to match longer terms first
+  const sortedTerms = Object.keys(crosslinks).sort((a, b) => b.length - a.length)
+
+  // Create regex pattern that matches whole words only
+  const escapedTerms = sortedTerms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+  const pattern = new RegExp(`\\b(${escapedTerms.join('|')})\\b`, 'gi')
+
+  return function applyCrosslinks(text) {
+    if (!text || typeof text !== 'string') return text
+
+    const parts = text.split(pattern)
+    if (parts.length === 1) return text
+
+    return parts.map((part, index) => {
+      // Check if this part matches any crosslink term (case-insensitive)
+      const matchedTerm = sortedTerms.find(term =>
+        term.toLowerCase() === part.toLowerCase()
+      )
+
+      if (matchedTerm) {
+        const data = crosslinks[matchedTerm]
+        return (
+          <button
+            key={index}
+            onClick={(e) => onCrosslinkClick(e, matchedTerm, data)}
+            className="text-whs-orange-600 dark:text-whs-orange-400 hover:underline cursor-pointer font-medium inline"
+            title={`${data.title}: ${data.summary?.substring(0, 100)}...`}
+          >
+            {part}
+          </button>
+        )
+      }
+      return part
+    })
+  }
+}
+
 // German ordinal words to numbers mapping
 const germanOrdinals = {
   'erster': '1', 'erste': '1', 'ersten': '1',
@@ -646,11 +690,38 @@ function formatLawText(text) {
   return elements
 }
 
-// Render formatted elements with optional search term highlighting
-function FormattedText({ text, searchTerm = '' }) {
+// Render formatted elements with optional search term highlighting and WHS crosslinks
+function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClick = null }) {
   const elements = formatLawText(text)
+
+  // Create crosslink highlighter if crosslinks are available
+  const applyCrosslinks = useMemo(() => {
+    if (!crosslinks || Object.keys(crosslinks).length === 0 || !onCrosslinkClick) {
+      return (t) => t
+    }
+    return createCrosslinkHighlighter(crosslinks, onCrosslinkClick)
+  }, [crosslinks, onCrosslinkClick])
+
+  // Combined function that applies crosslinks first, then search highlighting
+  const processText = useCallback((t) => {
+    if (!t) return t
+    // First apply crosslinks (returns JSX or string)
+    const withCrosslinks = applyCrosslinks(t)
+    // Then apply search highlighting
+    if (Array.isArray(withCrosslinks)) {
+      // If crosslinks produced an array, process each string part
+      return withCrosslinks.map((part, i) => {
+        if (typeof part === 'string') {
+          return <span key={i}>{highlightText(part, searchTerm)}</span>
+        }
+        return part // Keep JSX elements (crosslink buttons)
+      })
+    }
+    return highlightText(withCrosslinks, searchTerm)
+  }, [applyCrosslinks, searchTerm])
+
   if (!elements || elements.length === 0) {
-    return <div className="whitespace-pre-wrap">{highlightText(text, searchTerm)}</div>
+    return <div className="whitespace-pre-wrap">{processText(text)}</div>
   }
 
   // Helper to render list items (handles both string and {marker, content} formats)
@@ -666,7 +737,7 @@ function FormattedText({ text, searchTerm = '' }) {
                 {marker}
               </span>
             )}
-            <span>{highlightText(content, searchTerm)}</span>
+            <span>{processText(content)}</span>
           </li>
         )
       })}
@@ -680,7 +751,7 @@ function FormattedText({ text, searchTerm = '' }) {
           case 'section':
             return (
               <h4 key={idx} className="text-base font-semibold text-whs-orange-600 dark:text-whs-orange-400 mt-5 first:mt-0">
-                {highlightText(el.content, searchTerm)}
+                {processText(el.content)}
               </h4>
             )
           case 'absatz':
@@ -693,7 +764,7 @@ function FormattedText({ text, searchTerm = '' }) {
                     ({el.number})
                   </span>
                   <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {highlightText(el.content, searchTerm)}
+                    {processText(el.content)}
                   </span>
                 </div>
                 {/* Render sub-items (numbered points belonging to this Absatz) */}
@@ -710,7 +781,7 @@ function FormattedText({ text, searchTerm = '' }) {
           default:
             return (
               <p key={idx} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                {highlightText(el.content, searchTerm)}
+                {processText(el.content)}
               </p>
             )
         }
@@ -894,8 +965,10 @@ export function LawBrowser({ onBack }) {
   // Wikipedia Modal state
   const [wikiModal, setWikiModal] = useState({ open: false, lawAbbr: null })
   const [wikiIndex, setWikiIndex] = useState({}) // { lawAbbr: { title, url, summary } }
+  const [whsCrosslinks, setWhsCrosslinks] = useState({}) // WHS term -> Wikipedia article mappings
   const [wikiContent, setWikiContent] = useState(null) // HTML content for modal
   const [wikiLoading, setWikiLoading] = useState(false)
+  const [crosslinkPopup, setCrosslinkPopup] = useState({ open: false, term: null, data: null, x: 0, y: 0 })
 
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
@@ -927,14 +1000,41 @@ export function LawBrowser({ onBack }) {
         if (response.ok) {
           const data = await response.json()
           setWikiIndex(data.articles || {})
+          setWhsCrosslinks(data.whs_crosslinks || {})
         }
       } catch (e) {
         // Wikipedia index not available - not an error
         setWikiIndex({})
+        setWhsCrosslinks({})
       }
     }
     loadWikiIndex()
   }, [framework])
+
+  // Handle crosslink click - show popup with Wikipedia info
+  const handleCrosslinkClick = useCallback((e, term, data) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const rect = e.target.getBoundingClientRect()
+    setCrosslinkPopup({
+      open: true,
+      term,
+      data,
+      x: rect.left + rect.width / 2,
+      y: rect.bottom + 8
+    })
+  }, [])
+
+  // Close crosslink popup when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (crosslinkPopup.open && !e.target.closest('.crosslink-popup')) {
+        setCrosslinkPopup({ open: false, term: null, data: null, x: 0, y: 0 })
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [crosslinkPopup.open])
 
   // Function to open Wikipedia modal
   const openWikiModal = async (lawAbbr) => {
@@ -1753,7 +1853,7 @@ export function LawBrowser({ onBack }) {
                       <button
                         onClick={() => wikiIndex[selectedLaw.abbreviation] && openWikiModal(selectedLaw.abbreviation)}
                         disabled={!wikiIndex[selectedLaw.abbreviation]}
-                        className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-2 ${
+                        className={`p-2 rounded-lg transition-colors ${
                           wikiIndex[selectedLaw.abbreviation]
                             ? 'bg-white/10 hover:bg-white/20 cursor-pointer'
                             : 'bg-white/5 opacity-40 cursor-not-allowed'
@@ -1763,11 +1863,9 @@ export function LawBrowser({ onBack }) {
                           : 'No Wikipedia article available'
                         }
                       >
-                        <span className="text-base">📖</span>
-                        <span className="text-sm font-medium hidden sm:inline truncate max-w-[150px]">
-                          {wikiIndex[selectedLaw.abbreviation]?.title || 'Wikipedia'}
-                        </span>
-                        <span className="text-sm font-medium sm:hidden">Wiki</span>
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12.09 13.119c-.936 1.932-2.217 4.548-2.853 5.728-.616 1.074-1.127.931-1.532.029-1.406-3.321-4.293-9.144-5.651-12.409-.251-.601-.441-.987-.619-1.139-.181-.15-.554-.24-1.122-.271C.103 5.033 0 4.982 0 4.898v-.455l.052-.045c.924-.005 5.401 0 5.401 0l.051.045v.434c0 .119-.075.176-.225.176l-.564.031c-.485.029-.727.164-.727.436 0 .135.053.33.166.601 1.082 2.646 4.818 10.521 4.818 10.521l.136.046 2.411-4.81-.482-1.067-1.658-3.264s-.318-.654-.428-.872c-.728-1.443-.712-1.518-1.447-1.617-.207-.023-.313-.05-.313-.149v-.468l.06-.045h4.292l.113.037v.451c0 .105-.076.15-.227.15l-.308.047c-.792.061-.661.381-.136 1.422l1.582 3.252 1.758-3.504c.293-.64.233-.801.111-.947-.07-.084-.305-.22-.812-.24l-.201-.021c-.052 0-.098-.015-.145-.051-.045-.031-.067-.076-.067-.129v-.427l.061-.045c1.247-.008 4.043 0 4.043 0l.059.045v.436c0 .121-.059.178-.193.178-.646.03-.782.095-1.023.439-.12.186-.375.589-.646 1.039l-2.301 4.273-.065.135 2.792 5.712.17.048 4.396-10.438c.154-.422.129-.722-.064-.895-.197-.172-.346-.273-.857-.295l-.42-.016c-.061 0-.105-.014-.152-.045-.043-.029-.072-.075-.072-.119v-.436l.059-.045h4.961l.041.045v.437c0 .119-.074.18-.209.18-.648.03-1.127.18-1.443.451-.314.271-.615.812-.916 1.619l-4.476 11.781c-.053.209-.18.315-.376.315s-.329-.105-.4-.315l-3.04-6.476-.066-.135-3.179 6.582c-.041.209-.165.315-.369.315-.201 0-.336-.106-.406-.315l-3.156-7.098"/>
+                        </svg>
                       </button>
                     </div>
                   </div>
@@ -1940,7 +2038,7 @@ export function LawBrowser({ onBack }) {
                                         {/* Section Content - switches based on this section's complexity level */}
                                         <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
                                           {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
-                                            <FormattedText text={section.content} searchTerm={contentSearchTerm} />
+                                            <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} />
                                           ) : (
                                             <SimplifiedContent
                                               content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
@@ -2013,7 +2111,7 @@ export function LawBrowser({ onBack }) {
                         </div>
                       ) : (
                         /* Raw text fallback */
-                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={contentSearchTerm} />
+                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} />
                       )}
 
                     </div>
@@ -2185,6 +2283,53 @@ export function LawBrowser({ onBack }) {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* WHS Crosslink Popup */}
+      {crosslinkPopup.open && crosslinkPopup.data && (
+        <div
+          className="crosslink-popup fixed z-50 bg-white dark:bg-whs-dark-800 rounded-lg shadow-xl border border-gray-200 dark:border-whs-dark-600 p-4 max-w-sm"
+          style={{
+            left: Math.min(crosslinkPopup.x, window.innerWidth - 320),
+            top: Math.min(crosslinkPopup.y, window.innerHeight - 200),
+            transform: 'translateX(-50%)'
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-8 h-8 bg-whs-orange-100 dark:bg-whs-orange-900/30 rounded-full flex items-center justify-center">
+              <svg className="w-4 h-4 text-whs-orange-600 dark:text-whs-orange-400" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.09 13.119c-.936 1.932-2.217 4.548-2.853 5.728-.616 1.074-1.127.931-1.532.029-1.406-3.321-4.293-9.144-5.651-12.409-.251-.601-.441-.987-.619-1.139-.181-.15-.554-.24-1.122-.271C.103 5.033 0 4.982 0 4.898v-.455l.052-.045c.924-.005 5.401 0 5.401 0l.051.045v.434c0 .119-.075.176-.225.176l-.564.031c-.485.029-.727.164-.727.436 0 .135.053.33.166.601 1.082 2.646 4.818 10.521 4.818 10.521l.136.046 2.411-4.81-.482-1.067-1.658-3.264s-.318-.654-.428-.872c-.728-1.443-.712-1.518-1.447-1.617-.207-.023-.313-.05-.313-.149v-.468l.06-.045h4.292l.113.037v.451c0 .105-.076.15-.227.15l-.308.047c-.792.061-.661.381-.136 1.422l1.582 3.252 1.758-3.504c.293-.64.233-.801.111-.947-.07-.084-.305-.22-.812-.24l-.201-.021c-.052 0-.098-.015-.145-.051-.045-.031-.067-.076-.067-.129v-.427l.061-.045c1.247-.008 4.043 0 4.043 0l.059.045v.436c0 .121-.059.178-.193.178-.646.03-.782.095-1.023.439-.12.186-.375.589-.646 1.039l-2.301 4.273-.065.135 2.792 5.712.17.048 4.396-10.438c.154-.422.129-.722-.064-.895-.197-.172-.346-.273-.857-.295l-.42-.016c-.061 0-.105-.014-.152-.045-.043-.029-.072-.075-.072-.119v-.436l.059-.045h4.961l.041.045v.437c0 .119-.074.18-.209.18-.648.03-1.127.18-1.443.451-.314.271-.615.812-.916 1.619l-4.476 11.781c-.053.209-.18.315-.376.315s-.329-.105-.4-.315l-3.04-6.476-.066-.135-3.179 6.582c-.041.209-.165.315-.369.315-.201 0-.336-.106-.406-.315l-3.156-7.098"/>
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                {crosslinkPopup.data.title}
+              </h4>
+              <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-3">
+                {crosslinkPopup.data.summary}
+              </p>
+              <a
+                href={crosslinkPopup.data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 mt-2 text-xs text-whs-orange-600 dark:text-whs-orange-400 hover:underline"
+              >
+                <span>Read on Wikipedia</span>
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+            <button
+              onClick={() => setCrosslinkPopup({ open: false, term: null, data: null, x: 0, y: 0 })}
+              className="flex-shrink-0 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
       )}
