@@ -355,9 +355,9 @@ def suggest_sources_with_ai(country: str, topic: str) -> Optional[List[Dict[str,
         log_error("google-generativeai package required for AI suggestions")
         return None
 
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = get_api_key()
     if not api_key:
-        log_error("GEMINI_API_KEY environment variable required")
+        log_error("GEMINI_API_KEY not set (check env var or .env file)")
         return None
 
     try:
@@ -420,7 +420,7 @@ def find_correct_url_with_ai(country: str, law_abbr: str, failed_url: str, http_
         log_warning("google-generativeai package required for AI URL correction")
         return None
 
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = get_api_key()
     if not api_key:
         log_warning("GEMINI_API_KEY not set - cannot use AI to find correct URL")
         return None
@@ -3478,7 +3478,7 @@ def menu_wikipedia():
     use_ai = False
     choice = input(f"{Colors.BOLD}Select mode [1]: {Colors.RESET}").strip()
     if choice == '2':
-        if not os.getenv('GEMINI_API_KEY'):
+        if not get_api_key():
             log_warning("GEMINI_API_KEY not set. Using standard mode.")
         else:
             use_ai = True
@@ -3660,7 +3660,7 @@ def menu_sources_ai_suggest():
     print_menu_header()
     print(f"{Colors.BOLD}🤖 AI SOURCE SUGGESTIONS{Colors.RESET}\n")
 
-    if not os.environ.get("GEMINI_API_KEY"):
+    if not get_api_key():
         log_error("GEMINI_API_KEY not set. Please set it to use AI suggestions.")
         input(f"\n{Colors.GREEN}Press Enter to continue...{Colors.RESET}")
         return
@@ -3781,7 +3781,7 @@ def menu_settings():
     print_menu_header()
     print(f"{Colors.BOLD}⚙️ SETTINGS{Colors.RESET}\n")
 
-    print(f"  {Colors.CYAN}API Key:{Colors.RESET} {'✓ Set' if os.environ.get('GEMINI_API_KEY') else '✗ Not set'}")
+    print(f"  {Colors.CYAN}API Key:{Colors.RESET} {'✓ Set' if get_api_key() else '✗ Not set'}")
     print(f"  {Colors.CYAN}Scraper Version:{Colors.RESET} {CONFIG.scraper_version}")
     print(f"  {Colors.CYAN}Request Timeout:{Colors.RESET} {CONFIG.request_timeout}s")
     print(f"  {Colors.CYAN}Rate Limit Delay:{Colors.RESET} {CONFIG.rate_limit_delay}s")
@@ -4071,9 +4071,9 @@ def ai_suggest_wikipedia_sources(country: str) -> List[Dict[str, Any]]:
         log_error("google-generativeai required for AI suggestions. Install with: pip install google-generativeai")
         return []
 
-    api_key = os.getenv('GEMINI_API_KEY')
+    api_key = get_api_key()
     if not api_key:
-        log_error("GEMINI_API_KEY environment variable required for AI suggestions")
+        log_error("GEMINI_API_KEY not set (check env var or .env file)")
         return []
 
     # Load existing database to analyze content
