@@ -1,0 +1,79 @@
+{
+  "laws": [
+    {
+      "id": "nl-arbowet",
+      "title": "Arbeidsomstandighedenwet",
+      "abbreviation": "Arbowet",
+      "description": "Dutch Working Conditions Act - Primary occupational health and safety legislation",
+      "type": "law",
+      "summary": "The Netherlands' core occupational safety law establishing employer responsibilities for workplace health and safety.",
+      "whs_summary": "Comprehensive Dutch WHS framework covering employer duties, risk assessment (RI&E), employee participation, and occupational health services.",
+      "keywords": ["workplace safety", "RI&E", "arbo", "Netherlands", "occupational health"],
+      "content": {
+        "full_text": "Artikel 1 Definities: In deze wet en de daarop berustende bepalingen wordt verstaan onder arbeidsomstandigheden: de omstandigheden waaronder arbeid wordt verricht.\n\nArtikel 3 Arbobeleid: De werkgever voert een beleid gericht op zo goed mogelijke arbeidsomstandigheden.\n\nArtikel 5 Inventarisatie en evaluatie van risico's (RI&E): De werkgever legt in een inventarisatie en evaluatie schriftelijk vast welke risico's de arbeid voor de werknemers met zich brengt.\n\nArtikel 8 Voorlichting en onderricht: De werkgever zorgt ervoor dat de werknemers doeltreffend worden ingelicht over de te verrichten werkzaamheden en de daaraan verbonden risico's.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "nl-arbobesluit",
+      "title": "Arbeidsomstandighedenbesluit",
+      "abbreviation": "Arbobesluit",
+      "description": "Dutch Working Conditions Decree - Detailed safety requirements",
+      "type": "regulation",
+      "summary": "Detailed implementation of the Arbowet with specific requirements for various workplace hazards and sectors.",
+      "whs_summary": "Specifies detailed requirements for workplace facilities, hazardous substances, physical agents, personal protective equipment, and specific sectors.",
+      "keywords": ["working conditions", "safety requirements", "Netherlands"],
+      "content": {
+        "full_text": "Het Arbeidsomstandighedenbesluit bevat nadere regels ter uitvoering van de Arbeidsomstandighedenwet.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "nl-arboregeling",
+      "title": "Arbeidsomstandighedenregeling",
+      "abbreviation": "Arboregeling",
+      "description": "Dutch Working Conditions Regulation - Technical specifications",
+      "type": "regulation",
+      "summary": "Technical specifications and limit values implementing the Arbowet and Arbobesluit.",
+      "whs_summary": "Contains technical standards, exposure limits, testing methods, and certification requirements for workplace safety.",
+      "keywords": ["technical standards", "exposure limits", "Netherlands"],
+      "content": {
+        "full_text": "De Arbeidsomstandighedenregeling bevat technische voorschriften en grenswaarden.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "nl-rie",
+      "title": "Risico-inventarisatie en -evaluatie",
+      "abbreviation": "RI&E",
+      "description": "Dutch Risk Assessment and Evaluation requirements",
+      "type": "guidance",
+      "summary": "Requirements and methodology for conducting workplace risk assessments in the Netherlands.",
+      "whs_summary": "Framework for identifying and evaluating workplace risks, developing action plans, and meeting legal documentation requirements.",
+      "keywords": ["risk assessment", "RI&E", "risk evaluation", "Netherlands"],
+      "content": {
+        "full_text": "De RI&E is een wettelijke verplichting voor werkgevers om alle risico's op de werkplek in kaart te brengen en te evalueren.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "nl-pbm",
+      "title": "Persoonlijke Beschermingsmiddelen",
+      "abbreviation": "PBM",
+      "description": "Dutch Personal Protective Equipment requirements",
+      "type": "regulation",
+      "summary": "Requirements for selection, provision, use, and maintenance of personal protective equipment.",
+      "whs_summary": "Covers PPE selection based on risk assessment, employer provision duties, employee training, and equipment maintenance.",
+      "keywords": ["PPE", "protective equipment", "PBM", "Netherlands"],
+      "content": {
+        "full_text": "Regels voor het gebruik van persoonlijke beschermingsmiddelen op de werkplek.",
+        "available": true,
+        "format": "text"
+      }
+    }
+  ]
+}

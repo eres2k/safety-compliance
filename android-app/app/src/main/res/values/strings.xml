@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Safety Law Checker</string>
+    <string name="app_description">WHS Compliance Navigator</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_browse">Browse Laws</string>
+    <string name="nav_compliance">Compliance</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_bookmarks">Bookmarks</string>
+
+    <!-- Countries -->
+    <string name="country_austria">Austria</string>
+    <string name="country_germany">Germany</string>
+    <string name="country_netherlands">Netherlands</string>
+
+    <!-- Features -->
+    <string name="feature_law_browser">Law Browser</string>
+    <string name="feature_compliance_checker">Compliance Checker</string>
+    <string name="feature_risk_assessment">Risk Assessment</string>
+    <string name="feature_quick_reference">Quick Reference</string>
+    <string name="feature_training">Training Resources</string>
+    <string name="feature_checklists">Checklists</string>
+
+    <!-- Actions -->
+    <string name="action_search">Search</string>
+    <string name="action_filter">Filter</string>
+    <string name="action_bookmark">Bookmark</string>
+    <string name="action_share">Share</string>
+    <string name="action_explain">Explain with AI</string>
+    <string name="action_simplify">Simplify</string>
+
+    <!-- Placeholders -->
+    <string name="search_placeholder">Search laws, regulations...</string>
+    <string name="no_results">No results found</string>
+    <string name="loading">Loading...</string>
+    <string name="error_generic">Something went wrong</string>
+
+    <!-- Compliance -->
+    <string name="company_size">Company Size</string>
+    <string name="industry">Industry</string>
+    <string name="topic">Topic</string>
+    <string name="check_compliance">Check Compliance</string>
+
+    <!-- Risk Levels -->
+    <string name="risk_low">Low Risk</string>
+    <string name="risk_medium">Medium Risk</string>
+    <string name="risk_high">High Risk</string>
+    <string name="risk_critical">Critical Risk</string>
+</resources>

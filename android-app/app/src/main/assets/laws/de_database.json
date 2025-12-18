@@ -1,0 +1,94 @@
+{
+  "laws": [
+    {
+      "id": "de-arbschg",
+      "title": "Arbeitsschutzgesetz",
+      "abbreviation": "ArbSchG",
+      "description": "German Occupational Safety and Health Act - Core workplace safety legislation",
+      "type": "law",
+      "summary": "Germany's primary occupational safety law establishing employer duties, risk assessment requirements, and employee participation in workplace safety.",
+      "whs_summary": "Fundamental German WHS law requiring employers to implement protective measures, conduct risk assessments, and ensure employee training and information.",
+      "keywords": ["workplace safety", "employer duties", "risk assessment", "Germany"],
+      "content": {
+        "full_text": "§ 1 Zielsetzung und Anwendungsbereich: Dieses Gesetz dient dazu, Sicherheit und Gesundheitsschutz der Beschäftigten bei der Arbeit durch Maßnahmen des Arbeitsschutzes zu sichern und zu verbessern.\n\n§ 3 Grundpflichten des Arbeitgebers: Der Arbeitgeber ist verpflichtet, die erforderlichen Maßnahmen des Arbeitsschutzes unter Berücksichtigung der Umstände zu treffen.\n\n§ 5 Beurteilung der Arbeitsbedingungen: Der Arbeitgeber hat durch eine Beurteilung der für die Beschäftigten mit ihrer Arbeit verbundenen Gefährdung zu ermitteln, welche Maßnahmen des Arbeitsschutzes erforderlich sind.\n\n§ 6 Dokumentation: Der Arbeitgeber muss über die Gefährdungsbeurteilung und die festgelegten Maßnahmen verfügen.\n\n§ 12 Unterweisung: Der Arbeitgeber hat die Beschäftigten über Sicherheit und Gesundheitsschutz bei der Arbeit zu unterweisen.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "de-dguv-v1",
+      "title": "DGUV Vorschrift 1",
+      "abbreviation": "DGUV V1",
+      "description": "German Social Accident Insurance Regulation 1 - Basic principles of prevention",
+      "type": "regulation",
+      "summary": "Fundamental accident prevention regulation establishing basic employer and employee duties for workplace safety.",
+      "whs_summary": "Core DGUV regulation covering employer obligations, employee duties, first aid, occupational physicians, and safety specialists.",
+      "keywords": ["accident prevention", "DGUV", "first aid", "safety specialists", "Germany"],
+      "content": {
+        "full_text": "DGUV Vorschrift 1 enthält die Grundsätze der Prävention und regelt die grundlegenden Pflichten der Unternehmer und Versicherten.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "de-arbstattv",
+      "title": "Arbeitsstättenverordnung",
+      "abbreviation": "ArbStättV",
+      "description": "German Workplace Ordinance - Requirements for workplace setup and operation",
+      "type": "regulation",
+      "summary": "Detailed requirements for the setup, operation, and maintenance of workplaces including facilities and working conditions.",
+      "whs_summary": "Specifies requirements for workplace dimensions, lighting, ventilation, temperature, sanitary facilities, rest rooms, and first aid rooms.",
+      "keywords": ["workplace", "facilities", "working conditions", "Germany"],
+      "content": {
+        "full_text": "Die Arbeitsstättenverordnung regelt die Anforderungen an die Einrichtung und den Betrieb von Arbeitsstätten.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "de-betrsichv",
+      "title": "Betriebssicherheitsverordnung",
+      "abbreviation": "BetrSichV",
+      "description": "German Industrial Safety Ordinance - Work equipment and installations",
+      "type": "regulation",
+      "summary": "Requirements for safe use of work equipment and operation of installations requiring monitoring.",
+      "whs_summary": "Covers machinery safety, equipment inspections, maintenance requirements, and operation of pressure equipment and lifting gear.",
+      "keywords": ["machinery", "equipment", "inspections", "installations", "Germany"],
+      "content": {
+        "full_text": "Die Betriebssicherheitsverordnung regelt die sichere Verwendung von Arbeitsmitteln und den sicheren Betrieb überwachungsbedürftiger Anlagen.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "de-gefstoffv",
+      "title": "Gefahrstoffverordnung",
+      "abbreviation": "GefStoffV",
+      "description": "German Hazardous Substances Ordinance",
+      "type": "regulation",
+      "summary": "Comprehensive regulation for handling hazardous substances in the workplace including assessment, labeling, and protective measures.",
+      "whs_summary": "Regulates identification, assessment, and handling of hazardous substances, exposure limits, protective measures, and health surveillance.",
+      "keywords": ["hazardous substances", "chemicals", "safety data sheets", "exposure limits", "Germany"],
+      "content": {
+        "full_text": "Die Gefahrstoffverordnung regelt den Umgang mit Gefahrstoffen am Arbeitsplatz.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "de-lastenhandhabv",
+      "title": "Lastenhandhabungsverordnung",
+      "abbreviation": "LasthandhabV",
+      "description": "German Manual Handling Operations Regulation",
+      "type": "regulation",
+      "summary": "Requirements for manual handling of loads to prevent musculoskeletal injuries.",
+      "whs_summary": "Addresses ergonomic requirements for manual handling including risk assessment, weight limits, training, and technical aids.",
+      "keywords": ["manual handling", "ergonomics", "lifting", "musculoskeletal", "Germany"],
+      "content": {
+        "full_text": "Die Lastenhandhabungsverordnung regelt den Schutz der Beschäftigten bei manueller Handhabung von Lasten.",
+        "available": true,
+        "format": "text"
+      }
+    }
+  ]
+}

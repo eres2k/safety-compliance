@@ -1,0 +1,79 @@
+{
+  "laws": [
+    {
+      "id": "at-aschg",
+      "title": "ArbeitnehmerInnenschutzgesetz",
+      "abbreviation": "ASchG",
+      "description": "Austrian Employee Protection Act - Core workplace health and safety law",
+      "type": "law",
+      "summary": "The ASchG is Austria's primary workplace safety legislation, establishing employer duties for employee protection including risk assessment, safety measures, and health surveillance.",
+      "whs_summary": "Comprehensive workplace safety law covering risk assessment, workplace design, PPE, training, and emergency procedures for all Austrian employers.",
+      "keywords": ["workplace safety", "employee protection", "risk assessment", "employer duties", "Austria"],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich: Dieses Bundesgesetz gilt für die Beschäftigung von Arbeitnehmern.\n\n§ 3. Allgemeine Pflichten der Arbeitgeber: Arbeitgeber sind verpflichtet, für Sicherheit und Gesundheitsschutz der Arbeitnehmer in Bezug auf alle Aspekte, die die Arbeit betreffen, zu sorgen.\n\n§ 4. Ermittlung und Beurteilung der Gefahren: Arbeitgeber sind verpflichtet, die für die Sicherheit und Gesundheit der Arbeitnehmer bestehenden Gefahren zu ermitteln und zu beurteilen.\n\n§ 5. Sicherheits- und Gesundheitsschutzdokumente: Arbeitgeber haben die Ergebnisse der Ermittlung und Beurteilung der Gefahren sowie die festgelegten Maßnahmen schriftlich festzuhalten.\n\n§ 12. Information: Arbeitgeber haben dafür zu sorgen, dass die Arbeitnehmer ausreichend und angemessen informiert werden.\n\n§ 14. Unterweisung: Arbeitgeber haben für eine ausreichende Unterweisung der Arbeitnehmer zu sorgen.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "at-arbstv",
+      "title": "Arbeitsstättenverordnung",
+      "abbreviation": "AStV",
+      "description": "Austrian Workplace Regulation - Requirements for workplace design and facilities",
+      "type": "regulation",
+      "summary": "Detailed requirements for workplace facilities, including lighting, ventilation, sanitary facilities, and workspace dimensions.",
+      "whs_summary": "Specifies minimum requirements for workplaces including floor space, room height, lighting levels, temperature, ventilation, and welfare facilities.",
+      "keywords": ["workplace design", "facilities", "lighting", "ventilation", "ergonomics", "Austria"],
+      "content": {
+        "full_text": "Die Arbeitsstättenverordnung regelt die Mindestanforderungen an Arbeitsstätten hinsichtlich Raumgröße, Beleuchtung, Belüftung und sanitärer Einrichtungen.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "at-am-vo",
+      "title": "Arbeitsmittelverordnung",
+      "abbreviation": "AM-VO",
+      "description": "Austrian Work Equipment Regulation - Safety requirements for work equipment",
+      "type": "regulation",
+      "summary": "Establishes safety requirements for the use of work equipment, machinery, and tools in the workplace.",
+      "whs_summary": "Covers machinery safety, equipment inspection, operator training, and maintenance requirements for all work equipment.",
+      "keywords": ["machinery", "equipment safety", "inspection", "maintenance", "Austria"],
+      "content": {
+        "full_text": "Arbeitsmittelverordnung regelt die sichere Verwendung von Arbeitsmitteln einschließlich Prüfungen und Instandhaltung.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "at-psa-v",
+      "title": "PSA-Verordnung",
+      "abbreviation": "PSA-V",
+      "description": "Austrian PPE Regulation - Personal Protective Equipment requirements",
+      "type": "regulation",
+      "summary": "Requirements for the selection, provision, and use of personal protective equipment in the workplace.",
+      "whs_summary": "Specifies PPE requirements including selection criteria, employer duties for provision, employee training, and maintenance obligations.",
+      "keywords": ["PPE", "protective equipment", "safety gear", "Austria"],
+      "content": {
+        "full_text": "PSA-Verordnung regelt die Bereitstellung und Verwendung persönlicher Schutzausrüstungen am Arbeitsplatz.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "at-kenn-v",
+      "title": "Kennzeichnungsverordnung",
+      "abbreviation": "KennV",
+      "description": "Austrian Safety Signage Regulation",
+      "type": "regulation",
+      "summary": "Requirements for safety and health signs, signals, and markings in the workplace.",
+      "whs_summary": "Defines mandatory safety signage including prohibition signs, warning signs, mandatory signs, emergency signs, and floor markings.",
+      "keywords": ["safety signs", "signage", "warnings", "emergency exits", "Austria"],
+      "content": {
+        "full_text": "Kennzeichnungsverordnung regelt die Sicherheits- und Gesundheitsschutzkennzeichnung am Arbeitsplatz.",
+        "available": true,
+        "format": "text"
+      }
+    }
+  ]
+}
