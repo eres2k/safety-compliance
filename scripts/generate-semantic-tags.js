@@ -23,16 +23,17 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Configuration
+// Configuration - Optimized for Gemini 2.0 Flash (2K RPM, 4M TPM)
 const CONFIG = {
   dataDir: path.join(__dirname, '../src/data/laws'),
   outputDir: path.join(__dirname, '../src/data/laws'),
   geminiModel: 'gemini-2.0-flash',
   maxRetries: 3,
-  retryDelayMs: 2000,
-  rateLimitDelayMs: 1500, // Increased delay between API calls to avoid rate limits
-  batchSize: 5, // Process multiple sections in a single API call
-  maxSectionsPerBatch: 5, // Max sections to include in one batched API call
+  retryDelayMs: 1000,
+  rateLimitDelayMs: 200, // Reduced from 1500ms - Gemini supports 2K RPM (~33 req/sec)
+  batchSize: 10, // Increased from 5 - process more sections per API call
+  maxSectionsPerBatch: 10, // Increased from 5 - max sections per API call
+  maxParallelFiles: 3, // Process multiple law files in parallel
 }
 
 // Available role tags
@@ -314,17 +315,29 @@ async function main() {
     files = fs.readdirSync(CONFIG.dataDir).filter(f => f.endsWith('.json'))
   }
 
-  log(`Files to process: ${files.join(', ')}`, colors.blue)
+  log(`Files to process: ${files.join(', ')} (parallel: ${CONFIG.maxParallelFiles} workers)`, colors.blue)
 
-  // Process files
+  // Process files in parallel batches
   let totalProcessed = 0
   let totalErrors = 0
 
-  for (const file of files) {
-    const result = await processLawFile(file, apiKey)
-    if (result) {
-      totalProcessed += result.processed
-      totalErrors += result.errors
+  // Process files in parallel chunks
+  for (let i = 0; i < files.length; i += CONFIG.maxParallelFiles) {
+    const batch = files.slice(i, i + CONFIG.maxParallelFiles)
+    log(`\nProcessing batch ${Math.floor(i / CONFIG.maxParallelFiles) + 1}/${Math.ceil(files.length / CONFIG.maxParallelFiles)}: ${batch.join(', ')}`, colors.cyan)
+
+    const results = await Promise.all(
+      batch.map(file => processLawFile(file, apiKey).catch(err => {
+        log(`Error processing ${file}: ${err.message}`, colors.red)
+        return { processed: 0, errors: 1 }
+      }))
+    )
+
+    for (const result of results) {
+      if (result) {
+        totalProcessed += result.processed
+        totalErrors += result.errors
+      }
     }
   }
 

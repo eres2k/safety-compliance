@@ -124,38 +124,60 @@ function formatJSONForDisplay(data) {
 }
 
 // ============================================
-// Global Rate Limiter - 60 second minimum between requests
+// Optimized Rate Limiter for Gemini 2.0 Flash
+// Gemini limits: 2K RPM, 4M TPM, Unlimited RPD
+// Using 3 second delay allows ~20 RPM with safety margin for concurrent users
 // ============================================
-const RATE_LIMIT_MS = 60 * 1000 // 60 seconds
+const RATE_LIMIT_MS = 3 * 1000 // 3 seconds (optimized from 60s for Gemini 2K RPM)
+const MAX_CONCURRENT_REQUESTS = 5 // Allow up to 5 concurrent requests
 let lastRequestTime = 0
+let activeRequests = 0
 let requestQueue = Promise.resolve()
 
 /**
  * Enforces a global rate limit on Gemini API requests.
+ * Optimized for Gemini 2K RPM - allows concurrent requests with short delays.
  * Returns a promise that resolves when it's safe to make the next request.
  */
 async function waitForRateLimit() {
+  // Wait if we've hit max concurrent requests
+  while (activeRequests >= MAX_CONCURRENT_REQUESTS) {
+    await new Promise(resolve => setTimeout(resolve, 100))
+  }
+
   const now = Date.now()
   const timeSinceLastRequest = now - lastRequestTime
   const waitTime = Math.max(0, RATE_LIMIT_MS - timeSinceLastRequest)
 
   if (waitTime > 0) {
-    console.log(`[Rate Limit] Waiting ${Math.ceil(waitTime / 1000)}s before next Gemini request...`)
+    console.log(`[Rate Limit] Waiting ${(waitTime / 1000).toFixed(1)}s before next Gemini request...`)
     await new Promise(resolve => setTimeout(resolve, waitTime))
   }
 
   lastRequestTime = Date.now()
+  activeRequests++
 }
 
 /**
- * Queue requests to ensure they are processed sequentially with rate limiting
+ * Mark a request as completed (decrement active count)
+ */
+function requestCompleted() {
+  activeRequests = Math.max(0, activeRequests - 1)
+}
+
+/**
+ * Queue requests with rate limiting - allows concurrent execution up to MAX_CONCURRENT_REQUESTS
  */
 function queueRequest(requestFn) {
   requestQueue = requestQueue.then(async () => {
     await waitForRateLimit()
-    return requestFn()
+    try {
+      return await requestFn()
+    } finally {
+      requestCompleted()
+    }
   }).catch(err => {
-    // Don't let one failed request block the queue
+    requestCompleted()
     console.error('[Rate Limit] Request failed:', err.message)
     throw err
   })
@@ -163,8 +185,20 @@ function queueRequest(requestFn) {
 }
 
 /**
+ * Execute multiple requests in parallel with rate limiting
+ * @param {Array<Function>} requestFns - Array of async functions to execute
+ * @returns {Promise<Array>} - Results of all requests
+ */
+export async function executeParallel(requestFns) {
+  const results = await Promise.allSettled(
+    requestFns.map(fn => queueRequest(fn))
+  )
+  return results.map(r => r.status === 'fulfilled' ? r.value : null)
+}
+
+/**
  * Get the current rate limit status
- * @returns {object} { isLimited: boolean, remainingSeconds: number }
+ * @returns {object} { isLimited: boolean, remainingSeconds: number, activeRequests: number }
  */
 export function getRateLimitStatus() {
   const now = Date.now()
@@ -172,9 +206,11 @@ export function getRateLimitStatus() {
   const remainingMs = Math.max(0, RATE_LIMIT_MS - timeSinceLastRequest)
 
   return {
-    isLimited: remainingMs > 0,
+    isLimited: remainingMs > 0 || activeRequests >= MAX_CONCURRENT_REQUESTS,
     remainingSeconds: Math.ceil(remainingMs / 1000),
-    rateLimitSeconds: RATE_LIMIT_MS / 1000
+    rateLimitSeconds: RATE_LIMIT_MS / 1000,
+    activeRequests,
+    maxConcurrent: MAX_CONCURRENT_REQUESTS
   }
 }
 

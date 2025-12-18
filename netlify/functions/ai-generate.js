@@ -1,7 +1,19 @@
 import { getStore } from "@netlify/blobs"
 
+// ============================================
+// Optimized for Gemini 2.0 Flash Rate Limits:
+// - RPM: 2,000 requests per minute
+// - TPM: 4,000,000 tokens per minute
+// - RPD: Unlimited
+// ============================================
+
 // Cache TTL: 48 hours in seconds
 const CACHE_TTL_SECONDS = 48 * 60 * 60
+
+// Model configuration - optimized for high throughput
+const GEMINI_MODEL = 'gemini-2.0-flash'
+const MAX_OUTPUT_TOKENS = 4096  // Increased from 2048 for more complete responses
+const TEMPERATURE = 0.3
 
 // Generate a cache key from prompt and system prompt
 function generateCacheKey(prompt, systemPrompt) {
@@ -112,9 +124,9 @@ export async function handler(event, context) {
       }
     }
 
-    // Use gemini-2.0-flash - stable model with good rate limits
+    // Use gemini-2.0-flash - optimized for high throughput (2K RPM, 4M TPM)
     const response = await fetchWithRetry(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: {
@@ -124,8 +136,8 @@ export async function handler(event, context) {
           contents: [{ parts: [{ text: prompt }] }],
           systemInstruction: systemPrompt ? { parts: [{ text: systemPrompt }] } : undefined,
           generationConfig: {
-            temperature: 0.3,
-            maxOutputTokens: 2048
+            temperature: TEMPERATURE,
+            maxOutputTokens: MAX_OUTPUT_TOKENS
           }
         })
       }

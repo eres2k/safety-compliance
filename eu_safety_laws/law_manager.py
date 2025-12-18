@@ -96,11 +96,15 @@ except ImportError:
 class Config:
     """Global configuration for the law manager."""
     base_path: Path = field(default_factory=lambda: Path(__file__).parent)
-    scraper_version: str = "7.1.0"
+    scraper_version: str = "7.2.0"  # Updated for parallel processing
     request_timeout: int = 30
-    rate_limit_delay: float = 0.5
+    rate_limit_delay: float = 0.1  # Reduced from 0.5s - Gemini supports 2K RPM
     max_retries: int = 3
     gemini_model: str = "gemini-2.0-flash"
+    # Parallel processing settings (optimized for Gemini 2K RPM / 4M TPM limits)
+    max_parallel_scrapes: int = 4  # Concurrent law scrapes
+    max_parallel_ai_requests: int = 10  # Concurrent AI requests
+    ai_rate_limit_delay: float = 0.05  # 50ms between AI batches (allows ~1200 RPM with margin)
 
     # Source URLs - laws are ordered by relevance (first = most important)
     sources: Dict[str, Dict[str, str]] = field(default_factory=lambda: {
@@ -1038,8 +1042,22 @@ class ATScraper(Scraper):
     def __init__(self, law_limit: int = None):
         super().__init__('AT', law_limit)
 
+    def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
+        """Scrape a single law - used for parallel processing."""
+        log_info(f"Scraping {abbrev} with full text extraction...")
+        url = self._get_full_url(path)
+        html = self.fetch_url(url)
+
+        if html:
+            doc = self._parse_ris_law_full(html, abbrev, url)
+            if doc:
+                total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
+                log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
+                return doc
+        return None
+
     def scrape(self) -> List[Dict[str, Any]]:
-        """Scrape Austrian laws from RIS with full text extraction."""
+        """Scrape Austrian laws from RIS with full text extraction and parallel processing."""
         if not HAS_BS4:
             log_error("BeautifulSoup required for scraping. Install with: pip install beautifulsoup4")
             return []
@@ -1055,22 +1073,27 @@ class ATScraper(Scraper):
         else:
             laws_to_fetch = list(main_laws.items())
 
-        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available AT laws")
+        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available AT laws (parallel: {CONFIG.max_parallel_scrapes} workers)")
 
-        for abbrev, path in laws_to_fetch:
-            log_info(f"Scraping {abbrev} with full text extraction...")
-            url = self._get_full_url(path)
-            html = self.fetch_url(url)
+        # Use parallel processing for faster scraping
+        with concurrent.futures.ThreadPoolExecutor(max_workers=CONFIG.max_parallel_scrapes) as executor:
+            # Submit all scraping tasks
+            future_to_abbrev = {
+                executor.submit(self._scrape_single_law, abbrev, path): abbrev
+                for abbrev, path in laws_to_fetch
+            }
 
-            if html:
-                doc = self._parse_ris_law_full(html, abbrev, url)
-                if doc:
-                    documents.append(doc)
-                    total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
-                    log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
+            # Collect results as they complete
+            for future in concurrent.futures.as_completed(future_to_abbrev):
+                abbrev = future_to_abbrev[future]
+                try:
+                    doc = future.result()
+                    if doc:
+                        documents.append(doc)
+                except Exception as e:
+                    log_error(f"Failed to scrape {abbrev}: {e}")
 
-            time.sleep(CONFIG.rate_limit_delay)
-
+        log_success(f"Completed scraping {len(documents)} AT laws")
         return documents
 
     def _extract_section_text(self, container) -> str:
@@ -1484,8 +1507,22 @@ class DEScraper(Scraper):
     def __init__(self, law_limit: int = None):
         super().__init__('DE', law_limit)
 
+    def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
+        """Scrape a single law - used for parallel processing."""
+        log_info(f"Scraping {abbrev} with full text extraction...")
+        url = self._get_full_url(path)
+        html = self.fetch_url(url)
+
+        if html:
+            doc = self._parse_german_law_full(html, abbrev, url)
+            if doc:
+                total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
+                log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
+                return doc
+        return None
+
     def scrape(self) -> List[Dict[str, Any]]:
-        """Scrape German laws with full text extraction from individual section pages."""
+        """Scrape German laws with full text extraction and parallel processing."""
         if not HAS_BS4:
             log_error("BeautifulSoup required. Install with: pip install beautifulsoup4")
             return []
@@ -1501,22 +1538,25 @@ class DEScraper(Scraper):
         else:
             laws_to_fetch = list(main_laws.items())
 
-        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available DE laws")
+        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available DE laws (parallel: {CONFIG.max_parallel_scrapes} workers)")
 
-        for abbrev, path in laws_to_fetch:
-            log_info(f"Scraping {abbrev} with full text extraction...")
-            url = self._get_full_url(path)
-            html = self.fetch_url(url)
+        # Use parallel processing for faster scraping
+        with concurrent.futures.ThreadPoolExecutor(max_workers=CONFIG.max_parallel_scrapes) as executor:
+            future_to_abbrev = {
+                executor.submit(self._scrape_single_law, abbrev, path): abbrev
+                for abbrev, path in laws_to_fetch
+            }
 
-            if html:
-                doc = self._parse_german_law_full(html, abbrev, url)
-                if doc:
-                    documents.append(doc)
-                    total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
-                    log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
+            for future in concurrent.futures.as_completed(future_to_abbrev):
+                abbrev = future_to_abbrev[future]
+                try:
+                    doc = future.result()
+                    if doc:
+                        documents.append(doc)
+                except Exception as e:
+                    log_error(f"Failed to scrape {abbrev}: {e}")
 
-            time.sleep(CONFIG.rate_limit_delay)
-
+        log_success(f"Completed scraping {len(documents)} DE laws")
         return documents
 
     def _fetch_section_content(self, section_url: str) -> str:
@@ -1847,8 +1887,22 @@ class NLScraper(Scraper):
     def __init__(self, law_limit: int = None):
         super().__init__('NL', law_limit)
 
+    def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
+        """Scrape a single law - used for parallel processing."""
+        log_info(f"Scraping {abbrev} with full text extraction...")
+        url = self._get_full_url(path)
+        html = self.fetch_url(url)
+
+        if html:
+            doc = self._parse_dutch_law_full(html, abbrev, url)
+            if doc:
+                total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
+                log_success(f"Scraped {abbrev}: {total_sections} articles with full text")
+                return doc
+        return None
+
     def scrape(self) -> List[Dict[str, Any]]:
-        """Scrape Dutch laws with full text extraction."""
+        """Scrape Dutch laws with full text extraction and parallel processing."""
         if not HAS_BS4:
             log_error("BeautifulSoup required. Install with: pip install beautifulsoup4")
             return []
@@ -1864,22 +1918,25 @@ class NLScraper(Scraper):
         else:
             laws_to_fetch = list(main_laws.items())
 
-        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available NL laws")
+        log_info(f"Fetching {len(laws_to_fetch)} of {len(main_laws)} available NL laws (parallel: {CONFIG.max_parallel_scrapes} workers)")
 
-        for abbrev, path in laws_to_fetch:
-            log_info(f"Scraping {abbrev} with full text extraction...")
-            url = self._get_full_url(path)
-            html = self.fetch_url(url)
+        # Use parallel processing for faster scraping
+        with concurrent.futures.ThreadPoolExecutor(max_workers=CONFIG.max_parallel_scrapes) as executor:
+            future_to_abbrev = {
+                executor.submit(self._scrape_single_law, abbrev, path): abbrev
+                for abbrev, path in laws_to_fetch
+            }
 
-            if html:
-                doc = self._parse_dutch_law_full(html, abbrev, url)
-                if doc:
-                    documents.append(doc)
-                    total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
-                    log_success(f"Scraped {abbrev}: {total_sections} articles with full text")
+            for future in concurrent.futures.as_completed(future_to_abbrev):
+                abbrev = future_to_abbrev[future]
+                try:
+                    doc = future.result()
+                    if doc:
+                        documents.append(doc)
+                except Exception as e:
+                    log_error(f"Failed to scrape {abbrev}: {e}")
 
-            time.sleep(CONFIG.rate_limit_delay)
-
+        log_success(f"Completed scraping {len(documents)} NL laws")
         return documents
 
     def _classify_whs_topics(self, text: str, title: str) -> List[Dict[str, Any]]:
