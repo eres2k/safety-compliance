@@ -17,8 +17,13 @@ const CACHE_PREFIX = 'ai_cache_'
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
 
 function generateCacheKey(type, ...args) {
-  const hash = args.join('|').substring(0, 200) // Limit key length
-  return `${CACHE_PREFIX}${type}_${btoa(hash).substring(0, 40)}`
+  // Put short identifiers (framework, language, title) FIRST to avoid truncation
+  // Reorder: [lawText, sectionTitle, framework, language] -> [framework, language, sectionTitle, lawText(truncated)]
+  const reorderedArgs = args.length >= 4
+    ? [args[2], args[3], args[1], args[0]?.substring(0, 100) || ''] // framework, language, title, lawText(100)
+    : args
+  const hash = reorderedArgs.join('|').substring(0, 200)
+  return `${CACHE_PREFIX}${type}_${btoa(hash).substring(0, 50)}`
 }
 
 function getCachedResponse(cacheKey) {
