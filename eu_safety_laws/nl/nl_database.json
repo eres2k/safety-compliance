@@ -1911,7 +1911,7 @@
       "jurisdiction": "NL",
       "abbreviation": "Arbobesluit",
       "title": "Arbeidsomstandighedenbesluit",
-      "title_en": "Arbeidsomstandighedenbesluit",
+      "title_en": "Working Conditions Decree",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EEG",
       "source": {
@@ -2275,7 +2275,7 @@
       "jurisdiction": "NL",
       "abbreviation": "Arboregeling",
       "title": "Arbeidsomstandighedenregeling",
-      "title_en": "Arbeidsomstandighedenregeling",
+      "title_en": "Working Conditions Regulation",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EEG",
       "source": {
@@ -2552,7 +2552,7 @@
       "jurisdiction": "NL",
       "abbreviation": "Arbeidstijdenwet",
       "title": "Arbeidstijdenwet",
-      "title_en": "Arbeidstijdenwet",
+      "title_en": "Working Hours Act",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EEG",
       "source": {
@@ -2950,7 +2950,7 @@
       "jurisdiction": "NL",
       "abbreviation": "ATB",
       "title": "Arbeidstijdenbesluit",
-      "title_en": "Arbeidstijdenbesluit",
+      "title_en": "Working Hours Decree",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EEG",
       "source": {
@@ -3210,7 +3210,7 @@
       "jurisdiction": "NL",
       "abbreviation": "REACH",
       "title": "Beleidsregel Meldingsformulier substantiële deelneming",
-      "title_en": "Beleidsregel Meldingsformulier substantiële deelneming",
+      "title_en": "REACH Regulation (Chemical Substances)",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EEG",
       "source": {
@@ -3252,7 +3252,7 @@
       "jurisdiction": "NL",
       "abbreviation": "PGS",
       "title": "Publicatiereeks Gevaarlijke Stoffen",
-      "title_en": "Publicatiereeks Gevaarlijke Stoffen",
+      "title_en": "Hazardous Substances Publication Series",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EEG",
       "source": {
@@ -3294,7 +3294,7 @@
       "jurisdiction": "NL",
       "abbreviation": " Warenwetbesluit machines",
       "title": "Handhavingsvoorschrift Terlet",
-      "title_en": "Handhavingsvoorschrift Terlet",
+      "title_en": "Machinery Decree",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EEG",
       "source": {

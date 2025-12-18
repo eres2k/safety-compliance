@@ -1209,7 +1209,7 @@
       "jurisdiction": "DE",
       "abbreviation": "ASiG",
       "title": "Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit",
-      "title_en": "Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit",
+      "title_en": "Occupational Physicians and Safety Engineers Act",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EWG",
       "source": {
@@ -1971,7 +1971,7 @@
       "jurisdiction": "DE",
       "abbreviation": "ArbZG",
       "title": "Arbeitszeitgesetz",
-      "title_en": "Arbeitszeitgesetz",
+      "title_en": "Working Hours Act",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EWG",
       "source": {
@@ -2908,7 +2908,7 @@
       "jurisdiction": "DE",
       "abbreviation": "JArbSchG",
       "title": "Gesetz zum Schutze der arbeitenden Jugend",
-      "title_en": "Gesetz zum Schutze der arbeitenden Jugend",
+      "title_en": "Young Workers Protection Act",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EWG",
       "source": {
@@ -5044,7 +5044,7 @@
       "jurisdiction": "DE",
       "abbreviation": "ArbStättV",
       "title": "Verordnung über Arbeitsstätten",
-      "title_en": "Verordnung über Arbeitsstätten",
+      "title_en": "Workplace Ordinance",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EWG",
       "source": {
@@ -5518,7 +5518,7 @@
       "jurisdiction": "DE",
       "abbreviation": "BetrSichV",
       "title": "Verordnung über Sicherheit und Gesundheitsschutz bei der Verwendung von Arbeitsmitteln",
-      "title_en": "Verordnung über Sicherheit und Gesundheitsschutz bei der Verwendung von Arbeitsmitteln",
+      "title_en": "Operational Safety Ordinance",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EWG",
       "source": {
@@ -6476,7 +6476,7 @@
       "jurisdiction": "DE",
       "abbreviation": "GefStoffV",
       "title": "Verordnung zum Schutz vor Gefahrstoffen*)",
-      "title_en": "Verordnung zum Schutz vor Gefahrstoffen*)",
+      "title_en": "Hazardous Substances Ordinance",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EWG",
       "source": {
@@ -7849,7 +7849,7 @@
       "jurisdiction": "DE",
       "abbreviation": "TRBS 1111",
       "title": "TRBS 1111",
-      "title_en": "TRBS 1111",
+      "title_en": "Technical Rules for Operational Safety 1111",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EWG",
       "source": {
@@ -7891,7 +7891,7 @@
       "jurisdiction": "DE",
       "abbreviation": "MuSchG",
       "title": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
-      "title_en": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
+      "title_en": "Maternity Protection Act",
       "category": "Core Safety",
       "implements_eu_directive": "89/391/EWG",
       "source": {
