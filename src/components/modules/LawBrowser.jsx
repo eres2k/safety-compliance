@@ -621,7 +621,12 @@ function formatLawText(text) {
       continue
     }
 
-    // Section headers (§ or Artikel)
+    // Skip standalone "§" or "Artikel" without numbers (redundant artifacts)
+    if (/^§\s*$/i.test(line) || /^Artikel\s*$/i.test(line)) {
+      continue
+    }
+
+    // Section headers (§ or Artikel with number)
     if (/^(§\s*\d+[a-z]?|Art\.?\s*\d+|Artikel\s*\d+)/i.test(line)) {
       flushAbsatz()
       flushList()
@@ -1190,6 +1195,27 @@ export function LawBrowser({ onBack }) {
     return ''
   }
 
+  // Helper function to clean section content - removes redundant section number at start
+  const cleanSectionContent = (text, sectionNumber) => {
+    if (!text) return ''
+
+    let cleaned = text
+
+    // Remove "§ X:" or "§ X." or "Artikel X:" or "Artikel X." prefix from beginning
+    // These duplicate the section header that's already shown
+    cleaned = cleaned.replace(/^(§\s*\d+[a-z]?|Artikel\s*\d+[a-z]?)[.:]\s*/i, '').trim()
+
+    // Remove standalone "§" or "Artikel" at the very beginning (without number)
+    cleaned = cleaned.replace(/^§\s*\n/i, '').trim()
+    cleaned = cleaned.replace(/^Artikel\s*\n/i, '').trim()
+
+    // Remove section title line if it duplicates the header (e.g., "§ 3 Gefahrenklassen\n")
+    cleaned = cleaned.replace(/^(§\s*\d+[a-z]?\s+[^\n]+)\n/i, '').trim()
+    cleaned = cleaned.replace(/^(Artikel\s*\d+[a-z]?\.\s*[^\n]+)\n/i, '').trim()
+
+    return cleaned
+  }
+
   // Helper function to clean section titles from internal numbering artifacts
   const cleanSectionTitle = (title, sectionNumber, jurisdiction) => {
     if (!title) return ''
@@ -1249,7 +1275,7 @@ export function LawBrowser({ onBack }) {
               id: section.id,
               number: displayNumber,
               title: sectionTitle,
-              content: section.text || '',
+              content: cleanSectionContent(section.text, section.number),
               rawNumber: section.number,
               abschnitt: {
                 number: chapter.number,
