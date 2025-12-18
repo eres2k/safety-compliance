@@ -1,7 +1,7 @@
 {
   "country": "NL",
   "language": "nl",
-  "scraped_at": "2025-12-18T01:44:13.730547",
+  "scraped_at": "2025-12-18T01:54:00.865034",
   "articles": {
     "Arbowet": {
       "title": "Arbeidsomstandighedenwet",
@@ -28,5 +28,31 @@
       "url": "https://nl.wikipedia.org/wiki/ATB_Eerste_Generatie",
       "summary": "ATB(automatische treinbeïnvloeding), tegenwoordig aangeduid alsATB-EG(ATB Eerste Generatie), is eenNederlandstreinbeïnvloedingssysteem. ATB-EG is geïnstalleerd op bijna alle Nederlandse hoofdspoorlijnen, met uitzondering van deHSLen deBetuweroutewaar in plaats daarvan hetETCSis geïnstalleerd. Op de meeste nevenlijnen isATB-NGgeïnstalleerd."
     }
-  }
+  },
+  "ai_suggested_articles": [
+    {
+      "law_abbr": "ASchG",
+      "title": "Arbeidsomstandigheden",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandigheden",
+      "summary": "Arbeidsomstandighedenzijn het fysieke, sociale en psychologische klimaat waarin wordt gewerkt. Deze kunnen worden onderscheiden van de primaire en secundairearbeidsvoorwaarden. Het woord\"arbeidsomstandigheden\" wordt vaak verkort totarbo, onder andere in wetgeving.",
+      "reason": "General overview of workplace safety and working conditions, crucial for understanding the broader context of ASchG (Arbeidsomstandighedenwet).",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ASchG",
+      "title": "Risicoanalyse",
+      "url": "https://nl.wikipedia.org/wiki/Risicoanalyse",
+      "summary": "Eenrisicoanalyseis een methode waarbij nader benoemde risico's worden gekwantificeerd door het bepalen van de kans dat een dreiging zich voordoet en de gevolgen daarvan:Risico=KansxGevolg. De risicoanalyse is de eerste stap binnen het risicomanagementproces.",
+      "reason": "Risk assessment is a central element of the ASchG. This article would explain the process and its importance.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ASchG",
+      "title": "Persoonlijke beschermingsmiddelen",
+      "url": "https://nl.wikipedia.org/wiki/Persoonlijke_beschermingsmiddelen",
+      "summary": "Persoonlijke beschermingsmiddelen(PBM) worden ingezet zowel in de privésfeer als bij professioneel gebruik. Ze zijn ontwikkeld om de restrisico's af te dekken, met andere woorden de drager van het PBM beschermen tegen risico's wanneer de andere maatregelen (eliminatie van het gevaar, substitutie van het gevaar, gebruik van collectieve beschermingsmiddelen) onvoldoende blijkt te zijn.[1]",
+      "reason": "Personal protective equipment is crucial in warehouse environments covered by the ASchG.",
+      "priority": "medium"
+    }
+  ]
 }
