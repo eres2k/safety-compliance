@@ -31,12 +31,13 @@
     },
     "NL": {
       "REACH": {
-        "url": "https://wetten.overheid.nl/BWBR0020808/2023-09-01",
-        "name": "REACH Regulation (Registration, Evaluation, Authorisation and Restriction of Chemicals)",
-        "description": "Although a European regulation, REACH is directly applicable in the Netherlands and is crucial for workplace safety regarding the handling of chemical substances.  This source on wetten.overheid.nl provides the Dutch translated version. It covers the registration, evaluation, authorization and restriction of chemical substances to ensure a high level of protection of human health and the environment.",
+        "url": "/BWBR0020808/geldend",
+        "name": "Wet milieubeheer",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "created_at": "2025-12-18T02:50:38.629262",
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T03:37:50.661460",
+        "original_url_failed": true
       },
       " Warenwetbesluit machines": {
         "url": "https://wetten.overheid.nl/BWBR0037613/2023-01-01",
@@ -79,9 +80,18 @@
         "enabled": true,
         "created_at": "2025-12-18T02:50:24.533272",
         "source_type": "custom"
+      },
+      "MuSchG": {
+        "url": "/muschg_2018/",
+        "name": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
+        "description": "URL auto-corrected by AI",
+        "enabled": true,
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T03:36:52.548341",
+        "original_url_failed": true
       }
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-18T02:50:38.639005"
+  "updated_at": "2025-12-18T03:37:50.661465"
 }

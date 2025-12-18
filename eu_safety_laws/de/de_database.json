@@ -1,15 +1,15 @@
 {
   "metadata": {
     "country": "DE",
-    "generated_at": "2025-12-18T03:18:00.795237",
-    "document_count": 7,
+    "generated_at": "2025-12-18T03:37:37.918887",
+    "document_count": 9,
     "error_count": 0,
     "cleaned_at": "2025-12-18T03:18:00.828266",
     "restructured_at": "2025-12-18T03:18:00.858644"
   },
   "documents": [
     {
-      "id": "217da71bb5f1eaab",
+      "id": "9929ac5afcf760af",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -25,7 +25,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T03:17:16.920054",
+        "scraped_at": "2025-12-18T03:36:46.260082",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -1203,7 +1203,7 @@
       "content_hash": "941e5916c8ae5e058d705a41da4a4d68"
     },
     {
-      "id": "230eb5fde4a9ef59",
+      "id": "91319caa5acbf7f2",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -1219,7 +1219,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T03:17:37.418986",
+        "scraped_at": "2025-12-18T03:37:05.062009",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -1965,7 +1965,7 @@
       "content_hash": "a7625884bafe9952cf85e5eab23d2367"
     },
     {
-      "id": "4ed3841f72b2b9fa",
+      "id": "39740b70e3e0d363",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -1981,7 +1981,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T03:17:36.295917",
+        "scraped_at": "2025-12-18T03:37:07.157732",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -2902,7 +2902,7 @@
       "content_hash": "c46393c83662e6489dce3b9f998dd742"
     },
     {
-      "id": "05242122b06ed4d3",
+      "id": "40feec679979468e",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -2918,7 +2918,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T03:17:57.233479",
+        "scraped_at": "2025-12-18T03:37:26.240759",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -5038,7 +5038,7 @@
       "content_hash": "7fdd26f6dc1efdf244735eb7b003391b"
     },
     {
-      "id": "bd54f8ddec7aa594",
+      "id": "035e276ea72b7b62",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -5054,7 +5054,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T03:17:31.814995",
+        "scraped_at": "2025-12-18T03:37:15.827578",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -5512,7 +5512,7 @@
       "content_hash": "d5605cf71482026614ec8eedcfaebe0e"
     },
     {
-      "id": "4c0e1ef7b4071e0b",
+      "id": "8d24936a4d7fdb8c",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -5528,7 +5528,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T03:17:50.075539",
+        "scraped_at": "2025-12-18T03:37:27.715084",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -6470,7 +6470,7 @@
       "content_hash": "90e97f5b6c48b8007cb0f454cd3b67c1"
     },
     {
-      "id": "f139a582a5ee8527",
+      "id": "ded38256e0bbf20b",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -6486,7 +6486,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T03:18:00.789259",
+        "scraped_at": "2025-12-18T03:37:37.009181",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -7843,7 +7843,7 @@
       "content_hash": "e829557f776bdbf259a9339abbdf0504"
     },
     {
-      "id": "c75d91d7bce00be0",
+      "id": "6b486fe7457d9d57",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "DE",
@@ -7859,7 +7859,7 @@
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-18T03:17:58.063278",
+        "scraped_at": "2025-12-18T03:37:37.912619",
         "scraper_version": "7.3.0"
       },
       "whs_summary": {
@@ -7883,6 +7883,667 @@
         }
       ],
       "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+    },
+    {
+      "id": "4d5d2c4af307ace4",
+      "version": "1.0.0",
+      "type": "law",
+      "jurisdiction": "DE",
+      "abbreviation": "MuSchG",
+      "title": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
+      "title_en": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
+      "category": "Core Safety",
+      "implements_eu_directive": "89/391/EWG",
+      "source": {
+        "url": "https://www.gesetze-im-internet.de/muschg/",
+        "title": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
+        "authority": "gesetze-im-internet.de",
+        "robots_txt_compliant": true
+      },
+      "scraping": {
+        "scraped_at": "2025-12-18T03:37:15.081901",
+        "scraper_version": "7.3.0"
+      },
+      "whs_summary": {
+        "total_sections": 34,
+        "logistics_relevance_distribution": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 33
+        },
+        "top_whs_topics": [
+          [
+            "special_groups",
+            5
+          ],
+          [
+            "health_surveillance",
+            2
+          ],
+          [
+            "risk_assessment",
+            2
+          ],
+          [
+            "workplace_design",
+            2
+          ],
+          [
+            "documentation",
+            2
+          ],
+          [
+            "employer_obligations",
+            2
+          ],
+          [
+            "working_hours",
+            1
+          ],
+          [
+            "employee_rights",
+            1
+          ],
+          [
+            "penalties",
+            1
+          ]
+        ],
+        "critical_sections_count": 0
+      },
+      "chapters": [
+        {
+          "id": "de-muschg-main",
+          "number": "1",
+          "title": "Hauptteil",
+          "title_en": "Main Part",
+          "sections": [
+            {
+              "id": "ebcc46f763a6faa6",
+              "number": "1",
+              "title": "§ 1. Anwendungsbereich, Ziel des Mutterschutzes",
+              "text": "§ 1 Anwendungsbereich, Ziel des Mutterschutzes",
+              "whs_topics": [
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "a255a05d8ff53f75",
+              "number": "2",
+              "title": "§ 2. Begriffsbestimmungen",
+              "text": "§ 2 Begriffsbestimmungen",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "4619138200d69892",
+              "number": "3",
+              "title": "§ 3. Schutzfristen vor und nach der Entbindung",
+              "text": "§ 3 Schutzfristen vor und nach der Entbindung",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "567b662217f0041c",
+              "number": "4",
+              "title": "§ 4. Verbot der Mehrarbeit; Ruhezeit",
+              "text": "§ 4 Verbot der Mehrarbeit; Ruhezeit",
+              "whs_topics": [
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "239ec89458d98b7c",
+              "number": "5",
+              "title": "§ 5. Verbot der Nachtarbeit",
+              "text": "§ 5 Verbot der Nachtarbeit",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "76f878e6788297c3",
+              "number": "6",
+              "title": "§ 6. Verbot der Sonn- und Feiertagsarbeit",
+              "text": "§ 6 Verbot der Sonn- und Feiertagsarbeit",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "5ac223bc2233d542",
+              "number": "7",
+              "title": "§ 7. Freistellung für Untersuchungen und zum Stillen",
+              "text": "§ 7 Freistellung für Untersuchungen und zum Stillen",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "1304c206e5a9f866",
+              "number": "8",
+              "title": "§ 8. Beschränkung von Heimarbeit",
+              "text": "§ 8 Beschränkung von Heimarbeit",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "ab2077f8498d60e5",
+              "number": "9",
+              "title": "§ 9. Gestaltung der Arbeitsbedingungen; unverantwortbare Gefährdung",
+              "text": "§ 9 Gestaltung der Arbeitsbedingungen; unverantwortbare Gefährdung",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "39d8a4dca76a9bbd",
+              "number": "10",
+              "title": "§ 10. Beurteilung der Arbeitsbedingungen; Schutzmaßnahmen",
+              "text": "§ 10 Beurteilung der Arbeitsbedingungen; Schutzmaßnahmen",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "6e1436f78e07f3f6",
+              "number": "11",
+              "title": "§ 11. Unzulässige Tätigkeiten und Arbeitsbedingungen für schwangere Frauen",
+              "text": "§ 11 Unzulässige Tätigkeiten und Arbeitsbedingungen für schwangere Frauen",
+              "whs_topics": [
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c2c2b11960956f88",
+              "number": "12",
+              "title": "§ 12. Unzulässige Tätigkeiten und Arbeitsbedingungen für stillende Frauen",
+              "text": "§ 12 Unzulässige Tätigkeiten und Arbeitsbedingungen für stillende Frauen",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "a0e1e9acf468290f",
+              "number": "13",
+              "title": "§ 13. Rangfolge der Schutzmaßnahmen: Umgestaltung der Arbeitsbedingungen, Arbeitsplatzwechsel und betriebliches Beschäftigungsverbot",
+              "text": "§ 13 Rangfolge der Schutzmaßnahmen: Umgestaltung der Arbeitsbedingungen, Arbeitsplatzwechsel und betriebliches Beschäftigungsverbot",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "59fb4fcf0313a807",
+              "number": "14",
+              "title": "§ 14. Dokumentation und Information durch den Arbeitgeber",
+              "text": "§ 14 Dokumentation und Information durch den Arbeitgeber",
+              "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "e596991382c10439",
+              "number": "15",
+              "title": "§ 15. Mitteilungen und Nachweise der schwangeren und stillenden Frauen",
+              "text": "§ 15 Mitteilungen und Nachweise der schwangeren und stillenden Frauen",
+              "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "6485a25d9b7da264",
+              "number": "16",
+              "title": "§ 16. Ärztliches Beschäftigungsverbot",
+              "text": "§ 16 Ärztliches Beschäftigungsverbot",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "9aedc136c5436397",
+              "number": "17",
+              "title": "§ 17. Kündigungsverbot",
+              "text": "§ 17 Kündigungsverbot",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "d1d26807d4dcf225",
+              "number": "18",
+              "title": "§ 18. Mutterschutzlohn",
+              "text": "§ 18 Mutterschutzlohn",
+              "whs_topics": [
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "583c4443d62ab3f0",
+              "number": "19",
+              "title": "§ 19. Mutterschaftsgeld",
+              "text": "§ 19 Mutterschaftsgeld",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "9d48bba4ea289065",
+              "number": "20",
+              "title": "§ 20. Zuschuss zum Mutterschaftsgeld",
+              "text": "§ 20 Zuschuss zum Mutterschaftsgeld",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c52e6c704d6f851c",
+              "number": "21",
+              "title": "§ 21. Ermittlung des durchschnittlichen Arbeitsentgelts",
+              "text": "§ 21 Ermittlung des durchschnittlichen Arbeitsentgelts",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "f32680ff684d4f04",
+              "number": "22",
+              "title": "§ 22. Leistungen während der Elternzeit",
+              "text": "§ 22 Leistungen während der Elternzeit",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "228a8491fce002e4",
+              "number": "23",
+              "title": "§ 23. Entgelt bei Freistellung für Untersuchungen und zum Stillen",
+              "text": "§ 23 Entgelt bei Freistellung für Untersuchungen und zum Stillen",
+              "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "e848be18beadf43e",
+              "number": "24",
+              "title": "§ 24. Fortbestehen des Erholungsurlaubs bei Beschäftigungsverboten",
+              "text": "§ 24 Fortbestehen des Erholungsurlaubs bei Beschäftigungsverboten",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "436c122551a8d109",
+              "number": "25",
+              "title": "§ 25. Beschäftigung nach dem Ende des Beschäftigungsverbots",
+              "text": "§ 25 Beschäftigung nach dem Ende des Beschäftigungsverbots",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "f0c52c0bd3fd8665",
+              "number": "26",
+              "title": "§ 26. Aushang des Gesetzes",
+              "text": "§ 26 Aushang des Gesetzes",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "fd054cb24400b8ac",
+              "number": "27",
+              "title": "§ 27. Mitteilungs- und Aufbewahrungspflichten des Arbeitgebers, Offenbarungsverbot der mit der Überwachung beauftragten Personen",
+              "text": "§ 27 Mitteilungs- und Aufbewahrungspflichten des Arbeitgebers, Offenbarungsverbot der mit der Überwachung beauftragten Personen",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "554cf9dfccef755f",
+              "number": "28",
+              "title": "§ 28. Behördliches Genehmigungsverfahren für eine Beschäftigung zwischen 20 Uhr und 22 Uhr",
+              "text": "§ 28 Behördliches Genehmigungsverfahren für eine Beschäftigung zwischen 20 Uhr und 22 Uhr",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "eea5db337882f56e",
+              "number": "29",
+              "title": "§ 29. Zuständigkeit und Befugnisse der Aufsichtsbehörden, Jahresbericht",
+              "text": "§ 29 Zuständigkeit und Befugnisse der Aufsichtsbehörden, Jahresbericht",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "353e1d06f84879e3",
+              "number": "30",
+              "title": "§ 30. Ausschuss für Mutterschutz",
+              "text": "§ 30 Ausschuss für Mutterschutz",
+              "whs_topics": [
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "1d98293cf4f5c5cb",
+              "number": "31",
+              "title": "§ 31. Erlass von Rechtsverordnungen",
+              "text": "§ 31 Erlass von Rechtsverordnungen",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "051ab626d34f7342",
+              "number": "32",
+              "title": "§ 32. Bußgeldvorschriften",
+              "text": "§ 32 Bußgeldvorschriften",
+              "whs_topics": [
+                {
+                  "id": "penalties",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "0207dc7a5f1c9272",
+              "number": "33",
+              "title": "§ 33. Strafvorschriften",
+              "text": "§ 33 Strafvorschriften",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "72ba2434ad8fc8ba",
+              "number": "34",
+              "title": "§ 34. Evaluationsbericht",
+              "text": "§ 34 Evaluationsbericht",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        }
+      ],
+      "content_hash": "f7e989159ae9996555b633fdc7f9c901"
     }
   ]
 }
