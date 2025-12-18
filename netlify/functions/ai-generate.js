@@ -1,15 +1,15 @@
 import { getStore } from "@netlify/blobs"
 
 // ============================================
-// Optimized for Gemini 3.0 Flash Preview
+// Optimized for Gemini 3.0 Flash
 // Rate Limits: 1K RPM, 1M TPM, 10K RPD
 // ============================================
 
 // Cache TTL: 48 hours - important to stay within daily limits
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
-// Model configuration - Gemini 3 Flash Preview
-const GEMINI_MODEL = 'gemini-3-flash-preview'
+// Model configuration - Gemini 3 Flash
+const GEMINI_MODEL = 'gemini-3-flash'
 const MAX_OUTPUT_TOKENS = 8192
 const TEMPERATURE = 0.2  // Lower temperature for more consistent legal analysis
 
@@ -122,7 +122,7 @@ export async function handler(event, context) {
       }
     }
 
-    // Use gemini-3-flash-preview via v1 API
+    // Use gemini-3-flash via v1 API
     const response = await fetchWithRetry(
       `https://generativelanguage.googleapis.com/v1/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
       {
