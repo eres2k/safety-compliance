@@ -10,7 +10,7 @@ import { getStore } from "@netlify/blobs"
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
 // Model configuration - optimized for high throughput
-const GEMINI_MODEL = 'gemini-3-flash'
+const GEMINI_MODEL = 'gemini-2.5-flash'
 const MAX_OUTPUT_TOKENS = 4096  // Increased from 2048 for more complete responses
 const TEMPERATURE = 0.3
 

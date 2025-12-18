@@ -105,7 +105,7 @@ class Config:
     request_timeout: int = 30
     rate_limit_delay: float = 0.1  # Reduced from 0.5s - Gemini supports 2K RPM
     max_retries: int = 3
-    gemini_model: str = "gemini-3-flash"
+    gemini_model: str = "gemini-2.5-flash"
     # Parallel processing settings (optimized for Gemini 2K RPM / 4M TPM limits)
     max_parallel_scrapes: int = 4  # Concurrent law scrapes
     max_parallel_ai_requests: int = 10  # Concurrent AI requests
