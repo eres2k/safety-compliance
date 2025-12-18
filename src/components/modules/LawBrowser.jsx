@@ -1519,11 +1519,13 @@ export function LawBrowser({ onBack }) {
                     )}
                   </div>
                   <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
-                    {law.title_en || law.shortTitle || getShortenedLawName(law)}
+                    {t.lawTitles?.[framework]?.[law.abbreviation]?.de ||
+                     t.lawTitles?.[framework]?.[law.abbreviation]?.nl ||
+                     law.title_en || law.shortTitle || getShortenedLawName(law)}
                   </h4>
-                  {law.title && law.title !== law.title_en && (
+                  {(t.lawTitles?.[framework]?.[law.abbreviation]?.en || law.title_en) && (
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
-                      {law.title.length > 60 ? law.title.substring(0, 60) + '...' : law.title}
+                      {t.lawTitles?.[framework]?.[law.abbreviation]?.en || law.title_en}
                     </p>
                   )}
                 </button>
@@ -1714,10 +1716,14 @@ export function LawBrowser({ onBack }) {
                         )}
                       </div>
                       <h3 className="text-xl font-bold">
-                        {getShortenedLawName(selectedLaw)}
+                        {t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.de ||
+                         t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.nl ||
+                         getShortenedLawName(selectedLaw)}
                       </h3>
-                      {selectedLaw.title_en && (
-                        <p className="text-white/80 text-sm mt-1">{selectedLaw.title_en}</p>
+                      {(t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.en || selectedLaw.title_en) && (
+                        <p className="text-white/80 text-sm mt-1">
+                          {t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.en || selectedLaw.title_en}
+                        </p>
                       )}
                     </div>
                     <div className="flex gap-2">
