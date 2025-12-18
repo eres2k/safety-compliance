@@ -2364,7 +2364,7 @@ def clean_text_with_regex(text: str, country: str) -> str:
 
 
 def clean_text_with_ai(api_key: str, text: str, title: str, country: str) -> str:
-    """Clean text using Gemini AI."""
+    """Clean text using Gemini AI - optimized for high throughput."""
     if not text or len(text) < 100:
         return text
 
@@ -2388,7 +2388,7 @@ def clean_text_with_ai(api_key: str, text: str, title: str, country: str) -> str
             except Exception as e:
                 log_warning(f"AI attempt {attempt + 1} failed: {e}")
                 if attempt < CONFIG.max_retries - 1:
-                    time.sleep(2 ** attempt)
+                    time.sleep(1 + attempt)  # Reduced from 2^attempt for faster retries
 
     elif HAS_REQUESTS:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
@@ -2406,13 +2406,109 @@ def clean_text_with_ai(api_key: str, text: str, title: str, country: str) -> str
             except Exception as e:
                 log_warning(f"AI attempt {attempt + 1} failed: {e}")
                 if attempt < CONFIG.max_retries - 1:
-                    time.sleep(2 ** attempt)
+                    time.sleep(1 + attempt)  # Reduced from 2^attempt for faster retries
 
     return text
 
 
+def _clean_section_batch_with_ai(api_key: str, sections: List[Dict], country: str) -> List[str]:
+    """Clean multiple sections in a single AI call - optimized for Gemini 2K RPM limits."""
+    if not sections:
+        return []
+
+    system_prompt = SYSTEM_PROMPTS.get(country, SYSTEM_PROMPTS['DE'])
+
+    # Build batch prompt
+    batch_text = []
+    for i, section in enumerate(sections):
+        title = section.get('title', section.get('number', f'Section {i+1}'))
+        text = section.get('text', '')[:5000]  # Limit per section
+        batch_text.append(f"[SECTION_{i}] {title}:\n{text}")
+
+    prompt = f"""Clean these {len(sections)} law text sections. Return each cleaned section prefixed with its original marker [SECTION_X]:
+
+{chr(10).join(batch_text)}"""
+
+    try:
+        if HAS_GENAI:
+            genai.configure(api_key=api_key)
+            model = genai.GenerativeModel(
+                model_name=CONFIG.gemini_model,
+                system_instruction=system_prompt
+            )
+            response = model.generate_content(
+                prompt,
+                generation_config=genai.GenerationConfig(temperature=0.1, max_output_tokens=8192)
+            )
+            result_text = response.text
+        elif HAS_REQUESTS:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{CONFIG.gemini_model}:generateContent?key={api_key}"
+            payload = {
+                "contents": [{"parts": [{"text": prompt}]}],
+                "systemInstruction": {"parts": [{"text": system_prompt}]},
+                "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192}
+            }
+            response = requests.post(url, json=payload, timeout=120)
+            response.raise_for_status()
+            result_text = response.json()['candidates'][0]['content']['parts'][0]['text']
+        else:
+            return [s.get('text', '') for s in sections]
+
+        # Parse batch results
+        results = []
+        import re
+        for i in range(len(sections)):
+            pattern = rf'\[SECTION_{i}\][\s:]*(.+?)(?=\[SECTION_|\Z)'
+            match = re.search(pattern, result_text, re.DOTALL)
+            if match:
+                results.append(match.group(1).strip())
+            else:
+                results.append(sections[i].get('text', ''))  # Fallback to original
+        return results
+
+    except Exception as e:
+        log_warning(f"Batch AI cleaning failed: {e}")
+        return [s.get('text', '') for s in sections]
+
+
+def _clean_document_with_ai(doc: Dict, api_key: str, country: str, fast_mode: bool) -> Dict:
+    """Clean a single document - used for parallel processing."""
+    title = doc.get('abbreviation', doc.get('title', 'Unknown'))
+
+    # Clean full_text if present
+    if doc.get('full_text'):
+        doc['full_text'] = clean_text_with_ai(api_key, doc['full_text'], title, country)
+
+    # Clean sections in batches (skip if fast_mode)
+    if doc.get('chapters') and not fast_mode:
+        batch_size = 5  # Process 5 sections per AI call
+        for chapter in doc['chapters']:
+            sections = chapter.get('sections', [])
+            sections_to_clean = [s for s in sections if s.get('text') and len(s['text']) > 500]
+
+            # Process in batches
+            for i in range(0, len(sections_to_clean), batch_size):
+                batch = sections_to_clean[i:i + batch_size]
+                cleaned_texts = _clean_section_batch_with_ai(api_key, batch, country)
+
+                # Apply cleaned texts back
+                for section, cleaned_text in zip(batch, cleaned_texts):
+                    section['text'] = cleaned_text
+
+                # Short delay between batches (optimized for 2K RPM)
+                if i + batch_size < len(sections_to_clean):
+                    time.sleep(CONFIG.ai_rate_limit_delay)
+
+            # Clean short sections with regex (no AI needed)
+            for section in sections:
+                if section.get('text') and len(section['text']) <= 500:
+                    section['text'] = clean_text_with_regex(section['text'], country)
+
+    return doc
+
+
 def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -> bool:
-    """Clean a country's database."""
+    """Clean a country's database with parallel document processing."""
     log_section(f"Cleaning {country} database")
 
     api_key = get_api_key() if use_ai else None
@@ -2429,30 +2525,41 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
 
     log_info(f"Processing {len(documents)} documents...")
 
-    for i, doc in enumerate(documents):
-        title = doc.get('abbreviation', doc.get('title', f'Doc {i+1}'))
-        log_info(f"[{i+1}/{len(documents)}] Cleaning {title}...")
+    if use_ai:
+        # Use parallel processing for AI cleaning (optimized for Gemini 2K RPM)
+        log_info(f"Using parallel AI cleaning ({CONFIG.max_parallel_ai_requests} workers, batch mode)")
 
-        # Clean full_text if present
-        if doc.get('full_text'):
-            if use_ai:
-                doc['full_text'] = clean_text_with_ai(api_key, doc['full_text'], title, country)
-            else:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=CONFIG.max_parallel_ai_requests) as executor:
+            future_to_doc = {
+                executor.submit(_clean_document_with_ai, doc, api_key, country, fast_mode): i
+                for i, doc in enumerate(documents)
+            }
+
+            for future in concurrent.futures.as_completed(future_to_doc):
+                doc_idx = future_to_doc[future]
+                title = documents[doc_idx].get('abbreviation', f'Doc {doc_idx+1}')
+                try:
+                    cleaned_doc = future.result()
+                    documents[doc_idx] = cleaned_doc
+                    log_success(f"[{doc_idx+1}/{len(documents)}] Cleaned {title}")
+                except Exception as e:
+                    log_error(f"Failed to clean {title}: {e}")
+    else:
+        # Sequential regex cleaning (fast, no API needed)
+        for i, doc in enumerate(documents):
+            title = doc.get('abbreviation', doc.get('title', f'Doc {i+1}'))
+            log_info(f"[{i+1}/{len(documents)}] Cleaning {title}...")
+
+            if doc.get('full_text'):
                 doc['full_text'] = clean_text_with_regex(doc['full_text'], country)
 
-        # Clean sections (skip if fast_mode)
-        if doc.get('chapters') and not fast_mode:
-            for chapter in doc['chapters']:
-                for section in chapter.get('sections', []):
-                    if section.get('text'):
-                        if use_ai and len(section['text']) > 500:
-                            section['text'] = clean_text_with_ai(api_key, section['text'],
-                                                                  section.get('title', ''), country)
-                            time.sleep(0.3)  # Rate limiting
-                        else:
+            if doc.get('chapters') and not fast_mode:
+                for chapter in doc['chapters']:
+                    for section in chapter.get('sections', []):
+                        if section.get('text'):
                             section['text'] = clean_text_with_regex(section['text'], country)
 
-        log_success(f"Cleaned {title}")
+            log_success(f"Cleaned {title}")
 
     # Update metadata
     db['metadata']['cleaned_at'] = datetime.now().isoformat()
