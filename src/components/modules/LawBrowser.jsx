@@ -539,12 +539,32 @@ function getCleanLawText(text) {
   return cleanedText.substring(startIndex)
 }
 
+// Preprocess text to split inline Absätze onto separate lines
+// Handles Austrian/German legal text where (1), (2), (3) may be on the same line
+function preprocessLawText(text) {
+  if (!text) return text
+
+  let processed = text
+    // Split inline Absätze: "(1) text (2) text" -> "(1) text\n(2) text"
+    .replace(/\s+\((\d+[a-z]?)\)\s+/g, '\n($1) ')
+    // Normalize Austrian numbered lists: "1 . Item" or "1. Item" within text
+    .replace(/(\s)(\d+)\s*\.\s+([A-ZÄÖÜ])/g, '$1\n$2. $3')
+    // Split on semicolon followed by letter for definitions (common in NL/AT)
+    .replace(/;\s*([a-z])\.\s+/gi, ';\n$1. ')
+    // Ensure section headers are on their own line
+    .replace(/([.;:])\s*(§\s*\d+)/g, '$1\n$2')
+
+  return processed
+}
+
 // Format text with proper structure (paragraphs, lists, etc.)
 // Handles German legal formatting where numbered items (1., 2.) belong to their parent Absatz
 function formatLawText(text) {
   if (!text) return null
 
-  const lines = text.split('\n')
+  // Preprocess to handle inline formatting issues
+  const preprocessed = preprocessLawText(text)
+  const lines = preprocessed.split('\n')
   const elements = []
   let currentParagraph = []
   let inList = false
@@ -622,17 +642,6 @@ function formatLawText(text) {
       continue
     }
 
-    // Dutch "lid" format: "1. content" or "2. content" at start of line (article subsections)
-    const dutchLidMatch = line.match(/^(\d+)\.\s+(.+)/)
-    if (dutchLidMatch && !line.match(/^(\d+)\.\s*Abschnitt/i)) {
-      flushAbsatz()
-      flushList()
-      flushParagraph()
-      currentAbsatz = { type: 'absatz', number: dutchLidMatch[1], content: dutchLidMatch[2] || '', subItems: [] }
-      elements.push(currentAbsatz)
-      continue
-    }
-
     // Dutch definition with colon: "term: definition;" - treat as a definition item
     const definitionMatch = line.match(/^([a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ\s\-]+):\s*(.+)/)
     if (definitionMatch && !line.startsWith('http') && line.length < 500) {
@@ -643,11 +652,26 @@ function formatLawText(text) {
     }
 
     // Numbered list items (1., 2., etc. or a), b), etc. or a., b., etc.)
-    const numberedMatch = line.match(/^([a-z]\)|[a-z]\.|[ivxIVX]+\.)\s+(.+)/)
-    if (numberedMatch) {
+    // Also matches Austrian "1 ." format and numeric lists within sections
+    const numberedMatch = line.match(/^(\d+\s*\.|[a-z]\)|[a-z]\.|[ivxIVX]+\.)\s+(.+)/)
+    if (numberedMatch && !line.match(/^\d+\.\s*(Abschnitt|Artikel|Hoofdstuk)/i)) {
+      // Check if this is actually a subsection indicator (should be absatz) vs a list item
+      // If it starts with a number and we're already in an Absatz context, treat as list item
+      const isNumericList = /^\d+\s*\./.test(numberedMatch[1])
+      if (isNumericList && !currentAbsatz) {
+        // This might be a Dutch lid or numbered paragraph - treat as absatz
+        flushAbsatz()
+        flushList()
+        flushParagraph()
+        const num = numberedMatch[1].replace(/\s*\.\s*$/, '')
+        currentAbsatz = { type: 'absatz', number: num, content: numberedMatch[2] || '', subItems: [] }
+        elements.push(currentAbsatz)
+        continue
+      }
+      // Otherwise treat as list item
       flushParagraph()
       inList = true
-      listItems.push({ marker: numberedMatch[1], content: numberedMatch[2] })
+      listItems.push({ marker: numberedMatch[1].trim(), content: numberedMatch[2] })
       continue
     }
 
@@ -725,24 +749,30 @@ function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClic
   }
 
   // Helper to render list items (handles both string and {marker, content} formats)
-  const renderListItems = (items, isSubList = false) => (
-    <ol className={`space-y-1.5 ${isSubList ? 'mt-2 ml-4 border-l-2 border-gray-300 dark:border-gray-600 pl-3' : 'list-decimal list-inside pl-4'} text-sm text-gray-700 dark:text-gray-300`}>
-      {items.map((item, i) => {
-        const content = typeof item === 'string' ? item : item.content
-        const marker = typeof item === 'object' ? item.marker : null
-        return (
-          <li key={i} className="leading-relaxed">
-            {marker && (
-              <span className="inline-block min-w-[2rem] font-medium text-gray-600 dark:text-gray-400 mr-1">
-                {marker}
-              </span>
-            )}
-            <span>{processText(content)}</span>
-          </li>
-        )
-      })}
-    </ol>
-  )
+  // Fixed: Use list-none when items have markers to avoid double numbering (1. a., 2. b., etc.)
+  const renderListItems = (items, isSubList = false) => {
+    // Check if any items have markers - if so, don't use CSS list-decimal
+    const hasMarkers = items.some(item => typeof item === 'object' && item.marker)
+
+    return (
+      <ul className={`space-y-1.5 ${isSubList ? 'mt-2 ml-4 border-l-2 border-gray-300 dark:border-gray-600 pl-3' : 'pl-4'} ${hasMarkers ? 'list-none' : 'list-decimal list-inside'} text-sm text-gray-700 dark:text-gray-300`}>
+        {items.map((item, i) => {
+          const content = typeof item === 'string' ? item : item.content
+          const marker = typeof item === 'object' ? item.marker : null
+          return (
+            <li key={i} className="leading-relaxed">
+              {marker && (
+                <span className="inline-block min-w-[2rem] font-medium text-gray-600 dark:text-gray-400 mr-1">
+                  {marker}
+                </span>
+              )}
+              <span>{processText(content)}</span>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
 
   return (
     <div className="space-y-3">
