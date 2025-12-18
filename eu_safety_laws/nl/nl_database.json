@@ -9,7 +9,7 @@
     "auto_sections_at": "2025-12-18T17:52:16.116Z",
     "sections_restructured_at": "2025-12-18T17:53:41.068Z",
     "titles_updated_at": "2025-12-18T21:52:19.965Z",
-    "chapters_reorganized_at": "2025-12-18T22:57:30.197Z"
+    "chapters_reorganized_at": "2025-12-18T23:06:58.787Z"
   },
   "documents": [
     {
@@ -2721,6 +2721,36 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
+            },
+            {
+              "id": "c56578efe31ff313",
+              "number": "1",
+              "title": "Artikel 1. :1",
+              "text": "Artikel 1. :1:\nIn deze wet en de daarop berustende bepalingen wordt verstaan onder:\na. werkgever:\n1°. degene jegens wie een ander krachtens arbeidsovereenkomst of publiekrechtelijke aanstelling gehouden is tot het verrichten van arbeid, behalve indien die ander aan een derde ter beschikking wordt gesteld voor het verrichten van arbeid, welke die derde gewoonlijk doet verrichten;\n2°. degene aan wie een ander ter beschikking wordt gesteld voor het verrichten van arbeid als bedoeld onder 1°;\nb. werknemer: de ander bedoeld onder a .\nIn deze wet en de daarop berustende bepalingen wordt mede verstaan onder:\na. werkgever: degene die zonder werkgever of werknemer in de zin van het eerste lid te zijn, een ander onder zijn gezag arbeid doet verrichten;\nIn deze wet en de daarop berustende bepalingen wordt onder jeugdige werknemer verstaan: een werknemer van 16 of 17 jaar.",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
             }
           ]
         },
@@ -2730,6 +2760,36 @@
           "title": "Hoofdstuk 2 - Definities",
           "title_en": "Chapter 2 - Definitions",
           "sections": [
+            {
+              "id": "c56578efe31ff313",
+              "number": "1",
+              "title": "Artikel 1. :1",
+              "text": "Artikel 1. :1:\nIn deze wet en de daarop berustende bepalingen wordt verstaan onder:\na. werkgever:\n1°. degene jegens wie een ander krachtens arbeidsovereenkomst of publiekrechtelijke aanstelling gehouden is tot het verrichten van arbeid, behalve indien die ander aan een derde ter beschikking wordt gesteld voor het verrichten van arbeid, welke die derde gewoonlijk doet verrichten;\n2°. degene aan wie een ander ter beschikking wordt gesteld voor het verrichten van arbeid als bedoeld onder 1°;\nb. werknemer: de ander bedoeld onder a .\nIn deze wet en de daarop berustende bepalingen wordt mede verstaan onder:\na. werkgever: degene die zonder werkgever of werknemer in de zin van het eerste lid te zijn, een ander onder zijn gezag arbeid doet verrichten;\nIn deze wet en de daarop berustende bepalingen wordt onder jeugdige werknemer verstaan: een werknemer van 16 of 17 jaar.",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 2,
+                "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
             {
               "id": "c56578efe31ff313",
               "number": "1",
@@ -2877,6 +2937,36 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
+            },
+            {
+              "id": "b739a0b1dc40e034",
+              "number": "5",
+              "title": "Artikel 5. :1",
+              "text": "Dit hoofdstuk en de daarop berustende bepalingen vinden ten aanzien van de zondag voor werknemers, die in verband met hun godsdienstige of levensbeschouwelijke opvattingen, de wekelijkse rustdag op een andere dag dan de zondag vieren, overeenkomstige toepassing voor die dag in plaats van ten aanzien van de zondag, indien die werknemers een daartoe strekkend schriftelijk verzoek tot de werkgever hebben gericht.\nElk beding waarbij wordt afgeweken van het eerste lid, is nietig.",
+              "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
             }
           ]
         },
@@ -2886,6 +2976,36 @@
           "title": "Hoofdstuk 4 - Rusttijd en pauze",
           "title_en": "Chapter 4 - Rest Time and Breaks",
           "sections": [
+            {
+              "id": "b739a0b1dc40e034",
+              "number": "5",
+              "title": "Artikel 5. :1",
+              "text": "Dit hoofdstuk en de daarop berustende bepalingen vinden ten aanzien van de zondag voor werknemers, die in verband met hun godsdienstige of levensbeschouwelijke opvattingen, de wekelijkse rustdag op een andere dag dan de zondag vieren, overeenkomstige toepassing voor die dag in plaats van ten aanzien van de zondag, indien die werknemers een daartoe strekkend schriftelijk verzoek tot de werkgever hebben gericht.\nElk beding waarbij wordt afgeweken van het eerste lid, is nietig.",
+              "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
             {
               "id": "b739a0b1dc40e034",
               "number": "5",

@@ -8,7 +8,7 @@
     "restructured_at": "2025-12-18T19:35:16.991017",
     "sections_restructured_at": "2025-12-18T17:53:41.001Z",
     "auto_sections_at": "2025-12-18T17:52:16.040Z",
-    "chapters_reorganized_at": "2025-12-18T22:57:30.220Z"
+    "chapters_reorganized_at": "2025-12-18T23:06:58.812Z"
   },
   "documents": [
     {
@@ -859,8 +859,96 @@
         {
           "id": "de-arbschg-ch5",
           "number": "5",
-          "title": "5. Abschnitt - Schlussvorschriften",
-          "title_en": "Section 5 - Final Provisions",
+          "title": "5. Abschnitt - Gemeinsame deutsche Arbeitsschutzstrategie",
+          "title_en": "Section 5 - Joint German Occupational Safety Strategy",
+          "sections": [
+            {
+              "id": "bfee520609b96cf6",
+              "number": "20a",
+              "title": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie",
+              "text": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie:\n(1) Nach den Bestimmungen dieses Abschnitts entwickeln Bund, Länder und Unfallversicherungsträger im Interesse eines wirksamen Arbeitsschutzes eine gemeinsame deutsche Arbeitsschutzstrategie und gewährleisten ihre Umsetzung und Fortschreibung. Mit der Wahrnehmung der ihnen gesetzlich zugewiesenen Aufgaben zur Verhütung von Arbeitsunfällen, Berufskrankheiten und arbeitsbedingten Gesundheitsgefahren sowie zur menschengerechten Gestaltung der Arbeit tragen Bund, Länder und Unfallversicherungsträger dazu bei, die Ziele der gemeinsamen deutschen Arbeitsschutzstrategie zu erreichen.\n\n(2) Die gemeinsame deutsche Arbeitsschutzstrategie umfasst\n1. die Entwicklung gemeinsamer Arbeitsschutzziele,\n2. die Festlegung vorrangiger Handlungsfelder und von Eckpunkten für Arbeitsprogramme sowie deren Ausführung nach einheitlichen Grundsätzen,\n3. die Evaluierung der Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme mit geeigneten Kennziffern,\n4. die Festlegung eines abgestimmten Vorgehens der für den Arbeitsschutz zuständigen Landesbehörden und der Unfallversicherungsträger bei der Beratung und Überwachung der Betriebe,\n5. die Herstellung eines verständlichen, überschaubaren und abgestimmten Vorschriften- und Regelwerks.",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "871931181e3faadb",
+              "number": "20b",
+              "title": "§ 20b. Nationale Arbeitsschutzkonferenz",
+              "text": "§ 20b. Nationale Arbeitsschutzkonferenz:\n(1) Die Aufgabe der Entwicklung, Steuerung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie nach § 20a Abs. 1 Satz 1 wird von der Nationalen Arbeitsschutzkonferenz wahrgenommen. Sie setzt sich aus jeweils drei stimmberechtigten Vertretern von Bund, Ländern und den Unfallversicherungsträgern zusammen und bestimmt für jede Gruppe drei Stellvertreter. Außerdem entsenden die Spitzenorganisationen der Arbeitgeber und Arbeitnehmer für die Behandlung von Angelegenheiten nach § 20a Abs. 2 Nr. 1 bis 3 und 5 jeweils bis zu drei Vertreter in die Nationale Arbeitsschutzkonferenz; sie nehmen mit beratender Stimme an den Sitzungen teil. Die Nationale Arbeitsschutzkonferenz gibt sich eine Geschäftsordnung; darin werden insbesondere die Arbeitsweise und das Beschlussverfahren festgelegt. Die Geschäftsordnung muss einstimmig angenommen werden.\n\n(2) Alle Einrichtungen, die mit Sicherheit und Gesundheit bei der Arbeit befasst sind, können der Nationalen Arbeitsschutzkonferenz Vorschläge für Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme unterbreiten.\n\n(3) Die Nationale Arbeitsschutzkonferenz wird durch ein Arbeitsschutzforum unterstützt, das in der Regel einmal jährlich stattfindet. Am Arbeitsschutzforum sollen sachverständige Vertreter der Spitzenorganisationen der Arbeitgeber und Arbeitnehmer, der Berufs- und Wirtschaftsverbände, der Wissenschaft, der Kranken- und Rentenversicherungsträger, von Einrichtungen im Bereich Sicherheit und Gesundheit bei der Arbeit sowie von Einrichtungen, die der Förderung der Beschäftigungsfähigkeit dienen, teilnehmen. Das Arbeitsschutzforum hat die Aufgabe, eine frühzeitige und aktive Teilhabe der sachverständigen Fachöffentlichkeit an der Entwicklung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie sicherzustellen und die Nationale Arbeitsschutzkonferenz entsprechend zu beraten.\n\n(4) Einzelheiten zum Verfahren der Einreichung von Vorschlägen nach Absatz 2 und zur Durchführung des Arbeitsschutzforums nach Absatz 3 werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz geregelt.\n\n(5) Die Geschäfte der Nationalen Arbeitsschutzkonferenz und des Arbeitsschutzforums führt die Bundesanstalt für Arbeitsschutz und Arbeitsmedizin. Einzelheiten zu Arbeitsweise und Verfahren werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz festgelegt.",
+              "whs_topics": [
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "incident_reporting",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-arbschg-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 6 - Final Provisions",
           "sections": [
             {
               "id": "34c86436dccafdfe",
@@ -1109,94 +1197,6 @@
                 "level": "low",
                 "high_keyword_matches": 0,
                 "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            }
-          ]
-        },
-        {
-          "id": "de-arbschg-other",
-          "number": "X",
-          "title": "Sonstige Bestimmungen",
-          "title_en": "Other Provisions",
-          "sections": [
-            {
-              "id": "bfee520609b96cf6",
-              "number": "20a",
-              "title": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie",
-              "text": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie:\n(1) Nach den Bestimmungen dieses Abschnitts entwickeln Bund, Länder und Unfallversicherungsträger im Interesse eines wirksamen Arbeitsschutzes eine gemeinsame deutsche Arbeitsschutzstrategie und gewährleisten ihre Umsetzung und Fortschreibung. Mit der Wahrnehmung der ihnen gesetzlich zugewiesenen Aufgaben zur Verhütung von Arbeitsunfällen, Berufskrankheiten und arbeitsbedingten Gesundheitsgefahren sowie zur menschengerechten Gestaltung der Arbeit tragen Bund, Länder und Unfallversicherungsträger dazu bei, die Ziele der gemeinsamen deutschen Arbeitsschutzstrategie zu erreichen.\n\n(2) Die gemeinsame deutsche Arbeitsschutzstrategie umfasst\n1. die Entwicklung gemeinsamer Arbeitsschutzziele,\n2. die Festlegung vorrangiger Handlungsfelder und von Eckpunkten für Arbeitsprogramme sowie deren Ausführung nach einheitlichen Grundsätzen,\n3. die Evaluierung der Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme mit geeigneten Kennziffern,\n4. die Festlegung eines abgestimmten Vorgehens der für den Arbeitsschutz zuständigen Landesbehörden und der Unfallversicherungsträger bei der Beratung und Überwachung der Betriebe,\n5. die Herstellung eines verständlichen, überschaubaren und abgestimmten Vorschriften- und Regelwerks.",
-              "whs_topics": [
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "incident_reporting",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "prevention_services",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "health_surveillance",
-                  "relevance": "medium",
-                  "match_count": 1
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 3,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "871931181e3faadb",
-              "number": "20b",
-              "title": "§ 20b. Nationale Arbeitsschutzkonferenz",
-              "text": "§ 20b. Nationale Arbeitsschutzkonferenz:\n(1) Die Aufgabe der Entwicklung, Steuerung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie nach § 20a Abs. 1 Satz 1 wird von der Nationalen Arbeitsschutzkonferenz wahrgenommen. Sie setzt sich aus jeweils drei stimmberechtigten Vertretern von Bund, Ländern und den Unfallversicherungsträgern zusammen und bestimmt für jede Gruppe drei Stellvertreter. Außerdem entsenden die Spitzenorganisationen der Arbeitgeber und Arbeitnehmer für die Behandlung von Angelegenheiten nach § 20a Abs. 2 Nr. 1 bis 3 und 5 jeweils bis zu drei Vertreter in die Nationale Arbeitsschutzkonferenz; sie nehmen mit beratender Stimme an den Sitzungen teil. Die Nationale Arbeitsschutzkonferenz gibt sich eine Geschäftsordnung; darin werden insbesondere die Arbeitsweise und das Beschlussverfahren festgelegt. Die Geschäftsordnung muss einstimmig angenommen werden.\n\n(2) Alle Einrichtungen, die mit Sicherheit und Gesundheit bei der Arbeit befasst sind, können der Nationalen Arbeitsschutzkonferenz Vorschläge für Arbeitsschutzziele, Handlungsfelder und Arbeitsprogramme unterbreiten.\n\n(3) Die Nationale Arbeitsschutzkonferenz wird durch ein Arbeitsschutzforum unterstützt, das in der Regel einmal jährlich stattfindet. Am Arbeitsschutzforum sollen sachverständige Vertreter der Spitzenorganisationen der Arbeitgeber und Arbeitnehmer, der Berufs- und Wirtschaftsverbände, der Wissenschaft, der Kranken- und Rentenversicherungsträger, von Einrichtungen im Bereich Sicherheit und Gesundheit bei der Arbeit sowie von Einrichtungen, die der Förderung der Beschäftigungsfähigkeit dienen, teilnehmen. Das Arbeitsschutzforum hat die Aufgabe, eine frühzeitige und aktive Teilhabe der sachverständigen Fachöffentlichkeit an der Entwicklung und Fortschreibung der gemeinsamen deutschen Arbeitsschutzstrategie sicherzustellen und die Nationale Arbeitsschutzkonferenz entsprechend zu beraten.\n\n(4) Einzelheiten zum Verfahren der Einreichung von Vorschlägen nach Absatz 2 und zur Durchführung des Arbeitsschutzforums nach Absatz 3 werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz geregelt.\n\n(5) Die Geschäfte der Nationalen Arbeitsschutzkonferenz und des Arbeitsschutzforums führt die Bundesanstalt für Arbeitsschutz und Arbeitsmedizin. Einzelheiten zu Arbeitsweise und Verfahren werden in der Geschäftsordnung der Nationalen Arbeitsschutzkonferenz festgelegt.",
-              "whs_topics": [
-                {
-                  "id": "prevention_services",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "incident_reporting",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 3,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 1
               },
               "paragraphs": []
             }
@@ -2679,7 +2679,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Sonderregelungen",
+          "title_en": "Section 6 - Special Regulations",
+          "sections": [
             {
               "id": "9bc52e3503e77a31",
               "number": "18",
@@ -2704,15 +2712,7 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            }
-          ]
-        },
-        {
-          "id": "de-arbzg-ch6",
-          "number": "6",
-          "title": "6. Abschnitt - Sonderregelungen",
-          "title_en": "Section 6 - Special Regulations",
-          "sections": [
+            },
             {
               "id": "dd366c834a790b9b",
               "number": "19",
@@ -2805,6 +2805,46 @@
                 "level": "critical",
                 "high_keyword_matches": 2,
                 "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "4a54b8daa3276d3c",
+              "number": "21a",
+              "title": "§ 21a. Beschäftigung im Straßentransport",
+              "text": "§ 21a. Beschäftigung im Straßentransport:\n(1) Für die Beschäftigung von Arbeitnehmern als Fahrer oder Beifahrer bei Straßenverkehrstätigkeiten im Sinne der Verordnung (EG) Nr. 561/2006 des Europäischen Parlaments und des Rates vom 15. März 2006 zur Harmonisierung bestimmter Sozialvorschriften im Straßenverkehr und zur Änderung der Verordnungen (EWG) Nr. 3821/85 und (EG) Nr. 2135/98 des Rates sowie zur Aufhebung der Verordnung (EWG) Nr. 3820/85 des Rates (ABl. EG Nr. L 102 S. 1) oder des Europäischen Übereinkommens über die Arbeit des im internationalen Straßenverkehr beschäftigten Fahrpersonals (AETR) vom 1. Juli 1970 (BGBl. II 1974 S. 1473) in ihren jeweiligen Fassungen gelten die Vorschriften dieses Gesetzes, soweit nicht die folgenden Absätze abweichende Regelungen enthalten. Die Vorschriften der Verordnung (EG) Nr. 561/2006 und des AETR bleiben unberührt.\n\n(2) Eine Woche im Sinne dieser Vorschriften ist der Zeitraum von Montag 0 Uhr bis Sonntag 24 Uhr.\n\n(3) Abweichend von § 2 Abs. 1 ist keine Arbeitszeit:\n1. die Zeit, während derer sich ein Arbeitnehmer am Arbeitsplatz bereithalten muss, um seine Tätigkeit aufzunehmen,\n2. die Zeit, während derer sich ein Arbeitnehmer bereithalten muss, um seine Tätigkeit auf Anweisung aufnehmen zu können, ohne sich an seinem Arbeitsplatz aufhalten zu müssen;\n3. für Arbeitnehmer, die sich beim Fahren abwechseln, die während der Fahrt neben dem Fahrer oder in einer Schlafkabine verbrachte Zeit.\nFür die Zeiten nach Satz 1 Nr. 1 und 2 gilt dies nur, wenn der Zeitraum und dessen voraussichtliche Dauer im Voraus, spätestens unmittelbar vor Beginn des betreffenden Zeitraums bekannt ist. Die in Satz 1 genannten Zeiten sind keine Ruhezeiten. Die in Satz 1 Nr. 1 und 2 genannten Zeiten sind keine Ruhepausen.\n\n(4) Die Arbeitszeit darf 48 Stunden wöchentlich nicht überschreiten. Sie kann auf bis zu 60 Stunden verlängert werden, wenn innerhalb von vier Kalendermonaten oder 16 Wochen im Durchschnitt 48 Stunden wöchentlich nicht überschritten werden.\n\n(5) Die Ruhezeiten bestimmen sich nach den Vorschriften der Europäischen Gemeinschaften für Kraftfahrer und Beifahrer sowie nach dem AETR. Dies gilt auch für Auszubildende und Praktikanten.\n\n(6) In einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung kann zugelassen werden,\n1. nähere Einzelheiten zu den in Absatz 3 Satz 1 Nr. 1, 2 und Satz 2 genannten Voraussetzungen zu regeln,\n2. abweichend von Absatz 4 sowie den §§ 3 und 6 Abs. 2 die Arbeitszeit festzulegen, wenn objektive, technische oder arbeitszeitorganisatorische Gründe vorliegen. Dabei darf die Arbeitszeit 48 Stunden wöchentlich im Durchschnitt von sechs Kalendermonaten nicht überschreiten.\n§ 7 Abs. 1 Nr. 2 und Abs. 2a gilt nicht. § 7 Abs. 3 gilt entsprechend.\n\n(7) Der Arbeitgeber ist verpflichtet, die Arbeitszeit der Arbeitnehmer aufzuzeichnen. Die Aufzeichnungen sind mindestens zwei Jahre aufzubewahren. Der Arbeitgeber hat dem Arbeitnehmer auf Verlangen eine Kopie der Aufzeichnungen seiner Arbeitszeit auszuhändigen.\n\n(8) Zur Berechnung der Arbeitszeit fordert der Arbeitgeber den Arbeitnehmer schriftlich auf, ihm eine Aufstellung der bei einem anderen Arbeitgeber geleisteten Arbeitszeit vorzulegen. Der Arbeitnehmer legt diese Angaben schriftlich vor.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 2
               },
               "paragraphs": []
             }
@@ -2944,54 +2984,6 @@
                 "level": "low",
                 "high_keyword_matches": 0,
                 "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            }
-          ]
-        },
-        {
-          "id": "de-arbzg-other",
-          "number": "X",
-          "title": "Sonstige Bestimmungen",
-          "title_en": "Other Provisions",
-          "sections": [
-            {
-              "id": "4a54b8daa3276d3c",
-              "number": "21a",
-              "title": "§ 21a. Beschäftigung im Straßentransport",
-              "text": "§ 21a. Beschäftigung im Straßentransport:\n(1) Für die Beschäftigung von Arbeitnehmern als Fahrer oder Beifahrer bei Straßenverkehrstätigkeiten im Sinne der Verordnung (EG) Nr. 561/2006 des Europäischen Parlaments und des Rates vom 15. März 2006 zur Harmonisierung bestimmter Sozialvorschriften im Straßenverkehr und zur Änderung der Verordnungen (EWG) Nr. 3821/85 und (EG) Nr. 2135/98 des Rates sowie zur Aufhebung der Verordnung (EWG) Nr. 3820/85 des Rates (ABl. EG Nr. L 102 S. 1) oder des Europäischen Übereinkommens über die Arbeit des im internationalen Straßenverkehr beschäftigten Fahrpersonals (AETR) vom 1. Juli 1970 (BGBl. II 1974 S. 1473) in ihren jeweiligen Fassungen gelten die Vorschriften dieses Gesetzes, soweit nicht die folgenden Absätze abweichende Regelungen enthalten. Die Vorschriften der Verordnung (EG) Nr. 561/2006 und des AETR bleiben unberührt.\n\n(2) Eine Woche im Sinne dieser Vorschriften ist der Zeitraum von Montag 0 Uhr bis Sonntag 24 Uhr.\n\n(3) Abweichend von § 2 Abs. 1 ist keine Arbeitszeit:\n1. die Zeit, während derer sich ein Arbeitnehmer am Arbeitsplatz bereithalten muss, um seine Tätigkeit aufzunehmen,\n2. die Zeit, während derer sich ein Arbeitnehmer bereithalten muss, um seine Tätigkeit auf Anweisung aufnehmen zu können, ohne sich an seinem Arbeitsplatz aufhalten zu müssen;\n3. für Arbeitnehmer, die sich beim Fahren abwechseln, die während der Fahrt neben dem Fahrer oder in einer Schlafkabine verbrachte Zeit.\nFür die Zeiten nach Satz 1 Nr. 1 und 2 gilt dies nur, wenn der Zeitraum und dessen voraussichtliche Dauer im Voraus, spätestens unmittelbar vor Beginn des betreffenden Zeitraums bekannt ist. Die in Satz 1 genannten Zeiten sind keine Ruhezeiten. Die in Satz 1 Nr. 1 und 2 genannten Zeiten sind keine Ruhepausen.\n\n(4) Die Arbeitszeit darf 48 Stunden wöchentlich nicht überschreiten. Sie kann auf bis zu 60 Stunden verlängert werden, wenn innerhalb von vier Kalendermonaten oder 16 Wochen im Durchschnitt 48 Stunden wöchentlich nicht überschritten werden.\n\n(5) Die Ruhezeiten bestimmen sich nach den Vorschriften der Europäischen Gemeinschaften für Kraftfahrer und Beifahrer sowie nach dem AETR. Dies gilt auch für Auszubildende und Praktikanten.\n\n(6) In einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung kann zugelassen werden,\n1. nähere Einzelheiten zu den in Absatz 3 Satz 1 Nr. 1, 2 und Satz 2 genannten Voraussetzungen zu regeln,\n2. abweichend von Absatz 4 sowie den §§ 3 und 6 Abs. 2 die Arbeitszeit festzulegen, wenn objektive, technische oder arbeitszeitorganisatorische Gründe vorliegen. Dabei darf die Arbeitszeit 48 Stunden wöchentlich im Durchschnitt von sechs Kalendermonaten nicht überschreiten.\n§ 7 Abs. 1 Nr. 2 und Abs. 2a gilt nicht. § 7 Abs. 3 gilt entsprechend.\n\n(7) Der Arbeitgeber ist verpflichtet, die Arbeitszeit der Arbeitnehmer aufzuzeichnen. Die Aufzeichnungen sind mindestens zwei Jahre aufzubewahren. Der Arbeitgeber hat dem Arbeitnehmer auf Verlangen eine Kopie der Aufzeichnungen seiner Arbeitszeit auszuhändigen.\n\n(8) Zur Berechnung der Arbeitszeit fordert der Arbeitgeber den Arbeitnehmer schriftlich auf, ihm eine Aufstellung der bei einem anderen Arbeitgeber geleisteten Arbeitszeit vorzulegen. Der Arbeitnehmer legt diese Angaben schriftlich vor.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "working_hours",
-                  "relevance": "medium",
-                  "match_count": 3
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 4,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 2
               },
               "paragraphs": []
             }
@@ -4653,15 +4645,7 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            }
-          ]
-        },
-        {
-          "id": "de-jarbschg-ch4",
-          "number": "4",
-          "title": "4. Abschnitt - Gesundheitliche Betreuung",
-          "title_en": "Section 4 - Health Care",
-          "sections": [
+            },
             {
               "id": "42212d0d9e4467e0",
               "number": "32",
@@ -5115,10 +5099,10 @@
           ]
         },
         {
-          "id": "de-jarbschg-ch5",
-          "number": "5",
-          "title": "5. Abschnitt - Durchführung des Gesetzes",
-          "title_en": "Section 5 - Implementation of the Act",
+          "id": "de-jarbschg-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Section 4 - Implementation of the Act",
           "sections": [
             {
               "id": "f08b4f37ab60d8d2",
@@ -5473,15 +5457,7 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            }
-          ]
-        },
-        {
-          "id": "de-jarbschg-ch6",
-          "number": "6",
-          "title": "6. Abschnitt - Straf- und Bußgeldvorschriften",
-          "title_en": "Section 6 - Penal and Fine Provisions",
-          "sections": [
+            },
             {
               "id": "1c9f7946670ddbe9",
               "number": "58",
@@ -5585,10 +5561,10 @@
           ]
         },
         {
-          "id": "de-jarbschg-ch7",
-          "number": "7",
-          "title": "7. Abschnitt - Schlussvorschriften",
-          "title_en": "Section 7 - Final Provisions",
+          "id": "de-jarbschg-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Schlussvorschriften",
+          "title_en": "Section 5 - Final Provisions",
           "sections": [
             {
               "id": "7aeb39d7ef4ca9ae",

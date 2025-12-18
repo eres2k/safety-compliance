@@ -123,13 +123,16 @@ const LAW_STRUCTURES = {
       { number: '4', title: '4. Abschnitt - Schlussbestimmungen', title_en: 'Section 4 - Final Provisions', section_range: [101, 200] },
     ],
   },
+  // DE structures based on official Inhaltsübersicht from gesetze-im-internet.de / buzer.de
   DE: {
     ArbSchG: [
+      // Official: https://www.buzer.de/ArbSchG.htm
       { number: '1', title: '1. Abschnitt - Allgemeine Vorschriften', title_en: 'Section 1 - General Provisions', section_range: [1, 2] },
       { number: '2', title: '2. Abschnitt - Pflichten des Arbeitgebers', title_en: 'Section 2 - Employer Obligations', section_range: [3, 14] },
       { number: '3', title: '3. Abschnitt - Pflichten und Rechte der Beschäftigten', title_en: 'Section 3 - Obligations and Rights of Employees', section_range: [15, 17] },
       { number: '4', title: '4. Abschnitt - Verordnungsermächtigungen', title_en: 'Section 4 - Enabling Provisions', section_range: [18, 20] },
-      { number: '5', title: '5. Abschnitt - Schlussvorschriften', title_en: 'Section 5 - Final Provisions', section_range: [21, 27] },
+      { number: '5', title: '5. Abschnitt - Gemeinsame deutsche Arbeitsschutzstrategie', title_en: 'Section 5 - Joint German Occupational Safety Strategy', section_range: [20.01, 20.99] }, // §§ 20a-20b
+      { number: '6', title: '6. Abschnitt - Schlussvorschriften', title_en: 'Section 6 - Final Provisions', section_range: [21, 26] },
     ],
     ASiG: [
       { number: '1', title: '1. Abschnitt - Allgemeine Vorschriften', title_en: 'Section 1 - General Provisions', section_range: [1, 1] },
@@ -139,23 +142,23 @@ const LAW_STRUCTURES = {
       { number: '5', title: '5. Abschnitt - Schlussvorschriften', title_en: 'Section 5 - Final Provisions', section_range: [15, 23] },
     ],
     ArbZG: [
+      // Official: https://www.buzer.de/ArbZG.htm
       { number: '1', title: '1. Abschnitt - Allgemeine Vorschriften', title_en: 'Section 1 - General Provisions', section_range: [1, 2] },
       { number: '2', title: '2. Abschnitt - Werktägliche Arbeitszeit und arbeitsfreie Zeiten', title_en: 'Section 2 - Daily Working Time and Rest Periods', section_range: [3, 8] },
       { number: '3', title: '3. Abschnitt - Sonn- und Feiertagsruhe', title_en: 'Section 3 - Sunday and Holiday Rest', section_range: [9, 13] },
       { number: '4', title: '4. Abschnitt - Ausnahmen in besonderen Fällen', title_en: 'Section 4 - Exceptions in Special Cases', section_range: [14, 15] },
-      { number: '5', title: '5. Abschnitt - Durchführung des Gesetzes', title_en: 'Section 5 - Implementation of the Act', section_range: [16, 18] },
-      { number: '6', title: '6. Abschnitt - Sonderregelungen', title_en: 'Section 6 - Special Regulations', section_range: [19, 21] },
+      { number: '5', title: '5. Abschnitt - Durchführung des Gesetzes', title_en: 'Section 5 - Implementation of the Act', section_range: [16, 17] },
+      { number: '6', title: '6. Abschnitt - Sonderregelungen', title_en: 'Section 6 - Special Regulations', section_range: [18, 21.99] }, // §§ 18-21a
       { number: '7', title: '7. Abschnitt - Straf- und Bußgeldvorschriften', title_en: 'Section 7 - Penal and Fine Provisions', section_range: [22, 23] },
-      { number: '8', title: '8. Abschnitt - Schlussvorschriften', title_en: 'Section 8 - Final Provisions', section_range: [24, 27] },
+      { number: '8', title: '8. Abschnitt - Schlussvorschriften', title_en: 'Section 8 - Final Provisions', section_range: [24, 26] },
     ],
     JArbSchG: [
+      // Official: https://www.buzer.de/JArbSchG.htm - has 5 Abschnitte, 3rd has 4 Titel inside
       { number: '1', title: '1. Abschnitt - Allgemeine Vorschriften', title_en: 'Section 1 - General Provisions', section_range: [1, 4] },
       { number: '2', title: '2. Abschnitt - Beschäftigung von Kindern', title_en: 'Section 2 - Employment of Children', section_range: [5, 7] },
-      { number: '3', title: '3. Abschnitt - Beschäftigung Jugendlicher', title_en: 'Section 3 - Employment of Young Persons', section_range: [8, 46] },
-      { number: '4', title: '4. Abschnitt - Gesundheitliche Betreuung', title_en: 'Section 4 - Health Care', section_range: [32, 46] },
-      { number: '5', title: '5. Abschnitt - Durchführung des Gesetzes', title_en: 'Section 5 - Implementation of the Act', section_range: [47, 58] },
-      { number: '6', title: '6. Abschnitt - Straf- und Bußgeldvorschriften', title_en: 'Section 6 - Penal and Fine Provisions', section_range: [58, 60] },
-      { number: '7', title: '7. Abschnitt - Schlussvorschriften', title_en: 'Section 7 - Final Provisions', section_range: [61, 75] },
+      { number: '3', title: '3. Abschnitt - Beschäftigung Jugendlicher', title_en: 'Section 3 - Employment of Young Persons', section_range: [8, 46] }, // Contains 4 Titel: §§ 8-21b, 22-27, 28-31, 32-46
+      { number: '4', title: '4. Abschnitt - Durchführung des Gesetzes', title_en: 'Section 4 - Implementation of the Act', section_range: [47, 60] },
+      { number: '5', title: '5. Abschnitt - Schlussvorschriften', title_en: 'Section 5 - Final Provisions', section_range: [61, 72] },
     ],
     ArbStättV: [
       { number: '1', title: '1. Abschnitt - Ziel, Anwendungsbereich, Begriffsbestimmungen', title_en: 'Section 1 - Purpose, Scope, Definitions', section_range: [1, 2] },

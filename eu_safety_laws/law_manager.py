@@ -1341,6 +1341,7 @@ STRUCTURE_BAUKG = [
 ]
 
 # Official structure: Germany ArbSchG (Arbeitsschutzgesetz)
+# Source: https://www.buzer.de/ArbSchG.htm
 STRUCTURE_ARBSCHG = [
     {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
     {"number": "2", "title": "Zweiter Abschnitt - Pflichten des Arbeitgebers", "title_en": "Second Section - Employer Obligations", "section_range": (3, 14)},
@@ -1350,7 +1351,52 @@ STRUCTURE_ARBSCHG = [
     {"number": "6", "title": "Sechster Abschnitt - Schlußvorschriften", "title_en": "Sixth Section - Final Provisions", "section_range": (21, 26)},
 ]
 
+# Official structure: Germany ASiG (Arbeitssicherheitsgesetz)
+# Source: https://www.buzer.de/ASiG.htm
+STRUCTURE_ASIG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 1)},
+    {"number": "2", "title": "Zweiter Abschnitt - Betriebsärzte", "title_en": "Second Section - Company Physicians", "section_range": (2, 4)},
+    {"number": "3", "title": "Dritter Abschnitt - Fachkräfte für Arbeitssicherheit", "title_en": "Third Section - Safety Specialists", "section_range": (5, 7)},
+    {"number": "4", "title": "Vierter Abschnitt - Gemeinsame Vorschriften", "title_en": "Fourth Section - Common Provisions", "section_range": (8, 14)},
+    {"number": "5", "title": "Fünfter Abschnitt - Schlussvorschriften", "title_en": "Fifth Section - Final Provisions", "section_range": (15, 23)},
+]
+
+# Official structure: Germany ArbZG (Arbeitszeitgesetz)
+# Source: https://www.buzer.de/ArbZG.htm
+STRUCTURE_ARBZG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Werktägliche Arbeitszeit und arbeitsfreie Zeiten", "title_en": "Second Section - Daily Working Time and Rest Periods", "section_range": (3, 8)},
+    {"number": "3", "title": "Dritter Abschnitt - Sonn- und Feiertagsruhe", "title_en": "Third Section - Sunday and Holiday Rest", "section_range": (9, 13)},
+    {"number": "4", "title": "Vierter Abschnitt - Ausnahmen in besonderen Fällen", "title_en": "Fourth Section - Exceptions in Special Cases", "section_range": (14, 15)},
+    {"number": "5", "title": "Fünfter Abschnitt - Durchführung des Gesetzes", "title_en": "Fifth Section - Implementation of the Act", "section_range": (16, 17)},
+    {"number": "6", "title": "Sechster Abschnitt - Sonderregelungen", "title_en": "Sixth Section - Special Regulations", "section_range": (18, 21.99)},
+    {"number": "7", "title": "Siebter Abschnitt - Straf- und Bußgeldvorschriften", "title_en": "Seventh Section - Penal and Fine Provisions", "section_range": (22, 23)},
+    {"number": "8", "title": "Achter Abschnitt - Schlussvorschriften", "title_en": "Eighth Section - Final Provisions", "section_range": (24, 26)},
+]
+
+# Official structure: Germany JArbSchG (Jugendarbeitsschutzgesetz)
+# Source: https://www.buzer.de/JArbSchG.htm - has 5 Abschnitte, 3rd has 4 Titel inside
+STRUCTURE_JARBSCHG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 4)},
+    {"number": "2", "title": "Zweiter Abschnitt - Beschäftigung von Kindern", "title_en": "Second Section - Employment of Children", "section_range": (5, 7)},
+    {"number": "3", "title": "Dritter Abschnitt - Beschäftigung Jugendlicher", "title_en": "Third Section - Employment of Young Persons", "section_range": (8, 46)},
+    {"number": "4", "title": "Vierter Abschnitt - Durchführung des Gesetzes", "title_en": "Fourth Section - Implementation of the Act", "section_range": (47, 60)},
+    {"number": "5", "title": "Fünfter Abschnitt - Schlussvorschriften", "title_en": "Fifth Section - Final Provisions", "section_range": (61, 72)},
+]
+
+# Official structure: Germany MuSchG (Mutterschutzgesetz)
+# Source: https://www.buzer.de/MuSchG.htm
+STRUCTURE_MUSCHG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gesundheitsschutz", "title_en": "Second Section - Health Protection", "section_range": (3, 16)},
+    {"number": "3", "title": "Dritter Abschnitt - Kündigungsschutz", "title_en": "Third Section - Dismissal Protection", "section_range": (17, 17)},
+    {"number": "4", "title": "Vierter Abschnitt - Leistungen", "title_en": "Fourth Section - Benefits", "section_range": (18, 25)},
+    {"number": "5", "title": "Fünfter Abschnitt - Durchführung des Gesetzes", "title_en": "Fifth Section - Implementation of the Act", "section_range": (26, 31)},
+    {"number": "6", "title": "Sechster Abschnitt - Bußgeldvorschriften, Straftaten", "title_en": "Sixth Section - Fines and Criminal Offences", "section_range": (32, 34)},
+]
+
 # Official structure: Netherlands Arbowet (Arbeidsomstandighedenwet)
+# Source: https://wetten.overheid.nl/BWBR0010346
 STRUCTURE_ARBOWET = [
     {"number": "1", "title": "Hoofdstuk 1 - Definities en toepassingsgebied", "title_en": "Chapter 1 - Definitions and Scope", "section_range": (1, 2)},
     {"number": "2", "title": "Hoofdstuk 2 - Arbeidsomstandighedenbeleid", "title_en": "Chapter 2 - Working Conditions Policy", "section_range": (3, 11)},
@@ -1360,6 +1406,32 @@ STRUCTURE_ARBOWET = [
     {"number": "6", "title": "Hoofdstuk 6 - Vrijstellingen, ontheffingen en beroep", "title_en": "Chapter 6 - Exemptions, Dispensations and Appeals", "section_range": (30, 31)},
     {"number": "7", "title": "Hoofdstuk 7 - Sancties", "title_en": "Chapter 7 - Sanctions", "section_range": (32, 43)},
     {"number": "8", "title": "Hoofdstuk 8 - Overgangs- en slotbepalingen", "title_en": "Chapter 8 - Transitional and Final Provisions", "section_range": (44, 100)},
+]
+
+# Official structure: Netherlands Arbeidstijdenwet
+# Source: https://wetten.overheid.nl/BWBR0007671
+STRUCTURE_ARBEIDSTIJDENWET = [
+    {"number": "1", "title": "Hoofdstuk 1 - Algemene bepalingen", "title_en": "Chapter 1 - General Provisions", "section_range": (1, 1.99)},
+    {"number": "2", "title": "Hoofdstuk 2 - Arbeids- en rusttijden", "title_en": "Chapter 2 - Working and Rest Times", "section_range": (2, 2.99)},
+    {"number": "3", "title": "Hoofdstuk 3 - Nachtarbeid", "title_en": "Chapter 3 - Night Work", "section_range": (3, 3.99)},
+    {"number": "4", "title": "Hoofdstuk 4 - Consignatie", "title_en": "Chapter 4 - On-Call Duty", "section_range": (4, 4.99)},
+    {"number": "5", "title": "Hoofdstuk 5 - Bijzondere bepalingen", "title_en": "Chapter 5 - Special Provisions", "section_range": (5, 5.99)},
+    {"number": "6", "title": "Hoofdstuk 6 - Handhaving", "title_en": "Chapter 6 - Enforcement", "section_range": (6, 6.99)},
+    {"number": "7", "title": "Hoofdstuk 7 - Slotbepalingen", "title_en": "Chapter 7 - Final Provisions", "section_range": (7, 100)},
+]
+
+# Official structure: Netherlands Arbobesluit (Arbeidsomstandighedenbesluit)
+# Source: https://wetten.overheid.nl/BWBR0008498
+STRUCTURE_ARBOBESLUIT = [
+    {"number": "1", "title": "Hoofdstuk 1 - Definities en toepassingsgebied", "title_en": "Chapter 1 - Definitions and Scope", "section_range": (1, 1.99)},
+    {"number": "2", "title": "Hoofdstuk 2 - Arbozorg en organisatie van de arbeid", "title_en": "Chapter 2 - Occupational Safety and Work Organization", "section_range": (2, 2.99)},
+    {"number": "3", "title": "Hoofdstuk 3 - Inrichting arbeidsplaatsen", "title_en": "Chapter 3 - Workplace Layout", "section_range": (3, 3.99)},
+    {"number": "4", "title": "Hoofdstuk 4 - Gevaarlijke stoffen en biologische agentia", "title_en": "Chapter 4 - Hazardous Substances and Biological Agents", "section_range": (4, 4.99)},
+    {"number": "5", "title": "Hoofdstuk 5 - Fysieke belasting", "title_en": "Chapter 5 - Physical Strain", "section_range": (5, 5.99)},
+    {"number": "6", "title": "Hoofdstuk 6 - Fysische factoren", "title_en": "Chapter 6 - Physical Factors", "section_range": (6, 6.99)},
+    {"number": "7", "title": "Hoofdstuk 7 - Arbeidsmiddelen en specifieke werkzaamheden", "title_en": "Chapter 7 - Work Equipment and Specific Activities", "section_range": (7, 7.99)},
+    {"number": "8", "title": "Hoofdstuk 8 - Persoonlijke beschermingsmiddelen en veiligheids- en gezondheidssignalering", "title_en": "Chapter 8 - PPE and Safety/Health Signage", "section_range": (8, 8.99)},
+    {"number": "9", "title": "Hoofdstuk 9 - Verplichtingen, strafbare feiten, bestuursrechtelijke bepalingen", "title_en": "Chapter 9 - Obligations, Criminal Offences, Administrative Provisions", "section_range": (9, 100)},
 ]
 
 LAW_STRUCTURES = {
@@ -1381,8 +1453,18 @@ LAW_STRUCTURES = {
         "GefStoffV": STRUCTURE_GEFSTOFFV,
         "BauKG": STRUCTURE_BAUKG,
     },
-    "DE": {"ArbSchG": STRUCTURE_ARBSCHG},
-    "NL": {"Arbowet": STRUCTURE_ARBOWET},
+    "DE": {
+        "ArbSchG": STRUCTURE_ARBSCHG,
+        "ASiG": STRUCTURE_ASIG,
+        "ArbZG": STRUCTURE_ARBZG,
+        "JArbSchG": STRUCTURE_JARBSCHG,
+        "MuSchG": STRUCTURE_MUSCHG,
+    },
+    "NL": {
+        "Arbowet": STRUCTURE_ARBOWET,
+        "Arbeidstijdenwet": STRUCTURE_ARBEIDSTIJDENWET,
+        "Arbobesluit": STRUCTURE_ARBOBESLUIT,
+    },
 }
 
 
