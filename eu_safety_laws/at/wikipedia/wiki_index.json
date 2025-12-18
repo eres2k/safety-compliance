@@ -1,7 +1,7 @@
 {
   "country": "AT",
   "language": "de",
-  "scraped_at": "2025-12-18T02:51:21.871043",
+  "scraped_at": "2025-12-18T03:15:53.019215",
   "articles": {
     "ASchG": {
       "title": "ArbeitnehmerInnenschutzgesetz",
@@ -50,23 +50,23 @@
       "title": "Arbeitsschutz",
       "url": "https://de.wikipedia.org/wiki/Arbeitsschutz",
       "summary": "Arbeitsschutzsind in derArbeitswissenschaftund imArbeitsrechtalle Maßnahmen desArbeitgeberszur Verhütung vonArbeitsunfällenund arbeitsbedingtenGesundheitsgefahreneinschließlich Maßnahmen der menschengerechtenArbeitsgestaltung.\nDieseLegaldefinitionaus§ 2Abs. 1ArbSchGlegt das Tätigkeitsgebiet der Arbeitgeber beim Arbeitsschutz fest. Arbeitsschutz ist einePrävention, durch die Arbeitsunfälle verhindert undgesundheitsgefährdendeArbeitsbelastungenundArbeitsumgebungenvermieden werden sollen. In diesem",
-      "reason": "General workplace safety overview and introduction to Austrian workplace safety law. It will provide the necessary background.",
+      "reason": "General workplace safety overview providing context for Austrian labor protection laws.",
       "priority": "high"
     },
     {
       "law_abbr": "ASchG",
-      "title": "Risikobeurteilung",
-      "url": "https://de.wikipedia.org/wiki/Risikobeurteilung",
-      "summary": "DieRisikobeurteilung(englischrisk assessment) ist im Rahmen desRisikomanagementsvonUnternehmendieBeurteilungsämtlicher vorhandener technischerRisiken. Wirtschaftliche und Projektrisiken sind nicht Teil dieser Betrachtung.",
-      "reason": "Risk assessment (Risikobeurteilung) is a fundamental concept in the ASchG and crucial for warehouse safety.",
-      "priority": "high"
+      "title": "Persönliche Schutzausrüstung",
+      "url": "https://de.wikipedia.org/wiki/Persönliche_Schutzausrüstung",
+      "summary": "Persönliche Schutzausrüstung(PSA) bezeichnet imArbeitsschutzund in derVerkehrssicherheitSchutzkleidungund andere Ausstattungsstücke zum Selbstschutz bei potentiell gesundheitsgefährdendenTätigkeiten.",
+      "reason": "Personal protective equipment is crucial in logistics environments.",
+      "priority": "medium"
     },
     {
       "law_abbr": "ASchG",
-      "title": "Arbeitsinspektion",
-      "url": "https://de.wikipedia.org/wiki/Arbeitsinspektion",
-      "summary": "Arbeitsinspektionist in vielenStaatendie Bezeichnung derBehörde, welche die Erfüllung gesetzlicher Bestimmungen zumArbeitsschutzinUnternehmenüberwacht. Die Bezeichnung dieser Kontrollbehörde ist je nachStaatunterschiedlich, z. B. in Deutschland alsGewerbeaufsicht, in Österreich alsArbeitsinspektoratoder inGroßbritannienalsHealth and Safety Executive(HSE).",
-      "reason": "The Arbeitsinspektion is the Austrian labor inspectorate and enforces the ASchG. Understanding its role is important.",
+      "title": "Gefährdungsbeurteilung",
+      "url": "https://de.wikipedia.org/wiki/Gefährdungsbeurteilung",
+      "summary": "DieGefährdungsbeurteilungbeschreibt den Prozess der systematischen Ermittlung und Bewertung aller relevanten Gefährdungen, denen die Beschäftigten im Zuge ihrer beruflichen Tätigkeit ausgesetzt sind. Hinzu kommen die Ableitung und Umsetzung aller zum Schutz der Sicherheit und der Gesundheit erforderlichen Maßnahmen, die anschließend hinsichtlich ihrer Wirksamkeit überprüft werden müssen. Das Ziel besteht darin, Gefährdungen bei der Arbeit frühzeitig zu erkennen und diesen präventiv, das heißt no",
+      "reason": "Risk assessment is a foundational element of Austrian safety regulations.",
       "priority": "medium"
     }
   ]
