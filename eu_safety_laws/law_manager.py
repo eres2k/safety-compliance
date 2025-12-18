@@ -1079,8 +1079,117 @@ def interactive_law_menu(country: str, check_updates: bool = False) -> List[str]
 
 
 # =============================================================================
-# Official Law Structures
+# Official Law Structures and Section Titles
 # =============================================================================
+
+# Official section titles for Austrian laws
+# Used during scraping to ensure proper titles are applied
+AT_SECTION_TITLES = {
+    'ASCHG': {
+        '1': 'Geltungsbereich', '2': 'Begriffsbestimmungen',
+        '3': 'Allgemeine Pflichten der Arbeitgeber',
+        '4': 'Ermittlung und Beurteilung der Gefahren; Festlegung von Maßnahmen',
+        '4a': 'Präventivdienste für Baustellen',
+        '5': 'Sicherheits- und Gesundheitsschutzdokumente',
+        '5a': 'Ermittlung und Beurteilung der Gefahren bei Baustellen',
+        '6': 'Einsatz der Arbeitnehmer', '7': 'Grundsätze der Gefahrenverhütung',
+        '7a': 'Koordination bei Baustellen', '8': 'Koordination', '8a': 'Vorankündigung',
+        '9': 'Überlassung', '10': 'Bestellung von Sicherheitsvertrauenspersonen',
+        '10a': 'Sicherheitsvertrauenspersonen auf Baustellen',
+        '11': 'Aufgaben, Information und Beiziehung der Sicherheitsvertrauenspersonen',
+        '12': 'Information', '13': 'Anhörung und Beteiligung der Arbeitnehmer',
+        '14': 'Unterweisung', '15': 'Pflichten der Arbeitnehmer',
+        '16': 'Besondere Pflichten der Arbeitnehmer',
+    },
+    'KJBG': {
+        '0': 'Präambel', '1': 'Geltungsbereich', '2': 'Begriffsbestimmungen', '3': 'Jugendliche',
+        '4': 'Verbot der Kinderarbeit', '5': 'Kinder dürfen',
+        '5a': 'Bewilligungspflichtige Beschäftigung', '6': 'Beschäftigungsverbote für Jugendliche',
+        '7': 'Gefährliche Arbeiten', '8': 'Akkord- und Fließarbeit',
+        '9': 'Ärztliche Untersuchungen', '10': 'Untersuchungsbefund',
+        '11': 'Kosten der Untersuchungen', '12': 'Dauer der Arbeitszeit',
+        '13': 'Verbot der Nachtarbeit', '14': 'Ausnahmen vom Verbot der Nachtarbeit',
+        '15': 'Wochenendruhe und Wochenruhe', '16': 'Ausnahmen von der Wochenendruhe',
+        '17': 'Ruhepausen', '17a': 'Ruhepausen bei Schichtarbeit', '18': 'Tägliche Ruhezeit',
+        '19': 'Überstunden', '20': 'Ausnahmen bei vorübergehenden Arbeiten',
+        '21': 'Verzeichnisse und Aushänge', '22': 'Verlängerter Urlaub',
+        '23': 'Strafbestimmungen', '24': 'Zuständigkeit', '25': 'Nichtigkeitsbeschwerde',
+        '26': 'Arbeitsinspektorate', '27': 'Befugnisse der Arbeitsinspektorate',
+        '28': 'Verweisungen', '29': 'Durchführung', '30': 'Inkrafttreten',
+    },
+    'AZG': {
+        '1': 'Geltungsbereich', '2': 'Ausnahmen vom Geltungsbereich',
+        '3': 'Begriff der Arbeitszeit', '4': 'Normalarbeitszeit',
+        '4a': 'Andere Verteilung der Normalarbeitszeit', '4b': 'Gleitende Arbeitszeit',
+        '5': 'Verlängerte Normalarbeitszeit', '5a': 'Erhöhte Arbeitsbereitschaft',
+        '6': 'Höchstgrenzen der Arbeitszeit', '7': 'Überstundenarbeit',
+        '8': 'Überstundenentgelt', '9': 'Arbeitszeiteinteilung', '9a': 'Umkleidezeiten',
+        '10': 'Durchrechnungszeitraum', '11': 'Ruhepausen', '12': 'Ruhezeiten',
+        '12a': 'Wöchentliche Ruhezeit', '13': 'Rufbereitschaft',
+        '14': 'Kollektivvertragliche Regelungen', '15': 'Begriffsbestimmungen',
+        '16': 'Nachtarbeit', '17': 'Schichtarbeit', '17a': 'Wechselschicht',
+        '18': 'Gesundheitsuntersuchungen', '19': 'Nacht-Schwerarbeit',
+    },
+    'MSCHG': {
+        '1': 'Geltungsbereich', '2': 'Mitteilungspflicht',
+        '3': 'Beschäftigungsverbot vor der Entbindung',
+        '4': 'Individuelles Beschäftigungsverbot', '5': 'Beschäftigungsverbot nach der Entbindung',
+        '6': 'Stillende Mütter', '7': 'Beschäftigungsverbote und -beschränkungen',
+        '8': 'Verbot von Nachtarbeit', '9': 'Verbot von Sonntagsarbeit',
+        '10': 'Verbot von Überstundenarbeit', '10a': 'Kündigungsschutz',
+        '11': 'Kündigung während der Schwangerschaft', '12': 'Kündigung nach der Entbindung',
+        '13': 'Entlassungsschutz', '14': 'Einvernehmen mit Belegschaftsorganen', '15': 'Karenz',
+    },
+    'ARG': {
+        '1': 'Geltungsbereich', '2': 'Begriffsbestimmungen', '3': 'Wochenendruhe',
+        '4': 'Wochenruhe', '5': 'Ersatzruhe', '6': 'Feiertagsruhe', '7': 'Feiertage',
+        '7a': 'Ausnahmen an Feiertagen', '8': 'Ausnahmen von der Wochenend- und Feiertagsruhe',
+        '9': 'Behördliche Ausnahmen', '10': 'Strafbestimmungen', '11': 'Durchführung',
+        '12': 'Inkrafttreten',
+    },
+}
+
+# Official section titles for Dutch laws
+NL_SECTION_TITLES = {
+    'ARBOWET': {
+        '1': 'Definities', '2': 'Uitbreiding toepassingsgebied', '3': 'Arbobeleid',
+        '4': 'Aanpassing arbeidsplaats werknemer met structurele functionele beperking',
+        '5': "Inventarisatie en evaluatie van risico's",
+        '6': 'Voorkoming en beperking van zware ongevallen',
+        '7': 'Informatie aan het publiek', '8': 'Voorlichting en onderricht',
+        '9': 'Melding en registratie van arbeidsongevallen en beroepsziekten',
+        '10': 'Voorkomen van gevaar voor derden', '11': 'Algemene verplichtingen van de werknemers',
+        '12': 'Samenwerking, overleg en bijzondere rechten van werknemers',
+        '13': 'Bijstand deskundige werknemers', '14': 'Maatwerkregeling aanvullende deskundige bijstand',
+        '14a': 'Vangnetregeling aanvullende deskundige bijstand',
+        '15': 'Deskundige bijstand op het gebied van bedrijfshulpverlening',
+    },
+}
+
+
+def get_official_section_title(abbrev: str, section_num: str, country: str = "AT") -> Optional[str]:
+    """Get official section title from the title mappings."""
+    title_map = AT_SECTION_TITLES if country == "AT" else NL_SECTION_TITLES
+    law_titles = title_map.get(abbrev.upper(), {})
+    return law_titles.get(str(section_num).lower()) or law_titles.get(str(section_num))
+
+
+def apply_official_section_titles(sections: List[Dict], abbrev: str, country: str = "AT") -> List[Dict]:
+    """Apply official section titles to scraped sections."""
+    for section in sections:
+        num = section.get('number', '')
+        official_title = get_official_section_title(abbrev, num, country)
+        if official_title:
+            # Format the title appropriately
+            if country == "NL":
+                section['title'] = f"Artikel {num}. {official_title}"
+            else:
+                if num == '0' or num.lower() in ('präambel', 'langtitel'):
+                    section['title'] = official_title
+                else:
+                    section['title'] = f"§ {num}. {official_title}"
+    return sections
+
 
 # German ordinal words to numbers
 GERMAN_ORDINALS = {
@@ -1966,6 +2075,9 @@ class ATScraper(Scraper):
 
     def _organize_into_chapters(self, sections: List[Dict], abbrev: str) -> List[Dict]:
         """Organize sections into official chapter structure."""
+        # Apply official section titles from the title mappings
+        sections = apply_official_section_titles(sections, abbrev, "AT")
+
         structure = LAW_STRUCTURES.get("AT", {}).get(abbrev, [])
 
         if not structure:
@@ -2997,6 +3109,9 @@ class NLScraper(Scraper):
 
     def _organize_into_chapters(self, sections: List[Dict], abbrev: str) -> List[Dict]:
         """Organize sections into official chapter structure (Hoofdstukken)."""
+        # Apply official section titles from the title mappings
+        sections = apply_official_section_titles(sections, abbrev, "NL")
+
         structure = LAW_STRUCTURES.get("NL", {}).get(abbrev, [])
 
         if not structure:

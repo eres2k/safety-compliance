@@ -68,8 +68,8 @@ const LANGUAGE_LABELS = {
 // AI Response Cache - Reduces token usage
 // ============================================
 // Increment CACHE_VERSION when cache format changes to invalidate old entries
-// v3: Changed to use framework-derived language for law summaries (AT→de, NL→nl)
-const CACHE_VERSION = 'v3_'
+// v4: Changed to use user's language setting from site preferences
+const CACHE_VERSION = 'v4_'
 const CACHE_PREFIX = 'ai_cache_' + CACHE_VERSION
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
 
@@ -531,16 +531,15 @@ ${lawText.substring(0, 4000)}`
 // Feature 2: Legalese Complexity Slider - Simplify legal text
 // Combined function that returns BOTH levels in a single API call (saves ~50% tokens)
 export async function simplifyForBothLevels(lawText, sectionTitle, framework, language) {
-  // Use the framework's native language for law content summaries
-  // This ensures Austrian laws are summarized in German, Dutch laws in Dutch, etc.
-  const outputLang = getLawOutputLanguage(framework, language)
+  // Use the user's language preference from site settings
+  const outputLang = language || 'en'
 
   // Check cache first - include outputLang in cache key since it affects output
   const cacheKey = generateCacheKey('simplify_both', lawText.substring(0, 500), sectionTitle, framework, outputLang)
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  // Get language-specific labels based on the output language
+  // Get language-specific labels based on the user's language setting
   const labels = LANGUAGE_LABELS[outputLang] || LANGUAGE_LABELS.en
 
   // Validate that we have actual content to analyze
