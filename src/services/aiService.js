@@ -429,52 +429,71 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Create TWO COMPLETELY DIFFERENT versions of this regulation.
+  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Analyze THIS SPECIFIC legal text and create TWO COMPLETELY DIFFERENT versions.
+
+CRITICAL: You MUST analyze the ACTUAL TEXT PROVIDED below. DO NOT give generic WHS advice.
+- If this section is about a committee/administrative body → explain what THIS committee does
+- If this section defines terms → list THESE specific definitions
+- If this section describes procedures → explain THIS specific procedure
+- If this section has no direct WHS obligations → say "This section is administrative/procedural" and explain what it actually covers
 
 ===VERSION 1: WHS SUMMARY (for safety managers)===
-Write a professional WHS summary with these EXACT sections:
+Analyze THE SPECIFIC TEXT and write:
 
-**Key WHS obligations:**
-- [List specific compliance requirements WITH LEGAL CITATIONS like (§ 3 Abs. 1), (§ 4 Z 2), or (Art. 3.1)]
+**What this section covers:**
+- [1-2 sentences describing what THIS SPECIFIC section is about]
 
-**Compliance deadlines:**
-- [List specific deadlines, frequencies, or "Ongoing" if continuous - CITE the paragraph]
+**Key requirements from this text:**
+- [List ACTUAL requirements found in THIS text WITH exact citations like (§ X Abs. Y)]
+- [If no direct requirements, write "Administrative provision - see details below"]
 
-**Documentation required:**
-- [List required records and documentation WITH legal source citation]
+**Compliance relevance:**
+- [How does THIS specific text affect Amazon operations? Be specific!]
+- [If it's about a committee/definitions/procedures, explain its indirect relevance]
 
-IMPORTANT: Every obligation MUST include the exact legal reference (e.g., "§ 3 Abs. 2 Z 1" for AT/DE, "Artikel 3.1" for NL).
-Keep it under 150 words. Focus on actionable compliance for Amazon logistics.
+**Documentation/Actions needed:**
+- [What does THIS section require? Cite the paragraph!]
+- [If administrative, write "No direct documentation requirements"]
+
+IMPORTANT:
+- Reference the ACTUAL content of this law section
+- Use exact citations from THIS text (§ X Abs. Y, Punkt Z)
+- If the section is about committees, definitions, or administrative procedures, SAY SO
+- Do NOT give generic WHS advice that isn't in this text
 
 ===VERSION 2: EXPLAIN LIKE I'M 5 (completely different!)===
-Explain this like you're talking to a small child who knows nothing about work or laws:
+Explain what THIS SPECIFIC TEXT is about like you're talking to a small child:
 - Use words a 5-year-old knows (no: compliance, obligations, regulations, employee, employer)
-- Think: "The boss has to keep workers safe" instead of "employer obligations"
+- Focus on what THIS section actually says, not generic safety rules
 - Maximum 5 SHORT bullet points with fun emoji
 - Each point under 10 words
 - Be playful and simple!
 
-Example good ELI5: "👷 Big people at work need helmets to protect their heads!"
-Example bad ELI5: "Employers must ensure PPE compliance." (too formal!)
+Example for a committee section: "👥 Some grown-ups meet to talk about keeping work safe!"
+Example for definitions: "📖 This part explains what big words mean!"
+Example for safety rules: "👷 Big people at work need helmets to protect their heads!"
 
 Section: ${sectionTitle || 'Regulation'}
 
-Legal text:
+Legal text to analyze:
 ${lawText.substring(0, 2500)}
 
 OUTPUT FORMAT (use these EXACT headers on their own line):
 ---MANAGER---
-**Key WHS obligations:**
-- [obligations here]
+**What this section covers:**
+- [description of THIS section]
 
-**Compliance deadlines:**
-- [deadlines here]
+**Key requirements from this text:**
+- [actual requirements or "Administrative provision"]
 
-**Documentation required:**
-- [documentation here]
+**Compliance relevance:**
+- [relevance to operations]
+
+**Documentation/Actions needed:**
+- [actions or "No direct requirements"]
 
 ---ASSOCIATE---
-[5 simple emoji bullet points for a child]`
+[5 simple emoji bullet points about THIS specific section]`
 
   const response = await generateAIResponse(prompt, framework, language)
 
@@ -489,27 +508,27 @@ OUTPUT FORMAT (use these EXACT headers on their own line):
   if (managerMatch) result.manager = managerMatch[1].trim()
   if (associateMatch) result.associate = associateMatch[1].trim()
 
-  // Fallback if parsing fails - try to create meaningful defaults
+  // Fallback if parsing fails - try to create meaningful defaults that reference the section
   if (!result.manager && !result.associate) {
     // If no headers found, check if content looks like manager or associate style
-    const hasManagerStyle = normalizedResponse.match(/(?:obligations|deadlines|documentation|compliance)/i)
-    const hasELI5Style = normalizedResponse.match(/[👷⚠️✅❌🚫💡🦺🏥📋]/)
+    const hasManagerStyle = normalizedResponse.match(/(?:obligations|deadlines|documentation|compliance|covers|requirements)/i)
+    const hasELI5Style = normalizedResponse.match(/[👷⚠️✅❌🚫💡🦺🏥📋👥📖]/)
 
     if (hasManagerStyle && !hasELI5Style) {
       result.manager = normalizedResponse
-      result.associate = '👉 This rule helps keep workers safe at work.\n⚠️ The boss must follow safety rules.\n✅ Everyone should know these rules.'
+      result.associate = `📖 This section "${sectionTitle}" explains important rules.\n🔍 Read it carefully to understand what it says.\n❓ Ask your manager if you have questions!`
     } else if (hasELI5Style && !hasManagerStyle) {
       result.associate = normalizedResponse
-      result.manager = '**Key WHS obligations:**\n- Review and comply with applicable regulations\n\n**Compliance deadlines:**\n- Ongoing compliance required\n\n**Documentation required:**\n- Maintain compliance records'
+      result.manager = `**What this section covers:**\n- ${sectionTitle || 'See section text'}\n\n**Key requirements from this text:**\n- Review the original text for specific requirements\n\n**Compliance relevance:**\n- Assess based on section content\n\n**Documentation/Actions needed:**\n- Refer to original legal text`
     } else {
-      // Genuinely ambiguous - provide distinct defaults
+      // Genuinely ambiguous - provide distinct defaults that reference the section
       result.manager = normalizedResponse
-      result.associate = '👉 This is a safety rule for work.\n⚠️ It helps keep everyone safe.\n✅ Ask your boss if you have questions!'
+      result.associate = `📖 This part "${sectionTitle}" has important information.\n🔍 Grown-ups need to read it carefully.\n❓ Ask your boss what it means!`
     }
   } else if (!result.manager) {
-    result.manager = '**Key WHS obligations:**\n- Review section for specific requirements\n\n**Compliance deadlines:**\n- Check original text for deadlines\n\n**Documentation required:**\n- Maintain relevant records'
+    result.manager = `**What this section covers:**\n- ${sectionTitle || 'See section text'}\n\n**Key requirements from this text:**\n- Review the original text for specific requirements\n\n**Compliance relevance:**\n- Assess based on section content\n\n**Documentation/Actions needed:**\n- Refer to original legal text`
   } else if (!result.associate) {
-    result.associate = '👉 This is a safety rule for work.\n⚠️ It helps keep everyone safe.\n✅ Ask your boss if you have questions!'
+    result.associate = `📖 This section "${sectionTitle}" explains important rules.\n🔍 Read it carefully to understand.\n❓ Ask your manager if you have questions!`
   }
 
   setCachedResponse(cacheKey, result)

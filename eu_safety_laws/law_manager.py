@@ -1111,13 +1111,14 @@ class Scraper:
         raise NotImplementedError
 
     def fetch_url(self, url: str, timeout: int = None, law_abbr: str = None) -> Optional[str]:
-        """Fetch a URL with retries and exponential backoff."""
+        """Fetch a URL with retries, exponential backoff, and proactive AI URL correction for broken links."""
         if not HAS_REQUESTS:
             log_error("requests package required for scraping. Install with: pip install requests")
             return None
 
         timeout = timeout or CONFIG.request_timeout
         last_http_error = None
+        ai_correction_attempted = False
 
         for attempt in range(CONFIG.max_retries):
             try:
@@ -1131,8 +1132,36 @@ class Scraper:
             except requests.exceptions.HTTPError as e:
                 status = e.response.status_code if e.response else 0
                 reason = e.response.reason if e.response else str(e)
-                log_warning(f"HTTP {status} ({reason}) on attempt {attempt + 1}/{CONFIG.max_retries}")
+                log_warning(f"HTTP {status} ({reason}) on attempt {attempt + 1}/{CONFIG.max_retries}: {url}")
                 last_http_error = status
+
+                # PROACTIVE AI FIX: On first 404/410/403 error, immediately try AI URL correction
+                # Don't wait for all retries to fail - broken links won't fix themselves
+                if not ai_correction_attempted and law_abbr and status in [404, 410, 403]:
+                    ai_correction_attempted = True
+                    log_info(f"🔧 Broken link detected (HTTP {status}) - attempting AI URL correction for {law_abbr}...")
+
+                    ai_result = find_correct_url_with_ai(self.country, law_abbr, url, status)
+
+                    if ai_result and ai_result.get('url'):
+                        new_url = ai_result['url']
+                        log_info(f"🔍 AI found potential fix: {new_url} (confidence: {ai_result.get('confidence', 'unknown')})")
+
+                        # Try fetching the AI-suggested URL
+                        try:
+                            response = requests.get(new_url, timeout=timeout, headers=self.HTTP_HEADERS)
+                            response.raise_for_status()
+
+                            # URL works! Update the database
+                            log_success(f"✅ AI-corrected URL works for {law_abbr}!")
+                            update_source_url(self.country, law_abbr, new_url, ai_result.get('name'))
+
+                            return response.text
+                        except Exception as ai_err:
+                            log_warning(f"❌ AI-suggested URL also failed: {ai_err}")
+                    else:
+                        log_warning(f"❌ AI could not find alternative URL for {law_abbr}")
+
             except requests.exceptions.RequestException as e:
                 # Catch all other request exceptions with useful info
                 log_warning(f"Request failed on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}: {e}")
@@ -1145,27 +1174,25 @@ class Scraper:
 
         log_error(f"Failed to fetch after {CONFIG.max_retries} attempts: {url}")
 
-        # If we have a law abbreviation and an HTTP error, try AI URL correction
-        if law_abbr and last_http_error and last_http_error in [404, 410, 301, 302, 403]:
-            log_info(f"Attempting AI-based URL correction for {law_abbr}...")
+        # Final attempt: If we haven't tried AI correction yet (e.g., for 301/302 redirects)
+        if not ai_correction_attempted and law_abbr and last_http_error and last_http_error in [301, 302]:
+            log_info(f"🔧 Redirect detected (HTTP {last_http_error}) - attempting AI URL correction for {law_abbr}...")
             ai_result = find_correct_url_with_ai(self.country, law_abbr, url, last_http_error)
 
             if ai_result and ai_result.get('url'):
                 new_url = ai_result['url']
-                log_info(f"AI suggested URL: {new_url} - attempting to fetch...")
+                log_info(f"🔍 AI suggested URL: {new_url} - attempting to fetch...")
 
-                # Try fetching the AI-suggested URL
                 try:
                     response = requests.get(new_url, timeout=timeout, headers=self.HTTP_HEADERS)
                     response.raise_for_status()
 
-                    # URL works! Update the database
-                    log_success(f"AI-corrected URL works for {law_abbr}")
+                    log_success(f"✅ AI-corrected URL works for {law_abbr}!")
                     update_source_url(self.country, law_abbr, new_url, ai_result.get('name'))
 
                     return response.text
                 except Exception as e:
-                    log_warning(f"AI-suggested URL also failed: {e}")
+                    log_warning(f"❌ AI-suggested URL also failed: {e}")
 
         return None
 
