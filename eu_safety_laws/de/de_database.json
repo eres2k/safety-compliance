@@ -5,7 +5,8 @@
     "document_count": 9,
     "error_count": 0,
     "cleaned_at": "2025-12-18T18:04:40.350243",
-    "restructured_at": "2025-12-18T18:04:40.390663"
+    "restructured_at": "2025-12-18T18:04:40.390663",
+    "sections_restructured_at": "2025-12-18T17:47:26.298Z"
   },
   "documents": [
     {
@@ -1276,10 +1277,10 @@
       },
       "chapters": [
         {
-          "id": "de-asig-main",
+          "id": "de-asig-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - Allgemeine Vorschriften",
           "sections": [
             {
               "id": "a8e1ea41050a36b7",
@@ -1315,7 +1316,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Betriebsärzte",
+          "title_en": "Section 2 - Betriebsärzte",
+          "sections": [
             {
               "id": "0042ca132560c204",
               "number": "2",
@@ -1425,7 +1434,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Fachkräfte für Arbeitssicherheit",
+          "title_en": "Section 3 - Fachkräfte für Arbeitssicherheit",
+          "sections": [
             {
               "id": "0b9a84b4b14c8f98",
               "number": "5",
@@ -1535,7 +1552,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Gemeinsame Vorschriften",
+          "title_en": "Section 4 - Gemeinsame Vorschriften",
+          "sections": [
             {
               "id": "73aae563c388ac71",
               "number": "8",
@@ -1924,7 +1949,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch-other",
+          "number": "99",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
             {
               "id": "bccf574c6c884ad8",
               "number": "22",
@@ -2038,10 +2071,10 @@
       },
       "chapters": [
         {
-          "id": "de-arbzg-main",
+          "id": "de-arbzg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - Allgemeine Vorschriften",
           "sections": [
             {
               "id": "94fdee2cf3b631c1",
@@ -2117,7 +2150,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Werktägliche Arbeitszeit und arbeitsfreie Zeiten",
+          "title_en": "Section 2 - Werktägliche Arbeitszeit und arbeitsfreie Zeiten",
+          "sections": [
             {
               "id": "f83bb6699b18cd12",
               "number": "3",
@@ -2307,7 +2348,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Sonn- und Feiertagsruhe",
+          "title_en": "Section 3 - Sonn- und Feiertagsruhe",
+          "sections": [
             {
               "id": "9609b01406c858da",
               "number": "9",
@@ -2462,7 +2511,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Ausnahmen in besonderen Fällen",
+          "title_en": "Section 4 - Ausnahmen in besonderen Fällen",
+          "sections": [
             {
               "id": "83353a02260a006d",
               "number": "14",
@@ -2537,7 +2594,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Section 5 - Durchführung des Gesetzes",
+          "sections": [
             {
               "id": "d19fe3aeac7d4049",
               "number": "16",
@@ -2732,47 +2797,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
-            {
-              "id": "4a54b8daa3276d3c",
-              "number": "21a",
-              "title": "§ 21a. Beschäftigung im Straßentransport",
-              "text": "§ 21a. Beschäftigung im Straßentransport:\n(1) Für die Beschäftigung von Arbeitnehmern als Fahrer oder Beifahrer bei Straßenverkehrstätigkeiten im Sinne der Verordnung (EG) Nr. 561/2006 des Europäischen Parlaments und des Rates vom 15. März 2006 zur Harmonisierung bestimmter Sozialvorschriften im Straßenverkehr und zur Änderung der Verordnungen (EWG) Nr. 3821/85 und (EG) Nr. 2135/98 des Rates sowie zur Aufhebung der Verordnung (EWG) Nr. 3820/85 des Rates (ABl. EG Nr. L 102 S. 1) oder des Europäischen Übereinkommens über die Arbeit des im internationalen Straßenverkehr beschäftigten Fahrpersonals (AETR) vom 1. Juli 1970 (BGBl. II 1974 S. 1473) in ihren jeweiligen Fassungen gelten die Vorschriften dieses Gesetzes, soweit nicht die folgenden Absätze abweichende Regelungen enthalten. Die Vorschriften der Verordnung (EG) Nr. 561/2006 und des AETR bleiben unberührt.\n\n(2) Eine Woche im Sinne dieser Vorschriften ist der Zeitraum von Montag 0 Uhr bis Sonntag 24 Uhr.\n\n(3) Abweichend von § 2 Abs. 1 ist keine Arbeitszeit:\n1. die Zeit, während derer sich ein Arbeitnehmer am Arbeitsplatz bereithalten muss, um seine Tätigkeit aufzunehmen,\n2. die Zeit, während derer sich ein Arbeitnehmer bereithalten muss, um seine Tätigkeit auf Anweisung aufnehmen zu können, ohne sich an seinem Arbeitsplatz aufhalten zu müssen;\n3. für Arbeitnehmer, die sich beim Fahren abwechseln, die während der Fahrt neben dem Fahrer oder in einer Schlafkabine verbrachte Zeit.\nFür die Zeiten nach Satz 1 Nr. 1 und 2 gilt dies nur, wenn der Zeitraum und dessen voraussichtliche Dauer im Voraus, spätestens unmittelbar vor Beginn des betreffenden Zeitraums bekannt ist. Die in Satz 1 genannten Zeiten sind keine Ruhezeiten. Die in Satz 1 Nr. 1 und 2 genannten Zeiten sind keine Ruhepausen.\n\n(4) Die Arbeitszeit darf 48 Stunden wöchentlich nicht überschreiten. Sie kann auf bis zu 60 Stunden verlängert werden, wenn innerhalb von vier Kalendermonaten oder 16 Wochen im Durchschnitt 48 Stunden wöchentlich nicht überschritten werden.\n\n(5) Die Ruhezeiten bestimmen sich nach den Vorschriften der Europäischen Gemeinschaften für Kraftfahrer und Beifahrer sowie nach dem AETR. Dies gilt auch für Auszubildende und Praktikanten.\n\n(6) In einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung kann zugelassen werden,\n1. nähere Einzelheiten zu den in Absatz 3 Satz 1 Nr. 1, 2 und Satz 2 genannten Voraussetzungen zu regeln,\n2. abweichend von Absatz 4 sowie den §§ 3 und 6 Abs. 2 die Arbeitszeit festzulegen, wenn objektive, technische oder arbeitszeitorganisatorische Gründe vorliegen. Dabei darf die Arbeitszeit 48 Stunden wöchentlich im Durchschnitt von sechs Kalendermonaten nicht überschreiten.\n§ 7 Abs. 1 Nr. 2 und Abs. 2a gilt nicht. § 7 Abs. 3 gilt entsprechend.\n\n(7) Der Arbeitgeber ist verpflichtet, die Arbeitszeit der Arbeitnehmer aufzuzeichnen. Die Aufzeichnungen sind mindestens zwei Jahre aufzubewahren. Der Arbeitgeber hat dem Arbeitnehmer auf Verlangen eine Kopie der Aufzeichnungen seiner Arbeitszeit auszuhändigen.\n\n(8) Zur Berechnung der Arbeitszeit fordert der Arbeitgeber den Arbeitnehmer schriftlich auf, ihm eine Aufstellung der bei einem anderen Arbeitgeber geleisteten Arbeitszeit vorzulegen. Der Arbeitnehmer legt diese Angaben schriftlich vor.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 3
-                },
-                {
-                  "id": "working_hours",
-                  "relevance": "medium",
-                  "match_count": 3
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 4,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 2
-              },
-              "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch6",
+          "number": "6",
+          "title": "Sechster Abschnitt - Sonderregelungen",
+          "title_en": "Section 6 - Sonderregelungen",
+          "sections": [
             {
               "id": "e0cedcdea0bbe35c",
               "number": "22",
@@ -2897,6 +2930,54 @@
               "paragraphs": []
             }
           ]
+        },
+        {
+          "id": "de-arbzg-ch-other",
+          "number": "99",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "4a54b8daa3276d3c",
+              "number": "21a",
+              "title": "§ 21a. Beschäftigung im Straßentransport",
+              "text": "§ 21a. Beschäftigung im Straßentransport:\n(1) Für die Beschäftigung von Arbeitnehmern als Fahrer oder Beifahrer bei Straßenverkehrstätigkeiten im Sinne der Verordnung (EG) Nr. 561/2006 des Europäischen Parlaments und des Rates vom 15. März 2006 zur Harmonisierung bestimmter Sozialvorschriften im Straßenverkehr und zur Änderung der Verordnungen (EWG) Nr. 3821/85 und (EG) Nr. 2135/98 des Rates sowie zur Aufhebung der Verordnung (EWG) Nr. 3820/85 des Rates (ABl. EG Nr. L 102 S. 1) oder des Europäischen Übereinkommens über die Arbeit des im internationalen Straßenverkehr beschäftigten Fahrpersonals (AETR) vom 1. Juli 1970 (BGBl. II 1974 S. 1473) in ihren jeweiligen Fassungen gelten die Vorschriften dieses Gesetzes, soweit nicht die folgenden Absätze abweichende Regelungen enthalten. Die Vorschriften der Verordnung (EG) Nr. 561/2006 und des AETR bleiben unberührt.\n\n(2) Eine Woche im Sinne dieser Vorschriften ist der Zeitraum von Montag 0 Uhr bis Sonntag 24 Uhr.\n\n(3) Abweichend von § 2 Abs. 1 ist keine Arbeitszeit:\n1. die Zeit, während derer sich ein Arbeitnehmer am Arbeitsplatz bereithalten muss, um seine Tätigkeit aufzunehmen,\n2. die Zeit, während derer sich ein Arbeitnehmer bereithalten muss, um seine Tätigkeit auf Anweisung aufnehmen zu können, ohne sich an seinem Arbeitsplatz aufhalten zu müssen;\n3. für Arbeitnehmer, die sich beim Fahren abwechseln, die während der Fahrt neben dem Fahrer oder in einer Schlafkabine verbrachte Zeit.\nFür die Zeiten nach Satz 1 Nr. 1 und 2 gilt dies nur, wenn der Zeitraum und dessen voraussichtliche Dauer im Voraus, spätestens unmittelbar vor Beginn des betreffenden Zeitraums bekannt ist. Die in Satz 1 genannten Zeiten sind keine Ruhezeiten. Die in Satz 1 Nr. 1 und 2 genannten Zeiten sind keine Ruhepausen.\n\n(4) Die Arbeitszeit darf 48 Stunden wöchentlich nicht überschreiten. Sie kann auf bis zu 60 Stunden verlängert werden, wenn innerhalb von vier Kalendermonaten oder 16 Wochen im Durchschnitt 48 Stunden wöchentlich nicht überschritten werden.\n\n(5) Die Ruhezeiten bestimmen sich nach den Vorschriften der Europäischen Gemeinschaften für Kraftfahrer und Beifahrer sowie nach dem AETR. Dies gilt auch für Auszubildende und Praktikanten.\n\n(6) In einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung kann zugelassen werden,\n1. nähere Einzelheiten zu den in Absatz 3 Satz 1 Nr. 1, 2 und Satz 2 genannten Voraussetzungen zu regeln,\n2. abweichend von Absatz 4 sowie den §§ 3 und 6 Abs. 2 die Arbeitszeit festzulegen, wenn objektive, technische oder arbeitszeitorganisatorische Gründe vorliegen. Dabei darf die Arbeitszeit 48 Stunden wöchentlich im Durchschnitt von sechs Kalendermonaten nicht überschreiten.\n§ 7 Abs. 1 Nr. 2 und Abs. 2a gilt nicht. § 7 Abs. 3 gilt entsprechend.\n\n(7) Der Arbeitgeber ist verpflichtet, die Arbeitszeit der Arbeitnehmer aufzuzeichnen. Die Aufzeichnungen sind mindestens zwei Jahre aufzubewahren. Der Arbeitgeber hat dem Arbeitnehmer auf Verlangen eine Kopie der Aufzeichnungen seiner Arbeitszeit auszuhändigen.\n\n(8) Zur Berechnung der Arbeitszeit fordert der Arbeitgeber den Arbeitnehmer schriftlich auf, ihm eine Aufstellung der bei einem anderen Arbeitgeber geleisteten Arbeitszeit vorzulegen. Der Arbeitnehmer legt diese Angaben schriftlich vor.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 3
+                },
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 3
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 2
+              },
+              "paragraphs": []
+            }
+          ]
         }
       ],
       "content_hash": "c46393c83662e6489dce3b9f998dd742"
@@ -2975,10 +3056,10 @@
       },
       "chapters": [
         {
-          "id": "de-jarbschg-main",
+          "id": "de-jarbschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - Allgemeine Vorschriften",
           "sections": [
             {
               "id": "bc5ac20570f82863",
@@ -3007,20 +3088,6 @@
                   "match_count": 1
                 }
               ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "d9b2bb201700eeb0",
-              "number": "1a",
-              "title": "§ 1a. Formvorgaben",
-              "text": "Soweit in diesem Gesetz schriftliche Handlungen vorgesehen sind, können diese auch in Textform erfolgen. Dies gilt nicht für § 6 Absatz 4 Satz 1 und § 21a Absatz 2.",
-              "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
                 "level": "low",
@@ -3153,6 +3220,54 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Beschäftigung von Kindern",
+          "title_en": "Section 2 - Beschäftigung von Kindern",
+          "sections": [
+            {
+              "id": "381704476bc9202b",
+              "number": "5",
+              "title": "§ 5. Verbot der Beschäftigung von Kindern",
+              "text": "§ 5. Verbot der Beschäftigung von Kindern:\n(1) Die Beschäftigung von Kindern (§ 2 Abs. 1) ist verboten.\n\n(2) Das Verbot des Absatzes 1 gilt nicht für die Beschäftigung von Kindern\n1. zum Zwecke der Beschäftigungs- und Arbeitstherapie,\n2. im Rahmen des Betriebspraktikums während der Vollzeitschulpflicht,\n3. in Erfüllung einer richterlichen Weisung.\nAuf die Beschäftigung finden § 7 Satz 1 Nr. 2 und die §§ 9 bis 46 entsprechende Anwendung.\n\n(3) Das Verbot des Absatzes 1 gilt ferner nicht für die Beschäftigung von Kindern über 13 Jahre mit Einwilligung des Personensorgeberechtigten, soweit die Beschäftigung leicht und für Kinder geeignet ist. Die Beschäftigung ist leicht, wenn sie auf Grund ihrer Beschaffenheit und der besonderen Bedingungen, unter denen sie ausgeführt wird,\n1. die Sicherheit, Gesundheit und Entwicklung der Kinder,\n2. ihren Schulbesuch, ihre Beteiligung an Maßnahmen zur Berufswahlvorbereitung oder Berufsausbildung, die von der zuständigen Stelle anerkannt sind, und\n3. ihre Fähigkeit, dem Unterricht mit Nutzen zu folgen,\nnicht nachteilig beeinflußt. Die Kinder dürfen nicht mehr als zwei Stunden täglich, in landwirtschaftlichen Familienbetrieben nicht mehr als drei Stunden täglich, nicht zwischen 18 und 8 Uhr, nicht vor dem Schulunterricht und nicht während des Schulunterrichts beschäftigt werden. Auf die Beschäftigung finden die §§ 15 bis 31 entsprechende Anwendung.\n\n(4) Das Verbot des Absatzes 1 gilt ferner nicht für die Beschäftigung von Jugendlichen (§ 2 Abs. 3) während der Schulferien für höchstens vier Wochen im Kalenderjahr. Auf die Beschäftigung finden die §§ 8 bis 31 entsprechende Anwendung.\n\n(4a) Die Bundesregierung hat durch Rechtsverordnung mit Zustimmung des Bundesrates die Beschäftigung nach Absatz 3 näher zu bestimmen.\n\n(4b) Der Arbeitgeber unterrichtet die Personensorgeberechtigten der von ihm beschäftigten Kinder über mögliche Gefahren sowie über alle zu ihrer Sicherheit und ihrem Gesundheitsschutz getroffenen Maßnahmen.\n\n(5) Für Veranstaltungen kann die Aufsichtsbehörde Ausnahmen gemäß § 6 bewilligen.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "training",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
             },
             {
               "id": "b2dedc8216b90f2c",
@@ -3218,7 +3333,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Beschäftigung Jugendlicher",
+          "title_en": "Section 3 - Beschäftigung Jugendlicher",
+          "sections": [
             {
               "id": "15ff104de53f8602",
               "number": "8",
@@ -3945,41 +4068,6 @@
               "paragraphs": []
             },
             {
-              "id": "0154fc2aea049f31",
-              "number": "28a",
-              "title": "§ 28a. Beurteilung der Arbeitsbedingungen",
-              "text": "Vor Beginn der Beschäftigung Jugendlicher und bei wesentlicher Änderung der Arbeitsbedingungen hat der Arbeitgeber die mit der Beschäftigung verbundenen Gefährdungen Jugendlicher zu beurteilen. Im übrigen gelten die Vorschriften des Arbeitsschutzgesetzes.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "prevention_services",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "special_groups",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 1,
-                "level": "medium",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
-              },
-              "paragraphs": []
-            },
-            {
               "id": "cc692900c803aa85",
               "number": "29",
               "title": "§ 29. Unterweisung über Gefahren",
@@ -4538,7 +4626,48 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Urlaub",
+          "title_en": "Section 4 - Urlaub",
+          "sections": [
+            {
+              "id": "e0298a907be8e858",
+              "number": "19",
+              "title": "§ 19. Urlaub",
+              "text": "§ 19. Urlaub:\n(1) Der Arbeitgeber hat Jugendlichen für jedes Kalenderjahr einen bezahlten Erholungsurlaub zu gewähren.\n\n(2) Der Urlaub beträgt jährlich\n1. mindestens 30 Werktage, wenn der Jugendliche zu Beginn des Kalenderjahrs noch nicht 16 Jahre alt ist,\n2. mindestens 27 Werktage, wenn der Jugendliche zu Beginn des Kalenderjahrs noch nicht 17 Jahre alt ist,\n3. mindestens 25 Werktage, wenn der Jugendliche zu Beginn des Kalenderjahrs noch nicht 18 Jahre alt ist.\nJugendliche, die im Bergbau unter Tage beschäftigt werden, erhalten in jeder Altersgruppe einen zusätzlichen Urlaub von drei Werktagen.\n\n(3) Der Urlaub soll Berufsschülern in der Zeit der Berufsschulferien gegeben werden. Soweit er nicht in den Berufsschulferien gegeben wird, ist für jeden Berufsschultag, an dem die Berufsschule während des Urlaubs besucht wird, ein weiterer Urlaubstag zu gewähren.\n\n(4) Im übrigen gelten für den Urlaub der Jugendlichen § 3 Abs. 2, §§ 4 bis 12 und § 13 Abs. 3 des Bundesurlaubsgesetzes. Der Auftraggeber oder Zwischenmeister hat jedoch abweichend von § 12 Nr. 1 des Bundesurlaubsgesetzes den jugendlichen Heimarbeitern für jedes Kalenderjahr einen bezahlten Erholungsurlaub entsprechend Absatz 2 zu gewähren; das Urlaubsentgelt der jugendlichen Heimarbeiter beträgt bei einem Urlaub von 30 Werktagen 11,6 vom Hundert, bei einem Urlaub von 27 Werktagen 10,3 vom Hundert und bei einem Urlaub von 25 Werktagen 9,5 vom Hundert.",
+              "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Section 5 - Durchführung des Gesetzes",
+          "sections": [
             {
               "id": "f08b4f37ab60d8d2",
               "number": "47",
@@ -5029,6 +5158,63 @@
                 "level": "low",
                 "high_keyword_matches": 0,
                 "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch-other",
+          "number": "99",
+          "title": "Sonstige Bestimmungen",
+          "title_en": "Other Provisions",
+          "sections": [
+            {
+              "id": "d9b2bb201700eeb0",
+              "number": "1a",
+              "title": "§ 1a. Formvorgaben",
+              "text": "Soweit in diesem Gesetz schriftliche Handlungen vorgesehen sind, können diese auch in Textform erfolgen. Dies gilt nicht für § 6 Absatz 4 Satz 1 und § 21a Absatz 2.",
+              "whs_topics": [],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "0154fc2aea049f31",
+              "number": "28a",
+              "title": "§ 28a. Beurteilung der Arbeitsbedingungen",
+              "text": "Vor Beginn der Beschäftigung Jugendlicher und bei wesentlicher Änderung der Arbeitsbedingungen hat der Arbeitgeber die mit der Beschäftigung verbundenen Gefährdungen Jugendlicher zu beurteilen. Im übrigen gelten die Vorschriften des Arbeitsschutzgesetzes.",
+              "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "prevention_services",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             }
@@ -7968,10 +8154,10 @@
       },
       "chapters": [
         {
-          "id": "de-muschg-main",
+          "id": "de-muschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "Section 1 - Allgemeine Vorschriften",
           "sections": [
             {
               "id": "ebcc46f763a6faa6",
@@ -8052,7 +8238,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Gesundheitsschutz",
+          "title_en": "Section 2 - Gesundheitsschutz",
+          "sections": [
             {
               "id": "4619138200d69892",
               "number": "3",
@@ -8542,7 +8736,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Kündigungsschutz",
+          "title_en": "Section 3 - Kündigungsschutz",
+          "sections": [
             {
               "id": "9aedc136c5436397",
               "number": "17",
@@ -8572,7 +8774,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Leistungen",
+          "title_en": "Section 4 - Leistungen",
+          "sections": [
             {
               "id": "d1d26807d4dcf225",
               "number": "18",
@@ -8739,7 +8949,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Section 5 - Durchführung des Gesetzes",
+          "sections": [
             {
               "id": "f0c52c0bd3fd8665",
               "number": "26",
@@ -8959,7 +9177,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch6",
+          "number": "6",
+          "title": "Sechster Abschnitt - Bußgeldvorschriften, Strafvorschriften",
+          "title_en": "Section 6 - Bußgeldvorschriften, Strafvorschriften",
+          "sections": [
             {
               "id": "051ab626d34f7342",
               "number": "32",
