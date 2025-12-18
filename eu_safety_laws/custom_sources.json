@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "enabled_sources": {},
+  "disabled_sources": {},
+  "custom_sources": {
+    "AT": {
+      "BauV": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008323",
+        "name": "Bauarbeiterschutzverordnung (Construction Workers Protection Ordinance)",
+        "description": "Ordinance concerning the safety and health protection of workers on construction sites. Covers various aspects of construction safety, including scaffolding, excavations, demolition, and use of machinery.",
+        "enabled": true,
+        "created_at": "2025-12-18T00:42:55.558530",
+        "source_type": "custom"
+      },
+      "EKAV": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20007594",
+        "name": "Elektrotechnische  Arbeitnehmerschutzverordnung 2011 (Electrical Engineering Employee Protection Ordinance 2011)",
+        "description": "Ordinance regarding safety regulations for electrical work activities. Covers requirements for qualified electricians, safety procedures, and protective equipment.",
+        "enabled": true,
+        "created_at": "2025-12-18T00:42:55.567687",
+        "source_type": "custom"
+      }
+    },
+    "NL": {
+      "REACH": {
+        "url": "https://wetten.overheid.nl/jci1.3:c:BWBR0030341&z=2024-01-01&g=2024-01-01",
+        "name": "REACH Regulation (Registration, Evaluation, Authorisation and Restriction of Chemicals)",
+        "description": "Although a European regulation, REACH is directly applicable in the Netherlands and has significant implications for workplace safety, especially concerning the handling and management of chemical substances. The linked page on wetten.overheid.nl is the NL national interpretation / implementation.  It covers the registration, evaluation, authorisation and restriction of chemical substances to ensure a high level of protection of human health and the environment.",
+        "enabled": true,
+        "created_at": "2025-12-18T00:47:41.646734",
+        "source_type": "custom"
+      },
+      " Warenwetbesluit machines": {
+        "url": "https://wetten.overheid.nl/BWBR0037613/2023-01-01",
+        "name": "Warenwetbesluit machines 2016",
+        "description": "This implements the Machinery Directive and is very relevant to workplace safety where machines are used.  It lays down the requirements that machines must meet to be placed on the market and put into service, ensuring safety and health protection for workers.",
+        "enabled": true,
+        "created_at": "2025-12-18T00:47:41.656748",
+        "source_type": "custom"
+      }
+    }
+  },
+  "created_at": "2025-12-18T00:42:55.558440",
+  "updated_at": "2025-12-18T00:47:41.656755"
+}

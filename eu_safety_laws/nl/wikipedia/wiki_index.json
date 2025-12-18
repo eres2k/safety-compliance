@@ -1,6 +1,32 @@
 {
   "country": "NL",
   "language": "nl",
-  "scraped_at": "2025-12-18T00:17:12.249722",
-  "articles": {}
+  "scraped_at": "2025-12-18T00:48:27.982759",
+  "articles": {
+    "Arbowet": {
+      "title": "Arbeidsomstandighedenwet",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenwet",
+      "summary": "DeArbeidsomstandighedenwet(of kortwegArbowet) is eenNederlandse wetdie regels bevat voorwerkgeversenwerknemersom de gezondheid, de veiligheid en het welzijn van werknemers en zelfstandig ondernemers te bevorderen. Het doel is om ongevallen en ziekten, veroorzaakt door het werk, te voorkomen. De arbowet is sinds 2020 vanwege decoronapandemiegrondig aangepast omdat medewerkers nu vaker thuis moeten werken."
+    },
+    "Arbobesluit": {
+      "title": "Arbeidsomstandighedenbesluit",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenbesluit",
+      "summary": "HetArbeidsomstandighedenbesluit(of kortwegArbobesluit) is eenalgemene maatregel van bestuuren maakt deel uit van deNederlandsearbeidsomstandighedenwetgeving. In het Arbobesluit staan concrete regels, ingedeeld naar onderwerp. De voorschriften zijn algemeen geformuleerd. Zij geven aan welk resultaat het arbobeleid moet hebben, maar leggen niet dwingend op hoe dat resultaat bereikt moet worden."
+    },
+    "Arboregeling": {
+      "title": "Arbeidsomstandighedenregeling",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenregeling",
+      "summary": "DeArbeidsomstandighedenregeling(of kortwegArboregeling) is eenministeriële regelingen maakt deel uit van deNederlandseArbeidsomstandighedenwetgeving. In de Arboregeling staat de uitwerking van sommige onderdelen uit hetArbeidsomstandighedenbesluit. Dit zijn dan specifieke bepalingen zoals de taken van dearbodienstof de keuring van hijskranen. Ook zijn hier nadere bepalingen te vinden over bijvoorbeeld apparatuur, meubilair en programmatuur."
+    },
+    "Arbeidstijdenwet": {
+      "title": "Arbeidstijdenwet",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidstijdenwet",
+      "summary": "DeArbeidstijdenwetis een Nederlandse wet en legt regels vast voor arbeids- en rusttijden voorwerknemers. Het doel van de Arbeidstijdenwet komt deels overeen met het doel van deArbeidsomstandighedenwet. Beide zorgen voor deveiligheid,gezondheiden hetwelzijnvan werknemers bij hunwerk.\nEen tweededoelstellingvan de Arbeidstijdenwet is het voor werknemers makkelijker te maken om arbeid te combineren met zorgtaken of andere verantwoordelijkheden buiten de arbeid. De Arbeidstijdenwet geldt voor alle we"
+    },
+    "ATB": {
+      "title": "ATB Eerste Generatie",
+      "url": "https://nl.wikipedia.org/wiki/ATB_Eerste_Generatie",
+      "summary": "ATB(automatische treinbeïnvloeding), tegenwoordig aangeduid alsATB-EG(ATB Eerste Generatie), is eenNederlandstreinbeïnvloedingssysteem. ATB-EG is geïnstalleerd op bijna alle Nederlandse hoofdspoorlijnen, met uitzondering van deHSLen deBetuweroutewaar in plaats daarvan hetETCSis geïnstalleerd. Op de meeste nevenlijnen isATB-NGgeïnstalleerd."
+    }
+  }
 }

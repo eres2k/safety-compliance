@@ -1,6 +1,47 @@
 {
   "country": "DE",
   "language": "de",
-  "scraped_at": "2025-12-18T00:17:07.424561",
-  "articles": {}
+  "scraped_at": "2025-12-18T00:48:19.705029",
+  "articles": {
+    "ArbSchG": {
+      "title": "Arbeitsschutzgesetz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsschutzgesetz",
+      "summary": "DasArbeitsschutzgesetz(AbkürzungArbSchG) ist ein deutsches Gesetz zur Umsetzung derRichtlinie 89/391/EWG (Arbeitsschutz-Rahmenrichtlinie).\nDasArbeitssicherheitsgesetzist das „Controlling-Gesetz“ zum Arbeitsschutzgesetz."
+    },
+    "ASiG": {
+      "title": "Arbeitssicherheitsgesetz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitssicherheitsgesetz",
+      "summary": "Das deutscheGesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit– kurzArbeitssicherheitsgesetz(ASiG) – vom 12. Dezember 1973, zuletzt geändert durch Artikel 226 der Verordnung vom 31. Oktober 2006, regelt die Pflichten derArbeitgeberzur Bestellung vonBetriebsärzten,Sicherheitsingenieurenund anderenFachkräften für Arbeitssicherheit, definiert deren Aufgaben und betriebliche Position und fordert die betriebliche Zusammenarbeit beim Arbeitsschutz und bei der "
+    },
+    "ArbZG": {
+      "title": "Arbeitszeitgesetz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitszeitgesetz",
+      "summary": "Das deutscheArbeitszeitgesetzbetrifft den öffentlich-rechtlichen Arbeitsschutz vonArbeitnehmern. Es begrenzt die höchstzulässige täglicheArbeitszeit, es setzt Mindestruhepausen während der Arbeitszeit und Mindestruhezeiten zwischen Beendigung und Wiederaufnahme der Arbeit sowie die Arbeitsruhe an Sonn- und Feiertagen fest. Zudem enthält es Schutzvorschriften zur Nachtarbeit. Das Gesetz ist fürArbeitgeberund Arbeitnehmer verbindlich."
+    },
+    "MuSchG": {
+      "title": "Mutterschutzgesetz",
+      "url": "https://de.wikipedia.org/wiki/Mutterschutzgesetz",
+      "summary": "Das deutscheMutterschutzgesetz(MuSchG) schützt die Gesundheit von Frauen in Anstellung, Studium oder Ausbildung und ihrer Kinder während derSchwangerschaft, nach derEntbindungund in derStillzeit."
+    },
+    "JArbSchG": {
+      "title": "Jugendarbeitsschutzgesetz",
+      "url": "https://de.wikipedia.org/wiki/Jugendarbeitsschutzgesetz",
+      "summary": "DasJugendarbeitsschutzgesetz(JArbSchG) ist ein deutsches Gesetz zum Schutz von arbeitendenKindernundJugendlichen. Es zählt zu den Gesetzen des sozialenArbeitsschutzes."
+    },
+    "ArbStättV": {
+      "title": "Arbeitsstättenverordnung (Deutschland)",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsstättenverordnung_(Deutschland)",
+      "summary": "Die deutscheVerordnung über Arbeitsstätten (Arbeitsstättenverordnung - ArbStättV)enthält Mindestvorschriften für die Sicherheit und den Gesundheitsschutz der Beschäftigten beim Einrichten und Betreiben vonArbeitsstätteneinschließlichBaustellen."
+    },
+    "BetrSichV": {
+      "title": "Betriebssicherheitsverordnung",
+      "url": "https://de.wikipedia.org/wiki/Betriebssicherheitsverordnung",
+      "summary": "DieBetriebssicherheitsverordnung(BetrSichV) ist die deutsche Umsetzung derRichtlinie 89/655/EWG(Arbeitsmittelrichtlinie), später ersetzt durchRichtlinie 2009/104/EG, und regelt inDeutschlanddie Bereitstellung von Arbeitsmitteln durch den Arbeitgeber, die Benutzung von Arbeitsmitteln durch die Beschäftigten bei der Arbeit sowie die Errichtung und den Betrieb vonüberwachungsbedürftigen Anlagenim Sinne desArbeitsschutzes. Das in ihr enthaltene Schutzkonzept ist auf alle von Arbeitsmitteln ausgehend"
+    },
+    "GefStoffV": {
+      "title": "Gefahrstoffverordnung",
+      "url": "https://de.wikipedia.org/wiki/Gefahrstoffverordnung",
+      "summary": "DieGefahrstoffverordnung(GefStoffV) ist eine deutsche Verordnung zum Schutz vorgefährlichen Stoffenim deutschenArbeitsschutz. DieVerordnungsermächtigungist imChemikaliengesetz(ChemG) enthalten. Seit 2005 ist auch dasArbeitsschutzgesetzgesetzliche Grundlage für die GefStoffV."
+    }
+  }
 }

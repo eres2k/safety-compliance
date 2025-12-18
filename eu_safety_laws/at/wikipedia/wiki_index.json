@@ -1,6 +1,47 @@
 {
   "country": "AT",
   "language": "de",
-  "scraped_at": "2025-12-18T00:16:59.993839",
-  "articles": {}
+  "scraped_at": "2025-12-18T00:48:06.738130",
+  "articles": {
+    "ASchG": {
+      "title": "ArbeitnehmerInnenschutzgesetz",
+      "url": "https://de.wikipedia.org/wiki/ArbeitnehmerInnenschutzgesetz",
+      "summary": "Das österreichischeBundesgesetz über Sicherheit und Gesundheitsschutz bei der Arbeit (ArbeitnehmerInnenschutzgesetz – ASchG)– kurzArbeitnehmerInnenschutzgesetz(ASchG) –BGBl. Nr. 450/1994ist die wichtigste grundlegende Rechtsvorschrift für den „technischen und hygienischen Arbeitnehmerschutz“ in Österreich. Es trat mit 1. Jänner 1995 in Kraft."
+    },
+    "AZG": {
+      "title": "Arbeitszeitgesetz (Österreich)",
+      "url": "https://de.wikipedia.org/wiki/Arbeitszeitgesetz_(Österreich)",
+      "summary": "DasArbeitszeitgesetzreglementiert die Arbeitszeiten derArbeitnehmer.[1]Die Ergänzung für die wöchentliche Ruhezeit und die Feiertagsruhe ist dasArbeitsruhegesetz."
+    },
+    "ARG": {
+      "title": "Arbeitsruhegesetz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsruhegesetz",
+      "summary": "DasArbeitsruhegesetzreglementiert die Ruhezeiten (u. a. Wochenendruhe, Wochenruhe, Ersatzruhe und Feiertagsruhe) derArbeitnehmerin Österreich.[1]"
+    },
+    "MSchG": {
+      "title": "Nichtraucherschutzgesetze in Österreich",
+      "url": "https://de.wikipedia.org/wiki/Nichtraucherschutzgesetze_in_Österreich",
+      "summary": "DasTabak- und Nichtraucherinnen- bzw. Nichtraucherschutzgesetzdient demNichtraucherschutz, also dem Schutz von Nichtrauchern vor demPassivrauchen. Die Situation inÖsterreichist gekennzeichnet durch einen vergleichsweise hohen Anteil an Rauchern unter den Heranwachsenden, insbesondere in den Großstädten. Die politische Gestaltung des Nichtraucherschutzes bedurfte mehrerer Anläufe."
+    },
+    "KJBG": {
+      "title": "Wochenarbeitszeit",
+      "url": "https://de.wikipedia.org/wiki/Wochenarbeitszeit",
+      "summary": "DieWochenarbeitszeitbezeichnet die durchschnittliche Anzahl der Stunden, die einArbeitnehmerin einer Woche ohneFeiertagearbeitet. Sie ist häufig Gegenstand vonTarifverhandlungenund speziellenArbeitszeitmodellen.\nMan unterscheidet:"
+    },
+    "AStV": {
+      "title": "Ausschuss der Ständigen Vertreter der Mitgliedstaaten",
+      "url": "https://de.wikipedia.org/wiki/Ausschuss_der_Ständigen_Vertreter_der_Mitgliedstaaten",
+      "summary": "DerAusschuss der Ständigen Vertreter der Mitgliedstaaten(AStV) besteht aus denStändigen Vertretern(französischreprésentants permanents) derMitgliedstaatenbei derEuropäischen Unionoder deren Stellvertretern. Oft wird auch die französische AbkürzungCOREPER(französischComité desreprésentantspermanents) verwendet. Den Vorsitz führt das Mitgliedsland, das diehalbjährlich wechselnde Ratspräsidentschaftinnehat. Die Haupt-Aufgabe des COREPER ist es, die Arbeit desRates der Europäischen Unioninhaltlich v"
+    },
+    "AM-VO": {
+      "title": "VO",
+      "url": "https://de.wikipedia.org/wiki/VO",
+      "summary": "VOsteht für\nAbkürzungen:"
+    },
+    "DOK-VO": {
+      "title": "Gefahrstoffverzeichnis",
+      "url": "https://de.wikipedia.org/wiki/Gefahrstoffverzeichnis",
+      "summary": "EinGefahrstoffverzeichnisgibt einen Überblick über die in einem Betrieb (sinngemäß auch Schule, Amt, Apotheke …) verwendetenGefahrstoffe."
+    }
+  }
 }
