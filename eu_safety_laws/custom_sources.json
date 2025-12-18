@@ -123,12 +123,13 @@
         "source_type": "custom"
       },
       "Wazo": {
-        "url": "https://wetten.overheid.nl/BWBR0014915/2024-01-01",
+        "url": "/BWBR0011867/geldend",
         "name": "Wet arbeid en zorg",
-        "description": "Regulates various leave arrangements (e.g., maternity leave, parental leave, short-term care leave) that support work-life balance and employee well-being, indirectly contributing to a healthier workplace by mitigating psychosocial risks like stress and burnout.",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "created_at": "2025-12-18T16:36:58.537464",
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T18:05:21.026670",
+        "original_url_failed": true
       },
       "WED": {
         "url": "https://wetten.overheid.nl/BWBR0002063",
@@ -236,5 +237,5 @@
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-18T17:42:17.162054"
+  "updated_at": "2025-12-18T18:05:21.026676"
 }
