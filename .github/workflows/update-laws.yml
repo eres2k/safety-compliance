@@ -1,0 +1,157 @@
+name: Update Safety Laws Database
+
+on:
+  # Run every 2 weeks on Sunday at 2:00 AM UTC
+  schedule:
+    - cron: '0 2 */14 * 0'
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      check_only:
+        description: 'Only check for updates (no scraping)'
+        required: false
+        type: boolean
+        default: false
+      countries:
+        description: 'Countries to update (comma-separated: AT,DE,NL or "all")'
+        required: false
+        default: 'all'
+
+jobs:
+  check-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: |
+          pip install requests beautifulsoup4 google-generativeai tqdm
+
+      - name: Check for law updates
+        id: check_updates
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          cd eu_safety_laws
+
+          # Check for updates across all countries
+          echo "Checking for law updates..."
+          python law_manager.py check-updates --all > update_check.txt 2>&1 || true
+
+          # Parse output to determine if updates exist
+          if grep -q "has changes" update_check.txt || grep -q "needs update" update_check.txt; then
+            echo "updates_available=true" >> $GITHUB_OUTPUT
+            echo "Updates found:"
+            cat update_check.txt
+          else
+            echo "updates_available=false" >> $GITHUB_OUTPUT
+            echo "No updates found"
+            cat update_check.txt
+          fi
+
+      - name: Scrape updated laws
+        if: steps.check_updates.outputs.updates_available == 'true' && github.event.inputs.check_only != 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          cd eu_safety_laws
+
+          COUNTRIES="${{ github.event.inputs.countries || 'all' }}"
+
+          echo "Scraping updated laws for: $COUNTRIES"
+
+          if [ "$COUNTRIES" = "all" ]; then
+            python law_manager.py scrape --all --check-updates
+          else
+            IFS=',' read -ra COUNTRY_ARRAY <<< "$COUNTRIES"
+            for country in "${COUNTRY_ARRAY[@]}"; do
+              echo "Scraping $country..."
+              python law_manager.py scrape --country "$country" --check-updates
+            done
+          fi
+
+      - name: Clean and restructure
+        if: steps.check_updates.outputs.updates_available == 'true' && github.event.inputs.check_only != 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          cd eu_safety_laws
+
+          # Clean with fast mode (regex only, no AI)
+          python law_manager.py clean --all --fast
+
+          # Restructure into chapter format
+          python law_manager.py restructure --all
+
+          # Rebuild the database
+          python law_manager.py build
+
+      - name: Check for changes
+        id: git_status
+        if: github.event.inputs.check_only != 'true'
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.git_status.outputs.has_changes == 'true' && github.event.inputs.check_only != 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Generate commit message with update summary
+          CHANGES=$(cd eu_safety_laws && python law_manager.py status 2>/dev/null | head -20 || echo "Database updated")
+
+          git commit -m "chore: auto-update safety laws database
+
+Updates from scheduled check on $(date -u +'%Y-%m-%d')
+
+$CHANGES"
+
+          git push
+
+      - name: Create issue for review (if updates)
+        if: steps.git_status.outputs.has_changes == 'true' && github.event.inputs.check_only != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const date = new Date().toISOString().split('T')[0];
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Law Database Updated - ${date}`,
+              body: `## Automated Law Update\n\nThe safety laws database was automatically updated on ${date}.\n\nPlease review the changes to ensure the updates were applied correctly.\n\n### What to check:\n- [ ] Law content is correctly formatted\n- [ ] Section titles display properly\n- [ ] No broken references or links\n\n*This issue was created automatically by the law update workflow.*`,
+              labels: ['automated', 'law-update', 'needs-review']
+            });
+
+      - name: Summary
+        run: |
+          echo "### Law Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check_updates.outputs.updates_available }}" = "true" ]; then
+            echo "- Updates were **found**" >> $GITHUB_STEP_SUMMARY
+            if [ "${{ github.event.inputs.check_only }}" = "true" ]; then
+              echo "- Check-only mode: no changes applied" >> $GITHUB_STEP_SUMMARY
+            elif [ "${{ steps.git_status.outputs.has_changes }}" = "true" ]; then
+              echo "- Changes were **committed and pushed**" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- No file changes after processing" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "- No updates found - all laws are current" >> $GITHUB_STEP_SUMMARY
+          fi

@@ -6,8 +6,36 @@ const FRAMEWORK_CONTEXT = {
 
 const LANGUAGE_CONTEXT = {
   en: 'Respond in English.',
-  de: 'Antworten Sie auf Deutsch.',
-  nl: 'Antwoord in het Nederlands.'
+  de: 'Antworten Sie auf Deutsch. Alle Ausgaben müssen auf Deutsch sein.',
+  nl: 'Antwoord in het Nederlands. Alle output moet in het Nederlands zijn.'
+}
+
+// Language-specific labels for AI output formatting
+const LANGUAGE_LABELS = {
+  en: {
+    whatThisSectionCovers: 'What this section covers',
+    keyRequirements: 'Key requirements from this text',
+    complianceRelevance: 'Compliance relevance for Amazon',
+    documentationActions: 'Documentation/Actions',
+    noRequirements: 'This section covers [scope/definitions/exceptions/etc.] - no direct compliance requirements',
+    noDocumentation: 'No specific documentation requirements in this section'
+  },
+  de: {
+    whatThisSectionCovers: 'Was dieser Abschnitt behandelt',
+    keyRequirements: 'Wichtige Anforderungen aus diesem Text',
+    complianceRelevance: 'Relevanz für Amazon-Compliance',
+    documentationActions: 'Dokumentation/Maßnahmen',
+    noRequirements: 'Dieser Abschnitt behandelt [Geltungsbereich/Definitionen/Ausnahmen/etc.] - keine direkten Compliance-Anforderungen',
+    noDocumentation: 'Keine spezifischen Dokumentationsanforderungen in diesem Abschnitt'
+  },
+  nl: {
+    whatThisSectionCovers: 'Wat dit artikel behandelt',
+    keyRequirements: 'Belangrijke vereisten uit deze tekst',
+    complianceRelevance: 'Relevantie voor Amazon-compliance',
+    documentationActions: 'Documentatie/Acties',
+    noRequirements: 'Dit artikel behandelt [toepassingsgebied/definities/uitzonderingen/etc.] - geen directe compliance-vereisten',
+    noDocumentation: 'Geen specifieke documentatievereisten in dit artikel'
+  }
 }
 
 // ============================================
@@ -461,15 +489,29 @@ export async function simplifyForBothLevels(lawText, sectionTitle, framework, la
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
+  // Get language-specific labels
+  const labels = LANGUAGE_LABELS[language] || LANGUAGE_LABELS.en
+
   // Validate that we have actual content to analyze
   if (!lawText || lawText.trim().length < 20) {
-    return {
-      manager: `**What this section covers:**\n- Section "${sectionTitle}" - No content available for analysis\n\n**Key requirements:**\n- Unable to extract requirements - section content is empty or too short`,
-      associate: `📖 This section "${sectionTitle}" doesn't have content to explain yet.\n❓ Ask your manager for more information!`
+    const noContentMsg = {
+      en: { manager: `**${labels.whatThisSectionCovers}:**\n- Section "${sectionTitle}" - No content available for analysis\n\n**Key requirements:**\n- Unable to extract requirements - section content is empty or too short`, associate: `📖 This section "${sectionTitle}" doesn't have content to explain yet.\n❓ Ask your manager for more information!` },
+      de: { manager: `**${labels.whatThisSectionCovers}:**\n- Abschnitt "${sectionTitle}" - Kein Inhalt zur Analyse verfügbar\n\n**Wichtige Anforderungen:**\n- Keine Anforderungen extrahierbar - Abschnittsinhalt ist leer oder zu kurz`, associate: `📖 Dieser Abschnitt "${sectionTitle}" hat noch keinen Inhalt zum Erklären.\n❓ Frag deinen Vorgesetzten für mehr Infos!` },
+      nl: { manager: `**${labels.whatThisSectionCovers}:**\n- Artikel "${sectionTitle}" - Geen inhoud beschikbaar voor analyse\n\n**Belangrijke vereisten:**\n- Geen vereisten te extraheren - artikelinhoud is leeg of te kort`, associate: `📖 Dit artikel "${sectionTitle}" heeft nog geen inhoud om uit te leggen.\n❓ Vraag je manager voor meer informatie!` }
     }
+    return noContentMsg[language] || noContentMsg.en
+  }
+
+  // Language-specific prompt parts
+  const langInstructions = {
+    en: 'Respond ENTIRELY in English.',
+    de: 'Antworten Sie VOLLSTÄNDIG auf Deutsch. Alle Überschriften, Texte und Erklärungen müssen auf Deutsch sein.',
+    nl: 'Antwoord VOLLEDIG in het Nederlands. Alle koppen, teksten en uitleg moeten in het Nederlands zijn.'
   }
 
   const prompt = `You are analyzing a SPECIFIC legal section. Your job is to summarize ONLY what is written in the text below.
+
+IMPORTANT: ${langInstructions[language] || langInstructions.en}
 
 === SECTION BEING ANALYZED ===
 Section: ${sectionTitle || 'Legal Provision'}
@@ -489,20 +531,20 @@ ${lawText.substring(0, 4000)}
 === OUTPUT FORMAT ===
 
 ---MANAGER---
-**What this section covers:**
+**${labels.whatThisSectionCovers}:**
 - [1-2 sentences describing what THIS specific text is about]
 
-**Key requirements from this text:**
+**${labels.keyRequirements}:**
 - [List ONLY requirements that appear IN THE TEXT ABOVE]
 - [Quote the exact language where possible]
-- [If no actionable requirements, write: "This section covers [scope/definitions/exceptions/etc.] - no direct compliance requirements"]
+- [If no actionable requirements, write: "${labels.noRequirements}"]
 
-**Compliance relevance for Amazon:**
+**${labels.complianceRelevance}:**
 - [Connect the SPECIFIC content above to warehouse operations]
 
-**Documentation/Actions:**
+**${labels.documentationActions}:**
 - [List ONLY actions required by THIS text, with citations]
-- [If none, write: "No specific documentation requirements in this section"]
+- [If none, write: "${labels.noDocumentation}"]
 
 ---ASSOCIATE---
 [5 simple bullet points with emoji explaining what THIS text says]
@@ -513,7 +555,8 @@ ${lawText.substring(0, 4000)}
 === REMEMBER ===
 - Your summary must match the content provided
 - If someone reads your summary, they should recognize it matches the original text
-- Do not add information that is not in the text`
+- Do not add information that is not in the text
+- ${langInstructions[language] || langInstructions.en}`
 
   const response = await generateAIResponse(prompt, framework, language)
 
@@ -528,27 +571,47 @@ ${lawText.substring(0, 4000)}
   if (managerMatch) result.manager = managerMatch[1].trim()
   if (associateMatch) result.associate = associateMatch[1].trim()
 
+  // Language-specific fallback messages
+  const fallbackMessages = {
+    en: {
+      associateDefault: `📖 This section "${sectionTitle}" explains important rules.\n🔍 Read it carefully to understand what it says.\n❓ Ask your manager if you have questions!`,
+      managerDefault: `**${labels.whatThisSectionCovers}:**\n- ${sectionTitle || 'See section text'}\n\n**${labels.keyRequirements}:**\n- Review the original text for specific requirements\n\n**${labels.complianceRelevance}:**\n- Assess based on section content\n\n**${labels.documentationActions}:**\n- Refer to original legal text`,
+      associateAmbiguous: `📖 This part "${sectionTitle}" has important information.\n🔍 Grown-ups need to read it carefully.\n❓ Ask your boss what it means!`
+    },
+    de: {
+      associateDefault: `📖 Dieser Abschnitt "${sectionTitle}" erklärt wichtige Regeln.\n🔍 Lies ihn aufmerksam durch.\n❓ Frag deinen Vorgesetzten bei Fragen!`,
+      managerDefault: `**${labels.whatThisSectionCovers}:**\n- ${sectionTitle || 'Siehe Abschnittstext'}\n\n**${labels.keyRequirements}:**\n- Originaltext prüfen für spezifische Anforderungen\n\n**${labels.complianceRelevance}:**\n- Basierend auf Abschnittsinhalt bewerten\n\n**${labels.documentationActions}:**\n- Siehe Originalgesetzestext`,
+      associateAmbiguous: `📖 Dieser Teil "${sectionTitle}" hat wichtige Infos.\n🔍 Erwachsene müssen das genau lesen.\n❓ Frag deinen Chef was es bedeutet!`
+    },
+    nl: {
+      associateDefault: `📖 Dit artikel "${sectionTitle}" legt belangrijke regels uit.\n🔍 Lees het zorgvuldig door.\n❓ Vraag je manager als je vragen hebt!`,
+      managerDefault: `**${labels.whatThisSectionCovers}:**\n- ${sectionTitle || 'Zie artikeltekst'}\n\n**${labels.keyRequirements}:**\n- Controleer originele tekst voor specifieke vereisten\n\n**${labels.complianceRelevance}:**\n- Beoordeel op basis van artikelinhoud\n\n**${labels.documentationActions}:**\n- Zie originele wettekst`,
+      associateAmbiguous: `📖 Dit deel "${sectionTitle}" heeft belangrijke informatie.\n🔍 Volwassenen moeten dit goed lezen.\n❓ Vraag je baas wat het betekent!`
+    }
+  }
+  const msgs = fallbackMessages[language] || fallbackMessages.en
+
   // Fallback if parsing fails - try to create meaningful defaults that reference the section
   if (!result.manager && !result.associate) {
     // If no headers found, check if content looks like manager or associate style
-    const hasManagerStyle = normalizedResponse.match(/(?:obligations|deadlines|documentation|compliance|covers|requirements)/i)
+    const hasManagerStyle = normalizedResponse.match(/(?:obligations|deadlines|documentation|compliance|covers|requirements|Anforderungen|Pflichten|Dokumentation|vereisten|verplichtingen)/i)
     const hasELI5Style = normalizedResponse.match(/[👷⚠️✅❌🚫💡🦺🏥📋👥📖]/)
 
     if (hasManagerStyle && !hasELI5Style) {
       result.manager = normalizedResponse
-      result.associate = `📖 This section "${sectionTitle}" explains important rules.\n🔍 Read it carefully to understand what it says.\n❓ Ask your manager if you have questions!`
+      result.associate = msgs.associateDefault
     } else if (hasELI5Style && !hasManagerStyle) {
       result.associate = normalizedResponse
-      result.manager = `**What this section covers:**\n- ${sectionTitle || 'See section text'}\n\n**Key requirements from this text:**\n- Review the original text for specific requirements\n\n**Compliance relevance:**\n- Assess based on section content\n\n**Documentation/Actions needed:**\n- Refer to original legal text`
+      result.manager = msgs.managerDefault
     } else {
       // Genuinely ambiguous - provide distinct defaults that reference the section
       result.manager = normalizedResponse
-      result.associate = `📖 This part "${sectionTitle}" has important information.\n🔍 Grown-ups need to read it carefully.\n❓ Ask your boss what it means!`
+      result.associate = msgs.associateAmbiguous
     }
   } else if (!result.manager) {
-    result.manager = `**What this section covers:**\n- ${sectionTitle || 'See section text'}\n\n**Key requirements from this text:**\n- Review the original text for specific requirements\n\n**Compliance relevance:**\n- Assess based on section content\n\n**Documentation/Actions needed:**\n- Refer to original legal text`
+    result.manager = msgs.managerDefault
   } else if (!result.associate) {
-    result.associate = `📖 This section "${sectionTitle}" explains important rules.\n🔍 Read it carefully to understand.\n❓ Ask your manager if you have questions!`
+    result.associate = msgs.associateDefault
   }
 
   setCachedResponse(cacheKey, result)

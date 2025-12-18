@@ -1205,6 +1205,13 @@ export function LawBrowser({ onBack }) {
     // These duplicate the section header that's already shown
     cleaned = cleaned.replace(/^(§\s*\d+[a-z]?|Artikel\s*\d+[a-z]?)[.:]\s*/i, '').trim()
 
+    // For NL laws: Remove patterns like "Artikel 1. :1. Begrippen:" at start of content
+    // This handles the Dutch internal numbering format
+    cleaned = cleaned.replace(/^Artikel\s*\d+[a-z]?\.\s*:?\d*:?\d+[a-z]?\.?\s*[^:\n]+:\s*/i, '').trim()
+
+    // Also handle simpler patterns like ":1. Begrippen:" at start
+    cleaned = cleaned.replace(/^:?\d*:?\d+[a-z]?\.?\s*[^:\n]+:\s*/i, '').trim()
+
     // Remove standalone "§" or "Artikel" at the very beginning (without number)
     cleaned = cleaned.replace(/^§\s*\n/i, '').trim()
     cleaned = cleaned.replace(/^Artikel\s*\n/i, '').trim()
@@ -1212,6 +1219,9 @@ export function LawBrowser({ onBack }) {
     // Remove section title line if it duplicates the header (e.g., "§ 3 Gefahrenklassen\n")
     cleaned = cleaned.replace(/^(§\s*\d+[a-z]?\s+[^\n]+)\n/i, '').trim()
     cleaned = cleaned.replace(/^(Artikel\s*\d+[a-z]?\.\s*[^\n]+)\n/i, '').trim()
+
+    // Clean up AT law spacing issues (". ." -> "." and extra spaces before periods)
+    cleaned = cleaned.replace(/\s+\.\s+\./g, '.').replace(/\s+\./g, '.')
 
     return cleaned
   }
@@ -1222,12 +1232,16 @@ export function LawBrowser({ onBack }) {
 
     let cleaned = title
 
-    // Remove "Artikel X." or "§ X." prefix first
+    // Remove "Artikel X." or "§ X." prefix first (handles "Artikel 1. :1. Begrippen")
     cleaned = cleaned.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+[a-z]?\.?)\s*/i, '').trim()
 
-    // For NL laws: Remove Dutch internal numbering patterns like ":1", "1:1", "2:1" at start of title
+    // For NL laws: Remove Dutch internal numbering patterns
+    // Patterns like ":1.", ":1:", "1:1", "1:1:", "2:1" at start of title
     // These are chapter:article references that got scraped into the title
-    cleaned = cleaned.replace(/^:?\d*:\d+[a-z]?\.?\s*/i, '').trim()
+    cleaned = cleaned.replace(/^:?\d*:?\d+[a-z]?[.:]\s*/i, '').trim()
+
+    // Also remove patterns like "1:1" without trailing punctuation
+    cleaned = cleaned.replace(/^\d+:\d+[a-z]?\s*/i, '').trim()
 
     // Remove standalone single digits at the end that match the section number (e.g., "Artikel 35. 5" -> "")
     const numMatch = sectionNumber?.match(/\d+$/)
