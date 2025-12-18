@@ -443,14 +443,29 @@ Base URL for this country: {base_urls.get(country, 'unknown')}
 Please find the CORRECT, currently working URL for this law from official government sources.
 
 For {country_name}:
-- AT (Austria): Use RIS (ris.bka.gv.at) with format /GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=XXXXX
+- AT (Austria):
+  PRIMARY: Use RIS (ris.bka.gv.at) with format /GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=XXXXX
   - The Gesetzesnummer is a unique ID for each law (e.g., 10008910 for ASchG)
-  - Alternative format: /eli/bgbl/YYYY/N/geldend or search-based URLs
-- DE (Germany): Use gesetze-im-internet.de with format /lawname/ (lowercase)
+  - Alternative RIS format: /eli/bgbl/YYYY/N/geldend or search-based URLs
+  ALTERNATIVE SOURCES (if RIS fails):
+  - jusline.at: Format https://www.jusline.at/gesetz/LAWNAME (e.g., /gesetz/aschg for ASchG)
+  - arbeitsinspektorat.gv.at: Work safety specific laws and regulations
+  Note: Alternative sources may have different text formatting. Prefer RIS if possible.
+- DE (Germany):
+  PRIMARY: Use gesetze-im-internet.de with format /lawname/ (lowercase)
   - Example: /arbschg/ for Arbeitsschutzgesetz
   - Some laws have year suffixes: /muschg_2018/
-- NL (Netherlands): Use wetten.overheid.nl with format /BWBRXXXXXXX/geldend
+  ALTERNATIVE SOURCES (if primary fails):
+  - dejure.org: Format https://dejure.org/gesetze/LAWNAME (e.g., /gesetze/ArbSchG)
+  - buzer.de: Format https://www.buzer.de/gesetz/XXXX.htm (law database with clean formatting)
+  Note: Alternative sources may have different text formatting. Prefer gesetze-im-internet.de if possible.
+- NL (Netherlands):
+  PRIMARY: Use wetten.overheid.nl with format /BWBRXXXXXXX/geldend
   - BWBR numbers are unique identifiers (e.g., BWBR0010346 for Arbowet)
+  ALTERNATIVE SOURCES (if primary fails):
+  - arboportaal.nl: Work safety specific laws and guidelines
+  - rijksoverheid.nl: Government portal with legal documents
+  Note: Alternative sources may have different text formatting. Prefer wetten.overheid.nl if possible.
 
 IMPORTANT: Verify the URL format is correct for the country. Double-check the law identifier.
 
@@ -666,6 +681,53 @@ def generate_content_hash(doc: Dict[str, Any]) -> str:
     # Create a stable hash of all content
     content = ''.join(content_parts)
     return hashlib.sha256(content.encode()).hexdigest()[:32]
+
+
+def remove_duplicate_phrases(text: str) -> str:
+    """Remove duplicate phrases/sentences that appear consecutively (RIS accessibility duplication).
+
+    The RIS website includes both abbreviated and expanded reference formats,
+    causing the same sentence to appear twice with slightly different formats.
+    Example: "...BGBl. Nr. 287; ...Bundesgesetzblatt Nr. 287;"
+
+    This function detects such near-duplicates by normalizing references and comparing.
+    """
+    if not text:
+        return text
+
+    # Split into sentences/clauses (by semicolon or period)
+    parts = re.split(r'([;.])\s*', text)
+
+    # Reconstruct while filtering duplicates
+    result = []
+    seen_normalized = set()
+
+    i = 0
+    while i < len(parts):
+        part = parts[i]
+        if not part.strip():
+            i += 1
+            continue
+
+        # Normalize for comparison: replace BGBl references and expand/abbreviate patterns
+        normalized = re.sub(r'BGBl\.\s*(?:I|II)?\s*Nr\.\s*\d+(?:/\d+)?', 'BGBL_REF', part.lower())
+        normalized = re.sub(r'Bundesgesetzblatt\s+(?:Teil\s+\w+,?\s*)?Nr\.\s+\d+(?:\s+aus\s+\d+)?', 'BGBL_REF', normalized)
+        normalized = re.sub(r'\s+', ' ', normalized).strip()
+
+        # Use first 80 chars as key to catch near-duplicates
+        check_key = normalized[:80]
+
+        if check_key not in seen_normalized or len(check_key) < 20:
+            seen_normalized.add(check_key)
+            result.append(part)
+            # Add delimiter back if present
+            if i + 1 < len(parts) and parts[i + 1] in [';', '.']:
+                result.append(parts[i + 1])
+                i += 1
+
+        i += 1
+
+    return ' '.join(result).strip()
 
 
 def get_api_key() -> Optional[str]:
@@ -1326,12 +1388,121 @@ class ATScraper(Scraper):
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
-            doc = self._parse_ris_law_full(html, abbrev, url)
+            # Detect source and use appropriate parser
+            if 'jusline.at' in url:
+                log_info(f"  Using Jusline parser for {abbrev}")
+                doc = self._parse_jusline_law(html, abbrev, url)
+            elif 'arbeitsinspektorat' in url:
+                log_info(f"  Using Arbeitsinspektorat parser for {abbrev}")
+                doc = self._parse_generic_law(html, abbrev, url)
+            else:
+                # Default: RIS parser
+                doc = self._parse_ris_law_full(html, abbrev, url)
+
             if doc:
                 total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
                 log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
                 return doc
         return None
+
+    def _parse_jusline_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
+        """Parse a law from Jusline.at - simpler HTML structure than RIS."""
+        soup = BeautifulSoup(html, 'html.parser')
+
+        # Remove script and style elements
+        for elem in soup.find_all(['script', 'style', 'nav', 'header', 'footer']):
+            elem.decompose()
+
+        title_elem = soup.find('h1') or soup.find('title')
+        title = title_elem.get_text(strip=True) if title_elem else abbrev
+
+        sections = []
+        seen_sections = set()
+
+        # Jusline uses article or div containers with § markers
+        for elem in soup.find_all(['article', 'section', 'div']):
+            text = elem.get_text(strip=True)
+            match = re.search(r'§\s*(\d+[a-z]?)\.?', text)
+            if match:
+                section_num = match.group(1)
+                if section_num in seen_sections:
+                    continue
+                seen_sections.add(section_num)
+
+                # Extract text content
+                full_text = elem.get_text(separator='\n', strip=True)
+                # Clean expanded notation
+                full_text = re.sub(r'Paragraph\s+(?:\d+[a-z]?|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s*,?\s*', '', full_text)
+                full_text = re.sub(r'\bAbsatz\s+(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+[a-z]?)\s*,?\s*', '', full_text)
+                full_text = re.sub(r'\n{3,}', '\n\n', full_text)
+                full_text = remove_duplicate_phrases(full_text)
+
+                if len(full_text) > 20:
+                    sections.append({
+                        "id": generate_id(f"{abbrev}-{section_num}"),
+                        "number": section_num,
+                        "title": f"§ {section_num}",
+                        "text": full_text[:50000],
+                        "whs_topics": self._classify_whs_topics(full_text, ""),
+                        "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
+                        "paragraphs": []
+                    })
+
+        sections.sort(key=lambda s: get_section_number(s))
+
+        doc = {
+            "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
+            "version": "1.0.0",
+            "type": "law",
+            "jurisdiction": "AT",
+            "abbreviation": abbrev,
+            "title": title,
+            "title_en": title,
+            "category": "Core Safety",
+            "source": {"url": url, "title": title, "authority": "Jusline.at", "robots_txt_compliant": True},
+            "scraping": {"scraped_at": datetime.now().isoformat(), "scraper_version": CONFIG.scraper_version},
+            "chapters": [{"id": f"at-{abbrev.lower()}-main", "number": "1", "title": "Hauptteil", "title_en": "Main Part", "sections": sections}]
+        }
+        doc["content_hash"] = generate_content_hash(doc)
+        return doc
+
+    def _parse_generic_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
+        """Parse a law from a generic source with simple HTML structure."""
+        soup = BeautifulSoup(html, 'html.parser')
+
+        # Remove non-content elements
+        for elem in soup.find_all(['script', 'style', 'nav', 'header', 'footer']):
+            elem.decompose()
+
+        title_elem = soup.find('h1') or soup.find('title')
+        title = title_elem.get_text(strip=True) if title_elem else abbrev
+
+        # Extract all text content and try to find section markers
+        main_content = soup.find('main') or soup.find('article') or soup.find('div', class_=re.compile(r'content', re.I)) or soup.body
+        if not main_content:
+            return None
+
+        full_text = main_content.get_text(separator='\n', strip=True)
+        # Clean up
+        full_text = re.sub(r'\n{3,}', '\n\n', full_text)
+        full_text = remove_duplicate_phrases(full_text)
+
+        doc = {
+            "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
+            "version": "1.0.0",
+            "type": "law",
+            "jurisdiction": "AT",
+            "abbreviation": abbrev,
+            "title": title,
+            "title_en": title,
+            "category": "Core Safety",
+            "source": {"url": url, "title": title, "authority": "Generic", "robots_txt_compliant": True},
+            "scraping": {"scraped_at": datetime.now().isoformat(), "scraper_version": CONFIG.scraper_version},
+            "full_text": full_text[:100000],
+            "chapters": []
+        }
+        doc["content_hash"] = generate_content_hash(doc)
+        return doc
 
     def scrape(self) -> List[Dict[str, Any]]:
         """Scrape Austrian laws from RIS with full text extraction and parallel processing."""
@@ -1509,6 +1680,12 @@ class ATScraper(Scraper):
                     if current.name in ['p', 'div', 'ol', 'ul', 'table']:
                         elem_text = current.get_text(separator=' ', strip=True)
                         if elem_text and len(elem_text) > 5:
+                            # Skip standalone navigation elements
+                            if elem_text.strip().lower() in ['text', 'inhalt', 'abschnitt']:
+                                current = current.find_next_sibling()
+                                continue
+                            # Remove "Text " prefix from start of content
+                            elem_text = re.sub(r'^Text\s+', '', elem_text)
                             # Clean up redundant parenthetical references
                             elem_text = re.sub(r'\s*\([^)]*Paragraph[^)]*\)', '', elem_text)
                             content_parts.append(elem_text)
@@ -1517,8 +1694,32 @@ class ATScraper(Scraper):
 
                 # Combine and clean text
                 full_text = '\n\n'.join(content_parts)
-                # Remove duplicate expanded notation
-                full_text = re.sub(r'(\d+)\s*\([^)]*(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)[^)]*\)', r'\1', full_text)
+
+                # Remove expanded notation patterns (RIS accessibility duplication)
+                # Pattern: "Paragraph X," where X is a number OR German word number
+                full_text = re.sub(r'Paragraph\s+(?:\d+[a-z]?|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s*,?\s*', '', full_text)
+                # Pattern: "Absatz eins/zwei/etc" or "Absatz 1/2/etc"
+                full_text = re.sub(r'\bAbsatz\s+(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+[a-z]?)\s*,?\s*', '', full_text)
+                # Pattern: "Ziffer eins/zwei/etc" or "Ziffer 1/2/etc"
+                full_text = re.sub(r'\bZiffer\s+(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+)\s*,?\s*', '', full_text)
+                # Pattern: "Litera a/b/c"
+                full_text = re.sub(r'\bLitera\s+[a-z]\s*,?\s*', '', full_text)
+                # Pattern: Expanded BGBl references
+                full_text = re.sub(r'Bundesgesetzblatt\s+(?:Teil\s+(?:eins|zwei|drei|\w+),?\s*)?Nr\.\s+\d+\s+aus\s+\d+,?\s*', '', full_text)
+
+                # Remove duplicate content (expanded version following abbreviated version)
+                # Pattern: "BGBl. Nr. XXX;" followed by "Bundesgesetzblatt Nr. XXX;"
+                full_text = re.sub(r'(BGBl\.\s*(?:I|II)?\s*Nr\.\s*\d+(?:/\d+)?\s*[,;]?)\s*[^;§]*?Bundesgesetzblatt\s+(?:Teil\s+\w+,?\s*)?Nr\.\s+\d+(?:\s+aus\s+\d+)?[,;]?', r'\1', full_text)
+                # Also catch sentence-level duplicates where content repeats with expanded references
+                # Pattern: sentence ending with "BGBl. Nr. XX" followed by same sentence with "Bundesgesetzblatt"
+                full_text = re.sub(r'([^.;]+BGBl\.\s*(?:I|II)?\s*Nr\.\s*\d+(?:/\d+)?\s*[,;])\s*\1', r'\1', full_text, flags=re.IGNORECASE)
+
+                # Add line breaks before paragraph numbers to create proper structure
+                # (1) (2) (3) etc should be on their own lines
+                full_text = re.sub(r'\s+\((\d+[a-z]?)\)\s+', r'\n\n(\1) ', full_text)
+
+                # Final pass: remove duplicate phrases (handles BGBl vs Bundesgesetzblatt duplicates)
+                full_text = remove_duplicate_phrases(full_text)
 
                 # Classify WHS topics
                 whs_topics = self._classify_whs_topics(full_text, section_title)
@@ -1562,6 +1763,11 @@ class ATScraper(Scraper):
                         if sibling.name in ['p', 'li', 'div']:
                             elem_text = sibling.get_text(strip=True)
                             if elem_text and len(elem_text) > 10:
+                                # Skip standalone navigation elements
+                                if elem_text.strip().lower() in ['text', 'inhalt', 'abschnitt']:
+                                    continue
+                                # Remove "Text " prefix
+                                elem_text = re.sub(r'^Text\s+', '', elem_text)
                                 content_parts.append(elem_text)
                         elif sibling.name in ['ol', 'ul']:
                             for li in sibling.find_all('li'):
@@ -1570,6 +1776,17 @@ class ATScraper(Scraper):
                                     content_parts.append(li_text)
 
                     full_text = '\n\n'.join(content_parts)
+
+                    # Remove expanded notation patterns
+                    full_text = re.sub(r'Paragraph\s+(?:\d+[a-z]?|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s*,?\s*', '', full_text)
+                    full_text = re.sub(r'\bAbsatz\s+(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+[a-z]?)\s*,?\s*', '', full_text)
+                    full_text = re.sub(r'\bZiffer\s+(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+)\s*,?\s*', '', full_text)
+                    full_text = re.sub(r'\bLitera\s+[a-z]\s*,?\s*', '', full_text)
+                    full_text = re.sub(r'Bundesgesetzblatt\s+(?:Teil\s+(?:eins|zwei|drei|\w+),?\s*)?Nr\.\s+\d+\s+aus\s+\d+,?\s*', '', full_text)
+                    # Add line breaks before paragraph numbers
+                    full_text = re.sub(r'\s+\((\d+[a-z]?)\)\s+', r'\n\n(\1) ', full_text)
+                    # Final pass: remove duplicate phrases
+                    full_text = remove_duplicate_phrases(full_text)
                     whs_topics = self._classify_whs_topics(full_text, section_title)
 
                     sections.append({
@@ -1793,12 +2010,111 @@ class DEScraper(Scraper):
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
-            doc = self._parse_german_law_full(html, abbrev, url)
+            # Detect source and use appropriate parser
+            if 'dejure.org' in url:
+                log_info(f"  Using Dejure parser for {abbrev}")
+                doc = self._parse_dejure_law(html, abbrev, url)
+            elif 'buzer.de' in url:
+                log_info(f"  Using Buzer parser for {abbrev}")
+                doc = self._parse_generic_de_law(html, abbrev, url)
+            else:
+                # Default: gesetze-im-internet.de parser
+                doc = self._parse_german_law_full(html, abbrev, url)
+
             if doc:
                 total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
                 log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
                 return doc
         return None
+
+    def _parse_dejure_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
+        """Parse a law from dejure.org - alternative German law source."""
+        soup = BeautifulSoup(html, 'html.parser')
+
+        for elem in soup.find_all(['script', 'style', 'nav', 'header', 'footer']):
+            elem.decompose()
+
+        title_elem = soup.find('h1') or soup.find('title')
+        title = title_elem.get_text(strip=True) if title_elem else abbrev
+
+        sections = []
+        seen_sections = set()
+
+        # Dejure uses div.norm containers
+        for container in soup.find_all(['div', 'section', 'article']):
+            text = container.get_text(strip=True)[:200]
+            match = re.search(r'§\s*(\d+[a-z]?)\.?', text)
+            if match:
+                section_num = match.group(1)
+                if section_num in seen_sections:
+                    continue
+                seen_sections.add(section_num)
+
+                full_text = container.get_text(separator='\n', strip=True)
+                full_text = re.sub(r'\n{3,}', '\n\n', full_text)
+
+                if len(full_text) > 20:
+                    sections.append({
+                        "id": generate_id(f"{abbrev}-{section_num}"),
+                        "number": section_num,
+                        "title": f"§ {section_num}",
+                        "text": full_text[:50000],
+                        "whs_topics": self._classify_whs_topics(full_text, ""),
+                        "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
+                        "paragraphs": []
+                    })
+
+        sections.sort(key=lambda s: get_section_number(s))
+
+        doc = {
+            "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
+            "version": "1.0.0",
+            "type": "law",
+            "jurisdiction": "DE",
+            "abbreviation": abbrev,
+            "title": title,
+            "title_en": title,
+            "category": "Core Safety",
+            "source": {"url": url, "title": title, "authority": "dejure.org", "robots_txt_compliant": True},
+            "scraping": {"scraped_at": datetime.now().isoformat(), "scraper_version": CONFIG.scraper_version},
+            "chapters": [{"id": f"de-{abbrev.lower()}-main", "number": "1", "title": "Hauptteil", "title_en": "Main Part", "sections": sections}]
+        }
+        doc["content_hash"] = generate_content_hash(doc)
+        return doc
+
+    def _parse_generic_de_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
+        """Parse a law from a generic German source."""
+        soup = BeautifulSoup(html, 'html.parser')
+
+        for elem in soup.find_all(['script', 'style', 'nav', 'header', 'footer']):
+            elem.decompose()
+
+        title_elem = soup.find('h1') or soup.find('title')
+        title = title_elem.get_text(strip=True) if title_elem else abbrev
+
+        main_content = soup.find('main') or soup.find('article') or soup.find('div', class_=re.compile(r'content', re.I)) or soup.body
+        if not main_content:
+            return None
+
+        full_text = main_content.get_text(separator='\n', strip=True)
+        full_text = re.sub(r'\n{3,}', '\n\n', full_text)
+
+        doc = {
+            "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
+            "version": "1.0.0",
+            "type": "law",
+            "jurisdiction": "DE",
+            "abbreviation": abbrev,
+            "title": title,
+            "title_en": title,
+            "category": "Core Safety",
+            "source": {"url": url, "title": title, "authority": "Generic", "robots_txt_compliant": True},
+            "scraping": {"scraped_at": datetime.now().isoformat(), "scraper_version": CONFIG.scraper_version},
+            "full_text": full_text[:100000],
+            "chapters": []
+        }
+        doc["content_hash"] = generate_content_hash(doc)
+        return doc
 
     def scrape(self) -> List[Dict[str, Any]]:
         """Scrape German laws with full text extraction and parallel processing."""
@@ -2188,12 +2504,102 @@ class NLScraper(Scraper):
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
-            doc = self._parse_dutch_law_full(html, abbrev, url)
+            # Detect source and use appropriate parser
+            if 'arboportaal.nl' in url:
+                log_info(f"  Using Arboportaal parser for {abbrev}")
+                doc = self._parse_generic_nl_law(html, abbrev, url, "arboportaal.nl")
+            elif 'rijksoverheid.nl' in url:
+                log_info(f"  Using Rijksoverheid parser for {abbrev}")
+                doc = self._parse_generic_nl_law(html, abbrev, url, "rijksoverheid.nl")
+            else:
+                # Default: wetten.overheid.nl parser
+                doc = self._parse_dutch_law_full(html, abbrev, url)
+
             if doc:
                 total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
                 log_success(f"Scraped {abbrev}: {total_sections} articles with full text")
                 return doc
         return None
+
+    def _parse_generic_nl_law(self, html: str, abbrev: str, url: str, authority: str) -> Optional[Dict[str, Any]]:
+        """Parse a law from a generic Dutch source."""
+        soup = BeautifulSoup(html, 'html.parser')
+
+        for elem in soup.find_all(['script', 'style', 'nav', 'header', 'footer']):
+            elem.decompose()
+
+        title_elem = soup.find('h1') or soup.find('title')
+        title = title_elem.get_text(strip=True) if title_elem else abbrev
+
+        sections = []
+        seen_sections = set()
+
+        # Try to find article containers
+        for container in soup.find_all(['article', 'section', 'div']):
+            text = container.get_text(strip=True)[:200]
+            match = re.search(r'Artikel\s*(\d+[a-z]?)\.?', text, re.IGNORECASE)
+            if match:
+                section_num = match.group(1)
+                if section_num in seen_sections:
+                    continue
+                seen_sections.add(section_num)
+
+                full_text = container.get_text(separator='\n', strip=True)
+                full_text = re.sub(r'\n{3,}', '\n\n', full_text)
+
+                if len(full_text) > 20:
+                    sections.append({
+                        "id": generate_id(f"{abbrev}-{section_num}"),
+                        "number": section_num,
+                        "title": f"Artikel {section_num}",
+                        "text": full_text[:50000],
+                        "whs_topics": self._classify_whs_topics(full_text, ""),
+                        "amazon_logistics_relevance": self._calculate_logistics_relevance(full_text, ""),
+                        "paragraphs": []
+                    })
+
+        sections.sort(key=lambda s: get_section_number(s))
+
+        # If no sections found, store as full text
+        if not sections:
+            main_content = soup.find('main') or soup.find('article') or soup.body
+            if main_content:
+                full_text = main_content.get_text(separator='\n', strip=True)
+                full_text = re.sub(r'\n{3,}', '\n\n', full_text)
+            else:
+                return None
+
+            doc = {
+                "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
+                "version": "1.0.0",
+                "type": "law",
+                "jurisdiction": "NL",
+                "abbreviation": abbrev,
+                "title": title,
+                "title_en": title,
+                "category": "Core Safety",
+                "source": {"url": url, "title": title, "authority": authority, "robots_txt_compliant": True},
+                "scraping": {"scraped_at": datetime.now().isoformat(), "scraper_version": CONFIG.scraper_version},
+                "full_text": full_text[:100000],
+                "chapters": []
+            }
+        else:
+            doc = {
+                "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
+                "version": "1.0.0",
+                "type": "law",
+                "jurisdiction": "NL",
+                "abbreviation": abbrev,
+                "title": title,
+                "title_en": title,
+                "category": "Core Safety",
+                "source": {"url": url, "title": title, "authority": authority, "robots_txt_compliant": True},
+                "scraping": {"scraped_at": datetime.now().isoformat(), "scraper_version": CONFIG.scraper_version},
+                "chapters": [{"id": f"nl-{abbrev.lower()}-main", "number": "1", "title": "Hoofdinhoud", "title_en": "Main Content", "sections": sections}]
+            }
+
+        doc["content_hash"] = generate_content_hash(doc)
+        return doc
 
     def scrape(self) -> List[Dict[str, Any]]:
         """Scrape Dutch laws with full text extraction and parallel processing."""
@@ -2401,29 +2807,22 @@ class NLScraper(Scraper):
                         p_text = re.sub(r'\s+', ' ', p_text)
                         content_parts.append(p_text)
 
-            # Also check li elements for content
-            for li in container.find_all('li', recursive=True):
-                # Skip action list items
-                li_classes = li.get('class', [])
-                class_str = ' '.join(li_classes) if isinstance(li_classes, list) else (li_classes or '')
-                if 'action' in class_str.lower():
-                    continue
+            # NOTE: Removed li extraction - <li> contains <p>, so extracting from both causes duplication
+            # The <p> extraction above already gets all the content
 
-                # Get direct text (not from nested elements already captured)
-                li_text = li.get_text(separator=' ', strip=True)
-                if li_text and len(li_text) > 10:
-                    li_text = re.sub(r'\s+', ' ', li_text)
-                    content_parts.append(li_text)
-
-            # Deduplicate while preserving order (nested li may duplicate)
-            # Use full text hash to avoid losing similar-starting but different paragraphs
-            seen_parts = set()
+            # Deduplicate while preserving order - use normalized text comparison
+            # to catch near-duplicates (different whitespace, etc.)
+            seen_normalized = set()
             unique_parts = []
             for part in content_parts:
-                # Use hash of full text to properly identify duplicates
-                key = hash(part.strip().lower())
-                if key not in seen_parts:
-                    seen_parts.add(key)
+                # Normalize: lowercase, collapse whitespace, strip punctuation variations
+                normalized = re.sub(r'\s+', ' ', part.strip().lower())
+                normalized = re.sub(r'[;,.]$', '', normalized)  # Remove trailing punctuation
+
+                # Check if we've seen similar content (first 100 chars for efficiency)
+                check_key = normalized[:100]
+                if check_key not in seen_normalized:
+                    seen_normalized.add(check_key)
                     unique_parts.append(part)
 
             # Join and clean the text
@@ -2627,8 +3026,20 @@ def clean_text_with_regex(text: str, country: str) -> str:
             r'Accesskey\s*\d+',
             r'Navigationsleiste:[\s\S]*?(?=§\s*\d|$)',
             r'Druckansicht\s*\([^)]*\)',
-            r'Paragraph \w+,?\s*',
-            r'Absatz \w+,?\s*',
+            # Remove standalone "Text" navigation element at start of sections
+            r'^Text\s+',
+            r'\nText\s+',
+            # Remove expanded notation (RIS accessibility feature that duplicates abbreviated notation)
+            r'Paragraph\s+(?:\d+[a-z]?|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s*,?\s*',  # "Paragraph 3," or "Paragraph eins," -> ""
+            r'\bAbsatz\s+(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+[a-z]?)\s*,?\s*',  # "Absatz eins," -> ""
+            r'\bZiffer\s+(?:eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|\d+)\s*,?\s*',  # "Ziffer eins" -> ""
+            r'\bLitera\s+[a-z]\s*,?\s*',  # "Litera a" -> ""
+            r'Bundesgesetzblatt\s+(?:Teil\s+(?:eins|zwei|drei|\w+),?\s*)?Nr\.\s+\d+\s+aus\s+\d+,?\s*',  # Long BGBl references
+            # Remove inline expanded refs like "gemäß Paragraph 7" (keep the § reference that usually precedes)
+            r'gemäß\s+Paragraph\s+(?:\d+[a-z]?|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s*,?\s*',
+            r'nach\s+Paragraph\s+(?:\d+[a-z]?|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s*,?\s*',
+            r'des\s+Paragraph\s+(?:\d+[a-z]?|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s*,?\s*',
+            r'im\s+Sinne\s+des\s+Paragraph\s+(?:\d+[a-z]?|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn)\s*,?\s*',
         ]
     elif country == 'NL':
         patterns = [
@@ -2636,7 +3047,13 @@ def clean_text_with_regex(text: str, country: str) -> str:
             r'Maak een permanente link\s*',
             r'Toon wetstechnische informatie\s*',
             r'Druk het regelingonderdeel af\s*',
+            r'Sla het regelingonderdeel op\s*',
             r'\[Wijziging\(en\)[^\]]*\]',
+            r'wijzigingenoverzicht\s*',
+            r'Selecteer[\s\S]*?geldig\s*',
+            r'Vergelijk met\s*',
+            # Remove leading "lid" numbers that may have been preserved
+            r'^\d+[a-z]?\s+(?=[A-Z])',  # "1 In deze wet" -> "In deze wet"
         ]
     elif country == 'DE':
         patterns = [
@@ -2821,7 +3238,8 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
             if doc.get('full_text'):
                 doc['full_text'] = clean_text_with_regex(doc['full_text'], country)
 
-            if doc.get('chapters') and not fast_mode:
+            # Always apply regex cleaning to all sections (fast mode just skips AI)
+            if doc.get('chapters'):
                 for chapter in doc['chapters']:
                     for section in chapter.get('sections', []):
                         if section.get('text'):
