@@ -4963,7 +4963,7 @@
       "jurisdiction": "AT",
       "abbreviation": "AZG",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 18.12.2025",
+      "title_en": "Working Hours Act",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008238",
@@ -7293,7 +7293,7 @@
       "jurisdiction": "AT",
       "abbreviation": "ARG",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 18.12.2025",
+      "title_en": "Rest Period Act",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008374",
@@ -7676,7 +7676,7 @@
       "jurisdiction": "AT",
       "abbreviation": "MSchG",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 18.12.2025",
+      "title_en": "Maternity Protection Act",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008464",
@@ -9235,7 +9235,7 @@
       "jurisdiction": "AT",
       "abbreviation": "KJBG",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 18.12.2025",
+      "title_en": "Child and Young Persons Employment Act",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008632",
@@ -10491,7 +10491,7 @@
       "jurisdiction": "AT",
       "abbreviation": "AStV",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 18.12.2025",
+      "title_en": "Workplace Ordinance",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001927",
@@ -10558,7 +10558,7 @@
       "jurisdiction": "AT",
       "abbreviation": "DOK-VO",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Sicherheits- und Gesundheitsschutzdokumente, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Sicherheits- und Gesundheitsschutzdokumente, Fassung vom 18.12.2025",
+      "title_en": "Safety Documentation Ordinance",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009021",
@@ -10848,7 +10848,7 @@
       "jurisdiction": "AT",
       "abbreviation": "AM-VO",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsmittelverordnung, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsmittelverordnung, Fassung vom 18.12.2025",
+      "title_en": "Work Equipment Ordinance",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20000727",
@@ -13172,7 +13172,7 @@
       "jurisdiction": "AT",
       "abbreviation": "ESV 2012",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Elektroschutzverordnung 2012, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Elektroschutzverordnung 2012, Fassung vom 18.12.2025",
+      "title_en": "Electrical Safety Ordinance",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20007682",
@@ -13742,7 +13742,7 @@
       "jurisdiction": "AT",
       "abbreviation": "PSA-V",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Verordnung Persönliche Schutzausrüstung, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Verordnung Persönliche Schutzausrüstung, Fassung vom 18.12.2025",
+      "title_en": "Personal Protective Equipment Ordinance",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20008821",
@@ -14525,7 +14525,7 @@
       "jurisdiction": "AT",
       "abbreviation": "BauV",
       "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Bauarbeiterschutzverordnung, Fassung vom 18.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Bauarbeiterschutzverordnung, Fassung vom 18.12.2025",
+      "title_en": "Construction Worker Protection Ordinance",
       "category": "Core Safety",
       "source": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008904",
