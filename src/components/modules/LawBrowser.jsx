@@ -635,14 +635,14 @@ function FormattedText({ text, searchTerm = '' }) {
 
   // Helper to render list items (handles both string and {marker, content} formats)
   const renderListItems = (items, isSubList = false) => (
-    <ol className={`space-y-1.5 ${isSubList ? 'mt-2 ml-4 border-l-2 border-gray-300 dark:border-gray-600 pl-3' : 'list-decimal list-inside pl-4'} text-gray-700 dark:text-gray-300`}>
+    <ol className={`space-y-1 ${isSubList ? 'mt-1.5 ml-3 border-l border-gray-300 dark:border-gray-600 pl-2' : 'list-decimal list-inside pl-3'} text-xs text-gray-700 dark:text-gray-300`}>
       {items.map((item, i) => {
         const content = typeof item === 'string' ? item : item.content
         const marker = typeof item === 'object' ? item.marker : null
         return (
           <li key={i} className="leading-relaxed">
             {marker && (
-              <span className="inline-block min-w-[2rem] font-medium text-gray-600 dark:text-gray-400 mr-1">
+              <span className="inline-block min-w-[1.5rem] font-medium text-gray-600 dark:text-gray-400 mr-1 text-xs">
                 {marker}
               </span>
             )}
@@ -654,12 +654,12 @@ function FormattedText({ text, searchTerm = '' }) {
   )
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {elements.map((el, idx) => {
         switch (el.type) {
           case 'section':
             return (
-              <h4 key={idx} className="font-semibold text-whs-orange-600 dark:text-whs-orange-400 mt-6 first:mt-0">
+              <h4 key={idx} className="text-sm font-semibold text-whs-orange-600 dark:text-whs-orange-400 mt-4 first:mt-0">
                 {highlightText(el.content, searchTerm)}
               </h4>
             )
@@ -667,12 +667,12 @@ function FormattedText({ text, searchTerm = '' }) {
             // German paragraph (Absatz) with number like (1), (2) - styled with border for visibility
             // Now supports subItems (numbered points that belong to the Absatz)
             return (
-              <div key={idx} className="border-l-4 border-whs-orange-400 dark:border-whs-orange-600 pl-4 py-2 bg-gray-50 dark:bg-gray-800/50 rounded-r">
-                <div>
-                  <span className="inline-block bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 px-2 py-0.5 rounded text-sm font-semibold mr-2">
+              <div key={idx} className="border-l-2 border-whs-orange-300 dark:border-whs-orange-700 pl-3 py-1.5 bg-gray-50 dark:bg-gray-800/50 rounded-r my-1">
+                <div className="flex items-start gap-2">
+                  <span className="inline-block bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 px-1.5 py-0.5 rounded text-xs font-semibold flex-shrink-0">
                     ({el.number})
                   </span>
-                  <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <span className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
                     {highlightText(el.content, searchTerm)}
                   </span>
                 </div>
@@ -689,7 +689,7 @@ function FormattedText({ text, searchTerm = '' }) {
           case 'paragraph':
           default:
             return (
-              <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p key={idx} className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
                 {highlightText(el.content, searchTerm)}
               </p>
             )
@@ -1848,33 +1848,50 @@ export function LawBrowser({ onBack }) {
                                     className="scroll-mt-4"
                                   >
                                     {/* Section Header with WHS Relevance - Clickable to expand/collapse */}
-                                    <button
-                                      onClick={() => toggleSection(section.id)}
-                                      className="w-full flex flex-col md:flex-row md:items-center gap-2 mb-3 pb-2 border-b-2 border-whs-orange-200 dark:border-whs-orange-800 hover:bg-gray-50 dark:hover:bg-whs-dark-800 transition-colors rounded-t-lg px-2 -mx-2"
-                                    >
-                                      <div className="flex items-center gap-3 flex-1">
+                                    <div className="flex items-start gap-2 mb-2 pb-2 border-b border-whs-orange-200 dark:border-whs-orange-800">
+                                      <button
+                                        onClick={() => toggleSection(section.id)}
+                                        className="flex-1 flex items-start gap-2 hover:bg-gray-50 dark:hover:bg-whs-dark-800 transition-colors rounded-lg px-2 py-1 -ml-2 text-left"
+                                      >
                                         <svg
-                                          className={`w-5 h-5 text-gray-400 transition-transform ${expandedSections[section.id] ? 'rotate-90' : ''}`}
+                                          className={`w-4 h-4 text-gray-400 transition-transform mt-0.5 flex-shrink-0 ${expandedSections[section.id] ? 'rotate-90' : ''}`}
                                           fill="none"
                                           stroke="currentColor"
                                           viewBox="0 0 24 24"
                                         >
                                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                         </svg>
-                                        <span className="text-base font-bold text-whs-orange-500">
+                                        <span className="text-sm font-bold text-whs-orange-500 flex-shrink-0">
                                           {section.number}
                                         </span>
                                         {section.title && (
-                                          <h3 className="text-sm font-semibold text-gray-900 dark:text-white text-left">
+                                          <h3 className="text-xs font-medium text-gray-900 dark:text-white leading-tight">
                                             {highlightText(section.title, contentSearchTerm)}
                                           </h3>
                                         )}
-                                      </div>
+                                      </button>
+                                      {/* Wiki link button */}
+                                      {wikiIndex[selectedLaw?.abbreviation] && (
+                                        <button
+                                          onClick={(e) => {
+                                            e.stopPropagation()
+                                            openWikiModal(selectedLaw.abbreviation)
+                                          }}
+                                          className="flex-shrink-0 p-1 text-gray-400 hover:text-blue-500 transition-colors"
+                                          title="View Wikipedia article"
+                                        >
+                                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                          </svg>
+                                        </button>
+                                      )}
                                       {/* WHS Relevance Badge */}
                                       {section.amazon_logistics_relevance && (
-                                        <RelevanceBadge level={section.amazon_logistics_relevance.level} />
+                                        <div className="flex-shrink-0">
+                                          <RelevanceBadge level={section.amazon_logistics_relevance.level} />
+                                        </div>
                                       )}
-                                    </button>
+                                    </div>
 
                                     {/* Collapsible Content */}
                                     {expandedSections[section.id] && (
