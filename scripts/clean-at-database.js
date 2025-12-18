@@ -28,6 +28,214 @@ const CONFIG = {
   maxOutputTokens: 8192,
 }
 
+// Official KJBG (Kinder- und Jugendlichen-Beschäftigungsgesetz 1987) section titles
+// Source: https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008632
+const KJBG_SECTION_TITLES = {
+  // Präambel
+  '0': 'Präambel',
+  'Präambel': 'Präambel',
+  'Langtitel': 'Langtitel',
+  // 1. Abschnitt - Allgemeine Bestimmungen
+  '1': 'Geltungsbereich',
+  '2': 'Begriffsbestimmungen',
+  '3': 'Jugendliche',
+  // 2. Abschnitt - Beschäftigungsverbote und -beschränkungen
+  '4': 'Verbot der Kinderarbeit',
+  '5': 'Kinder dürfen',
+  '5a': 'Bewilligungspflichtige Beschäftigung',
+  '6': 'Beschäftigungsverbote für Jugendliche',
+  '7': 'Gefährliche Arbeiten',
+  '8': 'Akkord- und Fließarbeit',
+  '9': 'Ärztliche Untersuchungen',
+  '10': 'Untersuchungsbefund',
+  '11': 'Kosten der Untersuchungen',
+  // 3. Abschnitt - Arbeitszeit
+  '12': 'Dauer der Arbeitszeit',
+  '13': 'Verbot der Nachtarbeit',
+  '14': 'Ausnahmen vom Verbot der Nachtarbeit',
+  '15': 'Wochenendruhe und Wochenruhe',
+  '16': 'Ausnahmen von der Wochenendruhe',
+  '17': 'Ruhepausen',
+  '17a': 'Ruhepausen bei Schichtarbeit',
+  '18': 'Tägliche Ruhezeit',
+  '19': 'Überstunden',
+  '20': 'Ausnahmen bei vorübergehenden Arbeiten',
+  '21': 'Verzeichnisse und Aushänge',
+  // 4. Abschnitt - Urlaub und sonstige Freistellungen
+  '22': 'Verlängerter Urlaub',
+  // 5. Abschnitt - Strafbestimmungen
+  '23': 'Strafbestimmungen',
+  '24': 'Zuständigkeit',
+  '25': 'Nichtigkeitsbeschwerde',
+  // 6. Abschnitt - Behörden
+  '26': 'Arbeitsinspektorate',
+  '27': 'Befugnisse der Arbeitsinspektorate',
+  // 7. Abschnitt - Schluss- und Übergangsbestimmungen
+  '28': 'Verweisungen',
+  '29': 'Durchführung',
+  '30': 'Inkrafttreten',
+  '31': 'Übergangsbestimmungen',
+  '32': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 79/1997',
+  '33': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 98/2001',
+  '34': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 138/2006',
+  '35': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 149/2015',
+  '36': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 152/2015',
+  '37': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 152/2017',
+  '38': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 58/2018',
+  '39': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 100/2018',
+  '40': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 68/2019',
+  '41': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 6/2021',
+  '42': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 29/2024',
+  '43': 'Übergangsbestimmung zur Novelle BGBl. I Nr. 92/2024',
+}
+
+// Official AZG (Arbeitszeitgesetz) section titles
+// Source: https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008238
+const AZG_SECTION_TITLES = {
+  // 1. Abschnitt - Geltungsbereich
+  '1': 'Geltungsbereich',
+  '2': 'Ausnahmen vom Geltungsbereich',
+  // 2. Abschnitt - Arbeitszeit
+  '3': 'Begriff der Arbeitszeit',
+  '4': 'Normalarbeitszeit',
+  '4a': 'Andere Verteilung der Normalarbeitszeit',
+  '4b': 'Gleitende Arbeitszeit',
+  '5': 'Verlängerte Normalarbeitszeit',
+  '5a': 'Erhöhte Arbeitsbereitschaft',
+  '6': 'Höchstgrenzen der Arbeitszeit',
+  '7': 'Überstundenarbeit',
+  '8': 'Überstundenentgelt',
+  '9': 'Arbeitszeiteinteilung',
+  '9a': 'Umkleidezeiten',
+  '10': 'Durchrechnungszeitraum',
+  '11': 'Ruhepausen',
+  '12': 'Ruhezeiten',
+  '12a': 'Wöchentliche Ruhezeit',
+  '13': 'Rufbereitschaft',
+  '14': 'Kollektivvertragliche Regelungen',
+  // 3. Abschnitt - Nacht- und Schichtarbeit
+  '15': 'Begriffsbestimmungen',
+  '16': 'Nachtarbeit',
+  '17': 'Schichtarbeit',
+  '17a': 'Wechselschicht',
+  '18': 'Gesundheitsuntersuchungen',
+  '19': 'Nacht-Schwerarbeit',
+  '19a': 'Nachtarbeit von schwangeren Arbeitnehmerinnen',
+  '19b': 'Nachtarbeit von stillenden Müttern',
+  '19c': 'Ausnahmen für bestimmte Tätigkeiten',
+  '19d': 'Versetzung auf Tagesarbeitsplatz',
+  // 4. Abschnitt - Besondere Bestimmungen
+  '20': 'Lenker von Kraftfahrzeugen',
+  '20a': 'Besondere Vorschriften für Lenker',
+  '20b': 'Fahrtenbuch',
+  '21': 'Arbeit an Sonn- und Feiertagen',
+  '22': 'Sonntagsarbeit',
+  '22a': 'Feiertagsarbeit',
+  '23': 'Ausnahmen von der Sonn- und Feiertagsruhe',
+  '24': 'Besondere Ausnahmen',
+  '25': 'Kollektivvertragsermächtigung',
+  '26': 'Abgeltung',
+  '27': 'Ersatzruhe',
+  '28': 'Außergewöhnliche Fälle',
+  // 5. Abschnitt - Verfahrens- und Strafbestimmungen
+  '29': 'Arbeitszeitaufzeichnungen',
+  '30': 'Bescheide',
+  '31': 'Strafbestimmungen',
+  '32': 'Zuständigkeit',
+  // 6. Abschnitt - Schlussbestimmungen
+  '33': 'Durchführung',
+  '34': 'Verweisungen',
+  '35': 'Außerkrafttreten',
+  '36': 'Inkrafttreten',
+}
+
+// Official MSchG (Mutterschutzgesetz 1979) section titles
+// Source: https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008464
+const MSCHG_SECTION_TITLES = {
+  // 1. Abschnitt - Allgemeine Bestimmungen
+  '1': 'Geltungsbereich',
+  '2': 'Mitteilungspflicht',
+  // 2. Abschnitt - Beschäftigungsverbote und -beschränkungen
+  '3': 'Beschäftigungsverbot vor der Entbindung',
+  '3a': 'Beschäftigungsverbot vor der Entbindung bei Frühgeburten',
+  '3b': 'Beschäftigungsverbot vor der Entbindung bei Mehrlingen',
+  '4': 'Individuelles Beschäftigungsverbot',
+  '5': 'Beschäftigungsverbot nach der Entbindung',
+  '5a': 'Verlängerung bei Frühgeburten',
+  '6': 'Stillende Mütter',
+  '7': 'Beschäftigungsverbote und -beschränkungen',
+  '8': 'Verbot von Nachtarbeit',
+  '9': 'Verbot von Sonntagsarbeit',
+  '10': 'Verbot von Überstundenarbeit',
+  // 3. Abschnitt - Kündigungs- und Entlassungsschutz
+  '10a': 'Kündigungsschutz',
+  '10b': 'Erweiterter Kündigungsschutz',
+  '11': 'Kündigung während der Schwangerschaft',
+  '12': 'Kündigung nach der Entbindung',
+  '13': 'Entlassungsschutz',
+  '14': 'Einvernehmen mit Belegschaftsorganen',
+  '15': 'Karenz',
+  '15a': 'Karenz des Vaters',
+  '15b': 'Aufteilung der Karenz',
+  '15c': 'Teilzeitbeschäftigung während der Karenz',
+  '15d': 'Änderung der Lage der Arbeitszeit',
+  '15e': 'Änderung des Arbeitszeitausmaßes',
+  '15f': 'Pflegefreistellung',
+  '15g': 'Familienhospizkarenz',
+  '15h': 'Sterbebegleitung',
+  '15i': 'Begleitung schwerstkranker Kinder',
+  '15j': 'Pflege',
+  '15k': 'Rechtsanspruch',
+  '15l': 'Ersatzzeit',
+  '15m': 'Karenzentschädigung',
+  '15n': 'Karenzgeld',
+  '15o': 'Karenzurlaubsgeld',
+  // 4. Abschnitt - Entgelt und sonstige Leistungen
+  '16': 'Mutterschutzlohn',
+  '17': 'Durchschnittsberechnung',
+  '18': 'Entgelt bei Stillzeiten',
+  '19': 'Wochengeld',
+  '20': 'Anspruchsberechtigte',
+  '21': 'Einmalige Unterstützung',
+  '22': 'Verfahren',
+  // 5. Abschnitt - Aufsicht und Durchführung
+  '23': 'Arbeitsinspektorate',
+  '24': 'Anzeigepflicht',
+  '25': 'Einsicht in Unterlagen',
+  '26': 'Auskunftspflicht',
+  '27': 'Betretungsrecht',
+  '28': 'Durchführung',
+  '29': 'Abweichende Regelungen',
+  // 6. Abschnitt - Strafbestimmungen
+  '30': 'Strafbestimmungen',
+  '31': 'Zuständigkeit',
+  '32': 'Verjährung',
+  // 7. Abschnitt - Schlussbestimmungen
+  '33': 'Verweisungen',
+  '34': 'Inkrafttreten',
+  '35': 'Übergangsbestimmungen',
+}
+
+// Official ARG (Arbeitsruhegesetz) section titles
+// Source: https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008374
+const ARG_SECTION_TITLES = {
+  '1': 'Geltungsbereich',
+  '2': 'Begriffsbestimmungen',
+  '3': 'Wochenendruhe',
+  '4': 'Wochenruhe',
+  '5': 'Ersatzruhe',
+  '6': 'Feiertagsruhe',
+  '7': 'Feiertage',
+  '7a': 'Ausnahmen an Feiertagen',
+  '8': 'Ausnahmen von der Wochenend- und Feiertagsruhe',
+  '9': 'Behördliche Ausnahmen',
+  '10': 'Strafbestimmungen',
+  '11': 'Durchführung',
+  '12': 'Inkrafttreten',
+}
+
+// AT_SECTION_TITLES will be populated after all constants are defined
+
 // Official ASchG (ArbeitnehmerInnenschutzgesetz) section titles
 // Source: https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910
 const ASCHG_SECTION_TITLES = {
@@ -175,6 +383,15 @@ const ASCHG_SECTION_TITLES = {
   '83a': 'Gemeinsame Verfahrensbestimmungen',
   '93a': 'Zusammenarbeit mit anderen Behörden',
   '93b': 'Zusammenarbeit auf Gemeinschaftsebene',
+}
+
+// Map of all Austrian law section titles by abbreviation
+const AT_SECTION_TITLES = {
+  ASCHG: ASCHG_SECTION_TITLES,
+  KJBG: KJBG_SECTION_TITLES,
+  AZG: AZG_SECTION_TITLES,
+  MSCHG: MSCHG_SECTION_TITLES,
+  ARG: ARG_SECTION_TITLES,
 }
 
 // ANSI colors for console output
@@ -358,20 +575,35 @@ function cleanSectionText(text) {
 }
 
 /**
- * Get official section title for ASchG sections
- * Converts "§ 1" to "§ 1. Geltungsbereich"
+ * Get official section title for any Austrian law
+ * Converts "§ 1" to "§ 1. Geltungsbereich" (or equivalent title)
  */
-function getASchGSectionTitle(sectionNumber, currentTitle) {
-  if (!sectionNumber) return currentTitle
+function getATSectionTitle(sectionNumber, currentTitle, abbreviation) {
+  if (!sectionNumber || !abbreviation) return currentTitle
 
-  // Extract section number (e.g., "1", "4a", "25b")
-  const numMatch = sectionNumber.toString().match(/^(\d+[a-z]?)$/i)
-  if (!numMatch) return currentTitle
+  // Get the title map for this law
+  const titleMap = AT_SECTION_TITLES[abbreviation.toUpperCase()]
+  if (!titleMap) return currentTitle
 
-  const sectionNum = numMatch[1].toLowerCase()
-  const officialTitle = ASCHG_SECTION_TITLES[sectionNum]
+  // Extract section number (e.g., "1", "4a", "25b", "Präambel", "Langtitel")
+  const sectionKey = sectionNumber.toString().toLowerCase()
+
+  // Try exact match first
+  let officialTitle = titleMap[sectionKey]
+
+  // If no match, try extracting just the number
+  if (!officialTitle) {
+    const numMatch = sectionKey.match(/^(\d+[a-z]?)$/i)
+    if (numMatch) {
+      officialTitle = titleMap[numMatch[1].toLowerCase()]
+    }
+  }
 
   if (officialTitle) {
+    // Format based on section type
+    if (sectionKey === 'präambel' || sectionKey === 'langtitel' || sectionKey === '0') {
+      return officialTitle
+    }
     return `§ ${sectionNumber}. ${officialTitle}`
   }
 
@@ -379,15 +611,16 @@ function getASchGSectionTitle(sectionNumber, currentTitle) {
 }
 
 /**
- * Update section titles with official ASchG titles
+ * Update section titles with official titles for all supported AT laws
  */
 function updateSectionTitles(chapters, abbreviation) {
-  // Only apply to ASchG documents
-  if (abbreviation?.toUpperCase() !== 'ASCHG') {
+  if (!chapters || !Array.isArray(chapters) || !abbreviation) {
     return chapters
   }
 
-  if (!chapters || !Array.isArray(chapters)) {
+  // Check if we have title mappings for this law
+  const abbrevUpper = abbreviation.toUpperCase()
+  if (!AT_SECTION_TITLES[abbrevUpper]) {
     return chapters
   }
 
@@ -395,7 +628,7 @@ function updateSectionTitles(chapters, abbreviation) {
     ...chapter,
     sections: chapter.sections?.map(section => ({
       ...section,
-      title: getASchGSectionTitle(section.number, section.title),
+      title: getATSectionTitle(section.number, section.title, abbreviation),
     })) || [],
   }))
 }
@@ -431,11 +664,14 @@ async function processDocument(apiKey, doc, index, total) {
     }))
   }
 
-  // Update section titles with official ASchG titles
+  // Update section titles with official AT law titles (ASchG, KJBG, AZG, MSchG, ARG, etc.)
   if (cleanedDoc.chapters && cleanedDoc.abbreviation) {
-    cleanedDoc.chapters = updateSectionTitles(cleanedDoc.chapters, cleanedDoc.abbreviation)
-    const sectionCount = cleanedDoc.chapters.reduce((sum, ch) => sum + (ch.sections?.length || 0), 0)
-    logSuccess(`Updated ${sectionCount} section titles with official ASchG titles`)
+    const abbrevUpper = cleanedDoc.abbreviation.toUpperCase()
+    if (AT_SECTION_TITLES[abbrevUpper]) {
+      cleanedDoc.chapters = updateSectionTitles(cleanedDoc.chapters, cleanedDoc.abbreviation)
+      const sectionCount = cleanedDoc.chapters.reduce((sum, ch) => sum + (ch.sections?.length || 0), 0)
+      logSuccess(`Updated ${sectionCount} section titles for ${abbrevUpper}`)
+    }
   }
 
   return cleanedDoc
@@ -565,11 +801,17 @@ async function main() {
 /**
  * Fix section titles only (without Gemini API)
  * This can be run with: node scripts/clean-at-database.js --titles-only
+ *
+ * Supports all AT laws with title mappings: ASchG, KJBG, AZG, MSchG, ARG
  */
 async function fixTitlesOnly() {
   console.log('\n' + '='.repeat(60))
-  log('ASchG Section Titles Fix Script', 'blue')
+  log('Austrian Law Section Titles Fix Script', 'blue')
   console.log('='.repeat(60) + '\n')
+
+  // Show supported laws
+  const supportedLaws = Object.keys(AT_SECTION_TITLES).join(', ')
+  logInfo(`Supported laws: ${supportedLaws}`)
 
   // Check input file
   if (!fs.existsSync(CONFIG.inputFile)) {
@@ -601,17 +843,20 @@ async function fixTitlesOnly() {
     logWarning(`Failed to create backup: ${error.message}`)
   }
 
-  // Process documents - only update titles
+  // Process documents - only update titles for supported laws
   console.log('\n' + '-'.repeat(40))
   log('Updating section titles...', 'blue')
   console.log('-'.repeat(40) + '\n')
 
   let totalSectionsUpdated = 0
+  let lawsUpdated = []
   const updatedDocuments = documents.map(doc => {
-    if (doc.chapters && doc.abbreviation?.toUpperCase() === 'ASCHG') {
+    const abbrevUpper = doc.abbreviation?.toUpperCase()
+    if (doc.chapters && abbrevUpper && AT_SECTION_TITLES[abbrevUpper]) {
       const updatedChapters = updateSectionTitles(doc.chapters, doc.abbreviation)
       const sectionCount = updatedChapters.reduce((sum, ch) => sum + (ch.sections?.length || 0), 0)
       totalSectionsUpdated += sectionCount
+      lawsUpdated.push(abbrevUpper)
       logSuccess(`Updated ${sectionCount} sections in ${doc.abbreviation}`)
       return { ...doc, chapters: updatedChapters }
     }

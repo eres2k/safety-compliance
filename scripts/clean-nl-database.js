@@ -26,6 +26,122 @@ const CONFIG = {
   maxOutputTokens: 8192,
 }
 
+// Official Arbowet (Arbeidsomstandighedenwet) section titles
+// Source: https://wetten.overheid.nl/BWBR0010346/geldend
+const ARBOWET_SECTION_TITLES = {
+  // Hoofdstuk 1 - Definities en toepassingsgebied
+  '1': 'Definities',
+  '2': 'Uitbreiding toepassingsgebied',
+  // Hoofdstuk 2 - Arbeidsomstandighedenbeleid
+  '3': 'Arbobeleid',
+  '4': 'Aanpassing arbeidsplaats werknemer met structurele functionele beperking',
+  '5': 'Inventarisatie en evaluatie van risico\'s',
+  '6': 'Voorkoming en beperking van zware ongevallen waarbij gevaarlijke stoffen zijn betrokken',
+  '7': 'Informatie aan het publiek',
+  '8': 'Voorlichting en onderricht',
+  '9': 'Melding en registratie van arbeidsongevallen en beroepsziekten',
+  '10': 'Voorkomen van gevaar voor derden',
+  '11': 'Algemene verplichtingen van de werknemers',
+  // Hoofdstuk 3 - Samenwerking, overleg, bijzondere rechten en deskundige bijstand
+  '12': 'Samenwerking, overleg en bijzondere rechten van werknemers',
+  '13': 'Bijstand deskundige werknemers op het gebied van preventie en bescherming',
+  '14': 'Maatwerkregeling aanvullende deskundige bijstand',
+  '14a': 'Vangnetregeling aanvullende deskundige bijstand',
+  '14b': 'Basiscontract arbodienstverlening',
+  '15': 'Deskundige bijstand op het gebied van bedrijfshulpverlening',
+  // Hoofdstuk 4 - Bijzondere verplichtingen
+  '16': 'Nadere regels met betrekking tot arbeidsomstandigheden',
+  '17': 'Maatwerk door werkgevers en werknemers',
+  '18': 'Arbeidsgezondheidskundig onderzoek',
+  '19': 'Verschillende werkgevers',
+  '20': 'Certificatie',
+  '21': 'Verplichting tot geheimhouding',
+  '22': 'Toetredingsovereenkomst en centraal orgaan',
+  '23': 'Jaarverslag',
+  // Hoofdstuk 5 - Toezicht en ambtelijke bevelen
+  '24': 'Ambtenaren belast met het toezicht',
+  '25': 'Toezicht op instellingen',
+  '26': 'Geheimhouding',
+  '27': 'Eis tot naleving',
+  '28': 'Stillegging van het werk',
+  '29': 'Taak ondernemingsraad bij niet-naleving',
+  // Hoofdstuk 6 - Vrijstellingen, ontheffingen en beroep
+  '30': 'Vrijstelling en ontheffing',
+  '31': 'Beroep',
+  // Hoofdstuk 7 - Sancties
+  '32': 'Strafbepaling',
+  '33': 'Overtredingen',
+  '33a': 'Bestuurlijke boete',
+  '34': 'Hoogte bestuurlijke boete en recidive',
+  '35': 'Procedure bestuurlijke boete',
+  '36': 'Betaling bestuurlijke boete',
+  '37': 'Verjaring',
+  '38': 'Overgangsrecht',
+  '39': 'Beperking arbeid',
+  '40': 'Namen en bedragen',
+  '41': 'Boetebesluit arbeidsomstandighedenwet',
+  '42': 'Inwerkingtreding sanctiebepalingen',
+  '43': 'Intrekking',
+  // Hoofdstuk 8 - Overgangs- en slotbepalingen
+  '44': 'Kosten',
+  '45': 'Overgangsbepaling',
+  '46': 'Citeertitel',
+  '47': 'Inwerkingtreding',
+}
+
+// Official Arbeidstijdenwet section titles
+// Source: https://wetten.overheid.nl/BWBR0007671/geldend
+const ARBEIDSTIJDENWET_SECTION_TITLES = {
+  // Hoofdstuk 1 - Algemene bepalingen
+  '1:1': 'Begripsbepalingen',
+  '1:2': 'Toepassingsgebied',
+  '1:3': 'Karakter van de wet',
+  '1:4': 'Doelvoorschriften',
+  // Hoofdstuk 2 - Arbeids- en rusttijden
+  '2:1': 'Arbeidstijd per dag',
+  '2:2': 'Arbeidstijd per week',
+  '2:3': 'Arbeidstijd per periode',
+  '2:4': 'Rusttijd per dag',
+  '2:5': 'Rusttijd per week',
+  '2:6': 'Pauze',
+  '2:7': 'Wekelijkse rust',
+  // Hoofdstuk 3 - Nachtarbeid
+  '3:1': 'Begripsbepaling',
+  '3:2': 'Nachtarbeid',
+  '3:3': 'Rusttijd na nachtdienst',
+  // Hoofdstuk 4 - Consignatie
+  '4:1': 'Consignatie',
+  '4:2': 'Bereikbaarheidsdienst',
+  '4:3': 'Aanwezigheidsdienst',
+  // Hoofdstuk 5 - Bijzondere bepalingen
+  '5:1': 'Afwijkingen door werkgever en werknemer',
+  '5:2': 'Collectieve regeling',
+  '5:3': 'Afwijking bij ministeriële regeling',
+  '5:4': 'Ontheffing',
+  '5:5': 'Medische keuring',
+  '5:6': 'Registratie',
+  '5:7': 'Bewaarplicht',
+  '5:8': 'Informatieverstrekking',
+  '5:9': 'Melding',
+  '5:10': 'Zondagsarbeid',
+  '5:11': 'Feestdagen',
+  '5:12': 'Zondagsrust',
+  // Hoofdstuk 6 - Handhaving
+  '6:1': 'Toezicht',
+  '6:2': 'Bestuurlijke boete',
+  '6:3': 'Strafbepaling',
+  // Hoofdstuk 7 - Slotbepalingen
+  '7:1': 'Evaluatie',
+  '7:2': 'Citeertitel',
+  '7:3': 'Inwerkingtreding',
+}
+
+// Map of all Dutch law section titles by abbreviation
+const NL_SECTION_TITLES = {
+  ARBOWET: ARBOWET_SECTION_TITLES,
+  ARBEIDSTIJDENWET: ARBEIDSTIJDENWET_SECTION_TITLES,
+}
+
 // ANSI colors
 const colors = {
   reset: '\x1b[0m',
@@ -226,6 +342,64 @@ ${text.substring(0, 10000)}`
 }
 
 /**
+ * Get official section title for any Dutch law
+ * Converts "1" to "Artikel 1. Definities" (or equivalent title)
+ */
+function getNLSectionTitle(sectionNumber, currentTitle, abbreviation) {
+  if (!sectionNumber || !abbreviation) return currentTitle
+
+  // Normalize abbreviation (handle case variations)
+  const abbrevUpper = abbreviation.toUpperCase().replace(/\s+/g, '')
+
+  // Get the title map for this law
+  const titleMap = NL_SECTION_TITLES[abbrevUpper]
+  if (!titleMap) return currentTitle
+
+  // Extract section number key
+  const sectionKey = sectionNumber.toString().toLowerCase()
+
+  // Try exact match first
+  let officialTitle = titleMap[sectionKey]
+
+  // If no match, try removing 'a', 'b' suffixes and matching base number
+  if (!officialTitle) {
+    const numMatch = sectionKey.match(/^(\d+[a-z]?)$/i)
+    if (numMatch) {
+      officialTitle = titleMap[numMatch[1].toLowerCase()]
+    }
+  }
+
+  if (officialTitle) {
+    return `Artikel ${sectionNumber}. ${officialTitle}`
+  }
+
+  return currentTitle
+}
+
+/**
+ * Update section titles with official titles for all supported NL laws
+ */
+function updateSectionTitles(chapters, abbreviation) {
+  if (!chapters || !Array.isArray(chapters) || !abbreviation) {
+    return chapters
+  }
+
+  // Check if we have title mappings for this law
+  const abbrevUpper = abbreviation.toUpperCase().replace(/\s+/g, '')
+  if (!NL_SECTION_TITLES[abbrevUpper]) {
+    return chapters
+  }
+
+  return chapters.map(chapter => ({
+    ...chapter,
+    sections: chapter.sections?.map(section => ({
+      ...section,
+      title: getNLSectionTitle(section.number, section.title, abbreviation),
+    })) || [],
+  }))
+}
+
+/**
  * Process a single document
  */
 async function processDocument(apiKey, doc, index, total) {
@@ -265,6 +439,16 @@ async function processDocument(apiKey, doc, index, total) {
       }
 
       cleanedDoc.chapters.push(cleanedChapter)
+    }
+  }
+
+  // Update section titles with official NL law titles
+  if (cleanedDoc.chapters && cleanedDoc.abbreviation) {
+    const abbrevUpper = cleanedDoc.abbreviation.toUpperCase().replace(/\s+/g, '')
+    if (NL_SECTION_TITLES[abbrevUpper]) {
+      cleanedDoc.chapters = updateSectionTitles(cleanedDoc.chapters, cleanedDoc.abbreviation)
+      const sectionCount = cleanedDoc.chapters.reduce((sum, ch) => sum + (ch.sections?.length || 0), 0)
+      logSuccess(`Updated ${sectionCount} section titles for ${abbrevUpper}`)
     }
   }
 
@@ -386,8 +570,114 @@ async function main() {
   console.log('\n' + '='.repeat(60) + '\n')
 }
 
-main().catch(error => {
-  logError(`Unexpected error: ${error.message}`)
-  console.error(error)
-  process.exit(1)
-})
+/**
+ * Fix section titles only (without Gemini API)
+ * This can be run with: node scripts/clean-nl-database.js --titles-only
+ *
+ * Supports all NL laws with title mappings: Arbowet, Arbeidstijdenwet
+ */
+async function fixTitlesOnly() {
+  console.log('\n' + '='.repeat(60))
+  log('Dutch Law Section Titles Fix Script', 'blue')
+  console.log('='.repeat(60) + '\n')
+
+  // Show supported laws
+  const supportedLaws = Object.keys(NL_SECTION_TITLES).join(', ')
+  logInfo(`Supported laws: ${supportedLaws}`)
+
+  // Check input file
+  if (!fs.existsSync(CONFIG.inputFile)) {
+    logError(`Input file not found: ${CONFIG.inputFile}`)
+    process.exit(1)
+  }
+  logSuccess(`Input file: ${CONFIG.inputFile}`)
+
+  // Read database
+  logInfo('Reading database...')
+  let database
+  try {
+    const content = fs.readFileSync(CONFIG.inputFile, 'utf-8')
+    database = JSON.parse(content)
+  } catch (error) {
+    logError(`Failed to read/parse database: ${error.message}`)
+    process.exit(1)
+  }
+
+  const documents = database.documents || []
+  logSuccess(`Loaded ${documents.length} documents`)
+
+  // Create backup
+  logInfo('Creating backup...')
+  try {
+    fs.writeFileSync(CONFIG.backupFile, JSON.stringify(database, null, 2))
+    logSuccess(`Backup created: ${CONFIG.backupFile}`)
+  } catch (error) {
+    logWarning(`Failed to create backup: ${error.message}`)
+  }
+
+  // Process documents - only update titles for supported laws
+  console.log('\n' + '-'.repeat(40))
+  log('Updating section titles...', 'blue')
+  console.log('-'.repeat(40) + '\n')
+
+  let totalSectionsUpdated = 0
+  let lawsUpdated = []
+  const updatedDocuments = documents.map(doc => {
+    const abbrevUpper = doc.abbreviation?.toUpperCase().replace(/\s+/g, '')
+    if (doc.chapters && abbrevUpper && NL_SECTION_TITLES[abbrevUpper]) {
+      const updatedChapters = updateSectionTitles(doc.chapters, doc.abbreviation)
+      const sectionCount = updatedChapters.reduce((sum, ch) => sum + (ch.sections?.length || 0), 0)
+      totalSectionsUpdated += sectionCount
+      lawsUpdated.push(abbrevUpper)
+      logSuccess(`Updated ${sectionCount} sections in ${doc.abbreviation}`)
+      return { ...doc, chapters: updatedChapters }
+    }
+    return doc
+  })
+
+  // Save updated database directly to input file
+  console.log('\n' + '-'.repeat(40))
+  log('Saving results...', 'blue')
+  console.log('-'.repeat(40) + '\n')
+
+  const updatedDatabase = {
+    ...database,
+    metadata: {
+      ...database.metadata,
+      titles_updated_at: new Date().toISOString(),
+    },
+    documents: updatedDocuments,
+  }
+
+  try {
+    fs.writeFileSync(CONFIG.inputFile, JSON.stringify(updatedDatabase, null, 2))
+    logSuccess(`Updated database saved: ${CONFIG.inputFile}`)
+  } catch (error) {
+    logError(`Failed to save database: ${error.message}`)
+    process.exit(1)
+  }
+
+  // Summary
+  console.log('\n' + '='.repeat(60))
+  log('Summary', 'blue')
+  console.log('='.repeat(60))
+  console.log(`Total documents: ${documents.length}`)
+  console.log(`Laws with title updates: ${lawsUpdated.join(', ') || 'None'}`)
+  console.log(`Total sections updated: ${totalSectionsUpdated}`)
+  console.log('\n' + '='.repeat(60) + '\n')
+}
+
+// Run appropriate function based on command line argument
+if (process.argv.includes('--titles-only')) {
+  fixTitlesOnly().catch(error => {
+    logError(`Unexpected error: ${error.message}`)
+    console.error(error)
+    process.exit(1)
+  })
+} else {
+  main().catch(error => {
+    logError(`Unexpected error: ${error.message}`)
+    console.error(error)
+    process.exit(1)
+  })
+}
