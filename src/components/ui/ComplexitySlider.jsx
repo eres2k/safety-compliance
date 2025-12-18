@@ -58,7 +58,7 @@ export function ComplexitySlider({
   )
 }
 
-// Parse WHS Summary sections from content (supports both old and new formats)
+// Parse WHS Summary sections from content (supports multiple formats)
 function parseWHSSections(content) {
   const sections = {
     overview: [],
@@ -67,40 +67,55 @@ function parseWHSSections(content) {
     actions: []
   }
 
-  // Try to parse new structured format from AI
-  const overviewMatch = content.match(/(?:\*\*)?What this section covers:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Key requirements|(?:\*\*)?Compliance relevance|$)/i)
-  const requirementsMatch = content.match(/(?:\*\*)?Key requirements from this text:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Compliance relevance|(?:\*\*)?Documentation|$)/i)
-  const relevanceMatch = content.match(/(?:\*\*)?Compliance relevance:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Documentation|$)/i)
-  const actionsMatch = content.match(/(?:\*\*)?Documentation\/Actions needed:?(?:\*\*)?[\s\n]*([\s\S]*?)$/i)
-
-  // Fallback to old format (Key WHS obligations, Compliance deadlines, Documentation required)
-  const oldObligationsMatch = content.match(/(?:\*\*)?Key WHS obligations:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Compliance deadlines|(?:\*\*)?Documentation required|$)/i)
-  const oldDeadlinesMatch = content.match(/(?:\*\*)?Compliance deadlines:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Documentation required|$)/i)
-  const oldDocumentationMatch = content.match(/(?:\*\*)?Documentation required:?(?:\*\*)?[\s\n]*([\s\S]*?)$/i)
-
   const parseBullets = (text) => {
     if (!text) return []
     return text
       .split(/[\n\r]+/)
       .map(line => line.replace(/^[\s*•\-–]+/, '').trim())
-      .filter(line => line.length > 0 && !line.match(/^(?:\*\*)?(?:Key WHS|Compliance|Documentation|What this|Key requirements|Actions)/i))
+      .filter(line => line.length > 0 && !line.match(/^(?:\*\*)?(?:Key WHS|Compliance|Documentation|What this|Key requirements|Actions|\.\.\.)/i))
   }
 
-  // Try new format first
-  if (overviewMatch) sections.overview = parseBullets(overviewMatch[1])
-  if (requirementsMatch) sections.requirements = parseBullets(requirementsMatch[1])
-  if (relevanceMatch) sections.relevance = parseBullets(relevanceMatch[1])
-  if (actionsMatch) sections.actions = parseBullets(actionsMatch[1])
+  // Try to parse structured format - multiple header variations
+  const overviewPatterns = [
+    /(?:\*\*)?What this section covers:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Key requirements|(?:\*\*)?Compliance|$)/i,
+  ]
+  const requirementsPatterns = [
+    /(?:\*\*)?Key requirements from this text:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Compliance|(?:\*\*)?Documentation|$)/i,
+    /(?:\*\*)?Key WHS obligations:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Compliance|(?:\*\*)?Documentation|$)/i,
+  ]
+  const relevancePatterns = [
+    /(?:\*\*)?Compliance relevance(?:\s+for Amazon)?:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Documentation|$)/i,
+    /(?:\*\*)?Compliance deadlines:?(?:\*\*)?[\s\n]*([\s\S]*?)(?=(?:\*\*)?Documentation|$)/i,
+  ]
+  const actionsPatterns = [
+    /(?:\*\*)?Documentation(?:\/Actions)?(?:\s+needed)?:?(?:\*\*)?[\s\n]*([\s\S]*?)$/i,
+    /(?:\*\*)?Documentation required:?(?:\*\*)?[\s\n]*([\s\S]*?)$/i,
+  ]
 
-  // Fallback to old format
-  if (oldObligationsMatch && sections.requirements.length === 0) {
-    sections.requirements = parseBullets(oldObligationsMatch[1])
+  // Try each pattern until we find a match
+  for (const pattern of overviewPatterns) {
+    const match = content.match(pattern)
+    if (match && sections.overview.length === 0) {
+      sections.overview = parseBullets(match[1])
+    }
   }
-  if (oldDeadlinesMatch && sections.relevance.length === 0) {
-    sections.relevance = parseBullets(oldDeadlinesMatch[1])
+  for (const pattern of requirementsPatterns) {
+    const match = content.match(pattern)
+    if (match && sections.requirements.length === 0) {
+      sections.requirements = parseBullets(match[1])
+    }
   }
-  if (oldDocumentationMatch && sections.actions.length === 0) {
-    sections.actions = parseBullets(oldDocumentationMatch[1])
+  for (const pattern of relevancePatterns) {
+    const match = content.match(pattern)
+    if (match && sections.relevance.length === 0) {
+      sections.relevance = parseBullets(match[1])
+    }
+  }
+  for (const pattern of actionsPatterns) {
+    const match = content.match(pattern)
+    if (match && sections.actions.length === 0) {
+      sections.actions = parseBullets(match[1])
+    }
   }
 
   return sections
