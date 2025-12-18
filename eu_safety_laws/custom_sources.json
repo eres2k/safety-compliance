@@ -40,12 +40,13 @@
         "original_url_failed": true
       },
       " Warenwetbesluit machines": {
-        "url": "https://wetten.overheid.nl/BWBR0037613/2023-01-01",
+        "url": "/BWBR0010898/geldend",
         "name": "Warenwetbesluit machines 2016",
-        "description": "This implements the Machinery Directive and is very relevant to workplace safety where machines are used.  It lays down the requirements that machines must meet to be placed on the market and put into service, ensuring safety and health protection for workers.",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "created_at": "2025-12-18T00:47:41.656748",
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T04:06:28.648525",
+        "original_url_failed": true
       },
       "PGS": {
         "url": "https://www.publicatiereeksgevaarlijkestoffen.nl/",
@@ -103,5 +104,5 @@
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-18T04:04:04.045929"
+  "updated_at": "2025-12-18T04:06:28.648531"
 }

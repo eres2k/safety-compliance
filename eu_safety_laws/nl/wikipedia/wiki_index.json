@@ -1,7 +1,7 @@
 {
   "country": "NL",
   "language": "nl",
-  "scraped_at": "2025-12-18T03:16:30.675735",
+  "scraped_at": "2025-12-18T04:08:28.698372",
   "articles": {
     "Arbowet": {
       "title": "Arbeidsomstandighedenwet",
@@ -29,78 +29,5 @@
       "summary": "Hetrijtijdenbesluitis de gebruikelijke benaming voor de wetgeving, die de werkuren van onder meerbuschauffeursenvrachtwagenchauffeursregelt."
     }
   },
-  "ai_suggested_articles": [
-    {
-      "law_abbr": "Arbeidsomstandighedenwet",
-      "title": "Arbeidsomstandighedenwet",
-      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenwet",
-      "summary": "DeArbeidsomstandighedenwet(of kortwegArbowet) is eenNederlandse wetdie regels bevat voorwerkgeversenwerknemersom de gezondheid, de veiligheid en het welzijn van werknemers en zelfstandig ondernemers te bevorderen. Het doel is om ongevallen en ziekten, veroorzaakt door het werk, te voorkomen. De arbowet is sinds 2020 vanwege decoronapandemiegrondig aangepast omdat medewerkers nu vaker thuis moeten werken.",
-      "reason": "The main page for this law on Dutch Wikipedia.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "Arbeidsomstandighedenwet",
-      "title": "Risico-inventarisatie en -evaluatie",
-      "url": "https://nl.wikipedia.org/wiki/Risico-inventarisatie_en_-evaluatie",
-      "summary": "Eenrisico-inventarisatie en -evaluatie(RI&E) is een verplicht middel ter bevordering vanveilig en gezond werkenvolgens de NederlandseArbeidsomstandighedenwet. Sinds 1 januari 1994 is deze verplicht voor allewerkgevers, dus niet voorzelfstandigen zonder personeel. De werkgever moet (laten) onderzoeken of erarbeidsrisico's zijn, die bij het werk gevaar kan opleveren of schade kan veroorzaken aan de gezondheid van de werknemers, al dan niet leidend totverzuim. In de RI&E moet het resultaat van dit ",
-      "reason": "Risk assessment (RI&E) is a central element.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "Arbeidsomstandighedenwet",
-      "title": "Nederlandse Arbeidsinspectie",
-      "url": "https://nl.wikipedia.org/wiki/Nederlandse_Arbeidsinspectie",
-      "summary": "DeNederlandse Arbeidsinspectie(NLA) van het NederlandseMinisterie van Sociale Zaken en Werkgelegenheid(SZW) is op 1 januari 2012 ontstaan door samenvoeging van de Arbeidsinspectie, de Inspectie Werk en Inkomen en de Sociale Inlichtingen- en Opsporingsdienst. Van 1 januari 2012 tot en met 31 december 2021 heette de dienstInspectie SZW. De Nederlandse Arbeidsinspectie kent de volgende directies:",
-      "reason": "The Dutch Labour Authority, responsible for enforcing the Arbowet.",
-      "priority": "medium"
-    },
-    {
-      "law_abbr": "Arbeidstijdenwet",
-      "title": "Arbeidstijdenwet",
-      "url": "https://nl.wikipedia.org/wiki/Arbeidstijdenwet",
-      "summary": "DeArbeidstijdenwetis een Nederlandse wet en legt regels vast voor arbeids- en rusttijden voorwerknemers. Het doel van de Arbeidstijdenwet komt deels overeen met het doel van deArbeidsomstandighedenwet. Beide zorgen voor deveiligheid,gezondheiden hetwelzijnvan werknemers bij hunwerk.\nEen tweededoelstellingvan de Arbeidstijdenwet is het voor werknemers makkelijker te maken om arbeid te combineren met zorgtaken of andere verantwoordelijkheden buiten de arbeid. De Arbeidstijdenwet geldt voor alle we",
-      "reason": "The main page for this law on Dutch Wikipedia.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "Arbeidstijdenwet",
-      "title": "Foxconn",
-      "url": "https://nl.wikipedia.org/wiki/Foxconn",
-      "summary": "Foxconnis een merknaam van deTaiwanesefabrikantHon Hai Precision Industry Co.Foxconn is de grootste fabrikant van computeronderdelen wereldwijd en produceert onder andere deMac minien deiPhonevoorApple Inc.Verder maakt het bedrijf onderdelen voorDell,Sony,Nokiaen vele andere merken.",
-      "reason": "Working hours and rest periods are core topics.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "Arbeidstijdenwet",
-      "title": "Redacteur",
-      "url": "https://nl.wikipedia.org/wiki/Redacteur",
-      "summary": "Eenredacteurofredactriceis iemand die verantwoordelijk is voor de bewerking (redactie) van de inhoud van een publicatie, bijvoorbeeld eenkrant,tv-programma,radioprogramma,boek,tijdschrift,encyclopedieofwebsite, of die feitelijk werkt aan die inhoud.",
-      "reason": "Important for understanding rules around night shifts, which are common in logistics.",
-      "priority": "medium"
-    },
-    {
-      "law_abbr": "Wet op de ondernemingsraden",
-      "title": "Wet op de ondernemingsraden",
-      "url": "https://nl.wikipedia.org/wiki/Wet_op_de_ondernemingsraden",
-      "summary": "DeWet op de ondernemingsraden(WOR) is eenNederlandse wetdie vastgesteld is in 1950 en in 1971 geheel is herzien.[1]Doel is in grotere ondernemingen en overheidsinstellingen demedezeggenschapvoorwerknemersenambtenarente regelen.",
-      "reason": "The main page for this law on Dutch Wikipedia.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "Wet op de ondernemingsraden",
-      "title": "Ondernemingsraad",
-      "url": "https://nl.wikipedia.org/wiki/Ondernemingsraad",
-      "summary": "Eenondernemingsraad(OR) is een inspraak- enmedezeggenschapsorgaanbinnen een bedrijf bestaande uit werknemers die namens het personeel overleg voeren met de werkgever over het ondernemingsbeleid en de personeelsbelangen.",
-      "reason": "Information on works councils and their role in workplace safety.",
-      "priority": "medium"
-    },
-    {
-      "law_abbr": "Wet op de ondernemingsraden",
-      "title": "Medezeggenschap",
-      "url": "https://nl.wikipedia.org/wiki/Medezeggenschap",
-      "summary": "Medezeggenschapis het uitoefenen van invloed op de besluitvorming in organisaties door in georganiseerde en wettelijk vastgelegde vorm deel te nemen aan beraadslaging met het bestuur (de 'zeggenschap') van de organisatie (of het organisatieonderdeel). Medezeggenschap is onder meer te vinden op scholen, binnen arbeidsorganisaties en binnen de overheid.",
-      "reason": "Employee participation in decision-making.",
-      "priority": "low"
-    }
-  ]
+  "ai_suggested_articles": []
 }
