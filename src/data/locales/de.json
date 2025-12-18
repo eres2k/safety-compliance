@@ -69,6 +69,12 @@
     "associate": "Einfach erklärt",
     "associateDescription": "Einfache Erklärung für jedermann"
   },
+  "whs": {
+    "obligations": "Wichtige WHS-Pflichten",
+    "deadlines": "Compliance-Fristen",
+    "documentation": "Erforderliche Dokumentation",
+    "relatedWiki": "Zugehörige Wikipedia-Artikel"
+  },
   "sections": {
     "title": "Abschnitte"
   },

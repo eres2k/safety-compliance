@@ -69,6 +69,12 @@
     "associate": "Simpel uitgelegd",
     "associateDescription": "Eenvoudige uitleg voor iedereen"
   },
+  "whs": {
+    "obligations": "Belangrijke WHS-verplichtingen",
+    "deadlines": "Nalevingsdeadlines",
+    "documentation": "Vereiste documentatie",
+    "relatedWiki": "Gerelateerde Wikipedia-artikelen"
+  },
   "sections": {
     "title": "Artikelen"
   },
