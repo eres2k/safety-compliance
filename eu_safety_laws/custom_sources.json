@@ -38,8 +38,26 @@
         "created_at": "2025-12-18T00:47:41.656748",
         "source_type": "custom"
       }
+    },
+    "DE": {
+      "DGUV Vorschrift 1": {
+        "url": "https://www.dguv.de/publikationen/vorschriften-regeln-informationen/vorschriften/dguv-vorschrift-1/index.jsp",
+        "name": "Grundsätze der Prävention",
+        "description": "DGUV Vorschrift 1 outlines the basic principles of prevention for occupational safety and health. It covers the responsibilities of employers and employees, risk assessments, first aid, and other essential aspects of a safe working environment. While issued by the DGUV (German Social Accident Insurance), it has a legal basis and is widely recognized and enforced as a standard for workplace safety.",
+        "enabled": true,
+        "created_at": "2025-12-18T01:18:07.376094",
+        "source_type": "custom"
+      },
+      "BildscharbV": {
+        "url": "https://www.gesetze-im-internet.de/bildscharbv/",
+        "name": "Verordnung über Sicherheit und Gesundheitsschutz bei der Arbeit an Bildschirmgeräten",
+        "description": "This regulation (Bildschirmarbeitsverordnung) specifically addresses the safety and health protection of employees working with display screen equipment (VDTs). It covers ergonomic requirements, workstation design, breaks, and eye exams.",
+        "enabled": true,
+        "created_at": "2025-12-18T01:18:07.386751",
+        "source_type": "custom"
+      }
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-18T00:47:41.656755"
+  "updated_at": "2025-12-18T01:18:07.386759"
 }
