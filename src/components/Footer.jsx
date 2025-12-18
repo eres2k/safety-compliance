@@ -59,9 +59,23 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-6 border-t border-gray-200 dark:border-whs-dark-700">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              &copy; {currentYear} WHS Safety Compliance Navigator. All rights reserved.
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                &copy; {currentYear} WHS Safety Compliance Navigator
+              </p>
+              <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                by{' '}
+                <a
+                  href="https://x.com/eeesener"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-whs-orange-500 hover:text-whs-orange-600 dark:text-whs-orange-400 dark:hover:text-whs-orange-300 font-medium"
+                >
+                  Erwin Esener @eeesener
+                </a>
+              </p>
+            </div>
 
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-500 dark:text-gray-400">
