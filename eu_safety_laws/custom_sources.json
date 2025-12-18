@@ -21,11 +21,43 @@
         "source_type": "custom"
       },
       "PSA-V": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20008821",
-        "name": "Verordnung Persönliche Schutzausrüstung",
-        "description": "Regulation concerning Personal Protective Equipment (PPE) in the workplace. Defines the requirements for the provision and use of PPE to protect workers from risks to their health and safety. It covers various types of PPE and the employer's obligations regarding its selection, maintenance, and worker training.",
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20009119",
+        "name": "Persönliche Schutzausrüstung-Verordnung 2015",
+        "description": "Regulates the selection, provision, use, maintenance, and storage of personal protective equipment (PPE) to protect employees from health and safety risks.",
         "enabled": true,
-        "created_at": "2025-12-18T02:50:08.887801",
+        "created_at": "2025-12-18T16:31:35.867103",
+        "source_type": "custom"
+      },
+      "VbA": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008545",
+        "name": "Verordnung über den Schutz der Arbeitnehmer vor Gefahren durch chemische Arbeitsstoffe (VbA)",
+        "description": "Sets out specific requirements for protecting employees from risks associated with hazardous chemical agents in the workplace, including classification, labeling, risk assessment, and control measures.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:23:40.805691",
+        "source_type": "custom"
+      },
+      "BauKG": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008543",
+        "name": "Bauarbeitenkoordinationsgesetz (BauKG)",
+        "description": "Establishes rules for the coordination of safety and health protection on construction sites, particularly when multiple employers are involved, to prevent accidents and health risks.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:23:40.814869",
+        "source_type": "custom"
+      },
+      "GefStoffV": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20009118",
+        "name": "Gefahrstoffverordnung 2015",
+        "description": "Regulates the protection of employees from hazards arising from hazardous substances at the workplace, including risk assessment, protective measures, and training.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:31:35.855568",
+        "source_type": "custom"
+      },
+      "LärmV": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20004546",
+        "name": "Lärm- und Vibrations-Arbeitnehmerschutzverordnung",
+        "description": "Regulates the protection of employees from risks arising from exposure to noise and mechanical vibrations at the workplace, setting exposure limits and requiring protective measures.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:31:35.876813",
         "source_type": "custom"
       }
     },
@@ -54,6 +86,30 @@
         "description": "PGS isn't a law, but a series of publications containing detailed safety requirements for the storage and handling of specific hazardous substances. These requirements are often referred to in permits and are considered best practices, thus functioning as de facto regulations. While the website hosts all PGS guidelines, accessing the specific ones relevant to workplace safety is very helpful and is considered part of the 'Arbo' rules, indirectly. The direct link leads to the overview page of all available PGS guides.",
         "enabled": true,
         "created_at": "2025-12-18T02:50:38.638998",
+        "source_type": "custom"
+      },
+      "WOR": {
+        "url": "https://wetten.overheid.nl/BWBR0002747/2023-01-01",
+        "name": "Wet op de ondernemingsraden",
+        "description": "Regulates the establishment and functioning of works councils (ondernemingsraden), which have significant rights and duties regarding workplace safety and health policies, employee well-being, and working conditions within a company.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:36:58.517145",
+        "source_type": "custom"
+      },
+      "BW Boek 7 Titel 10": {
+        "url": "https://wetten.overheid.nl/BWBR0005290/2024-01-01#Boek7_Titel7_Afdeling1",
+        "name": "Burgerlijk Wetboek Boek 7, Titel 10 (Arbeidsovereenkomst)",
+        "description": "Contains fundamental provisions regarding the employment contract, including the employer's general duty of care for the safety and health of employees (e.g., Article 7:658 BW), which forms the civil law basis for workplace safety obligations.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:36:58.527731",
+        "source_type": "custom"
+      },
+      "Wazo": {
+        "url": "https://wetten.overheid.nl/BWBR0014915/2024-01-01",
+        "name": "Wet arbeid en zorg",
+        "description": "Regulates various leave arrangements (e.g., maternity leave, parental leave, short-term care leave) that support work-life balance and employee well-being, indirectly contributing to a healthier workplace by mitigating psychosocial risks like stress and burnout.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:36:58.537464",
         "source_type": "custom"
       }
     },
@@ -102,9 +158,33 @@
         "ai_corrected": true,
         "corrected_at": "2025-12-18T04:03:09.983053",
         "original_url_failed": true
+      },
+      "LärmVibrationsArbSchV": {
+        "url": "https://www.gesetze-im-internet.de/l_rmvibrationsarbschv/",
+        "name": "Verordnung zum Schutz der Beschäftigten vor Gefährdungen durch Lärm und Vibrationen (Lärm- und Vibrations-Arbeitsschutzverordnung)",
+        "description": "Regulates measures to protect employees from health risks due to noise and vibration at the workplace.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:36:09.028470",
+        "source_type": "custom"
+      },
+      "BioStoffV": {
+        "url": "https://www.gesetze-im-internet.de/biostoffv_2013/",
+        "name": "Verordnung über Sicherheit und Gesundheitsschutz bei Tätigkeiten mit Biologischen Arbeitsstoffen (Biostoffverordnung)",
+        "description": "Regulates measures to protect employees from health risks due to biological agents at the workplace.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:36:09.038365",
+        "source_type": "custom"
+      },
+      "ArbMedVV": {
+        "url": "https://www.gesetze-im-internet.de/arbmedvv/",
+        "name": "Verordnung zur arbeitsmedizinischen Vorsorge (Arbeitsmedizinische Vorsorgeverordnung)",
+        "description": "Specifies the requirements for occupational medical prevention, including mandatory, offered, and voluntary check-ups for employees exposed to specific hazards.",
+        "enabled": true,
+        "created_at": "2025-12-18T16:36:09.047806",
+        "source_type": "custom"
       }
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-18T04:06:28.648531"
+  "updated_at": "2025-12-18T16:36:58.537471"
 }
