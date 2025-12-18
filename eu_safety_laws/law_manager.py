@@ -105,7 +105,7 @@ class Config:
     request_timeout: int = 30
     rate_limit_delay: float = 0.1  # Reduced from 0.5s - Gemini supports 2K RPM
     max_retries: int = 3
-    gemini_model: str = "gemini-2.0-flash"
+    gemini_model: str = "gemini-2.5-flash"
     # Parallel processing settings (optimized for Gemini 2K RPM / 4M TPM limits)
     max_parallel_scrapes: int = 4  # Concurrent law scrapes
     max_parallel_ai_requests: int = 10  # Concurrent AI requests
@@ -411,10 +411,17 @@ Only return the JSON array, no other text."""
         return None
 
 
-def find_correct_url_with_ai(country: str, law_abbr: str, failed_url: str, http_status: int) -> Optional[Dict[str, Any]]:
+def find_correct_url_with_ai(country: str, law_abbr: str, failed_url: str, http_status: int, failed_urls: List[str] = None) -> Optional[Dict[str, Any]]:
     """
     Use AI to find the correct URL when HTTP errors occur.
     Returns a dict with 'url', 'name', and 'confidence' if found.
+
+    Args:
+        country: Country code (AT, DE, NL)
+        law_abbr: Law abbreviation
+        failed_url: The URL that failed
+        http_status: HTTP status code (0 if not HTTP error)
+        failed_urls: List of URLs that have already been tried and failed (for feedback loop)
     """
     if not HAS_GENAI:
         log_warning("google-generativeai package required for AI URL correction")
@@ -438,19 +445,36 @@ def find_correct_url_with_ai(country: str, law_abbr: str, failed_url: str, http_
             "NL": "https://wetten.overheid.nl"
         }
 
-        prompt = f"""You are an expert in European legal databases. A URL for a workplace safety law has returned HTTP {http_status}.
+        # Build failed URLs section if we have previous failures
+        failed_urls_section = ""
+        if failed_urls and len(failed_urls) > 1:
+            failed_urls_section = f"""
+IMPORTANT: The following URLs have ALREADY BEEN TRIED and FAILED. You MUST suggest a DIFFERENT URL:
+{chr(10).join(f'  - {u}' for u in failed_urls)}
+
+Please analyze why these URLs failed and suggest a completely different, working URL.
+"""
+
+        prompt = f"""You are an expert in European legal databases. A URL for a workplace safety law has returned HTTP {http_status if http_status else 'error'}.
 
 Country: {country_name}
 Law abbreviation: {law_abbr}
 Failed URL: {failed_url}
 Base URL for this country: {base_urls.get(country, 'unknown')}
-
+{failed_urls_section}
 Please find the CORRECT, currently working URL for this law from official government sources.
 
 For {country_name}:
 - AT (Austria): Use RIS (ris.bka.gv.at) with format /GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=XXXXX
-- DE (Germany): Use gesetze-im-internet.de with format /lawname/
+  - The Gesetzesnummer is a unique ID for each law (e.g., 10008910 for ASchG)
+  - Alternative format: /eli/bgbl/YYYY/N/geldend or search-based URLs
+- DE (Germany): Use gesetze-im-internet.de with format /lawname/ (lowercase)
+  - Example: /arbschg/ for Arbeitsschutzgesetz
+  - Some laws have year suffixes: /muschg_2018/
 - NL (Netherlands): Use wetten.overheid.nl with format /BWBRXXXXXXX/geldend
+  - BWBR numbers are unique identifiers (e.g., BWBR0010346 for Arbowet)
+
+IMPORTANT: Verify the URL format is correct for the country. Double-check the law identifier.
 
 Return your response as a JSON object with this format:
 {{
@@ -486,7 +510,7 @@ Only return the JSON object, no other text."""
             return result
         else:
             log_warning(f"AI could not find correct URL for {law_abbr}: {result.get('reason', 'unknown reason')}")
-            return None
+            return result  # Return the result even if low confidence so we can see the reason
 
     except Exception as e:
         log_error(f"AI URL correction failed: {e}")
@@ -1112,80 +1136,124 @@ class Scraper:
         """Scrape laws for this country. Override in subclass."""
         raise NotImplementedError
 
+    def _try_fetch_with_retries(self, url: str, timeout: int, max_retries: int = None) -> Tuple[Optional[str], Optional[str], Optional[int]]:
+        """
+        Internal method to fetch URL with retries.
+        Returns: (content, error_type, http_status)
+        """
+        max_retries = max_retries or CONFIG.max_retries
+        last_error_type = None
+        last_http_status = None
+
+        for attempt in range(max_retries):
+            try:
+                response = requests.get(url, timeout=timeout, headers=self.HTTP_HEADERS)
+                response.raise_for_status()
+                return response.text, None, None
+            except requests.exceptions.Timeout:
+                log_warning(f"Timeout on attempt {attempt + 1}/{max_retries}: {url}")
+                last_error_type = "timeout"
+            except requests.exceptions.ConnectionError as e:
+                log_warning(f"Connection error on attempt {attempt + 1}/{max_retries}: {type(e).__name__}")
+                last_error_type = "connection"
+            except requests.exceptions.HTTPError as e:
+                status = e.response.status_code if e.response else 0
+                reason = e.response.reason if e.response else str(e)
+                log_warning(f"HTTP {status} ({reason}) on attempt {attempt + 1}/{max_retries}: {url}")
+                last_error_type = "http"
+                last_http_status = status
+            except requests.exceptions.RequestException as e:
+                log_warning(f"Request failed on attempt {attempt + 1}/{max_retries}: {type(e).__name__}: {e}")
+                last_error_type = "request"
+            except Exception as e:
+                log_warning(f"Unexpected error on attempt {attempt + 1}/{max_retries}: {type(e).__name__}: {e}")
+                last_error_type = "unknown"
+
+            if attempt < max_retries - 1:
+                wait_time = 2 ** attempt  # 1s, 2s, 4s
+                time.sleep(wait_time)
+
+        return None, last_error_type, last_http_status
+
     def fetch_url(self, url: str, timeout: int = None, law_abbr: str = None) -> Optional[str]:
-        """Fetch a URL with retries, exponential backoff, and automatic AI URL correction after all retries fail."""
+        """
+        Fetch a URL with retries, exponential backoff, and foolproof AI URL correction.
+
+        Features:
+        - Standard retry with exponential backoff
+        - AI URL correction with immediate retry using full retry logic
+        - Multiple AI correction attempts if first suggestion fails
+        - Automatic database update on success
+        """
         if not HAS_REQUESTS:
             log_error("requests package required for scraping. Install with: pip install requests")
             return None
 
         # Use instance variable as fallback if law_abbr not provided
         effective_law_abbr = law_abbr or self._current_law_abbr
-
         timeout = timeout or CONFIG.request_timeout
-        last_error_type = None
-        last_http_status = None
 
-        # Standard retry loop
-        for attempt in range(CONFIG.max_retries):
-            try:
-                response = requests.get(url, timeout=timeout, headers=self.HTTP_HEADERS)
-                response.raise_for_status()
-                return response.text
-            except requests.exceptions.Timeout:
-                log_warning(f"Timeout on attempt {attempt + 1}/{CONFIG.max_retries}: {url}")
-                last_error_type = "timeout"
-            except requests.exceptions.ConnectionError as e:
-                log_warning(f"Connection error on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}")
-                last_error_type = "connection"
-            except requests.exceptions.HTTPError as e:
-                status = e.response.status_code if e.response else 0
-                reason = e.response.reason if e.response else str(e)
-                log_warning(f"HTTP {status} ({reason}) on attempt {attempt + 1}/{CONFIG.max_retries}: {url}")
-                last_error_type = "http"
-                last_http_status = status
-            except requests.exceptions.RequestException as e:
-                log_warning(f"Request failed on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}: {e}")
-                last_error_type = "request"
-            except Exception as e:
-                log_warning(f"Unexpected error on attempt {attempt + 1}/{CONFIG.max_retries}: {type(e).__name__}: {e}")
-                last_error_type = "unknown"
+        # Step 1: Try the original URL with full retry logic
+        content, last_error_type, last_http_status = self._try_fetch_with_retries(url, timeout)
+        if content:
+            return content
 
-            if attempt < CONFIG.max_retries - 1:
-                wait_time = 2 ** attempt  # 1s, 2s, 4s
-                time.sleep(wait_time)
-
-        # All retries failed - now try AI URL correction
         log_error(f"Failed to fetch after {CONFIG.max_retries} attempts: {url}")
 
-        # AUTOMATIC AI URL CORRECTION after all retries fail
-        if effective_law_abbr:
+        # Step 2: AI URL CORRECTION - try multiple times with feedback loop
+        if not effective_law_abbr:
+            return None
+
+        MAX_AI_CORRECTION_ATTEMPTS = 3
+        failed_urls = [url]  # Track URLs that have failed to avoid loops
+
+        for ai_attempt in range(MAX_AI_CORRECTION_ATTEMPTS):
             error_code = last_http_status or 0
             error_desc = f"{last_error_type}" + (f" (HTTP {last_http_status})" if last_http_status else "")
-            log_info(f"🤖 Attempting AI URL correction for {effective_law_abbr} after {error_desc} errors...")
 
-            ai_result = find_correct_url_with_ai(self.country, effective_law_abbr, url, error_code)
+            log_info(f"🤖 AI URL correction attempt {ai_attempt + 1}/{MAX_AI_CORRECTION_ATTEMPTS} for {effective_law_abbr} after {error_desc} errors...")
 
-            if ai_result and ai_result.get('url'):
-                new_url = ai_result['url']
-                confidence = ai_result.get('confidence', 'unknown')
-                log_info(f"🔍 AI found alternative URL: {new_url} (confidence: {confidence})")
+            # Pass failed URLs to AI so it knows what didn't work
+            ai_result = find_correct_url_with_ai(
+                self.country,
+                effective_law_abbr,
+                url,
+                error_code,
+                failed_urls=failed_urls if ai_attempt > 0 else None
+            )
 
-                # Try fetching the AI-suggested URL
-                try:
-                    response = requests.get(new_url, timeout=timeout, headers=self.HTTP_HEADERS)
-                    response.raise_for_status()
-
-                    # URL works! Update the database
-                    log_success(f"✅ AI-corrected URL works for {effective_law_abbr}!")
-                    update_source_url(self.country, effective_law_abbr, new_url, ai_result.get('name'))
-
-                    return response.text
-                except Exception as ai_err:
-                    log_warning(f"❌ AI-suggested URL also failed: {ai_err}")
-            else:
+            if not ai_result or not ai_result.get('url'):
                 reason = ai_result.get('reason', 'unknown reason') if ai_result else 'AI returned no result'
                 log_warning(f"❌ AI could not find alternative URL for {effective_law_abbr}: {reason}")
+                break
 
+            new_url = ai_result['url']
+            confidence = ai_result.get('confidence', 'unknown')
+
+            # Skip if we've already tried this URL
+            if new_url in failed_urls:
+                log_warning(f"⚠️ AI suggested previously failed URL: {new_url} - skipping")
+                continue
+
+            log_info(f"🔍 AI found alternative URL: {new_url} (confidence: {confidence})")
+
+            # IMMEDIATELY retry the new URL with full retry logic
+            content, new_error_type, new_http_status = self._try_fetch_with_retries(new_url, timeout)
+
+            if content:
+                # SUCCESS! URL works - update the database
+                log_success(f"✅ AI-corrected URL works for {effective_law_abbr}!")
+                update_source_url(self.country, effective_law_abbr, new_url, ai_result.get('name'))
+                return content
+            else:
+                # This URL also failed - track it and try again
+                failed_urls.append(new_url)
+                last_error_type = new_error_type
+                last_http_status = new_http_status
+                new_error_desc = f"{new_error_type}" + (f" (HTTP {new_http_status})" if new_http_status else "")
+                log_warning(f"❌ AI-suggested URL failed ({new_error_desc}), will try AI again with feedback...")
+
+        log_error(f"❌ All AI correction attempts exhausted for {effective_law_abbr}")
         return None
 
 

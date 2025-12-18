@@ -1,17 +1,16 @@
 import { getStore } from "@netlify/blobs"
 
 // ============================================
-// Optimized for Gemini 2.0 Flash Rate Limits:
-// - RPM: 2,000 requests per minute
-// - TPM: 4,000,000 tokens per minute
-// - RPD: Unlimited
+// Optimized for Gemini 2.5 Flash
+// - High throughput with improved accuracy
+// - Better instruction following
 // ============================================
 
 // Cache TTL: 48 hours in seconds
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
 // Model configuration - optimized for high throughput
-const GEMINI_MODEL = 'gemini-2.0-flash'
+const GEMINI_MODEL = 'gemini-2.5-flash'
 const MAX_OUTPUT_TOKENS = 4096  // Increased from 2048 for more complete responses
 const TEMPERATURE = 0.3
 
