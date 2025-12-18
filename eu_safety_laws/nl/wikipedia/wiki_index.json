@@ -6,28 +6,105 @@
     "Arbowet": {
       "title": "Arbeidsomstandighedenwet",
       "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenwet",
-      "summary": "DeArbeidsomstandighedenwet(of kortwegArbowet) is eenNederlandse wetdie regels bevat voorwerkgeversenwerknemersom de gezondheid, de veiligheid en het welzijn van werknemers en zelfstandig ondernemers te bevorderen. Het doel is om ongevallen en ziekten, veroorzaakt door het werk, te voorkomen. De arbowet is sinds 2020 vanwege decoronapandemiegrondig aangepast omdat medewerkers nu vaker thuis moeten werken."
+      "summary": "De Arbeidsomstandighedenwet (of kortweg Arbowet) is een Nederlandse wet die regels bevat voor werkgevers en werknemers om de gezondheid, de veiligheid en het welzijn van werknemers te bevorderen."
     },
     "Arbobesluit": {
-      "title": "Beeldschermbril",
-      "url": "https://nl.wikipedia.org/wiki/Beeldschermbril",
-      "summary": "Eenbeeldschermbril,computerbrilof, naar de toepassing,muziekbrilofschildersbrilis eenbrilwaarmee op een afstand van circa 40-80 cm scherp gezien kan worden na het ontstaan vanpresbyopie(ouderdomsverziendheid of oudziendheid), doorgaans vanaf een jaar of 42.[1]Een beeldschermbril is vergelijkbaar met eenleesbril, zij het dat de beeldschermbril minder sterk is: qua sterkte zit een beeldschermbril tussen de leesbril en een bril voor verzien in."
+      "title": "Arbeidsomstandighedenbesluit",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenbesluit",
+      "summary": "Het Arbeidsomstandighedenbesluit (of kortweg Arbobesluit) bevat nadere regels voor arbeidsomstandigheden op de werkvloer en is een uitwerking van de Arbowet."
     },
     "Arboregeling": {
       "title": "Arbeidsomstandighedenregeling",
       "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenregeling",
-      "summary": "DeArbeidsomstandighedenregeling(of kortwegArboregeling) is eenministeriële regelingen maakt deel uit van deNederlandseArbeidsomstandighedenwetgeving. In de Arboregeling staat de uitwerking van sommige onderdelen uit hetArbeidsomstandighedenbesluit. Dit zijn dan specifieke bepalingen zoals de taken van dearbodienstof de keuring van hijskranen. Ook zijn hier nadere bepalingen te vinden over bijvoorbeeld apparatuur, meubilair en programmatuur."
+      "summary": "De Arbeidsomstandighedenregeling (of kortweg Arboregeling) is een ministeriële regeling en maakt deel uit van de Nederlandse Arbeidsomstandighedenwetgeving."
     },
     "Arbeidstijdenwet": {
       "title": "Arbeidstijdenwet",
       "url": "https://nl.wikipedia.org/wiki/Arbeidstijdenwet",
-      "summary": "DeArbeidstijdenwetis een Nederlandse wet en legt regels vast voor arbeids- en rusttijden voorwerknemers. Het doel van de Arbeidstijdenwet komt deels overeen met het doel van deArbeidsomstandighedenwet. Beide zorgen voor deveiligheid,gezondheiden hetwelzijnvan werknemers bij hunwerk.\nEen tweededoelstellingvan de Arbeidstijdenwet is het voor werknemers makkelijker te maken om arbeid te combineren met zorgtaken of andere verantwoordelijkheden buiten de arbeid. De Arbeidstijdenwet geldt voor alle we"
+      "summary": "De Arbeidstijdenwet is een Nederlandse wet en legt regels vast voor arbeids- en rusttijden voor werknemers."
     },
     "ATB": {
+      "title": "Arbeidstijdenbesluit",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidstijdenbesluit",
+      "summary": "Het Arbeidstijdenbesluit (ATB) bevat nadere regels voor arbeids- en rusttijden als uitwerking van de Arbeidstijdenwet."
+    },
+    "WAA": {
+      "title": "Wet aanpassing arbeidsduur",
+      "url": "https://nl.wikipedia.org/wiki/Wet_aanpassing_arbeidsduur",
+      "summary": "De Wet aanpassing arbeidsduur geeft werknemers het recht om hun arbeidsduur aan te passen."
+    },
+    "Rijtijdenwet": {
       "title": "Rijtijdenbesluit",
       "url": "https://nl.wikipedia.org/wiki/Rijtijdenbesluit",
-      "summary": "Hetrijtijdenbesluitis de gebruikelijke benaming voor de wetgeving, die de werkuren van onder meerbuschauffeursenvrachtwagenchauffeursregelt."
+      "summary": "Het Rijtijdenbesluit regelt de werkuren van buschauffeurs en vrachtwagenchauffeurs."
     }
   },
-  "ai_suggested_articles": []
+  "ai_suggested_articles": [],
+  "whs_crosslinks": {
+    "Risico-inventarisatie en -evaluatie": {
+      "title": "Risico-inventarisatie en -evaluatie",
+      "url": "https://nl.wikipedia.org/wiki/Risico-inventarisatie_en_-evaluatie",
+      "summary": "De risico-inventarisatie en -evaluatie (RI&E) is een wettelijk verplicht document dat werkgevers moeten opstellen."
+    },
+    "Arbeidsongeval": {
+      "title": "Arbeidsongeval",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsongeval",
+      "summary": "Een arbeidsongeval is een ongeval dat een werknemer overkomt tijdens of door het werk."
+    },
+    "Beroepsziekte": {
+      "title": "Beroepsziekte",
+      "url": "https://nl.wikipedia.org/wiki/Beroepsziekte",
+      "summary": "Een beroepsziekte is een ziekte die wordt veroorzaakt door het werk."
+    },
+    "Ergonomie": {
+      "title": "Ergonomie",
+      "url": "https://nl.wikipedia.org/wiki/Ergonomie",
+      "summary": "Ergonomie is de wetenschap die zich bezighoudt met de aanpassing van de arbeidsomstandigheden aan de mens."
+    },
+    "Gevaarlijke stoffen": {
+      "title": "Gevaarlijke stof",
+      "url": "https://nl.wikipedia.org/wiki/Gevaarlijke_stof",
+      "summary": "Gevaarlijke stoffen zijn stoffen die schadelijk kunnen zijn voor mens of milieu."
+    },
+    "Gehoorbescherming": {
+      "title": "Gehoorbescherming",
+      "url": "https://nl.wikipedia.org/wiki/Gehoorbescherming",
+      "summary": "Gehoorbescherming beschermt tegen gehoorschade door lawaai."
+    },
+    "Arbodienst": {
+      "title": "Arbodienst",
+      "url": "https://nl.wikipedia.org/wiki/Arbodienst",
+      "summary": "Een arbodienst ondersteunt werkgevers bij arbeidsomstandigheden en ziekteverzuim."
+    },
+    "Bedrijfshulpverlening": {
+      "title": "Bedrijfshulpverlening",
+      "url": "https://nl.wikipedia.org/wiki/Bedrijfshulpverlening",
+      "summary": "Bedrijfshulpverlening (BHV) omvat de eerste hulp en brandbestrijding binnen een organisatie."
+    },
+    "Brandveiligheid": {
+      "title": "Brandveiligheid",
+      "url": "https://nl.wikipedia.org/wiki/Brandveiligheid",
+      "summary": "Brandveiligheid omvat alle maatregelen om brand te voorkomen en te bestrijden."
+    },
+    "Persoonlijke beschermingsmiddelen": {
+      "title": "Persoonlijk beschermingsmiddel",
+      "url": "https://nl.wikipedia.org/wiki/Persoonlijk_beschermingsmiddel",
+      "summary": "Persoonlijke beschermingsmiddelen (PBM) beschermen werknemers tegen gevaren op de werkplek."
+    },
+    "Heftruckcertificaat": {
+      "title": "Heftruck",
+      "url": "https://nl.wikipedia.org/wiki/Heftruck",
+      "summary": "Een heftruck is een voertuig voor het verplaatsen en stapelen van goederen."
+    },
+    "Vluchtweg": {
+      "title": "Vluchtweg",
+      "url": "https://nl.wikipedia.org/wiki/Vluchtweg",
+      "summary": "Een vluchtweg is een route om bij gevaar snel en veilig een gebouw te verlaten."
+    },
+    "Preventiemedewerker": {
+      "title": "Preventiemedewerker",
+      "url": "https://nl.wikipedia.org/wiki/Preventiemedewerker",
+      "summary": "De preventiemedewerker ondersteunt de werkgever bij het arbeidsomstandighedenbeleid."
+    }
+  }
 }
