@@ -41,8 +41,20 @@ const LANGUAGE_LABELS = {
 // ============================================
 // AI Response Cache - Reduces token usage
 // ============================================
-const CACHE_PREFIX = 'ai_cache_'
+// Increment CACHE_VERSION when cache format changes to invalidate old entries
+const CACHE_VERSION = 'v2_'
+const CACHE_PREFIX = 'ai_cache_' + CACHE_VERSION
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
+
+// Clean up old version cache entries on module load
+try {
+  const oldKeys = Object.keys(localStorage).filter(k =>
+    k.startsWith('ai_cache_') && !k.startsWith(CACHE_PREFIX)
+  )
+  oldKeys.forEach(k => localStorage.removeItem(k))
+} catch {
+  // Ignore errors during cleanup
+}
 
 // Simple hash function (djb2) for consistent cache keys
 function simpleHash(str) {
@@ -99,6 +111,14 @@ function setCachedResponse(cacheKey, response) {
 
 function clearOldCache() {
   try {
+    // Also remove old version cache entries (ai_cache_ without current version)
+    const allCacheKeys = Object.keys(localStorage).filter(k => k.startsWith('ai_cache_'))
+    allCacheKeys.forEach(k => {
+      if (!k.startsWith(CACHE_PREFIX)) {
+        localStorage.removeItem(k) // Remove old version entries
+      }
+    })
+
     const keys = Object.keys(localStorage).filter(k => k.startsWith(CACHE_PREFIX))
     // Remove oldest half of cache entries
     const entries = keys.map(k => {
