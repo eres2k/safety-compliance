@@ -621,7 +621,12 @@ function formatLawText(text) {
       continue
     }
 
-    // Section headers (§ or Artikel)
+    // Skip standalone "§" or "Artikel" without numbers (redundant artifacts)
+    if (/^§\s*$/i.test(line) || /^Artikel\s*$/i.test(line)) {
+      continue
+    }
+
+    // Section headers (§ or Artikel with number)
     if (/^(§\s*\d+[a-z]?|Art\.?\s*\d+|Artikel\s*\d+)/i.test(line)) {
       flushAbsatz()
       flushList()
@@ -1190,6 +1195,54 @@ export function LawBrowser({ onBack }) {
     return ''
   }
 
+  // Helper function to clean section content - removes redundant section number at start
+  const cleanSectionContent = (text, sectionNumber) => {
+    if (!text) return ''
+
+    let cleaned = text
+
+    // Remove "§ X:" or "§ X." or "Artikel X:" or "Artikel X." prefix from beginning
+    // These duplicate the section header that's already shown
+    cleaned = cleaned.replace(/^(§\s*\d+[a-z]?|Artikel\s*\d+[a-z]?)[.:]\s*/i, '').trim()
+
+    // Remove standalone "§" or "Artikel" at the very beginning (without number)
+    cleaned = cleaned.replace(/^§\s*\n/i, '').trim()
+    cleaned = cleaned.replace(/^Artikel\s*\n/i, '').trim()
+
+    // Remove section title line if it duplicates the header (e.g., "§ 3 Gefahrenklassen\n")
+    cleaned = cleaned.replace(/^(§\s*\d+[a-z]?\s+[^\n]+)\n/i, '').trim()
+    cleaned = cleaned.replace(/^(Artikel\s*\d+[a-z]?\.\s*[^\n]+)\n/i, '').trim()
+
+    return cleaned
+  }
+
+  // Helper function to clean section titles from internal numbering artifacts
+  const cleanSectionTitle = (title, sectionNumber, jurisdiction) => {
+    if (!title) return ''
+
+    let cleaned = title
+
+    // Remove "Artikel X." or "§ X." prefix first
+    cleaned = cleaned.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+[a-z]?\.?)\s*/i, '').trim()
+
+    // For NL laws: Remove Dutch internal numbering patterns like ":1", "1:1", "2:1" at start of title
+    // These are chapter:article references that got scraped into the title
+    cleaned = cleaned.replace(/^:?\d*:\d+[a-z]?\.?\s*/i, '').trim()
+
+    // Remove standalone single digits at the end that match the section number (e.g., "Artikel 35. 5" -> "")
+    const numMatch = sectionNumber?.match(/\d+$/)
+    if (numMatch && cleaned === numMatch[0]) {
+      cleaned = ''
+    }
+
+    // Handle AT "§ 0" preamble sections - provide a meaningful label
+    if (jurisdiction === 'AT' && sectionNumber === '0' && (!cleaned || cleaned === '§ 0')) {
+      cleaned = 'Langtitel'
+    }
+
+    return cleaned
+  }
+
   // Parse sections for selected law - use pre-parsed chapters if available
   const lawSections = useMemo(() => {
     if (!selectedLaw) return []
@@ -1201,20 +1254,28 @@ export function LawBrowser({ onBack }) {
         if (chapter.sections) {
           for (const section of chapter.sections) {
             // Extract title from database or from text content
-            let sectionTitle = section.title?.replace(/^(§\s*\d+[a-z]?\.?|Artikel\s*\d+\.?)\s*/i, '').trim() || ''
+            let sectionTitle = cleanSectionTitle(section.title, section.number, selectedLaw.jurisdiction)
 
             // If title is empty or just whitespace, try to extract from text content
             if (!sectionTitle && section.text) {
               sectionTitle = extractTitleFromText(section.text, section.number)
             }
 
+            // Determine display number - handle AT preamble sections (number "0")
+            let displayNumber
+            if (section.number?.startsWith('§') || section.number?.startsWith('Artikel')) {
+              displayNumber = section.number
+            } else if (selectedLaw.jurisdiction === 'AT' && section.number === '0') {
+              displayNumber = 'Präambel'
+            } else {
+              displayNumber = framework === 'NL' ? `Artikel ${section.number}` : `§ ${section.number}`
+            }
+
             sections.push({
               id: section.id,
-              number: section.number?.startsWith('§') || section.number?.startsWith('Artikel')
-                ? section.number
-                : (framework === 'NL' ? `Artikel ${section.number}` : `§ ${section.number}`),
+              number: displayNumber,
               title: sectionTitle,
-              content: section.text || '',
+              content: cleanSectionContent(section.text, section.number),
               rawNumber: section.number,
               abschnitt: {
                 number: chapter.number,
