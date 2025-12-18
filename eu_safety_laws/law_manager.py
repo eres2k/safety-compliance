@@ -1280,6 +1280,186 @@ STRUCTURE_ARBOWET = [
     {"number": "8", "title": "Hoofdstuk 8 - Overgangs- en slotbepalingen", "title_en": "Chapter 8 - Transitional and Final Provisions", "section_range": (44, 100)},
 ]
 
+# Official structure: Austria AStV (Arbeitsstättenverordnung) - 6 Abschnitte
+STRUCTURE_ASTV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 3)},
+    {"number": "2", "title": "2. Abschnitt - Anforderungen an Arbeitsstätten", "title_en": "Section 2 - Requirements for Workplaces", "section_range": (4, 20)},
+    {"number": "3", "title": "3. Abschnitt - Anforderungen an Arbeitsräume", "title_en": "Section 3 - Requirements for Work Rooms", "section_range": (21, 28)},
+    {"number": "4", "title": "4. Abschnitt - Sanitäre Anlagen und Aufenthaltsräume", "title_en": "Section 4 - Sanitary Facilities and Break Rooms", "section_range": (29, 40)},
+    {"number": "5", "title": "5. Abschnitt - Brandschutz und Erste Hilfe", "title_en": "Section 5 - Fire Protection and First Aid", "section_range": (41, 50)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (51, 55)},
+]
+
+# Official structure: Austria AM-VO (Arbeitsmittelverordnung) - 6 Abschnitte
+STRUCTURE_AMVO = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Anforderungen an Arbeitsmittel", "title_en": "Section 2 - Requirements for Work Equipment", "section_range": (6, 15)},
+    {"number": "3", "title": "3. Abschnitt - Benutzung von Arbeitsmitteln", "title_en": "Section 3 - Use of Work Equipment", "section_range": (16, 25)},
+    {"number": "4", "title": "4. Abschnitt - Prüfung und Wartung", "title_en": "Section 4 - Testing and Maintenance", "section_range": (26, 35)},
+    {"number": "5", "title": "5. Abschnitt - Besondere Arbeitsmittel", "title_en": "Section 5 - Special Work Equipment", "section_range": (36, 50)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (51, 60)},
+]
+
+# Official structure: Austria BauV (Bauarbeiterschutzverordnung) - 8 Abschnitte
+STRUCTURE_BAUV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 5)},
+    {"number": "2", "title": "2. Abschnitt - Baustelleneinrichtung", "title_en": "Section 2 - Construction Site Equipment", "section_range": (6, 20)},
+    {"number": "3", "title": "3. Abschnitt - Absturzsicherung", "title_en": "Section 3 - Fall Protection", "section_range": (21, 40)},
+    {"number": "4", "title": "4. Abschnitt - Gerüste", "title_en": "Section 4 - Scaffolding", "section_range": (41, 80)},
+    {"number": "5", "title": "5. Abschnitt - Erd- und Felsarbeiten", "title_en": "Section 5 - Earth and Rock Work", "section_range": (81, 100)},
+    {"number": "6", "title": "6. Abschnitt - Abbrucharbeiten", "title_en": "Section 6 - Demolition Work", "section_range": (101, 120)},
+    {"number": "7", "title": "7. Abschnitt - Besondere Bauarbeiten", "title_en": "Section 7 - Special Construction Work", "section_range": (121, 150)},
+    {"number": "8", "title": "8. Abschnitt - Schlussbestimmungen", "title_en": "Section 8 - Final Provisions", "section_range": (151, 170)},
+]
+
+# Official structure: Austria BS-V (Bildschirmarbeitsverordnung) - 6 Abschnitte
+STRUCTURE_BSV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "2. Abschnitt - Anforderungen an Bildschirmarbeitsplätze", "title_en": "Section 2 - Requirements for Display Screen Workstations", "section_range": (3, 5)},
+    {"number": "3", "title": "3. Abschnitt - Anforderungen an die Bildschirmarbeit", "title_en": "Section 3 - Requirements for Display Screen Work", "section_range": (6, 8)},
+    {"number": "4", "title": "4. Abschnitt - Unterbrechungen und Untersuchungen", "title_en": "Section 4 - Breaks and Examinations", "section_range": (9, 11)},
+    {"number": "5", "title": "5. Abschnitt - Information und Unterweisung", "title_en": "Section 5 - Information and Instruction", "section_range": (12, 14)},
+    {"number": "6", "title": "6. Abschnitt - Schlussbestimmungen", "title_en": "Section 6 - Final Provisions", "section_range": (15, 18)},
+]
+
+# Official structure: Austria PSA-V (Verordnung Persönliche Schutzausrüstung) - 2 Abschnitte
+STRUCTURE_PSAV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 10)},
+    {"number": "2", "title": "2. Abschnitt - Schlussbestimmungen", "title_en": "Section 2 - Final Provisions", "section_range": (11, 15)},
+]
+
+# Official structure: Austria ESV 2012 (Elektroschutzverordnung 2012) - 4 Abschnitte
+STRUCTURE_ESV2012 = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 3)},
+    {"number": "2", "title": "2. Abschnitt - Sicherheitsmaßnahmen", "title_en": "Section 2 - Safety Measures", "section_range": (4, 10)},
+    {"number": "3", "title": "3. Abschnitt - Prüfungen und Qualifikationen", "title_en": "Section 3 - Tests and Qualifications", "section_range": (11, 18)},
+    {"number": "4", "title": "4. Abschnitt - Schlussbestimmungen", "title_en": "Section 4 - Final Provisions", "section_range": (19, 22)},
+]
+
+# Official structure: Austria LärmV (Verordnung Lärm und Vibrationen) - 5 Abschnitte
+STRUCTURE_LAERMV = [
+    {"number": "1", "title": "1. Abschnitt - Allgemeine Bestimmungen", "title_en": "Section 1 - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "2. Abschnitt - Lärm", "title_en": "Section 2 - Noise", "section_range": (3, 7)},
+    {"number": "3", "title": "3. Abschnitt - Vibrationen", "title_en": "Section 3 - Vibrations", "section_range": (8, 12)},
+    {"number": "4", "title": "4. Abschnitt - Gemeinsame Bestimmungen", "title_en": "Section 4 - Common Provisions", "section_range": (13, 16)},
+    {"number": "5", "title": "5. Abschnitt - Schlussbestimmungen", "title_en": "Section 5 - Final Provisions", "section_range": (17, 20)},
+]
+
+# Official structure: Germany ASiG (Arbeitssicherheitsgesetz) - 5 Abschnitte
+STRUCTURE_ASIG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 1)},
+    {"number": "2", "title": "Zweiter Abschnitt - Betriebsärzte", "title_en": "Second Section - Company Physicians", "section_range": (2, 4)},
+    {"number": "3", "title": "Dritter Abschnitt - Fachkräfte für Arbeitssicherheit", "title_en": "Third Section - Occupational Safety Specialists", "section_range": (5, 7)},
+    {"number": "4", "title": "Vierter Abschnitt - Gemeinsame Vorschriften", "title_en": "Fourth Section - Common Provisions", "section_range": (8, 19)},
+    {"number": "5", "title": "Fünfter Abschnitt - Schlußvorschriften", "title_en": "Fifth Section - Final Provisions", "section_range": (20, 21)},
+]
+
+# Official structure: Germany ArbZG (Arbeitszeitgesetz) - 8 Abschnitte
+STRUCTURE_ARBZG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Werktägliche Arbeitszeit und arbeitsfreie Zeiten", "title_en": "Second Section - Daily Working Time and Rest Periods", "section_range": (3, 8)},
+    {"number": "3", "title": "Dritter Abschnitt - Sonn- und Feiertagsruhe", "title_en": "Third Section - Sunday and Holiday Rest", "section_range": (9, 13)},
+    {"number": "4", "title": "Vierter Abschnitt - Ausnahmen in besonderen Fällen", "title_en": "Fourth Section - Exceptions in Special Cases", "section_range": (14, 15)},
+    {"number": "5", "title": "Fünfter Abschnitt - Durchführung des Gesetzes", "title_en": "Fifth Section - Implementation", "section_range": (16, 17)},
+    {"number": "6", "title": "Sechster Abschnitt - Sonderregelungen", "title_en": "Sixth Section - Special Regulations", "section_range": (18, 21.99)},
+    {"number": "7", "title": "Siebter Abschnitt - Straf- und Bußgeldvorschriften", "title_en": "Seventh Section - Criminal and Penalty Provisions", "section_range": (22, 23)},
+    {"number": "8", "title": "Achter Abschnitt - Schlußvorschriften", "title_en": "Eighth Section - Final Provisions", "section_range": (24, 26)},
+]
+
+# Official structure: Germany JArbSchG (Jugendarbeitsschutzgesetz) - 5 Abschnitte
+STRUCTURE_JARBSCHG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeines", "title_en": "First Section - General", "section_range": (1, 4)},
+    {"number": "2", "title": "Zweiter Abschnitt - Beschäftigung von Kindern", "title_en": "Second Section - Employment of Children", "section_range": (5, 7)},
+    {"number": "3", "title": "Dritter Abschnitt - Beschäftigung Jugendlicher", "title_en": "Third Section - Employment of Young People", "section_range": (8, 46)},
+    {"number": "4", "title": "Vierter Abschnitt - Durchführung des Gesetzes", "title_en": "Fourth Section - Implementation", "section_range": (47, 58)},
+    {"number": "5", "title": "Fünfter Abschnitt - Straf- und Bußgeldvorschriften, Schlußvorschriften", "title_en": "Fifth Section - Criminal and Penalty Provisions, Final Provisions", "section_range": (59, 75)},
+]
+
+# Official structure: Germany ArbStättV (Arbeitsstättenverordnung) - 4 Abschnitte
+STRUCTURE_ARBSTAETTV = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Pflichten des Arbeitgebers", "title_en": "Second Section - Employer Obligations", "section_range": (3, 6)},
+    {"number": "3", "title": "Dritter Abschnitt - Besondere Anforderungen", "title_en": "Third Section - Special Requirements", "section_range": (7, 8)},
+    {"number": "4", "title": "Vierter Abschnitt - Schlußvorschriften", "title_en": "Fourth Section - Final Provisions", "section_range": (9, 11)},
+]
+
+# Official structure: Germany BetrSichV (Betriebssicherheitsverordnung) - 4 Abschnitte
+STRUCTURE_BETRSICHV = [
+    {"number": "1", "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen", "title_en": "First Section - Scope and Definitions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen", "title_en": "Second Section - Risk Assessment and Protective Measures", "section_range": (3, 13)},
+    {"number": "3", "title": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen", "title_en": "Third Section - Additional Requirements for Installations Subject to Monitoring", "section_range": (14, 20)},
+    {"number": "4", "title": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften", "title_en": "Fourth Section - Enforcement and Final Provisions", "section_range": (21, 24)},
+]
+
+# Official structure: Germany GefStoffV (Gefahrstoffverordnung) - 7 Abschnitte
+STRUCTURE_GEFSTOFFV = [
+    {"number": "1", "title": "Erster Abschnitt - Zielsetzung, Anwendungsbereich und Begriffsbestimmungen", "title_en": "First Section - Objectives, Scope and Definitions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gefahrstoffinformation", "title_en": "Second Section - Hazardous Substance Information", "section_range": (3, 5)},
+    {"number": "3", "title": "Dritter Abschnitt - Gefährdungsbeurteilung und Grundpflichten", "title_en": "Third Section - Risk Assessment and Basic Obligations", "section_range": (6, 7)},
+    {"number": "4", "title": "Vierter Abschnitt - Schutzmaßnahmen", "title_en": "Fourth Section - Protective Measures", "section_range": (8, 13)},
+    {"number": "5", "title": "Fünfter Abschnitt - Verbote und Beschränkungen", "title_en": "Fifth Section - Prohibitions and Restrictions", "section_range": (14, 17)},
+    {"number": "6", "title": "Sechster Abschnitt - Vollzugsregelungen und Ausschuss für Gefahrstoffe", "title_en": "Sixth Section - Enforcement and Committee for Hazardous Substances", "section_range": (18, 20)},
+    {"number": "7", "title": "Siebter Abschnitt - Ordnungswidrigkeiten und Straftaten", "title_en": "Seventh Section - Administrative Offenses and Criminal Offenses", "section_range": (21, 25)},
+]
+
+# Official structure: Germany MuSchG (Mutterschutzgesetz) - 6 Abschnitte
+STRUCTURE_MUSCHG = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gesundheitsschutz", "title_en": "Second Section - Health Protection", "section_range": (3, 16)},
+    {"number": "3", "title": "Dritter Abschnitt - Kündigungsschutz", "title_en": "Third Section - Dismissal Protection", "section_range": (17, 17)},
+    {"number": "4", "title": "Vierter Abschnitt - Leistungen", "title_en": "Fourth Section - Benefits", "section_range": (18, 25)},
+    {"number": "5", "title": "Fünfter Abschnitt - Durchführung des Gesetzes", "title_en": "Fifth Section - Implementation", "section_range": (26, 31)},
+    {"number": "6", "title": "Sechster Abschnitt - Bußgeldvorschriften, Strafvorschriften", "title_en": "Sixth Section - Penalty and Criminal Provisions", "section_range": (32, 34)},
+]
+
+# Official structure: Germany LärmVibrationsArbSchV - 4 Abschnitte
+STRUCTURE_LAERMVIBRATIONSARBSCHV = [
+    {"number": "1", "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen", "title_en": "First Section - Scope and Definitions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Ermittlung und Bewertung der Gefährdung; Messungen", "title_en": "Second Section - Hazard Assessment and Measurements", "section_range": (3, 4)},
+    {"number": "3", "title": "Dritter Abschnitt - Schutzmaßnahmen", "title_en": "Third Section - Protective Measures", "section_range": (5, 12)},
+    {"number": "4", "title": "Vierter Abschnitt - Unterweisung und allgemeine Pflichten", "title_en": "Fourth Section - Instruction and General Duties", "section_range": (13, 18)},
+]
+
+# Official structure: Germany BioStoffV (Biostoffverordnung) - 4 Abschnitte
+STRUCTURE_BIOSTOFFV = [
+    {"number": "1", "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen", "title_en": "First Section - Scope and Definitions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen", "title_en": "Second Section - Risk Assessment and Protective Measures", "section_range": (3, 14)},
+    {"number": "3", "title": "Dritter Abschnitt - Zusätzliche Vorschriften", "title_en": "Third Section - Additional Provisions", "section_range": (15, 17)},
+    {"number": "4", "title": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften", "title_en": "Fourth Section - Enforcement and Final Provisions", "section_range": (18, 21)},
+]
+
+# Official structure: Germany ArbMedVV - 3 Abschnitte
+STRUCTURE_ARBMEDVV = [
+    {"number": "1", "title": "Erster Abschnitt - Allgemeine Vorschriften", "title_en": "First Section - General Provisions", "section_range": (1, 2)},
+    {"number": "2", "title": "Zweiter Abschnitt - Arbeitsmedizinische Vorsorge", "title_en": "Second Section - Occupational Medical Care", "section_range": (3, 7)},
+    {"number": "3", "title": "Dritter Abschnitt - Schlußvorschriften", "title_en": "Third Section - Final Provisions", "section_range": (8, 11)},
+]
+
+# Official structure: Netherlands Arbobesluit - 9 Hoofdstukken
+STRUCTURE_ARBOBESLUIT = [
+    {"number": "1", "title": "Hoofdstuk 1 - Definities en toepassingsgebied", "title_en": "Chapter 1 - Definitions and Scope", "section_range": (1, 1.99)},
+    {"number": "2", "title": "Hoofdstuk 2 - Arbozorg en organisatie van de arbeid", "title_en": "Chapter 2 - Working Conditions Care and Work Organization", "section_range": (2, 2.99)},
+    {"number": "3", "title": "Hoofdstuk 3 - Inrichting arbeidsplaatsen", "title_en": "Chapter 3 - Workplace Design", "section_range": (3, 3.99)},
+    {"number": "4", "title": "Hoofdstuk 4 - Gevaarlijke stoffen en biologische agentia", "title_en": "Chapter 4 - Hazardous Substances and Biological Agents", "section_range": (4, 4.99)},
+    {"number": "5", "title": "Hoofdstuk 5 - Fysische factoren", "title_en": "Chapter 5 - Physical Factors", "section_range": (5, 5.99)},
+    {"number": "6", "title": "Hoofdstuk 6 - Arbeidsmiddelen en specifieke werkzaamheden", "title_en": "Chapter 6 - Work Equipment and Specific Work", "section_range": (6, 7.99)},
+    {"number": "7", "title": "Hoofdstuk 7 - Bijzondere sectoren en bijzondere categorieën werknemers", "title_en": "Chapter 7 - Special Sectors and Categories of Workers", "section_range": (8, 8.99)},
+    {"number": "8", "title": "Hoofdstuk 8 - Aanvullende voorschriften", "title_en": "Chapter 8 - Additional Regulations", "section_range": (9, 9.99)},
+    {"number": "9", "title": "Hoofdstuk 9 - Overgangs- en slotbepalingen", "title_en": "Chapter 9 - Transitional and Final Provisions", "section_range": (10, 15)},
+]
+
+# Official structure: Netherlands Arbeidstijdenwet - 8 Hoofdstukken
+STRUCTURE_ARBEIDSTIJDENWET = [
+    {"number": "1", "title": "Hoofdstuk 1 - Algemene bepalingen", "title_en": "Chapter 1 - General Provisions", "section_range": (1, 1.99)},
+    {"number": "2", "title": "Hoofdstuk 2 - Toepasselijkheid", "title_en": "Chapter 2 - Applicability", "section_range": (2, 2.99)},
+    {"number": "3", "title": "Hoofdstuk 3 - Arbeids- en rusttijden", "title_en": "Chapter 3 - Working and Rest Time", "section_range": (3, 5.99)},
+    {"number": "4", "title": "Hoofdstuk 4 - Arbeidstijd en rusttijd in bijzondere omstandigheden", "title_en": "Chapter 4 - Working and Rest Time in Special Circumstances", "section_range": (6, 6.99)},
+    {"number": "5", "title": "Hoofdstuk 5 - Toezicht en opsporing", "title_en": "Chapter 5 - Supervision and Detection", "section_range": (7, 8.99)},
+    {"number": "6", "title": "Hoofdstuk 6 - Ontheffingen", "title_en": "Chapter 6 - Exemptions", "section_range": (9, 9.99)},
+    {"number": "7", "title": "Hoofdstuk 7 - Sanctiebepalingen", "title_en": "Chapter 7 - Penalty Provisions", "section_range": (10, 11.99)},
+    {"number": "8", "title": "Hoofdstuk 8 - Slotbepalingen", "title_en": "Chapter 8 - Final Provisions", "section_range": (12, 15)},
+]
+
 LAW_STRUCTURES = {
     "AT": {
         "ASchG": STRUCTURE_ASCHG,
@@ -1287,9 +1467,32 @@ LAW_STRUCTURES = {
         "AZG": STRUCTURE_AZG,
         "MSchG": STRUCTURE_MSCHG,
         "ARG": STRUCTURE_ARG,
+        "AStV": STRUCTURE_ASTV,
+        "AM-VO": STRUCTURE_AMVO,
+        "BauV": STRUCTURE_BAUV,
+        "BS-V": STRUCTURE_BSV,
+        "PSA-V": STRUCTURE_PSAV,
+        "ESV 2012": STRUCTURE_ESV2012,
+        "LärmV": STRUCTURE_LAERMV,
     },
-    "DE": {"ArbSchG": STRUCTURE_ARBSCHG},
-    "NL": {"Arbowet": STRUCTURE_ARBOWET},
+    "DE": {
+        "ArbSchG": STRUCTURE_ARBSCHG,
+        "ASiG": STRUCTURE_ASIG,
+        "ArbZG": STRUCTURE_ARBZG,
+        "JArbSchG": STRUCTURE_JARBSCHG,
+        "ArbStättV": STRUCTURE_ARBSTAETTV,
+        "BetrSichV": STRUCTURE_BETRSICHV,
+        "GefStoffV": STRUCTURE_GEFSTOFFV,
+        "MuSchG": STRUCTURE_MUSCHG,
+        "LärmVibrationsArbSchV": STRUCTURE_LAERMVIBRATIONSARBSCHV,
+        "BioStoffV": STRUCTURE_BIOSTOFFV,
+        "ArbMedVV": STRUCTURE_ARBMEDVV,
+    },
+    "NL": {
+        "Arbowet": STRUCTURE_ARBOWET,
+        "Arbobesluit": STRUCTURE_ARBOBESLUIT,
+        "Arbeidstijdenwet": STRUCTURE_ARBEIDSTIJDENWET,
+    },
 }
 
 
@@ -3429,6 +3632,659 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
 
 
 # =============================================================================
+# AI Database Validation Module
+# =============================================================================
+
+# Validation issue types
+class ValidationIssue:
+    """Represents a validation issue found in the database."""
+    def __init__(self, issue_type: str, severity: str, law_abbr: str,
+                 description: str, location: str = None, suggestion: str = None,
+                 auto_fixable: bool = False, fix_data: Dict = None):
+        self.issue_type = issue_type  # e.g., 'empty_text', 'duplicate_section', 'missing_chapter'
+        self.severity = severity  # 'error', 'warning', 'info'
+        self.law_abbr = law_abbr
+        self.description = description
+        self.location = location  # e.g., 'Chapter 3, § 15'
+        self.suggestion = suggestion
+        self.auto_fixable = auto_fixable
+        self.fix_data = fix_data or {}
+
+    def to_dict(self) -> Dict:
+        return {
+            'type': self.issue_type,
+            'severity': self.severity,
+            'law': self.law_abbr,
+            'description': self.description,
+            'location': self.location,
+            'suggestion': self.suggestion,
+            'auto_fixable': self.auto_fixable,
+        }
+
+
+def _validate_document_structure(doc: Dict, country: str) -> List[ValidationIssue]:
+    """Validate a single document's structure and content (non-AI checks)."""
+    issues = []
+    abbr = doc.get('abbreviation', 'Unknown')
+
+    # Check required fields
+    required_fields = ['abbreviation', 'title', 'jurisdiction', 'chapters']
+    for field in required_fields:
+        if not doc.get(field):
+            issues.append(ValidationIssue(
+                issue_type='missing_field',
+                severity='error',
+                law_abbr=abbr,
+                description=f"Missing required field: {field}",
+                auto_fixable=False
+            ))
+
+    # Check chapters
+    chapters = doc.get('chapters', [])
+    if not chapters:
+        issues.append(ValidationIssue(
+            issue_type='no_chapters',
+            severity='error',
+            law_abbr=abbr,
+            description="Document has no chapters",
+            auto_fixable=False
+        ))
+        return issues
+
+    # Track sections for duplicate detection
+    seen_sections = {}
+    total_sections = 0
+    empty_sections = 0
+
+    for ch_idx, chapter in enumerate(chapters):
+        ch_title = chapter.get('title', f'Chapter {ch_idx + 1}')
+        sections = chapter.get('sections', [])
+
+        if not sections:
+            issues.append(ValidationIssue(
+                issue_type='empty_chapter',
+                severity='warning',
+                law_abbr=abbr,
+                description=f"Chapter has no sections",
+                location=ch_title,
+                auto_fixable=True,
+                fix_data={'action': 'remove_empty_chapter', 'chapter_idx': ch_idx}
+            ))
+            continue
+
+        for sec_idx, section in enumerate(sections):
+            total_sections += 1
+            sec_num = section.get('number', '')
+            sec_title = section.get('title', '')
+            sec_text = section.get('text', '')
+
+            # Check for empty text
+            if not sec_text or len(sec_text.strip()) < 10:
+                empty_sections += 1
+                issues.append(ValidationIssue(
+                    issue_type='empty_text',
+                    severity='warning',
+                    law_abbr=abbr,
+                    description=f"Section has empty or very short text ({len(sec_text.strip())} chars)",
+                    location=f"{ch_title} → § {sec_num}",
+                    auto_fixable=False
+                ))
+
+            # Check for duplicates
+            sec_key = f"{sec_num}:{sec_title}"
+            if sec_key in seen_sections:
+                prev_loc = seen_sections[sec_key]
+                issues.append(ValidationIssue(
+                    issue_type='duplicate_section',
+                    severity='warning',
+                    law_abbr=abbr,
+                    description=f"Duplicate section found",
+                    location=f"{ch_title} → § {sec_num} (also in {prev_loc})",
+                    auto_fixable=True,
+                    fix_data={'action': 'remove_duplicate', 'chapter_idx': ch_idx, 'section_idx': sec_idx}
+                ))
+            else:
+                seen_sections[sec_key] = ch_title
+
+            # Check for malformed section numbers
+            if sec_num and not re.match(r'^[\d]+[a-z]?\.?$', str(sec_num).strip(), re.I):
+                issues.append(ValidationIssue(
+                    issue_type='malformed_number',
+                    severity='info',
+                    law_abbr=abbr,
+                    description=f"Unusual section number format: '{sec_num}'",
+                    location=f"{ch_title} → {sec_title}",
+                    auto_fixable=False
+                ))
+
+    # Check for high empty section ratio
+    if total_sections > 0 and empty_sections / total_sections > 0.3:
+        issues.append(ValidationIssue(
+            issue_type='high_empty_ratio',
+            severity='error',
+            law_abbr=abbr,
+            description=f"{empty_sections}/{total_sections} sections ({int(empty_sections/total_sections*100)}%) have empty text",
+            suggestion="Consider re-scraping this law",
+            auto_fixable=False
+        ))
+
+    return issues
+
+
+def _validate_chapter_structure(doc: Dict, country: str) -> List[ValidationIssue]:
+    """Validate chapter structure against expected patterns."""
+    issues = []
+    abbr = doc.get('abbreviation', 'Unknown')
+    chapters = doc.get('chapters', [])
+
+    # Check if law should have official structure but only has 1 chapter
+    if abbr in LAW_STRUCTURES.get(country, {}) and len(chapters) == 1:
+        expected = LAW_STRUCTURES[country][abbr]
+        issues.append(ValidationIssue(
+            issue_type='missing_structure',
+            severity='warning',
+            law_abbr=abbr,
+            description=f"Law has only 1 chapter but should have {len(expected)} according to official structure",
+            suggestion="Run restructure command to apply official chapter structure",
+            auto_fixable=False
+        ))
+
+    # Check for gaps in section numbering
+    all_sections = []
+    for chapter in chapters:
+        for section in chapter.get('sections', []):
+            try:
+                num = float(re.sub(r'[^\d.]', '', str(section.get('number', '0'))))
+                all_sections.append(num)
+            except ValueError:
+                pass
+
+    if all_sections:
+        all_sections.sort()
+        for i in range(1, len(all_sections)):
+            gap = all_sections[i] - all_sections[i-1]
+            if gap > 5:  # Large gap in numbering
+                issues.append(ValidationIssue(
+                    issue_type='section_gap',
+                    severity='info',
+                    law_abbr=abbr,
+                    description=f"Gap in section numbering: § {int(all_sections[i-1])} to § {int(all_sections[i])} (gap of {int(gap)})",
+                    suggestion="Some sections may be missing",
+                    auto_fixable=False
+                ))
+
+    return issues
+
+
+def _ai_validate_document(doc: Dict, country: str, rate_limiter: Dict) -> List[ValidationIssue]:
+    """Use AI to validate document content and identify issues against official TOC."""
+    issues = []
+    abbr = doc.get('abbreviation', 'Unknown')
+
+    # Rate limiting - wait if needed
+    current_time = time.time()
+    last_call = rate_limiter.get('last_call', 0)
+    min_interval = CONFIG.ai_rate_limit_delay * 2  # Double the normal delay for validation
+
+    if current_time - last_call < min_interval:
+        time.sleep(min_interval - (current_time - last_call))
+
+    rate_limiter['last_call'] = time.time()
+
+    # Build a summary of the document for AI analysis
+    chapters = doc.get('chapters', [])
+    chapter_summary = []
+    sample_sections = []
+    section_numbers_by_chapter = {}
+
+    for ch in chapters:
+        ch_title = ch.get('title', 'Unknown')
+        sections = ch.get('sections', [])
+        section_count = len(sections)
+        chapter_summary.append(f"- {ch_title}: {section_count} sections")
+
+        # Track section numbers per chapter
+        sec_nums = [str(s.get('number', '?')) for s in sections]
+        section_numbers_by_chapter[ch_title] = sec_nums
+
+        # Get sample sections for content analysis
+        for sec in sections[:2]:  # First 2 sections per chapter
+            sec_text = sec.get('text', '')[:500]  # First 500 chars
+            if sec_text:
+                sample_sections.append({
+                    'chapter': ch_title,
+                    'number': sec.get('number', '?'),
+                    'title': sec.get('title', ''),
+                    'text_preview': sec_text
+                })
+
+    if not sample_sections:
+        return issues
+
+    # Get official structure if available for comparison
+    official_structure = LAW_STRUCTURES.get(country, {}).get(abbr, [])
+    official_toc = ""
+    if official_structure:
+        official_toc = f"""
+OFFICIAL TABLE OF CONTENTS (from official sources):
+{json.dumps([{
+    'chapter': s['number'],
+    'title': s['title'],
+    'section_range': f"§§ {s['section_range'][0]}-{s['section_range'][1]}" if isinstance(s.get('section_range'), tuple) else 'N/A'
+} for s in official_structure], ensure_ascii=False, indent=2)}
+
+IMPORTANT: Compare the scraped structure against the official TOC above.
+Check if:
+- All chapters from the official TOC are present
+- Sections are assigned to the correct chapters
+- Section ranges match the official structure
+"""
+
+    # Prepare AI prompt
+    country_names = {"AT": "Austrian", "DE": "German", "NL": "Dutch"}
+    country_name = country_names.get(country, country)
+
+    prompt = f"""You are validating a scraped {country_name} workplace safety law database entry.
+
+LAW: {abbr} - {doc.get('title', 'Unknown')}
+JURISDICTION: {doc.get('jurisdiction', 'Unknown')}
+
+SCRAPED CHAPTER STRUCTURE:
+{chr(10).join(chapter_summary)}
+
+SECTIONS BY CHAPTER:
+{json.dumps(section_numbers_by_chapter, ensure_ascii=False, indent=2)}
+{official_toc}
+SAMPLE SECTIONS (for content validation):
+{json.dumps(sample_sections[:6], ensure_ascii=False, indent=2)}
+
+Please analyze this law and identify any issues. Check for:
+1. **Structure vs Official TOC**: Compare against the official table of contents (if provided)
+   - Are any chapters missing or incorrectly named?
+   - Are sections assigned to the wrong chapters?
+   - Are section ranges correct?
+2. Content quality - is the text actual law content or scraping artifacts/boilerplate?
+3. Language consistency - is all text in the expected language ({country_name})?
+4. Structural issues - do section numbers and titles look correct?
+5. Completeness - based on the structure, does this appear to be a complete scrape?
+
+Return a JSON array of issues found (empty array if no issues):
+[
+  {{
+    "type": "toc_mismatch|missing_chapter|wrong_section_assignment|content_issue|language_issue|structure_issue|completeness_issue",
+    "severity": "error|warning|info",
+    "description": "What's wrong",
+    "location": "Where (optional)",
+    "suggestion": "How to fix (optional)"
+  }}
+]
+
+Only return the JSON array, no other text. If everything looks good, return []."""
+
+    try:
+        response = call_gemini_api(prompt, temperature=0.2, max_tokens=2048)
+
+        if not response:
+            return issues
+
+        # Parse AI response
+        if "```json" in response:
+            response = response.split("```json")[1].split("```")[0].strip()
+        elif "```" in response:
+            response = response.split("```")[1].split("```")[0].strip()
+
+        ai_issues = json.loads(response)
+
+        if isinstance(ai_issues, list):
+            for ai_issue in ai_issues:
+                issues.append(ValidationIssue(
+                    issue_type=ai_issue.get('type', 'ai_detected'),
+                    severity=ai_issue.get('severity', 'warning'),
+                    law_abbr=abbr,
+                    description=ai_issue.get('description', 'AI-detected issue'),
+                    location=ai_issue.get('location'),
+                    suggestion=ai_issue.get('suggestion'),
+                    auto_fixable=False
+                ))
+
+    except json.JSONDecodeError as e:
+        log_warning(f"Failed to parse AI validation response for {abbr}: {e}")
+    except Exception as e:
+        log_warning(f"AI validation error for {abbr}: {e}")
+
+    return issues
+
+
+def _auto_fix_issues(db: Dict, issues: List[ValidationIssue], country: str) -> Tuple[int, List[str]]:
+    """
+    Automatically fix issues that are marked as auto_fixable.
+    Returns (fixed_count, list of fix descriptions).
+    """
+    fixed_count = 0
+    fix_descriptions = []
+
+    # Group issues by document
+    issues_by_doc = {}
+    for issue in issues:
+        if issue.auto_fixable:
+            if issue.law_abbr not in issues_by_doc:
+                issues_by_doc[issue.law_abbr] = []
+            issues_by_doc[issue.law_abbr].append(issue)
+
+    # Find documents and apply fixes
+    for doc in db.get('documents', []):
+        abbr = doc.get('abbreviation')
+        if abbr not in issues_by_doc:
+            continue
+
+        doc_issues = issues_by_doc[abbr]
+
+        # Sort by chapter/section index in reverse order to avoid index shifting
+        removal_issues = [i for i in doc_issues if i.fix_data.get('action') in ['remove_empty_chapter', 'remove_duplicate']]
+        removal_issues.sort(key=lambda x: (x.fix_data.get('chapter_idx', 0), x.fix_data.get('section_idx', 0)), reverse=True)
+
+        for issue in removal_issues:
+            action = issue.fix_data.get('action')
+
+            if action == 'remove_empty_chapter':
+                ch_idx = issue.fix_data.get('chapter_idx')
+                if ch_idx is not None and ch_idx < len(doc.get('chapters', [])):
+                    ch_title = doc['chapters'][ch_idx].get('title', f'Chapter {ch_idx}')
+                    del doc['chapters'][ch_idx]
+                    fixed_count += 1
+                    fix_descriptions.append(f"{abbr}: Removed empty chapter '{ch_title}'")
+
+            elif action == 'remove_duplicate':
+                ch_idx = issue.fix_data.get('chapter_idx')
+                sec_idx = issue.fix_data.get('section_idx')
+                if ch_idx is not None and sec_idx is not None:
+                    chapters = doc.get('chapters', [])
+                    if ch_idx < len(chapters):
+                        sections = chapters[ch_idx].get('sections', [])
+                        if sec_idx < len(sections):
+                            sec_num = sections[sec_idx].get('number', '?')
+                            del sections[sec_idx]
+                            fixed_count += 1
+                            fix_descriptions.append(f"{abbr}: Removed duplicate § {sec_num}")
+
+    return fixed_count, fix_descriptions
+
+
+def validate_database(country: str, use_ai: bool = True, auto_fix: bool = True,
+                      sample_size: int = None) -> Dict[str, Any]:
+    """
+    Validate a country's database for issues and optionally auto-fix.
+
+    Args:
+        country: Country code (AT, DE, NL)
+        use_ai: Whether to use AI for content validation (respects rate limits)
+        auto_fix: Whether to automatically fix fixable issues
+        sample_size: For AI validation, only sample N documents (None = all)
+
+    Returns:
+        Dict with validation results
+    """
+    log_section(f"Validating {country} Database")
+
+    db = load_database(country)
+    documents = db.get('documents', [])
+
+    if not documents:
+        log_warning(f"No documents found in {country} database")
+        return {'issues': [], 'fixed': 0, 'summary': {}}
+
+    all_issues = []
+    rate_limiter = {'last_call': 0}
+
+    # Create progress bar
+    pbar = create_progress_bar(len(documents), f"Validating {country}")
+
+    for idx, doc in enumerate(documents):
+        abbr = doc.get('abbreviation', 'Unknown')
+        pbar.set_description(f"Validating {abbr}")
+
+        # Basic structure validation (no AI)
+        structure_issues = _validate_document_structure(doc, country)
+        all_issues.extend(structure_issues)
+
+        # Chapter structure validation (no AI)
+        chapter_issues = _validate_chapter_structure(doc, country)
+        all_issues.extend(chapter_issues)
+
+        # AI validation (with rate limiting)
+        if use_ai:
+            # Apply sample_size limit
+            if sample_size is None or idx < sample_size:
+                # Skip AI validation for documents with critical errors
+                critical_errors = [i for i in structure_issues if i.severity == 'error']
+                if not critical_errors:
+                    ai_issues = _ai_validate_document(doc, country, rate_limiter)
+                    all_issues.extend(ai_issues)
+
+        pbar.update(1)
+
+    pbar.close()
+
+    # Summarize issues
+    summary = {
+        'total_issues': len(all_issues),
+        'by_severity': {'error': 0, 'warning': 0, 'info': 0},
+        'by_type': {},
+        'fixable': 0,
+        'documents_with_issues': len(set(i.law_abbr for i in all_issues))
+    }
+
+    for issue in all_issues:
+        summary['by_severity'][issue.severity] = summary['by_severity'].get(issue.severity, 0) + 1
+        summary['by_type'][issue.issue_type] = summary['by_type'].get(issue.issue_type, 0) + 1
+        if issue.auto_fixable:
+            summary['fixable'] += 1
+
+    # Auto-fix if requested
+    fixed_count = 0
+    fix_descriptions = []
+    if auto_fix and summary['fixable'] > 0:
+        log_info(f"Auto-fixing {summary['fixable']} issues...")
+        fixed_count, fix_descriptions = _auto_fix_issues(db, all_issues, country)
+
+        if fixed_count > 0:
+            db['metadata']['validated_at'] = datetime.now().isoformat()
+            db['metadata']['auto_fixes_applied'] = fixed_count
+            save_database(country, db)
+
+    # Log results
+    print()
+    log_header(f"Validation Results for {country}")
+
+    if all_issues:
+        # Group by severity
+        errors = [i for i in all_issues if i.severity == 'error']
+        warnings = [i for i in all_issues if i.severity == 'warning']
+        infos = [i for i in all_issues if i.severity == 'info']
+
+        if errors:
+            print(f"\n{Colors.RED}ERRORS ({len(errors)}):{Colors.RESET}")
+            for issue in errors[:10]:  # Show first 10
+                print(f"  • [{issue.law_abbr}] {issue.description}")
+                if issue.location:
+                    print(f"    Location: {issue.location}")
+                if issue.suggestion:
+                    print(f"    Suggestion: {issue.suggestion}")
+            if len(errors) > 10:
+                print(f"  ... and {len(errors) - 10} more errors")
+
+        if warnings:
+            print(f"\n{Colors.YELLOW}WARNINGS ({len(warnings)}):{Colors.RESET}")
+            for issue in warnings[:10]:
+                print(f"  • [{issue.law_abbr}] {issue.description}")
+                if issue.location:
+                    print(f"    Location: {issue.location}")
+            if len(warnings) > 10:
+                print(f"  ... and {len(warnings) - 10} more warnings")
+
+        if infos:
+            print(f"\n{Colors.CYAN}INFO ({len(infos)}):{Colors.RESET}")
+            for issue in infos[:5]:
+                print(f"  • [{issue.law_abbr}] {issue.description}")
+            if len(infos) > 5:
+                print(f"  ... and {len(infos) - 5} more info items")
+    else:
+        log_success("No issues found! Database looks good.")
+
+    # Show fixes applied
+    if fix_descriptions:
+        print(f"\n{Colors.GREEN}AUTO-FIXES APPLIED ({fixed_count}):{Colors.RESET}")
+        for desc in fix_descriptions[:10]:
+            print(f"  ✓ {desc}")
+        if len(fix_descriptions) > 10:
+            print(f"  ... and {len(fix_descriptions) - 10} more fixes")
+
+    # Summary
+    print(f"\n{Colors.CYAN}Summary:{Colors.RESET}")
+    print(f"  Documents checked: {len(documents)}")
+    print(f"  Documents with issues: {summary['documents_with_issues']}")
+    print(f"  Total issues: {summary['total_issues']} (Errors: {summary['by_severity']['error']}, Warnings: {summary['by_severity']['warning']}, Info: {summary['by_severity']['info']})")
+    if fixed_count > 0:
+        print(f"  Auto-fixed: {fixed_count}")
+
+    return {
+        'issues': [i.to_dict() for i in all_issues],
+        'fixed': fixed_count,
+        'fix_descriptions': fix_descriptions,
+        'summary': summary
+    }
+
+
+def ai_comprehensive_review(country: str) -> Dict[str, Any]:
+    """
+    Perform a comprehensive AI review of the entire database.
+    This is a higher-level review that looks at the database as a whole.
+
+    Note: This uses multiple AI calls with proper rate limiting.
+    """
+    log_section(f"Comprehensive AI Review: {country}")
+
+    db = load_database(country)
+    documents = db.get('documents', [])
+
+    if not documents:
+        log_warning(f"No documents in {country} database")
+        return {'status': 'error', 'message': 'No documents'}
+
+    # Build database overview
+    overview = []
+    for doc in documents:
+        abbr = doc.get('abbreviation', 'Unknown')
+        title = doc.get('title', 'Unknown')
+        chapters = doc.get('chapters', [])
+        total_sections = sum(len(ch.get('sections', [])) for ch in chapters)
+        total_text_length = sum(
+            len(sec.get('text', ''))
+            for ch in chapters
+            for sec in ch.get('sections', [])
+        )
+        overview.append({
+            'abbr': abbr,
+            'title': title,
+            'chapters': len(chapters),
+            'sections': total_sections,
+            'text_chars': total_text_length
+        })
+
+    country_names = {"AT": "Austrian", "DE": "German", "NL": "Dutch"}
+    country_name = country_names.get(country, country)
+
+    prompt = f"""You are reviewing a scraped {country_name} workplace safety law database.
+
+DATABASE OVERVIEW:
+Country: {country}
+Total Laws: {len(documents)}
+Generated: {db.get('metadata', {}).get('generated_at', 'Unknown')}
+
+LAWS IN DATABASE:
+{json.dumps(overview, ensure_ascii=False, indent=2)}
+
+Please provide a comprehensive review:
+
+1. COMPLETENESS: Are all major {country_name} workplace safety laws included?
+   - What important laws might be missing?
+   - Are the section counts reasonable for each law?
+
+2. DATA QUALITY: Based on the structure:
+   - Do the text lengths seem appropriate?
+   - Are there any laws that look potentially incomplete?
+
+3. RECOMMENDATIONS:
+   - What should be prioritized for review or re-scraping?
+   - Any structural improvements needed?
+
+Return your analysis as JSON:
+{{
+  "overall_quality": "good|fair|poor",
+  "completeness_score": 1-10,
+  "missing_laws": ["list of potentially missing important laws"],
+  "suspicious_entries": [
+    {{"abbr": "...", "issue": "description of concern"}}
+  ],
+  "recommendations": ["list of recommendations"],
+  "summary": "2-3 sentence overall assessment"
+}}
+
+Only return the JSON, no other text."""
+
+    log_info("Running AI comprehensive review...")
+    time.sleep(CONFIG.ai_rate_limit_delay)  # Rate limiting
+
+    try:
+        response = call_gemini_api(prompt, temperature=0.3, max_tokens=4096)
+
+        if not response:
+            return {'status': 'error', 'message': 'AI returned no response'}
+
+        # Parse response
+        if "```json" in response:
+            response = response.split("```json")[1].split("```")[0].strip()
+        elif "```" in response:
+            response = response.split("```")[1].split("```")[0].strip()
+
+        review = json.loads(response)
+
+        # Display results
+        print(f"\n{Colors.CYAN}═══ AI Comprehensive Review ═══{Colors.RESET}")
+        print(f"\nOverall Quality: {Colors.BOLD}{review.get('overall_quality', 'unknown').upper()}{Colors.RESET}")
+        print(f"Completeness Score: {review.get('completeness_score', '?')}/10")
+
+        if review.get('missing_laws'):
+            print(f"\n{Colors.YELLOW}Potentially Missing Laws:{Colors.RESET}")
+            for law in review['missing_laws']:
+                print(f"  • {law}")
+
+        if review.get('suspicious_entries'):
+            print(f"\n{Colors.YELLOW}Entries Needing Review:{Colors.RESET}")
+            for entry in review['suspicious_entries']:
+                print(f"  • {entry.get('abbr', '?')}: {entry.get('issue', 'Unknown issue')}")
+
+        if review.get('recommendations'):
+            print(f"\n{Colors.CYAN}Recommendations:{Colors.RESET}")
+            for rec in review['recommendations']:
+                print(f"  → {rec}")
+
+        print(f"\n{Colors.DIM}Summary: {review.get('summary', 'No summary available')}{Colors.RESET}")
+
+        return {
+            'status': 'success',
+            'review': review
+        }
+
+    except json.JSONDecodeError as e:
+        log_error(f"Failed to parse AI review response: {e}")
+        return {'status': 'error', 'message': f'JSON parse error: {e}'}
+    except Exception as e:
+        log_error(f"AI review failed: {e}")
+        return {'status': 'error', 'message': str(e)}
+
+
+# =============================================================================
 # Restructuring Module
 # =============================================================================
 
@@ -3810,9 +4666,19 @@ def cmd_all(args) -> int:
         log_info("Step 3: Restructuring...")
         restructure_database(country)
 
+        # Validate (AI checks against official TOC, auto-fixes issues)
+        if not args.no_ai:
+            log_info("Step 4: AI Validation & Auto-fix...")
+            validate_database(
+                country,
+                use_ai=True,
+                auto_fix=True,
+                sample_size=None  # Validate all documents
+            )
+
         # Wikipedia
         if not getattr(args, 'skip_wiki', False):
-            log_info("Step 4: Fetching Wikipedia articles...")
+            log_info("Step 5: Fetching Wikipedia articles...")
             if not args.no_ai:
                 scrape_wikipedia_with_ai_suggestions(country)
             else:
@@ -3820,7 +4686,7 @@ def cmd_all(args) -> int:
 
     # Build master
     if not args.skip_build:
-        log_info("Step 5: Building master database...")
+        log_info("Step 6: Building master database...")
         build_master_database()
 
     log_success("Pipeline complete!")
@@ -5094,6 +5960,15 @@ def main():
     restructure_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to restructure')
     restructure_parser.add_argument('--all', action='store_true', help='Restructure all countries')
 
+    # Validate command
+    validate_parser = subparsers.add_parser('validate', help='Validate database with AI and auto-fix issues')
+    validate_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to validate')
+    validate_parser.add_argument('--all', action='store_true', help='Validate all countries')
+    validate_parser.add_argument('--no-ai', action='store_true', help='Skip AI validation, use structure checks only')
+    validate_parser.add_argument('--no-fix', action='store_true', help='Do not auto-fix issues')
+    validate_parser.add_argument('--sample', type=int, metavar='N', help='Only AI-validate first N documents (faster)')
+    validate_parser.add_argument('--review', action='store_true', help='Run comprehensive AI review of entire database')
+
     # Build command
     subparsers.add_parser('build', help='Build master database')
 
@@ -5135,12 +6010,30 @@ def main():
         return 1
 
     # Validate country selection
-    if args.command in ['scrape', 'clean', 'restructure', 'all', 'check-updates', 'wikipedia']:
+    if args.command in ['scrape', 'clean', 'restructure', 'validate', 'all', 'check-updates', 'wikipedia']:
         if not getattr(args, 'all', False) and not getattr(args, 'country', None):
             print(f"Error: --country or --all is required for {args.command}")
             return 1
 
     # Run command
+    def cmd_validate(args):
+        """Validate database command."""
+        countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
+
+        for country in countries:
+            if getattr(args, 'review', False):
+                # Comprehensive AI review
+                ai_comprehensive_review(country)
+            else:
+                # Standard validation
+                validate_database(
+                    country,
+                    use_ai=not getattr(args, 'no_ai', False),
+                    auto_fix=not getattr(args, 'no_fix', False),
+                    sample_size=getattr(args, 'sample', None)
+                )
+        return 0
+
     def cmd_wikipedia(args):
         """Wikipedia scraping command."""
         countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
@@ -5158,6 +6051,7 @@ def main():
         'scrape': cmd_scrape,
         'clean': cmd_clean,
         'restructure': cmd_restructure,
+        'validate': cmd_validate,
         'build': cmd_build,
         'status': cmd_status,
         'check-updates': cmd_check_updates,

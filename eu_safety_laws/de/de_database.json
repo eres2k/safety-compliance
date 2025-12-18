@@ -5,7 +5,7 @@
     "document_count": 9,
     "error_count": 0,
     "cleaned_at": "2025-12-18T19:35:16.952190",
-    "restructured_at": "2025-12-18T19:35:16.991017",
+    "restructured_at": "2025-12-18T23:28:22.463Z",
     "sections_restructured_at": "2025-12-18T17:53:41.001Z",
     "auto_sections_at": "2025-12-18T17:52:16.040Z"
   },
@@ -852,15 +852,7 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            }
-          ]
-        },
-        {
-          "id": "de-arbschg-ch5",
-          "number": "5",
-          "title": "Fünfter Abschnitt - Gemeinsame deutsche Arbeitsschutzstrategie",
-          "title_en": "Fifth Section - Common German Occupational Safety Strategy",
-          "sections": [
+            },
             {
               "id": "bfee520609b96cf6",
               "number": "20a",
@@ -1278,10 +1270,10 @@
       },
       "chapters": [
         {
-          "id": "de-asig-main",
+          "id": "de-asig-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "First Section - General Provisions",
           "sections": [
             {
               "id": "a8e1ea41050a36b7",
@@ -1317,7 +1309,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Betriebsärzte",
+          "title_en": "Second Section - Company Physicians",
+          "sections": [
             {
               "id": "0042ca132560c204",
               "number": "2",
@@ -1427,7 +1427,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Fachkräfte für Arbeitssicherheit",
+          "title_en": "Third Section - Occupational Safety Specialists",
+          "sections": [
             {
               "id": "0b9a84b4b14c8f98",
               "number": "5",
@@ -1537,7 +1545,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Gemeinsame Vorschriften",
+          "title_en": "Fourth Section - Common Provisions",
+          "sections": [
             {
               "id": "73aae563c388ac71",
               "number": "8",
@@ -1892,7 +1908,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-asig-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Schlußvorschriften",
+          "title_en": "Fifth Section - Final Provisions",
+          "sections": [
             {
               "id": "9e86ed854cfa0ea9",
               "number": "20",
@@ -1918,40 +1942,6 @@
               "number": "21",
               "title": "§ 21. ",
               "text": "-",
-              "whs_topics": [],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "bccf574c6c884ad8",
-              "number": "22",
-              "title": "§ 22. Berlin-Klausel",
-              "text": "Dieses Gesetz gilt nach Maßgabe des § 13 Abs. 1 des Dritten Überleitungsgesetzes vom 4. Januar 1952 (Bundesgesetzbl. I S. 1) auch im Land Berlin. Rechtsverordnungen, die auf Grund dieses Gesetzes erlassen werden, gelten im Land Berlin nach § 14 des Dritten Überleitungsgesetzes.",
-              "whs_topics": [
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "05347f57dbf90b48",
-              "number": "23",
-              "title": "§ 23. Inkrafttreten",
-              "text": "(1) Dieses Gesetz, ausgenommen § 14 und\n§ 21,\ntritt am ersten Tag des auf die Verkündung folgenden zwölften Kalendermonats in Kraft. § 14 und\n§ 21\ntreten am Tag nach der Verkündung des Gesetzes in Kraft.\n\n(2) (Aufhebungsvorschrift)",
               "whs_topics": [],
               "amazon_logistics_relevance": {
                 "score": 0,
@@ -2040,10 +2030,10 @@
       },
       "chapters": [
         {
-          "id": "de-arbzg-main",
+          "id": "de-arbzg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "First Section - General Provisions",
           "sections": [
             {
               "id": "94fdee2cf3b631c1",
@@ -2119,7 +2109,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Werktägliche Arbeitszeit und arbeitsfreie Zeiten",
+          "title_en": "Second Section - Daily Working Time and Rest Periods",
+          "sections": [
             {
               "id": "f83bb6699b18cd12",
               "number": "3",
@@ -2309,7 +2307,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Sonn- und Feiertagsruhe",
+          "title_en": "Third Section - Sunday and Holiday Rest",
+          "sections": [
             {
               "id": "9609b01406c858da",
               "number": "9",
@@ -2464,7 +2470,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Ausnahmen in besonderen Fällen",
+          "title_en": "Fourth Section - Exceptions in Special Cases",
+          "sections": [
             {
               "id": "83353a02260a006d",
               "number": "14",
@@ -2539,7 +2553,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Fifth Section - Implementation of the Act",
+          "sections": [
             {
               "id": "d19fe3aeac7d4049",
               "number": "16",
@@ -2614,7 +2636,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch6",
+          "number": "6",
+          "title": "Sechster Abschnitt - Sonderregelungen",
+          "title_en": "Sixth Section - Special Regulations",
+          "sections": [
             {
               "id": "9bc52e3503e77a31",
               "number": "18",
@@ -2774,7 +2804,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch7",
+          "number": "7",
+          "title": "Siebter Abschnitt - Straf- und Bußgeldvorschriften",
+          "title_en": "Seventh Section - Criminal and Penalty Provisions",
+          "sections": [
             {
               "id": "e0cedcdea0bbe35c",
               "number": "22",
@@ -2844,7 +2882,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbzg-ch8",
+          "number": "8",
+          "title": "Achter Abschnitt - Schlußvorschriften",
+          "title_en": "Eighth Section - Final Provisions",
+          "sections": [
             {
               "id": "df2f4feca11d51c5",
               "number": "24",
@@ -2977,10 +3023,10 @@
       },
       "chapters": [
         {
-          "id": "de-jarbschg-main",
+          "id": "de-jarbschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeines",
+          "title_en": "First Section - General",
           "sections": [
             {
               "id": "bc5ac20570f82863",
@@ -3115,7 +3161,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Beschäftigung von Kindern",
+          "title_en": "Second Section - Employment of Children",
+          "sections": [
             {
               "id": "381704476bc9202b",
               "number": "5",
@@ -3220,7 +3274,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Beschäftigung Jugendlicher",
+          "title_en": "Third Section - Employment of Young People",
+          "sections": [
             {
               "id": "15ff104de53f8602",
               "number": "8",
@@ -4540,7 +4602,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Fourth Section - Implementation",
+          "sections": [
             {
               "id": "f08b4f37ab60d8d2",
               "number": "47",
@@ -4894,7 +4964,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-jarbschg-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Straf- und Bußgeldvorschriften, Schlußvorschriften",
+          "title_en": "Fifth Section - Criminal and Penalty Provisions, Final Provisions",
+          "sections": [
             {
               "id": "ae29e3305617f708",
               "number": "59",
@@ -5113,10 +5191,10 @@
       },
       "chapters": [
         {
-          "id": "de-arbstättv-main",
+          "id": "de-arbstättv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "First Section - General Provisions",
           "sections": [
             {
               "id": "a7e3a2c22422469e",
@@ -5197,7 +5275,15 @@
                 "medium_keyword_matches": 7
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbstättv-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "title_en": "Second Section - Employer Obligations",
+          "sections": [
             {
               "id": "57b1f0a691b2dda5",
               "number": "3",
@@ -5392,7 +5478,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbstättv-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Besondere Anforderungen",
+          "title_en": "Third Section - Special Requirements",
+          "sections": [
             {
               "id": "dcfcbc5d4b91463b",
               "number": "7",
@@ -5467,7 +5561,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbstättv-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Schlußvorschriften",
+          "title_en": "Fourth Section - Final Provisions",
+          "sections": [
             {
               "id": "ea2b8468b95a56ea",
               "number": "9",
@@ -5587,10 +5689,10 @@
       },
       "chapters": [
         {
-          "id": "de-betrsichv-main",
+          "id": "de-betrsichv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen",
+          "title_en": "First Section - Scope and Definitions",
           "sections": [
             {
               "id": "bc574c5d636e94cf",
@@ -5671,7 +5773,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-betrsichv-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "title_en": "Second Section - Risk Assessment and Protective Measures",
+          "sections": [
             {
               "id": "76a2a68aeb163347",
               "number": "3",
@@ -6111,7 +6221,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-betrsichv-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "title_en": "Third Section - Additional Requirements for Installations Subject to Monitoring",
+          "sections": [
             {
               "id": "cc56c45148c0f7d8",
               "number": "14",
@@ -6330,7 +6448,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-betrsichv-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften",
+          "title_en": "Fourth Section - Enforcement and Final Provisions",
+          "sections": [
             {
               "id": "4fb71f30483cf297",
               "number": "21",
@@ -6555,10 +6681,10 @@
       },
       "chapters": [
         {
-          "id": "de-gefstoffv-main",
+          "id": "de-gefstoffv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Zielsetzung, Anwendungsbereich und Begriffsbestimmungen",
+          "title_en": "First Section - Objectives, Scope and Definitions",
           "sections": [
             {
               "id": "aa5101336eb944c9",
@@ -6634,7 +6760,15 @@
                 "medium_keyword_matches": 6
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Gefahrstoffinformation",
+          "title_en": "Second Section - Hazardous Substance Information",
+          "sections": [
             {
               "id": "d4139bcd6ac9e3fa",
               "number": "3",
@@ -6774,7 +6908,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Gefährdungsbeurteilung und Grundpflichten",
+          "title_en": "Third Section - Risk Assessment and Basic Obligations",
+          "sections": [
             {
               "id": "119c0bbfe1065fb0",
               "number": "6",
@@ -6854,7 +6996,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Schutzmaßnahmen",
+          "title_en": "Fourth Section - Protective Measures",
+          "sections": [
             {
               "id": "244ffc674929921e",
               "number": "8",
@@ -7174,7 +7324,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "title_en": "Fifth Section - Prohibitions and Restrictions",
+          "sections": [
             {
               "id": "b4a0ebb7970bed0b",
               "number": "14",
@@ -7579,7 +7737,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch6",
+          "number": "6",
+          "title": "Sechster Abschnitt - Vollzugsregelungen und Ausschuss für Gefahrstoffe",
+          "title_en": "Sixth Section - Enforcement and Committee for Hazardous Substances",
+          "sections": [
             {
               "id": "edd5cae9b728ced7",
               "number": "18",
@@ -7724,7 +7890,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-gefstoffv-ch7",
+          "number": "7",
+          "title": "Siebter Abschnitt - Ordnungswidrigkeiten und Straftaten",
+          "title_en": "Seventh Section - Administrative Offenses and Criminal Offenses",
+          "sections": [
             {
               "id": "52df5ee2aa85860b",
               "number": "21",
@@ -7970,10 +8144,10 @@
       },
       "chapters": [
         {
-          "id": "de-muschg-main",
+          "id": "de-muschg-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "First Section - General Provisions",
           "sections": [
             {
               "id": "ebcc46f763a6faa6",
@@ -8054,7 +8228,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Gesundheitsschutz",
+          "title_en": "Second Section - Health Protection",
+          "sections": [
             {
               "id": "4619138200d69892",
               "number": "3",
@@ -8544,7 +8726,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Kündigungsschutz",
+          "title_en": "Third Section - Dismissal Protection",
+          "sections": [
             {
               "id": "9aedc136c5436397",
               "number": "17",
@@ -8574,7 +8764,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Leistungen",
+          "title_en": "Fourth Section - Benefits",
+          "sections": [
             {
               "id": "d1d26807d4dcf225",
               "number": "18",
@@ -8741,7 +8939,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch5",
+          "number": "5",
+          "title": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "title_en": "Fifth Section - Implementation",
+          "sections": [
             {
               "id": "f0c52c0bd3fd8665",
               "number": "26",
@@ -8961,7 +9167,15 @@
                 "medium_keyword_matches": 1
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-muschg-ch6",
+          "number": "6",
+          "title": "Sechster Abschnitt - Bußgeldvorschriften, Strafvorschriften",
+          "title_en": "Sixth Section - Penalty and Criminal Provisions",
+          "sections": [
             {
               "id": "051ab626d34f7342",
               "number": "32",
@@ -9149,10 +9363,10 @@
       },
       "chapters": [
         {
-          "id": "de-lärmvibrationsarbschv-main",
+          "id": "de-lärmvibrationsarbschv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen",
+          "title_en": "First Section - Scope and Definitions",
           "sections": [
             {
               "id": "bef900859a813243",
@@ -9233,7 +9447,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-lärmvibrationsarbschv-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Ermittlung und Bewertung der Gefährdung; Messungen",
+          "title_en": "Second Section - Hazard Assessment and Measurements",
+          "sections": [
             {
               "id": "c21f7a14c1919b3c",
               "number": "3",
@@ -9313,7 +9535,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-lärmvibrationsarbschv-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Schutzmaßnahmen",
+          "title_en": "Third Section - Protective Measures",
+          "sections": [
             {
               "id": "b2bf239875935a38",
               "number": "5",
@@ -9583,7 +9813,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-lärmvibrationsarbschv-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Unterweisung und allgemeine Pflichten",
+          "title_en": "Fourth Section - Instruction and General Duties",
+          "sections": [
             {
               "id": "0cb373e9c13368e7",
               "number": "13",
@@ -9791,10 +10029,10 @@
       },
       "chapters": [
         {
-          "id": "de-biostoffv-main",
+          "id": "de-biostoffv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen",
+          "title_en": "First Section - Scope and Definitions",
           "sections": [
             {
               "id": "2d3fb4fe06dd45ba",
@@ -9875,7 +10113,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-biostoffv-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "title_en": "Second Section - Risk Assessment and Protective Measures",
+          "sections": [
             {
               "id": "38cc73a2c4720d30",
               "number": "3",
@@ -10320,7 +10566,15 @@
                 "medium_keyword_matches": 5
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-biostoffv-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Zusätzliche Vorschriften",
+          "title_en": "Third Section - Additional Provisions",
+          "sections": [
             {
               "id": "c28512175ee9fa93",
               "number": "15",
@@ -10440,7 +10694,15 @@
                 "medium_keyword_matches": 3
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-biostoffv-ch4",
+          "number": "4",
+          "title": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften",
+          "title_en": "Fourth Section - Enforcement and Final Provisions",
+          "sections": [
             {
               "id": "8169a7d23133087a",
               "number": "18",
@@ -10575,26 +10837,6 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
-            {
-              "id": "f0188fbf23bffceb",
-              "number": "22",
-              "title": "§ 22. Übergangsvorschriften",
-              "text": "Bei Tätigkeiten, die vor dem 23. Juli 2013 aufgenommen worden sind, besteht keine Erlaubnispflicht nach § 15 Absatz 1, sofern\n1.\ndiese Tätigkeiten der zuständigen Behörde angezeigt wurden und\n2.\ndie der Anzeige zugrundeliegenden baulichen, technischen und organisatorischen Bedingungen nach dem 30. September 2021 nicht wesentlich verändert wurden.\nDie Anzeigepflicht nach § 16 Absatz 1 Nummer 4 bleibt unberührt.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
-              },
-              "paragraphs": []
             }
           ]
         }
@@ -10675,10 +10917,10 @@
       },
       "chapters": [
         {
-          "id": "de-arbmedvv-main",
+          "id": "de-arbmedvv-ch1",
           "number": "1",
-          "title": "Hauptteil",
-          "title_en": "Main Part",
+          "title": "Erster Abschnitt - Allgemeine Vorschriften",
+          "title_en": "First Section - General Provisions",
           "sections": [
             {
               "id": "d9c25a19b74da879",
@@ -10744,7 +10986,15 @@
                 "medium_keyword_matches": 2
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbmedvv-ch2",
+          "number": "2",
+          "title": "Zweiter Abschnitt - Arbeitsmedizinische Vorsorge",
+          "title_en": "Second Section - Occupational Medical Care",
+          "sections": [
             {
               "id": "ab84c406e2be3be4",
               "number": "3",
@@ -10959,7 +11209,15 @@
                 "medium_keyword_matches": 0
               },
               "paragraphs": []
-            },
+            }
+          ]
+        },
+        {
+          "id": "de-arbmedvv-ch3",
+          "number": "3",
+          "title": "Dritter Abschnitt - Schlußvorschriften",
+          "title_en": "Third Section - Final Provisions",
+          "sections": [
             {
               "id": "e7c1d98497ccc19c",
               "number": "8",
