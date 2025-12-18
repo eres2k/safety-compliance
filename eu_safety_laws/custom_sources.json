@@ -45,12 +45,13 @@
         "source_type": "custom"
       },
       "GefStoffV": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20009118",
-        "name": "Gefahrstoffverordnung 2015",
-        "description": "Regulates the protection of employees from hazards arising from hazardous substances at the workplace, including risk assessment, protective measures, and training.",
+        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001710",
+        "name": "Verordnung der Bundesministerin für Arbeit, Soziales und Konsumentenschutz über den Schutz der Arbeitnehmer/innen vor Gefahren durch chemische Arbeitsstoffe (Gefahrstoffverordnung 2001 – GefStoffV 2001)",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "created_at": "2025-12-18T16:31:35.855568",
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T17:42:07.859365",
+        "original_url_failed": true
       },
       "LärmV": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20004546",
@@ -58,6 +59,23 @@
         "description": "Regulates the protection of employees from risks arising from exposure to noise and mechanical vibrations at the workplace, setting exposure limits and requiring protective measures.",
         "enabled": true,
         "created_at": "2025-12-18T16:31:35.876813",
+        "source_type": "custom"
+      },
+      "BS-V": {
+        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",
+        "name": "Bildschirmarbeitsverordnung – BS-V",
+        "description": "URL auto-corrected by AI",
+        "enabled": true,
+        "ai_corrected": true,
+        "corrected_at": "2025-12-18T17:42:17.162047",
+        "original_url_failed": true
+      },
+      "VbAV": {
+        "url": "https://www.ris.bka.gv.at/eli/bgbl/II/2006/400",
+        "name": "Verordnung über die Sicherheits- und Gesundheitsschutzdokumente",
+        "description": "Specifies the content and structure requirements for safety and health protection documents, which are essential for systematic workplace safety management and risk assessment documentation.",
+        "enabled": true,
+        "created_at": "2025-12-18T17:40:27.088393",
         "source_type": "custom"
       }
     },
@@ -111,6 +129,30 @@
         "enabled": true,
         "created_at": "2025-12-18T16:36:58.537464",
         "source_type": "custom"
+      },
+      "WED": {
+        "url": "https://wetten.overheid.nl/BWBR0002063",
+        "name": "Wet op de economische delicten",
+        "description": "This act defines economic offenses, including violations of workplace safety and health legislation (like the Arbowet), and outlines the investigative and enforcement powers of authorities such as the Inspectie SZW.",
+        "enabled": true,
+        "created_at": "2025-12-18T17:41:27.169653",
+        "source_type": "custom"
+      },
+      "WAZO": {
+        "url": "https://wetten.overheid.nl/BWBR0016060",
+        "name": "Wet arbeid en zorg",
+        "description": "While primarily regulating leave arrangements, this act contains crucial provisions for the protection of specific worker groups, such as pregnant and breastfeeding employees, directly impacting their health and safety at the workplace.",
+        "enabled": true,
+        "created_at": "2025-12-18T17:41:27.180595",
+        "source_type": "custom"
+      },
+      "UAVG": {
+        "url": "https://wetten.overheid.nl/BWBR0040933",
+        "name": "Uitvoeringswet Algemene verordening gegevensbescherming",
+        "description": "This implementing act for the GDPR in the Netherlands includes specific rules for processing sensitive personal data, such as health data, in the employment context, which is highly relevant for occupational health services, accident reporting, and overall workplace health management.",
+        "enabled": true,
+        "created_at": "2025-12-18T17:41:27.190448",
+        "source_type": "custom"
       }
     },
     "DE": {
@@ -161,18 +203,18 @@
       },
       "LärmVibrationsArbSchV": {
         "url": "https://www.gesetze-im-internet.de/l_rmvibrationsarbschv/",
-        "name": "Verordnung zum Schutz der Beschäftigten vor Gefährdungen durch Lärm und Vibrationen (Lärm- und Vibrations-Arbeitsschutzverordnung)",
-        "description": "Regulates measures to protect employees from health risks due to noise and vibration at the workplace.",
+        "name": "Lärm- und Vibrations-Arbeitsschutzverordnung",
+        "description": "This ordinance regulates the protection of employees from health risks due to noise and vibration at work, setting out requirements for risk assessment, exposure limits, and protective measures.",
         "enabled": true,
-        "created_at": "2025-12-18T16:36:09.028470",
+        "created_at": "2025-12-18T17:41:02.656802",
         "source_type": "custom"
       },
       "BioStoffV": {
         "url": "https://www.gesetze-im-internet.de/biostoffv_2013/",
-        "name": "Verordnung über Sicherheit und Gesundheitsschutz bei Tätigkeiten mit Biologischen Arbeitsstoffen (Biostoffverordnung)",
-        "description": "Regulates measures to protect employees from health risks due to biological agents at the workplace.",
+        "name": "Biostoffverordnung",
+        "description": "This ordinance specifies measures for the protection of employees from health risks due to biological agents (e.g., bacteria, viruses, fungi) at work, including risk assessment, classification, and containment.",
         "enabled": true,
-        "created_at": "2025-12-18T16:36:09.038365",
+        "created_at": "2025-12-18T17:41:02.667963",
         "source_type": "custom"
       },
       "ArbMedVV": {
@@ -182,9 +224,17 @@
         "enabled": true,
         "created_at": "2025-12-18T16:36:09.047806",
         "source_type": "custom"
+      },
+      "LastenhandhabV": {
+        "url": "https://www.gesetze-im-internet.de/lastenhandhabv/",
+        "name": "Lastenhandhabungsverordnung",
+        "description": "This ordinance aims to protect employees from health risks, particularly musculoskeletal disorders, when manually handling loads in the workplace, requiring employers to assess risks and implement appropriate measures.",
+        "enabled": true,
+        "created_at": "2025-12-18T17:41:02.678389",
+        "source_type": "custom"
       }
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-18T16:36:58.537471"
+  "updated_at": "2025-12-18T17:42:17.162054"
 }
