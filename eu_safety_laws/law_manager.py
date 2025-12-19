@@ -92,6 +92,26 @@ try:
 except ImportError:
     HAS_TQDM = False
 
+# PDF parsing support - try multiple libraries
+HAS_PDF = False
+PDF_LIBRARY = None
+try:
+    import pdfplumber
+    HAS_PDF = True
+    PDF_LIBRARY = 'pdfplumber'
+except ImportError:
+    try:
+        import PyPDF2
+        HAS_PDF = True
+        PDF_LIBRARY = 'pypdf2'
+    except ImportError:
+        try:
+            import fitz  # PyMuPDF
+            HAS_PDF = True
+            PDF_LIBRARY = 'pymupdf'
+        except ImportError:
+            pass
+
 
 # =============================================================================
 # Configuration
@@ -790,6 +810,174 @@ def robust_json_parse(text: str, default: Any = None) -> Any:
 
     # Strategy 5: Return empty array as safe fallback for expected array responses
     return default if default is not None else []
+
+
+def parse_pdf_content(pdf_path_or_url: str, is_url: bool = True) -> Optional[Dict[str, Any]]:
+    """
+    Parse PDF content from a URL or local file path.
+    Returns a dict with 'text', 'pages', and 'sections' if successful.
+    """
+    if not HAS_PDF:
+        log_warning("No PDF library available. Install pdfplumber, PyPDF2, or PyMuPDF: pip install pdfplumber")
+        return None
+
+    if not HAS_REQUESTS and is_url:
+        log_warning("requests package required for PDF URL fetching")
+        return None
+
+    try:
+        # Download PDF if URL
+        if is_url:
+            import tempfile
+            response = requests.get(pdf_path_or_url, timeout=60)
+            if response.status_code != 200:
+                log_error(f"Failed to download PDF: HTTP {response.status_code}")
+                return None
+
+            # Save to temp file
+            with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp:
+                tmp.write(response.content)
+                pdf_path = tmp.name
+        else:
+            pdf_path = pdf_path_or_url
+
+        # Parse PDF based on available library
+        full_text = ""
+        pages = []
+        sections = []
+
+        if PDF_LIBRARY == 'pdfplumber':
+            import pdfplumber
+            with pdfplumber.open(pdf_path) as pdf:
+                for i, page in enumerate(pdf.pages):
+                    page_text = page.extract_text() or ""
+                    pages.append({"page": i + 1, "text": page_text})
+                    full_text += page_text + "\n\n"
+
+        elif PDF_LIBRARY == 'pypdf2':
+            import PyPDF2
+            with open(pdf_path, 'rb') as f:
+                reader = PyPDF2.PdfReader(f)
+                for i, page in enumerate(reader.pages):
+                    page_text = page.extract_text() or ""
+                    pages.append({"page": i + 1, "text": page_text})
+                    full_text += page_text + "\n\n"
+
+        elif PDF_LIBRARY == 'pymupdf':
+            import fitz
+            doc = fitz.open(pdf_path)
+            for i, page in enumerate(doc):
+                page_text = page.get_text()
+                pages.append({"page": i + 1, "text": page_text})
+                full_text += page_text + "\n\n"
+            doc.close()
+
+        # Clean up temp file if we downloaded
+        if is_url:
+            import os
+            os.unlink(pdf_path)
+
+        # Extract sections from text (look for § patterns or numbered sections)
+        section_pattern = re.compile(r'(?:^|\n)(§\s*\d+[a-z]?\.?.*?)(?=\n§\s*\d+|\Z)', re.MULTILINE | re.DOTALL)
+        section_matches = section_pattern.findall(full_text)
+
+        if not section_matches:
+            # Try alternative pattern for numbered paragraphs like "(1)", "(2)"
+            alt_pattern = re.compile(r'(?:^|\n)(\(\d+\).*?)(?=\n\(\d+\)|\Z)', re.MULTILINE | re.DOTALL)
+            section_matches = alt_pattern.findall(full_text)
+
+        for i, match in enumerate(section_matches):
+            # Try to extract section number
+            num_match = re.match(r'§\s*(\d+[a-z]?)', match)
+            section_num = num_match.group(1) if num_match else str(i + 1)
+
+            sections.append({
+                "number": section_num,
+                "text": match.strip()
+            })
+
+        return {
+            "text": full_text.strip(),
+            "pages": pages,
+            "sections": sections,
+            "page_count": len(pages),
+            "section_count": len(sections)
+        }
+
+    except Exception as e:
+        log_error(f"PDF parsing error: {e}")
+        return None
+
+
+def parse_pdf_to_law_document(pdf_url: str, abbrev: str, title: str, jurisdiction: str = "DE") -> Optional[Dict[str, Any]]:
+    """
+    Parse a PDF and create a law document structure suitable for the database.
+    """
+    log_info(f"Parsing PDF for {abbrev}...")
+
+    pdf_content = parse_pdf_content(pdf_url, is_url=True)
+    if not pdf_content:
+        return None
+
+    log_info(f"  Extracted {pdf_content['page_count']} pages, {pdf_content['section_count']} sections")
+
+    # Build sections list
+    sections = []
+    for sec in pdf_content.get('sections', []):
+        sec_num = sec.get('number', '')
+        sec_text = sec.get('text', '')
+
+        # Try to extract title from first line
+        lines = sec_text.split('\n')
+        sec_title = lines[0][:100] if lines else f"§ {sec_num}"
+
+        sections.append({
+            "id": generate_id(f"{abbrev}-{sec_num}-{datetime.now().isoformat()}"),
+            "number": sec_num,
+            "title": sec_title,
+            "text": sec_text,
+            "whs_topics": [],
+            "paragraphs": []
+        })
+
+    # Create document structure
+    doc = {
+        "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
+        "version": "1.0.0",
+        "type": "law",
+        "jurisdiction": jurisdiction,
+        "abbreviation": abbrev,
+        "title": title,
+        "title_en": title,
+        "category": "Core Safety",
+        "source": {
+            "url": pdf_url,
+            "title": title,
+            "authority": "PDF Source",
+            "robots_txt_compliant": True,
+            "source_type": "pdf"
+        },
+        "scraping": {
+            "scraped_at": datetime.now().isoformat(),
+            "scraper_version": CONFIG.scraper_version,
+            "pdf_pages": pdf_content['page_count']
+        },
+        "full_text": pdf_content['text'][:100000],  # Limit full text size
+        "chapters": [
+            {
+                "id": f"{jurisdiction.lower()}-{abbrev.lower()}-main",
+                "number": "1",
+                "title": "Hauptteil",
+                "title_en": "Main Part",
+                "sections": sections
+            }
+        ] if sections else []
+    }
+
+    doc["content_hash"] = generate_content_hash(doc)
+    log_success(f"  Parsed {abbrev}: {len(sections)} sections from PDF")
+
+    return doc
 
 
 # =============================================================================
@@ -2542,6 +2730,27 @@ class DEScraper(Scraper):
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
+
+        # Check if this is a PDF source
+        if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
+            if HAS_PDF:
+                log_info(f"  Using PDF parser for {abbrev}")
+                # Get title from custom sources if available
+                custom = load_custom_sources()
+                title = custom.get('custom_sources', {}).get('DE', {}).get(abbrev, {}).get('name', abbrev)
+                doc = parse_pdf_to_law_document(url, abbrev, title, "DE")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    return doc
+            else:
+                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
+            return None
+
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:

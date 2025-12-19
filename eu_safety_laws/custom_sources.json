@@ -158,14 +158,12 @@
     },
     "DE": {
       "DGUV Vorschrift 1": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-vorschriften/2909/dguv-vorschrift-1",
-        "name": "Grundsätze der Prävention",
-        "description": "This regulation outlines the fundamental principles of prevention for occupational safety and health in Germany. NOTE: Source is a PDF publication page - cannot be automatically parsed. Manual download required.",
-        "enabled": false,
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2909",
+        "name": "DGUV Vorschrift 1 - Grundsätze der Prävention",
+        "description": "Fundamental principles of prevention for occupational safety and health in Germany. Covers employer and employee obligations, risk assessment, and prevention organization.",
+        "enabled": true,
         "created_at": "2025-12-18T02:50:24.524085",
-        "source_type": "custom",
-        "requires_pdf_parsing": true,
-        "disabled_reason": "PDF source - automatic HTML parsing not supported"
+        "source_type": "pdf"
       },
       "BildscharbV": {
         "url": "https://www.gesetze-im-internet.de/arbst_ttv_2004/",
@@ -179,13 +177,52 @@
       },
       "TRBS 1111": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1111.pdf?__blob=publicationFile&v=8",
-        "name": "Technische Regeln für Betriebssicherheit (TRBS) 1111",
-        "description": "Technical Rules for Industrial Safety - Measures to prevent fire, explosion and similar hazards. NOTE: Source is a PDF file - cannot be automatically parsed.",
-        "enabled": false,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T04:04:04.045922",
-        "requires_pdf_parsing": true,
-        "disabled_reason": "PDF source - automatic HTML parsing not supported"
+        "name": "TRBS 1111 - Gefährdungsbeurteilung",
+        "description": "Technical Rule for Industrial Safety - Risk assessment requirements for work equipment and hazardous substances.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "TRBS 1201": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1201.pdf?__blob=publicationFile",
+        "name": "TRBS 1201 - Prüfungen von Arbeitsmitteln",
+        "description": "Technical Rule for Industrial Safety - Testing requirements for work equipment and installations.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "TRBS 2121": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121.pdf?__blob=publicationFile",
+        "name": "TRBS 2121 - Gefährdung von Beschäftigten durch Absturz",
+        "description": "Technical Rule for Industrial Safety - Protection against falling from heights. Covers scaffolding, ladders, and fall protection.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "TRGS 400": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-400.pdf?__blob=publicationFile",
+        "name": "TRGS 400 - Gefährdungsbeurteilung für Tätigkeiten mit Gefahrstoffen",
+        "description": "Technical Rule for Hazardous Substances - Risk assessment for activities involving hazardous substances.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "TRGS 510": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-510.pdf?__blob=publicationFile",
+        "name": "TRGS 510 - Lagerung von Gefahrstoffen in ortsbeweglichen Behältern",
+        "description": "Technical Rule for Hazardous Substances - Storage of hazardous substances in portable containers.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "ASR A1.3": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile",
+        "name": "ASR A1.3 - Sicherheits- und Gesundheitsschutzkennzeichnung",
+        "description": "Workplace Rule - Safety and health protection signage requirements.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "ASR A2.2": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile",
+        "name": "ASR A2.2 - Maßnahmen gegen Brände",
+        "description": "Workplace Rule - Fire prevention measures and fire extinguisher requirements.",
+        "enabled": true,
+        "source_type": "pdf"
       },
       "MuSchG": {
         "url": "/muschg_2018/",
