@@ -964,7 +964,7 @@ function getShortenedLawName(law) {
 }
 
 export function LawBrowser({ onBack }) {
-  const { t, framework, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
+  const { t, framework, language, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
   const { generateFlowchart, simplifyForBothLevels, findEquivalentLaw, compareMultipleCountries, isLoading: aiLoading } = useAI()
 
   // Debounce refs to prevent duplicate API calls
@@ -979,6 +979,7 @@ export function LawBrowser({ onBack }) {
   const [relevanceFilter, setRelevanceFilter] = useState('all') // all, critical, high, medium, low
   const [isLoading, setIsLoading] = useState(false)
   const [prevFramework, setPrevFramework] = useState(framework)
+  const [prevLanguage, setPrevLanguage] = useState(language)
 
   // Flowchart visualization state
   const [flowchartData, setFlowchartData] = useState(null)
@@ -1039,6 +1040,9 @@ export function LawBrowser({ onBack }) {
       setSelectedLaw(null)
       setSelectedCategory('all')
       setSearchTerm('')
+      // CRITICAL: Clear AI response caches to prevent cross-framework contamination
+      setSimplifiedContent({})
+      setSectionComplexityLevels({})
 
       // Load the database for the new framework
       const loadDatabase = async () => {
@@ -1063,6 +1067,17 @@ export function LawBrowser({ onBack }) {
       loadDatabase()
     }
   }, [framework, prevFramework])
+
+  // Handle language change - clear AI response caches
+  // AI responses are language-specific, so cached content becomes invalid when language changes
+  useEffect(() => {
+    if (language !== prevLanguage) {
+      // Clear AI response caches to ensure fresh content in new language
+      setSimplifiedContent({})
+      setSectionComplexityLevels({})
+      setPrevLanguage(language)
+    }
+  }, [language, prevLanguage])
 
   // Ensure database is loaded on initial mount
   useEffect(() => {
