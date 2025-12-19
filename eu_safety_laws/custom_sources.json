@@ -77,6 +77,34 @@
         "enabled": true,
         "created_at": "2025-12-18T17:40:27.088393",
         "source_type": "custom"
+      },
+      "AUVA M.plus 330": {
+        "url": "https://www.auva.at/cdscontent/load?contentid=10008.544839&version=1650879321",
+        "name": "AUVA M.plus 330 - Arbeitsstätten - Anforderungen",
+        "description": "AUVA safety publication on workplace requirements. Covers general requirements for workplaces including ventilation, lighting, temperature, and ergonomic design.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "AUVA M.plus 910": {
+        "url": "https://www.auva.at/cdscontent/load?contentid=10008.544874&version=1650879571",
+        "name": "AUVA M.plus 910 - Lärm am Arbeitsplatz",
+        "description": "AUVA safety publication on noise protection at the workplace. Covers noise assessment, hearing protection, and technical noise reduction measures.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "AUVA M.plus 340": {
+        "url": "https://www.auva.at/cdscontent/load?contentid=10008.544842&version=1650879365",
+        "name": "AUVA M.plus 340 - Brandschutz",
+        "description": "AUVA safety publication on fire protection. Covers fire prevention, fire extinguishing equipment, evacuation procedures, and emergency planning.",
+        "enabled": true,
+        "source_type": "pdf"
+      },
+      "AUVA M.plus 350": {
+        "url": "https://www.auva.at/cdscontent/load?contentid=10008.544845&version=1650879412",
+        "name": "AUVA M.plus 350 - Elektrische Anlagen",
+        "description": "AUVA safety publication on electrical installations. Covers electrical safety requirements, testing procedures, and protection against electrical hazards.",
+        "enabled": true,
+        "source_type": "pdf"
       }
     },
     "NL": {
@@ -153,6 +181,34 @@
         "description": "This implementing act for the GDPR in the Netherlands includes specific rules for processing sensitive personal data, such as health data, in the employment context, which is highly relevant for occupational health services, accident reporting, and overall workplace health management.",
         "enabled": true,
         "created_at": "2025-12-18T17:41:27.190448",
+        "source_type": "custom"
+      },
+      "PGS 15": {
+        "url": "https://publicatiereeksgevaarlijkestoffen.nl/publicaties/online/pgs-15/2023/3-1.html",
+        "name": "PGS 15 - Opslag van verpakte gevaarlijke stoffen",
+        "description": "Publication Series Hazardous Substances 15 - Storage of packaged hazardous substances. Contains detailed requirements for safe storage of hazardous materials in warehouses.",
+        "enabled": true,
+        "source_type": "custom"
+      },
+      "AI-13": {
+        "url": "https://www.nlarbeidsinspectie.nl/publicaties/brochures/2021/09/01/ai-13-fysieke-belasting",
+        "name": "AI-13 Fysieke Belasting",
+        "description": "Dutch Labour Inspectorate publication on physical workload. Covers manual handling, lifting, repetitive work, and ergonomic requirements.",
+        "enabled": true,
+        "source_type": "custom"
+      },
+      "AI-15": {
+        "url": "https://www.nlarbeidsinspectie.nl/publicaties/brochures/2022/01/01/ai-15-machineveiligheid",
+        "name": "AI-15 Machineveiligheid",
+        "description": "Dutch Labour Inspectorate publication on machine safety. Covers CE marking, machine guards, safety devices, and maintenance requirements.",
+        "enabled": true,
+        "source_type": "custom"
+      },
+      "AI-19": {
+        "url": "https://www.nlarbeidsinspectie.nl/publicaties/brochures/2021/09/01/ai-19-gevaarlijke-stoffen",
+        "name": "AI-19 Gevaarlijke Stoffen",
+        "description": "Dutch Labour Inspectorate publication on hazardous substances. Covers exposure limits, risk assessment, and protective measures for chemical hazards.",
+        "enabled": true,
         "source_type": "custom"
       }
     },

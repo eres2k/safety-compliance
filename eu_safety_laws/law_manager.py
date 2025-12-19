@@ -2103,6 +2103,27 @@ class ATScraper(Scraper):
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
+
+        # Check if this is a PDF source
+        if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
+            if HAS_PDF:
+                log_info(f"  Using PDF parser for {abbrev}")
+                # Get title from custom sources if available
+                custom = load_custom_sources()
+                title = custom.get('custom_sources', {}).get('AT', {}).get(abbrev, {}).get('name', abbrev)
+                doc = parse_pdf_to_law_document(url, abbrev, title, "AT")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    return doc
+            else:
+                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
+            return None
+
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
@@ -3247,6 +3268,27 @@ class NLScraper(Scraper):
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
+
+        # Check if this is a PDF source
+        if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
+            if HAS_PDF:
+                log_info(f"  Using PDF parser for {abbrev}")
+                # Get title from custom sources if available
+                custom = load_custom_sources()
+                title = custom.get('custom_sources', {}).get('NL', {}).get(abbrev, {}).get('name', abbrev)
+                doc = parse_pdf_to_law_document(url, abbrev, title, "NL")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    return doc
+            else:
+                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
+            return None
+
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
