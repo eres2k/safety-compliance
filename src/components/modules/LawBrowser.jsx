@@ -2595,6 +2595,22 @@ export function LawBrowser({ onBack }) {
                       </Button>
                     )}
 
+                    {/* HTML Source Button - for NL laws with local HTML files */}
+                    {hasLocalHtml(selectedLaw) && !isHtmlOnlyDoc && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => window.open(getLocalHtmlUrl(selectedLaw), '_blank')}
+                        className="flex items-center gap-1"
+                        title="View official HTML source"
+                      >
+                        <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                        View Source
+                      </Button>
+                    )}
+
                     {/* External Link - open source URL */}
                     {selectedLaw.source?.url && (
                       <Button

@@ -27,7 +27,8 @@
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für ArbeitnehmerInnenschutzgesetz, Fassung vom 19.12.2025",
         "authority": "RIS",
         "robots_txt_compliant": true,
-        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1994_450_0/1994_450_0.pdf"
+        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1994_450_0/1994_450_0.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_ASchG-PDF_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-19T17:49:56.020721",
@@ -4976,7 +4977,8 @@
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 19.12.2025",
         "authority": "RIS",
         "robots_txt_compliant": true,
-        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1969_461_0/1969_461_0.pdf"
+        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1969_461_0/1969_461_0.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_AZG-PDF_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-19T17:49:54.874636",
@@ -7220,7 +7222,8 @@
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 19.12.2025",
         "authority": "RIS",
         "robots_txt_compliant": true,
-        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1983_144_0/1983_144_0.pdf"
+        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1983_144_0/1983_144_0.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_ARG-PDF_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-19T17:49:53.376295",
@@ -7585,7 +7588,8 @@
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 19.12.2025",
         "authority": "RIS",
         "robots_txt_compliant": true,
-        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1979_221_0/1979_221_0.pdf"
+        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1979_221_0/1979_221_0.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_MSchG-PDF_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-19T17:49:54.421280",
@@ -8873,7 +8877,8 @@
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 19.12.2025",
         "authority": "RIS",
         "robots_txt_compliant": true,
-        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1987_599_0/1987_599_0.pdf"
+        "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1987_599_0/1987_599_0.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_KJBG-PDF_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-19T17:49:55.120546",

@@ -28,7 +28,8 @@
         "title": "Arbeidsomstandighedenwet",
         "authority": "wetten.overheid.nl",
         "robots_txt_compliant": true,
-        "pdf_url": "https://wetten.overheid.nl/BWBR0010346/2024-01-01/0/pdf"
+        "pdf_url": "https://wetten.overheid.nl/BWBR0010346/2024-01-01/0/pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_Arbowet-PDF_law.html"
       },
       "scraping": {
         "scraped_at": "2025-12-19T18:14:45.439622",
@@ -732,7 +733,7 @@
             {
               "id": "c731643741dc1fca",
               "number": "15a",
-              "title": "Artikel 15a. Informatierechten deskundige werknemers en personen, bedrijfshulpverleners",
+              "title": "Artikel 15a. Informatierechten deskundige werknemers",
               "text": "Artikel 15a. Informatierechten deskundige werknemers en personen, bedrijfshulpverleners:\na. de ongevalsrapportages en de lijst van arbeidsongevallen, bedoeld in artikel 9 ;\nb. een eis als bedoeld in artikel 27, eerste lid ;\nc. een bevel als bedoeld in artikel 28, eerste lid ;\nd. een bevel als bedoeld in artikel 28a, tweede lid ;\ne. een beschikking tot oplegging van een last onder bestuursdwang of tot oplegging van een last onder dwangsom als bedoeld in artikel 28b ;\nf. een verzoek om ontheffing als bedoeld in artikel 30, tweede lid ;\ng. een rapport als bedoeld in artikel 36, eerste lid ;\nh. een beschikking als bedoeld in artikel 37, eerste lid .",
               "whs_topics": [
                 {
@@ -770,7 +771,7 @@
             {
               "id": "641032aadabee737",
               "number": "16",
-              "title": "Artikel 16. Nadere regels met betrekking tot arbeidsomstandigheden alsmede uitzonderingen",
+              "title": "Artikel 16. Nadere regels met betrekking tot arbeidsomstandigheden",
               "text": "Artikel 16. Nadere regels met betrekking tot arbeidsomstandigheden alsmede uitzonderingen:\nBij of krachtens algemene maatregel van bestuur worden regels gesteld in verband met arbeidsomstandigheden van de werknemers.\nDe in het eerste lid bedoelde regels\na. hebben betrekking op de arbozorg en de organisatie van de arbeid, de inrichting van de arbeidsplaatsen, het werken met gevaarlijke stoffen en biologische agentia, de mate van fysieke belasting waaraan werknemers blootstaan, de fysische factoren die zich op de arbeidsplaats voordoen, de bij de arbeid gebruikte arbeidsmiddelen en persoonlijke beschermingsmiddelen en de op de arbeidsplaats te gebruiken veiligheids- en gezondheidssignalering en\nb. kunnen mede strekken ter uitvoering van de artikelen 3 , 4 , 5 , 8 , 9 , 13 , 14 , 14a , 15 en 18 .\nDe in het eerste en tweede lid bedoelde regels kunnen inhouden:\na. een verbod om bepaalde bij die maatregel omschreven arbeid te verrichten of te doen verrichten waaraan bijzondere gevaren voor de veiligheid of de gezondheid zijn verbonden;\nb. een verbod om bepaalde bij die maatregel omschreven arbeid te verrichten of te doen verrichten, indien met betrekking tot die arbeid niet aan de bij of krachtens die maatregel vastgestelde voorwaarden of voorschriften is voldaan;\nc. een verbod om bepaalde bij die maatregel omschreven gevaarlijke stoffen of voorwerpen voorhanden te hebben, waaraan bijzondere gevaren voor de veiligheid of de gezondheid zijn verbonden;\nd. een verbod om bepaalde bij die maatregel omschreven gevaarlijke stoffen of voorwerpen voorhanden te hebben, indien met betrekking tot die stoffen of voorwerpen niet aan de bij of krachtens die maatregel vastgestelde voorwaarden of voorschriften is voldaan;\ne. een verbod om bepaalde bij die maatregel omschreven arbeid te verrichten of te doen verrichten indien de werknemers niet arbeidsgezondheidskundig zijn onderzocht.\nBij algemene maatregel van bestuur kan worden bepaald dat deze wet en de daarop berustende bepalingen geheel of gedeeltelijk niet van toepassing zijn op:\na. arbeid verricht in of op een luchtvaartuig, dan wel een zeeschip of binnenvaartuig, dan wel een voertuig op een openbare weg of een spoor- of tramweg;\nb. arbeid verricht in militaire dienst;\nc. arbeid verricht door werknemers en verrichtingen als bedoeld in artikel 2, onderdeel b , van leerlingen en studenten in onderwijsinrichtingen;\nd. arbeid verricht bij een verkenningsonderzoek, het opsporen of winnen van delfstoffen of aardwarmte dan wel het opslaan van stoffen als bedoeld in de Mijnbouwwet;\ne. arbeid verricht binnen de exclusieve economische zone.\nDe in het derde lid, onder e, bedoelde maatregel stelt het verrichten van arbeid slechts afhankelijk van het resultaat van een arbeidsgezondheidskundig onderzoek voor zover die arbeid bijzondere gevaren meebrengt voor het leven of de gezondheid van de werknemer zelf of van andere personen of voor zover dit om andere bijzondere redenen geboden is. Bij of krachtens algemene maatregel van bestuur worden met betrekking tot dit arbeidsgezondheidskundig onderzoek en de wijze van registratie, verwerking en bewaring van de uitslag daarvan nadere regels gesteld. Deze hebben in ieder geval betrekking op de gevallen waarin en de wijze waarop een verzoek tot herkeuring kan worden gedaan.\nBij algemene maatregel van bestuur kunnen met betrekking tot de arbeid of de verrichtingen:\na. bedoeld in het vierde lid;\nb. verricht in de burgerlijke openbare dienst;\nc. verricht in een gevangenis of huis van bewaring als bedoeld in de Penitentiaire beginselenwet , een justitiële inrichting voor verpleging van ter beschikking gestelden als bedoeld in de Beginselenwet verpleging ter beschikking gestelden of een inrichting als bedoeld in de Beginselenwet justitiële jeugdinrichtingen ,\nregels worden gesteld die afwijken van deze wet of de daarop berustende bepalingen of strekken tot aanvulling daarvan. Met betrekking tot de arbeid of de verrichtingen, bedoeld in het vierde lid, onder c, kan bij algemene maatregel van bestuur worden bepaald dat afdeling 4.1.2 van de Algemene wet bestuursrecht niet van toepassing is.\nBij algemene maatregel van bestuur kan worden bepaald dat de verplichting tot naleving van daarbij aangewezen voorschriften van deze wet of de daarop berustende bepalingen, voor zover zij betrekking hebben op arbeid waaraan bijzondere gevaren voor de veiligheid of de gezondheid zijn verbonden, dan wel noodzakelijk zijn ter uitvoering van verdragen of besluiten van volkenrechtelijke organisaties, zich mede richt tot:\na. een zelfstandige;\nb. een werkgever die deze arbeid zelf verricht;\nc. degene bij wie vrijwilligers werkzaam zijn;\nd. een vrijwilliger.\nDe in het eerste lid bedoelde regels kunnen betrekking hebben op andere onderwerpen dan die genoemd in het tweede lid of zich richten tot andere personen dan de werkgever of de in het zevende en achtste lid bedoelde personen, indien dat noodzakelijk is ter uitvoering van verdragen of besluiten van volkenrechtelijke organisaties met betrekking tot de verbetering van de veiligheid of de gezondheid.\nDe werkgeve",
               "whs_topics": [
                 {
@@ -1271,7 +1272,7 @@
             {
               "id": "40934318ae3a497c",
               "number": "29b",
-              "title": "Artikel 29b. Openbaarmaking van door toezicht op de naleving verkregen gegevens",
+              "title": "Artikel 29b. Openbaarmaking van door toezicht verkregen gegevens",
               "text": "Dit onderdeel is (nog) niet in werking getreden; zie het .",
               "whs_topics": [],
               "amazon_logistics_relevance": {
@@ -1395,7 +1396,7 @@
             {
               "id": "52b49ce265e5157b",
               "number": "33a",
-              "title": "Artikel 33a. [Vervallen]",
+              "title": "Artikel 33a. Bestuurlijke boete",
               "text": "[Dit artikel is vervallen per 01-07-2009]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
@@ -1440,7 +1441,7 @@
             {
               "id": "f0bd18d5c711252c",
               "number": "35",
-              "title": "Artikel 35. [Vervallen]",
+              "title": "Artikel 35. Boeterapport",
               "text": "[Dit artikel is vervallen per 01-07-2009]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
@@ -1455,7 +1456,7 @@
             {
               "id": "692b9ed930c398ac",
               "number": "36",
-              "title": "Artikel 36. Boeterapport",
+              "title": "Artikel 36. Boetebeschikking",
               "text": "Onverminderd artikel 5:48, tweede lid, van de Algemene wet bestuursrecht vermeldt het rapport naast de overtreder in ieder geval de andere bij de overtreding betrokken persoon of personen.\nHet rapport wordt toegezonden aan de daartoe op grond van artikel 34, eerste lid , aangewezen ambtenaar.\nEen afschrift van het rapport wordt toegezonden of uitgereikt aan de andere bij de overtreding betrokken persoon of personen, bedoeld in het eerste lid.",
               "whs_topics": [
                 {
@@ -1480,7 +1481,7 @@
             {
               "id": "899189f58b2d3e3b",
               "number": "37",
-              "title": "Artikel 37. Boetebeschikking",
+              "title": "Artikel 37. Inlichtingenplicht",
               "text": "Een afschrift van de boetebeschikking wordt toegezonden of uitgereikt aan de andere bij de overtreding betrokken persoon of personen, bedoeld in artikel 36, eerste lid , en in voorkomend geval, desgevraagd aan zijn of hun nabestaande of nabestaanden.",
               "whs_topics": [
                 {
@@ -1500,7 +1501,7 @@
             {
               "id": "5dfbb1ae57ab90b7",
               "number": "38",
-              "title": "Artikel 38. Inlichtingenplicht jegens de boeteoplegger",
+              "title": "Artikel 38. Betaling boete",
               "text": "Degene aan wie een bestuurlijke boete is opgelegd is verplicht desgevraagd aan de daartoe op grond van artikel 34, eerste lid , aangewezen ambtenaar de inlichtingen te verstrekken die voor de tenuitvoerlegging van de boete van belang zijn.",
               "whs_topics": [
                 {
@@ -1525,7 +1526,7 @@
             {
               "id": "a950ed95f372f929",
               "number": "39",
-              "title": "Artikel 39. [Vervallen]",
+              "title": "Artikel 39. Verjaring",
               "text": "[Dit artikel is vervallen per 01-07-2009]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
@@ -1540,7 +1541,7 @@
             {
               "id": "9a3dca1a4bd2cdb2",
               "number": "40",
-              "title": "Artikel 40. [Vervallen]",
+              "title": "Artikel 40. Intrekking",
               "text": "[Dit artikel is vervallen per 01-04-2011]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
@@ -1555,7 +1556,7 @@
             {
               "id": "20533ced4c5e0769",
               "number": "41",
-              "title": "Artikel 41. [Vervallen]",
+              "title": "Artikel 41. Overgangsrecht",
               "text": "[Dit artikel is vervallen per 01-07-2009]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
@@ -1570,7 +1571,7 @@
             {
               "id": "0c672a8c78051581",
               "number": "42",
-              "title": "Artikel 42. [Vervallen]",
+              "title": "Artikel 42. Namen en bedragen",
               "text": "[Dit artikel is vervallen per 01-01-2013]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
@@ -1698,7 +1699,7 @@
             {
               "id": "25ce789938aadbe4",
               "number": "47",
-              "title": "Artikel 47. [Vervallen]",
+              "title": "Artikel 47. Inwerkingtreding",
               "text": "[Dit artikel is vervallen per 01-01-2007]",
               "whs_topics": [],
               "amazon_logistics_relevance": {
@@ -2001,7 +2002,8 @@
         "title": "Arbeidsomstandighedenbesluit",
         "authority": "wetten.overheid.nl",
         "robots_txt_compliant": true,
-        "pdf_url": "https://wetten.overheid.nl/BWBR0008498/2024-01-01/0/pdf"
+        "pdf_url": "https://wetten.overheid.nl/BWBR0008498/2024-01-01/0/pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_Arbobesluit-PDF_law.html"
       },
       "scraping": {
         "scraped_at": "2025-12-19T18:15:17.051575",
@@ -2423,7 +2425,8 @@
         "title": "Arbeidsomstandighedenregeling",
         "authority": "wetten.overheid.nl",
         "robots_txt_compliant": true,
-        "pdf_url": "https://wetten.overheid.nl/BWBR0008587/2024-01-01/0/pdf"
+        "pdf_url": "https://wetten.overheid.nl/BWBR0008587/2024-01-01/0/pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_Arboregeling-PDF_law.html"
       },
       "scraping": {
         "scraped_at": "2025-12-19T18:15:04.271404",
@@ -2702,7 +2705,8 @@
         "title": "Arbeidstijdenwet",
         "authority": "wetten.overheid.nl",
         "robots_txt_compliant": true,
-        "pdf_url": "https://wetten.overheid.nl/BWBR0007671/2024-01-01/0/pdf"
+        "pdf_url": "https://wetten.overheid.nl/BWBR0007671/2024-01-01/0/pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_Arbeidstijdenwet-PDF_law.html"
       },
       "scraping": {
         "scraped_at": "2025-12-19T18:14:49.748317",
@@ -3158,7 +3162,8 @@
         "title": "Arbeidstijdenbesluit",
         "authority": "wetten.overheid.nl",
         "robots_txt_compliant": true,
-        "pdf_url": "https://wetten.overheid.nl/BWBR0007687/2024-01-01/0/pdf"
+        "pdf_url": "https://wetten.overheid.nl/BWBR0007687/2024-01-01/0/pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_ATB-PDF_law.html"
       },
       "scraping": {
         "scraped_at": "2025-12-19T18:15:04.036576",

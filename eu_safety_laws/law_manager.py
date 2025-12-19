@@ -4628,6 +4628,23 @@ class NLScraper(Scraper):
             full_text = re.sub(r'[ \t]+', ' ', full_text)
             full_text = full_text.strip()
 
+            # If no title extracted from h4, try to extract from first line of content
+            # Dutch laws often have format: "Artikel N. Title:" or "Title:" at start
+            if not article_title and full_text:
+                first_line = full_text.split('\n')[0] if full_text else ''
+                # Try pattern: "Artikel N. Title:"
+                title_from_content = re.match(r'^Artikel\s+\d+[a-z]?\.\s*([^:]+):', first_line, re.IGNORECASE)
+                if title_from_content:
+                    article_title = title_from_content.group(1).strip()
+                else:
+                    # Try pattern: Just the first sentence if it looks like a title (short, ends with :)
+                    title_from_content = re.match(r'^([A-Z][^.:]{5,60})[.:]', first_line)
+                    if title_from_content:
+                        potential_title = title_from_content.group(1).strip()
+                        # Only use if it looks like a title (not too long, capitalized)
+                        if len(potential_title) < 80 and not potential_title[0].isdigit():
+                            article_title = potential_title
+
             # Check if this is a repealed article (Vervallen = repealed in Dutch)
             is_repealed = False
             repealed_text = ""
