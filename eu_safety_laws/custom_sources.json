@@ -105,6 +105,46 @@
         "description": "AUVA safety publication on electrical installations. Covers electrical safety requirements, testing procedures, and protection against electrical hazards.",
         "enabled": true,
         "source_type": "pdf"
+      },
+      "ASchG-PDF": {
+        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1994_450_0/1994_450_0.pdf",
+        "name": "ArbeitnehmerInnenschutzgesetz (PDF)",
+        "description": "PDF verification source for ASchG - Worker Protection Act. Original publication in Federal Law Gazette.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "ASchG"
+      },
+      "AZG-PDF": {
+        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1969_461_0/1969_461_0.pdf",
+        "name": "Arbeitszeitgesetz (PDF)",
+        "description": "PDF verification source for AZG - Working Time Act. Original publication in Federal Law Gazette.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "AZG"
+      },
+      "ARG-PDF": {
+        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1983_144_0/1983_144_0.pdf",
+        "name": "Arbeitsruhegesetz (PDF)",
+        "description": "PDF verification source for ARG - Rest Period Act. Original publication in Federal Law Gazette.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "ARG"
+      },
+      "MSchG-PDF": {
+        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1979_221_0/1979_221_0.pdf",
+        "name": "Mutterschutzgesetz (PDF)",
+        "description": "PDF verification source for MSchG - Maternity Protection Act. Original publication in Federal Law Gazette.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "MSchG"
+      },
+      "KJBG-PDF": {
+        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1987_599_0/1987_599_0.pdf",
+        "name": "Kinder- und Jugendlichen-Beschäftigungsgesetz (PDF)",
+        "description": "PDF verification source for KJBG - Child and Youth Employment Act. Original publication in Federal Law Gazette.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "KJBG"
       }
     },
     "NL": {
@@ -210,6 +250,46 @@
         "description": "Dutch Labour Inspectorate publication on hazardous substances. Covers exposure limits, risk assessment, and protective measures for chemical hazards.",
         "enabled": true,
         "source_type": "custom"
+      },
+      "Arbowet-PDF": {
+        "url": "https://wetten.overheid.nl/BWBR0010346/2024-01-01/0/pdf",
+        "name": "Arbeidsomstandighedenwet (PDF)",
+        "description": "PDF verification source for Arbowet - Working Conditions Act. Official consolidated text from wetten.overheid.nl.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "Arbowet"
+      },
+      "Arbobesluit-PDF": {
+        "url": "https://wetten.overheid.nl/BWBR0008498/2024-01-01/0/pdf",
+        "name": "Arbeidsomstandighedenbesluit (PDF)",
+        "description": "PDF verification source for Arbobesluit - Working Conditions Decree. Official consolidated text from wetten.overheid.nl.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "Arbobesluit"
+      },
+      "Arboregeling-PDF": {
+        "url": "https://wetten.overheid.nl/BWBR0008587/2024-01-01/0/pdf",
+        "name": "Arbeidsomstandighedenregeling (PDF)",
+        "description": "PDF verification source for Arboregeling - Working Conditions Regulation. Official consolidated text from wetten.overheid.nl.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "Arboregeling"
+      },
+      "Arbeidstijdenwet-PDF": {
+        "url": "https://wetten.overheid.nl/BWBR0007671/2024-01-01/0/pdf",
+        "name": "Arbeidstijdenwet (PDF)",
+        "description": "PDF verification source for Arbeidstijdenwet - Working Time Act. Official consolidated text from wetten.overheid.nl.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "Arbeidstijdenwet"
+      },
+      "ATB-PDF": {
+        "url": "https://wetten.overheid.nl/BWBR0007687/2024-01-01/0/pdf",
+        "name": "Arbeidstijdenbesluit (PDF)",
+        "description": "PDF verification source for ATB - Working Time Decree. Official consolidated text from wetten.overheid.nl.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "ATB"
       }
     },
     "DE": {
@@ -330,6 +410,70 @@
         "ai_corrected": true,
         "corrected_at": "2025-12-18T19:29:50.317683",
         "original_url_failed": true
+      },
+      "ArbSchG-PDF": {
+        "url": "https://www.gesetze-im-internet.de/arbschg/arbschg.pdf",
+        "name": "Arbeitsschutzgesetz (PDF)",
+        "description": "PDF verification source for ArbSchG - Occupational Safety and Health Act. Official consolidated text.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "ArbSchG"
+      },
+      "ASiG-PDF": {
+        "url": "https://www.gesetze-im-internet.de/asig/asig.pdf",
+        "name": "Arbeitssicherheitsgesetz (PDF)",
+        "description": "PDF verification source for ASiG - Workplace Safety Act. Official consolidated text.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "ASiG"
+      },
+      "ArbZG-PDF": {
+        "url": "https://www.gesetze-im-internet.de/arbzg/arbzg.pdf",
+        "name": "Arbeitszeitgesetz (PDF)",
+        "description": "PDF verification source for ArbZG - Working Time Act. Official consolidated text.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "ArbZG"
+      },
+      "MuSchG-PDF": {
+        "url": "https://www.gesetze-im-internet.de/muschg_2018/muschg_2018.pdf",
+        "name": "Mutterschutzgesetz (PDF)",
+        "description": "PDF verification source for MuSchG - Maternity Protection Act. Official consolidated text.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "MuSchG"
+      },
+      "JArbSchG-PDF": {
+        "url": "https://www.gesetze-im-internet.de/jarbschg/jarbschg.pdf",
+        "name": "Jugendarbeitsschutzgesetz (PDF)",
+        "description": "PDF verification source for JArbSchG - Youth Labor Protection Act. Official consolidated text.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "JArbSchG"
+      },
+      "ArbStättV-PDF": {
+        "url": "https://www.gesetze-im-internet.de/arbst_ttv_2004/arbst_ttv_2004.pdf",
+        "name": "Arbeitsstättenverordnung (PDF)",
+        "description": "PDF verification source for ArbStättV - Workplace Ordinance. Official consolidated text.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "ArbStättV"
+      },
+      "BetrSichV-PDF": {
+        "url": "https://www.gesetze-im-internet.de/betrsichv_2015/betrsichv_2015.pdf",
+        "name": "Betriebssicherheitsverordnung (PDF)",
+        "description": "PDF verification source for BetrSichV - Industrial Safety Regulation. Official consolidated text.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "BetrSichV"
+      },
+      "GefStoffV-PDF": {
+        "url": "https://www.gesetze-im-internet.de/gefstoffv_2010/gefstoffv_2010.pdf",
+        "name": "Gefahrstoffverordnung (PDF)",
+        "description": "PDF verification source for GefStoffV - Hazardous Substances Ordinance. Official consolidated text.",
+        "enabled": true,
+        "source_type": "pdf",
+        "verification_for": "GefStoffV"
       }
     }
   },
