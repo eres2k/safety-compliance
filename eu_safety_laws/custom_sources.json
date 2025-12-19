@@ -86,11 +86,13 @@
         "source_type": "pdf"
       },
       "AUVA M.plus 910": {
-        "url": "https://www.auva.at/cdscontent/load?contentid=10008.544874&version=1650879571",
-        "name": "AUVA M.plus 910 - Lärm am Arbeitsplatz",
-        "description": "AUVA safety publication on noise protection at the workplace. Covers noise assessment, hearing protection, and technical noise reduction measures.",
+        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",
+        "name": "ArbeitnehmerInnenschutzgesetz (ASchG) - including Arbeitsmittelverordnung (AM-VO)",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "source_type": "pdf"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-19T02:09:09.111249",
+        "original_url_failed": true
       },
       "AUVA M.plus 340": {
         "url": "https://www.auva.at/cdscontent/load?contentid=10008.544842&version=1650879365",
@@ -180,14 +182,6 @@
         "description": "Regulates the establishment and functioning of works councils (ondernemingsraden), which have significant rights and duties regarding workplace safety and health policies, employee well-being, and working conditions within a company.",
         "enabled": true,
         "created_at": "2025-12-18T16:36:58.517145",
-        "source_type": "custom"
-      },
-      "BW Boek 7 Titel 10": {
-        "url": "https://wetten.overheid.nl/BWBR0005290/2024-01-01#Boek7_Titel7_Afdeling1",
-        "name": "Burgerlijk Wetboek Boek 7, Titel 10 (Arbeidsovereenkomst)",
-        "description": "Contains fundamental provisions regarding the employment contract, including the employer's general duty of care for the safety and health of employees (e.g., Article 7:658 BW), which forms the civil law basis for workplace safety obligations.",
-        "enabled": true,
-        "created_at": "2025-12-18T16:36:58.527731",
         "source_type": "custom"
       },
       "Wazo": {
@@ -478,5 +472,5 @@
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-18T19:29:50.317690"
+  "updated_at": "2025-12-19T02:09:09.111255"
 }
