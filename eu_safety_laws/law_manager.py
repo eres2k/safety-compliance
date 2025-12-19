@@ -2756,30 +2756,57 @@ class ATScraper(Scraper):
         """Scrape a single law - used for parallel processing.
 
         Priority: HTML sources from official government sites (ris.bka.gv.at)
-        PDF is only used as fallback or for supplementary download.
+        PDF sources are downloaded and stored WITHOUT parsing - just for display.
         """
         # Set current law for AI URL correction on sub-page failures
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a direct PDF URL (only case where we use PDF as primary)
+        # Check if this is a direct PDF URL - download only, no parsing
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
-            if HAS_PDF:
-                log_info(f"  Using PDF parser for {abbrev} (direct PDF URL)")
-                custom = load_custom_sources()
-                title = custom.get('custom_sources', {}).get('AT', {}).get(abbrev, {}).get('name', abbrev)
-                doc = parse_pdf_to_law_document(url, abbrev, title, "AT")
-                if doc:
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    return doc
-            else:
-                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
-            return None
+            log_info(f"  PDF source for {abbrev} - downloading without parsing")
+            custom = load_custom_sources()
+            source_info = custom.get('custom_sources', {}).get('AT', {}).get(abbrev, {})
+            title = source_info.get('name', abbrev)
+            description = source_info.get('description', f'PDF document: {title}')
+
+            # Download and store PDF only - no parsing
+            pdf_info = download_and_store_pdf(url, "AT", abbrev, doc_type="law")
+            if not pdf_info:
+                log_warning(f"  Could not download PDF for {abbrev}")
+                return None
+
+            pdf_path = pdf_info.get("local_path", "")
+
+            # Create document without parsed content
+            doc = create_unified_document(
+                country="AT",
+                abbrev=abbrev,
+                title=title,
+                doc_type=DocType.LAW,
+                source_url=url,
+                source_authority="PDF Source",
+                content_text=description,
+                full_text="",  # No text extraction
+                pdf_path=pdf_path,
+                ai_summary="",
+                metadata={
+                    "description": description,
+                    "pdf_filename": pdf_info.get("filename", ""),
+                    "pdf_size_bytes": pdf_info.get("size_bytes", 0),
+                    "is_pdf_only": True
+                }
+            )
+
+            # Add local PDF path to source for UI access
+            if pdf_path:
+                doc["source"]["local_pdf_path"] = pdf_path
+                doc["source"]["pdf_url"] = url
+                doc["source"]["source_type"] = "pdf"
+
+            log_success(f"  Stored PDF for {abbrev} (no parsing)")
+            return doc
 
         # PRIMARY: Scrape from HTML source (official government website)
         html = self.fetch_url(url, law_abbr=abbrev)
@@ -2817,22 +2844,48 @@ class ATScraper(Scraper):
 
                 return doc
 
-        # FALLBACK: If HTML parsing failed completely, try PDF as last resort
+        # FALLBACK: If HTML parsing failed completely, download PDF without parsing
         pdf_source = get_pdf_source_for_law("AT", abbrev)
-        if pdf_source and HAS_PDF:
+        if pdf_source:
             pdf_url = pdf_source.get("url", "")
             if pdf_url:
                 if not pdf_url.startswith('http'):
                     pdf_url = self._get_full_url(pdf_url)
-                log_warning(f"  HTML parsing failed for {abbrev}, falling back to PDF source")
-                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "AT")
-                if doc:
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    doc['source']['pdf_fallback'] = True
+                log_warning(f"  HTML parsing failed for {abbrev}, downloading PDF fallback (no parsing)")
+
+                # Download and store PDF only - no parsing
+                pdf_info = download_and_store_pdf(pdf_url, "AT", abbrev, doc_type="law")
+                if pdf_info:
+                    pdf_path = pdf_info.get("local_path", "")
+                    title = pdf_source.get('name', abbrev)
+                    description = pdf_source.get('description', f'PDF document: {title}')
+
+                    doc = create_unified_document(
+                        country="AT",
+                        abbrev=abbrev,
+                        title=title,
+                        doc_type=DocType.LAW,
+                        source_url=pdf_url,
+                        source_authority="PDF Source",
+                        content_text=description,
+                        full_text="",
+                        pdf_path=pdf_path,
+                        ai_summary="",
+                        metadata={
+                            "description": description,
+                            "pdf_filename": pdf_info.get("filename", ""),
+                            "pdf_size_bytes": pdf_info.get("size_bytes", 0),
+                            "is_pdf_only": True,
+                            "pdf_fallback": True
+                        }
+                    )
+
+                    if pdf_path:
+                        doc["source"]["local_pdf_path"] = pdf_path
+                        doc["source"]["pdf_url"] = pdf_url
+                        doc["source"]["source_type"] = "pdf"
+
+                    log_success(f"  Stored PDF fallback for {abbrev} (no parsing)")
                     return doc
 
         return None
@@ -3440,30 +3493,57 @@ class DEScraper(Scraper):
         """Scrape a single law - used for parallel processing.
 
         Priority: HTML sources from official government sites (gesetze-im-internet.de)
-        PDF is only used as fallback or for supplementary download.
+        PDF sources are downloaded and stored WITHOUT parsing - just for display.
         """
         # Set current law for AI URL correction on sub-page failures
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a direct PDF URL (only case where we use PDF as primary)
+        # Check if this is a direct PDF URL - download only, no parsing
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
-            if HAS_PDF:
-                log_info(f"  Using PDF parser for {abbrev} (direct PDF URL)")
-                custom = load_custom_sources()
-                title = custom.get('custom_sources', {}).get('DE', {}).get(abbrev, {}).get('name', abbrev)
-                doc = parse_pdf_to_law_document(url, abbrev, title, "DE")
-                if doc:
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    return doc
-            else:
-                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
-            return None
+            log_info(f"  PDF source for {abbrev} - downloading without parsing")
+            custom = load_custom_sources()
+            source_info = custom.get('custom_sources', {}).get('DE', {}).get(abbrev, {})
+            title = source_info.get('name', abbrev)
+            description = source_info.get('description', f'PDF document: {title}')
+
+            # Download and store PDF only - no parsing
+            pdf_info = download_and_store_pdf(url, "DE", abbrev, doc_type="law")
+            if not pdf_info:
+                log_warning(f"  Could not download PDF for {abbrev}")
+                return None
+
+            pdf_path = pdf_info.get("local_path", "")
+
+            # Create document without parsed content
+            doc = create_unified_document(
+                country="DE",
+                abbrev=abbrev,
+                title=title,
+                doc_type=DocType.LAW,
+                source_url=url,
+                source_authority="PDF Source",
+                content_text=description,
+                full_text="",  # No text extraction
+                pdf_path=pdf_path,
+                ai_summary="",
+                metadata={
+                    "description": description,
+                    "pdf_filename": pdf_info.get("filename", ""),
+                    "pdf_size_bytes": pdf_info.get("size_bytes", 0),
+                    "is_pdf_only": True
+                }
+            )
+
+            # Add local PDF path to source for UI access
+            if pdf_path:
+                doc["source"]["local_pdf_path"] = pdf_path
+                doc["source"]["pdf_url"] = url
+                doc["source"]["source_type"] = "pdf"
+
+            log_success(f"  Stored PDF for {abbrev} (no parsing)")
+            return doc
 
         # PRIMARY: Scrape from HTML source (official government website)
         html = self.fetch_url(url, law_abbr=abbrev)
@@ -3500,22 +3580,48 @@ class DEScraper(Scraper):
 
                 return doc
 
-        # FALLBACK: If HTML parsing failed completely, try PDF as last resort
+        # FALLBACK: If HTML parsing failed completely, download PDF without parsing
         pdf_source = get_pdf_source_for_law("DE", abbrev)
-        if pdf_source and HAS_PDF:
+        if pdf_source:
             pdf_url = pdf_source.get("url", "")
             if pdf_url:
                 if not pdf_url.startswith('http'):
                     pdf_url = self._get_full_url(pdf_url)
-                log_warning(f"  HTML parsing failed for {abbrev}, falling back to PDF source")
-                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "DE")
-                if doc:
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    doc['source']['pdf_fallback'] = True
+                log_warning(f"  HTML parsing failed for {abbrev}, downloading PDF fallback (no parsing)")
+
+                # Download and store PDF only - no parsing
+                pdf_info = download_and_store_pdf(pdf_url, "DE", abbrev, doc_type="law")
+                if pdf_info:
+                    pdf_path = pdf_info.get("local_path", "")
+                    title = pdf_source.get('name', abbrev)
+                    description = pdf_source.get('description', f'PDF document: {title}')
+
+                    doc = create_unified_document(
+                        country="DE",
+                        abbrev=abbrev,
+                        title=title,
+                        doc_type=DocType.LAW,
+                        source_url=pdf_url,
+                        source_authority="PDF Source",
+                        content_text=description,
+                        full_text="",
+                        pdf_path=pdf_path,
+                        ai_summary="",
+                        metadata={
+                            "description": description,
+                            "pdf_filename": pdf_info.get("filename", ""),
+                            "pdf_size_bytes": pdf_info.get("size_bytes", 0),
+                            "is_pdf_only": True,
+                            "pdf_fallback": True
+                        }
+                    )
+
+                    if pdf_path:
+                        doc["source"]["local_pdf_path"] = pdf_path
+                        doc["source"]["pdf_url"] = pdf_url
+                        doc["source"]["source_type"] = "pdf"
+
+                    log_success(f"  Stored PDF fallback for {abbrev} (no parsing)")
                     return doc
 
         return None
@@ -3992,30 +4098,57 @@ class NLScraper(Scraper):
         """Scrape a single law - used for parallel processing.
 
         Priority: HTML sources from official government sites (wetten.overheid.nl)
-        PDF is only used as fallback or for supplementary download.
+        PDF sources are downloaded and stored WITHOUT parsing - just for display.
         """
         # Set current law for AI URL correction on sub-page failures
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a direct PDF URL (only case where we use PDF as primary)
+        # Check if this is a direct PDF URL - download only, no parsing
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url or '/pdf' in url:
-            if HAS_PDF:
-                log_info(f"  Using PDF parser for {abbrev} (direct PDF URL)")
-                custom = load_custom_sources()
-                title = custom.get('custom_sources', {}).get('NL', {}).get(abbrev, {}).get('name', abbrev)
-                doc = parse_pdf_to_law_document(url, abbrev, title, "NL")
-                if doc:
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    return doc
-            else:
-                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
-            return None
+            log_info(f"  PDF source for {abbrev} - downloading without parsing")
+            custom = load_custom_sources()
+            source_info = custom.get('custom_sources', {}).get('NL', {}).get(abbrev, {})
+            title = source_info.get('name', abbrev)
+            description = source_info.get('description', f'PDF document: {title}')
+
+            # Download and store PDF only - no parsing
+            pdf_info = download_and_store_pdf(url, "NL", abbrev, doc_type="law")
+            if not pdf_info:
+                log_warning(f"  Could not download PDF for {abbrev}")
+                return None
+
+            pdf_path = pdf_info.get("local_path", "")
+
+            # Create document without parsed content
+            doc = create_unified_document(
+                country="NL",
+                abbrev=abbrev,
+                title=title,
+                doc_type=DocType.LAW,
+                source_url=url,
+                source_authority="PDF Source",
+                content_text=description,
+                full_text="",  # No text extraction
+                pdf_path=pdf_path,
+                ai_summary="",
+                metadata={
+                    "description": description,
+                    "pdf_filename": pdf_info.get("filename", ""),
+                    "pdf_size_bytes": pdf_info.get("size_bytes", 0),
+                    "is_pdf_only": True
+                }
+            )
+
+            # Add local PDF path to source for UI access
+            if pdf_path:
+                doc["source"]["local_pdf_path"] = pdf_path
+                doc["source"]["pdf_url"] = url
+                doc["source"]["source_type"] = "pdf"
+
+            log_success(f"  Stored PDF for {abbrev} (no parsing)")
+            return doc
 
         # PRIMARY: Scrape from HTML source (official government website)
         html = self.fetch_url(url, law_abbr=abbrev)
@@ -4050,22 +4183,48 @@ class NLScraper(Scraper):
 
                 return doc
 
-        # FALLBACK: If HTML parsing failed completely, try PDF as last resort
+        # FALLBACK: If HTML parsing failed completely, download PDF without parsing
         pdf_source = get_pdf_source_for_law("NL", abbrev)
-        if pdf_source and HAS_PDF:
+        if pdf_source:
             pdf_url = pdf_source.get("url", "")
             if pdf_url:
                 if not pdf_url.startswith('http'):
                     pdf_url = self._get_full_url(pdf_url)
-                log_warning(f"  HTML parsing failed for {abbrev}, falling back to PDF source")
-                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "NL")
-                if doc:
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    doc['source']['pdf_fallback'] = True
+                log_warning(f"  HTML parsing failed for {abbrev}, downloading PDF fallback (no parsing)")
+
+                # Download and store PDF only - no parsing
+                pdf_info = download_and_store_pdf(pdf_url, "NL", abbrev, doc_type="law")
+                if pdf_info:
+                    pdf_path = pdf_info.get("local_path", "")
+                    title = pdf_source.get('name', abbrev)
+                    description = pdf_source.get('description', f'PDF document: {title}')
+
+                    doc = create_unified_document(
+                        country="NL",
+                        abbrev=abbrev,
+                        title=title,
+                        doc_type=DocType.LAW,
+                        source_url=pdf_url,
+                        source_authority="PDF Source",
+                        content_text=description,
+                        full_text="",
+                        pdf_path=pdf_path,
+                        ai_summary="",
+                        metadata={
+                            "description": description,
+                            "pdf_filename": pdf_info.get("filename", ""),
+                            "pdf_size_bytes": pdf_info.get("size_bytes", 0),
+                            "is_pdf_only": True,
+                            "pdf_fallback": True
+                        }
+                    )
+
+                    if pdf_path:
+                        doc["source"]["local_pdf_path"] = pdf_path
+                        doc["source"]["pdf_url"] = pdf_url
+                        doc["source"]["source_type"] = "pdf"
+
+                    log_success(f"  Stored PDF fallback for {abbrev} (no parsing)")
                     return doc
 
         return None
