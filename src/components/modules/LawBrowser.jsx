@@ -837,6 +837,8 @@ function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClic
 const typeColors = {
   law: 'bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300',
   ordinance: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
+  merkblatt: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300',
+  guideline: 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300',
   dguv_regulation: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300',
   dguv_rule: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300',
   dguv_information: 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
@@ -1724,6 +1726,7 @@ export function LawBrowser({ onBack }) {
   }
 
   const hasContent = selectedLaw?.content?.full_text || selectedLaw?.content?.text
+  const isPdfOnly = selectedLaw?.metadata?.is_pdf_only || (hasPdfSource(selectedLaw) && !hasContent)
 
   return (
     <div className="animate-fade-in h-[calc(100vh-12rem)]">
@@ -1817,6 +1820,13 @@ export function LawBrowser({ onBack }) {
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${typeColors[law.type] || typeColors.law}`}>
                       {law.abbreviation || law.abbr || law.type}
                     </span>
+                    {hasPdfSource(law) && (
+                      <span className="text-xs text-red-500" title="PDF document available">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                        </svg>
+                      </span>
+                    )}
                     {wikiIndex[law.abbreviation] && (
                       <span className="text-xs" title="Wikipedia article available">📖</span>
                     )}
@@ -2124,7 +2134,66 @@ export function LawBrowser({ onBack }) {
 
                 {/* Law Content */}
                 <div ref={contentRef} className="flex-1 overflow-y-auto">
-                  {hasContent ? (
+                  {isPdfOnly ? (
+                    /* PDF-Only Document Display */
+                    <div className="p-6">
+                      {/* PDF Document Card */}
+                      <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl p-8 text-center border border-red-100 dark:border-red-800">
+                        <div className="w-20 h-20 bg-red-100 dark:bg-red-900/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                          <svg className="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                          PDF Document
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
+                          {selectedLaw.metadata?.description || selectedLaw.content?.text || 'This is a PDF document. Click below to view or download.'}
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                          <button
+                            onClick={() => openPdfModal(selectedLaw)}
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium transition-colors"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Open PDF
+                          </button>
+                          <a
+                            href={getPdfSourceUrl(selectedLaw)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Download PDF
+                          </a>
+                        </div>
+                        {/* Source info */}
+                        {selectedLaw.source && (
+                          <div className="mt-6 pt-6 border-t border-red-200 dark:border-red-800 text-sm text-gray-500 dark:text-gray-400">
+                            Source: {selectedLaw.source.authority || 'AUVA'}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* WHS Topics if available */}
+                      {selectedLaw.whs_topics && selectedLaw.whs_topics.length > 0 && (
+                        <div className="mt-6">
+                          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">WHS Topics</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedLaw.whs_topics.map((topic, i) => (
+                              <TopicTag key={i} topicId={topic.id} small />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : hasContent ? (
                     <div className="p-6">
                       {/* WHS Summary Panel */}
                       {selectedLaw.whs_summary && (

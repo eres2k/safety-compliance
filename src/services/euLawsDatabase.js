@@ -1173,17 +1173,29 @@ export async function getLawsByTopic(country, topic) {
 }
 
 /**
- * Get PDF source URL for a law if available
+ * Get PDF source URL for a law if available.
+ * Prioritizes local PDF paths when available.
  */
 export function getPdfSourceUrl(law) {
   if (!law) return null
 
-  // Check source metadata
+  // Priority 1: Local PDF path (downloaded PDF stored on server)
+  if (law.source?.local_pdf_path) {
+    // Convert absolute path to relative URL for serving
+    const path = law.source.local_pdf_path
+    // Extract just the filename or relative path portion
+    const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
+    if (match) {
+      return `/eu_safety_laws/pdfs/${match[1]}`
+    }
+  }
+
+  // Priority 2: PDF URL from source metadata
   if (law.source?.pdf_url) {
     return law.source.pdf_url
   }
 
-  // Check if source type indicates PDF
+  // Priority 3: Source URL if type indicates PDF
   if (law.source?.source_type === 'pdf' && law.source?.url) {
     return law.source.url
   }
@@ -1215,8 +1227,26 @@ export function isSupplementarySource(law) {
 
   const type = (law.type || '').toLowerCase()
   const category = (law.category || '').toLowerCase()
+  const abbrev = (law.abbreviation || '').toLowerCase()
 
-  return supplementaryTypes.some(t => type.includes(t) || category.includes(t))
+  // Check type and category
+  if (supplementaryTypes.some(t => type.includes(t) || category.includes(t))) {
+    return true
+  }
+
+  // Check abbreviation for known supplementary sources
+  if (abbrev.includes('auva') || abbrev.includes('dguv') ||
+      abbrev.includes('trbs') || abbrev.includes('trgs') ||
+      abbrev.includes('asr') || abbrev.includes('pgs')) {
+    return true
+  }
+
+  // Check metadata flag
+  if (law.metadata?.is_supplementary) {
+    return true
+  }
+
+  return false
 }
 
 export default {
