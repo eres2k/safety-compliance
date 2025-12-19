@@ -200,7 +200,7 @@ class Config:
         "AT": {
             "auva": {
                 "name": "AUVA Merkblätter",
-                "base_url": "https://www.auva.at",
+                "base_url": "https://auva.at",
                 "authority": "AUVA",
                 "description": "Allgemeine Unfallversicherungsanstalt - Austrian accident insurance",
                 "series": {
@@ -213,8 +213,51 @@ class Config:
                         "description": "Erweiterte Merkblätter"
                     }
                 },
-                # Updated catalog URL - AUVA publications listing page
-                "catalog_url": "https://www.auva.at/cdscontent/load?contentid=10008.738874&version=1702480267"
+                # Static publications list - AUVA website restructured, catalog URL no longer works
+                # Use direct PDF URLs from https://auva.at/media/...
+                "catalog_url": "",  # Disabled - use static publications instead
+                "publications": [
+                    {
+                        "abbrev": "AUVA M.plus 330",
+                        "title": "M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
+                        "title_en": "Storage of Hazardous Substances",
+                        "url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf",
+                        "series": "M.plus",
+                        "description": "Guidelines for safe storage of hazardous substances in the workplace"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 340",
+                        "title": "M.plus 340 - Arbeitsmittel",
+                        "title_en": "Work Equipment",
+                        "url": "https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
+                        "series": "M.plus",
+                        "description": "Safety requirements for work equipment"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 350",
+                        "title": "M.plus 350 - Arbeitsstätten",
+                        "title_en": "Workplaces",
+                        "url": "https://auva.at/media/r2qfq5at/mplus_350_arbeitsstaetten_bf_2405.pdf",
+                        "series": "M.plus",
+                        "description": "Workplace design and safety requirements"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 360",
+                        "title": "M.plus 360 - Ergonomie",
+                        "title_en": "Ergonomics",
+                        "url": "https://auva.at/media/faqbqzk0/mplus_360_ergonomie_bf_2405.pdf",
+                        "series": "M.plus",
+                        "description": "Ergonomic workplace design guidelines"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 910",
+                        "title": "M.plus 910 - Evaluierung psychischer Belastungen",
+                        "title_en": "Assessment of Psychological Stress",
+                        "url": "https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
+                        "series": "M.plus",
+                        "description": "Guidelines for assessing psychological stress at work"
+                    }
+                ]
             }
         },
         "DE": {
@@ -4538,31 +4581,20 @@ class MerkblattScraper(Scraper):
     ) -> Optional[Dict[str, Any]]:
         """
         Create a Merkblatt document from a PDF source.
-        Downloads PDF, extracts text, generates AI summary if needed.
+        Downloads PDF only - no parsing or AI summarization.
+        The PDF is stored locally for direct viewing.
         """
-        # Download and store PDF locally
+        # Download and store PDF locally (no parsing/scraping)
         pdf_info = download_and_store_pdf(pdf_url, self.country, abbrev, doc_type="merkblatt")
-        pdf_path = pdf_info.get("local_path", "") if pdf_info else ""
 
-        # Parse PDF content
-        pdf_content = parse_pdf_content(pdf_url, is_url=True)
-        if not pdf_content:
-            log_warning(f"Could not parse PDF for {abbrev}")
+        if not pdf_info:
+            log_warning(f"Could not download PDF for {abbrev}")
             return None
 
-        full_text = pdf_content.get("text", "")
+        pdf_path = pdf_info.get("local_path", "")
+        pdf_filename = pdf_info.get("filename", "")
 
-        # Generate AI summary for searchability (Merkblätter often have complex layouts)
-        ai_summary = ""
-        if len(full_text) > 100:
-            ai_summary = summarize_pdf_with_ai(
-                full_text,
-                self.country,
-                doc_type=DocType.MERKBLATT,
-                title=title
-            ) or ""
-
-        # Create unified document
+        # Create unified document with minimal metadata (PDF is the content)
         doc = create_unified_document(
             country=self.country,
             abbrev=abbrev,
@@ -4570,22 +4602,59 @@ class MerkblattScraper(Scraper):
             doc_type=DocType.MERKBLATT,
             source_url=pdf_url,
             source_authority=authority or self.authority,
-            content_text=full_text[:50000],
-            full_text=full_text[:100000],
+            content_text=description or f"PDF document: {title}",
+            full_text="",  # No text extraction
             pdf_path=pdf_path,
-            ai_summary=ai_summary,
+            ai_summary="",  # No AI summary
             metadata={
                 "series": series,
                 "description": description,
-                "pdf_pages": pdf_content.get("page_count", 0),
-                "is_supplementary": True
+                "pdf_filename": pdf_filename,
+                "pdf_size_bytes": pdf_info.get("size_bytes", 0),
+                "is_supplementary": True,
+                "is_pdf_only": True
             }
         )
 
-        # Classify WHS topics
-        doc["whs_topics"] = self._classify_whs_topics(full_text, title)
+        # Add local PDF path to source for UI access
+        if pdf_path:
+            doc["source"]["local_pdf_path"] = pdf_path
+            doc["source"]["pdf_url"] = pdf_url
+            doc["source"]["source_type"] = "pdf"
 
+        # Basic WHS topic classification from title only
+        doc["whs_topics"] = self._classify_whs_topics_from_title(title)
+
+        log_success(f"Created merkblatt document: {abbrev} (PDF stored at {pdf_path})")
         return doc
+
+    def _classify_whs_topics_from_title(self, title: str) -> List[Dict[str, Any]]:
+        """Basic WHS topic classification from title only (no PDF content parsing)."""
+        topics = []
+        title_lower = title.lower()
+
+        topic_keywords = {
+            "hazardous_substances": ["gefahrstoff", "gefährlich", "chemisch", "lagerung", "stoffe"],
+            "work_equipment": ["arbeitsmittel", "maschine", "gerät", "werkzeug", "ausrüstung"],
+            "workplace_design": ["arbeitsstätte", "arbeitsplatz", "beleuchtung", "raumklima"],
+            "ppe": ["schutzausrüstung", "psa", "schutz", "persönlich"],
+            "ergonomics": ["ergonomie", "heben", "tragen", "belastung", "bildschirm"],
+            "training": ["unterweisung", "schulung", "ausbildung"],
+            "first_aid": ["erste hilfe", "notfall", "ersthelfer"],
+            "fire_safety": ["brand", "feuer", "lösch", "flucht"],
+        }
+
+        for topic_id, keywords in topic_keywords.items():
+            matches = sum(1 for kw in keywords if kw in title_lower)
+            if matches > 0:
+                topics.append({
+                    "id": topic_id,
+                    "relevance": "high" if matches >= 2 else "medium",
+                    "match_count": matches
+                })
+
+        topics.sort(key=lambda x: -x["match_count"])
+        return topics[:3]
 
     def _classify_whs_topics(self, text: str, title: str) -> List[Dict[str, Any]]:
         """Generic WHS topic classification for Merkblätter."""
@@ -4619,7 +4688,7 @@ class MerkblattScraper(Scraper):
 class AUVAScraper(MerkblattScraper):
     """
     Scraper for Austrian AUVA (Allgemeine Unfallversicherungsanstalt) Merkblätter.
-    Downloads M-Reihe and M.plus PDFs.
+    Downloads M-Reihe and M.plus PDFs from static publication list.
     """
 
     def __init__(self, law_limit: int = None):
@@ -4627,69 +4696,53 @@ class AUVAScraper(MerkblattScraper):
         self.auva_config = self.merkblaetter_config.get("auva", {})
 
     def scrape(self) -> List[Dict[str, Any]]:
-        """Scrape AUVA Merkblätter from the AUVA publications catalog."""
-        if not HAS_BS4:
-            log_error("BeautifulSoup required for scraping. Install with: pip install beautifulsoup4")
-            return []
-
+        """Download AUVA Merkblätter PDFs from static publication list."""
         documents = []
-        catalog_url = self.auva_config.get("catalog_url", "")
 
-        if not catalog_url:
-            log_warning("No AUVA catalog URL configured")
+        # Use static publications list (AUVA website restructured, catalog scraping no longer works)
+        publications = self.auva_config.get("publications", [])
+
+        if not publications:
+            log_warning("No AUVA publications configured")
             return documents
 
-        log_info("Fetching AUVA Merkblätter catalog...")
-
-        # Fetch catalog page
-        html = self.fetch_url(catalog_url)
-        if not html:
-            log_error("Failed to fetch AUVA catalog")
-            return documents
-
-        # Parse catalog to find PDF links
-        soup = BeautifulSoup(html, 'html.parser')
-        pdf_links = []
-
-        # Find PDF download links in the catalog
-        for link in soup.find_all('a', href=True):
-            href = link.get('href', '')
-            if '.pdf' in href.lower() or 'download' in href.lower():
-                title = link.get_text(strip=True) or link.get('title', '')
-                if title and len(title) > 3:
-                    # Try to extract M-number from title or href
-                    m_match = re.search(r'M\.?\s*(\d+)', title + href, re.IGNORECASE)
-                    abbrev = f"AUVA-M{m_match.group(1)}" if m_match else f"AUVA-{len(pdf_links)+1}"
-
-                    pdf_url = href if href.startswith('http') else urljoin(self.auva_config.get("base_url", ""), href)
-                    pdf_links.append({
-                        "abbrev": abbrev,
-                        "title": title,
-                        "url": pdf_url,
-                        "series": "M-Reihe" if "m.plus" not in title.lower() else "M.plus"
-                    })
+        log_info(f"Processing {len(publications)} AUVA Merkblätter from static list...")
 
         # Apply limit
         if self.law_limit:
-            pdf_links = pdf_links[:self.law_limit]
+            publications = publications[:self.law_limit]
 
-        log_info(f"Found {len(pdf_links)} AUVA Merkblätter to process")
+        # Process each publication
+        for pub in publications:
+            abbrev = pub.get("abbrev", "")
+            title = pub.get("title", "")
+            pdf_url = pub.get("url", "")
+            series = pub.get("series", "M.plus")
+            description = pub.get("description", "")
 
-        # Process each PDF
-        for link_info in pdf_links:
-            log_info(f"Processing {link_info['abbrev']}: {link_info['title'][:50]}...")
+            if not pdf_url:
+                log_warning(f"No URL for {abbrev}")
+                continue
+
+            log_info(f"Downloading {abbrev}: {title[:50]}...")
             doc = self._create_merkblatt_document(
-                abbrev=link_info['abbrev'],
-                title=link_info['title'],
-                pdf_url=link_info['url'],
-                series=link_info['series'],
+                abbrev=abbrev,
+                title=title,
+                pdf_url=pdf_url,
+                series=series,
+                description=description,
                 authority="AUVA"
             )
+
             if doc:
+                # Add English title if available
+                if pub.get("title_en"):
+                    doc["title_en"] = pub["title_en"]
                 documents.append(doc)
+
             time.sleep(CONFIG.rate_limit_delay)
 
-        log_success(f"Scraped {len(documents)} AUVA Merkblätter")
+        log_success(f"Downloaded {len(documents)} AUVA Merkblätter")
         return documents
 
 

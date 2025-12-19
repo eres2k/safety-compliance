@@ -79,38 +79,49 @@
         "source_type": "custom"
       },
       "AUVA M.plus 330": {
-        "url": "https://www.auva.at/cdscontent/load?contentid=10008.544839&version=1650879321",
-        "name": "AUVA M.plus 330 - Arbeitsstätten - Anforderungen",
-        "description": "AUVA safety publication on workplace requirements. Covers general requirements for workplaces including ventilation, lighting, temperature, and ergonomic design.",
+        "url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf",
+        "name": "AUVA M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
+        "name_en": "Storage of Hazardous Substances",
+        "description": "Guidelines for safe storage of hazardous substances in the workplace. Covers storage requirements, labeling, and safety measures.",
         "enabled": true,
-        "source_type": "pdf"
-      },
-      "AUVA M.plus 910": {
-        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",
-        "name": "ArbeitnehmerInnenschutzgesetz (ASchG) - including Arbeitsmittelverordnung (AM-VO)",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-19T02:09:09.111249",
-        "original_url_failed": true
+        "source_type": "pdf",
+        "is_supplementary": true
       },
       "AUVA M.plus 340": {
-        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20000780",
-        "name": "Arbeitsmittelverordnung – AM-VO",
-        "description": "URL auto-corrected by AI",
+        "url": "https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
+        "name": "AUVA M.plus 340 - Arbeitsmittel",
+        "name_en": "Work Equipment",
+        "description": "Safety requirements for work equipment. Covers selection, use, and maintenance of machinery and tools.",
         "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-19T09:43:26.792875",
-        "original_url_failed": true
+        "source_type": "pdf",
+        "is_supplementary": true
       },
       "AUVA M.plus 350": {
-        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008907",
-        "name": "Verordnung über Arbeitsstätten (Arbeitsstättenverordnung – AStV)",
-        "description": "URL auto-corrected by AI",
+        "url": "https://auva.at/media/r2qfq5at/mplus_350_arbeitsstaetten_bf_2405.pdf",
+        "name": "AUVA M.plus 350 - Arbeitsstätten",
+        "name_en": "Workplaces",
+        "description": "Workplace design and safety requirements. Covers ventilation, lighting, temperature, and ergonomic design.",
         "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-19T09:43:43.845165",
-        "original_url_failed": true
+        "source_type": "pdf",
+        "is_supplementary": true
+      },
+      "AUVA M.plus 360": {
+        "url": "https://auva.at/media/faqbqzk0/mplus_360_ergonomie_bf_2405.pdf",
+        "name": "AUVA M.plus 360 - Ergonomie",
+        "name_en": "Ergonomics",
+        "description": "Ergonomic workplace design guidelines. Covers manual handling, workstation design, and repetitive strain prevention.",
+        "enabled": true,
+        "source_type": "pdf",
+        "is_supplementary": true
+      },
+      "AUVA M.plus 910": {
+        "url": "https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
+        "name": "AUVA M.plus 910 - Evaluierung psychischer Belastungen",
+        "name_en": "Assessment of Psychological Stress",
+        "description": "Guidelines for assessing psychological stress at work. Covers stress factors, assessment methods, and prevention measures.",
+        "enabled": true,
+        "source_type": "pdf",
+        "is_supplementary": true
       },
       "ASchG-PDF": {
         "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1994_450_0/1994_450_0.pdf",
