@@ -17,7 +17,9 @@ import {
   getPdfSourceUrl,
   isSupplementarySource,
   hasLocalPdf,
-  getLocalPdfUrl
+  getLocalPdfUrl,
+  isPdfVariant,
+  isTrueSupplementarySource
 } from '../../services/euLawsDatabase'
 
 // Remove duplicate expanded notation text from Austrian legal documents
@@ -1246,20 +1248,31 @@ export function LawBrowser({ onBack }) {
     }
   }, [allLaws, searchTerm, selectedCategory, currentPage, pageSize])
 
-  // Separate laws from merkblätter/supplementary PDFs for display
-  const { regularLaws, merkblaetter } = useMemo(() => {
+  // Separate laws into three categories for display:
+  // 1. Regular laws (text-based)
+  // 2. Merkblätter (AUVA M.plus, DGUV, TRBS, etc.)
+  // 3. PDF Variants (ASchG-PDF, ARG-PDF, etc.)
+  const { regularLaws, merkblaetter, pdfVariants } = useMemo(() => {
     const regular = []
-    const pdfs = []
+    const supplements = []
+    const variants = []
 
     for (const law of filteredLaws) {
-      if (isSupplementarySource(law) || law.type === 'merkblatt') {
-        pdfs.push(law)
-      } else {
+      // Check if it's a PDF variant first (e.g., ASchG-PDF)
+      if (isPdfVariant(law)) {
+        variants.push(law)
+      }
+      // Then check if it's a true supplementary source (Merkblatt, DGUV, etc.)
+      else if (isTrueSupplementarySource(law) || law.type === 'merkblatt') {
+        supplements.push(law)
+      }
+      // Regular law
+      else {
         regular.push(law)
       }
     }
 
-    return { regularLaws: regular, merkblaetter: pdfs }
+    return { regularLaws: regular, merkblaetter: supplements, pdfVariants: variants }
   }, [filteredLaws])
 
   // Helper function to extract section title from text content when database title is incomplete
@@ -1819,7 +1832,9 @@ export function LawBrowser({ onBack }) {
             <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800 flex-shrink-0">
               <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Laws & Regulations</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {regularLaws.length} laws{merkblaetter.length > 0 && `, ${merkblaetter.length} PDFs`}
+                {regularLaws.length} laws
+                {merkblaetter.length > 0 && `, ${merkblaetter.length} Merkbl.`}
+                {pdfVariants.length > 0 && `, ${pdfVariants.length} PDFs`}
                 {pagination.totalPages > 1 && ` (page ${pagination.page}/${pagination.totalPages})`}
               </p>
               {/* Search bar for laws */}
@@ -1890,8 +1905,56 @@ export function LawBrowser({ onBack }) {
                 </>
               )}
 
-              {/* Merkblätter / PDF Section */}
+              {/* Merkblätter / Supplements Section (blue styling) */}
               {merkblaetter.length > 0 && (
+                <>
+                  <div className="px-3 py-2 bg-blue-50 dark:bg-blue-900/20 border-y border-blue-100 dark:border-blue-800 sticky top-0 z-10">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                      </svg>
+                      <span className="font-semibold text-blue-700 dark:text-blue-300 text-sm">
+                        {framework === 'AT' ? 'AUVA Merkblätter' :
+                         framework === 'DE' ? 'DGUV / Technical Rules' :
+                         framework === 'NL' ? 'PGS / AI Publications' :
+                         'Merkblätter'}
+                      </span>
+                      <span className="text-xs text-blue-500 dark:text-blue-400">({merkblaetter.length})</span>
+                    </div>
+                  </div>
+                  {merkblaetter.map((law) => (
+                    <button
+                      key={law.id}
+                      onClick={() => selectLaw(law)}
+                      className={`w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
+                        selectedLaw?.id === law.id
+                          ? 'bg-blue-50 dark:bg-blue-900/20 border-l-4 border-l-blue-500'
+                          : 'hover:bg-gray-50 dark:hover:bg-whs-dark-800'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                          {law.abbreviation || law.abbr || 'Merkblatt'}
+                        </span>
+                        <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                        </svg>
+                      </div>
+                      <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
+                        {law.title_en || law.title || getShortenedLawName(law)}
+                      </h4>
+                      {law.metadata?.description && (
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
+                          {law.metadata.description}
+                        </p>
+                      )}
+                    </button>
+                  ))}
+                </>
+              )}
+
+              {/* PDF Variants Section (red styling for PDF versions of laws) */}
+              {pdfVariants.length > 0 && (
                 <>
                   <div className="px-3 py-2 bg-red-50 dark:bg-red-900/20 border-y border-red-100 dark:border-red-800 sticky top-0 z-10">
                     <div className="flex items-center gap-2">
@@ -1899,15 +1962,12 @@ export function LawBrowser({ onBack }) {
                         <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                       </svg>
                       <span className="font-semibold text-red-700 dark:text-red-300 text-sm">
-                        {framework === 'AT' ? 'AUVA Merkblätter' :
-                         framework === 'DE' ? 'DGUV / Technical Rules' :
-                         framework === 'NL' ? 'PGS / AI Publications' :
-                         'PDF Documents'}
+                        PDF Versions
                       </span>
-                      <span className="text-xs text-red-500 dark:text-red-400">({merkblaetter.length})</span>
+                      <span className="text-xs text-red-500 dark:text-red-400">({pdfVariants.length})</span>
                     </div>
                   </div>
-                  {merkblaetter.map((law) => (
+                  {pdfVariants.map((law) => (
                     <button
                       key={law.id}
                       onClick={() => selectLaw(law)}

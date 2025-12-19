@@ -1282,6 +1282,11 @@ export function isSupplementarySource(law) {
     return true
   }
 
+  // PDF variants of laws (e.g., ASchG-PDF, ARG-PDF) - these are PDF-only documents
+  if (abbrev.endsWith('-pdf')) {
+    return true
+  }
+
   // DE: Technical Rules and DGUV
   // TRBS - Technische Regeln für Betriebssicherheit
   // TRGS - Technische Regeln für Gefahrstoffe
@@ -1340,6 +1345,39 @@ export function getSupplementarySourceType(law) {
   return 'default'
 }
 
+/**
+ * Check if a law is a PDF variant of a regular law (e.g., ASchG-PDF, ARG-PDF)
+ * These are PDF-only versions of regular laws, distinct from Merkblätter
+ */
+export function isPdfVariant(law) {
+  if (!law) return false
+
+  const abbrev = (law.abbreviation || '').toUpperCase()
+
+  // PDF variants end with -PDF (e.g., ASchG-PDF, ARG-PDF, KJBG-PDF)
+  if (abbrev.endsWith('-PDF')) {
+    return true
+  }
+
+  return false
+}
+
+/**
+ * Check if a law is a true supplementary source (Merkblatt, guideline, etc.)
+ * Excludes PDF variants of regular laws
+ */
+export function isTrueSupplementarySource(law) {
+  if (!law) return false
+
+  // PDF variants are NOT true supplementary sources
+  if (isPdfVariant(law)) {
+    return false
+  }
+
+  // Check if it's a supplementary source (but not a PDF variant)
+  return isSupplementarySource(law)
+}
+
 export default {
   initializeLawsDatabase,
   isDatabaseLoaded,
@@ -1369,5 +1407,7 @@ export default {
   getPdfSourceUrl,
   hasPdfSource,
   isSupplementarySource,
-  getSupplementarySourceType
+  getSupplementarySourceType,
+  isPdfVariant,
+  isTrueSupplementarySource
 }

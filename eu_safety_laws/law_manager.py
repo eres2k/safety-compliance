@@ -5196,7 +5196,37 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
         log_warning(f"No documents to clean for {country}")
         return False
 
-    log_info(f"Processing {len(documents)} documents...")
+    # Filter out PDF-only documents (supplementary sources like AUVA Merkblätter)
+    # These should not be cleaned - just displayed as PDFs
+    cleanable_docs = []
+    skipped_docs = []
+    for i, doc in enumerate(documents):
+        is_pdf_only = doc.get('metadata', {}).get('is_pdf_only', False)
+        is_supp = is_supplementary_source(doc)
+        source_type = doc.get('source', {}).get('source_type', '')
+        abbrev = doc.get('abbreviation', '')
+
+        # Skip PDF-only documents - they should just display the PDF
+        # This includes:
+        # - Documents with is_pdf_only flag
+        # - Supplementary sources with PDF source type
+        # - Law variants ending in -PDF (e.g., ASchG-PDF, ARG-PDF)
+        if is_pdf_only or (is_supp and source_type == 'pdf') or abbrev.endswith('-PDF'):
+            skipped_docs.append((i, doc))
+        else:
+            cleanable_docs.append((i, doc))
+
+    if skipped_docs:
+        log_info(f"Skipping {len(skipped_docs)} PDF-only documents (displayed as PDFs, not cleaned)")
+        for idx, doc in skipped_docs:
+            title = doc.get('abbreviation', f'Doc {idx+1}')
+            log_info(f"  - {title} (PDF-only)")
+
+    if not cleanable_docs:
+        log_info("No documents to clean (all are PDF-only)")
+        return True
+
+    log_info(f"Processing {len(cleanable_docs)} documents...")
 
     if use_ai:
         # Use parallel processing for AI cleaning (optimized for Gemini 2K RPM)
@@ -5204,24 +5234,24 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=CONFIG.max_parallel_ai_requests) as executor:
             future_to_doc = {
-                executor.submit(_clean_document_with_ai, doc, api_key, country, fast_mode): i
-                for i, doc in enumerate(documents)
+                executor.submit(_clean_document_with_ai, doc, api_key, country, fast_mode): (orig_idx, doc)
+                for orig_idx, doc in cleanable_docs
             }
 
             for future in concurrent.futures.as_completed(future_to_doc):
-                doc_idx = future_to_doc[future]
-                title = documents[doc_idx].get('abbreviation', f'Doc {doc_idx+1}')
+                orig_idx, doc = future_to_doc[future]
+                title = doc.get('abbreviation', f'Doc {orig_idx+1}')
                 try:
                     cleaned_doc = future.result()
-                    documents[doc_idx] = cleaned_doc
-                    log_success(f"[{doc_idx+1}/{len(documents)}] Cleaned {title}")
+                    documents[orig_idx] = cleaned_doc
+                    log_success(f"Cleaned {title}")
                 except Exception as e:
                     log_error(f"Failed to clean {title}: {e}")
     else:
         # Sequential regex cleaning (fast, no API needed)
-        for i, doc in enumerate(documents):
-            title = doc.get('abbreviation', doc.get('title', f'Doc {i+1}'))
-            log_info(f"[{i+1}/{len(documents)}] Cleaning {title}...")
+        for orig_idx, doc in cleanable_docs:
+            title = doc.get('abbreviation', doc.get('title', f'Doc {orig_idx+1}'))
+            log_info(f"Cleaning {title}...")
 
             if doc.get('full_text'):
                 doc['full_text'] = clean_text_with_regex(doc['full_text'], country)
@@ -5233,6 +5263,7 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
                         if section.get('text'):
                             section['text'] = clean_text_with_regex(section['text'], country)
 
+            documents[orig_idx] = doc
             log_success(f"Cleaned {title}")
 
     # Update metadata
