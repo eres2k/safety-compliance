@@ -1909,7 +1909,7 @@
         }
       ],
       "content_hash": "432abda490fe7400f08b36642660d976",
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbowet_law.pdf"
+      "html_path": "eu_safety_laws/html/nl/nl_Arbowet_law.html"
     },
     {
       "id": "ea3a66ce6296e91d",
@@ -2331,7 +2331,7 @@
         }
       ],
       "content_hash": "cb28491149024adbf722ceadb8c76377",
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbobesluit_law.pdf"
+      "html_path": "eu_safety_laws/html/nl/nl_Arbobesluit_law.html"
     },
     {
       "id": "90eb74f92756b308",
@@ -2610,7 +2610,7 @@
         }
       ],
       "content_hash": "d138241ef1103aea5983875721a68c84",
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_Arboregeling_law.pdf"
+      "html_path": "eu_safety_laws/html/nl/nl_Arboregeling_law.html"
     },
     {
       "id": "06c23de69fdf264c",
@@ -3066,7 +3066,7 @@
         }
       ],
       "content_hash": "0d1d47efdfc66fee5a17b7cdfac4290c",
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbeidstijdenwet_law.pdf"
+      "html_path": "eu_safety_laws/html/nl/nl_Arbeidstijdenwet_law.html"
     },
     {
       "id": "c7e9952887d83fb7",
@@ -3328,7 +3328,7 @@
         }
       ],
       "content_hash": "9fd99393fe1e87a548e45a045672b2b4",
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_ATB_law.pdf"
+      "html_path": "eu_safety_laws/html/nl/nl_ATB_law.html"
     },
     {
       "id": "379622bc98858fcd",
@@ -28209,10 +28209,10 @@
         "title": "Arbeidsomstandighedenwet (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbowet-PDF_law.pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_Arbowet-PDF_law.html",
         "pdf_url": "https://wetten.overheid.nl/BWBR0010346/2024-01-01/0/pdf"
       },
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbowet-PDF_law.pdf",
+      "html_path": "eu_safety_laws/html/nl/nl_Arbowet-PDF_law.html",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T18:15:54.589276",
@@ -28259,10 +28259,10 @@
         "title": "Arbeidstijdenwet (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbeidstijdenwet-PDF_law.pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_Arbeidstijdenwet-PDF_law.html",
         "pdf_url": "https://wetten.overheid.nl/BWBR0007671/2024-01-01/0/pdf"
       },
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbeidstijdenwet-PDF_law.pdf",
+      "html_path": "eu_safety_laws/html/nl/nl_Arbeidstijdenwet-PDF_law.html",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T18:15:58.082418",
@@ -28309,10 +28309,10 @@
         "title": "Arbeidstijdenbesluit (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "eu_safety_laws/pdfs/nl/nl_ATB-PDF_law.pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_ATB-PDF_law.html",
         "pdf_url": "https://wetten.overheid.nl/BWBR0007687/2024-01-01/0/pdf"
       },
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_ATB-PDF_law.pdf",
+      "html_path": "eu_safety_laws/html/nl/nl_ATB-PDF_law.html",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T18:16:03.560169",
@@ -28359,10 +28359,10 @@
         "title": "Arbeidsomstandighedenbesluit (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbobesluit-PDF_law.pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_Arbobesluit-PDF_law.html",
         "pdf_url": "https://wetten.overheid.nl/BWBR0008498/2024-01-01/0/pdf"
       },
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_Arbobesluit-PDF_law.pdf",
+      "html_path": "eu_safety_laws/html/nl/nl_Arbobesluit-PDF_law.html",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T18:16:15.269773",
@@ -28409,10 +28409,10 @@
         "title": "Arbeidsomstandighedenregeling (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "eu_safety_laws/pdfs/nl/nl_Arboregeling-PDF_law.pdf",
+        "local_html_path": "eu_safety_laws/html/nl/nl_Arboregeling-PDF_law.html",
         "pdf_url": "https://wetten.overheid.nl/BWBR0008587/2024-01-01/0/pdf"
       },
-      "pdf_path": "eu_safety_laws/pdfs/nl/nl_Arboregeling-PDF_law.pdf",
+      "html_path": "eu_safety_laws/html/nl/nl_Arboregeling-PDF_law.html",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T18:16:20.032266",
