@@ -195,6 +195,7 @@ class Config:
     })
 
     # Merkblätter / Supplementary sources (PDFs from safety organizations)
+    # NOTE: These are supplementary sources only - main laws come from official government HTML sources
     merkblaetter_sources: Dict[str, Dict[str, Any]] = field(default_factory=lambda: {
         "AT": {
             "auva": {
@@ -205,16 +206,15 @@ class Config:
                 "series": {
                     "M": {
                         "name": "M-Reihe",
-                        "pattern": "/cdscontent/load?contentid=10008.544628&version=*",
                         "description": "Merkblätter zur Arbeitssicherheit"
                     },
                     "M.plus": {
                         "name": "M.plus",
-                        "pattern": "/cdscontent/load?contentid=10008.544629&version=*",
                         "description": "Erweiterte Merkblätter"
                     }
                 },
-                "catalog_url": "https://www.auva.at/cdscontent/load?contentid=10008.544627&version=*"
+                # Updated catalog URL - AUVA publications listing page
+                "catalog_url": "https://www.auva.at/cdscontent/load?contentid=10008.738874&version=1702480267"
             }
         },
         "DE": {
@@ -226,17 +226,14 @@ class Config:
                 "series": {
                     "vorschriften": {
                         "name": "DGUV Vorschriften",
-                        "pattern": "/widgets/pdf/download/article/*",
                         "description": "Unfallverhütungsvorschriften (accident prevention regulations)"
                     },
                     "regeln": {
                         "name": "DGUV Regeln",
-                        "pattern": "/widgets/pdf/download/article/*",
                         "description": "Regeln für Sicherheit und Gesundheit bei der Arbeit"
                     },
                     "information": {
                         "name": "DGUV Informationen",
-                        "pattern": "/widgets/pdf/download/article/*",
                         "description": "Informationsschriften"
                     }
                 },
@@ -252,12 +249,10 @@ class Config:
                 "series": {
                     "arbocatalogi": {
                         "name": "Arbocatalogi",
-                        "pattern": "/onderwerpen/arbocatalogi/*",
                         "description": "Sector-specific working conditions catalogues"
                     },
                     "instrumenten": {
                         "name": "Instrumenten",
-                        "pattern": "/onderwerpen/instrumenten/*",
                         "description": "Tools and checklists for workplace safety"
                     }
                 },
@@ -2715,44 +2710,24 @@ class ATScraper(Scraper):
         super().__init__('AT', law_limit)
 
     def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
-        """Scrape a single law - used for parallel processing."""
+        """Scrape a single law - used for parallel processing.
+
+        Priority: HTML sources from official government sites (ris.bka.gv.at)
+        PDF is only used as fallback or for supplementary download.
+        """
         # Set current law for AI URL correction on sub-page failures
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check for PDF verification source first (preferred over HTML)
-        pdf_source = get_pdf_source_for_law("AT", abbrev)
-        if pdf_source and HAS_PDF:
-            pdf_url = pdf_source.get("url", "")
-            if pdf_url:
-                # Make URL absolute if needed
-                if not pdf_url.startswith('http'):
-                    pdf_url = self._get_full_url(pdf_url)
-                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
-                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "AT")
-                if doc:
-                    # Add WHS topics classification
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    doc['source']['pdf_preferred'] = True
-                    return doc
-                else:
-                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
-
-        # Check if this is a PDF source (direct PDF URL)
+        # Check if this is a direct PDF URL (only case where we use PDF as primary)
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
             if HAS_PDF:
-                log_info(f"  Using PDF parser for {abbrev}")
-                # Get title from custom sources if available
+                log_info(f"  Using PDF parser for {abbrev} (direct PDF URL)")
                 custom = load_custom_sources()
                 title = custom.get('custom_sources', {}).get('AT', {}).get(abbrev, {}).get('name', abbrev)
                 doc = parse_pdf_to_law_document(url, abbrev, title, "AT")
                 if doc:
-                    # Add WHS topics classification
                     for chapter in doc.get('chapters', []):
                         for section in chapter.get('sections', []):
                             section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
@@ -2763,6 +2738,7 @@ class ATScraper(Scraper):
                 log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
             return None
 
+        # PRIMARY: Scrape from HTML source (official government website)
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
@@ -2771,18 +2747,51 @@ class ATScraper(Scraper):
                 log_info(f"  Using Jusline parser for {abbrev}")
                 doc = self._parse_jusline_law(html, abbrev, url)
             elif any(domain in url for domain in ['arbeitsinspektorat', 'sozialministerium', 'auva.at', 'wko.at', 'arbeiterkammer', 'oesterreich.gv.at', 'help.gv.at']):
-                # Generic parser for Austrian government/institutional sources
                 source_name = next((d for d in ['arbeitsinspektorat', 'sozialministerium', 'auva', 'wko', 'arbeiterkammer', 'oesterreich', 'help'] if d in url), 'Generic')
                 log_info(f"  Using {source_name} parser for {abbrev}")
                 doc = self._parse_generic_law(html, abbrev, url)
             else:
-                # Default: RIS parser
+                # Default: RIS parser (ris.bka.gv.at)
                 doc = self._parse_ris_law_full(html, abbrev, url)
 
             if doc:
                 total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
-                log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
+                log_success(f"Scraped {abbrev}: {total_sections} sections with full text from HTML")
+
+                # SUPPLEMENTARY: Try to download PDF for offline access (non-blocking)
+                pdf_source = get_pdf_source_for_law("AT", abbrev)
+                if pdf_source and HAS_PDF:
+                    pdf_url = pdf_source.get("url", "")
+                    if pdf_url:
+                        if not pdf_url.startswith('http'):
+                            pdf_url = self._get_full_url(pdf_url)
+                        # Store PDF path in document for download link
+                        pdf_info = download_and_store_pdf(pdf_url, "AT", abbrev, doc_type="law")
+                        if pdf_info:
+                            doc['pdf_path'] = pdf_info.get('local_path', '')
+                            doc['source']['pdf_url'] = pdf_url
+                            log_info(f"  Downloaded PDF for offline access: {pdf_info.get('filename', '')}")
+
                 return doc
+
+        # FALLBACK: If HTML parsing failed completely, try PDF as last resort
+        pdf_source = get_pdf_source_for_law("AT", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_warning(f"  HTML parsing failed for {abbrev}, falling back to PDF source")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "AT")
+                if doc:
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_fallback'] = True
+                    return doc
+
         return None
 
     def _parse_jusline_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
@@ -3385,44 +3394,24 @@ class DEScraper(Scraper):
         super().__init__('DE', law_limit)
 
     def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
-        """Scrape a single law - used for parallel processing."""
+        """Scrape a single law - used for parallel processing.
+
+        Priority: HTML sources from official government sites (gesetze-im-internet.de)
+        PDF is only used as fallback or for supplementary download.
+        """
         # Set current law for AI URL correction on sub-page failures
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check for PDF verification source first (preferred over HTML)
-        pdf_source = get_pdf_source_for_law("DE", abbrev)
-        if pdf_source and HAS_PDF:
-            pdf_url = pdf_source.get("url", "")
-            if pdf_url:
-                # Make URL absolute if needed
-                if not pdf_url.startswith('http'):
-                    pdf_url = self._get_full_url(pdf_url)
-                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
-                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "DE")
-                if doc:
-                    # Add WHS topics classification
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    doc['source']['pdf_preferred'] = True
-                    return doc
-                else:
-                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
-
-        # Check if this is a PDF source (direct PDF URL)
+        # Check if this is a direct PDF URL (only case where we use PDF as primary)
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
             if HAS_PDF:
-                log_info(f"  Using PDF parser for {abbrev}")
-                # Get title from custom sources if available
+                log_info(f"  Using PDF parser for {abbrev} (direct PDF URL)")
                 custom = load_custom_sources()
                 title = custom.get('custom_sources', {}).get('DE', {}).get(abbrev, {}).get('name', abbrev)
                 doc = parse_pdf_to_law_document(url, abbrev, title, "DE")
                 if doc:
-                    # Add WHS topics classification
                     for chapter in doc.get('chapters', []):
                         for section in chapter.get('sections', []):
                             section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
@@ -3433,6 +3422,7 @@ class DEScraper(Scraper):
                 log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
             return None
 
+        # PRIMARY: Scrape from HTML source (official government website)
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
@@ -3441,7 +3431,6 @@ class DEScraper(Scraper):
                 log_info(f"  Using Dejure parser for {abbrev}")
                 doc = self._parse_dejure_law(html, abbrev, url)
             elif any(domain in url for domain in ['buzer.de', 'bmas.de', 'baua.de', 'dguv.de', 'gesetze-bayern.de']):
-                # Generic parser for German alternative sources
                 source_name = next((d.split('.')[0] for d in ['buzer.de', 'bmas.de', 'baua.de', 'dguv.de', 'gesetze-bayern.de'] if d in url), 'Generic')
                 log_info(f"  Using {source_name} parser for {abbrev}")
                 doc = self._parse_generic_de_law(html, abbrev, url)
@@ -3451,8 +3440,41 @@ class DEScraper(Scraper):
 
             if doc:
                 total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
-                log_success(f"Scraped {abbrev}: {total_sections} sections with full text")
+                log_success(f"Scraped {abbrev}: {total_sections} sections with full text from HTML")
+
+                # SUPPLEMENTARY: Try to download PDF for offline access (non-blocking)
+                pdf_source = get_pdf_source_for_law("DE", abbrev)
+                if pdf_source and HAS_PDF:
+                    pdf_url = pdf_source.get("url", "")
+                    if pdf_url:
+                        if not pdf_url.startswith('http'):
+                            pdf_url = self._get_full_url(pdf_url)
+                        pdf_info = download_and_store_pdf(pdf_url, "DE", abbrev, doc_type="law")
+                        if pdf_info:
+                            doc['pdf_path'] = pdf_info.get('local_path', '')
+                            doc['source']['pdf_url'] = pdf_url
+                            log_info(f"  Downloaded PDF for offline access: {pdf_info.get('filename', '')}")
+
                 return doc
+
+        # FALLBACK: If HTML parsing failed completely, try PDF as last resort
+        pdf_source = get_pdf_source_for_law("DE", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_warning(f"  HTML parsing failed for {abbrev}, falling back to PDF source")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "DE")
+                if doc:
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_fallback'] = True
+                    return doc
+
         return None
 
     def _parse_dejure_law(self, html: str, abbrev: str, url: str) -> Optional[Dict[str, Any]]:
@@ -3924,44 +3946,24 @@ class NLScraper(Scraper):
         super().__init__('NL', law_limit)
 
     def _scrape_single_law(self, abbrev: str, path: str) -> Optional[Dict[str, Any]]:
-        """Scrape a single law - used for parallel processing."""
+        """Scrape a single law - used for parallel processing.
+
+        Priority: HTML sources from official government sites (wetten.overheid.nl)
+        PDF is only used as fallback or for supplementary download.
+        """
         # Set current law for AI URL correction on sub-page failures
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check for PDF verification source first (preferred over HTML)
-        pdf_source = get_pdf_source_for_law("NL", abbrev)
-        if pdf_source and HAS_PDF:
-            pdf_url = pdf_source.get("url", "")
-            if pdf_url:
-                # Make URL absolute if needed
-                if not pdf_url.startswith('http'):
-                    pdf_url = self._get_full_url(pdf_url)
-                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
-                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "NL")
-                if doc:
-                    # Add WHS topics classification
-                    for chapter in doc.get('chapters', []):
-                        for section in chapter.get('sections', []):
-                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
-                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
-                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
-                    doc['source']['pdf_preferred'] = True
-                    return doc
-                else:
-                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
-
-        # Check if this is a PDF source (direct PDF URL)
+        # Check if this is a direct PDF URL (only case where we use PDF as primary)
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url or '/pdf' in url:
             if HAS_PDF:
-                log_info(f"  Using PDF parser for {abbrev}")
-                # Get title from custom sources if available
+                log_info(f"  Using PDF parser for {abbrev} (direct PDF URL)")
                 custom = load_custom_sources()
                 title = custom.get('custom_sources', {}).get('NL', {}).get(abbrev, {}).get('name', abbrev)
                 doc = parse_pdf_to_law_document(url, abbrev, title, "NL")
                 if doc:
-                    # Add WHS topics classification
                     for chapter in doc.get('chapters', []):
                         for section in chapter.get('sections', []):
                             section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
@@ -3972,6 +3974,7 @@ class NLScraper(Scraper):
                 log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
             return None
 
+        # PRIMARY: Scrape from HTML source (official government website)
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
@@ -3987,8 +3990,41 @@ class NLScraper(Scraper):
 
             if doc:
                 total_sections = sum(len(ch.get('sections', [])) for ch in doc.get('chapters', []))
-                log_success(f"Scraped {abbrev}: {total_sections} articles with full text")
+                log_success(f"Scraped {abbrev}: {total_sections} articles with full text from HTML")
+
+                # SUPPLEMENTARY: Try to download PDF for offline access (non-blocking)
+                pdf_source = get_pdf_source_for_law("NL", abbrev)
+                if pdf_source and HAS_PDF:
+                    pdf_url = pdf_source.get("url", "")
+                    if pdf_url:
+                        if not pdf_url.startswith('http'):
+                            pdf_url = self._get_full_url(pdf_url)
+                        pdf_info = download_and_store_pdf(pdf_url, "NL", abbrev, doc_type="law")
+                        if pdf_info:
+                            doc['pdf_path'] = pdf_info.get('local_path', '')
+                            doc['source']['pdf_url'] = pdf_url
+                            log_info(f"  Downloaded PDF for offline access: {pdf_info.get('filename', '')}")
+
                 return doc
+
+        # FALLBACK: If HTML parsing failed completely, try PDF as last resort
+        pdf_source = get_pdf_source_for_law("NL", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_warning(f"  HTML parsing failed for {abbrev}, falling back to PDF source")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "NL")
+                if doc:
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_fallback'] = True
+                    return doc
+
         return None
 
     def _parse_generic_nl_law(self, html: str, abbrev: str, url: str, authority: str) -> Optional[Dict[str, Any]]:
