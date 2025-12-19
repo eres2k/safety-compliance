@@ -4084,7 +4084,7 @@ Return a JSON array of issues found (empty array if no issues):
 Only return the JSON array, no other text. If everything looks good, return []."""
 
     try:
-        response = call_gemini_api(prompt, temperature=0.2, max_tokens=2048)
+        response = call_gemini_api(prompt, temperature=0.5, max_tokens=2048)
 
         if not response:
             return issues
@@ -4392,7 +4392,7 @@ Only return the JSON, no other text."""
     time.sleep(CONFIG.ai_rate_limit_delay)  # Rate limiting
 
     try:
-        response = call_gemini_api(prompt, temperature=0.3, max_tokens=4096)
+        response = call_gemini_api(prompt, temperature=0.5, max_tokens=4096)
 
         if not response:
             return {'status': 'error', 'message': 'AI returned no response'}
