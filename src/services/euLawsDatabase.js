@@ -1213,32 +1213,73 @@ export function hasPdfSource(law) {
 /**
  * Check if a law has a LOCAL PDF that can be embedded in an iframe.
  * External PDFs cannot be embedded due to cross-origin restrictions.
+ *
+ * Checks for:
+ * 1. Explicit local_pdf_path in source
+ * 2. PDF-only documents where we can construct the local path
  */
 export function hasLocalPdf(law) {
   if (!law) return false
 
-  // Only local PDFs can be embedded
+  // Method 1: Check for explicit local_pdf_path
   if (law.source?.local_pdf_path) {
     const path = law.source.local_pdf_path
     const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
-    return !!match
+    if (match) return true
+  }
+
+  // Method 2: Check if this is a PDF-only document where we can construct the local path
+  const isPdfDocument =
+    law.metadata?.is_pdf_only ||
+    law.source?.source_type === 'pdf' ||
+    (law.abbreviation || '').toUpperCase().endsWith('-PDF')
+
+  if (isPdfDocument && law.jurisdiction) {
+    // PDF files are stored as: {country}_{abbrev}_{type}.pdf
+    return true
   }
 
   return false
 }
 
 /**
- * Get the local PDF URL for embedding. Returns null if PDF is external.
+ * Get the local PDF URL for embedding.
+ * Constructs URL from document metadata if local_pdf_path isn't set.
  */
 export function getLocalPdfUrl(law) {
   if (!law) return null
 
+  // Method 1: Check for explicit local_pdf_path
   if (law.source?.local_pdf_path) {
     const path = law.source.local_pdf_path
     const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
     if (match) {
       return `/eu_safety_laws/pdfs/${match[1]}`
     }
+  }
+
+  // Method 2: Construct path for PDF-only documents
+  const isPdfDocument =
+    law.metadata?.is_pdf_only ||
+    law.source?.source_type === 'pdf' ||
+    (law.abbreviation || '').toUpperCase().endsWith('-PDF')
+
+  if (isPdfDocument && law.jurisdiction) {
+    const country = (law.jurisdiction || law.country || 'at').toLowerCase()
+    let abbrev = law.abbreviation || ''
+
+    // Remove -PDF suffix if present (e.g., ASchG-PDF -> ASchG)
+    if (abbrev.toUpperCase().endsWith('-PDF')) {
+      abbrev = abbrev.slice(0, -4)
+    }
+
+    // Clean abbreviation for filename
+    const safeAbbrev = abbrev.replace(/[^\w\-]/g, '_')
+
+    // Determine document type for filename
+    const docType = isSupplementarySource(law) ? 'merkblatt' : 'law'
+
+    return `/eu_safety_laws/pdfs/${country}/${country}_${safeAbbrev}_${docType}.pdf`
   }
 
   return null
