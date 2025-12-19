@@ -5204,9 +5204,14 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
         is_pdf_only = doc.get('metadata', {}).get('is_pdf_only', False)
         is_supp = is_supplementary_source(doc)
         source_type = doc.get('source', {}).get('source_type', '')
+        abbrev = doc.get('abbreviation', '')
 
-        # Skip PDF-only supplementary sources - they should just display the PDF
-        if is_pdf_only or (is_supp and source_type == 'pdf'):
+        # Skip PDF-only documents - they should just display the PDF
+        # This includes:
+        # - Documents with is_pdf_only flag
+        # - Supplementary sources with PDF source type
+        # - Law variants ending in -PDF (e.g., ASchG-PDF, ARG-PDF)
+        if is_pdf_only or (is_supp and source_type == 'pdf') or abbrev.endswith('-PDF'):
             skipped_docs.append((i, doc))
         else:
             cleanable_docs.append((i, doc))

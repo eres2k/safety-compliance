@@ -1282,6 +1282,11 @@ export function isSupplementarySource(law) {
     return true
   }
 
+  // PDF variants of laws (e.g., ASchG-PDF, ARG-PDF) - these are PDF-only documents
+  if (abbrev.endsWith('-pdf')) {
+    return true
+  }
+
   // DE: Technical Rules and DGUV
   // TRBS - Technische Regeln für Betriebssicherheit
   // TRGS - Technische Regeln für Gefahrstoffe
