@@ -121,7 +121,7 @@ except ImportError:
 class Config:
     """Global configuration for the law manager."""
     base_path: Path = field(default_factory=lambda: Path(__file__).parent)
-    scraper_version: str = "7.5.0"  # Fallback to stable gemini-2.5-flash
+    scraper_version: str = "8.0.0"  # Multi-country scraping with PDF management
     request_timeout: int = 60
     rate_limit_delay: float = 0.1  # 100ms base delay between requests
     max_retries: int = 3
@@ -133,11 +133,19 @@ class Config:
     ai_rate_limit_delay: float = 0.05  # 50ms between AI batches
     ai_max_tokens: int = 8192
 
+    # PDF storage directory
+    pdf_storage_dir: Path = field(default_factory=lambda: Path(__file__).parent / "pdfs")
+
     # Source URLs - laws are ordered by relevance (first = most important)
     sources: Dict[str, Dict[str, str]] = field(default_factory=lambda: {
         "AT": {
             "base_url": "https://www.ris.bka.gv.at",
             "authority": "RIS",
+            "structure_labels": {
+                "grouping_1": "Abschnitt",
+                "grouping_2": "Unterabschnitt",
+                "article": "§"
+            },
             "main_laws": {
                 "ASchG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",      # Worker Protection Act
                 "AZG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008238",        # Working Time Act
@@ -152,6 +160,11 @@ class Config:
         "DE": {
             "base_url": "https://www.gesetze-im-internet.de",
             "authority": "gesetze-im-internet.de",
+            "structure_labels": {
+                "grouping_1": "Abschnitt",  # Or "Buch" for larger laws like BGB
+                "grouping_2": "Titel",
+                "article": "§"
+            },
             "main_laws": {
                 "ArbSchG": "/arbschg/",           # Occupational Safety Act
                 "ASiG": "/asig/",                 # Workplace Safety Act
@@ -166,12 +179,89 @@ class Config:
         "NL": {
             "base_url": "https://wetten.overheid.nl",
             "authority": "wetten.overheid.nl",
+            "structure_labels": {
+                "grouping_1": "Hoofdstuk",
+                "grouping_2": "Afdeling",
+                "article": "Artikel"
+            },
             "main_laws": {
                 "Arbowet": "/BWBR0010346/geldend",           # Working Conditions Act
                 "Arbobesluit": "/BWBR0008498/geldend",      # Working Conditions Decree
                 "Arboregeling": "/BWBR0008587/geldend",    # Working Conditions Regulation
                 "Arbeidstijdenwet": "/BWBR0007671/geldend", # Working Time Act
                 "ATB": "/BWBR0007687/geldend",              # Working Time Decree
+            }
+        }
+    })
+
+    # Merkblätter / Supplementary sources (PDFs from safety organizations)
+    merkblaetter_sources: Dict[str, Dict[str, Any]] = field(default_factory=lambda: {
+        "AT": {
+            "auva": {
+                "name": "AUVA Merkblätter",
+                "base_url": "https://www.auva.at",
+                "authority": "AUVA",
+                "description": "Allgemeine Unfallversicherungsanstalt - Austrian accident insurance",
+                "series": {
+                    "M": {
+                        "name": "M-Reihe",
+                        "pattern": "/cdscontent/load?contentid=10008.544628&version=*",
+                        "description": "Merkblätter zur Arbeitssicherheit"
+                    },
+                    "M.plus": {
+                        "name": "M.plus",
+                        "pattern": "/cdscontent/load?contentid=10008.544629&version=*",
+                        "description": "Erweiterte Merkblätter"
+                    }
+                },
+                "catalog_url": "https://www.auva.at/cdscontent/load?contentid=10008.544627&version=*"
+            }
+        },
+        "DE": {
+            "dguv": {
+                "name": "DGUV Publikationen",
+                "base_url": "https://publikationen.dguv.de",
+                "authority": "DGUV",
+                "description": "Deutsche Gesetzliche Unfallversicherung publications",
+                "series": {
+                    "vorschriften": {
+                        "name": "DGUV Vorschriften",
+                        "pattern": "/widgets/pdf/download/article/*",
+                        "description": "Unfallverhütungsvorschriften (accident prevention regulations)"
+                    },
+                    "regeln": {
+                        "name": "DGUV Regeln",
+                        "pattern": "/widgets/pdf/download/article/*",
+                        "description": "Regeln für Sicherheit und Gesundheit bei der Arbeit"
+                    },
+                    "information": {
+                        "name": "DGUV Informationen",
+                        "pattern": "/widgets/pdf/download/article/*",
+                        "description": "Informationsschriften"
+                    }
+                },
+                "catalog_url": "https://publikationen.dguv.de/regelwerk/"
+            }
+        },
+        "NL": {
+            "arboportaal": {
+                "name": "Arboportaal / Arbocatalogi",
+                "base_url": "https://www.arboportaal.nl",
+                "authority": "Arboportaal",
+                "description": "Dutch work conditions portal and sector catalogues",
+                "series": {
+                    "arbocatalogi": {
+                        "name": "Arbocatalogi",
+                        "pattern": "/onderwerpen/arbocatalogi/*",
+                        "description": "Sector-specific working conditions catalogues"
+                    },
+                    "instrumenten": {
+                        "name": "Instrumenten",
+                        "pattern": "/onderwerpen/instrumenten/*",
+                        "description": "Tools and checklists for workplace safety"
+                    }
+                },
+                "catalog_url": "https://www.arboportaal.nl/onderwerpen/arbocatalogi"
             }
         }
     })
@@ -1217,6 +1307,392 @@ def get_api_key() -> Optional[str]:
         api_key = os.environ.get('VITE_GEMINI_API_KEY')
 
     return api_key
+
+
+# =============================================================================
+# Enhanced PDF Management
+# =============================================================================
+
+def ensure_pdf_storage_dir(country: str = None) -> Path:
+    """Ensure PDF storage directory exists and return path."""
+    base_dir = CONFIG.pdf_storage_dir
+    if country:
+        target_dir = base_dir / country.lower()
+    else:
+        target_dir = base_dir
+    target_dir.mkdir(parents=True, exist_ok=True)
+    return target_dir
+
+
+def download_and_store_pdf(url: str, country: str, abbrev: str, doc_type: str = "law") -> Optional[Dict[str, str]]:
+    """
+    Download a PDF from URL and store it locally.
+
+    Returns dict with:
+        - local_path: Path to stored PDF file
+        - filename: Just the filename
+        - url: Original URL
+        - size_bytes: File size
+
+    Returns None if download fails.
+    """
+    if not HAS_REQUESTS:
+        log_warning("requests package required for PDF download")
+        return None
+
+    try:
+        # Create filename from abbreviation and doc type
+        safe_abbrev = re.sub(r'[^\w\-]', '_', abbrev)
+        filename = f"{country.lower()}_{safe_abbrev}_{doc_type}.pdf"
+
+        # Ensure directory exists
+        storage_dir = ensure_pdf_storage_dir(country)
+        local_path = storage_dir / filename
+
+        # Download the PDF
+        log_info(f"Downloading PDF for {abbrev}...")
+        response = requests.get(url, timeout=CONFIG.request_timeout, headers=Scraper.HTTP_HEADERS)
+        response.raise_for_status()
+
+        # Verify it's actually a PDF
+        content_type = response.headers.get('Content-Type', '')
+        if 'application/pdf' not in content_type and not url.lower().endswith('.pdf'):
+            log_warning(f"URL may not be a PDF (Content-Type: {content_type})")
+
+        # Save to local file
+        with open(local_path, 'wb') as f:
+            f.write(response.content)
+
+        size_bytes = len(response.content)
+        log_success(f"Stored PDF: {filename} ({size_bytes / 1024:.1f} KB)")
+
+        return {
+            "local_path": str(local_path),
+            "filename": filename,
+            "url": url,
+            "size_bytes": size_bytes
+        }
+
+    except requests.exceptions.RequestException as e:
+        log_error(f"Failed to download PDF from {url}: {e}")
+        return None
+    except IOError as e:
+        log_error(f"Failed to save PDF: {e}")
+        return None
+
+
+def get_local_pdf_path(country: str, abbrev: str, doc_type: str = "law") -> Optional[str]:
+    """Get the local path for a stored PDF if it exists."""
+    safe_abbrev = re.sub(r'[^\w\-]', '_', abbrev)
+    filename = f"{country.lower()}_{safe_abbrev}_{doc_type}.pdf"
+    storage_dir = ensure_pdf_storage_dir(country)
+    local_path = storage_dir / filename
+
+    if local_path.exists():
+        return str(local_path)
+    return None
+
+
+# =============================================================================
+# Unified Document Schema
+# =============================================================================
+
+# Document type enumeration
+class DocType:
+    LAW = "law"
+    ORDINANCE = "ordinance"
+    MERKBLATT = "merkblatt"
+    GUIDELINE = "guideline"
+    REGULATION = "regulation"
+
+
+def create_unified_document(
+    country: str,
+    abbrev: str,
+    title: str,
+    doc_type: str = DocType.LAW,
+    source_url: str = "",
+    source_authority: str = "",
+    content_text: str = "",
+    grouping_1: str = "",  # Abschnitt/Buch/Hoofdstuk
+    grouping_2: str = "",  # Titel/Afdeling/Unterabschnitt
+    article_id: str = "",  # § 12 / Art. 4
+    pdf_path: str = "",
+    ai_summary: str = "",
+    chapters: List[Dict] = None,
+    sections: List[Dict] = None,
+    full_text: str = "",
+    whs_topics: List[Dict] = None,
+    metadata: Dict = None
+) -> Dict[str, Any]:
+    """
+    Create a document using the unified schema that handles differences
+    between AT/DE/NL legal structures.
+
+    Schema fields:
+        - id: Unique document identifier
+        - country: Enum (AT, DE, NL)
+        - doc_type: Enum (law, ordinance, merkblatt, guideline, regulation)
+        - title: Full title (e.g., "ASchG", "BGB")
+        - grouping_1: Generic field for "Abschnitt"/"Buch"/"Hoofdstuk"
+        - grouping_2: Generic field for "Titel"/"Afdeling"
+        - article_id: e.g., "§ 12", "Art. 4"
+        - text_content: Main text content
+        - ai_summary: AI-generated summary (for PDF-only sources)
+        - pdf_path: Local path to stored PDF
+        - source_url: Original source URL
+    """
+    # Get structure labels for country
+    country_config = CONFIG.sources.get(country, {})
+    structure_labels = country_config.get("structure_labels", {
+        "grouping_1": "Section",
+        "grouping_2": "Subsection",
+        "article": "Article"
+    })
+
+    doc = {
+        # Core identification
+        "id": generate_id(f"{country}-{abbrev}-{datetime.now().isoformat()}"),
+        "version": "1.0.0",
+
+        # Country and type
+        "country": country,
+        "jurisdiction": country,  # Alias for backwards compatibility
+        "doc_type": doc_type,
+        "type": doc_type,  # Alias for backwards compatibility
+
+        # Naming
+        "abbreviation": abbrev,
+        "title": title,
+        "title_en": title,  # Can be updated later
+        "category": "Core Safety" if doc_type in [DocType.LAW, DocType.ORDINANCE] else "Supplementary",
+
+        # Structure labels (country-specific)
+        "structure_labels": structure_labels,
+        "grouping_1": grouping_1 or structure_labels.get("grouping_1", ""),
+        "grouping_2": grouping_2 or structure_labels.get("grouping_2", ""),
+        "article_label": structure_labels.get("article", "§"),
+
+        # Content
+        "text_content": content_text,
+        "full_text": full_text or content_text,
+        "ai_summary": ai_summary,
+
+        # Source information
+        "source": {
+            "url": source_url,
+            "authority": source_authority or country_config.get("authority", ""),
+            "title": title,
+            "robots_txt_compliant": True,
+            "source_type": "pdf" if pdf_path else "html"
+        },
+
+        # PDF information
+        "pdf_path": pdf_path,
+        "pdf_available": bool(pdf_path),
+
+        # Scraping metadata
+        "scraping": {
+            "scraped_at": datetime.now().isoformat(),
+            "scraper_version": CONFIG.scraper_version,
+            "source_type": "pdf" if pdf_path else "html"
+        },
+
+        # Structure
+        "chapters": chapters or [],
+        "sections": sections or [],
+
+        # Analysis
+        "whs_topics": whs_topics or [],
+        "whs_summary": {},
+
+        # Custom metadata
+        "metadata": metadata or {}
+    }
+
+    # Generate content hash
+    doc["content_hash"] = generate_content_hash(doc)
+
+    return doc
+
+
+def get_structure_label(country: str, level: str = "grouping_1") -> str:
+    """
+    Get the appropriate structure label for a country.
+
+    Args:
+        country: AT, DE, or NL
+        level: "grouping_1" (top level), "grouping_2" (second level), or "article"
+
+    Returns:
+        Localized label string
+    """
+    labels = {
+        "AT": {"grouping_1": "Abschnitt", "grouping_2": "Unterabschnitt", "article": "§"},
+        "DE": {"grouping_1": "Abschnitt", "grouping_2": "Titel", "article": "§"},
+        "NL": {"grouping_1": "Hoofdstuk", "grouping_2": "Afdeling", "article": "Artikel"}
+    }
+    return labels.get(country, {}).get(level, level)
+
+
+# =============================================================================
+# AI Context Awareness
+# =============================================================================
+
+# Country-specific AI context configurations
+AI_COUNTRY_CONTEXT = {
+    "AT": {
+        "language": "German (Austrian)",
+        "legal_system": "Austrian civil law",
+        "terminology_notes": [
+            "Use Austrian German terminology (e.g., 'Arbeitnehmer' not 'Beschäftigte')",
+            "Reference Austrian federal law structure (Bundesgesetz)",
+            "Use Austrian legal citations (BGBl., StF.)",
+            "Recognize Austrian administrative structure (Bundesländer)"
+        ],
+        "key_authorities": ["RIS", "AUVA", "Arbeitsinspektorat"],
+        "legal_framework": "ASchG (ArbeitnehmerInnenschutzgesetz) as primary WHS law"
+    },
+    "DE": {
+        "language": "German (Standard)",
+        "legal_system": "German civil law",
+        "terminology_notes": [
+            "Use German legal terminology (e.g., 'Beschäftigte', 'Gefährdungsbeurteilung')",
+            "Reference German federal law structure (Bundesrecht)",
+            "Use German legal citations (BGBl., BAnz.)",
+            "Recognize DGUV and Berufsgenossenschaften role"
+        ],
+        "key_authorities": ["gesetze-im-internet.de", "DGUV", "BAuA"],
+        "legal_framework": "ArbSchG (Arbeitsschutzgesetz) as primary WHS law"
+    },
+    "NL": {
+        "language": "Dutch",
+        "legal_system": "Dutch civil law",
+        "terminology_notes": [
+            "Use Dutch legal terminology (e.g., 'werkgever', 'werknemer', 'RI&E')",
+            "Reference Dutch law structure (Wet, Besluit, Regeling)",
+            "Use Dutch legal citations (Stb., Stcrt.)",
+            "Recognize Inspectie SZW and sector arbocatalogi"
+        ],
+        "key_authorities": ["wetten.overheid.nl", "Arboportaal", "Inspectie SZW"],
+        "legal_framework": "Arbowet (Arbeidsomstandighedenwet) as primary WHS law"
+    }
+}
+
+# Document type context for AI
+AI_DOC_TYPE_CONTEXT = {
+    DocType.LAW: {
+        "description": "Primary legislation with binding legal force",
+        "citation_style": "Must cite specific sections/articles accurately",
+        "interpretation": "Interpret according to legal principles and judicial precedent"
+    },
+    DocType.ORDINANCE: {
+        "description": "Implementing regulation with binding legal force",
+        "citation_style": "Reference parent law and specific provisions",
+        "interpretation": "Read in conjunction with parent legislation"
+    },
+    DocType.MERKBLATT: {
+        "description": "Guidance document / information sheet (non-binding)",
+        "citation_style": "Reference as guidance, not binding law",
+        "interpretation": "Best practice recommendations, not legal requirements"
+    },
+    DocType.GUIDELINE: {
+        "description": "Technical guidance or standards",
+        "citation_style": "Reference issuing authority and publication date",
+        "interpretation": "Industry best practices, may become de facto requirements"
+    }
+}
+
+
+def get_ai_context_prompt(country: str, doc_type: str = DocType.LAW) -> str:
+    """
+    Generate an AI context prompt that includes country and document type awareness.
+
+    This prompt should be prepended to AI requests to ensure context-aware responses.
+    """
+    country_ctx = AI_COUNTRY_CONTEXT.get(country, AI_COUNTRY_CONTEXT["DE"])
+    doc_ctx = AI_DOC_TYPE_CONTEXT.get(doc_type, AI_DOC_TYPE_CONTEXT[DocType.LAW])
+
+    terminology = "\n".join(f"  - {note}" for note in country_ctx["terminology_notes"])
+
+    prompt = f"""You are analyzing a **{country}** ({country_ctx['language']}) legal document.
+
+LEGAL CONTEXT:
+- Document Type: {doc_type.upper()} - {doc_ctx['description']}
+- Legal System: {country_ctx['legal_system']}
+- Primary Framework: {country_ctx['legal_framework']}
+- Key Authorities: {', '.join(country_ctx['key_authorities'])}
+
+TERMINOLOGY REQUIREMENTS:
+{terminology}
+
+CITATION STYLE:
+{doc_ctx['citation_style']}
+
+INTERPRETATION:
+{doc_ctx['interpretation']}
+
+Please ensure your analysis and responses use the appropriate legal terminology and context for {country}.
+"""
+    return prompt
+
+
+def enhance_ai_prompt_with_context(base_prompt: str, country: str, doc_type: str = DocType.LAW) -> str:
+    """
+    Enhance an AI prompt with country and document type context.
+    """
+    context = get_ai_context_prompt(country, doc_type)
+    return f"{context}\n\n---\n\n{base_prompt}"
+
+
+# =============================================================================
+# PDF Summarization for PDF-only sources
+# =============================================================================
+
+def summarize_pdf_with_ai(pdf_text: str, country: str, doc_type: str = DocType.MERKBLATT,
+                          title: str = "", max_summary_length: int = 2000) -> Optional[str]:
+    """
+    Use AI to generate a searchable text summary for PDF-only sources (like Merkblätter).
+
+    This makes PDF content searchable in the database even when full text extraction
+    produces poor results (scanned documents, complex layouts, etc.).
+    """
+    if not pdf_text or len(pdf_text.strip()) < 100:
+        log_warning("PDF text too short for summarization")
+        return None
+
+    # Truncate very long texts
+    text_to_summarize = pdf_text[:15000] if len(pdf_text) > 15000 else pdf_text
+
+    context = get_ai_context_prompt(country, doc_type)
+
+    prompt = f"""{context}
+
+TASK: Create a comprehensive searchable summary of this {doc_type} document.
+
+DOCUMENT TITLE: {title or 'Unknown'}
+
+The summary should:
+1. Capture all main topics and requirements covered
+2. Include key terminology and technical terms (for search)
+3. List specific hazards, controls, or procedures mentioned
+4. Identify target audience and application scope
+5. Note any referenced laws or standards
+
+Keep the summary under {max_summary_length} characters but ensure it covers all searchable content.
+
+DOCUMENT TEXT:
+{text_to_summarize}
+
+SUMMARY:"""
+
+    summary = call_gemini_api(prompt, temperature=0.2, max_tokens=2000)
+
+    if summary:
+        log_success(f"Generated AI summary ({len(summary)} chars)")
+        return summary[:max_summary_length]
+
+    return None
 
 
 def call_gemini_api(prompt: str, temperature: float = 0.3, max_tokens: int = None) -> Optional[str]:
@@ -3997,10 +4473,436 @@ class NLScraper(Scraper):
         }
 
 
+# =============================================================================
+# Merkblätter Scrapers (AUVA, DGUV, Arboportaal)
+# =============================================================================
+
+class MerkblattScraper(Scraper):
+    """
+    Base scraper for Merkblätter / supplementary safety publications.
+    These are PDF-based guidance documents from safety organizations.
+    """
+
+    def __init__(self, country: str, law_limit: int = None):
+        super().__init__(country, law_limit)
+        self.merkblaetter_config = CONFIG.merkblaetter_sources.get(country, {})
+
+    def scrape(self) -> List[Dict[str, Any]]:
+        """Scrape Merkblätter for this country. Override in subclass."""
+        raise NotImplementedError
+
+    def _create_merkblatt_document(
+        self,
+        abbrev: str,
+        title: str,
+        pdf_url: str,
+        series: str = "",
+        description: str = "",
+        authority: str = ""
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Create a Merkblatt document from a PDF source.
+        Downloads PDF, extracts text, generates AI summary if needed.
+        """
+        # Download and store PDF locally
+        pdf_info = download_and_store_pdf(pdf_url, self.country, abbrev, doc_type="merkblatt")
+        pdf_path = pdf_info.get("local_path", "") if pdf_info else ""
+
+        # Parse PDF content
+        pdf_content = parse_pdf_content(pdf_url, is_url=True)
+        if not pdf_content:
+            log_warning(f"Could not parse PDF for {abbrev}")
+            return None
+
+        full_text = pdf_content.get("text", "")
+
+        # Generate AI summary for searchability (Merkblätter often have complex layouts)
+        ai_summary = ""
+        if len(full_text) > 100:
+            ai_summary = summarize_pdf_with_ai(
+                full_text,
+                self.country,
+                doc_type=DocType.MERKBLATT,
+                title=title
+            ) or ""
+
+        # Create unified document
+        doc = create_unified_document(
+            country=self.country,
+            abbrev=abbrev,
+            title=title,
+            doc_type=DocType.MERKBLATT,
+            source_url=pdf_url,
+            source_authority=authority or self.authority,
+            content_text=full_text[:50000],
+            full_text=full_text[:100000],
+            pdf_path=pdf_path,
+            ai_summary=ai_summary,
+            metadata={
+                "series": series,
+                "description": description,
+                "pdf_pages": pdf_content.get("page_count", 0),
+                "is_supplementary": True
+            }
+        )
+
+        # Classify WHS topics
+        doc["whs_topics"] = self._classify_whs_topics(full_text, title)
+
+        return doc
+
+    def _classify_whs_topics(self, text: str, title: str) -> List[Dict[str, Any]]:
+        """Generic WHS topic classification for Merkblätter."""
+        # Use the base WHS topics - subclasses can override
+        topics = []
+        combined_text = f"{title} {text}".lower()
+
+        generic_whs_topics = {
+            "risk_assessment": {"keywords": ["risiko", "gefahr", "beurteilung", "evaluierung"], "relevance": "high"},
+            "ppe": {"keywords": ["schutzausrüstung", "schutz", "psa", "helm", "handschuh"], "relevance": "high"},
+            "training": {"keywords": ["unterweisung", "schulung", "ausbildung", "training"], "relevance": "high"},
+            "first_aid": {"keywords": ["erste hilfe", "notfall", "ersthelfer", "verletzung"], "relevance": "high"},
+            "ergonomics": {"keywords": ["ergonomie", "heben", "tragen", "rücken", "belastung"], "relevance": "high"},
+            "hazardous_substances": {"keywords": ["gefahrstoff", "chemisch", "gefährlich", "stoff"], "relevance": "medium"},
+            "work_equipment": {"keywords": ["arbeitsmittel", "maschine", "gerät", "werkzeug"], "relevance": "high"},
+        }
+
+        for topic_id, topic_data in generic_whs_topics.items():
+            matches = sum(1 for kw in topic_data["keywords"] if kw in combined_text)
+            if matches > 0:
+                topics.append({
+                    "id": topic_id,
+                    "relevance": topic_data["relevance"],
+                    "match_count": matches
+                })
+
+        topics.sort(key=lambda x: (-x["match_count"], x["relevance"] != "high"))
+        return topics[:5]
+
+
+class AUVAScraper(MerkblattScraper):
+    """
+    Scraper for Austrian AUVA (Allgemeine Unfallversicherungsanstalt) Merkblätter.
+    Downloads M-Reihe and M.plus PDFs.
+    """
+
+    def __init__(self, law_limit: int = None):
+        super().__init__('AT', law_limit)
+        self.auva_config = self.merkblaetter_config.get("auva", {})
+
+    def scrape(self) -> List[Dict[str, Any]]:
+        """Scrape AUVA Merkblätter from the AUVA publications catalog."""
+        if not HAS_BS4:
+            log_error("BeautifulSoup required for scraping. Install with: pip install beautifulsoup4")
+            return []
+
+        documents = []
+        catalog_url = self.auva_config.get("catalog_url", "")
+
+        if not catalog_url:
+            log_warning("No AUVA catalog URL configured")
+            return documents
+
+        log_info("Fetching AUVA Merkblätter catalog...")
+
+        # Fetch catalog page
+        html = self.fetch_url(catalog_url)
+        if not html:
+            log_error("Failed to fetch AUVA catalog")
+            return documents
+
+        # Parse catalog to find PDF links
+        soup = BeautifulSoup(html, 'html.parser')
+        pdf_links = []
+
+        # Find PDF download links in the catalog
+        for link in soup.find_all('a', href=True):
+            href = link.get('href', '')
+            if '.pdf' in href.lower() or 'download' in href.lower():
+                title = link.get_text(strip=True) or link.get('title', '')
+                if title and len(title) > 3:
+                    # Try to extract M-number from title or href
+                    m_match = re.search(r'M\.?\s*(\d+)', title + href, re.IGNORECASE)
+                    abbrev = f"AUVA-M{m_match.group(1)}" if m_match else f"AUVA-{len(pdf_links)+1}"
+
+                    pdf_url = href if href.startswith('http') else urljoin(self.auva_config.get("base_url", ""), href)
+                    pdf_links.append({
+                        "abbrev": abbrev,
+                        "title": title,
+                        "url": pdf_url,
+                        "series": "M-Reihe" if "m.plus" not in title.lower() else "M.plus"
+                    })
+
+        # Apply limit
+        if self.law_limit:
+            pdf_links = pdf_links[:self.law_limit]
+
+        log_info(f"Found {len(pdf_links)} AUVA Merkblätter to process")
+
+        # Process each PDF
+        for link_info in pdf_links:
+            log_info(f"Processing {link_info['abbrev']}: {link_info['title'][:50]}...")
+            doc = self._create_merkblatt_document(
+                abbrev=link_info['abbrev'],
+                title=link_info['title'],
+                pdf_url=link_info['url'],
+                series=link_info['series'],
+                authority="AUVA"
+            )
+            if doc:
+                documents.append(doc)
+            time.sleep(CONFIG.rate_limit_delay)
+
+        log_success(f"Scraped {len(documents)} AUVA Merkblätter")
+        return documents
+
+
+class DGUVScraper(MerkblattScraper):
+    """
+    Scraper for German DGUV (Deutsche Gesetzliche Unfallversicherung) publications.
+    Downloads DGUV Vorschriften, Regeln, and Informationen PDFs.
+    """
+
+    def __init__(self, law_limit: int = None):
+        super().__init__('DE', law_limit)
+        self.dguv_config = self.merkblaetter_config.get("dguv", {})
+
+    def scrape(self) -> List[Dict[str, Any]]:
+        """Scrape DGUV publications from the DGUV Publikationen database."""
+        if not HAS_BS4:
+            log_error("BeautifulSoup required for scraping. Install with: pip install beautifulsoup4")
+            return []
+
+        documents = []
+        catalog_url = self.dguv_config.get("catalog_url", "")
+
+        if not catalog_url:
+            log_warning("No DGUV catalog URL configured")
+            return documents
+
+        log_info("Fetching DGUV publications catalog...")
+
+        # Fetch catalog page
+        html = self.fetch_url(catalog_url)
+        if not html:
+            log_error("Failed to fetch DGUV catalog")
+            return documents
+
+        # Parse catalog to find PDF links
+        soup = BeautifulSoup(html, 'html.parser')
+        pdf_links = []
+
+        # DGUV publications typically have patterns like "DGUV Vorschrift 1", "DGUV Regel 100-001"
+        for link in soup.find_all('a', href=True):
+            href = link.get('href', '')
+            text = link.get_text(strip=True)
+
+            # Match DGUV publication patterns
+            if re.search(r'DGUV\s+(Vorschrift|Regel|Information)\s+[\d\-]+', text, re.IGNORECASE):
+                # Determine series
+                if 'vorschrift' in text.lower():
+                    series = "DGUV Vorschriften"
+                elif 'regel' in text.lower():
+                    series = "DGUV Regeln"
+                else:
+                    series = "DGUV Informationen"
+
+                # Extract publication number
+                num_match = re.search(r'([\d\-]+)', text)
+                pub_num = num_match.group(1) if num_match else str(len(pdf_links)+1)
+                abbrev = f"DGUV-{pub_num}"
+
+                pdf_url = href if href.startswith('http') else urljoin(self.dguv_config.get("base_url", ""), href)
+
+                # Skip duplicates
+                if not any(p['abbrev'] == abbrev for p in pdf_links):
+                    pdf_links.append({
+                        "abbrev": abbrev,
+                        "title": text,
+                        "url": pdf_url,
+                        "series": series
+                    })
+
+        # Apply limit
+        if self.law_limit:
+            pdf_links = pdf_links[:self.law_limit]
+
+        log_info(f"Found {len(pdf_links)} DGUV publications to process")
+
+        # Process each PDF
+        for link_info in pdf_links:
+            log_info(f"Processing {link_info['abbrev']}: {link_info['title'][:50]}...")
+
+            # Check if URL is directly a PDF
+            if '.pdf' in link_info['url'].lower():
+                doc = self._create_merkblatt_document(
+                    abbrev=link_info['abbrev'],
+                    title=link_info['title'],
+                    pdf_url=link_info['url'],
+                    series=link_info['series'],
+                    authority="DGUV"
+                )
+                if doc:
+                    documents.append(doc)
+            else:
+                # May need to follow link to get actual PDF URL
+                log_info(f"  Fetching detail page for {link_info['abbrev']}...")
+                detail_html = self.fetch_url(link_info['url'])
+                if detail_html:
+                    detail_soup = BeautifulSoup(detail_html, 'html.parser')
+                    # Look for PDF download link
+                    pdf_link = detail_soup.find('a', href=re.compile(r'\.pdf', re.IGNORECASE))
+                    if pdf_link:
+                        pdf_url = pdf_link.get('href', '')
+                        if not pdf_url.startswith('http'):
+                            pdf_url = urljoin(link_info['url'], pdf_url)
+                        doc = self._create_merkblatt_document(
+                            abbrev=link_info['abbrev'],
+                            title=link_info['title'],
+                            pdf_url=pdf_url,
+                            series=link_info['series'],
+                            authority="DGUV"
+                        )
+                        if doc:
+                            documents.append(doc)
+
+            time.sleep(CONFIG.rate_limit_delay)
+
+        log_success(f"Scraped {len(documents)} DGUV publications")
+        return documents
+
+
+class ArboportaalScraper(MerkblattScraper):
+    """
+    Scraper for Dutch Arboportaal / Arbocatalogi documents.
+    Scrapes sector-specific working conditions catalogues.
+    """
+
+    def __init__(self, law_limit: int = None):
+        super().__init__('NL', law_limit)
+        self.arboportaal_config = self.merkblaetter_config.get("arboportaal", {})
+
+    def scrape(self) -> List[Dict[str, Any]]:
+        """Scrape Arbocatalogi from the Arboportaal website."""
+        if not HAS_BS4:
+            log_error("BeautifulSoup required for scraping. Install with: pip install beautifulsoup4")
+            return []
+
+        documents = []
+        catalog_url = self.arboportaal_config.get("catalog_url", "")
+
+        if not catalog_url:
+            log_warning("No Arboportaal catalog URL configured")
+            return documents
+
+        log_info("Fetching Arboportaal Arbocatalogi catalog...")
+
+        # Fetch catalog page
+        html = self.fetch_url(catalog_url)
+        if not html:
+            log_error("Failed to fetch Arboportaal catalog")
+            return documents
+
+        # Parse catalog to find arbocatalogi links
+        soup = BeautifulSoup(html, 'html.parser')
+        catalogi_links = []
+
+        # Find links to sector catalogues
+        for link in soup.find_all('a', href=True):
+            href = link.get('href', '')
+            text = link.get_text(strip=True)
+
+            if 'arbocatalo' in href.lower() or 'arbocatalo' in text.lower():
+                # Extract sector name
+                sector_match = re.search(r'/([^/]+)/?$', href)
+                sector = sector_match.group(1) if sector_match else text[:30]
+                abbrev = f"ARBO-{sector.upper().replace(' ', '-')[:20]}"
+
+                full_url = href if href.startswith('http') else urljoin(self.arboportaal_config.get("base_url", ""), href)
+
+                # Skip duplicates
+                if not any(c['abbrev'] == abbrev for c in catalogi_links):
+                    catalogi_links.append({
+                        "abbrev": abbrev,
+                        "title": text or f"Arbocatalogus {sector}",
+                        "url": full_url,
+                        "sector": sector
+                    })
+
+        # Apply limit
+        if self.law_limit:
+            catalogi_links = catalogi_links[:self.law_limit]
+
+        log_info(f"Found {len(catalogi_links)} Arbocatalogi to process")
+
+        # Process each catalogue (may be HTML-based, not PDF)
+        for link_info in catalogi_links:
+            log_info(f"Processing {link_info['abbrev']}: {link_info['title'][:50]}...")
+
+            # Fetch the catalogue page
+            catalogue_html = self.fetch_url(link_info['url'])
+            if catalogue_html:
+                catalogue_soup = BeautifulSoup(catalogue_html, 'html.parser')
+
+                # Check for PDF download
+                pdf_link = catalogue_soup.find('a', href=re.compile(r'\.pdf', re.IGNORECASE))
+                if pdf_link:
+                    pdf_url = pdf_link.get('href', '')
+                    if not pdf_url.startswith('http'):
+                        pdf_url = urljoin(link_info['url'], pdf_url)
+
+                    doc = self._create_merkblatt_document(
+                        abbrev=link_info['abbrev'],
+                        title=link_info['title'],
+                        pdf_url=pdf_url,
+                        series="Arbocatalogi",
+                        description=f"Sector: {link_info['sector']}",
+                        authority="Arboportaal"
+                    )
+                    if doc:
+                        documents.append(doc)
+                else:
+                    # HTML-based catalogue - extract content directly
+                    main_content = catalogue_soup.find('main') or catalogue_soup.find('article') or catalogue_soup.body
+                    if main_content:
+                        full_text = main_content.get_text(separator='\n', strip=True)
+
+                        doc = create_unified_document(
+                            country="NL",
+                            abbrev=link_info['abbrev'],
+                            title=link_info['title'],
+                            doc_type=DocType.GUIDELINE,
+                            source_url=link_info['url'],
+                            source_authority="Arboportaal",
+                            content_text=full_text[:50000],
+                            full_text=full_text[:100000],
+                            metadata={
+                                "series": "Arbocatalogi",
+                                "sector": link_info['sector'],
+                                "is_supplementary": True,
+                                "source_type": "html"
+                            }
+                        )
+                        documents.append(doc)
+
+            time.sleep(CONFIG.rate_limit_delay)
+
+        log_success(f"Scraped {len(documents)} Arbocatalogi")
+        return documents
+
+
+# Main law scrapers
 SCRAPERS = {
     'AT': ATScraper,
     'DE': DEScraper,
     'NL': NLScraper,
+}
+
+# Merkblätter scrapers
+MERKBLATT_SCRAPERS = {
+    'AT': AUVAScraper,
+    'DE': DGUVScraper,
+    'NL': ArboportaalScraper,
 }
 
 
@@ -6601,6 +7503,15 @@ def main():
     wiki_parser.add_argument('--ai-suggest', action='store_true',
                              help='Use AI to suggest additional relevant Wikipedia articles based on law content')
 
+    # Merkblätter command (supplementary safety publications)
+    merkblatt_parser = subparsers.add_parser('merkblaetter', help='Scrape Merkblätter/supplementary safety publications (AUVA, DGUV, Arboportaal)')
+    merkblatt_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to scrape Merkblätter for (AT=AUVA, DE=DGUV, NL=Arboportaal)')
+    merkblatt_parser.add_argument('--all', action='store_true', help='Scrape Merkblätter for all countries')
+    merkblatt_parser.add_argument('--limit', type=int, default=5, metavar='N',
+                                  help='Maximum number of Merkblätter to fetch per country (default: 5)')
+    merkblatt_parser.add_argument('--skip-ai-summary', action='store_true',
+                                  help='Skip AI summary generation for PDFs')
+
     # All command (complete pipeline)
     all_parser = subparsers.add_parser('all', help='Run complete pipeline')
     all_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to process')
@@ -6624,12 +7535,54 @@ def main():
         return 1
 
     # Validate country selection
-    if args.command in ['scrape', 'clean', 'restructure', 'validate', 'all', 'check-updates', 'wikipedia']:
+    if args.command in ['scrape', 'clean', 'restructure', 'validate', 'all', 'check-updates', 'wikipedia', 'merkblaetter']:
         if not getattr(args, 'all', False) and not getattr(args, 'country', None):
             print(f"Error: --country or --all is required for {args.command}")
             return 1
 
     # Run command
+    def cmd_merkblaetter(args):
+        """Scrape Merkblätter / supplementary safety publications."""
+        countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
+        limit = getattr(args, 'limit', 5)
+        skip_ai = getattr(args, 'skip_ai_summary', False)
+
+        for country in countries:
+            log_header(f"Scraping Merkblätter for {country}")
+
+            scraper_class = MERKBLATT_SCRAPERS.get(country)
+            if not scraper_class:
+                log_error(f"No Merkblätter scraper available for {country}")
+                continue
+
+            scraper = scraper_class(law_limit=limit)
+            documents = scraper.scrape()
+
+            if documents:
+                # Save to database
+                db_path = CONFIG.base_path / country.lower() / f"{country.lower()}_merkblaetter.json"
+                db_path.parent.mkdir(parents=True, exist_ok=True)
+
+                db_data = {
+                    "metadata": {
+                        "country": country,
+                        "type": "merkblaetter",
+                        "generated_at": datetime.now().isoformat(),
+                        "document_count": len(documents),
+                        "scraper_version": CONFIG.scraper_version
+                    },
+                    "documents": documents
+                }
+
+                with open(db_path, 'w', encoding='utf-8') as f:
+                    json.dump(db_data, f, indent=2, ensure_ascii=False)
+
+                log_success(f"Saved {len(documents)} Merkblätter to {db_path}")
+            else:
+                log_warning(f"No Merkblätter scraped for {country}")
+
+        return 0
+
     def cmd_validate(args):
         """Validate database command."""
         countries = ['AT', 'DE', 'NL'] if args.all else [args.country]
@@ -6670,6 +7623,7 @@ def main():
         'status': cmd_status,
         'check-updates': cmd_check_updates,
         'wikipedia': cmd_wikipedia,
+        'merkblaetter': cmd_merkblaetter,
         'all': cmd_all,
     }
 
