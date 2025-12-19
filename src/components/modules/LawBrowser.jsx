@@ -2335,46 +2335,26 @@ export function LawBrowser({ onBack }) {
                         />
                       </div>
                     ) : (
-                      /* External PDF - Show download card (can't embed external PDFs) */
+                      /* PDF not available locally - show info message */
                       <div className="p-6">
-                        <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl p-8 text-center border border-red-100 dark:border-red-800">
-                          <div className="w-20 h-20 bg-red-100 dark:bg-red-900/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <svg className="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                        <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50 rounded-2xl p-8 text-center border border-gray-200 dark:border-gray-700">
+                          <div className="w-20 h-20 bg-gray-200 dark:bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg className="w-10 h-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                             </svg>
                           </div>
                           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                             {selectedLaw.abbreviation || 'PDF Document'}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
-                            {selectedLaw.metadata?.description || selectedLaw.title_en || selectedLaw.title || 'External PDF document - click to open in new tab'}
+                          <p className="text-gray-600 dark:text-gray-400 mb-4 max-w-md mx-auto">
+                            {selectedLaw.metadata?.description || selectedLaw.title_en || selectedLaw.title}
                           </p>
-                          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                            <a
-                              href={getPdfSourceUrl(selectedLaw)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium transition-colors"
-                            >
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                              </svg>
-                              Open PDF
-                            </a>
-                            <a
-                              href={getPdfSourceUrl(selectedLaw)}
-                              download
-                              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors"
-                            >
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                              </svg>
-                              Download PDF
-                            </a>
-                          </div>
+                          <p className="text-sm text-gray-500 dark:text-gray-500 mb-6">
+                            PDF not available locally. Run the scraper to download this document.
+                          </p>
                           {selectedLaw.source && (
-                            <div className="mt-6 pt-6 border-t border-red-200 dark:border-red-800 text-sm text-gray-500 dark:text-gray-400">
-                              Source: {selectedLaw.source.authority || 'AUVA'}
+                            <div className="pt-4 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400">
+                              Source: {selectedLaw.source.authority || 'Official Source'}
                             </div>
                           )}
                         </div>
