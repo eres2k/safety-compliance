@@ -16,14 +16,25 @@ const FALLBACK_MODEL = 'gemini-1.5-flash-latest'  // Fallback if primary fails
 const MAX_OUTPUT_TOKENS = 8192
 const TEMPERATURE = 0.2  // Lower temperature for more consistent legal analysis
 
+// Simple hash function (djb2) for cache keys - same as client-side
+function simpleHash(str) {
+  let hash = 5381
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) + str.charCodeAt(i)
+    hash = hash & hash // Convert to 32bit integer
+  }
+  return Math.abs(hash).toString(36)
+}
+
 // Generate a cache key from prompt and system prompt
+// Uses full systemPrompt (contains framework/language) + hash of prompt for uniqueness
 function generateCacheKey(prompt, systemPrompt) {
-  const combined = `${prompt || ''}_${systemPrompt || ''}`
-  // Create a simple hash - use base64 encoding of first 200 chars
-  const hash = Buffer.from(combined.substring(0, 200)).toString('base64')
-    .replace(/[^a-zA-Z0-9]/g, '')
-    .substring(0, 64)
-  return `ai_cache_${hash}`
+  // Hash the full prompt content to catch differences anywhere in the text
+  const promptHash = simpleHash(prompt || '')
+  // Include systemPrompt directly since it contains framework/language context
+  // This ensures different frameworks get different cache keys
+  const systemHash = simpleHash(systemPrompt || '')
+  return `ai_cache_${systemHash}_${promptHash}`
 }
 
 // Retry helper with exponential backoff

@@ -4960,7 +4960,7 @@
         }
       ],
       "content_hash": "411124493998deab55a6f8160e859721",
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_ASchG_law.pdf"
+      "pdf_path": "eu_safety_laws/pdfs/at/at_ASchG_law.pdf"
     },
     {
       "id": "ed3fa63a3e279607",
@@ -7204,7 +7204,7 @@
         }
       ],
       "content_hash": "85d2d6096df742ae1c788379b2391cb1",
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AZG_law.pdf"
+      "pdf_path": "eu_safety_laws/pdfs/at/at_AZG_law.pdf"
     },
     {
       "id": "6186afdd708a6423",
@@ -7569,7 +7569,7 @@
         }
       ],
       "content_hash": "3d74f0dc4dd98267999434ed53beef77",
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_ARG_law.pdf"
+      "pdf_path": "eu_safety_laws/pdfs/at/at_ARG_law.pdf"
     },
     {
       "id": "c7b21e17c95e5f98",
@@ -8857,7 +8857,7 @@
         }
       ],
       "content_hash": "4ea9f73171965e15a4aefd065c538645",
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_MSchG_law.pdf"
+      "pdf_path": "eu_safety_laws/pdfs/at/at_MSchG_law.pdf"
     },
     {
       "id": "6ecf09ceab851d79",
@@ -10053,7 +10053,7 @@
         }
       ],
       "content_hash": "80327e344fc957bb429a32d24a9e5ed3",
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_KJBG_law.pdf"
+      "pdf_path": "eu_safety_laws/pdfs/at/at_KJBG_law.pdf"
     },
     {
       "id": "fda44dd8f1b74a6e",
@@ -23881,10 +23881,10 @@
         "title": "ArbeitnehmerInnenschutzgesetz (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_ASchG-PDF_law.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_ASchG-PDF_law.pdf",
         "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1994_450_0/1994_450_0.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_ASchG-PDF_law.pdf",
+      "pdf_path": "eu_safety_laws/pdfs/at/at_ASchG-PDF_law.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T17:50:02.480628",
@@ -23931,10 +23931,10 @@
         "title": "Arbeitszeitgesetz (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AZG-PDF_law.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_AZG-PDF_law.pdf",
         "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1969_461_0/1969_461_0.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AZG-PDF_law.pdf",
+      "pdf_path": "eu_safety_laws/pdfs/at/at_AZG-PDF_law.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T17:50:02.426733",
@@ -23981,10 +23981,10 @@
         "title": "Arbeitsruhegesetz (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_ARG-PDF_law.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_ARG-PDF_law.pdf",
         "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1983_144_0/1983_144_0.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_ARG-PDF_law.pdf",
+      "pdf_path": "eu_safety_laws/pdfs/at/at_ARG-PDF_law.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T17:50:02.322296",
@@ -24031,10 +24031,10 @@
         "title": "Mutterschutzgesetz (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_MSchG-PDF_law.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_MSchG-PDF_law.pdf",
         "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1979_221_0/1979_221_0.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_MSchG-PDF_law.pdf",
+      "pdf_path": "eu_safety_laws/pdfs/at/at_MSchG-PDF_law.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T17:50:02.762200",
@@ -24081,10 +24081,10 @@
         "title": "Kinder- und Jugendlichen-Beschäftigungsgesetz (PDF)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_KJBG-PDF_law.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_KJBG-PDF_law.pdf",
         "pdf_url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1987_599_0/1987_599_0.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_KJBG-PDF_law.pdf",
+      "pdf_path": "eu_safety_laws/pdfs/at/at_KJBG-PDF_law.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T17:50:02.862110",
@@ -24384,10 +24384,10 @@
         "title": "AUVA M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_330_law.pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_AUVA_M_plus_330_law.pdf",
         "pdf_url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_330_law.pdf",
+      "pdf_path": "eu_safety_laws/pdfs/at/at_AUVA_M_plus_330_law.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-19T17:49:59.845797",
