@@ -1276,8 +1276,9 @@ export function getLocalPdfUrl(law) {
     // Clean abbreviation for filename
     const safeAbbrev = abbrev.replace(/[^\w\-]/g, '_')
 
-    // Determine document type for filename
-    const docType = isSupplementarySource(law) ? 'merkblatt' : 'law'
+    // PDF variants of laws use 'law' as docType, supplementary sources use 'merkblatt'
+    // Check isPdfVariant FIRST since isSupplementarySource checks for -pdf suffix
+    const docType = isPdfVariant(law) ? 'law' : (isTrueSupplementarySource(law) ? 'merkblatt' : 'law')
 
     return `/eu_safety_laws/pdfs/${country}/${country}_${safeAbbrev}_${docType}.pdf`
   }
@@ -1323,10 +1324,8 @@ export function isSupplementarySource(law) {
     return true
   }
 
-  // PDF variants of laws (e.g., ASchG-PDF, ARG-PDF) - these are PDF-only documents
-  if (abbrev.endsWith('-pdf')) {
-    return true
-  }
+  // NOTE: PDF variants (e.g., ASchG-PDF) are NOT supplementary sources
+  // They are just PDF versions of regular laws - use isPdfVariant() to check
 
   // DE: Technical Rules and DGUV
   // TRBS - Technische Regeln für Betriebssicherheit

@@ -5465,31 +5465,33 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
         log_warning(f"No documents to clean for {country}")
         return False
 
-    # Filter out PDF-only documents (supplementary sources like AUVA Merkblätter)
-    # These should not be cleaned - just displayed as PDFs
+    # Filter out documents that should NOT be cleaned:
+    # - Supplementary sources (AUVA Merkblätter, DGUV, etc.) - just display as PDF/HTML
+    # - PDF-only documents
+    # - HTML-only documents
     cleanable_docs = []
     skipped_docs = []
     for i, doc in enumerate(documents):
         is_pdf_only = doc.get('metadata', {}).get('is_pdf_only', False)
+        is_html_only = doc.get('metadata', {}).get('is_html_only', False)
         is_supp = is_supplementary_source(doc)
-        source_type = doc.get('source', {}).get('source_type', '')
         abbrev = doc.get('abbreviation', '')
 
-        # Skip PDF-only documents - they should just display the PDF
-        # This includes:
-        # - Documents with is_pdf_only flag
-        # - Supplementary sources with PDF source type
-        # - Law variants ending in -PDF (e.g., ASchG-PDF, ARG-PDF)
-        if is_pdf_only or (is_supp and source_type == 'pdf') or abbrev.endswith('-PDF'):
+        # Skip supplementary sources - they are not laws and have different structure
+        # This includes: AUVA Merkblätter, DGUV publications, TRBS, TRGS, PGS, etc.
+        # Also skip PDF-only and HTML-only documents
+        # Also skip law variants ending in -PDF (e.g., ASchG-PDF, ARG-PDF)
+        if is_supp or is_pdf_only or is_html_only or abbrev.endswith('-PDF'):
             skipped_docs.append((i, doc))
         else:
             cleanable_docs.append((i, doc))
 
     if skipped_docs:
-        log_info(f"Skipping {len(skipped_docs)} PDF-only documents (displayed as PDFs, not cleaned)")
+        log_info(f"Skipping {len(skipped_docs)} documents (Merkblätter/PDFs - not cleaned)")
         for idx, doc in skipped_docs:
             title = doc.get('abbreviation', f'Doc {idx+1}')
-            log_info(f"  - {title} (PDF-only)")
+            reason = 'supplementary' if is_supplementary_source(doc) else 'PDF/HTML-only'
+            log_info(f"  - {title} ({reason})")
 
     if not cleanable_docs:
         log_info("No documents to clean (all are PDF-only)")
