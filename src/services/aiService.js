@@ -69,9 +69,10 @@ const LANGUAGE_LABELS = {
 // ============================================
 // Increment CACHE_VERSION when cache format changes to invalidate old entries
 // v4: Changed to use user's language setting from site preferences
-const CACHE_VERSION = 'v4_'
+// v5: Invalidated old cache to fix stale responses issue (2025-12-19)
+const CACHE_VERSION = 'v5_'
 const CACHE_PREFIX = 'ai_cache_' + CACHE_VERSION
-const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
+const CACHE_TTL_MS = 12 * 60 * 60 * 1000 // 12 hours (reduced from 24)
 
 // Clean up old version cache entries on module load
 try {
@@ -162,6 +163,24 @@ function clearOldCache() {
     })
   } catch {
     // Ignore errors during cleanup
+  }
+}
+
+/**
+ * Clear all AI response cache entries (both old and current versions)
+ * Call this to force fresh AI responses
+ * @returns {number} Number of cache entries removed
+ */
+export function clearAllAICache() {
+  try {
+    const allCacheKeys = Object.keys(localStorage).filter(k => k.startsWith('ai_cache_'))
+    const count = allCacheKeys.length
+    allCacheKeys.forEach(k => localStorage.removeItem(k))
+    console.log(`[AI Cache] Cleared ${count} cached AI responses`)
+    return count
+  } catch (e) {
+    console.error('[AI Cache] Error clearing cache:', e)
+    return 0
   }
 }
 

@@ -92,6 +92,26 @@ try:
 except ImportError:
     HAS_TQDM = False
 
+# PDF parsing support - try multiple libraries
+HAS_PDF = False
+PDF_LIBRARY = None
+try:
+    import pdfplumber
+    HAS_PDF = True
+    PDF_LIBRARY = 'pdfplumber'
+except ImportError:
+    try:
+        import PyPDF2
+        HAS_PDF = True
+        PDF_LIBRARY = 'pypdf2'
+    except ImportError:
+        try:
+            import fitz  # PyMuPDF
+            HAS_PDF = True
+            PDF_LIBRARY = 'pymupdf'
+        except ImportError:
+            pass
+
 
 # =============================================================================
 # Configuration
@@ -198,6 +218,28 @@ def save_custom_sources(data: Dict[str, Any]) -> bool:
     except Exception as e:
         log_error(f"Failed to save custom sources: {e}")
         return False
+
+
+def get_pdf_source_for_law(country: str, law_abbrev: str) -> Optional[Dict[str, Any]]:
+    """
+    Get PDF verification source for a law if available.
+    PDF sources are preferred over HTML as they're more reliable.
+
+    Returns: Dict with 'url' and 'name' if PDF source exists, None otherwise
+    """
+    custom_data = load_custom_sources()
+    country_sources = custom_data.get("custom_sources", {}).get(country, {})
+
+    # Look for a PDF verification source for this law
+    for abbrev, info in country_sources.items():
+        if info.get("verification_for") == law_abbrev and info.get("source_type") == "pdf":
+            if info.get("enabled", True):
+                return {
+                    "url": info.get("url", ""),
+                    "name": info.get("name", abbrev),
+                    "abbrev": abbrev
+                }
+    return None
 
 
 def get_enabled_sources(country: str) -> Dict[str, str]:
@@ -662,6 +704,302 @@ def create_progress_bar(total: int, desc: str = "Processing"):
         return tqdm(total=total, desc=f"  {desc}", ncols=80,
                    bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]')
     return SimpleProgressBar(total, desc)
+
+
+def robust_json_parse(text: str, default: Any = None) -> Any:
+    """
+    Parse JSON with robust error handling and repair strategies.
+    Handles common AI response issues like unterminated strings, trailing commas, etc.
+    """
+    if not text or not text.strip():
+        return default if default is not None else []
+
+    text = text.strip()
+
+    # Strategy 1: Direct parse
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    # Strategy 2: Try to extract JSON from markdown code blocks
+    if "```" in text:
+        # Try ```json first
+        if "```json" in text:
+            try:
+                extracted = text.split("```json")[1].split("```")[0].strip()
+                return json.loads(extracted)
+            except (IndexError, json.JSONDecodeError):
+                pass
+        # Try generic ``` blocks
+        try:
+            parts = text.split("```")
+            if len(parts) >= 2:
+                extracted = parts[1].strip()
+                # Remove json/JSON prefix if present
+                if extracted.lower().startswith('json'):
+                    extracted = extracted[4:].strip()
+                return json.loads(extracted)
+        except (IndexError, json.JSONDecodeError):
+            pass
+
+    # Strategy 3: Fix common JSON issues
+    repaired = text
+
+    # Remove trailing commas before ] or }
+    repaired = re.sub(r',(\s*[}\]])', r'\1', repaired)
+
+    # Try to fix unterminated strings by finding the last valid JSON structure
+    # Look for the pattern of a valid JSON array
+    if repaired.strip().startswith('['):
+        # Find all complete objects in the array
+        bracket_count = 0
+        brace_count = 0
+        in_string = False
+        escape_next = False
+        last_valid_pos = 0
+
+        for i, char in enumerate(repaired):
+            if escape_next:
+                escape_next = False
+                continue
+            if char == '\\':
+                escape_next = True
+                continue
+            if char == '"' and not escape_next:
+                in_string = not in_string
+                continue
+            if in_string:
+                continue
+            if char == '[':
+                bracket_count += 1
+            elif char == ']':
+                bracket_count -= 1
+                if bracket_count == 0:
+                    last_valid_pos = i + 1
+                    break
+            elif char == '{':
+                brace_count += 1
+            elif char == '}':
+                brace_count -= 1
+                if brace_count == 0 and bracket_count == 1:
+                    last_valid_pos = i + 1
+
+        # If we found a valid end, try to repair
+        if last_valid_pos > 0:
+            try:
+                return json.loads(repaired[:last_valid_pos])
+            except json.JSONDecodeError:
+                pass
+
+        # Try truncating at the last complete object
+        last_brace = repaired.rfind('}')
+        if last_brace > 0:
+            # Find matching bracket
+            truncated = repaired[:last_brace + 1]
+            # Count brackets and braces
+            open_brackets = truncated.count('[') - truncated.count(']')
+            # Add closing brackets as needed
+            truncated += ']' * open_brackets
+            try:
+                return json.loads(truncated)
+            except json.JSONDecodeError:
+                pass
+
+    # Strategy 4: Extract individual objects and build array
+    if '[' in text:
+        objects = []
+        # Find all {...} patterns
+        brace_depth = 0
+        obj_start = -1
+        for i, char in enumerate(text):
+            if char == '{':
+                if brace_depth == 0:
+                    obj_start = i
+                brace_depth += 1
+            elif char == '}':
+                brace_depth -= 1
+                if brace_depth == 0 and obj_start >= 0:
+                    obj_text = text[obj_start:i+1]
+                    try:
+                        obj = json.loads(obj_text)
+                        objects.append(obj)
+                    except json.JSONDecodeError:
+                        pass
+                    obj_start = -1
+        if objects:
+            return objects
+
+    # Strategy 5: Return empty array as safe fallback for expected array responses
+    return default if default is not None else []
+
+
+def parse_pdf_content(pdf_path_or_url: str, is_url: bool = True) -> Optional[Dict[str, Any]]:
+    """
+    Parse PDF content from a URL or local file path.
+    Returns a dict with 'text', 'pages', and 'sections' if successful.
+    """
+    if not HAS_PDF:
+        log_warning("No PDF library available. Install pdfplumber, PyPDF2, or PyMuPDF: pip install pdfplumber")
+        return None
+
+    if not HAS_REQUESTS and is_url:
+        log_warning("requests package required for PDF URL fetching")
+        return None
+
+    try:
+        # Download PDF if URL
+        if is_url:
+            import tempfile
+            response = requests.get(pdf_path_or_url, timeout=60)
+            if response.status_code != 200:
+                log_error(f"Failed to download PDF: HTTP {response.status_code}")
+                return None
+
+            # Save to temp file
+            with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp:
+                tmp.write(response.content)
+                pdf_path = tmp.name
+        else:
+            pdf_path = pdf_path_or_url
+
+        # Parse PDF based on available library
+        full_text = ""
+        pages = []
+        sections = []
+
+        if PDF_LIBRARY == 'pdfplumber':
+            import pdfplumber
+            with pdfplumber.open(pdf_path) as pdf:
+                for i, page in enumerate(pdf.pages):
+                    page_text = page.extract_text() or ""
+                    pages.append({"page": i + 1, "text": page_text})
+                    full_text += page_text + "\n\n"
+
+        elif PDF_LIBRARY == 'pypdf2':
+            import PyPDF2
+            with open(pdf_path, 'rb') as f:
+                reader = PyPDF2.PdfReader(f)
+                for i, page in enumerate(reader.pages):
+                    page_text = page.extract_text() or ""
+                    pages.append({"page": i + 1, "text": page_text})
+                    full_text += page_text + "\n\n"
+
+        elif PDF_LIBRARY == 'pymupdf':
+            import fitz
+            doc = fitz.open(pdf_path)
+            for i, page in enumerate(doc):
+                page_text = page.get_text()
+                pages.append({"page": i + 1, "text": page_text})
+                full_text += page_text + "\n\n"
+            doc.close()
+
+        # Clean up temp file if we downloaded
+        if is_url:
+            import os
+            os.unlink(pdf_path)
+
+        # Extract sections from text (look for § patterns or numbered sections)
+        section_pattern = re.compile(r'(?:^|\n)(§\s*\d+[a-z]?\.?.*?)(?=\n§\s*\d+|\Z)', re.MULTILINE | re.DOTALL)
+        section_matches = section_pattern.findall(full_text)
+
+        if not section_matches:
+            # Try alternative pattern for numbered paragraphs like "(1)", "(2)"
+            alt_pattern = re.compile(r'(?:^|\n)(\(\d+\).*?)(?=\n\(\d+\)|\Z)', re.MULTILINE | re.DOTALL)
+            section_matches = alt_pattern.findall(full_text)
+
+        for i, match in enumerate(section_matches):
+            # Try to extract section number
+            num_match = re.match(r'§\s*(\d+[a-z]?)', match)
+            section_num = num_match.group(1) if num_match else str(i + 1)
+
+            sections.append({
+                "number": section_num,
+                "text": match.strip()
+            })
+
+        return {
+            "text": full_text.strip(),
+            "pages": pages,
+            "sections": sections,
+            "page_count": len(pages),
+            "section_count": len(sections)
+        }
+
+    except Exception as e:
+        log_error(f"PDF parsing error: {e}")
+        return None
+
+
+def parse_pdf_to_law_document(pdf_url: str, abbrev: str, title: str, jurisdiction: str = "DE") -> Optional[Dict[str, Any]]:
+    """
+    Parse a PDF and create a law document structure suitable for the database.
+    """
+    log_info(f"Parsing PDF for {abbrev}...")
+
+    pdf_content = parse_pdf_content(pdf_url, is_url=True)
+    if not pdf_content:
+        return None
+
+    log_info(f"  Extracted {pdf_content['page_count']} pages, {pdf_content['section_count']} sections")
+
+    # Build sections list
+    sections = []
+    for sec in pdf_content.get('sections', []):
+        sec_num = sec.get('number', '')
+        sec_text = sec.get('text', '')
+
+        # Try to extract title from first line
+        lines = sec_text.split('\n')
+        sec_title = lines[0][:100] if lines else f"§ {sec_num}"
+
+        sections.append({
+            "id": generate_id(f"{abbrev}-{sec_num}-{datetime.now().isoformat()}"),
+            "number": sec_num,
+            "title": sec_title,
+            "text": sec_text,
+            "whs_topics": [],
+            "paragraphs": []
+        })
+
+    # Create document structure
+    doc = {
+        "id": generate_id(f"{abbrev}-{datetime.now().isoformat()}"),
+        "version": "1.0.0",
+        "type": "law",
+        "jurisdiction": jurisdiction,
+        "abbreviation": abbrev,
+        "title": title,
+        "title_en": title,
+        "category": "Core Safety",
+        "source": {
+            "url": pdf_url,
+            "title": title,
+            "authority": "PDF Source",
+            "robots_txt_compliant": True,
+            "source_type": "pdf"
+        },
+        "scraping": {
+            "scraped_at": datetime.now().isoformat(),
+            "scraper_version": CONFIG.scraper_version,
+            "pdf_pages": pdf_content['page_count']
+        },
+        "full_text": pdf_content['text'][:100000],  # Limit full text size
+        "chapters": [
+            {
+                "id": f"{jurisdiction.lower()}-{abbrev.lower()}-main",
+                "number": "1",
+                "title": "Hauptteil",
+                "title_en": "Main Part",
+                "sections": sections
+            }
+        ] if sections else []
+    }
+
+    doc["content_hash"] = generate_content_hash(doc)
+    log_success(f"  Parsed {abbrev}: {len(sections)} sections from PDF")
+
+    return doc
 
 
 # =============================================================================
@@ -1435,6 +1773,35 @@ STRUCTURE_ARBMEDVV = [
     {"number": "3", "title": "Dritter Abschnitt - Schlußvorschriften", "title_en": "Third Section - Final Provisions", "section_range": (8, 11)},
 ]
 
+# Official structure: Germany LastenhandhabV (Lastenhandhabungsverordnung) - flat structure, 6 sections
+STRUCTURE_LASTENHANDHABV = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 6)},
+]
+
+# Official structure: Germany DGUV Vorschrift 1 (Grundsätze der Prävention) - DGUV rule structure
+STRUCTURE_DGUV_V1 = [
+    {"number": "1", "title": "Erstes Kapitel - Allgemeine Vorschriften", "title_en": "First Chapter - General Provisions", "section_range": (1, 6)},
+    {"number": "2", "title": "Zweites Kapitel - Pflichten des Unternehmers", "title_en": "Second Chapter - Employer Obligations", "section_range": (7, 14)},
+    {"number": "3", "title": "Drittes Kapitel - Pflichten der Versicherten", "title_en": "Third Chapter - Insured Persons' Obligations", "section_range": (15, 18)},
+    {"number": "4", "title": "Viertes Kapitel - Organisation des betrieblichen Arbeitsschutzes", "title_en": "Fourth Chapter - Organization of Occupational Safety", "section_range": (19, 26)},
+    {"number": "5", "title": "Fünftes Kapitel - Ordnungswidrigkeiten", "title_en": "Fifth Chapter - Administrative Offenses", "section_range": (27, 29)},
+]
+
+# Official structure: Austria BauKG (Bauarbeitenkoordinationsgesetz) - 20 sections
+STRUCTURE_BAUKG = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 20)},
+]
+
+# Official structure: Austria DOK-VO (Dokumentationsverordnung) - 7 sections
+STRUCTURE_DOKVO = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 7)},
+]
+
+# Official structure: Netherlands WED (Wet op de economische delicten) - flat structure, ~96 articles
+STRUCTURE_WED = [
+    {"number": "1", "title": "Hoofdinhoud", "title_en": "Main Content", "section_range": (1, 100)},
+]
+
 # Official structure: Netherlands Arbobesluit - 9 Hoofdstukken
 STRUCTURE_ARBOBESLUIT = [
     {"number": "1", "title": "Hoofdstuk 1 - Definities en toepassingsgebied", "title_en": "Chapter 1 - Definitions and Scope", "section_range": (1, 1.99)},
@@ -1474,6 +1841,8 @@ LAW_STRUCTURES = {
         "PSA-V": STRUCTURE_PSAV,
         "ESV 2012": STRUCTURE_ESV2012,
         "LärmV": STRUCTURE_LAERMV,
+        "BauKG": STRUCTURE_BAUKG,
+        "DOK-VO": STRUCTURE_DOKVO,
     },
     "DE": {
         "ArbSchG": STRUCTURE_ARBSCHG,
@@ -1487,11 +1856,14 @@ LAW_STRUCTURES = {
         "LärmVibrationsArbSchV": STRUCTURE_LAERMVIBRATIONSARBSCHV,
         "BioStoffV": STRUCTURE_BIOSTOFFV,
         "ArbMedVV": STRUCTURE_ARBMEDVV,
+        "LastenhandhabV": STRUCTURE_LASTENHANDHABV,
+        "DGUV Vorschrift 1": STRUCTURE_DGUV_V1,
     },
     "NL": {
         "Arbowet": STRUCTURE_ARBOWET,
         "Arbobesluit": STRUCTURE_ARBOBESLUIT,
         "Arbeidstijdenwet": STRUCTURE_ARBEIDSTIJDENWET,
+        "WED": STRUCTURE_WED,
     },
 }
 
@@ -1753,6 +2125,49 @@ class ATScraper(Scraper):
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
+
+        # Check for PDF verification source first (preferred over HTML)
+        pdf_source = get_pdf_source_for_law("AT", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                # Make URL absolute if needed
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "AT")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_preferred'] = True
+                    return doc
+                else:
+                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
+
+        # Check if this is a PDF source (direct PDF URL)
+        if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
+            if HAS_PDF:
+                log_info(f"  Using PDF parser for {abbrev}")
+                # Get title from custom sources if available
+                custom = load_custom_sources()
+                title = custom.get('custom_sources', {}).get('AT', {}).get(abbrev, {}).get('name', abbrev)
+                doc = parse_pdf_to_law_document(url, abbrev, title, "AT")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    return doc
+            else:
+                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
+            return None
+
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
@@ -2380,6 +2795,49 @@ class DEScraper(Scraper):
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
+
+        # Check for PDF verification source first (preferred over HTML)
+        pdf_source = get_pdf_source_for_law("DE", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                # Make URL absolute if needed
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "DE")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_preferred'] = True
+                    return doc
+                else:
+                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
+
+        # Check if this is a PDF source (direct PDF URL)
+        if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
+            if HAS_PDF:
+                log_info(f"  Using PDF parser for {abbrev}")
+                # Get title from custom sources if available
+                custom = load_custom_sources()
+                title = custom.get('custom_sources', {}).get('DE', {}).get(abbrev, {}).get('name', abbrev)
+                doc = parse_pdf_to_law_document(url, abbrev, title, "DE")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    return doc
+            else:
+                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
+            return None
+
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
@@ -2876,6 +3334,49 @@ class NLScraper(Scraper):
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
+
+        # Check for PDF verification source first (preferred over HTML)
+        pdf_source = get_pdf_source_for_law("NL", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                # Make URL absolute if needed
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "NL")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_preferred'] = True
+                    return doc
+                else:
+                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
+
+        # Check if this is a PDF source (direct PDF URL)
+        if url.lower().endswith('.pdf') or 'blob=publicationFile' in url or '/pdf' in url:
+            if HAS_PDF:
+                log_info(f"  Using PDF parser for {abbrev}")
+                # Get title from custom sources if available
+                custom = load_custom_sources()
+                title = custom.get('custom_sources', {}).get('NL', {}).get(abbrev, {}).get('name', abbrev)
+                doc = parse_pdf_to_law_document(url, abbrev, title, "NL")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    return doc
+            else:
+                log_warning(f"  PDF parsing not available for {abbrev}. Install pdfplumber: pip install pdfplumber")
+            return None
+
         html = self.fetch_url(url, law_abbr=abbrev)
 
         if html:
@@ -3922,33 +4423,27 @@ Return a JSON array of issues found (empty array if no issues):
 Only return the JSON array, no other text. If everything looks good, return []."""
 
     try:
-        response = call_gemini_api(prompt, temperature=0.2, max_tokens=2048)
+        response = call_gemini_api(prompt, temperature=0.5, max_tokens=2048)
 
         if not response:
             return issues
 
-        # Parse AI response
-        if "```json" in response:
-            response = response.split("```json")[1].split("```")[0].strip()
-        elif "```" in response:
-            response = response.split("```")[1].split("```")[0].strip()
-
-        ai_issues = json.loads(response)
+        # Use robust JSON parser to handle malformed AI responses
+        ai_issues = robust_json_parse(response, default=[])
 
         if isinstance(ai_issues, list):
             for ai_issue in ai_issues:
-                issues.append(ValidationIssue(
-                    issue_type=ai_issue.get('type', 'ai_detected'),
-                    severity=ai_issue.get('severity', 'warning'),
-                    law_abbr=abbr,
-                    description=ai_issue.get('description', 'AI-detected issue'),
-                    location=ai_issue.get('location'),
-                    suggestion=ai_issue.get('suggestion'),
-                    auto_fixable=False
-                ))
+                if isinstance(ai_issue, dict):
+                    issues.append(ValidationIssue(
+                        issue_type=ai_issue.get('type', 'ai_detected'),
+                        severity=ai_issue.get('severity', 'warning'),
+                        law_abbr=abbr,
+                        description=ai_issue.get('description', 'AI-detected issue'),
+                        location=ai_issue.get('location'),
+                        suggestion=ai_issue.get('suggestion'),
+                        auto_fixable=False
+                    ))
 
-    except json.JSONDecodeError as e:
-        log_warning(f"Failed to parse AI validation response for {abbr}: {e}")
     except Exception as e:
         log_warning(f"AI validation error for {abbr}: {e}")
 
@@ -4236,7 +4731,7 @@ Only return the JSON, no other text."""
     time.sleep(CONFIG.ai_rate_limit_delay)  # Rate limiting
 
     try:
-        response = call_gemini_api(prompt, temperature=0.3, max_tokens=4096)
+        response = call_gemini_api(prompt, temperature=0.5, max_tokens=4096)
 
         if not response:
             return {'status': 'error', 'message': 'AI returned no response'}
