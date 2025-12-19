@@ -10,6 +10,9 @@ import {
   isDatabaseLoaded,
   WHS_TOPIC_LABELS,
   RELEVANCE_LEVELS,
+  STRUCTURE_LABELS,
+  getStructureLabel,
+  DOC_TYPES,
   hasPdfSource,
   getPdfSourceUrl,
   isSupplementarySource
@@ -1907,7 +1910,9 @@ export function LawBrowser({ onBack }) {
 
                   return Object.entries(groupedSections).map(([chapterKey, { abschnitt, sections }]) => {
                     const isChapterExpanded = expandedChapters[chapterKey] ?? false
-                    const chapterTitle = abschnitt?.displayName || abschnitt?.title || `${chapterKey}. Abschnitt`
+                    // Use dynamic labels based on country/framework
+                    const groupingLabel = getStructureLabel(framework, 'grouping_1')
+                    const chapterTitle = abschnitt?.displayName || abschnitt?.title || `${chapterKey}. ${groupingLabel}`
 
                     return (
                       <div key={chapterKey} className="border-b border-gray-200 dark:border-whs-dark-600">
@@ -2037,6 +2042,19 @@ export function LawBrowser({ onBack }) {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                         </svg>
                       </button>
+                      {/* PDF Download Button */}
+                      {hasPdfSource(selectedLaw) && (
+                        <button
+                          onClick={() => openPdfModal(selectedLaw)}
+                          className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                          title="View/Download Official PDF"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 11v6m0 0l-2-2m2 2l2-2" />
+                          </svg>
+                        </button>
+                      )}
                       {selectedLaw.source?.url && (
                         <a
                           href={selectedLaw.source.url}
@@ -2155,7 +2173,7 @@ export function LawBrowser({ onBack }) {
                                   {showAbschnittHeader && section.abschnitt && (
                                     <div className="mb-6 mt-8 first:mt-0 p-4 bg-gradient-to-r from-whs-orange-50 to-transparent dark:from-whs-orange-900/20 dark:to-transparent rounded-lg border-l-4 border-whs-orange-500">
                                       <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                                        {section.abschnitt.displayName || `${section.abschnitt.number}. Abschnitt`}
+                                        {section.abschnitt.displayName || `${section.abschnitt.number}. ${getStructureLabel(framework, 'grouping_1')}`}
                                       </h2>
                                       <p className="text-gray-600 dark:text-gray-400 font-medium">
                                         {section.abschnitt.title}

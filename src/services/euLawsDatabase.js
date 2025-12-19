@@ -335,6 +335,52 @@ export const RELEVANCE_LEVELS = {
 }
 
 /**
+ * Country-specific structure labels for dynamic UI
+ * Used to display appropriate grouping labels based on the selected country/framework
+ */
+export const STRUCTURE_LABELS = {
+  'AT': {
+    grouping_1: 'Abschnitt',
+    grouping_2: 'Unterabschnitt',
+    article: '§',
+    section: 'Paragraph'
+  },
+  'DE': {
+    grouping_1: 'Abschnitt',  // or "Buch" for larger laws
+    grouping_2: 'Titel',
+    article: '§',
+    section: 'Paragraph'
+  },
+  'NL': {
+    grouping_1: 'Hoofdstuk',
+    grouping_2: 'Afdeling',
+    article: 'Artikel',
+    section: 'Artikel'
+  }
+}
+
+/**
+ * Get structure label for a country
+ * @param {string} country - Country code (AT, DE, NL)
+ * @param {string} level - Structure level ('grouping_1', 'grouping_2', 'article', 'section')
+ * @returns {string} - Localized label
+ */
+export function getStructureLabel(country, level = 'grouping_1') {
+  return STRUCTURE_LABELS[country]?.[level] || STRUCTURE_LABELS['DE'][level]
+}
+
+/**
+ * Document type enumeration for unified schema
+ */
+export const DOC_TYPES = {
+  LAW: 'law',
+  ORDINANCE: 'ordinance',
+  MERKBLATT: 'merkblatt',
+  GUIDELINE: 'guideline',
+  REGULATION: 'regulation'
+}
+
+/**
  * Process raw laws data into standardized format
  */
 function processLawsData(data, countryCode) {
