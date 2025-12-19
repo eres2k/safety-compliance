@@ -38,13 +38,11 @@
         "source_type": "custom"
       },
       "BauKG": {
-        "url": "/Dokument.wxe?Abfrage=Bundesnormen&Dokumentnummer=NOR40008543",
-        "name": "Bundesgesetz über die Koordination von Sicherheits- und Gesundheitsschutz auf Baustellen (Bauarbeitenkoordinationsgesetz - BauKG)",
-        "description": "URL auto-corrected by AI",
+        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008543",
+        "name": "Bauarbeitenkoordinationsgesetz - BauKG",
+        "description": "Federal Act on the coordination of occupational safety and health protection on construction sites. Contains 20 sections (§§ 1-20) covering coordination duties, safety planning, and responsibilities on construction sites.",
         "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T19:11:53.343509",
-        "original_url_failed": true
+        "source_type": "custom"
       },
       "GefStoffV": {
         "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001710",
@@ -162,10 +160,12 @@
       "DGUV Vorschrift 1": {
         "url": "https://publikationen.dguv.de/regelwerk/dguv-vorschriften/2909/dguv-vorschrift-1",
         "name": "Grundsätze der Prävention",
-        "description": "This regulation outlines the fundamental principles of prevention for occupational safety and health in Germany. While issued by the DGUV (German Social Accident Insurance), it is based on and implements statutory requirements and is crucial for workplace safety. It covers responsibilities of employers and employees and establishes the framework for risk assessments and preventive measures.",
-        "enabled": true,
+        "description": "This regulation outlines the fundamental principles of prevention for occupational safety and health in Germany. NOTE: Source is a PDF publication page - cannot be automatically parsed. Manual download required.",
+        "enabled": false,
         "created_at": "2025-12-18T02:50:24.524085",
-        "source_type": "custom"
+        "source_type": "custom",
+        "requires_pdf_parsing": true,
+        "disabled_reason": "PDF source - automatic HTML parsing not supported"
       },
       "BildscharbV": {
         "url": "https://www.gesetze-im-internet.de/arbst_ttv_2004/",
@@ -179,12 +179,13 @@
       },
       "TRBS 1111": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1111.pdf?__blob=publicationFile&v=8",
-        "name": "Technische Regeln für Betriebssicherheit (TRBS) 1111 - Maßnahmen zur Vermeidung von Brand-, Explosions- und ähnlichen Gefährdungen beim Bereitstellen von Arbeitsmitteln und bei der Verwendung von Arbeitsstoffen",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
+        "name": "Technische Regeln für Betriebssicherheit (TRBS) 1111",
+        "description": "Technical Rules for Industrial Safety - Measures to prevent fire, explosion and similar hazards. NOTE: Source is a PDF file - cannot be automatically parsed.",
+        "enabled": false,
         "ai_corrected": true,
         "corrected_at": "2025-12-18T04:04:04.045922",
-        "original_url_failed": true
+        "requires_pdf_parsing": true,
+        "disabled_reason": "PDF source - automatic HTML parsing not supported"
       },
       "MuSchG": {
         "url": "/muschg_2018/",

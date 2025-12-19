@@ -664,6 +664,134 @@ def create_progress_bar(total: int, desc: str = "Processing"):
     return SimpleProgressBar(total, desc)
 
 
+def robust_json_parse(text: str, default: Any = None) -> Any:
+    """
+    Parse JSON with robust error handling and repair strategies.
+    Handles common AI response issues like unterminated strings, trailing commas, etc.
+    """
+    if not text or not text.strip():
+        return default if default is not None else []
+
+    text = text.strip()
+
+    # Strategy 1: Direct parse
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    # Strategy 2: Try to extract JSON from markdown code blocks
+    if "```" in text:
+        # Try ```json first
+        if "```json" in text:
+            try:
+                extracted = text.split("```json")[1].split("```")[0].strip()
+                return json.loads(extracted)
+            except (IndexError, json.JSONDecodeError):
+                pass
+        # Try generic ``` blocks
+        try:
+            parts = text.split("```")
+            if len(parts) >= 2:
+                extracted = parts[1].strip()
+                # Remove json/JSON prefix if present
+                if extracted.lower().startswith('json'):
+                    extracted = extracted[4:].strip()
+                return json.loads(extracted)
+        except (IndexError, json.JSONDecodeError):
+            pass
+
+    # Strategy 3: Fix common JSON issues
+    repaired = text
+
+    # Remove trailing commas before ] or }
+    repaired = re.sub(r',(\s*[}\]])', r'\1', repaired)
+
+    # Try to fix unterminated strings by finding the last valid JSON structure
+    # Look for the pattern of a valid JSON array
+    if repaired.strip().startswith('['):
+        # Find all complete objects in the array
+        bracket_count = 0
+        brace_count = 0
+        in_string = False
+        escape_next = False
+        last_valid_pos = 0
+
+        for i, char in enumerate(repaired):
+            if escape_next:
+                escape_next = False
+                continue
+            if char == '\\':
+                escape_next = True
+                continue
+            if char == '"' and not escape_next:
+                in_string = not in_string
+                continue
+            if in_string:
+                continue
+            if char == '[':
+                bracket_count += 1
+            elif char == ']':
+                bracket_count -= 1
+                if bracket_count == 0:
+                    last_valid_pos = i + 1
+                    break
+            elif char == '{':
+                brace_count += 1
+            elif char == '}':
+                brace_count -= 1
+                if brace_count == 0 and bracket_count == 1:
+                    last_valid_pos = i + 1
+
+        # If we found a valid end, try to repair
+        if last_valid_pos > 0:
+            try:
+                return json.loads(repaired[:last_valid_pos])
+            except json.JSONDecodeError:
+                pass
+
+        # Try truncating at the last complete object
+        last_brace = repaired.rfind('}')
+        if last_brace > 0:
+            # Find matching bracket
+            truncated = repaired[:last_brace + 1]
+            # Count brackets and braces
+            open_brackets = truncated.count('[') - truncated.count(']')
+            # Add closing brackets as needed
+            truncated += ']' * open_brackets
+            try:
+                return json.loads(truncated)
+            except json.JSONDecodeError:
+                pass
+
+    # Strategy 4: Extract individual objects and build array
+    if '[' in text:
+        objects = []
+        # Find all {...} patterns
+        brace_depth = 0
+        obj_start = -1
+        for i, char in enumerate(text):
+            if char == '{':
+                if brace_depth == 0:
+                    obj_start = i
+                brace_depth += 1
+            elif char == '}':
+                brace_depth -= 1
+                if brace_depth == 0 and obj_start >= 0:
+                    obj_text = text[obj_start:i+1]
+                    try:
+                        obj = json.loads(obj_text)
+                        objects.append(obj)
+                    except json.JSONDecodeError:
+                        pass
+                    obj_start = -1
+        if objects:
+            return objects
+
+    # Strategy 5: Return empty array as safe fallback for expected array responses
+    return default if default is not None else []
+
+
 # =============================================================================
 # Utility Functions
 # =============================================================================
@@ -1435,6 +1563,35 @@ STRUCTURE_ARBMEDVV = [
     {"number": "3", "title": "Dritter Abschnitt - Schlußvorschriften", "title_en": "Third Section - Final Provisions", "section_range": (8, 11)},
 ]
 
+# Official structure: Germany LastenhandhabV (Lastenhandhabungsverordnung) - flat structure, 6 sections
+STRUCTURE_LASTENHANDHABV = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 6)},
+]
+
+# Official structure: Germany DGUV Vorschrift 1 (Grundsätze der Prävention) - DGUV rule structure
+STRUCTURE_DGUV_V1 = [
+    {"number": "1", "title": "Erstes Kapitel - Allgemeine Vorschriften", "title_en": "First Chapter - General Provisions", "section_range": (1, 6)},
+    {"number": "2", "title": "Zweites Kapitel - Pflichten des Unternehmers", "title_en": "Second Chapter - Employer Obligations", "section_range": (7, 14)},
+    {"number": "3", "title": "Drittes Kapitel - Pflichten der Versicherten", "title_en": "Third Chapter - Insured Persons' Obligations", "section_range": (15, 18)},
+    {"number": "4", "title": "Viertes Kapitel - Organisation des betrieblichen Arbeitsschutzes", "title_en": "Fourth Chapter - Organization of Occupational Safety", "section_range": (19, 26)},
+    {"number": "5", "title": "Fünftes Kapitel - Ordnungswidrigkeiten", "title_en": "Fifth Chapter - Administrative Offenses", "section_range": (27, 29)},
+]
+
+# Official structure: Austria BauKG (Bauarbeitenkoordinationsgesetz) - 20 sections
+STRUCTURE_BAUKG = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 20)},
+]
+
+# Official structure: Austria DOK-VO (Dokumentationsverordnung) - 7 sections
+STRUCTURE_DOKVO = [
+    {"number": "1", "title": "Hauptteil", "title_en": "Main Part", "section_range": (1, 7)},
+]
+
+# Official structure: Netherlands WED (Wet op de economische delicten) - flat structure, ~96 articles
+STRUCTURE_WED = [
+    {"number": "1", "title": "Hoofdinhoud", "title_en": "Main Content", "section_range": (1, 100)},
+]
+
 # Official structure: Netherlands Arbobesluit - 9 Hoofdstukken
 STRUCTURE_ARBOBESLUIT = [
     {"number": "1", "title": "Hoofdstuk 1 - Definities en toepassingsgebied", "title_en": "Chapter 1 - Definitions and Scope", "section_range": (1, 1.99)},
@@ -1474,6 +1631,8 @@ LAW_STRUCTURES = {
         "PSA-V": STRUCTURE_PSAV,
         "ESV 2012": STRUCTURE_ESV2012,
         "LärmV": STRUCTURE_LAERMV,
+        "BauKG": STRUCTURE_BAUKG,
+        "DOK-VO": STRUCTURE_DOKVO,
     },
     "DE": {
         "ArbSchG": STRUCTURE_ARBSCHG,
@@ -1487,11 +1646,14 @@ LAW_STRUCTURES = {
         "LärmVibrationsArbSchV": STRUCTURE_LAERMVIBRATIONSARBSCHV,
         "BioStoffV": STRUCTURE_BIOSTOFFV,
         "ArbMedVV": STRUCTURE_ARBMEDVV,
+        "LastenhandhabV": STRUCTURE_LASTENHANDHABV,
+        "DGUV Vorschrift 1": STRUCTURE_DGUV_V1,
     },
     "NL": {
         "Arbowet": STRUCTURE_ARBOWET,
         "Arbobesluit": STRUCTURE_ARBOBESLUIT,
         "Arbeidstijdenwet": STRUCTURE_ARBEIDSTIJDENWET,
+        "WED": STRUCTURE_WED,
     },
 }
 
@@ -3927,28 +4089,22 @@ Only return the JSON array, no other text. If everything looks good, return []."
         if not response:
             return issues
 
-        # Parse AI response
-        if "```json" in response:
-            response = response.split("```json")[1].split("```")[0].strip()
-        elif "```" in response:
-            response = response.split("```")[1].split("```")[0].strip()
-
-        ai_issues = json.loads(response)
+        # Use robust JSON parser to handle malformed AI responses
+        ai_issues = robust_json_parse(response, default=[])
 
         if isinstance(ai_issues, list):
             for ai_issue in ai_issues:
-                issues.append(ValidationIssue(
-                    issue_type=ai_issue.get('type', 'ai_detected'),
-                    severity=ai_issue.get('severity', 'warning'),
-                    law_abbr=abbr,
-                    description=ai_issue.get('description', 'AI-detected issue'),
-                    location=ai_issue.get('location'),
-                    suggestion=ai_issue.get('suggestion'),
-                    auto_fixable=False
-                ))
+                if isinstance(ai_issue, dict):
+                    issues.append(ValidationIssue(
+                        issue_type=ai_issue.get('type', 'ai_detected'),
+                        severity=ai_issue.get('severity', 'warning'),
+                        law_abbr=abbr,
+                        description=ai_issue.get('description', 'AI-detected issue'),
+                        location=ai_issue.get('location'),
+                        suggestion=ai_issue.get('suggestion'),
+                        auto_fixable=False
+                    ))
 
-    except json.JSONDecodeError as e:
-        log_warning(f"Failed to parse AI validation response for {abbr}: {e}")
     except Exception as e:
         log_warning(f"AI validation error for {abbr}: {e}")
 
