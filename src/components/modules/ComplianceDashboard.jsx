@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { Card, CardContent, Button } from '../ui'
-import { getAllLaws } from '../../services/euLawsDatabase'
+import { getAllLawsSync, initializeLawsDatabase, isDatabaseLoaded } from '../../services/euLawsDatabase'
 import { exportComplianceSummary } from '../../services/exportService'
 
 const STATUS_CONFIG = {
@@ -48,15 +48,28 @@ export function ComplianceDashboard({ onBack }) {
 
   const [selectedFilter, setSelectedFilter] = useState('all')
   const [viewMode, setViewMode] = useState('grid') // 'grid' or 'list'
+  const [databaseReady, setDatabaseReady] = useState(isDatabaseLoaded(framework))
+
+  // Load database on mount or framework change
+  useEffect(() => {
+    if (!isDatabaseLoaded(framework)) {
+      initializeLawsDatabase(framework)
+        .then(() => setDatabaseReady(true))
+        .catch(err => console.error('Failed to load database:', err))
+    } else {
+      setDatabaseReady(true)
+    }
+  }, [framework])
 
   // Get all laws for the current framework
   const allLaws = useMemo(() => {
+    if (!databaseReady) return []
     try {
-      return getAllLaws(framework)
+      return getAllLawsSync(framework)
     } catch {
       return []
     }
-  }, [framework])
+  }, [framework, databaseReady])
 
   // Get compliance stats
   const stats = getComplianceStats()

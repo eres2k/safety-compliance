@@ -182,6 +182,125 @@ CONFIG = Config()
 # Custom sources configuration file
 CUSTOM_SOURCES_FILE = CONFIG.base_path / "custom_sources.json"
 
+# Centralized config file path
+CENTRAL_CONFIG_FILE = CONFIG.base_path / "config.json"
+
+
+def load_central_config():
+    """Load centralized config and update CONFIG with rate limits."""
+    global CONFIG
+    try:
+        if CENTRAL_CONFIG_FILE.exists():
+            with open(CENTRAL_CONFIG_FILE, 'r', encoding='utf-8') as f:
+                central_config = json.load(f)
+
+            # Update rate limits if present
+            if 'rate_limits' in central_config:
+                rl = central_config['rate_limits']
+                if 'default_delay_ms' in rl:
+                    CONFIG.rate_limit_delay = rl['default_delay_ms'] / 1000
+                if 'ai_delay_ms' in rl:
+                    CONFIG.ai_rate_limit_delay = rl['ai_delay_ms'] / 1000
+                if 'max_parallel_scrapes' in rl:
+                    CONFIG.max_parallel_scrapes = rl['max_parallel_scrapes']
+                if 'max_parallel_ai_requests' in rl:
+                    CONFIG.max_parallel_ai_requests = rl['max_parallel_ai_requests']
+                if 'max_retries' in rl:
+                    CONFIG.max_retries = rl['max_retries']
+
+            return central_config
+    except Exception as e:
+        print(f"Warning: Could not load central config: {e}")
+    return {}
+
+
+def get_section_title_from_config(country: str, law_abbr: str, section_num: str) -> Optional[str]:
+    """Get section title from centralized config mappings."""
+    config = load_central_config()
+    mappings = config.get('section_title_mappings', {})
+    country_mappings = mappings.get(country, {})
+    law_mappings = country_mappings.get(law_abbr, {})
+    return law_mappings.get(section_num)
+
+
+def extract_table_of_contents(text: str, country: str = 'DE') -> List[Dict[str, str]]:
+    """Extract table of contents from law text.
+
+    Returns list of {section, title} dicts.
+    """
+    toc = []
+    if not text:
+        return toc
+
+    # Country-specific patterns
+    if country == 'AT':
+        patterns = [
+            # Austrian: "§ 1 Geltungsbereich"
+            r'§\s*(\d+[a-z]?)\s+([A-ZÄÖÜ][^\n§]+?)(?=\n|$)',
+            # "1. Abschnitt - Title"
+            r'(\d+)\.\s*Abschnitt\s*[-–]?\s*([^\n]+)',
+        ]
+    elif country == 'NL':
+        patterns = [
+            # Dutch: "Artikel 1. Begripsbepalingen"
+            r'Artikel\s*(\d+[a-z]?)\.\s*([^\n]+)',
+            # "Hoofdstuk 1 Title"
+            r'Hoofdstuk\s*(\d+[a-z]?)\s+([^\n]+)',
+        ]
+    else:  # DE
+        patterns = [
+            # German: "§ 1 Zielsetzung und Anwendungsbereich"
+            r'§\s*(\d+[a-z]?)\s+([A-ZÄÖÜ][^\n§]+?)(?=\n|$)',
+            # "Abschnitt I Title"
+            r'Abschnitt\s+([IVX]+|\d+)\s+([^\n]+)',
+        ]
+
+    for pattern in patterns:
+        for match in re.finditer(pattern, text, re.MULTILINE):
+            section = match.group(1).strip()
+            title = match.group(2).strip()
+            # Clean title
+            title = re.sub(r'[.,:;]$', '', title)
+            title = re.sub(r'\s+', ' ', title)
+            # Skip if too long (probably content, not title)
+            if len(title) > 100 or re.search(r'\d{4}', title):
+                continue
+            toc.append({'section': section, 'title': title})
+
+    # Remove duplicates
+    seen = set()
+    unique_toc = []
+    for item in toc:
+        key = f"{item['section']}:{item['title']}"
+        if key not in seen:
+            seen.add(key)
+            unique_toc.append(item)
+
+    return unique_toc
+
+
+def is_supplementary_source(law: Dict) -> bool:
+    """Check if law is from a supplementary source (AUVA, DGUV, etc.)."""
+    config = load_central_config()
+    patterns = config.get('supplementary_source_patterns', [
+        'merkblatt', 'merkbuch', 'm.plus', 'guideline', 'handbook',
+        'information', 'supplement', 'dguv vorschrift', 'dguv regel',
+        'dguv information', 'trbs', 'trgs', 'asr', 'pgs'
+    ])
+
+    law_type = (law.get('type') or '').lower()
+    law_category = (law.get('category') or '').lower()
+    law_abbr = (law.get('abbreviation') or '').lower()
+
+    for pattern in patterns:
+        if pattern in law_type or pattern in law_category or pattern in law_abbr:
+            return True
+    return False
+
+
+# Load config on module import
+load_central_config()
+
 
 def load_custom_sources() -> Dict[str, Any]:
     """Load custom sources configuration from file."""

@@ -2,36 +2,140 @@
  * EU Safety Laws Database Service
  * Deep integration with comprehensive EU safety laws from AT, DE, NL
  * Includes cross-linking, search, and categorization
+ *
+ * LAZY-LOADING: Databases are now loaded on-demand to improve initial load time
  */
 
-// Import the full EU laws databases
-import atLawsData from '../../eu_safety_laws/at/at_database.json'
-import deLawsData from '../../eu_safety_laws/de/de_database.json'
-import nlLawsData from '../../eu_safety_laws/nl/nl_database.json'
-import wikiLawsData from '../../eu_safety_laws/wiki_all/wiki_all_database.json'
-import statisticsData from '../../eu_safety_laws/statistics.json'
-
-// Database cache
-let lawsDatabase = null
+// Database cache - loaded lazily per country
+let lawsDatabase = {
+  AT: null,
+  DE: null,
+  NL: null,
+  WIKI: null
+}
 let lawsIndex = null
+let loadingPromises = {}
+let statisticsData = null
+
+// Track which databases have been loaded
+const loadedDatabases = new Set()
 
 /**
- * Initialize the laws database
+ * Load a specific country's database lazily
  */
-export function initializeLawsDatabase() {
-  if (lawsDatabase) return lawsDatabase
-
-  lawsDatabase = {
-    AT: processLawsData(atLawsData, 'AT'),
-    DE: processLawsData(deLawsData, 'DE'),
-    NL: processLawsData(nlLawsData, 'NL'),
-    WIKI: processLawsData(wikiLawsData, 'WIKI')
+async function loadCountryDatabase(countryCode) {
+  // Already loaded
+  if (lawsDatabase[countryCode]) {
+    return lawsDatabase[countryCode]
   }
 
-  // Build search index
-  lawsIndex = buildSearchIndex(lawsDatabase)
+  // Already loading - return existing promise
+  if (loadingPromises[countryCode]) {
+    return loadingPromises[countryCode]
+  }
+
+  // Start loading
+  loadingPromises[countryCode] = (async () => {
+    try {
+      let data
+      switch (countryCode) {
+        case 'AT':
+          data = (await import('../../eu_safety_laws/at/at_database.json')).default
+          break
+        case 'DE':
+          data = (await import('../../eu_safety_laws/de/de_database.json')).default
+          break
+        case 'NL':
+          data = (await import('../../eu_safety_laws/nl/nl_database.json')).default
+          break
+        case 'WIKI':
+          data = (await import('../../eu_safety_laws/wiki_all/wiki_all_database.json')).default
+          break
+        default:
+          throw new Error(`Unknown country code: ${countryCode}`)
+      }
+
+      lawsDatabase[countryCode] = processLawsData(data, countryCode)
+      loadedDatabases.add(countryCode)
+
+      // Rebuild search index with newly loaded data
+      lawsIndex = buildSearchIndex(lawsDatabase)
+
+      return lawsDatabase[countryCode]
+    } catch (error) {
+      console.error(`Failed to load ${countryCode} database:`, error)
+      // Return empty database structure on error
+      return {
+        metadata: {},
+        categories: {},
+        items: [],
+        itemsById: {},
+        itemsByType: {},
+        crossReferences: {}
+      }
+    } finally {
+      delete loadingPromises[countryCode]
+    }
+  })()
+
+  return loadingPromises[countryCode]
+}
+
+/**
+ * Load statistics data lazily
+ */
+async function loadStatistics() {
+  if (statisticsData) return statisticsData
+  try {
+    statisticsData = (await import('../../eu_safety_laws/statistics.json')).default
+  } catch (error) {
+    console.warn('Statistics file not found or invalid:', error)
+    statisticsData = {}
+  }
+  return statisticsData
+}
+
+/**
+ * Initialize the laws database for a specific country
+ * Returns a promise that resolves when the database is ready
+ */
+export async function initializeLawsDatabase(countryCode = null) {
+  // If specific country requested, load just that one
+  if (countryCode) {
+    return loadCountryDatabase(countryCode)
+  }
+
+  // Load all databases in parallel
+  await Promise.all([
+    loadCountryDatabase('AT'),
+    loadCountryDatabase('DE'),
+    loadCountryDatabase('NL'),
+    loadCountryDatabase('WIKI'),
+    loadStatistics()
+  ])
 
   return lawsDatabase
+}
+
+/**
+ * Check if a country's database is loaded
+ */
+export function isDatabaseLoaded(countryCode) {
+  return loadedDatabases.has(countryCode)
+}
+
+/**
+ * Get loading status for all databases
+ */
+export function getDatabaseLoadingStatus() {
+  return {
+    AT: loadedDatabases.has('AT'),
+    DE: loadedDatabases.has('DE'),
+    NL: loadedDatabases.has('NL'),
+    WIKI: loadedDatabases.has('WIKI'),
+    isLoading: Object.keys(loadingPromises).length > 0,
+    currentlyLoading: Object.keys(loadingPromises)
+  }
 }
 
 /**
@@ -192,6 +296,8 @@ function normalizeLawItem(item) {
     chapters: item.chapters || [],
     // WHS metadata - new fields for WHS employee browser
     whs_summary: item.whs_summary || null,
+    // Source metadata for PDF display
+    source: item.source || null,
   }
 }
 
@@ -402,6 +508,8 @@ function buildSearchIndex(database) {
   }
 
   Object.entries(database).forEach(([country, data]) => {
+    if (!data) return // Skip unloaded databases
+
     index.byCountry[country] = data.items.map(item => item.id)
 
     data.items.forEach(item => {
@@ -425,41 +533,64 @@ function buildSearchIndex(database) {
 }
 
 /**
- * Get database for specific country
+ * Get database for specific country (async)
  */
-export function getLawsDatabase(country = 'DE') {
-  if (!lawsDatabase) {
-    initializeLawsDatabase()
+export async function getLawsDatabase(country = 'DE') {
+  if (!lawsDatabase[country]) {
+    await loadCountryDatabase(country)
   }
   return lawsDatabase[country] || lawsDatabase.DE
 }
 
 /**
- * Get all laws for a country
+ * Get database for specific country (sync - may return null if not loaded)
  */
-export function getAllLaws(country = 'DE') {
-  const db = getLawsDatabase(country)
+export function getLawsDatabaseSync(country = 'DE') {
+  return lawsDatabase[country] || null
+}
+
+/**
+ * Get all laws for a country (async)
+ */
+export async function getAllLaws(country = 'DE') {
+  const db = await getLawsDatabase(country)
   return db.items
 }
 
 /**
- * Get law by ID
+ * Get all laws for a country (sync - may return empty if not loaded)
  */
-export function getLawById(country, id) {
-  const db = getLawsDatabase(country)
+export function getAllLawsSync(country = 'DE') {
+  const db = getLawsDatabaseSync(country)
+  return db?.items || []
+}
+
+/**
+ * Get law by ID (async)
+ */
+export async function getLawById(country, id) {
+  const db = await getLawsDatabase(country)
   return db.itemsById[id]
 }
 
 /**
- * Get laws by type
+ * Get law by ID (sync)
  */
-export function getLawsByType(country, type) {
-  const db = getLawsDatabase(country)
+export function getLawByIdSync(country, id) {
+  const db = getLawsDatabaseSync(country)
+  return db?.itemsById[id] || null
+}
+
+/**
+ * Get laws by type (async)
+ */
+export async function getLawsByType(country, type) {
+  const db = await getLawsDatabase(country)
   return db.itemsByType[type] || []
 }
 
 /**
- * Search laws with pagination support
+ * Search laws with pagination support (async)
  * @param {string} query - Search query
  * @param {Object} options - Search options
  * @param {string|null} options.country - Filter by country (AT, DE, NL) or null for all
@@ -470,11 +601,7 @@ export function getLawsByType(country, type) {
  * @param {boolean} options.includeContent - Include full content in results
  * @returns {Object} Search results with pagination metadata
  */
-export function searchLaws(query, options = {}) {
-  if (!lawsDatabase) {
-    initializeLawsDatabase()
-  }
-
+export async function searchLaws(query, options = {}) {
   const {
     country = null, // null means all countries
     type = null,
@@ -484,14 +611,16 @@ export function searchLaws(query, options = {}) {
     includeContent = false
   } = options
 
+  // Ensure requested countries are loaded
+  const countries = country ? [country] : ['AT', 'DE', 'NL', 'WIKI']
+  await Promise.all(countries.map(c => loadCountryDatabase(c)))
+
   // Validate pagination params
   const validPage = Math.max(1, Math.floor(page))
   const validLimit = Math.min(100, Math.max(1, Math.floor(limit)))
 
   const queryLower = query?.toLowerCase().trim() || ''
   const allResults = []
-
-  const countries = country ? [country] : ['AT', 'DE', 'NL', 'WIKI']
 
   countries.forEach(c => {
     const db = lawsDatabase[c]
@@ -524,6 +653,67 @@ export function searchLaws(query, options = {}) {
   allResults.sort((a, b) => b.score - a.score)
 
   // Calculate pagination
+  const total = allResults.length
+  const totalPages = Math.ceil(total / validLimit)
+  const offset = (validPage - 1) * validLimit
+  const paginatedResults = allResults.slice(offset, offset + validLimit)
+
+  return {
+    results: paginatedResults,
+    pagination: {
+      page: validPage,
+      limit: validLimit,
+      total,
+      totalPages,
+      hasMore: validPage < totalPages
+    }
+  }
+}
+
+/**
+ * Search laws synchronously (only searches loaded databases)
+ */
+export function searchLawsSync(query, options = {}) {
+  const {
+    country = null,
+    type = null,
+    category = null,
+    page = 1,
+    limit = 20,
+    includeContent = false
+  } = options
+
+  const validPage = Math.max(1, Math.floor(page))
+  const validLimit = Math.min(100, Math.max(1, Math.floor(limit)))
+
+  const queryLower = query?.toLowerCase().trim() || ''
+  const allResults = []
+
+  const countries = country ? [country] : ['AT', 'DE', 'NL', 'WIKI']
+
+  countries.forEach(c => {
+    const db = lawsDatabase[c]
+    if (!db) return
+
+    db.items.forEach(item => {
+      if (type && item.type !== type) return
+      if (category && item.category !== category) return
+
+      const score = queryLower ? calculateSearchScore(item, queryLower) : 1
+
+      if (score > 0) {
+        allResults.push({
+          ...item,
+          score,
+          country: c,
+          content: includeContent ? item.content : { available: item.content?.available }
+        })
+      }
+    })
+  })
+
+  allResults.sort((a, b) => b.score - a.score)
+
   const total = allResults.length
   const totalPages = Math.ceil(total / validLimit)
   const offset = (validPage - 1) * validLimit
@@ -594,10 +784,10 @@ function calculateSearchScore(item, query) {
 }
 
 /**
- * Get related laws for cross-linking
+ * Get related laws for cross-linking (async)
  */
-export function getRelatedLaws(country, lawId, limit = 5) {
-  const db = getLawsDatabase(country)
+export async function getRelatedLaws(country, lawId, limit = 5) {
+  const db = await getLawsDatabase(country)
   const law = db.itemsById[lawId]
 
   if (!law || !law.relatedIds) return []
@@ -609,10 +799,10 @@ export function getRelatedLaws(country, lawId, limit = 5) {
 }
 
 /**
- * Get cross-references for a law
+ * Get cross-references for a law (async)
  */
-export function getCrossReferences(country, lawId) {
-  const db = getLawsDatabase(country)
+export async function getCrossReferences(country, lawId) {
+  const db = await getLawsDatabase(country)
   const references = db.crossReferences[lawId] || []
 
   return references.map(id => {
@@ -627,21 +817,25 @@ export function getCrossReferences(country, lawId) {
 }
 
 /**
- * Get law categories for a country
+ * Get law categories for a country (async)
  */
-export function getLawCategories(country = 'DE') {
-  const db = getLawsDatabase(country)
+export async function getLawCategories(country = 'DE') {
+  const db = await getLawsDatabase(country)
   return db.categories || {}
 }
 
 /**
- * Get all facets (filter options) for the database
+ * Get all facets (filter options) for the database (async)
  * Returns unique values for jurisdiction, type, and category filters
  */
-export function getFacets() {
-  if (!lawsDatabase) {
-    initializeLawsDatabase()
-  }
+export async function getFacets() {
+  // Load all databases
+  await Promise.all([
+    loadCountryDatabase('AT'),
+    loadCountryDatabase('DE'),
+    loadCountryDatabase('NL'),
+    loadCountryDatabase('WIKI')
+  ])
 
   const jurisdictions = new Set()
   const types = new Set()
@@ -649,6 +843,7 @@ export function getFacets() {
   const tags = new Set()
 
   Object.entries(lawsDatabase).forEach(([country, data]) => {
+    if (!data) return
     jurisdictions.add(country)
     data.items.forEach(item => {
       if (item.type) types.add(item.type)
@@ -673,10 +868,11 @@ export function isValidCountry(country) {
 }
 
 /**
- * Get statistics for a country's laws
+ * Get statistics for a country's laws (async)
  */
-export function getLawsStatistics(country = 'DE') {
-  const db = getLawsDatabase(country)
+export async function getLawsStatistics(country = 'DE') {
+  const db = await getLawsDatabase(country)
+  const stats = await loadStatistics()
 
   return {
     totalLaws: db.items.length,
@@ -686,8 +882,8 @@ export function getLawsStatistics(country = 'DE') {
       percentage: Math.round((count / db.items.length) * 100)
     })),
     metadata: db.metadata,
-    lastUpdated: statisticsData?.generated_at || null,
-    globalStats: statisticsData?.statistics || null
+    lastUpdated: stats?.generated_at || null,
+    globalStats: stats?.statistics || null
   }
 }
 
@@ -714,7 +910,8 @@ export function formatLawReference(law) {
  * Get law content sections
  */
 export function getLawContentSections(country, lawId) {
-  const law = getLawById(country, lawId)
+  const db = getLawsDatabaseSync(country)
+  const law = db?.itemsById[lawId]
   if (!law || !law.content?.full_text) return []
 
   const text = law.content.full_text
@@ -876,10 +1073,10 @@ export function getLawExcerpt(law, searchTerm, contextLength = 200) {
 }
 
 /**
- * Get popular/core laws for a country
+ * Get popular/core laws for a country (async)
  * These are the most important workplace safety laws that users typically need
  */
-export function getCoreLaws(country = 'DE') {
+export async function getCoreLaws(country = 'DE') {
   // Core law abbreviations for each country (primary workplace safety legislation)
   const coreLawAbbreviations = {
     AT: ['ASchG', 'ArbIG', 'ASVG', 'AStV', 'AM-VO'],
@@ -887,7 +1084,7 @@ export function getCoreLaws(country = 'DE') {
     NL: ['Arbowet', 'Arbobesluit', 'Arboregeling', 'BRZO']
   }
 
-  const db = getLawsDatabase(country)
+  const db = await getLawsDatabase(country)
   const abbreviations = coreLawAbbreviations[country] || []
 
   // Find laws by abbreviation instead of hardcoded IDs
@@ -906,9 +1103,9 @@ export function getCoreLaws(country = 'DE') {
 }
 
 /**
- * Get laws by topic/category
+ * Get laws by topic/category (async)
  */
-export function getLawsByTopic(country, topic) {
+export async function getLawsByTopic(country, topic) {
   const topicKeywords = {
     'workplace-safety': ['arbeitsschutz', 'arbeitssicherheit', 'safety', 'veiligheid'],
     'hazardous-substances': ['gefahrstoff', 'gefstoff', 'chemical', 'chemisch'],
@@ -929,16 +1126,66 @@ export function getLawsByTopic(country, topic) {
   })
 }
 
-// Auto-initialize on import
-initializeLawsDatabase()
+/**
+ * Get PDF source URL for a law if available
+ */
+export function getPdfSourceUrl(law) {
+  if (!law) return null
+
+  // Check source metadata
+  if (law.source?.pdf_url) {
+    return law.source.pdf_url
+  }
+
+  // Check if source type indicates PDF
+  if (law.source?.source_type === 'pdf' && law.source?.url) {
+    return law.source.url
+  }
+
+  return null
+}
+
+/**
+ * Check if a law has PDF source available
+ */
+export function hasPdfSource(law) {
+  return !!getPdfSourceUrl(law)
+}
+
+/**
+ * Check if law is from a supplementary source (like AUVA Merkblätter)
+ * These are marked differently in the UI
+ */
+export function isSupplementarySource(law) {
+  if (!law) return false
+
+  const supplementaryTypes = [
+    'merkblatt',
+    'guideline',
+    'handbook',
+    'information',
+    'supplement'
+  ]
+
+  const type = (law.type || '').toLowerCase()
+  const category = (law.category || '').toLowerCase()
+
+  return supplementaryTypes.some(t => type.includes(t) || category.includes(t))
+}
 
 export default {
   initializeLawsDatabase,
+  isDatabaseLoaded,
+  getDatabaseLoadingStatus,
   getLawsDatabase,
+  getLawsDatabaseSync,
   getAllLaws,
+  getAllLawsSync,
   getLawById,
+  getLawByIdSync,
   getLawsByType,
   searchLaws,
+  searchLawsSync,
   getRelatedLaws,
   getCrossReferences,
   getLawCategories,
@@ -949,5 +1196,8 @@ export default {
   getLawContentSections,
   getLawExcerpt,
   getCoreLaws,
-  getLawsByTopic
+  getLawsByTopic,
+  getPdfSourceUrl,
+  hasPdfSource,
+  isSupplementarySource
 }

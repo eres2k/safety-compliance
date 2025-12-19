@@ -10,6 +10,7 @@ export { MultiCountryComparison } from './MultiCountryComparison'
 export { FormattedAIResponse } from './FormattedAIResponse'
 export { RateLimitIndicator, useRateLimitStatus } from './RateLimitIndicator'
 export { SearchHistory } from './SearchHistory'
+export { PdfViewer, PdfSourceBadge, SupplementaryBadge } from './PdfViewer'
 
 // Re-export default components
 export { default as ButtonDefault } from './Button'
