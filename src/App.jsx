@@ -23,11 +23,14 @@ function AppContent() {
   const [isLoading, setIsLoading] = useState(true)
   const { isDark } = useApp()
 
-  // Initialize database on mount
+  // Initialize database on mount - loads only the default framework (DE)
+  // Other frameworks are loaded on-demand when user switches
   useEffect(() => {
     const init = async () => {
       try {
-        initializeLawsDatabase()
+        // Only load DE (default framework) initially for faster startup
+        // Other country databases will be loaded lazily when selected
+        await initializeLawsDatabase('DE')
       } catch (error) {
         console.error('Failed to initialize laws database:', error)
       } finally {

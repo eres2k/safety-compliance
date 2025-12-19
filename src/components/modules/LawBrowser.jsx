@@ -1,13 +1,18 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison } from '../ui'
+import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge } from '../ui'
 import {
-  getAllLaws,
+  getAllLawsSync,
   getRelatedLaws,
   getLawCategories,
+  initializeLawsDatabase,
+  isDatabaseLoaded,
   WHS_TOPIC_LABELS,
-  RELEVANCE_LEVELS
+  RELEVANCE_LEVELS,
+  hasPdfSource,
+  getPdfSourceUrl,
+  isSupplementarySource
 } from '../../services/euLawsDatabase'
 
 // Remove duplicate expanded notation text from Austrian legal documents
@@ -1001,6 +1006,9 @@ export function LawBrowser({ onBack }) {
   const [wikiModal, setWikiModal] = useState({ open: false, lawAbbr: null })
   const [wikiIndex, setWikiIndex] = useState({}) // { lawAbbr: { title, url, summary } }
   const [whsCrosslinks, setWhsCrosslinks] = useState({}) // WHS term -> Wikipedia article mappings
+
+  // PDF Viewer Modal state
+  const [pdfModal, setPdfModal] = useState({ open: false, url: null, title: null })
   const [wikiContent, setWikiContent] = useState(null) // HTML content for modal
   const [wikiLoading, setWikiLoading] = useState(false)
   const [crosslinkPopup, setCrosslinkPopup] = useState({ open: false, term: null, data: null, x: 0, y: 0 })
@@ -1008,7 +1016,11 @@ export function LawBrowser({ onBack }) {
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
 
-  // Handle framework switching with loading state
+  // Database loading state
+  const [databaseLoading, setDatabaseLoading] = useState(false)
+  const [databaseReady, setDatabaseReady] = useState(isDatabaseLoaded(framework))
+
+  // Handle framework switching with loading state - loads database lazily
   useEffect(() => {
     if (framework !== prevFramework) {
       setIsLoading(true)
@@ -1016,15 +1028,49 @@ export function LawBrowser({ onBack }) {
       setSelectedCategory('all')
       setSearchTerm('')
 
-      // Small delay to show loading state and allow data to process
-      const timer = setTimeout(() => {
+      // Load the database for the new framework
+      const loadDatabase = async () => {
+        if (!isDatabaseLoaded(framework)) {
+          setDatabaseLoading(true)
+          try {
+            await initializeLawsDatabase(framework)
+            setDatabaseReady(true)
+          } catch (error) {
+            console.error(`Failed to load ${framework} database:`, error)
+          } finally {
+            setDatabaseLoading(false)
+          }
+        } else {
+          setDatabaseReady(true)
+        }
+
         setIsLoading(false)
         setPrevFramework(framework)
-      }, 150)
+      }
 
-      return () => clearTimeout(timer)
+      loadDatabase()
     }
   }, [framework, prevFramework])
+
+  // Ensure database is loaded on initial mount
+  useEffect(() => {
+    if (!isDatabaseLoaded(framework)) {
+      const loadInitialDatabase = async () => {
+        setDatabaseLoading(true)
+        try {
+          await initializeLawsDatabase(framework)
+          setDatabaseReady(true)
+        } catch (error) {
+          console.error(`Failed to load ${framework} database:`, error)
+        } finally {
+          setDatabaseLoading(false)
+        }
+      }
+      loadInitialDatabase()
+    } else {
+      setDatabaseReady(true)
+    }
+  }, [])
 
   // Load Wikipedia index for current framework
   useEffect(() => {
@@ -1091,6 +1137,23 @@ export function LawBrowser({ onBack }) {
     }
   }
 
+  // Function to open PDF modal
+  const openPdfModal = useCallback((law) => {
+    const pdfUrl = getPdfSourceUrl(law)
+    if (pdfUrl) {
+      setPdfModal({
+        open: true,
+        url: pdfUrl,
+        title: law.abbreviation || law.title || 'PDF Document'
+      })
+    }
+  }, [])
+
+  // Close PDF modal
+  const closePdfModal = useCallback(() => {
+    setPdfModal({ open: false, url: null, title: null })
+  }, [])
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize] = useState(20)
@@ -1100,9 +1163,21 @@ export function LawBrowser({ onBack }) {
     setCurrentPage(1)
   }, [searchTerm, selectedCategory, framework])
 
-  // Get all laws and categories
-  const allLaws = useMemo(() => getAllLaws(framework), [framework])
-  const categories = useMemo(() => getLawCategories(framework), [framework])
+  // Get all laws and categories (uses sync function - database must be loaded)
+  const allLaws = useMemo(() => {
+    if (!databaseReady) return []
+    return getAllLawsSync(framework)
+  }, [framework, databaseReady])
+
+  // Categories state (loaded async)
+  const [categories, setCategories] = useState({})
+
+  // Load categories when database is ready
+  useEffect(() => {
+    if (databaseReady) {
+      getLawCategories(framework).then(cats => setCategories(cats || {}))
+    }
+  }, [framework, databaseReady])
 
   // Filter and search laws with pagination
   // Uses direct text search similar to right column content search
@@ -1369,10 +1444,22 @@ export function LawBrowser({ onBack }) {
     return filtered
   }, [lawSections, searchInLaw, contentSearchTerm, relevanceFilter])
 
-  // Get related laws
-  const relatedLaws = useMemo(() => {
-    if (!selectedLaw) return []
-    return getRelatedLaws(framework, selectedLaw.id, 5)
+  // Related laws state (loaded async)
+  const [relatedLaws, setRelatedLaws] = useState([])
+
+  // Load related laws when a law is selected
+  useEffect(() => {
+    if (!selectedLaw) {
+      setRelatedLaws([])
+      return
+    }
+
+    getRelatedLaws(framework, selectedLaw.id, 5)
+      .then(laws => setRelatedLaws(laws || []))
+      .catch(err => {
+        console.error('Failed to load related laws:', err)
+        setRelatedLaws([])
+      })
   }, [selectedLaw, framework])
 
   // Scroll to section and expand it (and its chapter)
@@ -2254,17 +2341,48 @@ export function LawBrowser({ onBack }) {
 
                 {/* Actions Footer */}
                 <div className="flex-shrink-0 p-3 border-t border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
-                  <div className="flex gap-2">
-                    {selectedLaw.source?.pdf_url && (
+                  <div className="flex items-center gap-2">
+                    {/* Supplementary Source Badge */}
+                    {isSupplementarySource(selectedLaw) && (
+                      <SupplementaryBadge
+                        sourceType={
+                          selectedLaw.abbreviation?.toLowerCase().includes('auva') ? 'merkblatt' :
+                          selectedLaw.abbreviation?.toLowerCase().includes('dguv') ? 'dguv' :
+                          selectedLaw.abbreviation?.toLowerCase().includes('trbs') ? 'trbs' :
+                          selectedLaw.abbreviation?.toLowerCase().includes('trgs') ? 'trgs' :
+                          selectedLaw.abbreviation?.toLowerCase().includes('asr') ? 'asr' :
+                          selectedLaw.abbreviation?.toLowerCase().includes('pgs') ? 'pgs' :
+                          'default'
+                        }
+                      />
+                    )}
+
+                    {/* PDF Button - opens in modal instead of new tab */}
+                    {hasPdfSource(selectedLaw) && (
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => window.open(selectedLaw.source.pdf_url, '_blank')}
+                        onClick={() => openPdfModal(selectedLaw)}
+                        className="flex items-center gap-1"
+                      >
+                        <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                        </svg>
+                        View PDF
+                      </Button>
+                    )}
+
+                    {/* External Link - open source URL */}
+                    {selectedLaw.source?.url && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => window.open(selectedLaw.source.url, '_blank')}
+                        title="Open source website"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
-                        PDF
                       </Button>
                     )}
                   </div>
@@ -2445,6 +2563,16 @@ export function LawBrowser({ onBack }) {
             </button>
           </div>
         </div>
+      )}
+
+      {/* PDF Viewer Modal */}
+      {pdfModal.open && (
+        <PdfViewer
+          url={pdfModal.url}
+          title={pdfModal.title}
+          isModal={true}
+          onClose={closePdfModal}
+        />
       )}
     </div>
   )

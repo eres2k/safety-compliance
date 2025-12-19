@@ -3,7 +3,7 @@ import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
 import { Button, Select, Card, CardContent, FormattedAIResponse } from '../ui'
 import { LoadingSpinner, DotsLoading } from '../ui/LoadingSpinner'
-import { searchLaws, getRelatedLaws } from '../../services/euLawsDatabase'
+import { searchLaws } from '../../services/euLawsDatabase'
 
 const COMPANY_SIZES = ['1-10', '11-50', '51-100', '101-250', '250+']
 
@@ -70,8 +70,8 @@ export function ComplianceChecker({ onBack }) {
       const response = await checkCompliance(companySize, industry, topic)
       setResult(response)
 
-      // Find related laws from our database
-      const searchResult = searchLaws(topic, { country: framework, limit: 5 })
+      // Find related laws from our database (async)
+      const searchResult = await searchLaws(topic, { country: framework, limit: 5 })
       setRelatedLaws(searchResult.results || [])
     } catch (error) {
       setResult(t.api?.error || 'Failed to check compliance')

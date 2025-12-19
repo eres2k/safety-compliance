@@ -1,0 +1,253 @@
+{
+  "version": "1.0.0",
+  "description": "Centralized configuration for EU Safety Laws database",
+
+  "rate_limits": {
+    "default_delay_ms": 100,
+    "ai_delay_ms": 50,
+    "max_parallel_scrapes": 4,
+    "max_parallel_ai_requests": 10,
+    "max_retries": 3,
+    "retry_delay_ms": 2000
+  },
+
+  "source_types": {
+    "html": {
+      "description": "HTML webpage source - main laws scraped from government websites",
+      "display_name": "Official Law Text",
+      "icon": "document"
+    },
+    "pdf": {
+      "description": "PDF document source - supplementary materials like AUVA Merkblätter, DGUV publications",
+      "display_name": "PDF Document",
+      "icon": "pdf",
+      "is_supplementary": true
+    },
+    "pdf_verification": {
+      "description": "PDF source used to verify/supplement an existing HTML law",
+      "display_name": "Official PDF",
+      "icon": "pdf"
+    },
+    "custom": {
+      "description": "Custom/user-added source",
+      "display_name": "Additional Source",
+      "icon": "plus"
+    }
+  },
+
+  "supplementary_source_patterns": [
+    "merkblatt",
+    "merkbuch",
+    "m.plus",
+    "guideline",
+    "handbook",
+    "information",
+    "supplement",
+    "dguv vorschrift",
+    "dguv regel",
+    "dguv information",
+    "trbs",
+    "trgs",
+    "asr",
+    "pgs"
+  ],
+
+  "section_title_mappings": {
+    "AT": {
+      "ASchG": {
+        "1": "Geltungsbereich",
+        "2": "Begriffsbestimmungen",
+        "3": "Allgemeine Pflichten der Arbeitgeber",
+        "4": "Ermittlung und Beurteilung der Gefahren; Festlegung von Maßnahmen",
+        "4a": "Präventivdienste für Baustellen",
+        "5": "Sicherheits- und Gesundheitsschutzdokumente",
+        "6": "Einsatz der Arbeitnehmer",
+        "7": "Grundsätze der Gefahrenverhütung",
+        "8": "Koordination",
+        "9": "Überlassung",
+        "10": "Bestellung von Sicherheitsvertrauenspersonen",
+        "11": "Aufgaben, Information und Beiziehung der Sicherheitsvertrauenspersonen",
+        "12": "Information",
+        "13": "Anhörung und Beteiligung der Arbeitnehmer",
+        "14": "Unterweisung",
+        "15": "Pflichten der Arbeitnehmer"
+      },
+      "AZG": {
+        "1": "Geltungsbereich",
+        "2": "Ausnahmen vom Geltungsbereich",
+        "3": "Begriff der Arbeitszeit",
+        "4": "Normalarbeitszeit",
+        "4a": "Andere Verteilung der Normalarbeitszeit",
+        "4b": "Gleitende Arbeitszeit",
+        "5": "Verlängerte Normalarbeitszeit",
+        "6": "Höchstgrenzen der Arbeitszeit",
+        "7": "Überstundenarbeit",
+        "8": "Überstundenentgelt",
+        "9": "Arbeitszeiteinteilung",
+        "10": "Durchrechnungszeitraum",
+        "11": "Ruhepausen",
+        "12": "Ruhezeiten"
+      },
+      "ARG": {
+        "1": "Geltungsbereich",
+        "2": "Begriffsbestimmungen",
+        "3": "Wochenendruhe",
+        "4": "Wochenruhe",
+        "5": "Ersatzruhe",
+        "6": "Feiertagsruhe",
+        "7": "Feiertage"
+      },
+      "MSchG": {
+        "1": "Geltungsbereich",
+        "2": "Mitteilungspflicht",
+        "3": "Beschäftigungsverbot vor der Entbindung",
+        "4": "Individuelles Beschäftigungsverbot",
+        "5": "Beschäftigungsverbot nach der Entbindung"
+      },
+      "KJBG": {
+        "1": "Geltungsbereich",
+        "2": "Begriffsbestimmungen",
+        "3": "Jugendliche",
+        "4": "Verbot der Kinderarbeit",
+        "5": "Kinder dürfen"
+      }
+    },
+    "DE": {
+      "ArbSchG": {
+        "1": "Zielsetzung und Anwendungsbereich",
+        "2": "Begriffsbestimmungen",
+        "3": "Grundpflichten des Arbeitgebers",
+        "4": "Allgemeine Grundsätze",
+        "5": "Beurteilung der Arbeitsbedingungen",
+        "6": "Dokumentation",
+        "7": "Übertragung von Aufgaben",
+        "8": "Zusammenarbeit mehrerer Arbeitgeber",
+        "9": "Besondere Gefahren",
+        "10": "Erste Hilfe und sonstige Notfallmaßnahmen",
+        "11": "Arbeitsmedizinische Vorsorge",
+        "12": "Unterweisung",
+        "13": "Verantwortliche Personen",
+        "14": "Unterrichtung und Anhörung der Beschäftigten des öffentlichen Dienstes",
+        "15": "Pflichten der Beschäftigten",
+        "16": "Besondere Unterstützungspflichten",
+        "17": "Rechte der Beschäftigten",
+        "18": "Verordnungsermächtigungen",
+        "19": "Rechtsverordnungen",
+        "20": "Regelungen für den öffentlichen Dienst",
+        "21": "Befugnisse der zuständigen Behörden",
+        "22": "Befugnisse der Träger der gesetzlichen Unfallversicherung",
+        "23": "Betriebliche Arbeitsschutzorganisation",
+        "24": "Ermächtigung zum Erlass von Rechtsverordnungen und allgemeinen Verwaltungsvorschriften",
+        "25": "Strafvorschriften",
+        "26": "Bußgeldvorschriften"
+      },
+      "ASiG": {
+        "1": "Grundsatz",
+        "2": "Bestellung von Betriebsärzten",
+        "3": "Aufgaben der Betriebsärzte",
+        "4": "Anforderungen an Betriebsärzte",
+        "5": "Bestellung von Fachkräften für Arbeitssicherheit",
+        "6": "Aufgaben der Fachkräfte für Arbeitssicherheit",
+        "7": "Anforderungen an Fachkräfte für Arbeitssicherheit",
+        "8": "Unabhängigkeit bei Anwendung der Fachkunde"
+      }
+    },
+    "NL": {
+      "Arbowet": {
+        "1": "Definities",
+        "2": "Uitbreiding toepassingsgebied",
+        "3": "Arbobeleid",
+        "4": "Aanpassing arbeidsplaats werknemer met structurele functionele beperking",
+        "5": "Inventarisatie en evaluatie van risico's",
+        "6": "Voorkoming en beperking van zware ongevallen",
+        "7": "Informatie aan het publiek",
+        "8": "Voorlichting en onderricht"
+      },
+      "Arbobesluit": {
+        "1.1": "Definities",
+        "1.2": "Toepassingsgebied van dit besluit",
+        "2.1": "Risico-inventarisatie en -evaluatie",
+        "2.2": "Uitvoering van de risico-inventarisatie en -evaluatie"
+      }
+    }
+  },
+
+  "german_number_patterns": {
+    "ordinals": {
+      "erster": "1", "erste": "1", "ersten": "1",
+      "zweiter": "2", "zweite": "2", "zweiten": "2",
+      "dritter": "3", "dritte": "3", "dritten": "3",
+      "vierter": "4", "vierte": "4", "vierten": "4",
+      "fünfter": "5", "fünfte": "5", "fünften": "5",
+      "sechster": "6", "sechste": "6", "sechsten": "6",
+      "siebter": "7", "siebte": "7", "siebten": "7", "siebenter": "7",
+      "achter": "8", "achte": "8", "achten": "8",
+      "neunter": "9", "neunte": "9", "neunten": "9",
+      "zehnter": "10", "zehnte": "10", "zehnten": "10",
+      "elfter": "11", "elfte": "11", "elften": "11",
+      "zwölfter": "12", "zwölfte": "12", "zwölften": "12",
+      "dreizehnter": "13", "dreizehnte": "13", "dreizehnten": "13",
+      "vierzehnter": "14", "vierzehnte": "14", "vierzehnten": "14",
+      "fünfzehnter": "15", "fünfzehnte": "15", "fünfzehnten": "15"
+    },
+    "cardinals": {
+      "eins": "1", "ein": "1", "eine": "1", "einem": "1", "einen": "1",
+      "zwei": "2",
+      "drei": "3",
+      "vier": "4",
+      "fünf": "5",
+      "sechs": "6",
+      "sieben": "7",
+      "acht": "8",
+      "neun": "9",
+      "zehn": "10",
+      "elf": "11",
+      "zwölf": "12"
+    }
+  },
+
+  "cleaning": {
+    "boilerplate_patterns": {
+      "AT": [
+        "Seitenbereiche:",
+        "Zum Inhalt",
+        "Zur Navigationsleiste",
+        "Kontakt",
+        "Impressum",
+        "Datenschutzerklärung",
+        "Barrierefreiheitserklärung",
+        "Accesskey"
+      ],
+      "DE": [
+        "Drucken",
+        "Textversion",
+        "Service"
+      ],
+      "NL": [
+        "Zoeken",
+        "Menu",
+        "Service"
+      ]
+    },
+    "content_start_markers": [
+      "§\\s*1",
+      "Artikel\\s*1",
+      "1\\.\\s*Abschnitt",
+      "Hoofdstuk\\s*1",
+      "Allgemeine Bestimmungen",
+      "Geltungsbereich",
+      "Definities"
+    ]
+  },
+
+  "validation": {
+    "min_section_count": 3,
+    "min_content_length": 500,
+    "required_fields": ["id", "abbreviation", "title", "content"],
+    "structure_patterns": {
+      "AT": "§\\s*\\d+",
+      "DE": "§\\s*\\d+",
+      "NL": "Artikel\\s*\\d+"
+    }
+  }
+}
