@@ -220,6 +220,28 @@ def save_custom_sources(data: Dict[str, Any]) -> bool:
         return False
 
 
+def get_pdf_source_for_law(country: str, law_abbrev: str) -> Optional[Dict[str, Any]]:
+    """
+    Get PDF verification source for a law if available.
+    PDF sources are preferred over HTML as they're more reliable.
+
+    Returns: Dict with 'url' and 'name' if PDF source exists, None otherwise
+    """
+    custom_data = load_custom_sources()
+    country_sources = custom_data.get("custom_sources", {}).get(country, {})
+
+    # Look for a PDF verification source for this law
+    for abbrev, info in country_sources.items():
+        if info.get("verification_for") == law_abbrev and info.get("source_type") == "pdf":
+            if info.get("enabled", True):
+                return {
+                    "url": info.get("url", ""),
+                    "name": info.get("name", abbrev),
+                    "abbrev": abbrev
+                }
+    return None
+
+
 def get_enabled_sources(country: str) -> Dict[str, str]:
     """Get enabled sources for a country (built-in + custom, minus disabled)."""
     custom_data = load_custom_sources()
@@ -2104,7 +2126,29 @@ class ATScraper(Scraper):
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a PDF source
+        # Check for PDF verification source first (preferred over HTML)
+        pdf_source = get_pdf_source_for_law("AT", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                # Make URL absolute if needed
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "AT")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_preferred'] = True
+                    return doc
+                else:
+                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
+
+        # Check if this is a PDF source (direct PDF URL)
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
             if HAS_PDF:
                 log_info(f"  Using PDF parser for {abbrev}")
@@ -2752,7 +2796,29 @@ class DEScraper(Scraper):
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a PDF source
+        # Check for PDF verification source first (preferred over HTML)
+        pdf_source = get_pdf_source_for_law("DE", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                # Make URL absolute if needed
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "DE")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_preferred'] = True
+                    return doc
+                else:
+                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
+
+        # Check if this is a PDF source (direct PDF URL)
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
             if HAS_PDF:
                 log_info(f"  Using PDF parser for {abbrev}")
@@ -3269,8 +3335,30 @@ class NLScraper(Scraper):
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a PDF source
-        if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
+        # Check for PDF verification source first (preferred over HTML)
+        pdf_source = get_pdf_source_for_law("NL", abbrev)
+        if pdf_source and HAS_PDF:
+            pdf_url = pdf_source.get("url", "")
+            if pdf_url:
+                # Make URL absolute if needed
+                if not pdf_url.startswith('http'):
+                    pdf_url = self._get_full_url(pdf_url)
+                log_info(f"  Using PDF source (preferred) for {abbrev}: {pdf_source.get('name', '')}")
+                doc = parse_pdf_to_law_document(pdf_url, abbrev, pdf_source.get('name', abbrev), "NL")
+                if doc:
+                    # Add WHS topics classification
+                    for chapter in doc.get('chapters', []):
+                        for section in chapter.get('sections', []):
+                            section['whs_topics'] = self._classify_whs_topics(section.get('text', ''), section.get('title', ''))
+                            section['amazon_logistics_relevance'] = self._calculate_logistics_relevance(section.get('text', ''), section.get('title', ''))
+                    doc['whs_summary'] = self._generate_whs_summary(doc.get('chapters', []))
+                    doc['source']['pdf_preferred'] = True
+                    return doc
+                else:
+                    log_warning(f"  PDF parsing failed for {abbrev}, falling back to HTML")
+
+        # Check if this is a PDF source (direct PDF URL)
+        if url.lower().endswith('.pdf') or 'blob=publicationFile' in url or '/pdf' in url:
             if HAS_PDF:
                 log_info(f"  Using PDF parser for {abbrev}")
                 # Get title from custom sources if available
