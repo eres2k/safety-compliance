@@ -1419,6 +1419,64 @@ export function isTrueSupplementarySource(law) {
   return isSupplementarySource(law)
 }
 
+/**
+ * Check if a law has a LOCAL HTML file that can be displayed in an iframe.
+ */
+export function hasLocalHtml(law) {
+  if (!law) return false
+
+  // Check for explicit local_html_path
+  if (law.source?.local_html_path) {
+    return true
+  }
+
+  // Check if this is an HTML-only document
+  if (law.metadata?.is_html_only && law.jurisdiction) {
+    return true
+  }
+
+  return false
+}
+
+/**
+ * Get the local HTML URL for embedding.
+ * Constructs URL from document metadata if local_html_path isn't set.
+ */
+export function getLocalHtmlUrl(law) {
+  if (!law) return null
+
+  // Method 1: Check for explicit local_html_path
+  if (law.source?.local_html_path) {
+    const path = law.source.local_html_path
+    const match = path.match(/eu_safety_laws\/html\/(.+)$/)
+    if (match) {
+      return `/eu_safety_laws/html/${match[1]}`
+    }
+    // If path doesn't match expected pattern, construct it
+    const filename = path.split('/').pop()
+    const country = (law.jurisdiction || 'at').toLowerCase()
+    return `/eu_safety_laws/html/${country}/${filename}`
+  }
+
+  // Method 2: Construct path for HTML-only documents
+  if (law.metadata?.is_html_only && law.jurisdiction) {
+    const country = (law.jurisdiction || law.country || 'at').toLowerCase()
+    const abbrev = law.abbreviation || ''
+    const safeAbbrev = abbrev.replace(/[^\w\-]/g, '_')
+    return `/eu_safety_laws/html/${country}/${country}_${safeAbbrev}_merkblatt.html`
+  }
+
+  return null
+}
+
+/**
+ * Check if a document is HTML-only (Merkblatt stored as HTML)
+ */
+export function isHtmlOnly(law) {
+  if (!law) return false
+  return !!law.metadata?.is_html_only
+}
+
 export default {
   initializeLawsDatabase,
   isDatabaseLoaded,
@@ -1450,5 +1508,8 @@ export default {
   isSupplementarySource,
   getSupplementarySourceType,
   isPdfVariant,
-  isTrueSupplementarySource
+  isTrueSupplementarySource,
+  hasLocalHtml,
+  getLocalHtmlUrl,
+  isHtmlOnly
 }
