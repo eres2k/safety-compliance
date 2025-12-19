@@ -38,11 +38,13 @@
         "source_type": "custom"
       },
       "BauKG": {
-        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008543",
-        "name": "Bauarbeitenkoordinationsgesetz - BauKG",
-        "description": "Federal Act on the coordination of occupational safety and health protection on construction sites. Contains 20 sections (§§ 1-20) covering coordination duties, safety planning, and responsibilities on construction sites.",
+        "url": "https://www.jusline.at/gesetz/baukg",
+        "name": "Bundesgesetz über die Koordination von Sicherheits- und Gesundheitsschutz auf Baustellen (Bauarbeitenkoordinationsgesetz – BauKG)",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-19T11:53:56.813126",
+        "original_url_failed": true
       },
       "GefStoffV": {
         "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001710",
@@ -233,11 +235,13 @@
         "source_type": "custom"
       },
       "PGS 15": {
-        "url": "https://publicatiereeksgevaarlijkestoffen.nl/publicaties/online/pgs-15/2023/3-1.html",
-        "name": "PGS 15 - Opslag van verpakte gevaarlijke stoffen",
-        "description": "Publication Series Hazardous Substances 15 - Storage of packaged hazardous substances. Contains detailed requirements for safe storage of hazardous materials in warehouses.",
+        "url": "https://publicatiereeksgevaarlijkestoffen.nl/publicaties/online/pgs-15/",
+        "name": "PGS 15: Opslag van verpakte gevaarlijke stoffen (versie 3.1, 2023)",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-19T12:27:07.382611",
+        "original_url_failed": true
       },
       "AI-13": {
         "url": "/BWBR0008498/geldend#Hoofdstuk5_Paragraaf2",
@@ -249,11 +253,13 @@
         "original_url_failed": true
       },
       "AI-15": {
-        "url": "https://www.nlarbeidsinspectie.nl/publicaties/brochures/2022/01/01/ai-15-machineveiligheid",
-        "name": "AI-15 Machineveiligheid",
-        "description": "Dutch Labour Inspectorate publication on machine safety. Covers CE marking, machine guards, safety devices, and maintenance requirements.",
+        "url": "/BWBR0008498/geldend",
+        "name": "Besluit van 15 maart 1997, houdende nadere regels met betrekking tot de arbeidsomstandigheden",
+        "description": "URL auto-corrected by AI",
         "enabled": true,
-        "source_type": "custom"
+        "ai_corrected": true,
+        "corrected_at": "2025-12-19T12:26:11.082217",
+        "original_url_failed": true
       },
       "AI-19": {
         "url": "/BWBR0008498/geldend",
@@ -491,5 +497,5 @@
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-19T09:43:43.845173"
+  "updated_at": "2025-12-19T12:27:07.382616"
 }
