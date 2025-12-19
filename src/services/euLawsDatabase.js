@@ -1174,12 +1174,13 @@ export async function getLawsByTopic(country, topic) {
 
 /**
  * Get PDF source URL for a law if available.
- * Prioritizes local PDF paths when available.
+ * ONLY returns local PDF paths - external URLs cannot be displayed in iframes.
+ * For external PDF links (open in new tab), use getExternalPdfUrl().
  */
 export function getPdfSourceUrl(law) {
   if (!law) return null
 
-  // Priority 1: Local PDF path (downloaded PDF stored on server)
+  // Priority 1: Explicit local_pdf_path
   if (law.source?.local_pdf_path) {
     // Convert absolute path to relative URL for serving
     const path = law.source.local_pdf_path
@@ -1190,14 +1191,39 @@ export function getPdfSourceUrl(law) {
     }
   }
 
-  // Priority 2: PDF URL from source metadata
-  if (law.source?.pdf_url) {
-    return law.source.pdf_url
+  // Priority 2: Try to construct local path for PDF documents
+  // This handles cases where the PDF exists locally but local_pdf_path isn't set
+  const localUrl = getLocalPdfUrl(law)
+  if (localUrl) {
+    return localUrl
   }
 
-  // Priority 3: Source URL if type indicates PDF
+  // DO NOT return external URLs - they cannot be displayed in iframes
+  // Use getExternalPdfUrl() if you need to link to external PDFs
+  return null
+}
+
+/**
+ * Get external PDF URL for opening in new tab.
+ * This returns external URLs that cannot be embedded in iframes.
+ */
+export function getExternalPdfUrl(law) {
+  if (!law) return null
+
+  // Return external PDF URL from source metadata
+  if (law.source?.pdf_url) {
+    const url = law.source.pdf_url
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url
+    }
+  }
+
+  // Return source URL if type indicates PDF
   if (law.source?.source_type === 'pdf' && law.source?.url) {
-    return law.source.url
+    const url = law.source.url
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url
+    }
   }
 
   return null
@@ -1503,6 +1529,7 @@ export default {
   hasLocalPdf,
   getLocalPdfUrl,
   getPdfSourceUrl,
+  getExternalPdfUrl,
   hasPdfSource,
   isSupplementarySource,
   getSupplementarySourceType,
