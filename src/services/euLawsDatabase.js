@@ -1211,8 +1211,48 @@ export function hasPdfSource(law) {
 }
 
 /**
+ * Check if a law has a LOCAL PDF that can be embedded in an iframe.
+ * External PDFs cannot be embedded due to cross-origin restrictions.
+ */
+export function hasLocalPdf(law) {
+  if (!law) return false
+
+  // Only local PDFs can be embedded
+  if (law.source?.local_pdf_path) {
+    const path = law.source.local_pdf_path
+    const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
+    return !!match
+  }
+
+  return false
+}
+
+/**
+ * Get the local PDF URL for embedding. Returns null if PDF is external.
+ */
+export function getLocalPdfUrl(law) {
+  if (!law) return null
+
+  if (law.source?.local_pdf_path) {
+    const path = law.source.local_pdf_path
+    const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
+    if (match) {
+      return `/eu_safety_laws/pdfs/${match[1]}`
+    }
+  }
+
+  return null
+}
+
+/**
  * Check if law is from a supplementary source (like AUVA Merkblätter)
  * These are marked differently in the UI
+ *
+ * Supplementary sources by country:
+ * - AT: AUVA M.plus (Merkblätter) - accident insurance guides
+ * - DE: TRBS (Technical Rules Operational Safety), TRGS (Technical Rules Hazardous Substances),
+ *       ASR (Workplace Technical Rules), DGUV Vorschriften (accident insurance regulations)
+ * - NL: PGS (Publicatiereeks Gevaarlijke Stoffen), AI publications (Arbeidsinspectie)
  */
 export function isSupplementarySource(law) {
   if (!law) return false
@@ -1222,22 +1262,46 @@ export function isSupplementarySource(law) {
     'guideline',
     'handbook',
     'information',
-    'supplement'
+    'supplement',
+    'technical_rule',
+    'technical_regulation'
   ]
 
   const type = (law.type || '').toLowerCase()
   const category = (law.category || '').toLowerCase()
   const abbrev = (law.abbreviation || '').toLowerCase()
+  const title = (law.title || '').toLowerCase()
 
   // Check type and category
   if (supplementaryTypes.some(t => type.includes(t) || category.includes(t))) {
     return true
   }
 
-  // Check abbreviation for known supplementary sources
-  if (abbrev.includes('auva') || abbrev.includes('dguv') ||
-      abbrev.includes('trbs') || abbrev.includes('trgs') ||
-      abbrev.includes('asr') || abbrev.includes('pgs')) {
+  // AT: AUVA Merkblätter (M.plus series)
+  if (abbrev.includes('auva') || abbrev.includes('m.plus') || abbrev.includes('mplus')) {
+    return true
+  }
+
+  // DE: Technical Rules and DGUV
+  // TRBS - Technische Regeln für Betriebssicherheit
+  // TRGS - Technische Regeln für Gefahrstoffe
+  // ASR - Arbeitsstättenregeln
+  // DGUV - Deutsche Gesetzliche Unfallversicherung
+  if (abbrev.includes('trbs') || abbrev.includes('trgs') ||
+      abbrev.includes('asr ') || abbrev.startsWith('asr') ||
+      abbrev.includes('dguv')) {
+    return true
+  }
+
+  // NL: PGS (Publicatiereeks Gevaarlijke Stoffen) and AI publications
+  if (abbrev.includes('pgs') || abbrev.startsWith('ai-')) {
+    return true
+  }
+
+  // Check title for supplementary indicators
+  if (title.includes('merkblatt') || title.includes('technische regel') ||
+      title.includes('technical rule') || title.includes('publicatiereeks') ||
+      title.includes('richtlijn') || title.includes('leitfaden')) {
     return true
   }
 
@@ -1247,6 +1311,33 @@ export function isSupplementarySource(law) {
   }
 
   return false
+}
+
+/**
+ * Get the type of supplementary source for badge display
+ * Returns: 'auva' | 'dguv' | 'trbs' | 'trgs' | 'asr' | 'pgs' | 'ai' | 'default'
+ */
+export function getSupplementarySourceType(law) {
+  if (!law) return 'default'
+
+  const abbrev = (law.abbreviation || '').toLowerCase()
+
+  // AT
+  if (abbrev.includes('auva') || abbrev.includes('m.plus') || abbrev.includes('mplus')) {
+    return 'auva'
+  }
+
+  // DE
+  if (abbrev.includes('trbs')) return 'trbs'
+  if (abbrev.includes('trgs')) return 'trgs'
+  if (abbrev.includes('asr ') || abbrev.startsWith('asr')) return 'asr'
+  if (abbrev.includes('dguv')) return 'dguv'
+
+  // NL
+  if (abbrev.includes('pgs')) return 'pgs'
+  if (abbrev.startsWith('ai-')) return 'ai'
+
+  return 'default'
 }
 
 export default {
@@ -1273,7 +1364,10 @@ export default {
   getLawExcerpt,
   getCoreLaws,
   getLawsByTopic,
+  hasLocalPdf,
+  getLocalPdfUrl,
   getPdfSourceUrl,
   hasPdfSource,
-  isSupplementarySource
+  isSupplementarySource,
+  getSupplementarySourceType
 }
