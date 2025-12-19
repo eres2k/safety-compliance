@@ -15,7 +15,9 @@ import {
   DOC_TYPES,
   hasPdfSource,
   getPdfSourceUrl,
-  isSupplementarySource
+  isSupplementarySource,
+  hasLocalPdf,
+  getLocalPdfUrl
 } from '../../services/euLawsDatabase'
 
 // Remove duplicate expanded notation text from Austrian legal documents
@@ -1820,6 +1822,29 @@ export function LawBrowser({ onBack }) {
                 {regularLaws.length} laws{merkblaetter.length > 0 && `, ${merkblaetter.length} PDFs`}
                 {pagination.totalPages > 1 && ` (page ${pagination.page}/${pagination.totalPages})`}
               </p>
+              {/* Search bar for laws */}
+              <div className="relative mt-2">
+                <svg className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search laws..."
+                  className="w-full pl-8 pr-8 py-1.5 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-whs-orange-500"
+                />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
             </div>
             <div className="overflow-y-auto flex-1">
               {/* Regular Laws Section */}
@@ -2202,63 +2227,61 @@ export function LawBrowser({ onBack }) {
                 <div ref={contentRef} className="flex-1 overflow-y-auto">
                   {isPdfOnly ? (
                     /* PDF-Only Document Display */
-                    <div className="p-6">
-                      {/* PDF Document Card */}
-                      <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl p-8 text-center border border-red-100 dark:border-red-800">
-                        <div className="w-20 h-20 bg-red-100 dark:bg-red-900/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                          <svg className="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                          PDF Document
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
-                          {selectedLaw.metadata?.description || selectedLaw.content?.text || 'This is a PDF document. Click below to view or download.'}
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                          <button
-                            onClick={() => openPdfModal(selectedLaw)}
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium transition-colors"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                            Open PDF
-                          </button>
-                          <a
-                            href={getPdfSourceUrl(selectedLaw)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                            </svg>
-                            Download PDF
-                          </a>
-                        </div>
-                        {/* Source info */}
-                        {selectedLaw.source && (
-                          <div className="mt-6 pt-6 border-t border-red-200 dark:border-red-800 text-sm text-gray-500 dark:text-gray-400">
-                            Source: {selectedLaw.source.authority || 'AUVA'}
-                          </div>
-                        )}
+                    hasLocalPdf(selectedLaw) ? (
+                      /* Local PDF - Embed directly in iframe */
+                      <div className="h-full flex flex-col">
+                        <PdfViewer
+                          url={getLocalPdfUrl(selectedLaw)}
+                          title={selectedLaw.abbreviation || selectedLaw.title || 'PDF Document'}
+                          className="flex-1"
+                        />
                       </div>
-
-                      {/* WHS Topics if available */}
-                      {selectedLaw.whs_topics && selectedLaw.whs_topics.length > 0 && (
-                        <div className="mt-6">
-                          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">WHS Topics</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedLaw.whs_topics.map((topic, i) => (
-                              <TopicTag key={i} topicId={topic.id} small />
-                            ))}
+                    ) : (
+                      /* External PDF - Show download card (can't embed external PDFs) */
+                      <div className="p-6">
+                        <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl p-8 text-center border border-red-100 dark:border-red-800">
+                          <div className="w-20 h-20 bg-red-100 dark:bg-red-900/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg className="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                            </svg>
                           </div>
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                            {selectedLaw.abbreviation || 'PDF Document'}
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
+                            {selectedLaw.metadata?.description || selectedLaw.title_en || selectedLaw.title || 'External PDF document - click to open in new tab'}
+                          </p>
+                          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                            <a
+                              href={getPdfSourceUrl(selectedLaw)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium transition-colors"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                              Open PDF
+                            </a>
+                            <a
+                              href={getPdfSourceUrl(selectedLaw)}
+                              download
+                              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                              </svg>
+                              Download PDF
+                            </a>
+                          </div>
+                          {selectedLaw.source && (
+                            <div className="mt-6 pt-6 border-t border-red-200 dark:border-red-800 text-sm text-gray-500 dark:text-gray-400">
+                              Source: {selectedLaw.source.authority || 'AUVA'}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )
                   ) : hasContent ? (
                     <div className="p-6">
                       {/* WHS Summary Panel */}

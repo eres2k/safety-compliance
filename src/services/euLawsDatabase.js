@@ -1211,6 +1211,40 @@ export function hasPdfSource(law) {
 }
 
 /**
+ * Check if a law has a LOCAL PDF that can be embedded in an iframe.
+ * External PDFs cannot be embedded due to cross-origin restrictions.
+ */
+export function hasLocalPdf(law) {
+  if (!law) return false
+
+  // Only local PDFs can be embedded
+  if (law.source?.local_pdf_path) {
+    const path = law.source.local_pdf_path
+    const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
+    return !!match
+  }
+
+  return false
+}
+
+/**
+ * Get the local PDF URL for embedding. Returns null if PDF is external.
+ */
+export function getLocalPdfUrl(law) {
+  if (!law) return null
+
+  if (law.source?.local_pdf_path) {
+    const path = law.source.local_pdf_path
+    const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
+    if (match) {
+      return `/eu_safety_laws/pdfs/${match[1]}`
+    }
+  }
+
+  return null
+}
+
+/**
  * Check if law is from a supplementary source (like AUVA Merkblätter)
  * These are marked differently in the UI
  */
@@ -1273,6 +1307,8 @@ export default {
   getLawExcerpt,
   getCoreLaws,
   getLawsByTopic,
+  hasLocalPdf,
+  getLocalPdfUrl,
   getPdfSourceUrl,
   hasPdfSource,
   isSupplementarySource
