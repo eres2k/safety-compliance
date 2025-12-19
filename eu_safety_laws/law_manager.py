@@ -1432,6 +1432,89 @@ def get_local_pdf_path(country: str, abbrev: str, doc_type: str = "law") -> Opti
 
 
 # =============================================================================
+# HTML Storage for Merkblätter
+# =============================================================================
+
+def ensure_html_storage_dir(country: str = None) -> Path:
+    """Ensure HTML storage directory exists and return path."""
+    base_dir = CONFIG.base_path / "html"
+    if country:
+        target_dir = base_dir / country.lower()
+    else:
+        target_dir = base_dir
+    target_dir.mkdir(parents=True, exist_ok=True)
+    return target_dir
+
+
+def download_and_store_html(url: str, country: str, abbrev: str, doc_type: str = "merkblatt") -> Optional[Dict[str, str]]:
+    """
+    Download HTML from URL and store it locally for display.
+    No parsing or cleaning - just store the raw HTML.
+
+    Returns dict with:
+        - local_path: Path to stored HTML file
+        - filename: Just the filename
+        - url: Original URL
+        - size_bytes: File size
+
+    Returns None if download fails.
+    """
+    if not HAS_REQUESTS:
+        log_warning("requests package required for HTML download")
+        return None
+
+    try:
+        # Create filename from abbreviation and doc type
+        safe_abbrev = re.sub(r'[^\w\-]', '_', abbrev)
+        filename = f"{country.lower()}_{safe_abbrev}_{doc_type}.html"
+
+        # Ensure directory exists
+        storage_dir = ensure_html_storage_dir(country)
+        local_path = storage_dir / filename
+
+        # Download the HTML
+        log_info(f"Downloading HTML for {abbrev}...")
+        response = requests.get(url, timeout=CONFIG.request_timeout, headers=Scraper.HTTP_HEADERS)
+        response.raise_for_status()
+
+        # Get the HTML content
+        html_content = response.text
+
+        # Save to local file
+        with open(local_path, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+
+        size_bytes = len(html_content.encode('utf-8'))
+        log_success(f"Stored HTML: {filename} ({size_bytes / 1024:.1f} KB)")
+
+        return {
+            "local_path": str(local_path),
+            "filename": filename,
+            "url": url,
+            "size_bytes": size_bytes
+        }
+
+    except requests.exceptions.RequestException as e:
+        log_error(f"Failed to download HTML from {url}: {e}")
+        return None
+    except IOError as e:
+        log_error(f"Failed to save HTML: {e}")
+        return None
+
+
+def get_local_html_path(country: str, abbrev: str, doc_type: str = "merkblatt") -> Optional[str]:
+    """Get the local path for a stored HTML file if it exists."""
+    safe_abbrev = re.sub(r'[^\w\-]', '_', abbrev)
+    filename = f"{country.lower()}_{safe_abbrev}_{doc_type}.html"
+    storage_dir = ensure_html_storage_dir(country)
+    local_path = storage_dir / filename
+
+    if local_path.exists():
+        return str(local_path)
+    return None
+
+
+# =============================================================================
 # Unified Document Schema
 # =============================================================================
 
@@ -4733,58 +4816,83 @@ class MerkblattScraper(Scraper):
         self,
         abbrev: str,
         title: str,
-        pdf_url: str,
+        source_url: str,
         series: str = "",
         description: str = "",
-        authority: str = ""
+        authority: str = "",
+        source_type: str = "auto"
     ) -> Optional[Dict[str, Any]]:
         """
-        Create a Merkblatt document from a PDF source.
-        Downloads PDF only - no parsing or AI summarization.
-        The PDF is stored locally for direct viewing.
+        Create a Merkblatt document from PDF or HTML source.
+        Downloads content only - no parsing or AI summarization.
+        The content is stored locally for direct viewing.
+
+        Args:
+            source_type: 'pdf', 'html', or 'auto' (detect from URL)
         """
-        # Download and store PDF locally (no parsing/scraping)
-        pdf_info = download_and_store_pdf(pdf_url, self.country, abbrev, doc_type="merkblatt")
+        # Auto-detect source type from URL
+        if source_type == "auto":
+            if source_url.lower().endswith('.pdf') or 'blob=publicationFile' in source_url:
+                source_type = "pdf"
+            else:
+                source_type = "html"
 
-        if not pdf_info:
-            log_warning(f"Could not download PDF for {abbrev}")
-            return None
+        if source_type == "pdf":
+            # Download and store PDF locally (no parsing/scraping)
+            file_info = download_and_store_pdf(source_url, self.country, abbrev, doc_type="merkblatt")
+            if not file_info:
+                log_warning(f"Could not download PDF for {abbrev}")
+                return None
+            local_path = file_info.get("local_path", "")
+            is_pdf_only = True
+            is_html_only = False
+        else:
+            # Download and store HTML locally (no parsing/scraping)
+            file_info = download_and_store_html(source_url, self.country, abbrev, doc_type="merkblatt")
+            if not file_info:
+                log_warning(f"Could not download HTML for {abbrev}")
+                return None
+            local_path = file_info.get("local_path", "")
+            is_pdf_only = False
+            is_html_only = True
 
-        pdf_path = pdf_info.get("local_path", "")
-        pdf_filename = pdf_info.get("filename", "")
-
-        # Create unified document with minimal metadata (PDF is the content)
+        # Create unified document with minimal metadata (file is the content)
         doc = create_unified_document(
             country=self.country,
             abbrev=abbrev,
             title=title,
             doc_type=DocType.MERKBLATT,
-            source_url=pdf_url,
+            source_url=source_url,
             source_authority=authority or self.authority,
-            content_text=description or f"PDF document: {title}",
+            content_text=description or f"{source_type.upper()} document: {title}",
             full_text="",  # No text extraction
-            pdf_path=pdf_path,
+            pdf_path=local_path if source_type == "pdf" else "",
             ai_summary="",  # No AI summary
             metadata={
                 "series": series,
                 "description": description,
-                "pdf_filename": pdf_filename,
-                "pdf_size_bytes": pdf_info.get("size_bytes", 0),
+                "filename": file_info.get("filename", ""),
+                "size_bytes": file_info.get("size_bytes", 0),
                 "is_supplementary": True,
-                "is_pdf_only": True
+                "is_pdf_only": is_pdf_only,
+                "is_html_only": is_html_only
             }
         )
 
-        # Add local PDF path to source for UI access
-        if pdf_path:
-            doc["source"]["local_pdf_path"] = pdf_path
-            doc["source"]["pdf_url"] = pdf_url
-            doc["source"]["source_type"] = "pdf"
+        # Add local path to source for UI access
+        if local_path:
+            if source_type == "pdf":
+                doc["source"]["local_pdf_path"] = local_path
+                doc["source"]["pdf_url"] = source_url
+            else:
+                doc["source"]["local_html_path"] = local_path
+                doc["source"]["html_url"] = source_url
+            doc["source"]["source_type"] = source_type
 
         # Basic WHS topic classification from title only
         doc["whs_topics"] = self._classify_whs_topics_from_title(title)
 
-        log_success(f"Created merkblatt document: {abbrev} (PDF stored at {pdf_path})")
+        log_success(f"Created merkblatt document: {abbrev} ({source_type.upper()} stored at {local_path})")
         return doc
 
     def _classify_whs_topics_from_title(self, title: str) -> List[Dict[str, Any]]:
@@ -4875,11 +4983,12 @@ class AUVAScraper(MerkblattScraper):
         for pub in publications:
             abbrev = pub.get("abbrev", "")
             title = pub.get("title", "")
-            pdf_url = pub.get("url", "")
+            source_url = pub.get("url", "")
             series = pub.get("series", "M.plus")
             description = pub.get("description", "")
+            source_type = pub.get("source_type", "auto")  # Allow specifying pdf or html
 
-            if not pdf_url:
+            if not source_url:
                 log_warning(f"No URL for {abbrev}")
                 continue
 
@@ -4887,10 +4996,11 @@ class AUVAScraper(MerkblattScraper):
             doc = self._create_merkblatt_document(
                 abbrev=abbrev,
                 title=title,
-                pdf_url=pdf_url,
+                source_url=source_url,
                 series=series,
                 description=description,
-                authority="AUVA"
+                authority="AUVA",
+                source_type=source_type
             )
 
             if doc:

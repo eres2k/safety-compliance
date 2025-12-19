@@ -15,12 +15,13 @@ function serveEuSafetyLaws() {
       server.middlewares.use('/eu_safety_laws', (req, res, next) => {
         const filePath = resolve(__dirname, 'eu_safety_laws', req.url.slice(1))
         if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-          const ext = filePath.split('.').pop()
+          const ext = filePath.split('.').pop().toLowerCase()
           const mimeTypes = {
             json: 'application/json',
             html: 'text/html',
             css: 'text/css',
-            js: 'application/javascript'
+            js: 'application/javascript',
+            pdf: 'application/pdf'
           }
           res.setHeader('Content-Type', mimeTypes[ext] || 'text/plain')
           fs.createReadStream(filePath).pipe(res)

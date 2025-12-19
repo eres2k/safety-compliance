@@ -19,7 +19,10 @@ import {
   hasLocalPdf,
   getLocalPdfUrl,
   isPdfVariant,
-  isTrueSupplementarySource
+  isTrueSupplementarySource,
+  hasLocalHtml,
+  getLocalHtmlUrl,
+  isHtmlOnly
 } from '../../services/euLawsDatabase'
 
 // Remove duplicate expanded notation text from Austrian legal documents
@@ -1758,6 +1761,7 @@ export function LawBrowser({ onBack }) {
 
   const hasContent = selectedLaw?.content?.full_text || selectedLaw?.content?.text
   const isPdfOnly = selectedLaw?.metadata?.is_pdf_only || (hasPdfSource(selectedLaw) && !hasContent)
+  const isHtmlOnlyDoc = isHtmlOnly(selectedLaw)
 
   return (
     <div className="animate-fade-in h-[calc(100vh-12rem)]">
@@ -2288,7 +2292,38 @@ export function LawBrowser({ onBack }) {
 
                 {/* Law Content */}
                 <div ref={contentRef} className="flex-1 overflow-y-auto">
-                  {isPdfOnly ? (
+                  {isHtmlOnlyDoc && hasLocalHtml(selectedLaw) ? (
+                    /* HTML-Only Document Display - Merkblätter stored as HTML */
+                    <div className="h-full flex flex-col">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 dark:bg-blue-900/20 border-b border-blue-100 dark:border-blue-800">
+                        <div className="flex items-center gap-2">
+                          <svg className="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                          </svg>
+                          <span className="font-medium text-blue-700 dark:text-blue-300 text-sm">
+                            {selectedLaw.abbreviation || selectedLaw.title || 'Merkblatt'}
+                          </span>
+                        </div>
+                        <a
+                          href={getLocalHtmlUrl(selectedLaw)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 px-2 py-1 text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 bg-blue-100 dark:bg-blue-900/40 rounded transition-colors"
+                          title="Open in new tab"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          New Tab
+                        </a>
+                      </div>
+                      <iframe
+                        src={getLocalHtmlUrl(selectedLaw)}
+                        className="flex-1 w-full border-0 bg-white"
+                        title={selectedLaw.abbreviation || selectedLaw.title || 'Merkblatt'}
+                      />
+                    </div>
+                  ) : isPdfOnly ? (
                     /* PDF-Only Document Display */
                     hasLocalPdf(selectedLaw) ? (
                       /* Local PDF - Embed directly in iframe */
