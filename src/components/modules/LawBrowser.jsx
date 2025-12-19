@@ -1853,7 +1853,6 @@ export function LawBrowser({ onBack }) {
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                 {regularLaws.length} laws
                 {merkblaetter.length > 0 && `, ${merkblaetter.length} Merkbl.`}
-                {pdfVariants.length > 0 && `, ${pdfVariants.length} PDFs`}
                 {pagination.totalPages > 1 && ` (page ${pagination.page}/${pagination.totalPages})`}
               </p>
               {/* Search bar for laws */}
@@ -1957,51 +1956,6 @@ export function LawBrowser({ onBack }) {
                         </span>
                         <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
-                        </svg>
-                      </div>
-                      <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
-                        {law.title_en || law.title || getShortenedLawName(law)}
-                      </h4>
-                      {law.metadata?.description && (
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
-                          {law.metadata.description}
-                        </p>
-                      )}
-                    </button>
-                  ))}
-                </>
-              )}
-
-              {/* PDF Variants Section (red styling for PDF versions of laws) */}
-              {pdfVariants.length > 0 && (
-                <>
-                  <div className="px-3 py-2 bg-red-50 dark:bg-red-900/20 border-y border-red-100 dark:border-red-800 sticky top-0 z-10">
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                      </svg>
-                      <span className="font-semibold text-red-700 dark:text-red-300 text-sm">
-                        PDF Versions
-                      </span>
-                      <span className="text-xs text-red-500 dark:text-red-400">({pdfVariants.length})</span>
-                    </div>
-                  </div>
-                  {pdfVariants.map((law) => (
-                    <button
-                      key={law.id}
-                      onClick={() => selectLaw(law)}
-                      className={`w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
-                        selectedLaw?.id === law.id
-                          ? 'bg-red-50 dark:bg-red-900/20 border-l-4 border-l-red-500'
-                          : 'hover:bg-gray-50 dark:hover:bg-whs-dark-800'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300">
-                          {law.abbreviation || law.abbr || 'PDF'}
-                        </span>
-                        <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                         </svg>
                       </div>
                       <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
