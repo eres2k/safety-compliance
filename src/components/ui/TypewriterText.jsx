@@ -170,13 +170,22 @@ export function TransitionText({
 /**
  * OverwriteText - Shows original text with translated text typing over it
  * Creates a cool effect where the translation overwrites the original character by character
+ *
+ * @param {string} originalText - The original text to show initially
+ * @param {string} translatedText - The translated text to type over the original
+ * @param {number} speed - Milliseconds per character (lower = faster)
+ * @param {string} className - Additional CSS classes
+ * @param {function} onComplete - Callback when animation completes
+ * @param {function} renderComplete - Optional render function for formatted content after completion
+ *                                    Receives translatedText as argument
  */
 export function OverwriteText({
   originalText,
   translatedText,
   speed = 8,
   className = '',
-  onComplete
+  onComplete,
+  renderComplete
 }) {
   const [displayedLength, setDisplayedLength] = useState(0)
   const [isComplete, setIsComplete] = useState(false)
@@ -226,6 +235,15 @@ export function OverwriteText({
       }
     }
   }, [translatedText, speed, onComplete])
+
+  // If animation is complete and we have a custom renderer, use it for formatted display
+  if (isComplete && renderComplete) {
+    return (
+      <div className={className}>
+        {renderComplete(translatedText)}
+      </div>
+    )
+  }
 
   // Split text by lines for proper display
   const displayedText = translatedText ? translatedText.slice(0, displayedLength) : ''
