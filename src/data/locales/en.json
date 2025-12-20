@@ -255,6 +255,79 @@
     "disclaimer": "For informational purposes only",
     "advice": "Always consult official sources and legal professionals for binding advice"
   },
+  "help": {
+    "title": "Help & Guide",
+    "subtitle": "Learn how to use the WHS Safety Navigator",
+    "buttonLabel": "Help",
+    "introTitle": "Welcome to the WHS Safety Navigator",
+    "introText": "This application helps you navigate workplace health and safety (WHS) regulations across Austria, Germany, and the Netherlands. It is specifically designed for Amazon MEU Delivery Last Mile Logistics operations, providing quick access to relevant safety laws, compliance requirements, and tools.",
+    "officialSourcesTitle": "Official Law Sources",
+    "officialSourcesText": "All legal texts displayed in this application are sourced directly from official government publications and regulatory authorities. This includes the Austrian ASchG (ArbeitnehmerInnenschutzgesetz), German DGUV regulations and ArbSchG (Arbeitsschutzgesetz), and Dutch Arbowet (Arbeidsomstandighedenwet). We ensure accuracy by referencing only authoritative sources.",
+    "updateFrequencyTitle": "Regular Updates - Every 14 Days",
+    "updateFrequencyText": "Our legal database is updated every 14 days to ensure you always have access to the latest regulatory requirements, amendments, and legal changes. This regular update cycle ensures compliance with current legislation and keeps you informed of new developments in workplace safety law.",
+    "countriesTitle": "Supported Countries & Legal Frameworks",
+    "countryAT": "Austria",
+    "countryDE": "Germany",
+    "countryNL": "Netherlands",
+    "featuresTitle": "Features & Modules",
+    "features": {
+      "lawBrowser": {
+        "title": "Law Browser & Search",
+        "description": "Navigate and search through complete safety legislation. Features full-text search, section navigation, bookmarking, PDF viewing, and the ability to compare laws across different countries. Use the complexity slider to view content as original legal text, WHS summaries, or simple explanations."
+      },
+      "complianceChecker": {
+        "title": "Compliance Checker",
+        "description": "Check specific compliance requirements based on your delivery station size, industry type, and safety topic. Filter regulations by number of employees and get targeted requirements relevant to your operations."
+      },
+      "complianceDashboard": {
+        "title": "Compliance Dashboard",
+        "description": "View a visual overview of your compliance status across all applicable regulations. Track which requirements have been met, which are in progress, and which need attention. Monitor compliance metrics and statistics."
+      },
+      "trainingResources": {
+        "title": "Training Resources",
+        "description": "Access mandatory and recommended safety training materials. Find training documentation, instructional content, and educational resources organized by topic and requirement level."
+      },
+      "checklistTemplates": {
+        "title": "Checklist Templates",
+        "description": "Use pre-built compliance checklists for site setup, audits, inspections, and daily safety checks. Preview templates before use and track completion progress through interactive checklists."
+      },
+      "auditTrail": {
+        "title": "Audit Trail",
+        "description": "View a complete history of your activities within the application. Track which laws you've reviewed, when they were accessed, and maintain documentation for compliance audits and inspections."
+      },
+      "preventionTimeCalculator": {
+        "title": "Prevention Time Calculator",
+        "description": "Calculate required prevention time for safety specialists and occupational physicians based on your workforce size. Determine mandatory consulting hours and safety officer requirements according to current regulations."
+      },
+      "penaltyLookup": {
+        "title": "Penalty Lookup",
+        "description": "Look up potential fines and penalties for safety violations. Understand the consequences of non-compliance and use this information to prioritize safety improvements and justify compliance investments."
+      },
+      "glossary": {
+        "title": "Glossary & Abbreviations",
+        "description": "Reference guide for safety terminology, legal abbreviations, and technical terms. Quickly look up definitions for specialized vocabulary used in workplace safety regulations."
+      }
+    },
+    "complexityTitle": "Content Complexity Levels",
+    "complexityText": "The Law Browser offers three ways to view legal content, making it accessible for everyone:",
+    "complexityLegal": "Legal Text",
+    "complexityLegalDesc": "Original legal language exactly as published in official sources",
+    "complexityWHS": "WHS Summary",
+    "complexityWHSDesc": "Key WHS obligations, compliance requirements, and action items",
+    "complexitySimple": "Simple Explanation",
+    "complexitySimpleDesc": "Easy-to-understand explanation that anyone can follow",
+    "tipsTitle": "Tips for Effective Use",
+    "tips": [
+      "Use the search function to quickly find specific regulations or keywords",
+      "Bookmark important sections for quick access later",
+      "Compare laws across countries to understand regulatory differences",
+      "Switch between complexity levels based on your needs",
+      "Check the update date to ensure you're viewing current regulations",
+      "Use the cross-border comparison for multi-country operations"
+    ],
+    "disclaimer": "This application is for informational purposes only. While we strive to provide accurate and up-to-date information sourced from official publications, always consult official sources and legal professionals for legally binding advice.",
+    "version": "WHS Safety Navigator v2.0"
+  },
   "lawTitles": {
     "AT": {
       "ASchG": { "de": "ArbeitnehmerInnenschutzgesetz", "en": "Employee Protection Act" },

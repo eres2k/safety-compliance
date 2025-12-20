@@ -255,6 +255,79 @@
     "disclaimer": "Nur zu Informationszwecken",
     "advice": "Konsultieren Sie immer offizielle Quellen und Rechtsexperten für verbindliche Beratung"
   },
+  "help": {
+    "title": "Hilfe & Anleitung",
+    "subtitle": "Lernen Sie den WHS Safety Navigator kennen",
+    "buttonLabel": "Hilfe",
+    "introTitle": "Willkommen beim WHS Safety Navigator",
+    "introText": "Diese Anwendung hilft Ihnen bei der Navigation durch die Arbeitsschutzvorschriften in Österreich, Deutschland und den Niederlanden. Sie wurde speziell für Amazon MEU Delivery Last Mile Logistics-Standorte entwickelt und bietet schnellen Zugriff auf relevante Sicherheitsgesetze, Compliance-Anforderungen und Tools.",
+    "officialSourcesTitle": "Offizielle Rechtsquellen",
+    "officialSourcesText": "Alle in dieser Anwendung angezeigten Gesetzestexte stammen direkt aus offiziellen Regierungspublikationen und Aufsichtsbehörden. Dazu gehören das österreichische ASchG (ArbeitnehmerInnenschutzgesetz), die deutschen DGUV-Vorschriften und das ArbSchG (Arbeitsschutzgesetz) sowie das niederländische Arbowet (Arbeidsomstandighedenwet). Wir gewährleisten Genauigkeit durch ausschließliche Verwendung amtlicher Quellen.",
+    "updateFrequencyTitle": "Regelmäßige Aktualisierungen - Alle 14 Tage",
+    "updateFrequencyText": "Unsere Rechtsdatenbank wird alle 14 Tage aktualisiert, um sicherzustellen, dass Sie stets Zugang zu den neuesten regulatorischen Anforderungen, Änderungen und rechtlichen Neuerungen haben. Dieser regelmäßige Aktualisierungszyklus gewährleistet die Einhaltung geltender Rechtsvorschriften und hält Sie über neue Entwicklungen im Arbeitsschutzrecht auf dem Laufenden.",
+    "countriesTitle": "Unterstützte Länder & Rechtsrahmen",
+    "countryAT": "Österreich",
+    "countryDE": "Deutschland",
+    "countryNL": "Niederlande",
+    "featuresTitle": "Funktionen & Module",
+    "features": {
+      "lawBrowser": {
+        "title": "Gesetzes-Browser & Suche",
+        "description": "Navigieren und durchsuchen Sie die komplette Arbeitsschutzgesetzgebung. Mit Volltextsuche, Abschnittsnavigation, Lesezeichen, PDF-Ansicht und der Möglichkeit, Gesetze verschiedener Länder zu vergleichen. Nutzen Sie den Komplexitätsregler, um Inhalte als Original-Gesetzestext, WHS-Zusammenfassung oder einfache Erklärung anzuzeigen."
+      },
+      "complianceChecker": {
+        "title": "Compliance-Prüfer",
+        "description": "Prüfen Sie spezifische Compliance-Anforderungen basierend auf Ihrer Verteilerstationsgröße, Branche und Sicherheitsthema. Filtern Sie Vorschriften nach Mitarbeiterzahl und erhalten Sie zielgerichtete Anforderungen für Ihren Betrieb."
+      },
+      "complianceDashboard": {
+        "title": "Compliance-Dashboard",
+        "description": "Sehen Sie eine visuelle Übersicht Ihres Compliance-Status für alle anwendbaren Vorschriften. Verfolgen Sie, welche Anforderungen erfüllt sind, welche in Bearbeitung sind und welche Aufmerksamkeit erfordern. Überwachen Sie Compliance-Metriken und Statistiken."
+      },
+      "trainingResources": {
+        "title": "Schulungsmaterialien",
+        "description": "Zugang zu Pflichtschulungen und empfohlenen Sicherheitsschulungsmaterialien. Finden Sie Schulungsdokumentation, Unterweisungsinhalte und Bildungsressourcen, geordnet nach Thema und Anforderungsstufe."
+      },
+      "checklistTemplates": {
+        "title": "Checklisten-Vorlagen",
+        "description": "Nutzen Sie vorgefertigte Compliance-Checklisten für Standorteinrichtung, Audits, Inspektionen und tägliche Sicherheitsprüfungen. Vorlagen vor Verwendung prüfen und Fortschritt durch interaktive Checklisten verfolgen."
+      },
+      "auditTrail": {
+        "title": "Aktivitätsprotokoll",
+        "description": "Sehen Sie eine vollständige Historie Ihrer Aktivitäten innerhalb der Anwendung. Verfolgen Sie, welche Gesetze Sie eingesehen haben, wann diese aufgerufen wurden, und führen Sie Dokumentation für Compliance-Audits und Inspektionen."
+      },
+      "preventionTimeCalculator": {
+        "title": "Präventionszeit-Rechner",
+        "description": "Berechnen Sie die erforderliche Präventionszeit für Fachkräfte für Arbeitssicherheit und Betriebsärzte basierend auf Ihrer Belegschaftsgröße. Ermitteln Sie obligatorische Beratungsstunden und Anforderungen an Sicherheitsbeauftragte gemäß aktueller Vorschriften."
+      },
+      "penaltyLookup": {
+        "title": "Bußgeld-Nachschlagen",
+        "description": "Schlagen Sie mögliche Bußgelder und Strafen für Sicherheitsverstöße nach. Verstehen Sie die Konsequenzen bei Nichteinhaltung und nutzen Sie diese Informationen zur Priorisierung von Sicherheitsverbesserungen und Rechtfertigung von Compliance-Investitionen."
+      },
+      "glossary": {
+        "title": "Glossar & Abkürzungen",
+        "description": "Nachschlagewerk für Sicherheitsterminologie, rechtliche Abkürzungen und Fachbegriffe. Schnelles Nachschlagen von Definitionen für Fachvokabular in Arbeitsschutzvorschriften."
+      }
+    },
+    "complexityTitle": "Inhaltskomplexitätsstufen",
+    "complexityText": "Der Gesetzes-Browser bietet drei Arten, rechtliche Inhalte anzuzeigen, sodass sie für jeden zugänglich sind:",
+    "complexityLegal": "Gesetzestext",
+    "complexityLegalDesc": "Originaler Gesetzestext genau wie in offiziellen Quellen veröffentlicht",
+    "complexityWHS": "WHS-Zusammenfassung",
+    "complexityWHSDesc": "Wichtige WHS-Pflichten, Compliance-Anforderungen und Handlungsschritte",
+    "complexitySimple": "Einfache Erklärung",
+    "complexitySimpleDesc": "Leicht verständliche Erklärung, der jeder folgen kann",
+    "tipsTitle": "Tipps für effektive Nutzung",
+    "tips": [
+      "Nutzen Sie die Suchfunktion, um schnell bestimmte Vorschriften oder Stichwörter zu finden",
+      "Setzen Sie Lesezeichen für wichtige Abschnitte zum späteren schnellen Zugriff",
+      "Vergleichen Sie Gesetze verschiedener Länder, um regulatorische Unterschiede zu verstehen",
+      "Wechseln Sie je nach Bedarf zwischen Komplexitätsstufen",
+      "Überprüfen Sie das Aktualisierungsdatum, um sicherzustellen, dass Sie aktuelle Vorschriften einsehen",
+      "Nutzen Sie den grenzüberschreitenden Vergleich für länderübergreifende Tätigkeiten"
+    ],
+    "disclaimer": "Diese Anwendung dient nur zu Informationszwecken. Obwohl wir uns bemühen, genaue und aktuelle Informationen aus offiziellen Publikationen bereitzustellen, konsultieren Sie bitte immer offizielle Quellen und Rechtsexperten für rechtsverbindliche Auskünfte.",
+    "version": "WHS Safety Navigator v2.0"
+  },
   "lawTitles": {
     "AT": {
       "ASchG": { "de": "ArbeitnehmerInnenschutzgesetz", "en": "Employee Protection Act" },
