@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
+import { HelpModal } from './HelpModal'
 
 // Framework configuration with colors
 const frameworks = {
@@ -90,6 +91,7 @@ export function Header() {
   const { framework, setFramework, language, setLanguage, isDark, toggleTheme, t } = useApp()
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [showFrameworkMenu, setShowFrameworkMenu] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false)
 
   // Refs for click-outside detection
   const languageRef = useRef(null)
@@ -230,6 +232,18 @@ export function Header() {
               )}
             </div>
 
+            {/* Help Button */}
+            <button
+              onClick={() => setShowHelpModal(true)}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gray-100 dark:bg-whs-dark-800 hover:bg-gray-200 dark:hover:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-all"
+              aria-label={t.help?.buttonLabel || 'Help'}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="hidden sm:inline text-sm font-medium">{t.help?.buttonLabel || 'Help'}</span>
+            </button>
+
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -241,6 +255,9 @@ export function Header() {
           </div>
         </div>
       </div>
+
+      {/* Help Modal */}
+      <HelpModal isOpen={showHelpModal} onClose={() => setShowHelpModal(false)} />
     </header>
   )
 }
