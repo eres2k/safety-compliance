@@ -52,7 +52,42 @@
     "compareAllCountries": "Diesen Abschnitt in allen 3 Ländern vergleichen",
     "compareTwoCountries": "Diesen Abschnitt mit einem anderen Land vergleichen",
     "filterBySection": "Nach Abschnitt-Nr./Titel filtern...",
-    "fullTextSearch": "Volltextsuche in diesem Gesetz..."
+    "fullTextSearch": "Volltextsuche in diesem Gesetz...",
+    "openNewTab": "In neuem Tab öffnen",
+    "selectLaw": "Gesetz auswählen",
+    "selectLawDescription": "Wählen Sie ein Gesetz aus der Liste, um den vollständigen Text mit Abschnittsnavigation zu lesen.",
+    "noContentAvailable": "Kein Inhalt verfügbar",
+    "noContentDescription": "Der vollständige Text für dieses Gesetz wurde nicht geladen.",
+    "viewOnOfficialSource": "Auf offizieller Quelle ansehen",
+    "relatedLaws": "Verwandte Gesetze",
+    "source": "Quelle",
+    "pdfDocument": "PDF-Dokument",
+    "htmlDocument": "HTML-Dokument",
+    "rateLimited": "Bitte warten",
+    "rateLimitedDescription": "KI-Anfragen sind ratenbegrenzt. Bitte warten Sie vor der nächsten Anfrage."
+  },
+  "lawBrowser": {
+    "lawsAndRegs": "Gesetze & Vorschriften",
+    "laws": "Gesetze",
+    "merkbl": "Merkbl.",
+    "lawPdfs": "Gesetzes-PDFs",
+    "searchLaws": "Gesetze durchsuchen...",
+    "auvaMerkblaetter": "AUVA Merkblätter",
+    "dguvRules": "DGUV / Technische Regeln",
+    "arbocatalogi": "Arbocatalogi"
+  },
+  "translation": {
+    "translateTo": "Übersetzen nach",
+    "translating": "Übersetze...",
+    "showOriginal": "Original anzeigen",
+    "showTranslation": "Übersetzung anzeigen",
+    "translationEnabled": "Übersetzung aktiviert",
+    "translationDisabled": "Übersetzung deaktiviert",
+    "selectLanguage": "Zielsprache wählen",
+    "german": "Deutsch",
+    "dutch": "Niederländisch",
+    "english": "Englisch",
+    "translateLaw": "Gesetz übersetzen"
   },
   "complexity": {
     "reading": "Ansicht:",

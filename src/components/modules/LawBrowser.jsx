@@ -1,7 +1,8 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge } from '../ui'
+import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge, TypewriterText, useRateLimitStatus } from '../ui'
+import { getRateLimitStatus } from '../../services/aiService'
 import {
   getAllLawsSync,
   getRelatedLaws,
@@ -734,8 +735,117 @@ function formatLawText(text) {
   return elements
 }
 
+// Patterns for detecting law references that should be deep-linked
+const LAW_REFERENCE_PATTERNS = [
+  // German/Austrian patterns: § 1, § 1 ASchG, § 1 Abs. 2, § 1 Abs. 2 Z 3, etc.
+  /§\s*(\d+[a-z]?)\s*(?:Abs\.?\s*(\d+))?\s*(?:Z\.?\s*(\d+))?\s*(?:(ASchG|AZG|ARG|MSchG|KJBG|AStV|DOK-VO|AM-VO|ESV|PSA-V|BauV|ArbSchG|ASiG|ArbZG|MuSchG|JArbSchG|ArbStättV|BetrSichV|GefStoffV))?/gi,
+  // Dutch patterns: Artikel 3, Art. 3 Arbowet, etc.
+  /(?:Artikel|Art\.?)\s*(\d+[a-z]?)\s*(?:lid\s*(\d+))?\s*(?:(Arbowet|Arbobesluit|Arboregeling|BRZO))?/gi,
+  // DGUV/TRBS/TRGS/ASR patterns
+  /(?:DGUV|TRBS|TRGS|ASR)\s*([\w\-\.]+)/gi
+]
+
+// Create law reference highlighter for deep-linking to laws
+function createLawReferenceHighlighter(onLawClick) {
+  return function applyLawLinks(text) {
+    if (!text || typeof text !== 'string') return text
+
+    // Combined pattern for all law references
+    const combinedPattern = /(?:§\s*\d+[a-z]?(?:\s*Abs\.?\s*\d+)?(?:\s*Z\.?\s*\d+)?(?:\s*(?:ASchG|AZG|ARG|MSchG|KJBG|AStV|DOK-VO|AM-VO|ESV|PSA-V|BauV|ArbSchG|ASiG|ArbZG|MuSchG|JArbSchG|ArbStättV|BetrSichV|GefStoffV))?|(?:Artikel|Art\.?)\s*\d+[a-z]?(?:\s*lid\s*\d+)?(?:\s*(?:Arbowet|Arbobesluit|Arboregeling|BRZO))?|(?:DGUV|TRBS|TRGS|ASR)\s*[\w\-\.]+)/gi
+
+    const parts = []
+    let lastIndex = 0
+    let match
+
+    while ((match = combinedPattern.exec(text)) !== null) {
+      // Add text before the match
+      if (match.index > lastIndex) {
+        parts.push(text.slice(lastIndex, match.index))
+      }
+
+      // Parse the matched reference
+      const ref = match[0]
+      const lawInfo = parseLawReference(ref)
+
+      if (lawInfo && onLawClick) {
+        parts.push(
+          <button
+            key={match.index}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onLawClick(lawInfo)
+            }}
+            className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer font-medium inline bg-blue-50 dark:bg-blue-900/20 px-1 rounded"
+            title={`Navigate to ${ref}`}
+          >
+            {ref}
+          </button>
+        )
+      } else {
+        parts.push(ref)
+      }
+
+      lastIndex = match.index + match[0].length
+    }
+
+    // Add remaining text
+    if (lastIndex < text.length) {
+      parts.push(text.slice(lastIndex))
+    }
+
+    return parts.length > 1 ? parts : text
+  }
+}
+
+// Parse law reference to extract law abbreviation and section
+function parseLawReference(ref) {
+  if (!ref) return null
+
+  // German/Austrian patterns
+  const germanMatch = ref.match(/§\s*(\d+[a-z]?)(?:\s*Abs\.?\s*(\d+))?(?:\s*Z\.?\s*(\d+))?\s*(?:(ASchG|AZG|ARG|MSchG|KJBG|AStV|DOK-VO|AM-VO|ESV|PSA-V|BauV|ArbSchG|ASiG|ArbZG|MuSchG|JArbSchG|ArbStättV|BetrSichV|GefStoffV))?/i)
+  if (germanMatch) {
+    return {
+      type: 'section',
+      section: germanMatch[1],
+      subsection: germanMatch[2] || null,
+      point: germanMatch[3] || null,
+      law: germanMatch[4] || null,
+      country: germanMatch[4] && ['ASchG', 'AZG', 'ARG', 'MSchG', 'KJBG', 'AStV', 'DOK-VO', 'AM-VO', 'ESV', 'PSA-V', 'BauV'].includes(germanMatch[4]) ? 'AT' : 'DE',
+      raw: ref
+    }
+  }
+
+  // Dutch patterns
+  const dutchMatch = ref.match(/(?:Artikel|Art\.?)\s*(\d+[a-z]?)(?:\s*lid\s*(\d+))?\s*(?:(Arbowet|Arbobesluit|Arboregeling|BRZO))?/i)
+  if (dutchMatch) {
+    return {
+      type: 'article',
+      section: dutchMatch[1],
+      subsection: dutchMatch[2] || null,
+      law: dutchMatch[3] || null,
+      country: 'NL',
+      raw: ref
+    }
+  }
+
+  // DGUV/TRBS/TRGS/ASR patterns
+  const technicalMatch = ref.match(/(DGUV|TRBS|TRGS|ASR)\s*([\w\-\.]+)/i)
+  if (technicalMatch) {
+    return {
+      type: 'technical',
+      lawType: technicalMatch[1].toUpperCase(),
+      number: technicalMatch[2],
+      country: 'DE',
+      raw: ref
+    }
+  }
+
+  return null
+}
+
 // Render formatted elements with optional search term highlighting and WHS crosslinks
-function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClick = null }) {
+function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClick = null, onLawReferenceClick = null }) {
   const elements = formatLawText(text)
 
   // Create crosslink highlighter if crosslinks are available
@@ -746,23 +856,57 @@ function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClic
     return createCrosslinkHighlighter(crosslinks, onCrosslinkClick)
   }, [crosslinks, onCrosslinkClick])
 
-  // Combined function that applies crosslinks first, then search highlighting
+  // Create law reference highlighter
+  const applyLawLinks = useMemo(() => {
+    if (!onLawReferenceClick) return (t) => t
+    return createLawReferenceHighlighter(onLawReferenceClick)
+  }, [onLawReferenceClick])
+
+  // Combined function that applies law links, crosslinks, and search highlighting
   const processText = useCallback((t) => {
     if (!t) return t
-    // First apply crosslinks (returns JSX or string)
-    const withCrosslinks = applyCrosslinks(t)
-    // Then apply search highlighting
-    if (Array.isArray(withCrosslinks)) {
-      // If crosslinks produced an array, process each string part
-      return withCrosslinks.map((part, i) => {
-        if (typeof part === 'string') {
-          return <span key={i}>{highlightText(part, searchTerm)}</span>
-        }
-        return part // Keep JSX elements (crosslink buttons)
-      })
+
+    // Helper to process a single text part
+    const processTextPart = (text) => {
+      if (typeof text !== 'string') return text
+
+      // First apply law links (returns array or string)
+      const withLawLinks = applyLawLinks(text)
+
+      // Then apply crosslinks to each string part
+      if (Array.isArray(withLawLinks)) {
+        return withLawLinks.map((part, i) => {
+          if (typeof part === 'string') {
+            const withCrosslinks = applyCrosslinks(part)
+            if (Array.isArray(withCrosslinks)) {
+              return withCrosslinks.map((cpart, j) => {
+                if (typeof cpart === 'string') {
+                  return <span key={`${i}-${j}`}>{highlightText(cpart, searchTerm)}</span>
+                }
+                return cpart
+              })
+            }
+            return <span key={i}>{highlightText(withCrosslinks, searchTerm)}</span>
+          }
+          return part // Keep JSX elements (law link buttons)
+        })
+      }
+
+      // No law links found, apply crosslinks
+      const withCrosslinks = applyCrosslinks(withLawLinks)
+      if (Array.isArray(withCrosslinks)) {
+        return withCrosslinks.map((part, i) => {
+          if (typeof part === 'string') {
+            return <span key={i}>{highlightText(part, searchTerm)}</span>
+          }
+          return part // Keep JSX elements (crosslink buttons)
+        })
+      }
+      return highlightText(withCrosslinks, searchTerm)
     }
-    return highlightText(withCrosslinks, searchTerm)
-  }, [applyCrosslinks, searchTerm])
+
+    return processTextPart(t)
+  }, [applyLawLinks, applyCrosslinks, searchTerm])
 
   if (!elements || elements.length === 0) {
     return <div className="whitespace-pre-wrap">{processText(text)}</div>
@@ -965,7 +1109,22 @@ function getShortenedLawName(law) {
 
 export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationConsumed }) {
   const { t, framework, setFramework, language, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
-  const { generateFlowchart, simplifyForBothLevels, findEquivalentLaw, compareMultipleCountries, isLoading: aiLoading } = useAI()
+  const { generateFlowchart, simplifyForBothLevels, findEquivalentLaw, compareMultipleCountries, translateLawText, isLoading: aiLoading } = useAI()
+
+  // Rate limit status for disabling AI buttons
+  const [rateLimitInfo, setRateLimitInfo] = useState({ isLimited: false, remainingSeconds: 0 })
+
+  // Update rate limit status periodically
+  useEffect(() => {
+    const updateRateLimit = () => {
+      const status = getRateLimitStatus()
+      setRateLimitInfo(status)
+    }
+
+    updateRateLimit()
+    const interval = setInterval(updateRateLimit, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   // Debounce refs to prevent duplicate API calls
   const pendingSimplifyRef = useRef({}) // Track pending simplification requests by sectionId
@@ -1225,14 +1384,20 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
     setPdfModal({ open: false, url: null, title: null })
   }, [])
 
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize] = useState(20)
+  // Inline document view state (PDF/HTML in right column)
+  const [inlineDocView, setInlineDocView] = useState(null) // { type: 'pdf' | 'html', url: string, title: string, law: object }
 
-  // Reset page when filters change
-  useEffect(() => {
-    setCurrentPage(1)
-  }, [searchTerm, selectedCategory, framework])
+  // Collapsible sections for left column (Merkblätter, PDFs collapsed by default)
+  const [collapsedLeftSections, setCollapsedLeftSections] = useState({
+    merkblaetter: true,
+    lawPdfs: true
+  })
+
+  // Law translation state
+  const [translationEnabled, setTranslationEnabled] = useState(false)
+  const [translationLanguage, setTranslationLanguage] = useState(null) // Target language for translation
+  const [translatedContent, setTranslatedContent] = useState({}) // { sectionId: { translatedText, isTyping } }
+  const [translationLoading, setTranslationLoading] = useState(false)
 
   // Get all laws and categories (uses sync function - database must be loaded)
   const allLaws = useMemo(() => {
@@ -1250,9 +1415,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
     }
   }, [framework, databaseReady])
 
-  // Filter and search laws with pagination
+  // Filter and search laws (no pagination - use scrolling)
   // Uses direct text search similar to right column content search
-  const { filteredLaws, pagination } = useMemo(() => {
+  const filteredLaws = useMemo(() => {
     let results = allLaws
 
     // Filter out category placeholder entries (e.g., _category_regulations, _category_manual_handling)
@@ -1296,23 +1461,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
       })
     }
 
-    // Manual pagination
-    const total = results.length
-    const totalPages = Math.ceil(total / pageSize)
-    const offset = (currentPage - 1) * pageSize
-    const paginatedResults = results.slice(offset, offset + pageSize)
-
-    return {
-      filteredLaws: paginatedResults,
-      pagination: {
-        page: currentPage,
-        limit: pageSize,
-        total,
-        totalPages,
-        hasMore: currentPage < totalPages
-      }
-    }
-  }, [allLaws, searchTerm, selectedCategory, currentPage, pageSize])
+    return results
+  }, [allLaws, searchTerm, selectedCategory])
 
   // Separate laws into categories for display:
   // 1. Regular laws (text-based)
@@ -1757,18 +1907,163 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
     setMultiCountryError(null)
   }
 
+  // Handle click on law reference - deep link to the specific law/section
+  const handleLawReferenceClick = useCallback((lawInfo) => {
+    if (!lawInfo) return
+
+    // Find the matching law
+    let targetLaw = null
+    let targetSection = null
+
+    if (lawInfo.law) {
+      // Specific law mentioned - search for it
+      targetLaw = allLaws.find(law =>
+        law.abbreviation?.toLowerCase() === lawInfo.law.toLowerCase() ||
+        law.abbr?.toLowerCase() === lawInfo.law.toLowerCase()
+      )
+    } else if (lawInfo.type === 'technical') {
+      // DGUV/TRBS etc - search by combination
+      const searchTerm = `${lawInfo.lawType} ${lawInfo.number}`
+      targetLaw = allLaws.find(law =>
+        law.abbreviation?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        law.title?.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    }
+
+    // If no specific law found but we have a section, try to find it in the current law
+    if (!targetLaw && selectedLaw && lawInfo.section) {
+      targetLaw = selectedLaw
+    }
+
+    // If still no law and we have country info, might need to switch framework
+    if (!targetLaw && lawInfo.country && lawInfo.country !== framework) {
+      // The law is in a different country - we need to switch frameworks
+      console.log(`Law reference points to ${lawInfo.country}, would need to switch frameworks`)
+      // For now, just show an alert - in a full implementation, this would trigger a framework switch
+      return
+    }
+
+    if (targetLaw) {
+      // Select the law
+      selectLaw(targetLaw)
+
+      // If we have a section reference, try to find and select it
+      if (lawInfo.section && targetLaw.chapters) {
+        // Search through chapters and sections for matching section number
+        for (const chapter of targetLaw.chapters) {
+          if (chapter.sections) {
+            for (const section of chapter.sections) {
+              const sectionNum = section.number?.replace(/[§\s]/g, '')
+              if (sectionNum === lawInfo.section) {
+                // Found the section - expand it and scroll to it
+                setTimeout(() => {
+                  setExpandedSections(prev => ({ ...prev, [section.id]: true }))
+                  setActiveSection(section)
+                  // Scroll to the section element
+                  const element = document.getElementById(`section-${section.id}`)
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }
+                }, 100)
+                return
+              }
+            }
+          }
+        }
+      }
+    }
+  }, [allLaws, selectedLaw, framework, selectLaw, setExpandedSections, setActiveSection])
+
+  // Get source language for current framework
+  const getSourceLanguage = () => {
+    switch (framework) {
+      case 'AT':
+      case 'DE':
+        return 'de'
+      case 'NL':
+        return 'nl'
+      default:
+        return 'de'
+    }
+  }
+
+  // Handle translation for a section
+  const handleTranslateSection = async (section, targetLang) => {
+    if (!section || !targetLang || translationLoading) return
+    if (rateLimitInfo.isLimited) return // Prevent requests during rate limit
+
+    const sectionId = section.id
+    const sourceLanguage = getSourceLanguage()
+
+    // Skip if already translated or same language
+    if (translatedContent[sectionId]?.language === targetLang) return
+    if (sourceLanguage === targetLang) {
+      // Same language - just show original
+      setTranslatedContent(prev => ({
+        ...prev,
+        [sectionId]: { translatedText: null, isTyping: false, language: targetLang }
+      }))
+      return
+    }
+
+    // Start translation
+    setTranslatedContent(prev => ({
+      ...prev,
+      [sectionId]: { translatedText: null, isTyping: true, language: targetLang }
+    }))
+    setTranslationLoading(true)
+
+    try {
+      const textToTranslate = section.content || ''
+      const translated = await translateLawText(textToTranslate, sourceLanguage, targetLang)
+
+      setTranslatedContent(prev => ({
+        ...prev,
+        [sectionId]: { translatedText: translated, isTyping: false, language: targetLang }
+      }))
+    } catch (error) {
+      console.error('Translation error:', error)
+      setTranslatedContent(prev => ({
+        ...prev,
+        [sectionId]: { translatedText: null, isTyping: false, language: null, error: error.message }
+      }))
+    } finally {
+      setTranslationLoading(false)
+    }
+  }
+
+  // Toggle translation for selected law
+  const toggleTranslation = (targetLang) => {
+    if (targetLang === translationLanguage) {
+      // Turn off translation
+      setTranslationEnabled(false)
+      setTranslationLanguage(null)
+      setTranslatedContent({})
+    } else {
+      // Turn on/change translation
+      setTranslationEnabled(true)
+      setTranslationLanguage(targetLang)
+      setTranslatedContent({})
+    }
+  }
+
   // Select a law
   const selectLaw = (law) => {
     setSelectedLaw(law)
     setActiveSection(null)
     setSearchInLaw('')
     setContentSearchTerm('')
+    // Clear inline document view
+    setInlineDocView(null)
     // Reset flowchart state
     setFlowchartData(null)
     setFlowchartSectionId(null)
     // Reset complexity slider state - per-section
     setSectionComplexityLevels({})
     setSimplifiedContent({})
+    // Reset translation state
+    setTranslatedContent({})
+    setTranslationEnabled(false)
     // Reset cross-border state
     setShowCrossBorder(false)
     setCrossBorderData(null)
@@ -1899,11 +2194,10 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
         <div className="w-72 flex-shrink-0">
           <Card className="h-full overflow-hidden flex flex-col">
             <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800 flex-shrink-0">
-              <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Laws & Regulations</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{t.lawBrowser?.lawsAndRegs || 'Laws & Regulations'}</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {regularLaws.length} laws
-                {merkblaetter.length > 0 && `, ${merkblaetter.length} Merkbl.`}
-                {pagination.totalPages > 1 && ` (page ${pagination.page}/${pagination.totalPages})`}
+                {regularLaws.length} {t.lawBrowser?.laws || 'laws'}
+                {merkblaetter.length > 0 && `, ${merkblaetter.length} ${t.lawBrowser?.merkbl || 'Merkbl.'}`}
               </p>
               {/* Search bar for laws */}
               <div className="relative mt-2">
@@ -1973,15 +2267,26 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                 </>
               )}
 
-              {/* Merkblätter / Supplements Section (blue styling) */}
+              {/* Merkblätter / Supplements Section (blue styling) - Collapsible */}
               {merkblaetter.length > 0 && (
                 <>
-                  <div className="px-3 py-2 bg-blue-50 dark:bg-blue-900/20 border-y border-blue-100 dark:border-blue-800 sticky top-0 z-10">
+                  <button
+                    onClick={() => setCollapsedLeftSections(prev => ({ ...prev, merkblaetter: !prev.merkblaetter }))}
+                    className="w-full px-3 py-2 bg-blue-50 dark:bg-blue-900/20 border-y border-blue-100 dark:border-blue-800 sticky top-0 z-10 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+                  >
                     <div className="flex items-center gap-2">
+                      <svg
+                        className={`w-4 h-4 text-blue-500 transition-transform ${collapsedLeftSections.merkblaetter ? '' : 'rotate-90'}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                      </svg>
                       <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                       </svg>
-                      <span className="font-semibold text-blue-700 dark:text-blue-300 text-sm">
+                      <span className="font-semibold text-blue-700 dark:text-blue-300 text-sm flex-1 text-left">
                         {framework === 'AT' ? 'AUVA Merkblätter' :
                          framework === 'DE' ? 'DGUV / Technische Regeln' :
                          framework === 'NL' ? 'Arbocatalogi' :
@@ -1989,13 +2294,22 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                       </span>
                       <span className="text-xs text-blue-500 dark:text-blue-400">({merkblaetter.length})</span>
                     </div>
-                  </div>
-                  {merkblaetter.map((law) => (
+                  </button>
+                  {!collapsedLeftSections.merkblaetter && merkblaetter.map((law) => (
                     <button
                       key={law.id}
-                      onClick={() => (hasLocalPdf(law) || hasPdfSource(law)) ? openPdfModal(law) : selectLaw(law)}
+                      onClick={() => {
+                        if (hasLocalPdf(law) || hasPdfSource(law)) {
+                          const pdfUrl = getPdfSourceUrl(law)
+                          setInlineDocView({ type: 'pdf', url: pdfUrl, title: law.abbreviation || law.title, law })
+                          setSelectedLaw(null)
+                        } else {
+                          selectLaw(law)
+                          setInlineDocView(null)
+                        }
+                      }}
                       className={`w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
-                        selectedLaw?.id === law.id
+                        inlineDocView?.law?.id === law.id
                           ? 'bg-blue-50 dark:bg-blue-900/20 border-l-4 border-l-blue-500'
                           : 'hover:bg-gray-50 dark:hover:bg-whs-dark-800'
                       }`}
@@ -2027,26 +2341,41 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                 </>
               )}
 
-              {/* Law PDFs Section (red styling) - PDF-only versions of laws */}
+              {/* Law PDFs Section (red styling) - PDF-only versions of laws - Collapsible */}
               {lawPdfs.length > 0 && (
                 <>
-                  <div className="px-3 py-2 bg-red-50 dark:bg-red-900/20 border-y border-red-100 dark:border-red-800 sticky top-0 z-10">
+                  <button
+                    onClick={() => setCollapsedLeftSections(prev => ({ ...prev, lawPdfs: !prev.lawPdfs }))}
+                    className="w-full px-3 py-2 bg-red-50 dark:bg-red-900/20 border-y border-red-100 dark:border-red-800 sticky top-0 z-10 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"
+                  >
                     <div className="flex items-center gap-2">
+                      <svg
+                        className={`w-4 h-4 text-red-500 transition-transform ${collapsedLeftSections.lawPdfs ? '' : 'rotate-90'}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                      </svg>
                       <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                       </svg>
-                      <span className="font-semibold text-red-700 dark:text-red-300 text-sm">
-                        Gesetzes-PDFs
+                      <span className="font-semibold text-red-700 dark:text-red-300 text-sm flex-1 text-left">
+                        {t.lawBrowser?.lawPdfs || 'Gesetzes-PDFs'}
                       </span>
                       <span className="text-xs text-red-500 dark:text-red-400">({lawPdfs.length})</span>
                     </div>
-                  </div>
-                  {lawPdfs.map((law) => (
+                  </button>
+                  {!collapsedLeftSections.lawPdfs && lawPdfs.map((law) => (
                     <button
                       key={law.id}
-                      onClick={() => openPdfModal(law)}
+                      onClick={() => {
+                        const pdfUrl = getPdfSourceUrl(law)
+                        setInlineDocView({ type: 'pdf', url: pdfUrl, title: law.abbreviation || law.title, law })
+                        setSelectedLaw(null)
+                      }}
                       className={`w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
-                        selectedLaw?.id === law.id
+                        inlineDocView?.law?.id === law.id
                           ? 'bg-red-50 dark:bg-red-900/20 border-l-4 border-l-red-500'
                           : 'hover:bg-gray-50 dark:hover:bg-whs-dark-800'
                       }`}
@@ -2068,28 +2397,6 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
               )}
 
             </div>
-            {/* Pagination Controls */}
-            {pagination.totalPages > 1 && (
-              <div className="p-2 border-t border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800 flex items-center justify-between">
-                <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  className="px-2 py-1 text-xs font-medium rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-gray-200 dark:bg-whs-dark-700 hover:bg-gray-300 dark:hover:bg-whs-dark-600"
-                >
-                  Prev
-                </button>
-                <span className="text-xs text-gray-600 dark:text-gray-400">
-                  {pagination.page} / {pagination.totalPages}
-                </span>
-                <button
-                  onClick={() => setCurrentPage(p => Math.min(pagination.totalPages, p + 1))}
-                  disabled={!pagination.hasMore}
-                  className="px-2 py-1 text-xs font-medium rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-gray-200 dark:bg-whs-dark-700 hover:bg-gray-300 dark:hover:bg-whs-dark-600"
-                >
-                  Next
-                </button>
-              </div>
-            )}
           </Card>
         </div>
 
@@ -2238,7 +2545,73 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
         {/* Right: Law Content */}
         <div className="flex-1 min-w-0">
           <Card className="h-full overflow-hidden">
-            {selectedLaw ? (
+            {/* Inline PDF/HTML View */}
+            {inlineDocView ? (
+              <div className="h-full flex flex-col">
+                {/* Header for inline document */}
+                <div className="flex-shrink-0 p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <h3 className="font-bold">{inlineDocView.title}</h3>
+                        <p className="text-xs text-white/80">{inlineDocView.type === 'pdf' ? 'PDF Document' : 'HTML Document'}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={inlineDocView.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                        title={t.common?.openNewTab || "Open in new tab"}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                      <a
+                        href={inlineDocView.url}
+                        download
+                        className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                        title={t.common?.download || "Download"}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                      </a>
+                      <button
+                        onClick={() => setInlineDocView(null)}
+                        className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                        title={t.common?.close || "Close"}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {/* Inline document content */}
+                <div className="flex-1">
+                  {inlineDocView.type === 'pdf' ? (
+                    <iframe
+                      src={inlineDocView.url}
+                      className="w-full h-full border-0"
+                      title={inlineDocView.title}
+                    />
+                  ) : (
+                    <iframe
+                      src={inlineDocView.url}
+                      className="w-full h-full border-0 bg-white"
+                      title={inlineDocView.title}
+                    />
+                  )}
+                </div>
+              </div>
+            ) : selectedLaw ? (
               <div className="h-full flex flex-col">
                 {/* Law Header */}
                 <div className="flex-shrink-0 p-4 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-r from-whs-orange-500 to-whs-orange-600 text-white">
@@ -2264,6 +2637,41 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                           {t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.en || selectedLaw.title_en}
                         </p>
                       )}
+                      {/* Translation Toggle */}
+                      <div className="mt-2 flex items-center gap-2">
+                        <span className="text-xs text-white/70">{t.translation?.translateTo || 'Translate to'}:</span>
+                        <div className="flex gap-1">
+                          {['de', 'nl', 'en'].filter(lang => lang !== getSourceLanguage()).map(lang => (
+                            <button
+                              key={lang}
+                              onClick={() => toggleTranslation(lang)}
+                              disabled={rateLimitInfo.isLimited && !translationEnabled}
+                              className={`px-2 py-0.5 text-xs rounded transition-all ${
+                                translationLanguage === lang
+                                  ? 'bg-white text-whs-orange-600 font-medium'
+                                  : rateLimitInfo.isLimited
+                                    ? 'bg-white/10 opacity-50 cursor-not-allowed'
+                                    : 'bg-white/20 hover:bg-white/30'
+                              }`}
+                              title={rateLimitInfo.isLimited ? `${t.common?.rateLimited || 'Please wait'} (${rateLimitInfo.remainingSeconds}s)` : ''}
+                            >
+                              {lang === 'de' ? (t.translation?.german || 'DE') : lang === 'nl' ? (t.translation?.dutch || 'NL') : (t.translation?.english || 'EN')}
+                            </button>
+                          ))}
+                          {translationEnabled && (
+                            <button
+                              onClick={() => toggleTranslation(translationLanguage)}
+                              className="px-2 py-0.5 text-xs bg-red-500/30 hover:bg-red-500/50 rounded transition-all"
+                              title={t.translation?.showOriginal || 'Show original'}
+                            >
+                              ✕
+                            </button>
+                          )}
+                        </div>
+                        {translationLoading && (
+                          <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        )}
+                      </div>
                     </div>
                     <div className="flex gap-2">
                       <button
@@ -2555,10 +2963,46 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                                           />
                                         </div>
 
-                                        {/* Section Content - switches based on this section's complexity level */}
+                                        {/* Section Content - switches based on complexity level and translation */}
                                         <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
                                           {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
-                                            <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} />
+                                            <>
+                                              {/* Translation indicator and translate button */}
+                                              {translationEnabled && translationLanguage && (
+                                                <div className="mb-3 flex items-center gap-2">
+                                                  {translatedContent[section.id]?.isTyping ? (
+                                                    <div className="flex items-center gap-2 text-sm text-whs-orange-500">
+                                                      <div className="w-3 h-3 border-2 border-whs-orange-300 border-t-whs-orange-500 rounded-full animate-spin"></div>
+                                                      <span>{t.translation?.translating || 'Translating...'}</span>
+                                                    </div>
+                                                  ) : translatedContent[section.id]?.translatedText ? (
+                                                    <span className="text-xs px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full">
+                                                      {translationLanguage === 'de' ? '🇩🇪' : translationLanguage === 'nl' ? '🇳🇱' : '🇬🇧'} {t.translation?.translationEnabled || 'Translated'}
+                                                    </span>
+                                                  ) : (
+                                                    <button
+                                                      onClick={() => handleTranslateSection(section, translationLanguage)}
+                                                      disabled={rateLimitInfo.isLimited || translationLoading}
+                                                      className="text-xs px-2 py-1 bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300 rounded hover:bg-whs-orange-200 dark:hover:bg-whs-orange-900/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                                    >
+                                                      {rateLimitInfo.isLimited ? `${t.common?.rateLimited || 'Wait'} (${rateLimitInfo.remainingSeconds}s)` : (t.translation?.translateLaw || 'Translate this section')}
+                                                    </button>
+                                                  )}
+                                                </div>
+                                              )}
+                                              {/* Show translated or original content */}
+                                              {translationEnabled && translatedContent[section.id]?.translatedText ? (
+                                                <div className="prose dark:prose-invert prose-sm max-w-none">
+                                                  <TypewriterText
+                                                    text={translatedContent[section.id].translatedText}
+                                                    speed={3}
+                                                    className="whitespace-pre-wrap"
+                                                  />
+                                                </div>
+                                              ) : (
+                                                <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} />
+                                              )}
+                                            </>
                                           ) : (
                                             <SimplifiedContent
                                               content={simplifiedContent[section.id]?.[sectionComplexityLevels[section.id]] || null}
@@ -2631,7 +3075,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                         </div>
                       ) : (
                         /* Raw text fallback */
-                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} />
+                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} />
                       )}
 
                     </div>

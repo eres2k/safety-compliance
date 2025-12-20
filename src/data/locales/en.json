@@ -52,7 +52,42 @@
     "compareAllCountries": "Compare this section across all 3 countries",
     "compareTwoCountries": "Compare this section with another country",
     "filterBySection": "Filter by section number/title...",
-    "fullTextSearch": "Full text search in this law..."
+    "fullTextSearch": "Full text search in this law...",
+    "openNewTab": "Open in new tab",
+    "selectLaw": "Select a Law",
+    "selectLawDescription": "Choose a law from the list to read its full content with section navigation.",
+    "noContentAvailable": "No content available",
+    "noContentDescription": "The full text for this law has not been loaded.",
+    "viewOnOfficialSource": "View on official source",
+    "relatedLaws": "Related Laws",
+    "source": "Source",
+    "pdfDocument": "PDF Document",
+    "htmlDocument": "HTML Document",
+    "rateLimited": "Please wait",
+    "rateLimitedDescription": "AI requests are rate limited. Please wait before making another request."
+  },
+  "lawBrowser": {
+    "lawsAndRegs": "Laws & Regulations",
+    "laws": "laws",
+    "merkbl": "Merkbl.",
+    "lawPdfs": "Law PDFs",
+    "searchLaws": "Search laws...",
+    "auvaMerkblaetter": "AUVA Merkblätter",
+    "dguvRules": "DGUV / Technical Rules",
+    "arbocatalogi": "Arbocatalogi"
+  },
+  "translation": {
+    "translateTo": "Translate to",
+    "translating": "Translating...",
+    "showOriginal": "Show Original",
+    "showTranslation": "Show Translation",
+    "translationEnabled": "Translation enabled",
+    "translationDisabled": "Translation disabled",
+    "selectLanguage": "Select target language",
+    "german": "German",
+    "dutch": "Dutch",
+    "english": "English",
+    "translateLaw": "Translate Law"
   },
   "complexity": {
     "reading": "Reading:",

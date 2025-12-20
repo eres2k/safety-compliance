@@ -911,3 +911,51 @@ OUTPUT FORMAT (JSON only, no explanation):
   setCachedResponse(cacheKey, formatted)
   return formatted
 }
+
+/**
+ * Translate law text to a different language
+ * Used for cross-language reading (e.g., translating Dutch law text to German)
+ * @param {string} lawText - The law text to translate
+ * @param {string} sourceLanguage - Source language code (de, nl, en)
+ * @param {string} targetLanguage - Target language code (de, nl, en)
+ * @param {string} framework - The jurisdiction context
+ * @returns {Promise<string>} - Translated text
+ */
+export async function translateLawText(lawText, sourceLanguage, targetLanguage, framework) {
+  if (!lawText || lawText.trim().length < 10) {
+    return lawText
+  }
+
+  // Check cache first
+  const cacheKey = generateCacheKey('translate', lawText.substring(0, 500), sourceLanguage, targetLanguage, framework)
+  const cached = getCachedResponse(cacheKey)
+  if (cached) return cached
+
+  const languageNames = {
+    en: 'English',
+    de: 'German (Deutsch)',
+    nl: 'Dutch (Nederlands)'
+  }
+
+  const prompt = `You are a legal translator specializing in workplace health and safety (WHS) legislation.
+
+Translate the following ${languageNames[sourceLanguage] || sourceLanguage} legal text to ${languageNames[targetLanguage] || targetLanguage}.
+
+IMPORTANT:
+- Maintain all legal terminology accurately
+- Preserve the structure and formatting (paragraph numbers, bullet points, etc.)
+- Keep section references (§, Artikel, etc.) intact
+- Do not add explanations or commentary
+- Return ONLY the translation, nothing else
+
+=== TEXT TO TRANSLATE ===
+${lawText}
+
+=== TRANSLATION (${languageNames[targetLanguage] || targetLanguage}) ===`
+
+  const response = await generateAIResponse(prompt, framework, targetLanguage)
+  const normalizedResponse = normalizeNewlines(response).trim()
+
+  setCachedResponse(cacheKey, normalizedResponse)
+  return normalizedResponse
+}
