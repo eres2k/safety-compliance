@@ -213,9 +213,8 @@ class Config:
                         "description": "Erweiterte Merkblätter"
                     }
                 },
-                # Static publications list - AUVA website restructured, catalog URL no longer works
-                # Use direct PDF URLs from https://auva.at/media/...
-                "catalog_url": "",  # Disabled - use static publications instead
+                # AUVA downloads search page - source for all publications with download links
+                "catalog_url": "https://auva.at/downloads/downloads-search/?publicationsWithDownloadOnly=true&category=publications&showTabs=publications%2Cadditional-documents",
                 "publications": [
                     {
                         "abbrev": "AUVA M.plus 330",
@@ -4972,32 +4971,160 @@ class MerkblattScraper(Scraper):
 class AUVAScraper(MerkblattScraper):
     """
     Scraper for Austrian AUVA (Allgemeine Unfallversicherungsanstalt) Merkblätter.
-    Downloads M-Reihe and M.plus PDFs from static publication list.
+    Downloads M-Reihe and M.plus PDFs from AUVA downloads catalog or static publication list.
+
+    Source: https://auva.at/downloads/downloads-search/?publicationsWithDownloadOnly=true&category=publications
     """
 
     def __init__(self, law_limit: int = None):
         super().__init__('AT', law_limit)
         self.auva_config = self.merkblaetter_config.get("auva", {})
 
+    def _scrape_catalog(self) -> List[Dict[str, Any]]:
+        """Scrape AUVA publications from the downloads catalog page."""
+        if not HAS_BS4:
+            log_warning("BeautifulSoup required for catalog scraping. Using static list instead.")
+            return []
+
+        catalog_url = self.auva_config.get("catalog_url", "")
+        if not catalog_url:
+            return []
+
+        log_info("Fetching AUVA downloads catalog...")
+
+        # Fetch catalog page
+        html = self.fetch_url(catalog_url)
+        if not html:
+            log_warning("Failed to fetch AUVA catalog, falling back to static list")
+            return []
+
+        # Parse catalog to find PDF links
+        soup = BeautifulSoup(html, 'html.parser')
+        publications = []
+
+        # AUVA downloads page structure:
+        # Look for download links and publication cards
+        # The page uses JavaScript to load content, so we may need to look for data attributes or API endpoints
+
+        # Try to find publication entries - AUVA uses various patterns
+        # Look for links to PDFs
+        for link in soup.find_all('a', href=True):
+            href = link.get('href', '')
+
+            # Filter for PDF downloads from AUVA media
+            if '/media/' in href and href.endswith('.pdf'):
+                # Extract title from link text or parent element
+                title = link.get_text(strip=True)
+                if not title:
+                    # Try to get title from parent or sibling elements
+                    parent = link.find_parent(['div', 'li', 'article'])
+                    if parent:
+                        title_elem = parent.find(['h2', 'h3', 'h4', 'span', 'strong'])
+                        if title_elem:
+                            title = title_elem.get_text(strip=True)
+
+                if not title:
+                    # Extract from URL
+                    title = href.split('/')[-1].replace('.pdf', '').replace('_', ' ').replace('-', ' ')
+
+                # Determine series from title or URL
+                series = "M.plus" if "mplus" in href.lower() or "m.plus" in title.lower() else "M"
+
+                # Create abbreviation
+                abbrev = self._extract_abbrev(title, href)
+
+                # Make URL absolute
+                if href.startswith('/'):
+                    href = urljoin(self.auva_config.get("base_url", "https://auva.at"), href)
+
+                publications.append({
+                    "abbrev": abbrev,
+                    "title": title,
+                    "url": href,
+                    "series": series,
+                    "description": f"AUVA publication: {title[:100]}"
+                })
+
+        # Also look for structured publication data (JSON-LD or data attributes)
+        for script in soup.find_all('script', type='application/ld+json'):
+            try:
+                data = json.loads(script.string)
+                if isinstance(data, list):
+                    for item in data:
+                        if item.get('@type') in ['Document', 'DigitalDocument', 'PublicationEvent']:
+                            url = item.get('url', item.get('contentUrl', ''))
+                            if url and url.endswith('.pdf'):
+                                publications.append({
+                                    "abbrev": self._extract_abbrev(item.get('name', ''), url),
+                                    "title": item.get('name', ''),
+                                    "url": url,
+                                    "series": "M.plus",
+                                    "description": item.get('description', '')
+                                })
+            except (json.JSONDecodeError, TypeError):
+                pass
+
+        log_info(f"Found {len(publications)} publications from AUVA catalog")
+        return publications
+
+    def _extract_abbrev(self, title: str, url: str) -> str:
+        """Extract AUVA abbreviation from title or URL."""
+        # Look for M.plus or M-Reihe patterns
+        import re
+
+        # Pattern for M.plus: "M.plus 330", "mplus_330", etc.
+        mplus_match = re.search(r'[Mm]\.?plus[\s_]*(\d+)', title) or re.search(r'[Mm]\.?plus[\s_]*(\d+)', url)
+        if mplus_match:
+            return f"AUVA M.plus {mplus_match.group(1)}"
+
+        # Pattern for M-Reihe: "M 030", "M030", etc.
+        m_match = re.search(r'\bM[\s_]?(\d+)', title) or re.search(r'\bM[\s_]?(\d+)', url)
+        if m_match:
+            return f"AUVA M {m_match.group(1)}"
+
+        # Fallback: use cleaned title
+        clean_title = re.sub(r'[^\w\s]', '', title)[:30]
+        return f"AUVA {clean_title}".strip()
+
     def scrape(self) -> List[Dict[str, Any]]:
-        """Download AUVA Merkblätter PDFs from static publication list."""
+        """Download AUVA Merkblätter PDFs from catalog or static publication list."""
         documents = []
 
-        # Use static publications list (AUVA website restructured, catalog scraping no longer works)
-        publications = self.auva_config.get("publications", [])
+        # Try to scrape from catalog first
+        catalog_publications = self._scrape_catalog()
 
-        if not publications:
-            log_warning("No AUVA publications configured")
+        # Get static publications as fallback/supplement
+        static_publications = self.auva_config.get("publications", [])
+
+        # Merge: catalog publications take precedence, then add static ones that aren't duplicates
+        all_publications = []
+        seen_urls = set()
+
+        for pub in catalog_publications:
+            url = pub.get("url", "")
+            if url and url not in seen_urls:
+                all_publications.append(pub)
+                seen_urls.add(url)
+
+        for pub in static_publications:
+            url = pub.get("url", "")
+            if url and url not in seen_urls:
+                all_publications.append(pub)
+                seen_urls.add(url)
+
+        if not all_publications:
+            log_warning("No AUVA publications found (neither from catalog nor static list)")
             return documents
 
-        log_info(f"Processing {len(publications)} AUVA Merkblätter from static list...")
+        source_info = "catalog" if catalog_publications else "static list"
+        log_info(f"Processing {len(all_publications)} AUVA Merkblätter from {source_info}...")
 
         # Apply limit
         if self.law_limit:
-            publications = publications[:self.law_limit]
+            all_publications = all_publications[:self.law_limit]
 
         # Process each publication
-        for pub in publications:
+        for pub in all_publications:
             abbrev = pub.get("abbrev", "")
             title = pub.get("title", "")
             source_url = pub.get("url", "")
@@ -5113,9 +5240,10 @@ class DGUVScraper(MerkblattScraper):
                 doc = self._create_merkblatt_document(
                     abbrev=link_info['abbrev'],
                     title=link_info['title'],
-                    pdf_url=link_info['url'],
+                    source_url=link_info['url'],
                     series=link_info['series'],
-                    authority="DGUV"
+                    authority="DGUV",
+                    source_type="pdf"
                 )
                 if doc:
                     documents.append(doc)
@@ -5134,9 +5262,24 @@ class DGUVScraper(MerkblattScraper):
                         doc = self._create_merkblatt_document(
                             abbrev=link_info['abbrev'],
                             title=link_info['title'],
-                            pdf_url=pdf_url,
+                            source_url=pdf_url,
                             series=link_info['series'],
-                            authority="DGUV"
+                            authority="DGUV",
+                            source_type="pdf"
+                        )
+                        if doc:
+                            documents.append(doc)
+                    else:
+                        # No PDF found - use HTML fallback
+                        # Store the HTML page content directly for modal display
+                        log_info(f"  No PDF found for {link_info['abbrev']}, using HTML fallback...")
+                        doc = self._create_merkblatt_document(
+                            abbrev=link_info['abbrev'],
+                            title=link_info['title'],
+                            source_url=link_info['url'],
+                            series=link_info['series'],
+                            authority="DGUV",
+                            source_type="html"
                         )
                         if doc:
                             documents.append(doc)
@@ -5229,35 +5372,27 @@ class ArboportaalScraper(MerkblattScraper):
                     doc = self._create_merkblatt_document(
                         abbrev=link_info['abbrev'],
                         title=link_info['title'],
-                        pdf_url=pdf_url,
+                        source_url=pdf_url,
                         series="Arbocatalogi",
                         description=f"Sector: {link_info['sector']}",
-                        authority="Arboportaal"
+                        authority="Arboportaal",
+                        source_type="pdf"
                     )
                     if doc:
                         documents.append(doc)
                 else:
-                    # HTML-based catalogue - extract content directly
-                    main_content = catalogue_soup.find('main') or catalogue_soup.find('article') or catalogue_soup.body
-                    if main_content:
-                        full_text = main_content.get_text(separator='\n', strip=True)
-
-                        doc = create_unified_document(
-                            country="NL",
-                            abbrev=link_info['abbrev'],
-                            title=link_info['title'],
-                            doc_type=DocType.GUIDELINE,
-                            source_url=link_info['url'],
-                            source_authority="Arboportaal",
-                            content_text=full_text[:50000],
-                            full_text=full_text[:100000],
-                            metadata={
-                                "series": "Arbocatalogi",
-                                "sector": link_info['sector'],
-                                "is_supplementary": True,
-                                "source_type": "html"
-                            }
-                        )
+                    # HTML-based catalogue - store HTML directly for modal display
+                    log_info(f"  No PDF found for {link_info['abbrev']}, using HTML fallback...")
+                    doc = self._create_merkblatt_document(
+                        abbrev=link_info['abbrev'],
+                        title=link_info['title'],
+                        source_url=link_info['url'],
+                        series="Arbocatalogi",
+                        description=f"Sector: {link_info['sector']}",
+                        authority="Arboportaal",
+                        source_type="html"
+                    )
+                    if doc:
                         documents.append(doc)
 
             time.sleep(CONFIG.rate_limit_delay)

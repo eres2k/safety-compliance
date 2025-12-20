@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
 import { Button, Select, Card, CardContent, FormattedAIResponse } from '../ui'
 import { LoadingSpinner, DotsLoading } from '../ui/LoadingSpinner'
-import { searchLaws } from '../../services/euLawsDatabase'
+import { searchLaws, getAllLawsSync } from '../../services/euLawsDatabase'
 
 const COMPANY_SIZES = ['1-10', '11-50', '51-100', '101-250', '250+']
 
@@ -49,7 +49,7 @@ const ComplianceIndicator = ({ status }) => {
   )
 }
 
-export function ComplianceChecker({ onBack }) {
+export function ComplianceChecker({ onBack, onNavigateToLaw }) {
   const { t, framework, currentFrameworkColor } = useApp()
   const { checkCompliance, isLoading } = useAI()
 
@@ -60,6 +60,13 @@ export function ComplianceChecker({ onBack }) {
   const [relatedLaws, setRelatedLaws] = useState([])
   const [copied, setCopied] = useState(false)
   const [activeTab, setActiveTab] = useState('result')
+  const [allLaws, setAllLaws] = useState([])
+
+  // Load all laws for law reference detection
+  useEffect(() => {
+    const laws = getAllLawsSync(framework)
+    setAllLaws(laws)
+  }, [framework])
 
   const handleCheck = async () => {
     if (!companySize || !topic) {
@@ -276,7 +283,11 @@ export function ComplianceChecker({ onBack }) {
               </div>
               <CardContent className="p-6">
                 <div className="max-h-[500px] overflow-y-auto bg-gray-50 dark:bg-whs-dark-800/50 p-4 rounded-xl border border-gray-100 dark:border-whs-dark-700">
-                  <FormattedAIResponse content={result} />
+                  <FormattedAIResponse
+                    content={result}
+                    onLawClick={onNavigateToLaw}
+                    allLaws={allLaws}
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -284,33 +295,42 @@ export function ComplianceChecker({ onBack }) {
 
           {activeTab === 'laws' && relatedLaws.length > 0 && (
             <div className="space-y-4">
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                Click on any law to view it in the Law Browser
+              </p>
               {relatedLaws.map((law, index) => (
                 <Card
                   key={law.id || index}
                   variant="elevated"
-                  className="hover:shadow-lg transition-shadow animate-fade-in-up"
+                  className="hover:shadow-lg hover:border-whs-orange-500/50 transition-all cursor-pointer animate-fade-in-up group"
                   style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => onNavigateToLaw?.(law.id, law.jurisdiction || framework)}
                 >
                   <CardContent className="p-5">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-whs-success-500/10 to-whs-success-600/10 dark:from-whs-success-500/20 dark:to-whs-success-600/20 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-6 h-6 text-whs-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-whs-success-500/10 to-whs-success-600/10 dark:from-whs-success-500/20 dark:to-whs-success-600/20 flex items-center justify-center flex-shrink-0 group-hover:from-whs-orange-500/20 group-hover:to-whs-orange-600/20 transition-colors">
+                        <svg className="w-6 h-6 text-whs-success-500 group-hover:text-whs-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <h4 className="font-semibold text-gray-900 dark:text-white">
+                            <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-whs-orange-600 dark:group-hover:text-whs-orange-400 transition-colors">
                               {law.name || law.title}
                             </h4>
                             <p className="text-sm text-whs-success-600 dark:text-whs-success-400 font-medium">
-                              {law.reference || law.id}
+                              {law.reference || law.abbreviation || law.id}
                             </p>
                           </div>
-                          <span className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-whs-dark-700 text-gray-600 dark:text-gray-400">
-                            {law.type || 'Law'}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-whs-dark-700 text-gray-600 dark:text-gray-400">
+                              {law.type || 'Law'}
+                            </span>
+                            <svg className="w-5 h-5 text-gray-400 group-hover:text-whs-orange-500 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
                         </div>
                         {law.description && (
                           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">

@@ -21,6 +21,7 @@ import { initializeLawsDatabase } from './services/euLawsDatabase'
 function AppContent() {
   const [activeModule, setActiveModule] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [pendingLawNavigation, setPendingLawNavigation] = useState(null) // { lawId, country } for cross-module navigation
   const { isDark } = useApp()
 
   // Initialize database on mount - loads only the default framework (DE)
@@ -40,14 +41,32 @@ function AppContent() {
     init()
   }, [])
 
+  // Navigate to a specific law in the LawBrowser
+  const navigateToLaw = (lawId, country) => {
+    setPendingLawNavigation({ lawId, country })
+    setActiveModule('lawBrowser')
+  }
+
+  // Clear pending navigation after LawBrowser has consumed it
+  const clearPendingLawNavigation = () => {
+    setPendingLawNavigation(null)
+  }
+
   const renderModule = () => {
     const onBack = () => setActiveModule(null)
 
     switch (activeModule) {
       case 'lawBrowser':
-        return <LawBrowser onBack={onBack} />
+        return (
+          <LawBrowser
+            onBack={onBack}
+            initialLawId={pendingLawNavigation?.lawId}
+            initialCountry={pendingLawNavigation?.country}
+            onNavigationConsumed={clearPendingLawNavigation}
+          />
+        )
       case 'complianceChecker':
-        return <ComplianceChecker onBack={onBack} />
+        return <ComplianceChecker onBack={onBack} onNavigateToLaw={navigateToLaw} />
       case 'quickReference':
         return <QuickReference onBack={onBack} />
       case 'complianceDashboard':

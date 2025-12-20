@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
 import { Button, Input, Select, Card, CardContent, FormattedAIResponse } from '../ui'
 import { LoadingSpinner, DotsLoading } from '../ui/LoadingSpinner'
-import { searchLaws, getLawsByTopic } from '../../services/euLawsDatabase'
+import { searchLaws, getLawsByTopic, getAllLawsSync } from '../../services/euLawsDatabase'
 
 const COMPANY_SIZES = ['1-10', '11-50', '51-100', '101-250', '250+']
 
@@ -20,7 +20,7 @@ const RecentSearchItem = ({ search, onClick }) => (
   </button>
 )
 
-export function RegulationLookup({ onBack }) {
+export function RegulationLookup({ onBack, onNavigateToLaw }) {
   const { t, framework, currentFrameworkColor, recentSearches, addRecentSearch } = useApp()
   const { lookupRegulation, isLoading } = useAI()
 
@@ -30,6 +30,13 @@ export function RegulationLookup({ onBack }) {
   const [relatedLaws, setRelatedLaws] = useState([])
   const [copied, setCopied] = useState(false)
   const [activeTab, setActiveTab] = useState('result')
+  const [allLaws, setAllLaws] = useState([])
+
+  // Load all laws for law reference detection
+  useEffect(() => {
+    const laws = getAllLawsSync(framework)
+    setAllLaws(laws)
+  }, [framework])
 
   const handleLookup = async () => {
     if (!topic) return
@@ -290,7 +297,11 @@ export function RegulationLookup({ onBack }) {
               </div>
               <CardContent className="p-6">
                 <div className="max-h-[500px] overflow-y-auto bg-gray-50 dark:bg-whs-dark-800/50 p-4 rounded-xl border border-gray-100 dark:border-whs-dark-700">
-                  <FormattedAIResponse content={result} />
+                  <FormattedAIResponse
+                    content={result}
+                    onLawClick={onNavigateToLaw}
+                    allLaws={allLaws}
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -298,26 +309,35 @@ export function RegulationLookup({ onBack }) {
 
           {activeTab === 'laws' && relatedLaws.length > 0 && (
             <div className="grid md:grid-cols-2 gap-4">
+              <p className="col-span-full text-sm text-gray-500 dark:text-gray-400 mb-2">
+                Click on any law to view it in the Law Browser
+              </p>
               {relatedLaws.map((law, index) => (
                 <Card
                   key={law.id || index}
                   variant="elevated"
-                  className="hover:shadow-lg transition-all hover:-translate-y-1 animate-fade-in-up"
+                  className="hover:shadow-lg hover:border-whs-orange-500/50 transition-all hover:-translate-y-1 cursor-pointer animate-fade-in-up group"
                   style={{ animationDelay: `${index * 0.05}s` }}
+                  onClick={() => onNavigateToLaw?.(law.id, law.jurisdiction || framework)}
                 >
                   <CardContent className="p-5">
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-600/10 dark:from-purple-500/20 dark:to-purple-600/20 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-600/10 dark:from-purple-500/20 dark:to-purple-600/20 flex items-center justify-center flex-shrink-0 group-hover:from-whs-orange-500/20 group-hover:to-whs-orange-600/20 transition-colors">
+                        <svg className="w-5 h-5 text-purple-500 group-hover:text-whs-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-gray-900 dark:text-white line-clamp-1">
-                          {law.name || law.title}
-                        </h4>
+                        <div className="flex items-start justify-between gap-2">
+                          <h4 className="font-semibold text-gray-900 dark:text-white line-clamp-1 group-hover:text-whs-orange-600 dark:group-hover:text-whs-orange-400 transition-colors">
+                            {law.name || law.title}
+                          </h4>
+                          <svg className="w-5 h-5 text-gray-400 group-hover:text-whs-orange-500 group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
                         <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">
-                          {law.reference || law.id}
+                          {law.reference || law.abbreviation || law.id}
                         </p>
                         {law.description && (
                           <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
