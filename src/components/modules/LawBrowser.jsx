@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge, TypewriterText, OverwriteText, useRateLimitStatus } from '../ui'
+import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge, TypewriterText, OverwriteText, useRateLimitStatus, SmartSearch } from '../ui'
 import { getRateLimitStatus } from '../../services/aiService'
 import {
   getAllLawsSync,
@@ -2162,10 +2162,43 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
             ))}
           </div>
         </div>
+
+        {/* Smart Search Bar */}
+        <div className="mt-4">
+          <SmartSearch
+            laws={allLaws}
+            t={t}
+            onSearch={(term, mode) => {
+              if (mode === 'laws' || mode === 'all') {
+                setSearchTerm(term)
+              }
+              if (mode === 'fulltext' || mode === 'all') {
+                setContentSearchTerm(term)
+              }
+              if (mode === 'topic') {
+                // Search by topic - filter based on WHS topics
+                setSearchTerm(term)
+              }
+            }}
+            onModeChange={(mode) => {
+              // Clear search when mode changes
+              if (mode !== 'all') {
+                setSearchTerm('')
+                setContentSearchTerm('')
+              }
+            }}
+            onAISearch={(query, result) => {
+              // Handle AI search results for PDFs
+              console.log('AI PDF Search:', query, result)
+            }}
+            placeholder={t.search?.smartSearch || 'Smart search laws, topics, content, PDFs...'}
+            className="max-w-2xl"
+          />
+        </div>
       </div>
 
       {/* Main Content - 3 Column Layout */}
-      <div className="flex gap-4 h-[calc(100%-140px)] relative">
+      <div className="flex gap-4 h-[calc(100%-180px)] relative">
         {/* Loading Overlay */}
         {isLoading && (
           <div className="absolute inset-0 bg-white/80 dark:bg-whs-dark-900/80 z-10 flex items-center justify-center rounded-lg">

@@ -89,13 +89,13 @@ export function TypewriterText({
 
 /**
  * TypewriterParagraph - Renders paragraphs with typewriter effect
- * Handles multi-paragraph text properly
+ * Handles multi-paragraph text properly with consistent font/paragraph styling
  */
 export function TypewriterParagraph({
   text,
   speed = 10,
   className = '',
-  paragraphClassName = '',
+  paragraphClassName = 'text-sm leading-relaxed text-gray-700 dark:text-gray-300',
   onComplete
 }) {
   const paragraphs = text ? text.split('\n').filter(p => p.trim()) : []
@@ -113,7 +113,7 @@ export function TypewriterParagraph({
   }
 
   return (
-    <div className={className}>
+    <div className={`space-y-3 ${className}`}>
       {paragraphs.map((paragraph, index) => (
         <p key={index} className={paragraphClassName}>
           {index <= completedParagraphs ? (
@@ -154,14 +154,14 @@ export function TransitionText({
 
   if (showTranslation && translatedText) {
     return (
-      <div className={`${className} transition-opacity duration-300`}>
+      <div className={`${className} text-sm leading-relaxed text-gray-700 dark:text-gray-300 transition-opacity duration-300`}>
         <TypewriterText text={translatedText} speed={8} />
       </div>
     )
   }
 
   return (
-    <div className={`${className} transition-opacity duration-300`}>
+    <div className={`${className} text-sm leading-relaxed text-gray-700 dark:text-gray-300 transition-opacity duration-300`}>
       {originalText}
     </div>
   )
@@ -245,23 +245,37 @@ export function OverwriteText({
     )
   }
 
-  // Split text by lines for proper display
+  // Split text by lines for proper display with paragraph formatting
   const displayedText = translatedText ? translatedText.slice(0, displayedLength) : ''
-
-  // Calculate how much of original to show (fading out as translation takes over)
   const originalToShow = originalText || ''
+
+  // Format text into paragraphs for proper styling
+  const formatAsParagraphs = (text) => {
+    if (!text) return null
+    const paragraphs = text.split('\n').filter(p => p.trim())
+    if (paragraphs.length === 0) return text
+    return (
+      <div className="space-y-3">
+        {paragraphs.map((p, i) => (
+          <p key={i} className="text-sm leading-relaxed">
+            {p}
+          </p>
+        ))}
+      </div>
+    )
+  }
 
   return (
     <div className={`relative ${className}`}>
       {/* Original text as base - visible parts that haven't been overwritten */}
-      <div className="whitespace-pre-wrap text-gray-400 dark:text-gray-500 transition-opacity duration-500"
+      <div className="text-sm leading-relaxed text-gray-400 dark:text-gray-500 transition-opacity duration-500"
            style={{ opacity: isComplete ? 0 : 0.3 }}>
-        {originalToShow}
+        {formatAsParagraphs(originalToShow)}
       </div>
 
       {/* Translated text overlay - types over the original */}
-      <div className="absolute inset-0 whitespace-pre-wrap">
-        <span className="bg-white dark:bg-whs-dark-800 text-gray-800 dark:text-gray-200">
+      <div className="absolute inset-0 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+        <span className="bg-white dark:bg-whs-dark-800">
           {displayedText}
         </span>
         {!isComplete && displayedLength > 0 && (
