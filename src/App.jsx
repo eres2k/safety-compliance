@@ -9,7 +9,10 @@ import {
   ComplianceDashboard,
   TrainingResources,
   ChecklistTemplates,
-  AuditTrail
+  AuditTrail,
+  PreventionTimeCalculator,
+  PenaltyLookup,
+  Glossary
 } from './components/modules'
 import { RateLimitIndicator } from './components/ui'
 
@@ -73,6 +76,12 @@ function AppContent() {
         return <ChecklistTemplates onBack={onBack} />
       case 'auditTrail':
         return <AuditTrail onBack={onBack} />
+      case 'preventionTimeCalculator':
+        return <PreventionTimeCalculator onBack={onBack} />
+      case 'penaltyLookup':
+        return <PenaltyLookup onBack={onBack} />
+      case 'glossary':
+        return <Glossary onBack={onBack} />
       default:
         return <Dashboard onModuleSelect={setActiveModule} />
     }

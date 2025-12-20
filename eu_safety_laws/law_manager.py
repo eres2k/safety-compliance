@@ -325,12 +325,12 @@ class Config:
                         "description": "Guidelines for safe storage of hazardous substances"
                     },
                     {
-                        "abbrev": "AUVA M.plus 340",
-                        "title": "M.plus 340 - Arbeitsmittel",
-                        "title_en": "Work Equipment",
-                        "url": "https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
+                        "abbrev": "AUVA M.plus 340.2",
+                        "title": "M.plus 340.2 - Krebserzeugende Arbeitsstoffe in Kunststoffspritzgießereien",
+                        "title_en": "Carcinogenic Substances in Plastic Injection Molding",
+                        "url": "https://auva.at/media/nodjy2jp/mplus_3402_krebserzeugende_arbeitsstoffe_kunststoffspritzg.pdf",
                         "series": "M.plus",
-                        "description": "Safety requirements for work equipment"
+                        "description": "Safety for carcinogenic substances in plastic manufacturing"
                     },
                     {
                         "abbrev": "AUVA M.plus 340.7",
@@ -341,20 +341,20 @@ class Config:
                         "description": "Safety for handling hazardous substances in pharmacies"
                     },
                     {
-                        "abbrev": "AUVA M.plus 350",
-                        "title": "M.plus 350 - Arbeitsstätten",
-                        "title_en": "Workplaces",
-                        "url": "https://auva.at/media/r2qfq5at/mplus_350_arbeitsstaetten_bf_2405.pdf",
+                        "abbrev": "AUVA M.plus 301",
+                        "title": "M.plus 301 - Explosionsschutz",
+                        "title_en": "Explosion Protection",
+                        "url": "https://auva.at/media/zhxfgjcu/mplus_301_explosionsschutz_bf.pdf",
                         "series": "M.plus",
-                        "description": "Workplace design and safety requirements"
+                        "description": "Explosion protection in the workplace"
                     },
                     {
-                        "abbrev": "AUVA M.plus 360",
-                        "title": "M.plus 360 - Ergonomie",
-                        "title_en": "Ergonomics",
-                        "url": "https://auva.at/media/faqbqzk0/mplus_360_ergonomie_bf_2405.pdf",
+                        "abbrev": "AUVA M.plus 361",
+                        "title": "M.plus 361 - Musterbetriebsanweisung Ergänzung",
+                        "title_en": "Sample Operating Instructions Supplement",
+                        "url": "https://auva.at/media/a2km3njh/mplus_361_ergaenzung_4_musterbetriebsanweisung_2023_bf.pdf",
                         "series": "M.plus",
-                        "description": "Ergonomic workplace design guidelines"
+                        "description": "Sample operating instructions for hazardous substances"
                     },
                     {
                         "abbrev": "AUVA M.plus 369",
@@ -407,14 +407,30 @@ class Config:
                         "series": "M.plus",
                         "description": "Safety for bicycle courier services"
                     },
-                    # M.plus 9xx - Special Topics
+                    # AUVA E-Series - Evaluation Documents
                     {
-                        "abbrev": "AUVA M.plus 910",
-                        "title": "M.plus 910 - Evaluierung psychischer Belastungen",
-                        "title_en": "Assessment of Psychological Stress",
-                        "url": "https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
-                        "series": "M.plus",
-                        "description": "Guidelines for assessing psychological stress at work"
+                        "abbrev": "AUVA E 14",
+                        "title": "E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)",
+                        "title_en": "Evaluation of Psychological Stress (ABS Group Method)",
+                        "url": "https://auva.at/media/1klpjgis/e_14_evaluierung_psychischer_belastungen_abs_bf.pdf",
+                        "series": "E",
+                        "description": "Psychological stress evaluation using ABS group method"
+                    },
+                    {
+                        "abbrev": "AUVA E 24 EVALOG",
+                        "title": "E 24 EVALOG - Evaluierung psychischer Belastung im Dialog",
+                        "title_en": "EVALOG - Psychological Stress Evaluation through Dialogue",
+                        "url": "https://auva.at/media/gybkl0hm/e_24_evalog_evaluierung_psychischer_belastung_im_dialog_bf.pdf",
+                        "series": "E",
+                        "description": "Comprehensive psychological stress evaluation guide"
+                    },
+                    {
+                        "abbrev": "AUVA E 13",
+                        "title": "E 13 - Evaluierung physischer Belastungen",
+                        "title_en": "Evaluation of Physical Stress",
+                        "url": "https://auva.at/media/qvnajezk/e_13_physische_belastungen.pdf",
+                        "series": "E",
+                        "description": "Physical ergonomic stress evaluation"
                     },
                     {
                         "abbrev": "AUVA M.plus 931",
@@ -491,6 +507,23 @@ class Config:
                         "url": "https://auva.at/media/nwwlrfpq/m_719_atemschutzfilter_gegen_schwebstoffe_gase_daempfe_bf_20.pdf",
                         "series": "M",
                         "description": "Selection of respiratory protection filters"
+                    },
+                    # === General Resources ===
+                    {
+                        "abbrev": "AUVA Basiswissen 2025",
+                        "title": "Basiswissen Arbeitnehmer:innenschutz 2025",
+                        "title_en": "Basic Knowledge Worker Protection 2025",
+                        "url": "https://auva.at/media/peujs3al/basiswissen-arbeitnehmerschutz-bf.pdf",
+                        "series": "Basiswissen",
+                        "description": "Comprehensive overview of Austrian worker protection laws 2025"
+                    },
+                    {
+                        "abbrev": "AUVAsicher 2024-2025",
+                        "title": "AUVAsicher Informationsbroschüre 2024-2025",
+                        "title_en": "AUVAsicher Information Brochure 2024-2025",
+                        "url": "https://auva.at/media/0cpp1f4l/auvasicher_informationsbroschuere_2024.pdf",
+                        "series": "AUVAsicher",
+                        "description": "Annual safety information and prevention resources"
                     }
                 ]
             }
@@ -518,87 +551,130 @@ class Config:
                 "catalog_url": "https://publikationen.dguv.de/regelwerk/",
                 "publications": [
                     # === DGUV Vorschriften (Regulations) ===
+                    # Note: Using alternative BG sources since publikationen.dguv.de blocks automated requests
                     {
                         "abbrev": "DGUV Vorschrift 1",
                         "title": "DGUV Vorschrift 1 - Grundsätze der Prävention",
                         "title_en": "Principles of Prevention",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2909",
+                        "url": "https://www.bgw-online.de/resource/blob/14912/e141a3911799926481707fcc42781122/dguv-vorschrift1-grundsaetze-der-praevention-data.pdf",
                         "series": "vorschriften",
                         "description": "Basic prevention principles for all industries"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 1 (UK-NRW)",
+                        "title": "DGUV Vorschrift 1 - Grundsätze der Prävention (Unfallkasse NRW)",
+                        "title_en": "Principles of Prevention (NRW Accident Insurance)",
+                        "url": "https://www.unfallkasse-nrw.de/fileadmin/server/download/Regeln_und_Schriften/Unfallverhuetungsvorschriften/Vorschrift_01.pdf",
+                        "series": "vorschriften",
+                        "description": "Basic prevention principles - NRW version"
                     },
                     {
                         "abbrev": "DGUV Vorschrift 3",
                         "title": "DGUV Vorschrift 3 - Elektrische Anlagen und Betriebsmittel",
                         "title_en": "Electrical Installations and Equipment",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1052",
+                        "url": "https://www.bgw-online.de/resource/blob/20602/a08d0fafd101155ffffad8739e108152/dguv-vorschrift3-unfallverhuetungsvorschrift-elektrische-anlagen-data.pdf",
                         "series": "vorschriften",
                         "description": "Safety requirements for electrical installations"
                     },
                     {
-                        "abbrev": "DGUV Vorschrift 4",
-                        "title": "DGUV Vorschrift 4 - Elektrische Anlagen und Betriebsmittel",
-                        "title_en": "Electrical Installations and Equipment (Public)",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1457",
+                        "abbrev": "DGUV Vorschrift 3 (VBG)",
+                        "title": "DGUV Vorschrift 3 - Elektrische Anlagen und Betriebsmittel (VBG)",
+                        "title_en": "Electrical Installations and Equipment (VBG)",
+                        "url": "https://cdn.vbg.de/media/4d4d9675222842eb908cfe7c27afad8b/dld:attachment/DGUV_Vorschrift_3_Elektrische_Anlagen_und_Betriebsmittel.pdf",
                         "series": "vorschriften",
-                        "description": "Electrical safety for public sector"
+                        "description": "Electrical safety - VBG version"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 3 (BGHM)",
+                        "title": "DGUV Vorschrift 3 - Elektrische Anlagen und Betriebsmittel (BGHM)",
+                        "title_en": "Electrical Installations and Equipment (BGHM)",
+                        "url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Vorschriften/DGUV-Vorschrift-3.pdf",
+                        "series": "vorschriften",
+                        "description": "Electrical safety for wood and metal industries"
                     },
                     # === DGUV Regeln (Rules) ===
                     {
                         "abbrev": "DGUV Regel 100-001",
                         "title": "DGUV Regel 100-001 - Grundsätze der Prävention",
                         "title_en": "Principles of Prevention - Implementation Rule",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2942",
+                        "url": "https://www.bgw-online.de/resource/blob/13680/d302a42daa2cf8f05d66662c8e9e70e7/dguv-regel100-001-grundsaetze-der-praevention-data.pdf",
                         "series": "regeln",
                         "description": "Detailed implementation of DGUV Vorschrift 1"
                     },
-                    {
-                        "abbrev": "DGUV Regel 100-500",
-                        "title": "DGUV Regel 100-500 - Betreiben von Arbeitsmitteln",
-                        "title_en": "Operating Work Equipment",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/997",
-                        "series": "regeln",
-                        "description": "Safe operation of work equipment"
-                    },
-                    {
-                        "abbrev": "DGUV Regel 100-500 R2.10",
-                        "title": "DGUV Regel 100-500 R2.10 - Betreiben von Hebebühnen",
-                        "title_en": "Operating Lifting Platforms",
-                        "url": "https://publikationen.dguv.de/media/pdf/ba/08/b6/R500_210.pdf",
-                        "series": "regeln",
-                        "description": "Safe operation of lifting platforms"
-                    },
-                    {
-                        "abbrev": "DGUV Regel 100-500 R2.12",
-                        "title": "DGUV Regel 100-500 R2.12 - Betreiben von Erdbaumaschinen",
-                        "title_en": "Operating Earthmoving Machines",
-                        "url": "https://publikationen.dguv.de/media/pdf/f7/bb/ef/R500_212.pdf",
-                        "series": "regeln",
-                        "description": "Safe operation of earthmoving equipment"
-                    },
                     # === DGUV Informationen (Information) ===
-                    {
-                        "abbrev": "DGUV Information 203-006",
-                        "title": "DGUV Information 203-006 - Auswahl und Betrieb elektrischer Anlagen",
-                        "title_en": "Selection and Operation of Electrical Systems",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/792",
-                        "series": "information",
-                        "description": "Electrical safety guidance"
-                    },
                     {
                         "abbrev": "DGUV Information 204-022",
                         "title": "DGUV Information 204-022 - Erste Hilfe im Betrieb",
                         "title_en": "First Aid at Work",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/759",
+                        "url": "https://www.bgw-online.de/resource/blob/20492/528509ed5ef93ff67b6d414d55f78f84/dguv-information-204-022-erste-hilfe-im-betrieb-data.pdf",
+                        "fallback_urls": [
+                            "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/204_022/204_022.pdf"
+                        ],
                         "series": "information",
                         "description": "First aid requirements and procedures"
                     },
                     {
-                        "abbrev": "DGUV Information 206-004",
-                        "title": "DGUV Information 206-004 - Gesund und fit im Kleinbetrieb",
-                        "title_en": "Health and Fitness in Small Businesses",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/801",
+                        "abbrev": "DGUV Information 208-033",
+                        "title": "DGUV Information 208-033 - Belastungen für Rücken und Gelenke",
+                        "title_en": "Strain on Back and Joints - Manual Handling",
+                        "url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Informationen/208-033.pdf",
+                        "fallback_urls": [
+                            "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/208_033/208-033_BGBAU.pdf"
+                        ],
                         "series": "information",
-                        "description": "Health promotion for small businesses"
+                        "description": "Manual handling - back and joint protection"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-053",
+                        "title": "DGUV Information 208-053 - Mensch und Arbeitsplatz - Physische Belastung",
+                        "title_en": "Human and Workplace - Physical Strain",
+                        "url": "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/208_053/208-053_BGBAU_web.pdf",
+                        "series": "information",
+                        "description": "Physical strain assessment and ergonomics (June 2024)"
+                    },
+                    {
+                        "abbrev": "DGUV Information 209-023",
+                        "title": "DGUV Information 209-023 - Lärm am Arbeitsplatz",
+                        "title_en": "Noise at the Workplace",
+                        "url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Informationen/209-023.pdf",
+                        "series": "information",
+                        "description": "Noise protection and hearing conservation"
+                    },
+                    {
+                        "abbrev": "DGUV Information 212-024",
+                        "title": "DGUV Information 212-024 - Gehörschutz",
+                        "title_en": "Hearing Protection",
+                        "url": "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/212_024/212_024.pdf",
+                        "series": "information",
+                        "description": "Selection and use of hearing protection"
+                    },
+                    {
+                        "abbrev": "DGUV Information 214-083",
+                        "title": "DGUV Information 214-083 - Der sicherheitsoptimierte Transporter",
+                        "title_en": "The Safety-Optimized Van",
+                        "url": "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/214_083/214-083_BGBAU.pdf",
+                        "fallback_urls": [
+                            "https://www.bg-verkehr.de/medien/medienkatalog/dguv-informationen/dguv-information-214-083/at_download/file"
+                        ],
+                        "series": "information",
+                        "description": "Safety specifications for delivery vans"
+                    },
+                    # === DGUV Regeln (Rules) - Additional ===
+                    {
+                        "abbrev": "DGUV Regel 112-191",
+                        "title": "DGUV Regel 112-191 - Benutzung von Fuß- und Knieschutz",
+                        "title_en": "Use of Foot and Knee Protection",
+                        "url": "https://www.uv-bund-bahn.de/fileadmin/Dokumente/Mediathek/112-991.pdf",
+                        "series": "regeln",
+                        "description": "Safety footwear selection and use"
+                    },
+                    {
+                        "abbrev": "DGUV Regel 101-003",
+                        "title": "DGUV Regel 101-003 - Ladungssicherung auf Fahrzeugen",
+                        "title_en": "Load Securing on Vehicles",
+                        "url": "https://www.bgbau-medien.de/handlungshilfen_gb/daten/dguv/101_003/ladungssicherung.pdf",
+                        "series": "regeln",
+                        "description": "Load securing for construction industry vehicles"
                     }
                 ]
             }
@@ -669,6 +745,15 @@ class Config:
                         "url": "https://www.abu.nl/app/uploads/2019/09/Arbocatalogus-Algemeen-onderdeel-Arbobeleid-voor-vaste-medewerkers-in-de-uitzendbranche.pdf",
                         "series": "arbocatalogi",
                         "description": "Safety standards for temporary employment agencies"
+                    },
+                    # === Transport & Logistics (Key for Amazon delivery operations) ===
+                    {
+                        "abbrev": "Arbocatalogus Transport Warehouse",
+                        "title": "Arbocatalogus Transport en Logistiek - Warehouse/Distributiecentrum",
+                        "title_en": "Transport & Logistics - Warehouse/Distribution Center",
+                        "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf",
+                        "series": "arbocatalogi",
+                        "description": "Safety standards for warehouse and distribution operations (2018)"
                     }
                 ]
             }
@@ -1004,6 +1089,11 @@ def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = Fal
     """
     Validate all Merkblätter URLs and optionally attempt to fix broken ones.
 
+    The validation process follows this priority:
+    1. Check primary URL
+    2. If primary fails, try each fallback_url in sequence
+    3. Only use AI suggestion as last resort (if auto_fix=True)
+
     Returns report of valid, broken, and fixed URLs.
     """
     results = {
@@ -1011,6 +1101,7 @@ def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = Fal
         "valid": [],
         "broken": [],
         "fixed": [],
+        "fixed_with_fallback": [],
         "unfixable": []
     }
 
@@ -1026,13 +1117,14 @@ def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = Fal
 
             for pub in publications:
                 url = pub.get("url", "")
+                fallback_urls = pub.get("fallback_urls", [])
                 title = pub.get("title", "")
                 abbrev = pub.get("abbrev", "")
                 authority = source_config.get("authority", "")
 
                 results["checked"] += 1
 
-                # Check URL validity
+                # Step 1: Check primary URL validity
                 check = check_url_validity(url)
 
                 if check["valid"]:
@@ -1042,33 +1134,151 @@ def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = Fal
                         "title": title,
                         "url": url
                     })
-                else:
-                    broken_entry = {
-                        "country": c,
-                        "abbrev": abbrev,
-                        "title": title,
-                        "url": url,
-                        "status": check.get("status_code"),
-                        "error": check.get("error")
-                    }
+                    continue
 
-                    if auto_fix:
-                        # Attempt to find replacement
-                        new_url = find_replacement_url_with_ai(url, title, authority)
+                # Primary URL is broken - try fallbacks
+                broken_entry = {
+                    "country": c,
+                    "abbrev": abbrev,
+                    "title": title,
+                    "url": url,
+                    "status": check.get("status_code"),
+                    "error": check.get("error")
+                }
 
-                        if new_url:
-                            # Verify the new URL works
-                            new_check = check_url_validity(new_url)
-                            if new_check["valid"]:
-                                broken_entry["suggested_url"] = new_url
-                                results["fixed"].append(broken_entry)
-                                log_success(f"Found replacement for {abbrev}: {new_url}")
-                                continue
+                # Step 2: Try fallback URLs in sequence
+                fallback_found = False
+                for fallback_url in fallback_urls:
+                    fallback_check = check_url_validity(fallback_url)
+                    if fallback_check["valid"]:
+                        broken_entry["working_fallback"] = fallback_url
+                        results["fixed_with_fallback"].append(broken_entry)
+                        log_success(f"Using fallback URL for {abbrev}: {fallback_url}")
+                        fallback_found = True
+                        break
 
-                    results["broken"].append(broken_entry)
-                    results["unfixable"].append(broken_entry)
+                if fallback_found:
+                    continue
+
+                # Step 3: Try AI suggestion as last resort
+                if auto_fix:
+                    new_url = find_replacement_url_with_ai(url, title, authority)
+
+                    if new_url:
+                        # Verify the new URL works
+                        new_check = check_url_validity(new_url)
+                        if new_check["valid"]:
+                            broken_entry["suggested_url"] = new_url
+                            results["fixed"].append(broken_entry)
+                            log_success(f"AI found replacement for {abbrev}: {new_url}")
+                            continue
+
+                results["broken"].append(broken_entry)
+                results["unfixable"].append(broken_entry)
 
     return results
+
+
+def get_working_url(pub: Dict[str, Any], verify: bool = True) -> Optional[str]:
+    """
+    Get a working URL for a publication, trying primary first then fallbacks.
+
+    Args:
+        pub: Publication dictionary with 'url' and optional 'fallback_urls'
+        verify: If True, verify URL accessibility before returning
+
+    Returns:
+        Working URL or None if no URL works
+    """
+    primary_url = pub.get("url", "")
+    fallback_urls = pub.get("fallback_urls", [])
+
+    # Build list of URLs to try
+    urls_to_try = [primary_url] + fallback_urls
+
+    for url in urls_to_try:
+        if not url:
+            continue
+
+        if not verify:
+            return url
+
+        check = check_url_validity(url)
+        if check["valid"]:
+            return url
+
+    return None
+
+
+def update_broken_links_report(output_file: str = None) -> Dict[str, Any]:
+    """
+    Generate a comprehensive report of all URLs, their status, and available fallbacks.
+    Useful for manual review and maintenance.
+    """
+    report = {
+        "generated_at": datetime.now().isoformat(),
+        "summary": {},
+        "details": {}
+    }
+
+    sources = CONFIG.merkblaetter_sources
+
+    for country, country_sources in sources.items():
+        report["details"][country] = []
+
+        for source_key, source_config in country_sources.items():
+            publications = source_config.get("publications", [])
+
+            for pub in publications:
+                url = pub.get("url", "")
+                fallback_urls = pub.get("fallback_urls", [])
+                abbrev = pub.get("abbrev", "")
+
+                # Check all URLs
+                primary_check = check_url_validity(url)
+                fallback_checks = [
+                    {"url": fb, **check_url_validity(fb)}
+                    for fb in fallback_urls
+                ]
+
+                entry = {
+                    "abbrev": abbrev,
+                    "title": pub.get("title", ""),
+                    "primary_url": {
+                        "url": url,
+                        "valid": primary_check["valid"],
+                        "status": primary_check.get("status_code")
+                    },
+                    "fallback_urls": fallback_checks,
+                    "has_working_url": primary_check["valid"] or any(
+                        fb.get("valid", False) for fb in fallback_checks
+                    )
+                }
+                report["details"][country].append(entry)
+
+    # Generate summary
+    for country, entries in report["details"].items():
+        total = len(entries)
+        working = sum(1 for e in entries if e["has_working_url"])
+        broken = total - working
+        with_fallbacks = sum(1 for e in entries if e["fallback_urls"])
+
+        report["summary"][country] = {
+            "total": total,
+            "working": working,
+            "broken": broken,
+            "with_fallbacks": with_fallbacks,
+            "coverage_percent": round(working / total * 100, 1) if total > 0 else 0
+        }
+
+    # Save to file if requested
+    if output_file:
+        output_path = Path(output_file)
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(report, f, indent=2, ensure_ascii=False)
+        log_success(f"Report saved to: {output_path}")
+
+    return report
 
 
 # Custom sources configuration file
@@ -8820,6 +9030,13 @@ def main():
     merkblatt_parser.add_argument('--skip-ai-summary', action='store_true',
                                   help='Skip AI summary generation for PDFs')
 
+    # Validate URLs command
+    validate_urls_parser = subparsers.add_parser('validate-urls', help='Validate Merkblätter URLs and check for broken links')
+    validate_urls_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to validate URLs for')
+    validate_urls_parser.add_argument('--all', action='store_true', help='Validate URLs for all countries')
+    validate_urls_parser.add_argument('--auto-fix', action='store_true', help='Attempt to fix broken URLs using AI')
+    validate_urls_parser.add_argument('--report', type=str, metavar='FILE', help='Save detailed report to JSON file')
+
     # All command (complete pipeline)
     all_parser = subparsers.add_parser('all', help='Run complete pipeline')
     all_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to process')
@@ -8922,6 +9139,50 @@ def main():
                 scrape_wikipedia_for_country(country)
         return 0
 
+    def cmd_validate_urls(args):
+        """Validate Merkblätter URLs and check for broken links."""
+        country = args.country if not args.all else None
+        auto_fix = getattr(args, 'auto_fix', False)
+        report_file = getattr(args, 'report', None)
+
+        log_header("Validating Merkblätter URLs")
+
+        if report_file:
+            # Generate comprehensive report
+            log_info("Generating comprehensive URL report...")
+            report = update_broken_links_report(report_file)
+
+            # Print summary
+            for c, summary in report["summary"].items():
+                log_info(f"{c}: {summary['working']}/{summary['total']} working ({summary['coverage_percent']}%)")
+                if summary['broken'] > 0:
+                    log_warning(f"  {summary['broken']} broken URLs")
+                if summary['with_fallbacks'] > 0:
+                    log_info(f"  {summary['with_fallbacks']} have fallback URLs")
+        else:
+            # Standard validation
+            results = validate_and_fix_merkblaetter_urls(country, auto_fix=auto_fix)
+
+            log_info(f"Checked: {results['checked']} URLs")
+            log_success(f"Valid: {len(results['valid'])}")
+
+            if results['fixed_with_fallback']:
+                log_info(f"Fixed with fallback: {len(results['fixed_with_fallback'])}")
+                for entry in results['fixed_with_fallback']:
+                    log_info(f"  {entry['abbrev']}: using {entry['working_fallback']}")
+
+            if results['fixed']:
+                log_success(f"Fixed with AI: {len(results['fixed'])}")
+                for entry in results['fixed']:
+                    log_info(f"  {entry['abbrev']}: {entry['suggested_url']}")
+
+            if results['broken']:
+                log_error(f"Broken: {len(results['broken'])}")
+                for entry in results['broken']:
+                    log_warning(f"  {entry['abbrev']}: {entry['url']} (status: {entry['status']})")
+
+        return 0
+
     commands = {
         'scrape': cmd_scrape,
         'clean': cmd_clean,
@@ -8932,6 +9193,7 @@ def main():
         'check-updates': cmd_check_updates,
         'wikipedia': cmd_wikipedia,
         'merkblaetter': cmd_merkblaetter,
+        'validate-urls': cmd_validate_urls,
         'all': cmd_all,
     }
 

@@ -57,6 +57,18 @@ export function Dashboard({ onModuleSelect }) {
       description: t.modules.complianceChecker.description,
       gradient: moduleColors.complianceChecker,
       badge: 'Guidance'
+    },
+    {
+      id: 'preventionTimeCalculator',
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      title: 'Präventionszeit-Rechner',
+      description: 'Calculate required prevention time for safety specialists and occupational physicians',
+      gradient: 'from-emerald-500 to-emerald-600',
+      badge: 'Calculator'
     }
   ]
 
@@ -92,6 +104,22 @@ export function Dashboard({ onModuleSelect }) {
       description: 'View history of all compliance activities and reviews',
       gradient: 'from-gray-500 to-gray-600',
       badge: 'New'
+    },
+    {
+      id: 'penaltyLookup',
+      icon: '⚖️',
+      title: 'Bußgeldkatalog',
+      description: 'Lookup fines and penalties for safety violations by country',
+      gradient: 'from-red-500 to-red-600',
+      badge: 'Reference'
+    },
+    {
+      id: 'glossary',
+      icon: '📖',
+      title: 'Glossary',
+      description: 'Safety terminology, abbreviations, and legal references',
+      gradient: 'from-violet-500 to-violet-600',
+      badge: 'Reference'
     }
   ]
 
