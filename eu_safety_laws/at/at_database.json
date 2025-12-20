@@ -26,7 +26,8 @@
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für ArbeitnehmerInnenschutzgesetz, Fassung vom 20.12.2025",
         "authority": "RIS",
-        "robots_txt_compliant": true
+        "robots_txt_compliant": true,
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_ASchG_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-20T03:46:09.852339",
@@ -4973,7 +4974,8 @@
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008238",
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 20.12.2025",
         "authority": "RIS",
-        "robots_txt_compliant": true
+        "robots_txt_compliant": true,
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_AZG_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-20T03:46:08.901772",
@@ -7215,7 +7217,8 @@
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008374",
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025",
         "authority": "RIS",
-        "robots_txt_compliant": true
+        "robots_txt_compliant": true,
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_ARG_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-20T03:46:07.290794",
@@ -7578,7 +7581,8 @@
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008464",
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 20.12.2025",
         "authority": "RIS",
-        "robots_txt_compliant": true
+        "robots_txt_compliant": true,
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_MSchG_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-20T03:46:08.274775",
@@ -8864,7 +8868,8 @@
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008632",
         "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 20.12.2025",
         "authority": "RIS",
-        "robots_txt_compliant": true
+        "robots_txt_compliant": true,
+        "local_pdf_path": "eu_safety_laws/pdfs/at/at_KJBG_law.pdf"
       },
       "scraping": {
         "scraped_at": "2025-12-20T03:46:08.444776",

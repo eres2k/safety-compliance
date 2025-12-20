@@ -1312,15 +1312,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
 
   // Separate laws into categories for display:
   // 1. Regular laws (text-based)
-  // 2. Merkblätter (AUVA M.plus, DGUV, TRBS, etc.)
-  // 3. Laws with local PDFs available
-  const { regularLaws, merkblaetter, lawsWithPdfs } = useMemo(() => {
+  // 2. Merkblätter (AUVA M.plus, DGUV, TRBS, etc.) - includes all PDFs as badges
+  // Note: PDF availability is shown via badges, not as a separate section
+  const { regularLaws, merkblaetter } = useMemo(() => {
     const regular = []
     const supplements = []
-    const withPdfs = []
 
     for (const law of filteredLaws) {
-      // Skip PDF variants (they're just PDF-only versions)
+      // Skip PDF variants (they're just PDF-only versions of regular laws)
       if (isPdfVariant(law)) {
         continue
       }
@@ -1328,22 +1327,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
       // Check if it's a true supplementary source (Merkblatt, DGUV, etc.)
       if (isTrueSupplementarySource(law) || law.type === 'merkblatt') {
         supplements.push(law)
-        // Also add to PDF list if it has a PDF
-        if (hasLocalPdf(law) || hasPdfSource(law)) {
-          withPdfs.push(law)
-        }
       }
       // Regular law
       else {
         regular.push(law)
-        // Also add to PDF list if it has a PDF
-        if (hasLocalPdf(law) || hasPdfSource(law)) {
-          withPdfs.push(law)
-        }
       }
     }
 
-    return { regularLaws: regular, merkblaetter: supplements, lawsWithPdfs: withPdfs }
+    return { regularLaws: regular, merkblaetter: supplements }
   }, [filteredLaws])
 
   // Helper function to extract section title from text content when database title is incomplete
@@ -1985,10 +1976,10 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                         <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                       </svg>
                       <span className="font-semibold text-blue-700 dark:text-blue-300 text-sm">
-                        {framework === 'AT' ? 'AUVA Merkblätter' :
-                         framework === 'DE' ? 'DGUV / Technical Rules' :
-                         framework === 'NL' ? 'PGS / AI Publications' :
-                         'Merkblätter'}
+                        {framework === 'AT' ? 'AUVA Merkblätter & PDFs' :
+                         framework === 'DE' ? 'DGUV / Technical Rules & PDFs' :
+                         framework === 'NL' ? 'Arbocatalogi & PDFs' :
+                         'Merkblätter & PDFs'}
                       </span>
                       <span className="text-xs text-blue-500 dark:text-blue-400">({merkblaetter.length})</span>
                     </div>
@@ -1996,7 +1987,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                   {merkblaetter.map((law) => (
                     <button
                       key={law.id}
-                      onClick={() => selectLaw(law)}
+                      onClick={() => (hasLocalPdf(law) || hasPdfSource(law)) ? openPdfModal(law) : selectLaw(law)}
                       className={`w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
                         selectedLaw?.id === law.id
                           ? 'bg-blue-50 dark:bg-blue-900/20 border-l-4 border-l-blue-500'
@@ -2007,9 +1998,15 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                         <span className="px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
                           {law.abbreviation || law.abbr || 'Merkblatt'}
                         </span>
-                        <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
-                        </svg>
+                        {(hasLocalPdf(law) || hasPdfSource(law)) ? (
+                          <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20" title="PDF available - click to view">
+                            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                          </svg>
+                        ) : (
+                          <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                          </svg>
+                        )}
                       </div>
                       <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
                         {law.title_en || law.title || getShortenedLawName(law)}
@@ -2024,41 +2021,6 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                 </>
               )}
 
-              {/* Available PDFs Section (red styling) */}
-              {lawsWithPdfs.length > 0 && (
-                <>
-                  <div className="px-3 py-2 bg-red-50 dark:bg-red-900/20 border-y border-red-100 dark:border-red-800 sticky top-0 z-10">
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                      </svg>
-                      <span className="font-semibold text-red-700 dark:text-red-300 text-sm">
-                        Available PDFs
-                      </span>
-                      <span className="text-xs text-red-500 dark:text-red-400">({lawsWithPdfs.length})</span>
-                    </div>
-                  </div>
-                  {lawsWithPdfs.map((law) => (
-                    <button
-                      key={`pdf-${law.id}`}
-                      onClick={() => openPdfModal(law)}
-                      className="w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors hover:bg-red-50 dark:hover:bg-red-900/20"
-                    >
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300">
-                          {law.abbreviation || law.abbr || 'PDF'}
-                        </span>
-                        <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
-                        {law.title_en || law.title || getShortenedLawName(law)}
-                      </h4>
-                    </button>
-                  ))}
-                </>
-              )}
             </div>
             {/* Pagination Controls */}
             {pagination.totalPages > 1 && (
