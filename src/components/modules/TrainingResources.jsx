@@ -373,8 +373,17 @@ const TYPE_ICONS = {
   document: '📄'
 }
 
-export function TrainingResources({ onBack }) {
-  const { framework, frameworkColors, addAuditEntry } = useApp()
+export function TrainingResources({ onBack, embedded = false }) {
+  const { framework, frameworkColors, addAuditEntry, language } = useApp()
+  const lang = language || 'en'
+
+  // Localized labels
+  const labels = {
+    en: { title: 'Training Resources', subtitle: 'Safety training materials for', overallProgress: 'Overall Progress', requiredTraining: 'Required Training', categories: 'Categories', filter: 'Filter', allCategories: 'All Categories', requiredOnly: 'Required Only', markComplete: 'Mark Complete', completed: 'Completed', startTraining: 'Start Training', incomplete: 'Incomplete', complete: 'Complete', noResults: 'No training resources found for the selected filters.', externalTitle: 'External Training Resources', externalSubtitle: 'Free and accredited workplace safety training from trusted providers', required: 'Required' },
+    de: { title: 'Schulungsressourcen', subtitle: 'Schulungsmaterialien für Arbeitssicherheit für', overallProgress: 'Gesamtfortschritt', requiredTraining: 'Pflichtschulungen', categories: 'Kategorien', filter: 'Filter', allCategories: 'Alle Kategorien', requiredOnly: 'Nur Pflicht', markComplete: 'Als erledigt markieren', completed: 'Abgeschlossen', startTraining: 'Schulung starten', incomplete: 'Unvollständig', complete: 'Vollständig', noResults: 'Keine Schulungsressourcen für die ausgewählten Filter gefunden.', externalTitle: 'Externe Schulungsressourcen', externalSubtitle: 'Kostenlose und akkreditierte Arbeitsschutzschulungen von vertrauenswürdigen Anbietern', required: 'Pflicht' },
+    nl: { title: 'Trainingsmaterialen', subtitle: 'Veiligheidstrainingen voor', overallProgress: 'Totale voortgang', requiredTraining: 'Verplichte training', categories: 'Categorieën', filter: 'Filter', allCategories: 'Alle categorieën', requiredOnly: 'Alleen verplicht', markComplete: 'Markeer als voltooid', completed: 'Voltooid', startTraining: 'Start training', incomplete: 'Onvolledig', complete: 'Volledig', noResults: 'Geen trainingsmaterialen gevonden voor de geselecteerde filters.', externalTitle: 'Externe trainingsmaterialen', externalSubtitle: 'Gratis en geaccrediteerde arboveiligheidstraining van betrouwbare aanbieders', required: 'Verplicht' }
+  }
+  const l = labels[lang] || labels.en
 
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showRequired, setShowRequired] = useState(false)
@@ -432,18 +441,20 @@ export function TrainingResources({ onBack }) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <button
-            onClick={onBack}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-whs-dark-700 rounded-lg transition-colors"
-          >
-            <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
+          {!embedded && (
+            <button
+              onClick={onBack}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-whs-dark-700 rounded-lg transition-colors"
+            >
+              <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Training Resources</h1>
+            <h1 className={`${embedded ? 'text-xl' : 'text-2xl'} font-bold text-gray-900 dark:text-white`}>{l.title}</h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Safety training materials for {frameworkColors[framework]?.name}
+              {l.subtitle} {frameworkColors[framework]?.name}
             </p>
           </div>
         </div>
@@ -454,7 +465,7 @@ export function TrainingResources({ onBack }) {
         <Card className="p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Overall Progress</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{l.overallProgress}</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {stats.completed}/{stats.total}
               </p>
@@ -475,7 +486,7 @@ export function TrainingResources({ onBack }) {
         <Card className="p-4 border-red-500/20 bg-red-500/5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Required Training</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{l.requiredTraining}</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {stats.requiredCompleted}/{stats.requiredTotal}
               </p>
@@ -485,7 +496,7 @@ export function TrainingResources({ onBack }) {
                 ? 'bg-green-500/10 text-green-500'
                 : 'bg-red-500/10 text-red-500'
             }`}>
-              {stats.requiredCompleted === stats.requiredTotal ? 'Complete' : 'Incomplete'}
+              {stats.requiredCompleted === stats.requiredTotal ? l.complete : l.incomplete}
             </span>
           </div>
         </Card>
@@ -493,7 +504,7 @@ export function TrainingResources({ onBack }) {
         <Card className="p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Categories</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{l.categories}</p>
               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                 {TRAINING_CATEGORIES.length}
               </p>
@@ -507,13 +518,13 @@ export function TrainingResources({ onBack }) {
       <Card>
         <CardContent className="p-4">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Filter:</span>
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{l.filter}:</span>
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="px-3 py-1.5 bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-600 rounded-lg text-sm"
             >
-              <option value="all">All Categories</option>
+              <option value="all">{l.allCategories}</option>
               {TRAINING_CATEGORIES.map(cat => (
                 <option key={cat.id} value={cat.id}>{cat.icon} {cat.label}</option>
               ))}
@@ -525,7 +536,7 @@ export function TrainingResources({ onBack }) {
                 onChange={(e) => setShowRequired(e.target.checked)}
                 className="w-4 h-4 rounded border-gray-300 text-whs-orange-500 focus:ring-whs-orange-500"
               />
-              <span className="text-sm text-gray-700 dark:text-gray-300">Required Only</span>
+              <span className="text-sm text-gray-700 dark:text-gray-300">{l.requiredOnly}</span>
             </label>
           </div>
         </CardContent>
@@ -557,7 +568,7 @@ export function TrainingResources({ onBack }) {
                       </div>
                       {resource.required && (
                         <span className="px-2 py-0.5 bg-red-500/10 text-red-500 text-xs font-medium rounded">
-                          Required
+                          {l.required}
                         </span>
                       )}
                     </div>
@@ -584,10 +595,10 @@ export function TrainingResources({ onBack }) {
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            Completed
+                            {l.completed}
                           </>
                         ) : (
-                          'Mark Complete'
+                          l.markComplete
                         )}
                       </button>
                       <a
@@ -596,7 +607,7 @@ export function TrainingResources({ onBack }) {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 px-3 py-1.5 bg-whs-orange-500 hover:bg-whs-orange-600 text-white rounded-lg text-sm font-medium transition-colors"
                       >
-                        Start Training
+                        {l.startTraining}
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
@@ -613,7 +624,7 @@ export function TrainingResources({ onBack }) {
       {resources.length === 0 && (
         <Card className="p-8 text-center">
           <p className="text-gray-500 dark:text-gray-400">
-            No training resources found for the selected filters.
+            {l.noResults}
           </p>
         </Card>
       )}
@@ -621,10 +632,10 @@ export function TrainingResources({ onBack }) {
       {/* External Training Resources Section */}
       <div className="mt-8">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-          External Training Resources
+          {l.externalTitle}
         </h2>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-          Free and accredited workplace safety training from trusted providers
+          {l.externalSubtitle}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

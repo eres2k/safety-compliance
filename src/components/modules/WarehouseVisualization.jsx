@@ -1,9 +1,183 @@
 import { useState, useCallback, useMemo } from 'react'
+import { useApp } from '../../context/AppContext'
 
 /**
  * WarehouseVisualization - Interactive 2D warehouse floor plan
  * Click on objects to see relevant safety regulations
  */
+
+// Localized UI labels
+const UI_LABELS = {
+  en: {
+    title: 'Interactive Warehouse Floor Plan',
+    subtitle: 'Click zones to explore safety regulations',
+    safetyZones: 'Safety Zones',
+    applicableRegs: 'Applicable Regulations',
+    potentialHazards: 'Potential Hazards',
+    requiredPPE: 'Required PPE',
+    selectZone: 'Select a Zone',
+    selectZoneDesc: 'Click or hover over any zone in the warehouse to see applicable safety regulations',
+    quickAccess: 'Quick access',
+    clickToView: 'Click on any zone to view safety regulations',
+  },
+  de: {
+    title: 'Interaktiver Lagerhallenplan',
+    subtitle: 'Klicken Sie auf Zonen, um Sicherheitsvorschriften zu erkunden',
+    safetyZones: 'Sicherheitszonen',
+    applicableRegs: 'Anwendbare Vorschriften',
+    potentialHazards: 'Mögliche Gefahren',
+    requiredPPE: 'Erforderliche PSA',
+    selectZone: 'Zone auswählen',
+    selectZoneDesc: 'Klicken oder fahren Sie über eine Zone, um die geltenden Sicherheitsvorschriften anzuzeigen',
+    quickAccess: 'Schnellzugriff',
+    clickToView: 'Klicken Sie auf eine Zone, um Sicherheitsvorschriften anzuzeigen',
+  },
+  nl: {
+    title: 'Interactieve Magazijnplattegrond',
+    subtitle: 'Klik op zones om veiligheidsvoorschriften te bekijken',
+    safetyZones: 'Veiligheidszones',
+    applicableRegs: 'Toepasselijke voorschriften',
+    potentialHazards: 'Mogelijke gevaren',
+    requiredPPE: 'Vereiste PBM',
+    selectZone: 'Selecteer een zone',
+    selectZoneDesc: 'Klik of beweeg over een zone om de geldende veiligheidsvoorschriften te bekijken',
+    quickAccess: 'Snelle toegang',
+    clickToView: 'Klik op een zone om veiligheidsvoorschriften te bekijken',
+  },
+}
+
+// Localized zone data
+const ZONE_LABELS = {
+  loading_dock: { en: 'Loading Dock', de: 'Laderampe', nl: 'Laadperron' },
+  forklift_area: { en: 'Forklift Traffic', de: 'Staplerverkehr', nl: 'Heftruckverkeer' },
+  racking_storage: { en: 'Racking & Storage', de: 'Regallager', nl: 'Stellingopslag' },
+  battery_charging: { en: 'Battery Charging', de: 'Batterieladestation', nl: 'Batterijladen' },
+  conveyor_system: { en: 'Conveyor System', de: 'Fördersystem', nl: 'Transportsysteem' },
+  packaging_station: { en: 'Packaging Station', de: 'Packstation', nl: 'Inpakstation' },
+  hazmat_storage: { en: 'Hazmat Storage', de: 'Gefahrstofflager', nl: 'Gevaarlijke stoffen' },
+  first_aid: { en: 'First Aid Station', de: 'Erste-Hilfe-Station', nl: 'EHBO-post' },
+  emergency_exit: { en: 'Emergency Exit', de: 'Notausgang', nl: 'Nooduitgang' },
+  fire_equipment: { en: 'Fire Equipment', de: 'Brandschutz', nl: 'Brandblussers' },
+}
+
+const ZONE_DESCRIPTIONS = {
+  loading_dock: { en: 'Truck loading/unloading area', de: 'Be-/Entladebereich für LKW', nl: 'Vrachtwagen laad-/loszone' },
+  forklift_area: { en: 'Forklift operation lanes', de: 'Gabelstaplerfahrspuren', nl: 'Heftruckrijbanen' },
+  racking_storage: { en: 'High-bay racking system', de: 'Hochregallager', nl: 'Hoogbouwstellingen' },
+  battery_charging: { en: 'Electric vehicle charging station', de: 'Ladestation für Elektrofahrzeuge', nl: 'Oplaadstation elektrische voertuigen' },
+  conveyor_system: { en: 'Package sorting conveyors', de: 'Paketsortier-Förderbänder', nl: 'Pakketsorteer transportbanden' },
+  packaging_station: { en: 'Manual packing workstations', de: 'Manuelle Verpackungsarbeitsplätze', nl: 'Handmatige inpakwerkplekken' },
+  hazmat_storage: { en: 'Hazardous materials cabinet', de: 'Gefahrstoffschrank', nl: 'Gevaarlijke stoffenkast' },
+  first_aid: { en: 'First aid and emergency equipment', de: 'Erste-Hilfe- und Notfallausrüstung', nl: 'EHBO en nooduitrusting' },
+  emergency_exit: { en: 'Emergency evacuation routes', de: 'Notfall-Evakuierungswege', nl: 'Noodevacuatieroutes' },
+  fire_equipment: { en: 'Fire extinguishers and suppression', de: 'Feuerlöscher und Löschanlagen', nl: 'Brandblussers en blussystemen' },
+}
+
+const HAZARDS = {
+  loading_dock: {
+    en: ['Vehicle collision', 'Falls from height', 'Crushing injuries', 'Manual handling'],
+    de: ['Fahrzeugkollision', 'Absturz', 'Quetschverletzungen', 'Manuelle Handhabung'],
+    nl: ['Voertuigbotsing', 'Vallen van hoogte', 'Kneuzingen', 'Handmatig tillen'],
+  },
+  forklift_area: {
+    en: ['Vehicle collision', 'Pedestrian strikes', 'Tip-over', 'Load falls'],
+    de: ['Fahrzeugkollision', 'Fußgängerunfälle', 'Umkippen', 'Lastabsturz'],
+    nl: ['Voertuigbotsing', 'Voetgangersongevallen', 'Kantelen', 'Vallende lading'],
+  },
+  racking_storage: {
+    en: ['Falling objects', 'Racking collapse', 'Overloading', 'Climbing falls'],
+    de: ['Herabfallende Gegenstände', 'Regaleinsturz', 'Überladung', 'Absturz beim Klettern'],
+    nl: ['Vallende voorwerpen', 'Instorten stellingen', 'Overbelasting', 'Vallen bij klimmen'],
+  },
+  battery_charging: {
+    en: ['Hydrogen gas explosion', 'Acid burns', 'Electrical shock', 'Fire'],
+    de: ['Wasserstoffgasexplosion', 'Säureverätzungen', 'Stromschlag', 'Brand'],
+    nl: ['Waterstofgasexplosie', 'Zuurverbrandingen', 'Elektrische schok', 'Brand'],
+  },
+  conveyor_system: {
+    en: ['Entanglement', 'Crushing', 'Shearing', 'Falling packages'],
+    de: ['Einziehen', 'Quetschgefahr', 'Schergefahr', 'Herabfallende Pakete'],
+    nl: ['Beknelling', 'Kneuzingen', 'Snijwonden', 'Vallende pakketten'],
+  },
+  packaging_station: {
+    en: ['Repetitive strain', 'Back injuries', 'Cuts from tape/knives', 'Fatigue'],
+    de: ['Repetitive Belastung', 'Rückenverletzungen', 'Schnitte', 'Ermüdung'],
+    nl: ['RSI', 'Rugletsel', 'Snijwonden', 'Vermoeidheid'],
+  },
+  hazmat_storage: {
+    en: ['Chemical exposure', 'Fire/explosion', 'Environmental spill', 'Toxic fumes'],
+    de: ['Chemikalienexposition', 'Brand/Explosion', 'Umweltverschmutzung', 'Giftige Dämpfe'],
+    nl: ['Blootstelling chemicaliën', 'Brand/explosie', 'Milieuverontreiniging', 'Giftige dampen'],
+  },
+  first_aid: {
+    en: ['Delayed treatment', 'Infection', 'Improper care'],
+    de: ['Verzögerte Behandlung', 'Infektion', 'Unsachgemäße Versorgung'],
+    nl: ['Vertraagde behandeling', 'Infectie', 'Onjuiste verzorging'],
+  },
+  emergency_exit: {
+    en: ['Blocked exit', 'Panic', 'Inadequate signage'],
+    de: ['Blockierter Ausgang', 'Panik', 'Unzureichende Beschilderung'],
+    nl: ['Geblokkeerde uitgang', 'Paniek', 'Onvoldoende bewegwijzering'],
+  },
+  fire_equipment: {
+    en: ['Fire spread', 'Smoke inhalation', 'Wrong extinguisher type'],
+    de: ['Brandausbreitung', 'Rauchvergiftung', 'Falscher Löscher'],
+    nl: ['Brandverspreiding', 'Rookinhalatie', 'Verkeerde blusser'],
+  },
+}
+
+const PPE_ITEMS = {
+  loading_dock: {
+    en: ['Safety shoes', 'High-vis vest', 'Gloves', 'Hard hat'],
+    de: ['Sicherheitsschuhe', 'Warnweste', 'Handschuhe', 'Schutzhelm'],
+    nl: ['Veiligheidsschoenen', 'Veiligheidsvest', 'Handschoenen', 'Helm'],
+  },
+  forklift_area: {
+    en: ['Safety shoes', 'High-vis vest', 'Seat belt (forklift)'],
+    de: ['Sicherheitsschuhe', 'Warnweste', 'Sicherheitsgurt (Stapler)'],
+    nl: ['Veiligheidsschoenen', 'Veiligheidsvest', 'Veiligheidsgordel (heftruck)'],
+  },
+  racking_storage: {
+    en: ['Hard hat', 'Safety shoes', 'Gloves'],
+    de: ['Schutzhelm', 'Sicherheitsschuhe', 'Handschuhe'],
+    nl: ['Helm', 'Veiligheidsschoenen', 'Handschoenen'],
+  },
+  battery_charging: {
+    en: ['Face shield', 'Chemical gloves', 'Safety glasses', 'Acid-resistant apron'],
+    de: ['Gesichtsschutz', 'Chemikalienhandschuhe', 'Schutzbrille', 'Säureschutzschürze'],
+    nl: ['Gelaatsscherm', 'Chemische handschoenen', 'Veiligheidsbril', 'Zuurbestendig schort'],
+  },
+  conveyor_system: {
+    en: ['Safety shoes', 'Fitted clothing', 'Safety glasses', 'Gloves'],
+    de: ['Sicherheitsschuhe', 'Anliegende Kleidung', 'Schutzbrille', 'Handschuhe'],
+    nl: ['Veiligheidsschoenen', 'Nauwsluitende kleding', 'Veiligheidsbril', 'Handschoenen'],
+  },
+  packaging_station: {
+    en: ['Cut-resistant gloves', 'Back support belt', 'Anti-fatigue mat'],
+    de: ['Schnittschutzhandschuhe', 'Rückenstütze', 'Anti-Ermüdungsmatte'],
+    nl: ['Snijbestendige handschoenen', 'Rugsteun', 'Anti-vermoeidheidsmat'],
+  },
+  hazmat_storage: {
+    en: ['Chemical suit', 'Respirator', 'Chemical gloves', 'Face shield'],
+    de: ['Chemikalienschutzanzug', 'Atemschutz', 'Chemikalienhandschuhe', 'Gesichtsschutz'],
+    nl: ['Chemisch pak', 'Ademhalingsapparaat', 'Chemische handschoenen', 'Gelaatsscherm'],
+  },
+  first_aid: {
+    en: ['Disposable gloves', 'First aid training certificate'],
+    de: ['Einweghandschuhe', 'Erste-Hilfe-Ausbildung'],
+    nl: ['Wegwerphandschoenen', 'EHBO-certificaat'],
+  },
+  emergency_exit: {
+    en: ['Emergency lighting knowledge', 'Evacuation training'],
+    de: ['Kenntnis der Notbeleuchtung', 'Evakuierungsschulung'],
+    nl: ['Kennis noodverlichting', 'Evacuatietraining'],
+  },
+  fire_equipment: {
+    en: ['Fire extinguisher training', 'Smoke hood (optional)'],
+    de: ['Feuerlöscherschulung', 'Rauchschutzhaube (optional)'],
+    nl: ['Brandblussertraining', 'Rookkap (optioneel)'],
+  },
+}
 
 // Warehouse zones and their associated regulations
 const WAREHOUSE_ZONES = {
@@ -336,8 +510,18 @@ const WarehouseSVG = ({ selectedZone, onZoneClick, onZoneHover }) => {
 }
 
 export function WarehouseVisualization({ onSelectRegulation }) {
+  const { language } = useApp()
+  const lang = language || 'en'
+  const l = UI_LABELS[lang] || UI_LABELS.en
+
   const [selectedZone, setSelectedZone] = useState(null)
   const [hoveredZone, setHoveredZone] = useState(null)
+
+  // Get localized zone data
+  const getZoneLabel = useCallback((zoneId) => ZONE_LABELS[zoneId]?.[lang] || ZONE_LABELS[zoneId]?.en || zoneId, [lang])
+  const getZoneDescription = useCallback((zoneId) => ZONE_DESCRIPTIONS[zoneId]?.[lang] || ZONE_DESCRIPTIONS[zoneId]?.en || '', [lang])
+  const getZoneHazards = useCallback((zoneId) => HAZARDS[zoneId]?.[lang] || HAZARDS[zoneId]?.en || [], [lang])
+  const getZonePPE = useCallback((zoneId) => PPE_ITEMS[zoneId]?.[lang] || PPE_ITEMS[zoneId]?.en || [], [lang])
 
   const activeZone = useMemo(() => {
     const zoneId = selectedZone || hoveredZone
@@ -362,13 +546,13 @@ export function WarehouseVisualization({ onSelectRegulation }) {
           <div className="flex items-center gap-3">
             <span className="text-3xl">🏭</span>
             <div>
-              <h3 className="text-lg font-bold text-white">Interactive Warehouse Floor Plan</h3>
-              <p className="text-sm text-indigo-200">Click zones to explore safety regulations</p>
+              <h3 className="text-lg font-bold text-white">{l.title}</h3>
+              <p className="text-sm text-indigo-200">{l.subtitle}</p>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-2">
             <span className="px-3 py-1 bg-white/20 rounded-lg text-sm text-white">
-              {Object.keys(WAREHOUSE_ZONES).length} Safety Zones
+              {Object.keys(WAREHOUSE_ZONES).length} {l.safetyZones}
             </span>
           </div>
         </div>
@@ -392,15 +576,15 @@ export function WarehouseVisualization({ onSelectRegulation }) {
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{activeZone.icon}</span>
                 <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white">{activeZone.label}</h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{activeZone.description}</p>
+                  <h4 className="font-bold text-gray-900 dark:text-white">{getZoneLabel(activeZone.id)}</h4>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{getZoneDescription(activeZone.id)}</p>
                 </div>
               </div>
 
               {/* Regulations */}
               <div>
                 <h5 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
-                  <span>📋</span> Applicable Regulations
+                  <span>📋</span> {l.applicableRegs}
                 </h5>
                 <div className="space-y-2">
                   {activeZone.regulations.map((reg, idx) => (
@@ -426,10 +610,10 @@ export function WarehouseVisualization({ onSelectRegulation }) {
               {/* Hazards */}
               <div>
                 <h5 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
-                  <span>⚠️</span> Potential Hazards
+                  <span>⚠️</span> {l.potentialHazards}
                 </h5>
                 <div className="flex flex-wrap gap-1">
-                  {activeZone.hazards.map((hazard, idx) => (
+                  {getZoneHazards(activeZone.id).map((hazard, idx) => (
                     <span
                       key={idx}
                       className="px-2 py-1 text-xs rounded-full bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300"
@@ -443,10 +627,10 @@ export function WarehouseVisualization({ onSelectRegulation }) {
               {/* Required PPE */}
               <div>
                 <h5 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
-                  <span>🦺</span> Required PPE
+                  <span>🦺</span> {l.requiredPPE}
                 </h5>
                 <div className="flex flex-wrap gap-1">
-                  {activeZone.ppe.map((item, idx) => (
+                  {getZonePPE(activeZone.id).map((item, idx) => (
                     <span
                       key={idx}
                       className="px-2 py-1 text-xs rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300"
@@ -460,9 +644,9 @@ export function WarehouseVisualization({ onSelectRegulation }) {
           ) : (
             <div className="text-center py-8">
               <span className="text-4xl mb-3 block">👆</span>
-              <h4 className="font-semibold text-gray-700 dark:text-gray-300">Select a Zone</h4>
+              <h4 className="font-semibold text-gray-700 dark:text-gray-300">{l.selectZone}</h4>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                Click or hover over any zone in the warehouse to see applicable safety regulations
+                {l.selectZoneDesc}
               </p>
             </div>
           )}
@@ -472,7 +656,7 @@ export function WarehouseVisualization({ onSelectRegulation }) {
       {/* Zone Quick Access */}
       <div className="px-4 py-3 border-t border-gray-200 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-900">
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
-          <span className="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">Quick access:</span>
+          <span className="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">{l.quickAccess}:</span>
           {Object.values(WAREHOUSE_ZONES).map((zone) => (
             <button
               key={zone.id}
@@ -484,7 +668,7 @@ export function WarehouseVisualization({ onSelectRegulation }) {
               }`}
             >
               <span>{zone.icon}</span>
-              <span className="hidden sm:inline">{zone.label}</span>
+              <span className="hidden sm:inline">{getZoneLabel(zone.id)}</span>
             </button>
           ))}
         </div>

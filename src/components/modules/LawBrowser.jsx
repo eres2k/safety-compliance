@@ -1111,7 +1111,7 @@ function getShortenedLawName(law) {
   return title.substring(0, 15) + (title.length > 15 ? '...' : '')
 }
 
-export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationConsumed }) {
+export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearchQuery, onNavigationConsumed }) {
   const { t, framework, setFramework, language, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
   const { generateFlowchart, simplifyForBothLevels, findEquivalentLaw, compareMultipleCountries, translateLawText, isLoading: aiLoading } = useAI()
 
@@ -1133,7 +1133,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
   // Debounce refs to prevent duplicate API calls
   const pendingSimplifyRef = useRef({}) // Track pending simplification requests by sectionId
 
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState(initialSearchQuery || '')
   const [selectedLaw, setSelectedLaw] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [activeSection, setActiveSection] = useState(null)
@@ -1305,6 +1305,22 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
 
     navigateToInitialLaw()
   }, [initialLawId, initialCountry, framework, setFramework, onNavigationConsumed, addRecentSearch])
+
+  // Handle initial search query from other modules (e.g., Warehouse Visualization)
+  useEffect(() => {
+    if (!initialSearchQuery || initialLawId) return // Skip if no query or if navigating to specific law
+
+    // Set the search term
+    setSearchTerm(initialSearchQuery)
+    setSelectedLaw(null) // Clear any selected law to show search results
+    setSelectedCategory('all') // Reset category filter
+
+    // Add to recent searches
+    addRecentSearch(initialSearchQuery)
+
+    // Clear the navigation request
+    onNavigationConsumed?.()
+  }, [initialSearchQuery, initialLawId, onNavigationConsumed, addRecentSearch])
 
   // Load Wikipedia index for current framework
   useEffect(() => {
