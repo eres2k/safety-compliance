@@ -9,10 +9,10 @@ import { getStore } from "@netlify/blobs"
 // Cache TTL: 48 hours - important to stay within daily limits
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
-// Model configuration - using Gemini 3 Flash
-// Options: 'gemini-3-flash', 'gemini-2.0-flash', 'gemini-1.5-flash-latest'
-const GEMINI_MODEL = 'gemini-3-flash'
-const FALLBACK_MODEL = 'gemini-1.5-flash-latest'  // Fallback if primary fails
+// Model configuration - using Gemini 3 Flash (released Dec 17, 2025)
+// Options: 'gemini-3-flash-preview', 'gemini-2.0-flash', 'gemini-1.5-flash'
+const GEMINI_MODEL = 'gemini-3-flash-preview'
+const FALLBACK_MODEL = 'gemini-2.0-flash'  // Fallback if primary fails
 const MAX_OUTPUT_TOKENS = 8192
 const TEMPERATURE = 0.2  // Lower temperature for more consistent legal analysis
 

@@ -21,7 +21,7 @@ const CONFIG = {
   inputFile: path.join(__dirname, '../eu_safety_laws/at/at_database.json'),
   outputFile: path.join(__dirname, '../eu_safety_laws/at/at_database_cleaned.json'),
   backupFile: path.join(__dirname, '../eu_safety_laws/at/at_database_backup.json'),
-  geminiModel: 'gemini-3-flash',
+  geminiModel: 'gemini-3-flash-preview',
   maxRetries: 3,
   retryDelayMs: 2000,
   rateLimitDelayMs: 50,
