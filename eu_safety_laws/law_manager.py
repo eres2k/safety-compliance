@@ -607,16 +607,74 @@ class Config:
                         "title": "DGUV Information 204-022 - Erste Hilfe im Betrieb",
                         "title_en": "First Aid at Work",
                         "url": "https://www.bgw-online.de/resource/blob/20492/528509ed5ef93ff67b6d414d55f78f84/dguv-information-204-022-erste-hilfe-im-betrieb-data.pdf",
+                        "fallback_urls": [
+                            "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/204_022/204_022.pdf"
+                        ],
                         "series": "information",
                         "description": "First aid requirements and procedures"
                     },
                     {
-                        "abbrev": "DGUV Information 204-022 (BGBAU)",
-                        "title": "DGUV Information 204-022 - Erste Hilfe im Betrieb (BG BAU)",
-                        "title_en": "First Aid at Work (Construction Industry)",
-                        "url": "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/204_022/204_022.pdf",
+                        "abbrev": "DGUV Information 208-033",
+                        "title": "DGUV Information 208-033 - Belastungen für Rücken und Gelenke",
+                        "title_en": "Strain on Back and Joints - Manual Handling",
+                        "url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Informationen/208-033.pdf",
+                        "fallback_urls": [
+                            "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/208_033/208-033_BGBAU.pdf"
+                        ],
                         "series": "information",
-                        "description": "First aid for construction industry"
+                        "description": "Manual handling - back and joint protection"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-053",
+                        "title": "DGUV Information 208-053 - Mensch und Arbeitsplatz - Physische Belastung",
+                        "title_en": "Human and Workplace - Physical Strain",
+                        "url": "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/208_053/208-053_BGBAU_web.pdf",
+                        "series": "information",
+                        "description": "Physical strain assessment and ergonomics (June 2024)"
+                    },
+                    {
+                        "abbrev": "DGUV Information 209-023",
+                        "title": "DGUV Information 209-023 - Lärm am Arbeitsplatz",
+                        "title_en": "Noise at the Workplace",
+                        "url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Informationen/209-023.pdf",
+                        "series": "information",
+                        "description": "Noise protection and hearing conservation"
+                    },
+                    {
+                        "abbrev": "DGUV Information 212-024",
+                        "title": "DGUV Information 212-024 - Gehörschutz",
+                        "title_en": "Hearing Protection",
+                        "url": "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/212_024/212_024.pdf",
+                        "series": "information",
+                        "description": "Selection and use of hearing protection"
+                    },
+                    {
+                        "abbrev": "DGUV Information 214-083",
+                        "title": "DGUV Information 214-083 - Der sicherheitsoptimierte Transporter",
+                        "title_en": "The Safety-Optimized Van",
+                        "url": "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/214_083/214-083_BGBAU.pdf",
+                        "fallback_urls": [
+                            "https://www.bg-verkehr.de/medien/medienkatalog/dguv-informationen/dguv-information-214-083/at_download/file"
+                        ],
+                        "series": "information",
+                        "description": "Safety specifications for delivery vans"
+                    },
+                    # === DGUV Regeln (Rules) - Additional ===
+                    {
+                        "abbrev": "DGUV Regel 112-191",
+                        "title": "DGUV Regel 112-191 - Benutzung von Fuß- und Knieschutz",
+                        "title_en": "Use of Foot and Knee Protection",
+                        "url": "https://www.uv-bund-bahn.de/fileadmin/Dokumente/Mediathek/112-991.pdf",
+                        "series": "regeln",
+                        "description": "Safety footwear selection and use"
+                    },
+                    {
+                        "abbrev": "DGUV Regel 101-003",
+                        "title": "DGUV Regel 101-003 - Ladungssicherung auf Fahrzeugen",
+                        "title_en": "Load Securing on Vehicles",
+                        "url": "https://www.bgbau-medien.de/handlungshilfen_gb/daten/dguv/101_003/ladungssicherung.pdf",
+                        "series": "regeln",
+                        "description": "Load securing for construction industry vehicles"
                     }
                 ]
             }
@@ -687,6 +745,15 @@ class Config:
                         "url": "https://www.abu.nl/app/uploads/2019/09/Arbocatalogus-Algemeen-onderdeel-Arbobeleid-voor-vaste-medewerkers-in-de-uitzendbranche.pdf",
                         "series": "arbocatalogi",
                         "description": "Safety standards for temporary employment agencies"
+                    },
+                    # === Transport & Logistics (Key for Amazon delivery operations) ===
+                    {
+                        "abbrev": "Arbocatalogus Transport Warehouse",
+                        "title": "Arbocatalogus Transport en Logistiek - Warehouse/Distributiecentrum",
+                        "title_en": "Transport & Logistics - Warehouse/Distribution Center",
+                        "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf",
+                        "series": "arbocatalogi",
+                        "description": "Safety standards for warehouse and distribution operations (2018)"
                     }
                 ]
             }
@@ -1022,6 +1089,11 @@ def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = Fal
     """
     Validate all Merkblätter URLs and optionally attempt to fix broken ones.
 
+    The validation process follows this priority:
+    1. Check primary URL
+    2. If primary fails, try each fallback_url in sequence
+    3. Only use AI suggestion as last resort (if auto_fix=True)
+
     Returns report of valid, broken, and fixed URLs.
     """
     results = {
@@ -1029,6 +1101,7 @@ def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = Fal
         "valid": [],
         "broken": [],
         "fixed": [],
+        "fixed_with_fallback": [],
         "unfixable": []
     }
 
@@ -1044,13 +1117,14 @@ def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = Fal
 
             for pub in publications:
                 url = pub.get("url", "")
+                fallback_urls = pub.get("fallback_urls", [])
                 title = pub.get("title", "")
                 abbrev = pub.get("abbrev", "")
                 authority = source_config.get("authority", "")
 
                 results["checked"] += 1
 
-                # Check URL validity
+                # Step 1: Check primary URL validity
                 check = check_url_validity(url)
 
                 if check["valid"]:
@@ -1060,33 +1134,151 @@ def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = Fal
                         "title": title,
                         "url": url
                     })
-                else:
-                    broken_entry = {
-                        "country": c,
-                        "abbrev": abbrev,
-                        "title": title,
-                        "url": url,
-                        "status": check.get("status_code"),
-                        "error": check.get("error")
-                    }
+                    continue
 
-                    if auto_fix:
-                        # Attempt to find replacement
-                        new_url = find_replacement_url_with_ai(url, title, authority)
+                # Primary URL is broken - try fallbacks
+                broken_entry = {
+                    "country": c,
+                    "abbrev": abbrev,
+                    "title": title,
+                    "url": url,
+                    "status": check.get("status_code"),
+                    "error": check.get("error")
+                }
 
-                        if new_url:
-                            # Verify the new URL works
-                            new_check = check_url_validity(new_url)
-                            if new_check["valid"]:
-                                broken_entry["suggested_url"] = new_url
-                                results["fixed"].append(broken_entry)
-                                log_success(f"Found replacement for {abbrev}: {new_url}")
-                                continue
+                # Step 2: Try fallback URLs in sequence
+                fallback_found = False
+                for fallback_url in fallback_urls:
+                    fallback_check = check_url_validity(fallback_url)
+                    if fallback_check["valid"]:
+                        broken_entry["working_fallback"] = fallback_url
+                        results["fixed_with_fallback"].append(broken_entry)
+                        log_success(f"Using fallback URL for {abbrev}: {fallback_url}")
+                        fallback_found = True
+                        break
 
-                    results["broken"].append(broken_entry)
-                    results["unfixable"].append(broken_entry)
+                if fallback_found:
+                    continue
+
+                # Step 3: Try AI suggestion as last resort
+                if auto_fix:
+                    new_url = find_replacement_url_with_ai(url, title, authority)
+
+                    if new_url:
+                        # Verify the new URL works
+                        new_check = check_url_validity(new_url)
+                        if new_check["valid"]:
+                            broken_entry["suggested_url"] = new_url
+                            results["fixed"].append(broken_entry)
+                            log_success(f"AI found replacement for {abbrev}: {new_url}")
+                            continue
+
+                results["broken"].append(broken_entry)
+                results["unfixable"].append(broken_entry)
 
     return results
+
+
+def get_working_url(pub: Dict[str, Any], verify: bool = True) -> Optional[str]:
+    """
+    Get a working URL for a publication, trying primary first then fallbacks.
+
+    Args:
+        pub: Publication dictionary with 'url' and optional 'fallback_urls'
+        verify: If True, verify URL accessibility before returning
+
+    Returns:
+        Working URL or None if no URL works
+    """
+    primary_url = pub.get("url", "")
+    fallback_urls = pub.get("fallback_urls", [])
+
+    # Build list of URLs to try
+    urls_to_try = [primary_url] + fallback_urls
+
+    for url in urls_to_try:
+        if not url:
+            continue
+
+        if not verify:
+            return url
+
+        check = check_url_validity(url)
+        if check["valid"]:
+            return url
+
+    return None
+
+
+def update_broken_links_report(output_file: str = None) -> Dict[str, Any]:
+    """
+    Generate a comprehensive report of all URLs, their status, and available fallbacks.
+    Useful for manual review and maintenance.
+    """
+    report = {
+        "generated_at": datetime.now().isoformat(),
+        "summary": {},
+        "details": {}
+    }
+
+    sources = CONFIG.merkblaetter_sources
+
+    for country, country_sources in sources.items():
+        report["details"][country] = []
+
+        for source_key, source_config in country_sources.items():
+            publications = source_config.get("publications", [])
+
+            for pub in publications:
+                url = pub.get("url", "")
+                fallback_urls = pub.get("fallback_urls", [])
+                abbrev = pub.get("abbrev", "")
+
+                # Check all URLs
+                primary_check = check_url_validity(url)
+                fallback_checks = [
+                    {"url": fb, **check_url_validity(fb)}
+                    for fb in fallback_urls
+                ]
+
+                entry = {
+                    "abbrev": abbrev,
+                    "title": pub.get("title", ""),
+                    "primary_url": {
+                        "url": url,
+                        "valid": primary_check["valid"],
+                        "status": primary_check.get("status_code")
+                    },
+                    "fallback_urls": fallback_checks,
+                    "has_working_url": primary_check["valid"] or any(
+                        fb.get("valid", False) for fb in fallback_checks
+                    )
+                }
+                report["details"][country].append(entry)
+
+    # Generate summary
+    for country, entries in report["details"].items():
+        total = len(entries)
+        working = sum(1 for e in entries if e["has_working_url"])
+        broken = total - working
+        with_fallbacks = sum(1 for e in entries if e["fallback_urls"])
+
+        report["summary"][country] = {
+            "total": total,
+            "working": working,
+            "broken": broken,
+            "with_fallbacks": with_fallbacks,
+            "coverage_percent": round(working / total * 100, 1) if total > 0 else 0
+        }
+
+    # Save to file if requested
+    if output_file:
+        output_path = Path(output_file)
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(report, f, indent=2, ensure_ascii=False)
+        log_success(f"Report saved to: {output_path}")
+
+    return report
 
 
 # Custom sources configuration file
@@ -8838,6 +9030,13 @@ def main():
     merkblatt_parser.add_argument('--skip-ai-summary', action='store_true',
                                   help='Skip AI summary generation for PDFs')
 
+    # Validate URLs command
+    validate_urls_parser = subparsers.add_parser('validate-urls', help='Validate Merkblätter URLs and check for broken links')
+    validate_urls_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to validate URLs for')
+    validate_urls_parser.add_argument('--all', action='store_true', help='Validate URLs for all countries')
+    validate_urls_parser.add_argument('--auto-fix', action='store_true', help='Attempt to fix broken URLs using AI')
+    validate_urls_parser.add_argument('--report', type=str, metavar='FILE', help='Save detailed report to JSON file')
+
     # All command (complete pipeline)
     all_parser = subparsers.add_parser('all', help='Run complete pipeline')
     all_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to process')
@@ -8940,6 +9139,50 @@ def main():
                 scrape_wikipedia_for_country(country)
         return 0
 
+    def cmd_validate_urls(args):
+        """Validate Merkblätter URLs and check for broken links."""
+        country = args.country if not args.all else None
+        auto_fix = getattr(args, 'auto_fix', False)
+        report_file = getattr(args, 'report', None)
+
+        log_header("Validating Merkblätter URLs")
+
+        if report_file:
+            # Generate comprehensive report
+            log_info("Generating comprehensive URL report...")
+            report = update_broken_links_report(report_file)
+
+            # Print summary
+            for c, summary in report["summary"].items():
+                log_info(f"{c}: {summary['working']}/{summary['total']} working ({summary['coverage_percent']}%)")
+                if summary['broken'] > 0:
+                    log_warning(f"  {summary['broken']} broken URLs")
+                if summary['with_fallbacks'] > 0:
+                    log_info(f"  {summary['with_fallbacks']} have fallback URLs")
+        else:
+            # Standard validation
+            results = validate_and_fix_merkblaetter_urls(country, auto_fix=auto_fix)
+
+            log_info(f"Checked: {results['checked']} URLs")
+            log_success(f"Valid: {len(results['valid'])}")
+
+            if results['fixed_with_fallback']:
+                log_info(f"Fixed with fallback: {len(results['fixed_with_fallback'])}")
+                for entry in results['fixed_with_fallback']:
+                    log_info(f"  {entry['abbrev']}: using {entry['working_fallback']}")
+
+            if results['fixed']:
+                log_success(f"Fixed with AI: {len(results['fixed'])}")
+                for entry in results['fixed']:
+                    log_info(f"  {entry['abbrev']}: {entry['suggested_url']}")
+
+            if results['broken']:
+                log_error(f"Broken: {len(results['broken'])}")
+                for entry in results['broken']:
+                    log_warning(f"  {entry['abbrev']}: {entry['url']} (status: {entry['status']})")
+
+        return 0
+
     commands = {
         'scrape': cmd_scrape,
         'clean': cmd_clean,
@@ -8950,6 +9193,7 @@ def main():
         'check-updates': cmd_check_updates,
         'wikipedia': cmd_wikipedia,
         'merkblaetter': cmd_merkblaetter,
+        'validate-urls': cmd_validate_urls,
         'all': cmd_all,
     }
 
