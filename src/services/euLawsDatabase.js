@@ -1609,6 +1609,89 @@ export function getRecentlyUpdatedLawsSync(withinDays = 14, limit = 10) {
   return recentLaws.slice(0, limit)
 }
 
+// Changelog cache
+let changelogData = null
+
+/**
+ * Load the update changelog
+ */
+async function loadChangelog() {
+  if (changelogData) return changelogData
+  try {
+    changelogData = (await import('../../eu_safety_laws/update_changelog.json')).default
+  } catch (error) {
+    console.warn('Changelog file not found:', error)
+    changelogData = { updates: [], last_check: null }
+  }
+  return changelogData
+}
+
+/**
+ * Get changelog data with details about which laws changed
+ * @returns {Promise<Object>} - Changelog object with updates array
+ */
+export async function getUpdateChangelog() {
+  return loadChangelog()
+}
+
+/**
+ * Get list of laws that have actual content changes (not just re-scraped)
+ * @param {number} withinDays - Number of days to look back
+ * @returns {Promise<Array>} - Array of change records with law details
+ */
+export async function getChangedLaws(withinDays = 14) {
+  const changelog = await loadChangelog()
+  const cutoff = new Date()
+  cutoff.setDate(cutoff.getDate() - withinDays)
+
+  const changes = []
+  const seen = new Set()
+
+  for (const update of changelog.updates || []) {
+    try {
+      const updateTime = new Date(update.timestamp)
+      if (updateTime < cutoff) continue
+
+      const country = update.country || ''
+
+      // Add new laws
+      for (const abbrev of update.new_laws || []) {
+        const key = `${country}:${abbrev}`
+        if (!seen.has(key)) {
+          changes.push({
+            abbreviation: abbrev,
+            country,
+            changeType: 'new',
+            timestamp: update.timestamp
+          })
+          seen.add(key)
+        }
+      }
+
+      // Add updated laws (content changed)
+      for (const abbrev of update.updated_laws || []) {
+        const key = `${country}:${abbrev}`
+        if (!seen.has(key)) {
+          const details = (update.details?.updated || []).find(d => d.abbreviation === abbrev) || {}
+          changes.push({
+            abbreviation: abbrev,
+            country,
+            changeType: 'updated',
+            timestamp: update.timestamp,
+            oldHash: details.old_hash,
+            newHash: details.new_hash
+          })
+          seen.add(key)
+        }
+      }
+    } catch (e) {
+      continue
+    }
+  }
+
+  return changes
+}
+
 export default {
   initializeLawsDatabase,
   isDatabaseLoaded,
@@ -1647,5 +1730,7 @@ export default {
   isHtmlOnly,
   isRecentlyUpdatedLaw,
   getRecentlyUpdatedLaws,
-  getRecentlyUpdatedLawsSync
+  getRecentlyUpdatedLawsSync,
+  getUpdateChangelog,
+  getChangedLaws
 }
