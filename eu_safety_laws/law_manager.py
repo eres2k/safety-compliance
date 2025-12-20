@@ -9209,7 +9209,8 @@ def scrape_wikipedia_with_ai_suggestions(country: str):
 
                 # Save HTML file with unique name
                 safe_term = search_term.replace(' ', '_').replace('/', '_')[:30]
-                html_file = wiki_dir / f"{law_abbr}_{safe_term}_wiki.html"
+                safe_abbr = law_abbr.replace('/', '_').replace('\\', '_').replace(':', '_')
+                html_file = wiki_dir / f"{safe_abbr}_{safe_term}_wiki.html"
                 with open(html_file, 'w', encoding='utf-8') as f:
                     f.write(f"""<!DOCTYPE html>
 <html lang="{lang}">
