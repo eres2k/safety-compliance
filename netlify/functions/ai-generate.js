@@ -9,10 +9,10 @@ import { getStore } from "@netlify/blobs"
 // Cache TTL: 48 hours - important to stay within daily limits
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
-// Model configuration - using Gemini 3 Flash (1K RPM, 1M TPM)
-// Options: 'gemini-3-flash', 'gemini-2.0-flash', 'gemini-2.5-flash'
-const GEMINI_MODEL = 'gemini-3-flash'
-const FALLBACK_MODEL = 'gemini-2.5-flash'  // Fallback if primary fails
+// Model configuration - using Gemini 2.0 Flash Lite (stable, cost-effective)
+// Valid v1beta models: 'gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro'
+const GEMINI_MODEL = 'gemini-2.0-flash'
+const FALLBACK_MODEL = 'gemini-1.5-flash'  // Fallback if primary fails
 const MAX_OUTPUT_TOKENS = 8192
 const TEMPERATURE = 0.2  // Lower temperature for more consistent legal analysis
 
@@ -138,7 +138,8 @@ export async function handler(event, context) {
 
     // Helper function to call Gemini API with a specific model
     async function callGeminiAPI(model) {
-      const apiUrl = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${apiKey}`
+      // Use v1beta API which supports systemInstruction and newer models
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
       console.log(`Calling Gemini API with model: ${model}`)
 
       return fetchWithRetry(apiUrl, {
