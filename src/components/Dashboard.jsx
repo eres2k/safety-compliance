@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useApp } from '../context/AppContext'
 import { ModuleCard } from './ModuleCard'
-import { getLawsStatistics } from '../services/euLawsDatabase'
+import { getLawsStatistics, getRecentlyUpdatedLaws } from '../services/euLawsDatabase'
 
 // Check if database was updated recently (within last 14 days)
 function isRecentlyUpdated(dateStr) {
@@ -41,6 +41,7 @@ export function Dashboard({ onModuleSelect }) {
 
   // Get statistics for the hero section (loaded asynchronously)
   const [stats, setStats] = useState({ totalLaws: 0, byType: [], lastUpdated: null, globalStats: null })
+  const [recentlyUpdatedLaws, setRecentlyUpdatedLaws] = useState([])
 
   useEffect(() => {
     getLawsStatistics(framework)
@@ -49,6 +50,11 @@ export function Dashboard({ onModuleSelect }) {
         // Database not loaded yet, use defaults
         setStats({ totalLaws: 0, byType: [], lastUpdated: null, globalStats: null })
       })
+
+    // Fetch recently updated laws
+    getRecentlyUpdatedLaws(14, 5)
+      .then(laws => setRecentlyUpdatedLaws(laws))
+      .catch(() => setRecentlyUpdatedLaws([]))
   }, [framework])
 
   // Format the last updated date
@@ -259,6 +265,36 @@ export function Dashboard({ onModuleSelect }) {
               </div>
             </div>
           </div>
+
+          {/* Recently Updated Laws List */}
+          {recentlyUpdatedLaws.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-green-200 dark:border-green-700">
+              <h4 className={`text-sm font-medium mb-2 ${recentlyUpdated ? 'text-green-800 dark:text-green-200' : 'text-blue-800 dark:text-blue-200'}`}>
+                {t.dashboard?.updatedLaws || 'Updated Laws'}:
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {recentlyUpdatedLaws.map((law) => (
+                  <button
+                    key={law.id}
+                    onClick={() => onModuleSelect('lawBrowser', { lawId: law.id, country: law.country })}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                      recentlyUpdated
+                        ? 'bg-green-100 dark:bg-green-800/40 text-green-800 dark:text-green-200 hover:bg-green-200 dark:hover:bg-green-800/60'
+                        : 'bg-blue-100 dark:bg-blue-800/40 text-blue-800 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800/60'
+                    }`}
+                  >
+                    <span className="text-xs opacity-70">
+                      {law.country === 'AT' ? '🇦🇹' : law.country === 'DE' ? '🇩🇪' : '🇳🇱'}
+                    </span>
+                    <span>{law.abbreviation || law.title?.split(' ').slice(0, 2).join(' ')}</span>
+                    <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 

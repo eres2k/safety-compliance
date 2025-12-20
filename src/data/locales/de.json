@@ -46,6 +46,7 @@
     "error": "Fehler",
     "success": "Erfolg",
     "close": "Schließen",
+    "updated": "Aktualisiert",
     "all": "Alle",
     "compare": "Vergleichen",
     "compareAll": "Alle",
@@ -260,7 +261,8 @@
     "recentlyUpdated": "Kürzlich aktualisiert",
     "lastUpdated": "Letzte Aktualisierung",
     "nextUpdate": "Nächste Aktualisierung",
-    "updateCycle": "14-Tage Aktualisierungszyklus"
+    "updateCycle": "14-Tage Aktualisierungszyklus",
+    "updatedLaws": "Aktualisierte Gesetze"
   },
   "help": {
     "title": "Hilfe & Anleitung",

@@ -23,7 +23,8 @@ import {
   isTrueSupplementarySource,
   hasLocalHtml,
   getLocalHtmlUrl,
-  isHtmlOnly
+  isHtmlOnly,
+  isRecentlyUpdatedLaw
 } from '../../services/euLawsDatabase'
 
 // Remove duplicate expanded notation text from Austrian legal documents
@@ -2227,6 +2228,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                         <span className={`px-2 py-0.5 rounded text-xs font-medium ${typeColors[law.type] || typeColors.law}`}>
                           {law.abbreviation || law.abbr || law.type}
                         </span>
+                        {isRecentlyUpdatedLaw(law) && (
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-700" title={t.dashboard?.recentlyUpdated || 'Recently Updated'}>
+                            {t.common?.updated || 'Updated'}
+                          </span>
+                        )}
                         {hasPdfSource(law) && (
                           <span className="text-xs text-red-500" title="PDF document available">
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -2304,6 +2310,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                         <span className="px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
                           {law.abbreviation || law.abbr || 'Merkblatt'}
                         </span>
+                        {isRecentlyUpdatedLaw(law) && (
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-700" title={t.dashboard?.recentlyUpdated || 'Recently Updated'}>
+                            {t.common?.updated || 'Updated'}
+                          </span>
+                        )}
                         {(hasLocalPdf(law) || hasPdfSource(law)) ? (
                           <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20" title="PDF available - click to view">
                             <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
@@ -2370,6 +2381,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                         <span className="px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300">
                           {(law.abbreviation || law.abbr || 'PDF').replace(/-PDF$/i, '')}
                         </span>
+                        {isRecentlyUpdatedLaw(law) && (
+                          <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-700" title={t.dashboard?.recentlyUpdated || 'Recently Updated'}>
+                            {t.common?.updated || 'Updated'}
+                          </span>
+                        )}
                         <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20" title="PDF document">
                           <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
                         </svg>

@@ -1513,6 +1513,102 @@ export function isHtmlOnly(law) {
   return !!law.metadata?.is_html_only
 }
 
+/**
+ * Check if a law was recently updated (within specified days)
+ * @param {Object} law - The law object
+ * @param {number} withinDays - Number of days to consider as "recent" (default 14)
+ * @returns {boolean} - True if law was updated recently
+ */
+export function isRecentlyUpdatedLaw(law, withinDays = 14) {
+  if (!law) return false
+
+  // Check scraping.scraped_at timestamp
+  const scrapedAt = law.scraping?.scraped_at
+  if (!scrapedAt) return false
+
+  try {
+    const scrapedDate = new Date(scrapedAt)
+    const now = new Date()
+    const diffDays = (now - scrapedDate) / (1000 * 60 * 60 * 24)
+    return diffDays <= withinDays
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Get all recently updated laws across all countries
+ * @param {number} withinDays - Number of days to consider as "recent" (default 14)
+ * @param {number} limit - Maximum number of results (default 10)
+ * @returns {Promise<Array>} - Array of recently updated laws
+ */
+export async function getRecentlyUpdatedLaws(withinDays = 14, limit = 10) {
+  // Load all databases
+  await Promise.all([
+    loadCountryDatabase('AT'),
+    loadCountryDatabase('DE'),
+    loadCountryDatabase('NL')
+  ])
+
+  const recentLaws = []
+
+  for (const country of ['AT', 'DE', 'NL']) {
+    const db = lawsDatabase[country]
+    if (!db) continue
+
+    for (const item of db.items) {
+      if (isRecentlyUpdatedLaw(item, withinDays)) {
+        recentLaws.push({
+          ...item,
+          country
+        })
+      }
+    }
+  }
+
+  // Sort by scraped_at date (most recent first)
+  recentLaws.sort((a, b) => {
+    const dateA = new Date(a.scraping?.scraped_at || 0)
+    const dateB = new Date(b.scraping?.scraped_at || 0)
+    return dateB - dateA
+  })
+
+  return recentLaws.slice(0, limit)
+}
+
+/**
+ * Get recently updated laws synchronously (only from loaded databases)
+ * @param {number} withinDays - Number of days to consider as "recent" (default 14)
+ * @param {number} limit - Maximum number of results (default 10)
+ * @returns {Array} - Array of recently updated laws
+ */
+export function getRecentlyUpdatedLawsSync(withinDays = 14, limit = 10) {
+  const recentLaws = []
+
+  for (const country of ['AT', 'DE', 'NL']) {
+    const db = lawsDatabase[country]
+    if (!db) continue
+
+    for (const item of db.items) {
+      if (isRecentlyUpdatedLaw(item, withinDays)) {
+        recentLaws.push({
+          ...item,
+          country
+        })
+      }
+    }
+  }
+
+  // Sort by scraped_at date (most recent first)
+  recentLaws.sort((a, b) => {
+    const dateA = new Date(a.scraping?.scraped_at || 0)
+    const dateB = new Date(b.scraping?.scraped_at || 0)
+    return dateB - dateA
+  })
+
+  return recentLaws.slice(0, limit)
+}
+
 export default {
   initializeLawsDatabase,
   isDatabaseLoaded,
@@ -1548,5 +1644,8 @@ export default {
   isTrueSupplementarySource,
   hasLocalHtml,
   getLocalHtmlUrl,
-  isHtmlOnly
+  isHtmlOnly,
+  isRecentlyUpdatedLaw,
+  getRecentlyUpdatedLaws,
+  getRecentlyUpdatedLawsSync
 }

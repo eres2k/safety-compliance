@@ -46,6 +46,7 @@
     "error": "Fout",
     "success": "Succes",
     "close": "Sluiten",
+    "updated": "Bijgewerkt",
     "all": "Alle",
     "compare": "Vergelijken",
     "compareAll": "Alle",
@@ -260,7 +261,8 @@
     "recentlyUpdated": "Recent bijgewerkt",
     "lastUpdated": "Laatst bijgewerkt",
     "nextUpdate": "Volgende update",
-    "updateCycle": "14-daagse updatecyclus"
+    "updateCycle": "14-daagse updatecyclus",
+    "updatedLaws": "Bijgewerkte wetten"
   },
   "help": {
     "title": "Hulp & Handleiding",
