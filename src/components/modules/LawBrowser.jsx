@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge, TypewriterText, useRateLimitStatus } from '../ui'
+import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge, TypewriterText, OverwriteText, useRateLimitStatus } from '../ui'
 import { getRateLimitStatus } from '../../services/aiService'
 import {
   getAllLawsSync,
@@ -1393,9 +1393,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
     lawPdfs: true
   })
 
-  // Law translation state
-  const [translationEnabled, setTranslationEnabled] = useState(false)
-  const [translationLanguage, setTranslationLanguage] = useState(null) // Target language for translation
+  // Per-section translation state
   const [translatedContent, setTranslatedContent] = useState({}) // { sectionId: { translatedText, isTyping } }
   const [translationLoading, setTranslationLoading] = useState(false)
 
@@ -2073,21 +2071,6 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
     }
   }
 
-  // Toggle translation for selected law
-  const toggleTranslation = (targetLang) => {
-    if (targetLang === translationLanguage) {
-      // Turn off translation
-      setTranslationEnabled(false)
-      setTranslationLanguage(null)
-      setTranslatedContent({})
-    } else {
-      // Turn on/change translation
-      setTranslationEnabled(true)
-      setTranslationLanguage(targetLang)
-      setTranslatedContent({})
-    }
-  }
-
   // Toggle section expand/collapse
   const toggleSection = (sectionId) => {
     setExpandedSections(prev => ({
@@ -2637,41 +2620,6 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                           {t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.en || selectedLaw.title_en}
                         </p>
                       )}
-                      {/* Translation Toggle */}
-                      <div className="mt-2 flex items-center gap-2">
-                        <span className="text-xs text-white/70">{t.translation?.translateTo || 'Translate to'}:</span>
-                        <div className="flex gap-1">
-                          {['de', 'nl', 'en'].filter(lang => lang !== getSourceLanguage()).map(lang => (
-                            <button
-                              key={lang}
-                              onClick={() => toggleTranslation(lang)}
-                              disabled={rateLimitInfo.isLimited && !translationEnabled}
-                              className={`px-2 py-0.5 text-xs rounded transition-all ${
-                                translationLanguage === lang
-                                  ? 'bg-white text-whs-orange-600 font-medium'
-                                  : rateLimitInfo.isLimited
-                                    ? 'bg-white/10 opacity-50 cursor-not-allowed'
-                                    : 'bg-white/20 hover:bg-white/30'
-                              }`}
-                              title={rateLimitInfo.isLimited ? `${t.common?.rateLimited || 'Please wait'} (${rateLimitInfo.remainingSeconds}s)` : ''}
-                            >
-                              {lang === 'de' ? (t.translation?.german || 'DE') : lang === 'nl' ? (t.translation?.dutch || 'NL') : (t.translation?.english || 'EN')}
-                            </button>
-                          ))}
-                          {translationEnabled && (
-                            <button
-                              onClick={() => toggleTranslation(translationLanguage)}
-                              className="px-2 py-0.5 text-xs bg-red-500/30 hover:bg-red-500/50 rounded transition-all"
-                              title={t.translation?.showOriginal || 'Show original'}
-                            >
-                              ✕
-                            </button>
-                          )}
-                        </div>
-                        {translationLoading && (
-                          <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        )}
-                      </div>
                     </div>
                     <div className="flex gap-2">
                       <button
@@ -3006,16 +2954,30 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                                         <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
                                           {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
                                             <>
-                                              {/* Show translated or original content */}
-                                              {translatedContent[section.id]?.translatedText ? (
-                                                <div className="prose dark:prose-invert prose-sm max-w-none">
-                                                  <TypewriterText
-                                                    text={translatedContent[section.id].translatedText}
-                                                    speed={3}
-                                                    className="whitespace-pre-wrap"
-                                                  />
+                                              {/* Show original content with translation overwriting effect */}
+                                              {translatedContent[section.id]?.isTyping ? (
+                                                /* Loading state while translation is being fetched */
+                                                <div className="relative">
+                                                  <div className="text-gray-300 dark:text-gray-600 select-none">
+                                                    <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} />
+                                                  </div>
+                                                  <div className="absolute inset-0 flex items-start">
+                                                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 bg-white dark:bg-whs-dark-800 pr-2">
+                                                      <div className="w-4 h-4 border-2 border-whs-orange-500 border-t-transparent rounded-full animate-spin"></div>
+                                                      <span>{t.translation?.translating || 'Translating...'}</span>
+                                                    </div>
+                                                  </div>
                                                 </div>
+                                              ) : translatedContent[section.id]?.translatedText ? (
+                                                /* Translation complete - show overwrite effect */
+                                                <OverwriteText
+                                                  originalText={section.content}
+                                                  translatedText={translatedContent[section.id].translatedText}
+                                                  speed={3}
+                                                  className="text-gray-800 dark:text-gray-200"
+                                                />
                                               ) : (
+                                                /* Original content when no translation */
                                                 <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} />
                                               )}
                                             </>

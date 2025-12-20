@@ -167,4 +167,91 @@ export function TransitionText({
   )
 }
 
+/**
+ * OverwriteText - Shows original text with translated text typing over it
+ * Creates a cool effect where the translation overwrites the original character by character
+ */
+export function OverwriteText({
+  originalText,
+  translatedText,
+  speed = 8,
+  className = '',
+  onComplete
+}) {
+  const [displayedLength, setDisplayedLength] = useState(0)
+  const [isComplete, setIsComplete] = useState(false)
+  const animationRef = useRef(null)
+  const indexRef = useRef(0)
+
+  useEffect(() => {
+    // Reset when text changes
+    setDisplayedLength(0)
+    setIsComplete(false)
+    indexRef.current = 0
+
+    if (!translatedText) return
+
+    let lastTime = 0
+    const msPerChar = speed
+
+    const animate = (timestamp) => {
+      if (!lastTime) lastTime = timestamp
+      const elapsed = timestamp - lastTime
+
+      if (elapsed >= msPerChar) {
+        lastTime = timestamp
+        indexRef.current++
+
+        if (indexRef.current <= translatedText.length) {
+          setDisplayedLength(indexRef.current)
+          animationRef.current = requestAnimationFrame(animate)
+        } else {
+          setIsComplete(true)
+          if (onComplete) onComplete()
+        }
+      } else {
+        animationRef.current = requestAnimationFrame(animate)
+      }
+    }
+
+    // Small delay before starting
+    const startTimer = setTimeout(() => {
+      animationRef.current = requestAnimationFrame(animate)
+    }, 100)
+
+    return () => {
+      clearTimeout(startTimer)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [translatedText, speed, onComplete])
+
+  // Split text by lines for proper display
+  const displayedText = translatedText ? translatedText.slice(0, displayedLength) : ''
+
+  // Calculate how much of original to show (fading out as translation takes over)
+  const originalToShow = originalText || ''
+
+  return (
+    <div className={`relative ${className}`}>
+      {/* Original text as base - visible parts that haven't been overwritten */}
+      <div className="whitespace-pre-wrap text-gray-400 dark:text-gray-500 transition-opacity duration-500"
+           style={{ opacity: isComplete ? 0 : 0.3 }}>
+        {originalToShow}
+      </div>
+
+      {/* Translated text overlay - types over the original */}
+      <div className="absolute inset-0 whitespace-pre-wrap">
+        <span className="bg-white dark:bg-whs-dark-800 text-gray-800 dark:text-gray-200">
+          {displayedText}
+        </span>
+        {!isComplete && displayedLength > 0 && (
+          <span className="inline-block w-0.5 h-4 bg-whs-orange-500 animate-pulse ml-0.5 align-middle"></span>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default TypewriterText
