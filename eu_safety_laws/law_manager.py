@@ -2004,15 +2004,37 @@ class PipelineErrorCollector:
                 "description": "This file contains errors from the last pipeline run. Please review and fix the issues listed below.",
                 "priority_order": [
                     "1. Critical errors (data loss, broken functionality)",
-                    "2. PDF/source errors (broken links, corrupt files)",
-                    "3. AI/parsing errors (failed AI calls, parsing issues)",
-                    "4. Validation warnings (missing fields, data quality)"
+                    "2. PDF 404 errors (broken links) - update URLs in custom_sources.json",
+                    "3. Network errors (timeouts, connection issues) - may be temporary",
+                    "4. AI/parsing errors (failed AI calls, parsing issues)",
+                    "5. Validation warnings (missing fields, data quality)"
                 ],
-                "common_fixes": {
-                    "broken_pdf_link": "Verify URL exists, update custom_sources.json if needed",
+                "error_categories": {
+                    "pdf_404": "PDF URL returns 404. Find updated URL and update custom_sources.json",
+                    "pdf_download": "PDF download failed. Check network or add fallback_urls",
+                    "network_timeout": "Request timed out. Server may be slow - retry later",
+                    "network_connection": "Connection failed. Check if server is accessible",
+                    "source_disabled": "Source auto-disabled after repeated failures. Fix URL and reset health",
                     "ai_rate_limit": "Reduce parallel requests or add delays",
-                    "parse_error": "Check source HTML structure for changes",
-                    "missing_content": "Source may have changed format, update scraper"
+                    "html_parse": "HTML structure changed. Update scraper logic"
+                },
+                "automation_commands": {
+                    "validate_and_fix": "python law_manager.py validate-urls --auto-fix",
+                    "reset_health": "python law_manager.py sources --reset-health",
+                    "check_health": "python law_manager.py sources --health-report",
+                    "update_single_url": "Edit custom_sources.json directly"
+                },
+                "fallback_url_example": {
+                    "description": "Add fallback_urls array to any source in custom_sources.json",
+                    "example": {
+                        "AUVA M 025": {
+                            "url": "https://primary-url.pdf",
+                            "fallback_urls": [
+                                "https://backup-url-1.pdf",
+                                "https://backup-url-2.pdf"
+                            ]
+                        }
+                    }
                 }
             }
         }
@@ -2044,6 +2066,232 @@ def collect_error(category: str, message: str, **kwargs):
 def collect_warning(category: str, message: str, **kwargs):
     """Convenience function to collect a pipeline warning."""
     PIPELINE_ERRORS.add_warning(category, message, **kwargs)
+
+
+# =============================================================================
+# Source Health Tracking for Pipeline Automation
+# =============================================================================
+
+class SourceHealthTracker:
+    """
+    Tracks the health of external sources (URLs) to enable:
+    - Automatic disabling of repeatedly failing sources
+    - Fallback URL support
+    - Proactive monitoring and alerting
+    """
+
+    HEALTH_FILE = "source_health.json"
+    MAX_CONSECUTIVE_FAILURES = 3  # Auto-disable after this many failures
+
+    def __init__(self, base_path: Path = None):
+        self.base_path = base_path or CONFIG.base_path
+        self.health_file = self.base_path / self.HEALTH_FILE
+        self.health_data = self._load()
+
+    def _load(self) -> Dict[str, Any]:
+        """Load health data from file."""
+        if self.health_file.exists():
+            try:
+                with open(self.health_file, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except Exception:
+                pass
+        return {
+            "sources": {},
+            "last_updated": None,
+            "auto_disabled": []
+        }
+
+    def save(self):
+        """Save health data to file."""
+        self.health_data["last_updated"] = datetime.now().isoformat()
+        try:
+            with open(self.health_file, 'w', encoding='utf-8') as f:
+                json.dump(self.health_data, f, indent=2, ensure_ascii=False)
+        except Exception as e:
+            log_warning(f"Could not save source health data: {e}")
+
+    def record_success(self, source_id: str, url: str):
+        """Record a successful fetch for a source."""
+        if source_id not in self.health_data["sources"]:
+            self.health_data["sources"][source_id] = {
+                "url": url,
+                "consecutive_failures": 0,
+                "total_successes": 0,
+                "total_failures": 0,
+                "last_success": None,
+                "last_failure": None,
+                "auto_disabled": False
+            }
+
+        source = self.health_data["sources"][source_id]
+        source["consecutive_failures"] = 0
+        source["total_successes"] += 1
+        source["last_success"] = datetime.now().isoformat()
+        source["url"] = url  # Update to working URL
+        source["auto_disabled"] = False
+
+        # Remove from auto-disabled list if present
+        if source_id in self.health_data["auto_disabled"]:
+            self.health_data["auto_disabled"].remove(source_id)
+
+    def record_failure(self, source_id: str, url: str, error_type: str, http_status: int = None) -> bool:
+        """
+        Record a failed fetch for a source.
+        Returns True if source should be auto-disabled.
+        """
+        if source_id not in self.health_data["sources"]:
+            self.health_data["sources"][source_id] = {
+                "url": url,
+                "consecutive_failures": 0,
+                "total_successes": 0,
+                "total_failures": 0,
+                "last_success": None,
+                "last_failure": None,
+                "last_error": None,
+                "last_http_status": None,
+                "auto_disabled": False
+            }
+
+        source = self.health_data["sources"][source_id]
+        source["consecutive_failures"] += 1
+        source["total_failures"] += 1
+        source["last_failure"] = datetime.now().isoformat()
+        source["last_error"] = error_type
+        source["last_http_status"] = http_status
+
+        # Check if should auto-disable
+        if source["consecutive_failures"] >= self.MAX_CONSECUTIVE_FAILURES:
+            source["auto_disabled"] = True
+            if source_id not in self.health_data["auto_disabled"]:
+                self.health_data["auto_disabled"].append(source_id)
+            return True
+
+        return False
+
+    def is_disabled(self, source_id: str) -> bool:
+        """Check if a source has been auto-disabled."""
+        return source_id in self.health_data.get("auto_disabled", [])
+
+    def get_health_report(self) -> Dict[str, Any]:
+        """Generate a health report for all sources."""
+        sources = self.health_data.get("sources", {})
+
+        healthy = []
+        degraded = []
+        failing = []
+        disabled = []
+
+        for source_id, data in sources.items():
+            if data.get("auto_disabled"):
+                disabled.append(source_id)
+            elif data.get("consecutive_failures", 0) == 0:
+                healthy.append(source_id)
+            elif data.get("consecutive_failures", 0) < self.MAX_CONSECUTIVE_FAILURES:
+                degraded.append(source_id)
+            else:
+                failing.append(source_id)
+
+        return {
+            "summary": {
+                "healthy": len(healthy),
+                "degraded": len(degraded),
+                "failing": len(failing),
+                "auto_disabled": len(disabled)
+            },
+            "healthy_sources": healthy,
+            "degraded_sources": degraded,
+            "failing_sources": failing,
+            "auto_disabled_sources": disabled,
+            "details": sources
+        }
+
+    def get_actionable_suggestions(self, source_id: str) -> List[str]:
+        """Get actionable suggestions for fixing a failing source."""
+        if source_id not in self.health_data["sources"]:
+            return []
+
+        source = self.health_data["sources"][source_id]
+        suggestions = []
+
+        http_status = source.get("last_http_status")
+        error_type = source.get("last_error", "")
+        url = source.get("url", "")
+
+        if http_status == 404:
+            suggestions.append(f"URL returned 404 - the resource has moved or been deleted")
+
+            # Domain-specific suggestions
+            if "auva.at" in url:
+                suggestions.append("AUVA reorganizes their media URLs periodically. Search auva.at for the document title")
+                suggestions.append("Try: https://auva.at/sicherheit-gesundheit/publikationen/ and search for the publication")
+            elif "baua.de" in url:
+                suggestions.append("BAUA may have updated the PDF version. Check: https://www.baua.de/DE/Angebote/Regelwerk/")
+            elif "nlarbeidsinspectie.nl" in url:
+                suggestions.append("Check: https://www.nlarbeidsinspectie.nl/publicaties for updated links")
+
+            suggestions.append("Run 'python law_manager.py validate-urls --auto-fix' to attempt AI-based URL correction")
+
+        elif http_status == 403:
+            suggestions.append("Access forbidden - the server may be blocking automated requests")
+            suggestions.append("Try adding the source manually or using a different User-Agent")
+
+        elif http_status == 500 or http_status == 502 or http_status == 503:
+            suggestions.append("Server error - this may be temporary. Try again later")
+            suggestions.append("Consider adding a fallback_url in custom_sources.json")
+
+        elif "timeout" in error_type.lower():
+            suggestions.append("Request timed out - server may be slow or overloaded")
+            suggestions.append("Increase timeout or try again during off-peak hours")
+
+        elif "connection" in error_type.lower():
+            suggestions.append("Network connection error - check internet connectivity")
+            suggestions.append("The server may be temporarily unavailable")
+
+        if source.get("auto_disabled"):
+            suggestions.append(f"Source auto-disabled after {self.MAX_CONSECUTIVE_FAILURES} consecutive failures")
+            suggestions.append("Fix the URL in custom_sources.json, then reset with: python law_manager.py sources --reset-health")
+
+        return suggestions
+
+
+# Global source health tracker
+SOURCE_HEALTH = SourceHealthTracker()
+
+
+# Error categories for better classification
+class ErrorCategory:
+    """Standard error categories for pipeline errors."""
+    PDF_404 = "pdf_404"
+    PDF_DOWNLOAD = "pdf_download"
+    PDF_PARSE = "pdf_parse"
+    HTML_FETCH = "html_fetch"
+    HTML_PARSE = "html_parse"
+    NETWORK_TIMEOUT = "network_timeout"
+    NETWORK_CONNECTION = "network_connection"
+    AI_RATE_LIMIT = "ai_rate_limit"
+    AI_PARSE = "ai_parse"
+    VALIDATION = "validation"
+    SOURCE_DISABLED = "source_disabled"
+    GENERAL = "general"
+
+
+def categorize_request_error(error: Exception, http_status: int = None) -> str:
+    """Categorize a request error for better reporting."""
+    error_str = str(error).lower()
+
+    if http_status == 404:
+        return ErrorCategory.PDF_404
+    elif http_status in (403, 401):
+        return ErrorCategory.NETWORK_CONNECTION
+    elif http_status and http_status >= 500:
+        return ErrorCategory.NETWORK_CONNECTION
+    elif "timeout" in error_str:
+        return ErrorCategory.NETWORK_TIMEOUT
+    elif "connection" in error_str or "refused" in error_str:
+        return ErrorCategory.NETWORK_CONNECTION
+    else:
+        return ErrorCategory.PDF_DOWNLOAD
 
 
 def create_progress_bar(total: int, desc: str = "Processing"):
@@ -2463,14 +2711,31 @@ def ensure_pdf_storage_dir(country: str = None) -> Path:
     return target_dir
 
 
-def download_and_store_pdf(url: str, country: str, abbrev: str, doc_type: str = "law") -> Optional[Dict[str, str]]:
+def get_fallback_urls(country: str, abbrev: str) -> List[str]:
+    """Get fallback URLs for a source from custom_sources.json."""
+    try:
+        custom = load_custom_sources()
+        source = custom.get('custom_sources', {}).get(country, {}).get(abbrev, {})
+        return source.get('fallback_urls', [])
+    except Exception:
+        return []
+
+
+def download_and_store_pdf(url: str, country: str, abbrev: str, doc_type: str = "law",
+                           use_fallbacks: bool = True) -> Optional[Dict[str, str]]:
     """
     Download a PDF from URL and store it locally.
+
+    Features:
+    - Automatic fallback URL support
+    - Source health tracking
+    - Proper error categorization for pipeline errors
+    - Actionable suggestions on failure
 
     Returns dict with:
         - local_path: Path to stored PDF file
         - filename: Just the filename
-        - url: Original URL
+        - url: Original URL (or fallback URL that worked)
         - size_bytes: File size
 
     Returns None if download fails.
@@ -2479,45 +2744,120 @@ def download_and_store_pdf(url: str, country: str, abbrev: str, doc_type: str = 
         log_warning("requests package required for PDF download")
         return None
 
-    try:
-        # Create filename from abbreviation and doc type
-        safe_abbrev = re.sub(r'[^\w\-]', '_', abbrev)
-        filename = f"{country.lower()}_{safe_abbrev}_{doc_type}.pdf"
+    source_id = f"{country}:{abbrev}"
 
-        # Ensure directory exists
-        storage_dir = ensure_pdf_storage_dir(country)
-        local_path = storage_dir / filename
-
-        # Download the PDF
-        log_info(f"Downloading PDF for {abbrev}...")
-        response = requests.get(url, timeout=CONFIG.request_timeout, headers=Scraper.HTTP_HEADERS)
-        response.raise_for_status()
-
-        # Verify it's actually a PDF
-        content_type = response.headers.get('Content-Type', '')
-        if 'application/pdf' not in content_type and not url.lower().endswith('.pdf'):
-            log_warning(f"URL may not be a PDF (Content-Type: {content_type})")
-
-        # Save to local file
-        with open(local_path, 'wb') as f:
-            f.write(response.content)
-
-        size_bytes = len(response.content)
-        log_success(f"Stored PDF: {filename} ({size_bytes / 1024:.1f} KB)")
-
-        return {
-            "local_path": str(local_path),
-            "filename": filename,
-            "url": url,
-            "size_bytes": size_bytes
-        }
-
-    except requests.exceptions.RequestException as e:
-        log_error(f"Failed to download PDF from {url}: {e}")
+    # Check if source is auto-disabled
+    if SOURCE_HEALTH.is_disabled(source_id):
+        log_warning(f"Source {abbrev} is auto-disabled due to repeated failures")
+        collect_error(
+            ErrorCategory.SOURCE_DISABLED,
+            f"Source {abbrev} is auto-disabled",
+            details={"source_id": source_id, "url": url},
+            suggestion="Fix URL in custom_sources.json and reset health with: python law_manager.py sources --reset-health"
+        )
         return None
-    except IOError as e:
-        log_error(f"Failed to save PDF: {e}")
-        return None
+
+    # Build list of URLs to try (primary + fallbacks)
+    urls_to_try = [url]
+    if use_fallbacks:
+        fallbacks = get_fallback_urls(country, abbrev)
+        urls_to_try.extend(fallbacks)
+
+    # Create filename from abbreviation and doc type
+    safe_abbrev = re.sub(r'[^\w\-]', '_', abbrev)
+    filename = f"{country.lower()}_{safe_abbrev}_{doc_type}.pdf"
+
+    # Ensure directory exists
+    storage_dir = ensure_pdf_storage_dir(country)
+    local_path = storage_dir / filename
+
+    last_error = None
+    last_http_status = None
+
+    for attempt_url in urls_to_try:
+        try:
+            # Download the PDF
+            log_info(f"Downloading PDF for {abbrev} from {attempt_url[:60]}...")
+            response = requests.get(attempt_url, timeout=CONFIG.request_timeout, headers=Scraper.HTTP_HEADERS)
+            response.raise_for_status()
+
+            # Verify it's actually a PDF
+            content_type = response.headers.get('Content-Type', '')
+            if 'application/pdf' not in content_type and not attempt_url.lower().endswith('.pdf'):
+                log_warning(f"URL may not be a PDF (Content-Type: {content_type})")
+
+            # Save to local file
+            with open(local_path, 'wb') as f:
+                f.write(response.content)
+
+            size_bytes = len(response.content)
+            log_success(f"Stored PDF: {filename} ({size_bytes / 1024:.1f} KB)")
+
+            # Record success in health tracker
+            SOURCE_HEALTH.record_success(source_id, attempt_url)
+            SOURCE_HEALTH.save()
+
+            # If fallback worked, suggest updating the primary URL
+            if attempt_url != url:
+                log_info(f"  ℹ️  Fallback URL worked. Consider updating primary URL in custom_sources.json")
+
+            return {
+                "local_path": str(local_path),
+                "filename": filename,
+                "url": attempt_url,
+                "size_bytes": size_bytes,
+                "used_fallback": attempt_url != url
+            }
+
+        except requests.exceptions.HTTPError as e:
+            last_error = e
+            last_http_status = e.response.status_code if e.response else None
+            if attempt_url == urls_to_try[-1]:  # Last URL in list
+                break
+            log_warning(f"  Primary URL failed ({last_http_status}), trying fallback...")
+
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            last_http_status = None
+            if attempt_url == urls_to_try[-1]:  # Last URL in list
+                break
+            log_warning(f"  Primary URL failed, trying fallback...")
+
+    # All URLs failed - record error and track health
+    error_category = categorize_request_error(last_error, last_http_status)
+
+    # Record failure in health tracker
+    should_disable = SOURCE_HEALTH.record_failure(
+        source_id, url, str(last_error), last_http_status
+    )
+    SOURCE_HEALTH.save()
+
+    # Get actionable suggestions
+    suggestions = SOURCE_HEALTH.get_actionable_suggestions(source_id)
+
+    # Log error with proper categorization
+    error_msg = f"Failed to download PDF from {url}: {last_error}"
+    log_error(error_msg)
+
+    # Collect error for pipeline report
+    collect_error(
+        error_category,
+        error_msg,
+        details={
+            "source_id": source_id,
+            "country": country,
+            "abbrev": abbrev,
+            "http_status": last_http_status,
+            "urls_tried": urls_to_try,
+            "auto_disabled": should_disable
+        },
+        suggestion=suggestions[0] if suggestions else None
+    )
+
+    if should_disable:
+        log_warning(f"  ⚠️  Source {abbrev} auto-disabled after repeated failures")
+
+    return None
 
 
 def get_local_pdf_path(country: str, abbrev: str, doc_type: str = "law") -> Optional[str]:
@@ -9363,6 +9703,14 @@ def main():
     validate_urls_parser.add_argument('--auto-fix', action='store_true', help='Attempt to fix broken URLs using AI')
     validate_urls_parser.add_argument('--report', type=str, metavar='FILE', help='Save detailed report to JSON file')
 
+    # Sources command (source health management)
+    sources_parser = subparsers.add_parser('sources', help='Manage source health and fallback URLs')
+    sources_parser.add_argument('--health-report', action='store_true', help='Show source health report')
+    sources_parser.add_argument('--reset-health', action='store_true', help='Reset all source health tracking')
+    sources_parser.add_argument('--reset-source', type=str, metavar='SOURCE_ID', help='Reset health for specific source (e.g., AT:AUVA_M_025)')
+    sources_parser.add_argument('--list-disabled', action='store_true', help='List all auto-disabled sources')
+    sources_parser.add_argument('--enable-source', type=str, metavar='SOURCE_ID', help='Re-enable a disabled source')
+
     # All command (complete pipeline)
     all_parser = subparsers.add_parser('all', help='Run complete pipeline')
     all_parser.add_argument('--country', choices=['AT', 'DE', 'NL'], help='Country to process')
@@ -9509,6 +9857,105 @@ def main():
 
         return 0
 
+    def cmd_sources(args):
+        """Manage source health and fallback URLs."""
+        log_header("Source Health Management")
+
+        if getattr(args, 'health_report', False):
+            # Show health report
+            report = SOURCE_HEALTH.get_health_report()
+            summary = report["summary"]
+
+            log_info(f"Source Health Summary:")
+            log_success(f"  Healthy: {summary['healthy']}")
+            if summary['degraded'] > 0:
+                log_warning(f"  Degraded: {summary['degraded']}")
+            if summary['failing'] > 0:
+                log_error(f"  Failing: {summary['failing']}")
+            if summary['auto_disabled'] > 0:
+                log_error(f"  Auto-disabled: {summary['auto_disabled']}")
+
+            if report["auto_disabled_sources"]:
+                print()
+                log_warning("Auto-disabled sources:")
+                for source_id in report["auto_disabled_sources"]:
+                    details = report["details"].get(source_id, {})
+                    http_status = details.get("last_http_status", "unknown")
+                    log_error(f"  {source_id} (HTTP {http_status})")
+                    suggestions = SOURCE_HEALTH.get_actionable_suggestions(source_id)
+                    for suggestion in suggestions[:2]:  # Show first 2 suggestions
+                        log_info(f"    → {suggestion}")
+
+            if report["degraded_sources"]:
+                print()
+                log_warning("Degraded sources (failing but not yet disabled):")
+                for source_id in report["degraded_sources"]:
+                    details = report["details"].get(source_id, {})
+                    failures = details.get("consecutive_failures", 0)
+                    log_warning(f"  {source_id} ({failures} consecutive failures)")
+
+        elif getattr(args, 'reset_health', False):
+            # Reset all health tracking
+            SOURCE_HEALTH.health_data = {
+                "sources": {},
+                "last_updated": None,
+                "auto_disabled": []
+            }
+            SOURCE_HEALTH.save()
+            log_success("All source health tracking has been reset")
+
+        elif getattr(args, 'reset_source', None):
+            # Reset specific source
+            source_id = args.reset_source
+            if source_id in SOURCE_HEALTH.health_data["sources"]:
+                del SOURCE_HEALTH.health_data["sources"][source_id]
+            if source_id in SOURCE_HEALTH.health_data["auto_disabled"]:
+                SOURCE_HEALTH.health_data["auto_disabled"].remove(source_id)
+            SOURCE_HEALTH.save()
+            log_success(f"Health tracking reset for: {source_id}")
+
+        elif getattr(args, 'list_disabled', False):
+            # List disabled sources
+            disabled = SOURCE_HEALTH.health_data.get("auto_disabled", [])
+            if disabled:
+                log_warning(f"Auto-disabled sources ({len(disabled)}):")
+                for source_id in disabled:
+                    details = SOURCE_HEALTH.health_data["sources"].get(source_id, {})
+                    url = details.get("url", "unknown")
+                    http_status = details.get("last_http_status", "unknown")
+                    log_error(f"  {source_id}")
+                    log_info(f"    URL: {url[:80]}...")
+                    log_info(f"    Status: HTTP {http_status}")
+                    suggestions = SOURCE_HEALTH.get_actionable_suggestions(source_id)
+                    if suggestions:
+                        log_info(f"    Fix: {suggestions[0]}")
+            else:
+                log_success("No auto-disabled sources")
+
+        elif getattr(args, 'enable_source', None):
+            # Re-enable a source
+            source_id = args.enable_source
+            if source_id in SOURCE_HEALTH.health_data.get("auto_disabled", []):
+                SOURCE_HEALTH.health_data["auto_disabled"].remove(source_id)
+                if source_id in SOURCE_HEALTH.health_data["sources"]:
+                    SOURCE_HEALTH.health_data["sources"][source_id]["auto_disabled"] = False
+                    SOURCE_HEALTH.health_data["sources"][source_id]["consecutive_failures"] = 0
+                SOURCE_HEALTH.save()
+                log_success(f"Re-enabled source: {source_id}")
+            else:
+                log_warning(f"Source {source_id} is not in the disabled list")
+
+        else:
+            # Show help
+            log_info("Available options:")
+            log_info("  --health-report    Show source health report")
+            log_info("  --reset-health     Reset all source health tracking")
+            log_info("  --reset-source ID  Reset health for specific source")
+            log_info("  --list-disabled    List all auto-disabled sources")
+            log_info("  --enable-source ID Re-enable a disabled source")
+
+        return 0
+
     commands = {
         'scrape': cmd_scrape,
         'clean': cmd_clean,
@@ -9520,6 +9967,7 @@ def main():
         'wikipedia': cmd_wikipedia,
         'merkblaetter': cmd_merkblaetter,
         'validate-urls': cmd_validate_urls,
+        'sources': cmd_sources,
         'all': cmd_all,
     }
 
