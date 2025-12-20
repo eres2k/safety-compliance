@@ -12,6 +12,7 @@ export { RateLimitIndicator, useRateLimitStatus } from './RateLimitIndicator'
 export { SearchHistory } from './SearchHistory'
 export { PdfViewer, PdfSourceBadge, SupplementaryBadge } from './PdfViewer'
 export { TypewriterText, TypewriterParagraph, TransitionText, OverwriteText } from './TypewriterText'
+export { SmartSearch } from './SmartSearch'
 
 // Re-export default components
 export { default as ButtonDefault } from './Button'
