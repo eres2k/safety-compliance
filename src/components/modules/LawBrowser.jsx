@@ -2178,18 +2178,29 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
           </div>
         )}
 
-        {/* Left: Law List */}
+        {/* Left: Law List - Modern Card Design */}
         <div className="w-72 flex-shrink-0">
-          <Card className="h-full overflow-hidden flex flex-col">
-            <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800 flex-shrink-0">
-              <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{t.lawBrowser?.lawsAndRegs || 'Laws & Regulations'}</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {regularLaws.length} {t.lawBrowser?.laws || 'laws'}
-                {merkblaetter.length > 0 && `, ${merkblaetter.length} ${t.lawBrowser?.merkbl || 'Merkbl.'}`}
-              </p>
-              {/* Search bar for laws */}
-              <div className="relative mt-2">
-                <svg className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <Card className="h-full overflow-hidden flex flex-col bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
+            {/* Header with gradient accent */}
+            <div className="p-4 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-br from-gray-50 via-white to-gray-50/50 dark:from-whs-dark-800 dark:via-whs-dark-800 dark:to-whs-dark-900 flex-shrink-0">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-whs-orange-500 to-amber-600 flex items-center justify-center shadow-lg shadow-whs-orange-500/20">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-900 dark:text-white text-sm tracking-tight">{t.lawBrowser?.lawsAndRegs || 'Laws & Regulations'}</h3>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">
+                    {regularLaws.length} {t.lawBrowser?.laws || 'laws'}
+                    {merkblaetter.length > 0 && ` · ${merkblaetter.length} ${t.lawBrowser?.merkbl || 'Merkbl.'}`}
+                  </p>
+                </div>
+              </div>
+              {/* Modern search bar */}
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-whs-orange-500/20 to-amber-500/20 rounded-xl blur-sm opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-whs-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 <input
@@ -2197,12 +2208,12 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Search laws..."
-                  className="w-full pl-8 pr-8 py-1.5 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-whs-orange-500"
+                  className="relative w-full pl-9 pr-9 py-2 text-sm bg-white dark:bg-whs-dark-700/80 border border-gray-200 dark:border-whs-dark-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-whs-orange-500/50 focus:border-whs-orange-500 transition-all placeholder:text-gray-400"
                 />
                 {searchTerm && (
                   <button
                     onClick={() => setSearchTerm('')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-whs-dark-600 rounded-lg transition-all"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -2211,41 +2222,47 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                 )}
               </div>
             </div>
-            <div className="overflow-y-auto flex-1">
+            <div className="overflow-y-auto flex-1 p-2">
               {/* Regular Laws Section */}
               {regularLaws.length > 0 && (
-                <>
+                <div className="space-y-1">
                   {regularLaws.map((law) => (
                     <button
                       key={law.id}
                       onClick={() => selectLaw(law)}
-                      className={`w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
+                      className={`group w-full text-left p-3 rounded-xl transition-all duration-200 ${
                         selectedLaw?.id === law.id
-                          ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 border-l-4 border-l-whs-orange-500'
-                          : 'hover:bg-gray-50 dark:hover:bg-whs-dark-800'
+                          ? 'bg-gradient-to-r from-whs-orange-50 to-amber-50/50 dark:from-whs-orange-900/30 dark:to-amber-900/20 shadow-md shadow-whs-orange-500/10 ring-1 ring-whs-orange-200 dark:ring-whs-orange-800'
+                          : 'hover:bg-gray-50 dark:hover:bg-whs-dark-800/80 hover:shadow-sm'
                       }`}
                     >
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className={`px-2 py-0.5 rounded text-xs font-medium ${typeColors[law.type] || typeColors.law}`}>
+                      <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span className={`px-2.5 py-0.5 rounded-lg text-xs font-bold tracking-wide ${typeColors[law.type] || typeColors.law} shadow-sm`}>
                           {law.abbreviation || law.abbr || law.type}
                         </span>
                         {isRecentlyUpdatedLaw(law) && (
-                          <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-700" title={t.dashboard?.recentlyUpdated || 'Recently Updated'}>
-                            {t.common?.updated || 'Updated'}
+                          <span className="px-1.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 shadow-sm animate-pulse" title={t.dashboard?.recentlyUpdated || 'Recently Updated'}>
+                            {t.common?.updated || 'New'}
                           </span>
                         )}
-                        {hasPdfSource(law) && (
-                          <span className="text-xs text-red-500" title="PDF document available">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
-                            </svg>
-                          </span>
-                        )}
-                        {wikiIndex[law.abbreviation] && (
-                          <span className="text-xs" title="Wikipedia article available">📖</span>
-                        )}
+                        <div className="flex items-center gap-1 ml-auto">
+                          {hasPdfSource(law) && (
+                            <span className="w-6 h-6 flex items-center justify-center rounded-md bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400" title="PDF document available">
+                              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                              </svg>
+                            </span>
+                          )}
+                          {wikiIndex[law.abbreviation] && (
+                            <span className="w-6 h-6 flex items-center justify-center rounded-md bg-blue-50 dark:bg-blue-900/20 text-blue-500" title="Wikipedia article available">
+                              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.09 13.119c-.936 1.932-2.217 4.548-2.853 5.728-.616 1.074-1.127.931-1.532.029-1.406-3.321-4.293-9.144-5.651-12.409-.251-.601-.441-.987-.619-1.139-.181-.15-.554-.24-1.122-.271C.103 5.033 0 4.982 0 4.898v-.455l.052-.045c.924-.005 5.401 0 5.401 0l.051.045v.434c0 .119-.075.176-.225.176l-.564.031c-.485.029-.727.164-.727.436 0 .135.053.33.166.601 1.082 2.646 4.818 10.521 4.818 10.521l.136.046 2.411-4.81-.482-1.067-1.658-3.264s-.318-.654-.428-.872c-.728-1.443-.712-1.518-1.447-1.617-.207-.023-.313-.05-.313-.149v-.468l.06-.045h4.292l.113.037v.451c0 .105-.076.15-.227.15l-.308.047c-.792.061-.661.381-.136 1.422l1.582 3.252 1.758-3.504c.293-.64.233-.801.111-.947-.07-.084-.305-.22-.812-.24l-.201-.021c-.052 0-.098-.015-.145-.051-.045-.031-.067-.076-.067-.129v-.427l.061-.045c1.247-.008 4.043 0 4.043 0l.059.045v.436c0 .121-.059.178-.193.178-.646.03-.782.095-1.023.439-.12.186-.375.589-.646 1.039l-2.301 4.273-.065.135 2.792 5.712.17.048 4.396-10.438c.154-.422.129-.722-.064-.895-.197-.172-.346-.273-.857-.295l-.42-.016c-.061 0-.105-.014-.152-.045-.043-.029-.072-.075-.072-.119v-.436l.059-.045h4.961l.041.045v.437c0 .119-.074.18-.209.18-.648.03-1.127.18-1.443.451-.314.271-.615.812-.916 1.619l-4.476 11.781c-.053.209-.18.315-.376.315s-.329-.105-.4-.315l-3.04-6.476-.066-.135-3.179 6.582c-.041.209-.165.315-.369.315-.201 0-.336-.106-.406-.315l-3.156-7.098"/>
+                              </svg>
+                            </span>
+                          )}
+                        </div>
                       </div>
-                      <h4 className="font-medium text-gray-900 dark:text-white text-sm line-clamp-2">
+                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm line-clamp-2 group-hover:text-whs-orange-600 dark:group-hover:text-whs-orange-400 transition-colors">
                         {t.lawTitles?.[framework]?.[law.abbreviation]?.de ||
                          t.lawTitles?.[framework]?.[law.abbreviation]?.nl ||
                          law.title_en || law.shortTitle || getShortenedLawName(law)}
@@ -2403,41 +2420,59 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
           </Card>
         </div>
 
-        {/* Middle: Section Navigation (when law selected) */}
+        {/* Middle: Section Navigation (when law selected) - Modern Design */}
         {selectedLaw && lawSections.length > 0 && (
           <div className="w-64 flex-shrink-0">
-            <Card className="h-full overflow-hidden">
-              <div className="p-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
-                <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                  {t.sections?.title || 'Sections'} ({filteredSections.length}/{lawSections.length})
-                </h3>
+            <Card className="h-full overflow-hidden bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
+              <div className="p-4 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-br from-slate-50 via-white to-slate-50/50 dark:from-whs-dark-800 dark:via-whs-dark-800 dark:to-whs-dark-900">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md shadow-indigo-500/20">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-gray-900 dark:text-white text-sm">
+                      {t.sections?.title || 'Sections'}
+                    </h3>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">
+                      {filteredSections.length} of {lawSections.length} sections
+                    </p>
+                  </div>
+                </div>
                 <input
                   type="text"
                   value={searchInLaw}
                   onChange={(e) => setSearchInLaw(e.target.value)}
-                  placeholder={t.common?.filterBySection || "Filter by section number/title..."}
-                  className="mt-2 w-full px-2 py-1 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-whs-orange-500"
+                  placeholder={t.common?.filterBySection || "Filter sections..."}
+                  className="w-full px-3 py-2 text-sm bg-white dark:bg-whs-dark-700/80 border border-gray-200 dark:border-whs-dark-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all placeholder:text-gray-400"
                 />
-                {/* Relevance Filter */}
-                <div className="mt-2 flex flex-wrap gap-1">
-                  {['all', 'critical', 'high', 'medium'].map(level => (
-                    <button
-                      key={level}
-                      onClick={() => setRelevanceFilter(level)}
-                      className={`px-2 py-0.5 text-xs rounded-full transition-colors ${
-                        relevanceFilter === level
-                          ? 'bg-whs-orange-500 text-white'
-                          : level === 'all'
-                            ? 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300'
-                            : `${RELEVANCE_LEVELS[level]?.bgColor || ''} ${RELEVANCE_LEVELS[level]?.textColor || ''} hover:opacity-80`
-                      }`}
-                    >
-                      {level === 'all' ? (t.common?.all || 'All') : RELEVANCE_LEVELS[level]?.label}
-                    </button>
-                  ))}
+                {/* Relevance Filter Pills - Modern style */}
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {['all', 'critical', 'high', 'medium'].map(level => {
+                    const levelColors = {
+                      all: 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 ring-gray-200 dark:ring-gray-700',
+                      critical: 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 ring-red-200 dark:ring-red-800',
+                      high: 'bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 ring-orange-200 dark:ring-orange-800',
+                      medium: 'bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 ring-yellow-200 dark:ring-yellow-800'
+                    }
+                    return (
+                      <button
+                        key={level}
+                        onClick={() => setRelevanceFilter(level)}
+                        className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg transition-all ${
+                          relevanceFilter === level
+                            ? 'bg-gradient-to-r from-whs-orange-500 to-amber-500 text-white shadow-md shadow-whs-orange-500/20 ring-2 ring-whs-orange-300 dark:ring-whs-orange-700'
+                            : `${levelColors[level]} hover:ring-2 ring-1`
+                        }`}
+                      >
+                        {level === 'all' ? (t.common?.all || 'All') : RELEVANCE_LEVELS[level]?.label}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
-              <div className="overflow-y-auto h-[calc(100%-120px)]">
+              <div className="overflow-y-auto h-[calc(100%-140px)] p-2">
                 {(() => {
                   // Group sections by chapter/Abschnitt
                   const groupedSections = filteredSections.reduce((acc, section) => {
@@ -2459,83 +2494,127 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                     const chapterTitle = abschnitt?.displayName || abschnitt?.title || `${chapterKey}. ${groupingLabel}`
 
                     return (
-                      <div key={chapterKey} className="border-b border-gray-200 dark:border-whs-dark-600">
-                        {/* Chapter Header - Clickable to expand/collapse */}
+                      <div key={chapterKey} className="mb-2">
+                        {/* Chapter Header - Modern collapsible style */}
                         <button
                           onClick={() => toggleChapter(chapterKey)}
-                          className="w-full px-3 py-2 bg-gray-100 dark:bg-whs-dark-700 text-xs font-bold text-gray-600 dark:text-gray-300 flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-whs-dark-600 transition-colors sticky top-0 z-10"
+                          className={`w-full px-3 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all duration-200 sticky top-0 z-10 ${
+                            isChapterExpanded
+                              ? 'bg-gradient-to-r from-indigo-100 to-purple-100/50 dark:from-indigo-900/40 dark:to-purple-900/30 text-indigo-800 dark:text-indigo-200 shadow-sm ring-1 ring-indigo-200/50 dark:ring-indigo-700/50'
+                              : 'bg-gray-100/80 dark:bg-whs-dark-800/80 text-gray-600 dark:text-gray-300 hover:bg-gray-200/80 dark:hover:bg-whs-dark-700/80'
+                          }`}
                           title={chapterTitle}
                         >
-                          <svg
-                            className={`w-4 h-4 flex-shrink-0 transition-transform ${isChapterExpanded ? 'rotate-90' : ''}`}
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                          </svg>
-                          <span className="flex-1 text-left line-clamp-2">{chapterTitle}</span>
-                          <span className="text-gray-400 dark:text-gray-500 flex-shrink-0">({sections.length})</span>
+                          <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${
+                            isChapterExpanded
+                              ? 'bg-indigo-500 text-white shadow-sm'
+                              : 'bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-300'
+                          }`}>
+                            <svg
+                              className={`w-3 h-3 transition-transform duration-200 ${isChapterExpanded ? 'rotate-90' : ''}`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+                          <span className="flex-1 text-left line-clamp-2 font-semibold">{chapterTitle}</span>
+                          <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold ${
+                            isChapterExpanded
+                              ? 'bg-indigo-200/50 dark:bg-indigo-800/50 text-indigo-700 dark:text-indigo-300'
+                              : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
+                          }`}>
+                            {sections.length}
+                          </span>
                         </button>
 
                         {/* Sections within chapter - only shown when expanded */}
-                        {isChapterExpanded && sections.map((section) => {
-                          const relevanceLevel = section.amazon_logistics_relevance?.level
-                          const relevanceColor = relevanceLevel === 'critical' ? 'border-l-red-500' :
-                            relevanceLevel === 'high' ? 'border-l-orange-500' :
-                            relevanceLevel === 'medium' ? 'border-l-yellow-500' : 'border-l-transparent'
+                        {isChapterExpanded && (
+                          <div className="mt-1 space-y-1 ml-2 pl-2 border-l-2 border-indigo-200 dark:border-indigo-800">
+                            {sections.map((section) => {
+                              const relevanceLevel = section.amazon_logistics_relevance?.level
+                              const relevanceStyles = {
+                                critical: 'ring-red-300 dark:ring-red-700 bg-red-50/50 dark:bg-red-900/10',
+                                high: 'ring-orange-300 dark:ring-orange-700 bg-orange-50/50 dark:bg-orange-900/10',
+                                medium: 'ring-yellow-300 dark:ring-yellow-700 bg-yellow-50/50 dark:bg-yellow-900/10',
+                                low: ''
+                              }
+                              const relevanceIndicator = {
+                                critical: 'bg-red-500',
+                                high: 'bg-orange-500',
+                                medium: 'bg-yellow-500',
+                                low: 'bg-gray-300 dark:bg-gray-600'
+                              }
 
-                          return (
-                            <div key={section.id} className={`border-b border-gray-50 dark:border-whs-dark-800 border-l-4 ${relevanceColor}`}>
-                              <button
-                                onClick={() => scrollToSection(section.id)}
-                                className={`w-full text-left px-3 py-2 text-sm transition-colors ${
-                                  activeSection === section.id
-                                    ? 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300'
-                                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-whs-dark-800'
-                                }`}
-                              >
-                                <div className="flex items-center justify-between">
-                                  <span className="font-semibold text-whs-orange-500">{section.number}</span>
-                                  {section.whs_topics && section.whs_topics.length > 0 && (
-                                    <span className="text-xs opacity-60">
-                                      {WHS_TOPIC_LABELS[section.whs_topics[0]?.id]?.icon || ''}
-                                    </span>
-                                  )}
+                              return (
+                                <div
+                                  key={section.id}
+                                  className={`rounded-lg overflow-hidden transition-all duration-200 ${
+                                    activeSection === section.id
+                                      ? 'ring-2 ring-whs-orange-400 dark:ring-whs-orange-600 shadow-md'
+                                      : relevanceLevel ? `ring-1 ${relevanceStyles[relevanceLevel]}` : ''
+                                  }`}
+                                >
+                                  <button
+                                    onClick={() => scrollToSection(section.id)}
+                                    className={`w-full text-left px-3 py-2 text-sm transition-all duration-200 ${
+                                      activeSection === section.id
+                                        ? 'bg-gradient-to-r from-whs-orange-50 to-amber-50 dark:from-whs-orange-900/30 dark:to-amber-900/20'
+                                        : 'bg-white/80 dark:bg-whs-dark-800/60 hover:bg-gray-50 dark:hover:bg-whs-dark-700/80'
+                                    }`}
+                                  >
+                                    <div className="flex items-center gap-2">
+                                      {/* Relevance indicator dot */}
+                                      <span className={`w-2 h-2 rounded-full flex-shrink-0 ${relevanceIndicator[relevanceLevel] || relevanceIndicator.low}`}></span>
+                                      <span className={`font-bold ${
+                                        activeSection === section.id
+                                          ? 'text-whs-orange-600 dark:text-whs-orange-400'
+                                          : 'text-gray-700 dark:text-gray-300'
+                                      }`}>{section.number}</span>
+                                      {section.whs_topics && section.whs_topics.length > 0 && (
+                                        <span className="text-sm ml-auto opacity-60">
+                                          {WHS_TOPIC_LABELS[section.whs_topics[0]?.id]?.icon || ''}
+                                        </span>
+                                      )}
+                                    </div>
+                                    {section.title && (
+                                      <div className="text-[11px] line-clamp-2 mt-1 text-gray-500 dark:text-gray-400 font-medium" title={section.title}>
+                                        {highlightText(section.title, searchInLaw)}
+                                      </div>
+                                    )}
+                                  </button>
+                                  {/* Compare buttons - Compact modern style */}
+                                  <div className="flex items-center gap-1 px-2 py-1.5 bg-gray-50/80 dark:bg-whs-dark-900/50 border-t border-gray-100 dark:border-whs-dark-700">
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation()
+                                        openComparisonModal('multi', section)
+                                      }}
+                                      className="flex-1 flex items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-md hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
+                                      title={t.common?.compareAllCountries || "Compare this section across all 3 countries"}
+                                    >
+                                      <span>🌍</span>
+                                      <span>{t.common?.compareAll || 'All'}</span>
+                                    </button>
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation()
+                                        setCrossBorderSection(section)
+                                        openComparisonModal('cross', section)
+                                      }}
+                                      className="flex-1 flex items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-md hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
+                                      title={t.common?.compareTwoCountries || "Compare this section with another country"}
+                                    >
+                                      <span>↔️</span>
+                                      <span>{t.common?.compare || 'Compare'}</span>
+                                    </button>
+                                  </div>
                                 </div>
-                                {section.title && (
-                                  <div className="text-xs line-clamp-2 mt-0.5 opacity-75" title={section.title}>{highlightText(section.title, searchInLaw)}</div>
-                                )}
-                              </button>
-                              {/* Compare buttons for each section */}
-                              <div className="flex items-center gap-1 px-2 pb-2">
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    openComparisonModal('multi', section)
-                                  }}
-                                  className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-colors"
-                                  title={t.common?.compareAllCountries || "Compare this section across all 3 countries"}
-                                >
-                                  <span>🌍</span>
-                                  <span>{t.common?.compareAll || 'All'}</span>
-                                </button>
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    setCrossBorderSection(section)
-                                    openComparisonModal('cross', section)
-                                  }}
-                                  className="flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
-                                  title={t.common?.compareTwoCountries || "Compare this section with another country"}
-                                >
-                                  <span>↔️</span>
-                                  <span>{t.common?.compare || 'Compare'}</span>
-                                </button>
-                              </div>
-                            </div>
-                          )
-                        })}
+                              )
+                            })}
+                          </div>
+                        )}
                       </div>
                     )
                   })
@@ -2545,9 +2624,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
           </div>
         )}
 
-        {/* Right: Law Content */}
+        {/* Right: Law Content - Modern Design */}
         <div className="flex-1 min-w-0">
-          <Card className="h-full overflow-hidden">
+          <Card className="h-full overflow-hidden bg-white/90 dark:bg-whs-dark-900/90 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
             {/* Inline PDF/HTML View */}
             {inlineDocView ? (
               <div className="h-full flex flex-col">
@@ -2616,37 +2695,50 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
               </div>
             ) : selectedLaw ? (
               <div className="h-full flex flex-col">
-                {/* Law Header */}
-                <div className="flex-shrink-0 p-4 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-r from-whs-orange-500 to-whs-orange-600 text-white">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="px-2 py-0.5 bg-white/20 rounded text-xs font-medium">
+                {/* Law Header - Modern gradient design */}
+                <div className="flex-shrink-0 p-5 border-b border-whs-orange-400/20 dark:border-whs-orange-700/30 bg-gradient-to-br from-whs-orange-500 via-whs-orange-600 to-amber-600 text-white relative overflow-hidden">
+                  {/* Background pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
+                  </div>
+                  <div className="relative flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-3 flex-wrap">
+                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm">
                           {selectedLaw.type}
                         </span>
                         {selectedLaw.category && (
-                          <span className="px-2 py-0.5 bg-white/20 rounded text-xs">
+                          <span className="px-3 py-1 bg-white/15 backdrop-blur-sm rounded-lg text-xs font-medium">
                             {selectedLaw.category}
                           </span>
                         )}
+                        {isRecentlyUpdatedLaw(selectedLaw) && (
+                          <span className="px-2 py-1 bg-emerald-400/30 backdrop-blur-sm rounded-lg text-xs font-bold uppercase tracking-wider animate-pulse">
+                            Updated
+                          </span>
+                        )}
                       </div>
-                      <h3 className="text-xl font-bold">
+                      <h3 className="text-2xl font-bold tracking-tight leading-tight">
                         {t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.de ||
                          t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.nl ||
                          getShortenedLawName(selectedLaw)}
                       </h3>
                       {(t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.en || selectedLaw.title_en) && (
-                        <p className="text-white/80 text-sm mt-1">
+                        <p className="text-white/80 text-sm mt-2 font-medium">
                           {t.lawTitles?.[framework]?.[selectedLaw.abbreviation]?.en || selectedLaw.title_en}
                         </p>
                       )}
                     </div>
-                    <div className="flex gap-2">
+                    {/* Action buttons - Modern glass style */}
+                    <div className="flex gap-2 flex-shrink-0">
                       <button
                         onClick={() => toggleBookmark(selectedLaw.id)}
-                        className={`p-2 rounded-lg transition-colors ${
-                          isBookmarked(selectedLaw.id) ? 'bg-white/30' : 'bg-white/10 hover:bg-white/20'
+                        className={`p-2.5 rounded-xl transition-all duration-200 backdrop-blur-sm ${
+                          isBookmarked(selectedLaw.id)
+                            ? 'bg-white/30 shadow-lg shadow-white/10'
+                            : 'bg-white/10 hover:bg-white/25 hover:shadow-md'
                         }`}
+                        title={isBookmarked(selectedLaw.id) ? 'Remove bookmark' : 'Add bookmark'}
                       >
                         <svg className="w-5 h-5" fill={isBookmarked(selectedLaw.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
@@ -2656,7 +2748,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                       {hasPdfSource(selectedLaw) && (
                         <button
                           onClick={() => openPdfModal(selectedLaw)}
-                          className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                          className="p-2.5 bg-white/10 hover:bg-white/25 rounded-xl transition-all duration-200 backdrop-blur-sm hover:shadow-md"
                           title={t.common?.viewOfficialPdf || 'View/Download Official PDF'}
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2670,7 +2762,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                           href={selectedLaw.source.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                          className="p-2.5 bg-white/10 hover:bg-white/25 rounded-xl transition-all duration-200 backdrop-blur-sm hover:shadow-md"
                           title={t.common?.viewOfficialSource || 'View official source'}
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2681,9 +2773,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                       <button
                         onClick={() => wikiIndex[selectedLaw.abbreviation] && openWikiModal(selectedLaw.abbreviation)}
                         disabled={!wikiIndex[selectedLaw.abbreviation]}
-                        className={`p-2 rounded-lg transition-colors ${
+                        className={`p-2.5 rounded-xl transition-all duration-200 backdrop-blur-sm ${
                           wikiIndex[selectedLaw.abbreviation]
-                            ? 'bg-white/10 hover:bg-white/20 cursor-pointer'
+                            ? 'bg-white/10 hover:bg-white/25 hover:shadow-md cursor-pointer'
                             : 'bg-white/5 opacity-40 cursor-not-allowed'
                         }`}
                         title={wikiIndex[selectedLaw.abbreviation]
@@ -2699,11 +2791,12 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                   </div>
                 </div>
 
-                {/* Full Text Search in Law */}
+                {/* Full Text Search in Law - Modern design */}
                 {hasContent && lawSections.length > 0 && (
-                  <div className="flex-shrink-0 px-4 py-2 border-b border-gray-100 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-800">
-                    <div className="relative">
-                      <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex-shrink-0 px-5 py-3 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-r from-gray-50 to-slate-50 dark:from-whs-dark-800 dark:to-whs-dark-900">
+                    <div className="relative group">
+                      <div className="absolute inset-0 bg-gradient-to-r from-whs-orange-500/10 to-amber-500/10 rounded-xl blur-sm opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+                      <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-whs-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                       </svg>
                       <input
@@ -2711,12 +2804,12 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                         value={contentSearchTerm}
                         onChange={(e) => setContentSearchTerm(e.target.value)}
                         placeholder={t.common?.fullTextSearch || "Full text search in this law..."}
-                        className="w-full pl-9 pr-8 py-2 text-sm bg-white dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-whs-orange-500 focus:border-transparent"
+                        className="relative w-full pl-10 pr-10 py-2.5 text-sm bg-white dark:bg-whs-dark-700/80 border border-gray-200 dark:border-whs-dark-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-whs-orange-500/50 focus:border-whs-orange-500 transition-all shadow-sm placeholder:text-gray-400"
                       />
                       {contentSearchTerm && (
                         <button
                           onClick={() => setContentSearchTerm('')}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-whs-dark-600 rounded-lg transition-all"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -2725,9 +2818,12 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                       )}
                     </div>
                     {contentSearchTerm && (
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Found {filteredSections.length} matching section{filteredSections.length !== 1 ? 's' : ''}
-                      </p>
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className="w-2 h-2 rounded-full bg-whs-orange-500 animate-pulse"></span>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                          Found <span className="text-whs-orange-600 dark:text-whs-orange-400 font-bold">{filteredSections.length}</span> matching section{filteredSections.length !== 1 ? 's' : ''}
+                        </p>
+                      </div>
                     )}
                   </div>
                 )}
