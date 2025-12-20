@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from 'react'
 import { useApp } from '../context/AppContext'
 import { ModuleCard } from './ModuleCard'
 import { getLawsStatistics, getRecentlyUpdatedLaws } from '../services/euLawsDatabase'
+import { WarehouseVisualization } from './modules/WarehouseVisualization'
+import { LessonsLearnedFeed } from './modules/LessonsLearnedFeed'
 
 // Check if database was updated recently (within last 14 days)
 function isRecentlyUpdated(dateStr) {
@@ -374,6 +376,45 @@ export function Dashboard({ onModuleSelect }) {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Interactive Warehouse Section */}
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Interactive Warehouse Safety
+            </h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Click on zones to explore applicable safety regulations
+            </p>
+          </div>
+        </div>
+        <WarehouseVisualization
+          onSelectRegulation={(reg) => {
+            // Navigate to law browser with the selected regulation
+            onModuleSelect('lawBrowser', { searchQuery: reg.abbr })
+          }}
+        />
+      </div>
+
+      {/* Lessons Learned Feed Section */}
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Safety Lessons Learned
+            </h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Weekly alerts and incident reports from EU safety agencies
+            </p>
+          </div>
+        </div>
+        <LessonsLearnedFeed
+          onSelectRegulation={(reg) => {
+            onModuleSelect('lawBrowser', { searchQuery: reg.abbr })
+          }}
+        />
       </div>
 
       {/* Framework Info */}
