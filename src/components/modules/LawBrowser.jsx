@@ -963,8 +963,8 @@ function getShortenedLawName(law) {
   return title.substring(0, 15) + (title.length > 15 ? '...' : '')
 }
 
-export function LawBrowser({ onBack }) {
-  const { t, framework, language, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
+export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationConsumed }) {
+  const { t, framework, setFramework, language, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
   const { generateFlowchart, simplifyForBothLevels, findEquivalentLaw, compareMultipleCountries, isLoading: aiLoading } = useAI()
 
   // Debounce refs to prevent duplicate API calls
@@ -1098,6 +1098,50 @@ export function LawBrowser({ onBack }) {
       setDatabaseReady(true)
     }
   }, [])
+
+  // Handle initial law navigation from other modules (e.g., ComplianceChecker)
+  useEffect(() => {
+    if (!initialLawId) return
+
+    const navigateToInitialLaw = async () => {
+      // If a different country is specified, switch to it first
+      const targetCountry = initialCountry || framework
+      if (targetCountry !== framework) {
+        setFramework(targetCountry)
+      }
+
+      // Ensure the target database is loaded
+      if (!isDatabaseLoaded(targetCountry)) {
+        setDatabaseLoading(true)
+        try {
+          await initializeLawsDatabase(targetCountry)
+        } catch (error) {
+          console.error(`Failed to load ${targetCountry} database:`, error)
+          onNavigationConsumed?.()
+          return
+        } finally {
+          setDatabaseLoading(false)
+        }
+      }
+
+      // Find and select the law
+      const laws = getAllLawsSync(targetCountry)
+      const targetLaw = laws.find(law => law.id === initialLawId)
+
+      if (targetLaw) {
+        setSelectedLaw(targetLaw)
+        setSearchTerm('') // Clear any existing search
+        setSelectedCategory('all') // Reset category filter
+        // Add to audit trail
+        addRecentSearch(targetLaw.abbreviation || targetLaw.title)
+      }
+
+      // Clear the navigation request
+      onNavigationConsumed?.()
+    }
+
+    navigateToInitialLaw()
+  }, [initialLawId, initialCountry, framework, setFramework, onNavigationConsumed, addRecentSearch])
 
   // Load Wikipedia index for current framework
   useEffect(() => {
