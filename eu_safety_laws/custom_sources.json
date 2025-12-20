@@ -47,24 +47,26 @@
         "_description": "Publications on lifting, carrying, pushing, pulling and ergonomics"
       },
       "AUVA M 025": {
-        "url": "https://auva.at/media/gxzb0ql4/m_025_heben_und_tragen_schieben_und_ziehen_bf.pdf",
+        "url": "https://auva.at/praevention/medien-und-publikationen/publikationen-us/m-025-heben-und-tragen-schieben-und-ziehen/",
         "name": "M 025 - Heben und Tragen, Schieben und Ziehen",
         "name_en": "Lifting, Carrying, Pushing and Pulling",
         "description": "Safety guidelines for manual load handling - essential for warehouse picking and stowing operations.",
         "enabled": true,
         "category": "manual_handling",
-        "source_type": "pdf",
-        "amazon_relevance": ["stower", "picker", "dock worker", "manual handling"]
+        "source_type": "custom",
+        "amazon_relevance": ["stower", "picker", "dock worker", "manual handling"],
+        "_note": "PDF must be ordered from AUVA. Changed to publication page URL. Use IVSS Lastenhandhabung PDF as alternative."
       },
       "AUVA M.plus 040.E13": {
-        "url": "https://auva.at/media/kqxjzqpj/mplus_040e13_evaluierung_von_hebe_und_tragetaetigkeiten_bf.pdf",
-        "name": "M.plus 040.E13 - Evaluierung von Hebe- und Tragetätigkeiten",
-        "name_en": "Evaluation of Lifting and Carrying Activities",
-        "description": "Risk assessment for lifting and carrying tasks - key for stowing/picking evaluation.",
+        "url": "https://auva.at/media/qvnajezk/e_13_physische_belastungen.pdf",
+        "name": "E 13 - Evaluierung von Hebe- und Tragetätigkeiten (Physische Belastungen)",
+        "name_en": "Evaluation of Lifting and Carrying Activities (Physical Stress)",
+        "description": "Risk assessment for lifting and carrying tasks - key for stowing/picking evaluation. Uses key indicator method (Leitmerkmalmethode).",
         "enabled": true,
         "category": "manual_handling",
         "source_type": "pdf",
-        "amazon_relevance": ["stower", "picker", "risk assessment"]
+        "amazon_relevance": ["stower", "picker", "risk assessment"],
+        "_note": "Replaced M.plus 040.E13 with E 13 Physische Belastungen - same content, new URL format"
       },
       "AUVA M 105": {
         "url": "https://auva.at/media/4jsltvw2/m_105_ergonomie-in-unterstuetzenden-berufen_bf.pdf",
@@ -90,42 +92,46 @@
         "_description": "Publications on forklifts, pallet jacks, and transport equipment"
       },
       "AUVA M 841.1": {
-        "url": "https://auva.at/media/2c1p2ukt/m_8411_stapler_mit_fahrersitz_bf.pdf",
+        "url": "https://auva.at/praevention/medien-und-publikationen/publikationen-us/m-8411-stapler-mit-fahrersitz/",
         "name": "M 841.1 - Stapler mit Fahrersitz",
         "name_en": "Forklifts with Driver Seat",
         "description": "Safety requirements for sit-down forklifts - essential for dock operations.",
         "enabled": true,
         "category": "forklifts",
-        "source_type": "pdf",
-        "amazon_relevance": ["forklift", "dock", "yard marshal"]
+        "source_type": "custom",
+        "amazon_relevance": ["forklift", "dock", "yard marshal"],
+        "_note": "PDF must be ordered from AUVA. Changed to publication page URL."
       },
       "AUVA M 841.2": {
-        "url": "https://auva.at/media/zksfjgql/m_8412_deichselgefuehrte_stapler_bf.pdf",
+        "url": "https://auva.at/praevention/medien-und-publikationen/publikationen/m-8412-deichselgefuehrte-stapler/",
         "name": "M 841.2 - Deichselgeführte Stapler",
         "name_en": "Pedestrian Pallet Trucks",
         "description": "Safety for electric pallet jacks - used extensively in Amazon facilities.",
         "enabled": true,
         "category": "forklifts",
-        "source_type": "pdf",
-        "amazon_relevance": ["pallet jack", "water spider", "picker"]
+        "source_type": "custom",
+        "amazon_relevance": ["pallet jack", "water spider", "picker"],
+        "_note": "PDF must be ordered from AUVA. Changed to publication page URL."
       },
       "AUVA M.plus 841.3": {
-        "url": "https://auva.at/media/lxhjyj5r/mplus_8413_ausbildung_bei_staplern_kranen_kombinationsgeraeten_bf.pdf",
+        "url": "https://auva.at/praevention/medien-und-publikationen/publikationen-us/mplus-8413-ausbildung-bei-staplern-kranen-und-kombinationsgeraeten/",
         "name": "M.plus 841.3 - Ausbildung bei Staplern, Kranen",
         "name_en": "Training for Forklifts and Cranes",
         "description": "Training requirements for forklift and crane operators.",
         "enabled": true,
         "category": "forklifts",
-        "source_type": "pdf"
+        "source_type": "custom",
+        "_note": "PDF must be ordered from AUVA. Changed to publication page URL."
       },
       "AUVA M.plus 842": {
-        "url": "https://auva.at/media/uw0lli55/mplus_842_batterieladeanlagen_fuer_flurfoerderzeuge_bf.pdf",
+        "url": "https://auva.at/praevention/medien-und-publikationen/publikationen-us/mplus-842-sicherer-umgang-mit-batterieladeanlagen-fuer-flurfoerderzeuge/",
         "name": "M.plus 842 - Batterieladeanlagen für Flurförderzeuge",
         "name_en": "Battery Charging for Industrial Trucks",
         "description": "Safety for battery charging operations in warehouses.",
         "enabled": true,
         "category": "forklifts",
-        "source_type": "pdf"
+        "source_type": "custom",
+        "_note": "PDF must be ordered from AUVA. Changed to publication page URL."
       },
       "AUVA M.plus 942": {
         "url": "https://auva.at/media/3scjz5tv/mplus_942_fahrerlose_transportsysteme_und_mobile_roboter_bf.pdf",
@@ -152,32 +158,35 @@
         "source_type": "pdf"
       },
       "AUVA M.plus 340": {
-        "url": "https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
-        "name": "M.plus 340 - Arbeitsmittel",
-        "name_en": "Work Equipment",
-        "description": "Safety requirements for work equipment selection and use.",
-        "enabled": true,
-        "category": "warehouse",
-        "source_type": "pdf"
-      },
-      "AUVA M.plus 350": {
-        "url": "https://auva.at/media/r2qfq5at/mplus_350_arbeitsstaetten_bf_2405.pdf",
-        "name": "M.plus 350 - Arbeitsstätten",
-        "name_en": "Workplaces",
-        "description": "Workplace design requirements - ventilation, lighting, temperature.",
+        "url": "https://auva.at/media/zzcjdtxk/mplus_040_arbeitsplatzevaluierung_bf_06-2022.pdf",
+        "name": "M.plus 040 - Arbeitsplatzevaluierung (ersetzt M.plus 340)",
+        "name_en": "Workplace Evaluation",
+        "description": "Safety requirements for workplace evaluation. Replaced M.plus 340 series.",
         "enabled": true,
         "category": "warehouse",
         "source_type": "pdf",
-        "amazon_relevance": ["facility", "warehouse design"]
+        "_note": "M.plus 340 series now focuses on carcinogenic substances. Using M.plus 040 for work equipment evaluation."
       },
-      "AUVA M.plus 360": {
-        "url": "https://auva.at/media/faqbqzk0/mplus_360_ergonomie_bf_2405.pdf",
-        "name": "M.plus 360 - Ergonomie",
-        "name_en": "Ergonomics",
-        "description": "Ergonomic workplace design guidelines.",
+      "AUVA M.plus 350": {
+        "url": "https://auva.at/praevention/medien-und-publikationen/publikationen-us/mplus-021-ergonomie-grundlagen-der-arbeitsplatzgestaltung/",
+        "name": "M.plus 021 - Ergonomie Grundlagen (ersetzt M.plus 350)",
+        "name_en": "Ergonomics Fundamentals",
+        "description": "Workplace design requirements - fundamentals of ergonomic workplace design.",
         "enabled": true,
         "category": "warehouse",
-        "source_type": "pdf"
+        "source_type": "custom",
+        "amazon_relevance": ["facility", "warehouse design"],
+        "_note": "M.plus 350 not found. Using M.plus 021 Ergonomie Grundlagen as replacement."
+      },
+      "AUVA M.plus 360": {
+        "url": "https://auva.at/media/ghlabert/mplus_040e17_evaluierung_buero_bildschirmarbeitsplaetze_20.pdf",
+        "name": "M.plus 040.E17 - Evaluierung Büro-/Bildschirmarbeitsplätze",
+        "name_en": "Office/Screen Workplaces Evaluation",
+        "description": "Ergonomic workplace evaluation for office and screen work.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "_note": "M.plus 360 not found. Using M.plus 040.E17 as ergonomics replacement."
       },
       "_category_transport": {
         "_folder": true,
@@ -185,14 +194,15 @@
         "_description": "Publications on road safety and delivery operations"
       },
       "AUVA M.plus 800": {
-        "url": "https://auva.at/media/nh1bq3eh/mplus_800_sicher_unterwegs_bf.pdf",
+        "url": "https://auva.at/media/mcajknoi/mplus_800_sicher_unterwegs_2023-04_bf.pdf",
         "name": "M.plus 800 - Sicher unterwegs",
         "name_en": "Safe on the Road",
-        "description": "Traffic safety for work-related travel - essential for delivery drivers.",
+        "description": "Traffic safety for work-related travel - essential for delivery drivers. Covers fatigue, distraction, substances, and illness.",
         "enabled": true,
         "category": "transport",
         "source_type": "pdf",
-        "amazon_relevance": ["DA", "DSP", "delivery driver"]
+        "amazon_relevance": ["DA", "DSP", "delivery driver"],
+        "_note": "Updated URL - April 2023 version"
       },
       "AUVA M.plus 801": {
         "url": "https://auva.at/media/nrljnr11/mplus_801_fahrradbotendienste_2023-02_bf.pdf",
@@ -234,14 +244,18 @@
         "_description": "Publications on work-related stress and mental health"
       },
       "AUVA M.plus 910": {
-        "url": "https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
-        "name": "M.plus 910 - Evaluierung psychischer Belastungen",
-        "name_en": "Assessment of Psychological Stress",
-        "description": "Guidelines for assessing work-related psychological stress.",
+        "url": "https://auva.at/media/1klpjgis/e_14_evaluierung_psychischer_belastungen_abs_bf.pdf",
+        "name": "E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)",
+        "name_en": "Assessment of Psychological Stress (ABS Group Method)",
+        "description": "Guidelines for assessing work-related psychological stress using the ABS (Arbeits-Bewertungs-Skala) method.",
         "enabled": true,
         "category": "psychological",
         "source_type": "pdf",
-        "amazon_relevance": ["work pace", "mental health", "stress"]
+        "amazon_relevance": ["work pace", "mental health", "stress"],
+        "fallback_urls": [
+          "https://auva.at/media/gybkl0hm/e_24_evalog_evaluierung_psychischer_belastung_im_dialog_bf.pdf"
+        ],
+        "_note": "Replaced M.plus 910 with E 14 - same topic, new URL format. E 24 EVALOG added as fallback."
       },
       "AUVA E 14": {
         "url": "https://auva.at/media/1klpjgis/e_14_evaluierung_psychischer_belastungen_abs_bf.pdf",
@@ -286,14 +300,15 @@
         "amazon_relevance": ["gloves", "PPE", "hand protection"]
       },
       "AUVA M 719": {
-        "url": "https://auva.at/media/gw3oqohc/m_719_sicherheitsschuhe_bf.pdf",
-        "name": "M 719 - Sicherheitsschuhe",
-        "name_en": "Safety Footwear",
-        "description": "Selection and use of safety shoes.",
+        "url": "https://auva.at/media/nwwlrfpq/m_719_atemschutzfilter_gegen_schwebstoffe_gase_daempfe_bf_20.pdf",
+        "name": "M 719 - Atemschutzfilter gegen Schwebstoffe, Gase und Dämpfe",
+        "name_en": "Respiratory Protection Filters",
+        "description": "Selection and use of respiratory protection filters for particles, gases, and vapors.",
         "enabled": true,
         "category": "ppe",
         "source_type": "pdf",
-        "amazon_relevance": ["safety shoes", "PPE", "footwear"]
+        "amazon_relevance": ["respiratory protection", "PPE", "dust"],
+        "_note": "M 719 is about respiratory filters, not safety shoes. Updated content and URL."
       },
       "_category_hazmat": {
         "_folder": true,
@@ -346,14 +361,18 @@
         "amazon_relevance": ["load securing", "dock", "transport"]
       },
       "AUVA M 846": {
-        "url": "https://auva.at/media/xfqnpzwx/m_846_ladungssicherung_im_strassenverkehr_bf.pdf",
+        "url": "https://auva.at/praevention/medien-und-publikationen/publikationen-us/m-846-ladungssicherung-im-strassenverkehr/",
         "name": "M 846 - Ladungssicherung im Straßenverkehr",
         "name_en": "Cargo Securing in Road Traffic",
         "description": "Legal and physical fundamentals of cargo securing for road transport.",
         "enabled": true,
         "category": "cargo",
-        "source_type": "pdf",
-        "amazon_relevance": ["load securing", "delivery", "DSP", "transport"]
+        "source_type": "custom",
+        "amazon_relevance": ["load securing", "delivery", "DSP", "transport"],
+        "fallback_urls": [
+          "https://auva.at/media/tvjnoy4t/m_845_4f-regel-ladungssicherung-bf.pdf"
+        ],
+        "_note": "PDF must be ordered from AUVA. Changed to publication page URL. M 845 (4F-Regel) added as PDF fallback."
       },
       "_category_general": {
         "_folder": true,
@@ -681,23 +700,25 @@
         "source_type": "pdf"
       },
       "TRBS 2121-1": {
-        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121-1.pdf?__blob=publicationFile",
-        "name": "TRBS 2121-1 - Gefährdungen durch Absturz - Leitern",
-        "name_en": "Fall Protection - Ladders",
-        "description": "Protection against falls when using ladders.",
+        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/TRBS/pdf/TRBS-2121-Teil-1.pdf?__blob=publicationFile&v=2",
+        "name": "TRBS 2121 Teil 1 - Gefährdungen durch Absturz bei Gerüsten",
+        "name_en": "Fall Protection - Scaffolding",
+        "description": "Protection against falls when using scaffolding (Gerüste). GMBl 2019 S. 28.",
         "enabled": true,
         "category": "technical_rules",
         "source_type": "pdf",
-        "amazon_relevance": ["ladder safety", "fall protection"]
+        "_note": "URL changed from TRBS-2121-1 to TRBS-2121-Teil-1 format"
       },
       "TRBS 2121-2": {
-        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121-2.pdf?__blob=publicationFile",
-        "name": "TRBS 2121-2 - Gefährdungen durch Absturz - Gerüste",
-        "name_en": "Fall Protection - Scaffolding",
-        "description": "Protection against falls from scaffolding.",
+        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/TRBS/pdf/TRBS-2121-Teil-2.pdf?__blob=publicationFile&v=2",
+        "name": "TRBS 2121 Teil 2 - Gefährdungen bei Verwendung von Leitern",
+        "name_en": "Fall Protection - Ladders",
+        "description": "Protection against falls when using ladders (Leitern). GMBl 2018 S. 1171.",
         "enabled": true,
         "category": "technical_rules",
-        "source_type": "pdf"
+        "source_type": "pdf",
+        "amazon_relevance": ["ladder safety", "fall protection"],
+        "_note": "URL changed from TRBS-2121-2 to TRBS-2121-Teil-2 format"
       },
       "TRBS 3151": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-3151.pdf?__blob=publicationFile",
@@ -988,5 +1009,16 @@
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-20T12:00:00.000000"
+  "updated_at": "2025-12-20T22:30:00.000000",
+  "_changelog": [
+    "2025-12-20: Fixed 16 broken URLs based on pipeline_errors.json analysis",
+    "- AUVA: Updated M.plus 040.E13 -> E 13 Physische Belastungen",
+    "- AUVA: Updated M.plus 800 -> new URL with 2023-04 version",
+    "- AUVA: Updated M.plus 910 -> E 14 ABS Gruppe with E 24 EVALOG fallback",
+    "- AUVA: Changed M 025, M 841.x, M.plus 841.3, M.plus 842 to publication page URLs (PDFs must be ordered)",
+    "- AUVA: Replaced M.plus 340/350/360 with working alternatives",
+    "- AUVA: Updated M 719 (was incorrectly labeled as safety shoes, is respiratory filters)",
+    "- AUVA: Changed M 846 to publication page with M 845 as fallback",
+    "- BAUA: Updated TRBS 2121-1 and 2121-2 URLs to new Teil-1/Teil-2 format"
+  ]
 }
