@@ -294,6 +294,89 @@
         "category": "ppe",
         "source_type": "pdf",
         "amazon_relevance": ["safety shoes", "PPE", "footwear"]
+      },
+      "_category_hazmat": {
+        "_folder": true,
+        "_name": "Hazardous Materials & Transport",
+        "_description": "Publications on hazardous substances and dangerous goods transport"
+      },
+      "AUVA M 391": {
+        "url": "https://auva.at/media/ds1jpe1o/m_391_sicherer_umgang_mit_gefaehrlichen_arbeitsstoffen.pdf",
+        "name": "M 391 - Sicherer Umgang mit gefährlichen Arbeitsstoffen",
+        "name_en": "Safe Handling of Hazardous Substances",
+        "description": "Safety guidelines for handling hazardous substances in the workplace.",
+        "enabled": true,
+        "category": "hazmat",
+        "source_type": "pdf",
+        "amazon_relevance": ["hazmat", "chemicals", "dangerous goods"]
+      },
+      "AUVA M 480": {
+        "url": "https://auva.at/media/pcajpwjk/m_480_sicherer_umgang_mit-lithium-batterien_2021_bf.pdf",
+        "name": "M 480 - Sicherer Umgang mit Lithium-Batterien",
+        "name_en": "Safe Handling of Lithium Batteries",
+        "description": "Safety guidelines for handling lithium batteries - relevant for electric forklifts and devices.",
+        "enabled": true,
+        "category": "hazmat",
+        "source_type": "pdf",
+        "amazon_relevance": ["battery", "lithium", "forklift charging"]
+      },
+      "AUVA M 830": {
+        "url": "https://auva.at/media/oq0jfcsx/m_830_gefahrguttransport-auf-der-strasse_0625_bf.pdf",
+        "name": "M 830 - Gefahrguttransport auf der Straße",
+        "name_en": "Hazardous Goods Transport by Road",
+        "description": "ADR 2025 regulations for hazardous goods transport on roads.",
+        "enabled": true,
+        "category": "hazmat",
+        "source_type": "pdf",
+        "amazon_relevance": ["hazmat", "ADR", "transport", "delivery"]
+      },
+      "_category_cargo": {
+        "_folder": true,
+        "_name": "Cargo Securing",
+        "_description": "Publications on load securing and cargo safety"
+      },
+      "AUVA M 845": {
+        "url": "https://auva.at/media/tvjnoy4t/m_845_4f-regel-ladungssicherung-bf.pdf",
+        "name": "M 845 - Die 4F-Regel für Ladungssicherung",
+        "name_en": "The 4F Rule for Cargo Securing",
+        "description": "Practical guide for cargo securing using the 4F method.",
+        "enabled": true,
+        "category": "cargo",
+        "source_type": "pdf",
+        "amazon_relevance": ["load securing", "dock", "transport"]
+      },
+      "AUVA M 846": {
+        "url": "https://auva.at/media/xfqnpzwx/m_846_ladungssicherung_im_strassenverkehr_bf.pdf",
+        "name": "M 846 - Ladungssicherung im Straßenverkehr",
+        "name_en": "Cargo Securing in Road Traffic",
+        "description": "Legal and physical fundamentals of cargo securing for road transport.",
+        "enabled": true,
+        "category": "cargo",
+        "source_type": "pdf",
+        "amazon_relevance": ["load securing", "delivery", "DSP", "transport"]
+      },
+      "_category_general": {
+        "_folder": true,
+        "_name": "General Safety",
+        "_description": "General safety publications and overviews"
+      },
+      "AUVA Basiswissen": {
+        "url": "https://auva.at/media/peujs3al/basiswissen-arbeitnehmerschutz-bf.pdf",
+        "name": "Basiswissen Arbeitnehmer:innenschutz 2025",
+        "name_en": "Basic Knowledge of Worker Protection 2025",
+        "description": "Comprehensive guide covering all aspects of worker protection in Austria.",
+        "enabled": true,
+        "category": "general",
+        "source_type": "pdf"
+      },
+      "AUVA M.plus 040.E17": {
+        "url": "https://auva.at/media/ghlabert/mplus_040e17_evaluierung_buero_bildschirmarbeitsplaetze_20.pdf",
+        "name": "M.plus 040.E17 - Evaluierung von Büro-/Bildschirmarbeitsplätzen",
+        "name_en": "Evaluation of Office/Screen Workplaces",
+        "description": "Risk assessment for office and screen workplaces.",
+        "enabled": true,
+        "category": "general",
+        "source_type": "pdf"
       }
     },
     "DE": {
@@ -399,6 +482,35 @@
         "enabled": true,
         "category": "forklifts",
         "source_type": "pdf"
+      },
+      "DGUV Vorschrift 68 DA": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1519",
+        "name": "DGUV Vorschrift 68 - Flurförderzeuge (mit Durchführungsanweisungen)",
+        "name_en": "Industrial Trucks Regulation (with Implementation Instructions)",
+        "description": "Accident prevention regulation for industrial trucks with detailed implementation guidance.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf",
+        "amazon_relevance": ["forklift", "pallet jack", "industrial truck"]
+      },
+      "DGUV Information 208-019": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/472",
+        "name": "DGUV Information 208-019 - Sicherer Umgang mit fahrbaren Hubarbeitsbühnen",
+        "name_en": "Safe Use of Mobile Elevating Work Platforms",
+        "description": "Safety for mobile elevating work platforms (MEWPs).",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf"
+      },
+      "DGUV Information 208-032": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1293",
+        "name": "DGUV Information 208-032 - Handverzug von Flurförderzeugen",
+        "name_en": "Manual Moving of Industrial Trucks",
+        "description": "Physical strain when manually pushing/pulling industrial trucks.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf",
+        "amazon_relevance": ["pallet jack", "manual handling", "pushing pulling"]
       },
       "_category_warehouse": {
         "_folder": true,
@@ -549,6 +661,145 @@
         "enabled": true,
         "category": "technical_rules",
         "source_type": "pdf"
+      },
+      "TRBS 1112": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1112.pdf?__blob=publicationFile",
+        "name": "TRBS 1112 - Instandhaltung",
+        "name_en": "Maintenance",
+        "description": "Technical rule for maintenance of work equipment.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf"
+      },
+      "TRBS 2111": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2111.pdf?__blob=publicationFile",
+        "name": "TRBS 2111 - Mechanische Gefährdungen",
+        "name_en": "Mechanical Hazards",
+        "description": "Protection against mechanical hazards from work equipment.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf"
+      },
+      "TRBS 2121-1": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121-1.pdf?__blob=publicationFile",
+        "name": "TRBS 2121-1 - Gefährdungen durch Absturz - Leitern",
+        "name_en": "Fall Protection - Ladders",
+        "description": "Protection against falls when using ladders.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf",
+        "amazon_relevance": ["ladder safety", "fall protection"]
+      },
+      "TRBS 2121-2": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121-2.pdf?__blob=publicationFile",
+        "name": "TRBS 2121-2 - Gefährdungen durch Absturz - Gerüste",
+        "name_en": "Fall Protection - Scaffolding",
+        "description": "Protection against falls from scaffolding.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf"
+      },
+      "TRBS 3151": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-3151.pdf?__blob=publicationFile",
+        "name": "TRBS 3151 - Vermeidung von Brand- und Explosionsgefährdungen an Tankstellen",
+        "name_en": "Fire and Explosion Prevention at Fuel Stations",
+        "description": "Prevention of fire and explosion hazards at fuel stations.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf"
+      },
+      "TRGS 400": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-400.pdf?__blob=publicationFile",
+        "name": "TRGS 400 - Gefährdungsbeurteilung für Tätigkeiten mit Gefahrstoffen",
+        "name_en": "Risk Assessment for Activities with Hazardous Substances",
+        "description": "Risk assessment guidelines for work with hazardous substances.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf",
+        "amazon_relevance": ["hazmat", "chemicals", "risk assessment"]
+      },
+      "TRGS 500": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-500.pdf?__blob=publicationFile",
+        "name": "TRGS 500 - Schutzmaßnahmen",
+        "name_en": "Protective Measures for Hazardous Substances",
+        "description": "Protective measures when working with hazardous substances.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf"
+      },
+      "TRGS 555": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-555.pdf?__blob=publicationFile",
+        "name": "TRGS 555 - Betriebsanweisung und Information der Beschäftigten",
+        "name_en": "Operating Instructions and Employee Information",
+        "description": "Requirements for operating instructions and employee training on hazardous substances.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf"
+      },
+      "ASR A1.8": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-8.pdf?__blob=publicationFile",
+        "name": "ASR A1.8 - Verkehrswege",
+        "name_en": "Traffic Routes",
+        "description": "Requirements for traffic routes in workplaces.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf",
+        "amazon_relevance": ["warehouse layout", "pedestrian safety", "forklift routes"]
+      },
+      "ASR A2.1": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-1.pdf?__blob=publicationFile",
+        "name": "ASR A2.1 - Schutz vor Absturz und herabfallenden Gegenständen",
+        "name_en": "Protection Against Falls and Falling Objects",
+        "description": "Protection against falls from height and falling objects.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf",
+        "amazon_relevance": ["fall protection", "mezzanine", "racking"]
+      },
+      "ASR A3.4": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-4.pdf?__blob=publicationFile",
+        "name": "ASR A3.4 - Beleuchtung",
+        "name_en": "Lighting",
+        "description": "Workplace lighting requirements.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf",
+        "amazon_relevance": ["warehouse lighting", "workplace conditions"]
+      },
+      "ASR A3.5": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-5.pdf?__blob=publicationFile",
+        "name": "ASR A3.5 - Raumtemperatur",
+        "name_en": "Room Temperature",
+        "description": "Workplace temperature requirements.",
+        "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf",
+        "amazon_relevance": ["warehouse temperature", "heat stress", "cold work"]
+      },
+      "_category_hazmat": {
+        "_folder": true,
+        "_name": "Hazardous Materials",
+        "_description": "Publications on hazardous substances and dangerous goods"
+      },
+      "DGUV Information 208-050": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3124",
+        "name": "DGUV Information 208-050 - Notfallmanagement Gefahrgut",
+        "name_en": "Emergency Management for Hazardous Goods",
+        "description": "Emergency management for handling and internal transport of hazardous goods.",
+        "enabled": true,
+        "category": "hazmat",
+        "source_type": "pdf",
+        "amazon_relevance": ["hazmat", "emergency", "spill response"]
+      },
+      "DGUV Information 214-090": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3622",
+        "name": "DGUV Information 214-090 - Gefährdungsbeurteilung im Straßenverkehr",
+        "name_en": "Risk Assessment for Road Traffic",
+        "description": "Risk assessment guidelines for work-related road traffic.",
+        "enabled": true,
+        "category": "transport",
+        "source_type": "pdf",
+        "amazon_relevance": ["delivery", "DSP", "road safety"]
       }
     },
     "NL": {
@@ -620,30 +871,30 @@
       },
       "_category_pdf_verification": {
         "_folder": true,
-        "_name": "PDF Verification Sources",
-        "_description": "Official PDF versions of key legislation"
+        "_name": "PDF Verification Sources (DISABLED)",
+        "_description": "Official PDF versions - DISABLED: wetten.overheid.nl returns HTML not real PDFs"
       },
       "Arbowet-PDF": {
         "url": "https://wetten.overheid.nl/BWBR0010346/2024-01-01/0/pdf",
         "name": "Arbeidsomstandighedenwet (PDF)",
-        "description": "Official PDF of the Working Conditions Act.",
-        "enabled": true,
+        "description": "DISABLED - wetten.overheid.nl returns HTML pages, not real PDFs. Use HTML source instead.",
+        "enabled": false,
         "category": "pdf_verification",
         "source_type": "pdf"
       },
       "Arbobesluit-PDF": {
         "url": "https://wetten.overheid.nl/BWBR0008498/2024-01-01/0/pdf",
         "name": "Arbeidsomstandighedenbesluit (PDF)",
-        "description": "Official PDF of the Working Conditions Decree.",
-        "enabled": true,
+        "description": "DISABLED - wetten.overheid.nl returns HTML pages, not real PDFs. Use HTML source instead.",
+        "enabled": false,
         "category": "pdf_verification",
         "source_type": "pdf"
       },
       "Arbeidstijdenwet-PDF": {
         "url": "https://wetten.overheid.nl/BWBR0007671/2024-01-01/0/pdf",
         "name": "Arbeidstijdenwet (PDF)",
-        "description": "Official PDF of the Working Time Act.",
-        "enabled": true,
+        "description": "DISABLED - wetten.overheid.nl returns HTML pages, not real PDFs. Use HTML source instead.",
+        "enabled": false,
         "category": "pdf_verification",
         "source_type": "pdf"
       }
