@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react'
 import { useApp } from '../context/AppContext'
 import { ModuleCard } from './ModuleCard'
 import { getLawsStatistics, getRecentlyUpdatedLaws } from '../services/euLawsDatabase'
-import { WarehouseVisualization } from './modules/WarehouseVisualization'
 import { LessonsLearnedFeed } from './modules/LessonsLearnedFeed'
 
 // Check if database was updated recently (within last 14 days)
@@ -115,40 +114,33 @@ export function Dashboard({ onModuleSelect }) {
     }
   ]
 
-  const newFeatureModules = [
-    {
-      id: 'trainingResources',
-      icon: '🎓',
-      title: 'Training Resources',
-      description: 'Access external workplace safety training courses and materials',
-      gradient: 'from-purple-500 to-purple-600',
-      badge: 'Training'
-    },
-    {
-      id: 'checklistTemplates',
-      icon: '📋',
-      title: 'Compliance Checklists',
-      description: 'Pre-built checklists for site setup, audits, and inspections',
-      gradient: 'from-teal-500 to-teal-600',
-      badge: 'New'
-    },
-    {
-      id: 'penaltyLookup',
-      icon: '⚖️',
-      title: 'Bußgeldkatalog',
-      description: 'Lookup fines and penalties for safety violations by country',
-      gradient: 'from-red-500 to-red-600',
-      badge: 'Reference'
-    },
-    {
-      id: 'glossary',
-      icon: '📖',
-      title: 'Glossary',
-      description: 'Safety terminology, abbreviations, and legal references',
-      gradient: 'from-violet-500 to-violet-600',
-      badge: 'Reference'
+  // Get compliance section labels based on translations
+  const getComplianceLabels = () => {
+    const labels = {
+      en: {
+        title: 'Compliance Center',
+        description: 'Interactive warehouse floor plan, checklists, training, penalties, and glossary',
+        badge: 'Central Hub',
+        subItems: ['Warehouse Floor', 'Checklists', 'Training', 'Penalties', 'Glossary']
+      },
+      de: {
+        title: 'Compliance-Center',
+        description: 'Interaktiver Lagerhallenplan, Checklisten, Schulung, Bußgeld und Glossar',
+        badge: 'Zentrale',
+        subItems: ['Lagerhalle', 'Checklisten', 'Schulung', 'Bußgeld', 'Glossar']
+      },
+      nl: {
+        title: 'Compliance Center',
+        description: 'Interactieve magazijnplattegrond, checklists, training, boetes en woordenlijst',
+        badge: 'Centraal',
+        subItems: ['Magazijnvloer', 'Checklists', 'Training', 'Boetes', 'Woordenlijst']
+      }
     }
-  ]
+    const lang = t.appTitle?.includes('MEU') ? 'en' : (t.appSubtitle?.includes('Letzte') ? 'de' : (t.appSubtitle?.includes('Laatste') ? 'nl' : 'en'))
+    return labels[lang] || labels.en
+  }
+
+  const complianceLabels = getComplianceLabels()
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -341,62 +333,53 @@ export function Dashboard({ onModuleSelect }) {
         </div>
       </div>
 
-      {/* New Features Section */}
-      <div>
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Compliance Management
-            </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Track, assess, and manage your safety compliance
-            </p>
-          </div>
+      {/* Compliance Center - Main Feature Button */}
+      <button
+        onClick={() => onModuleSelect('compliance')}
+        className="w-full group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 p-6 md:p-8 text-left transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1"
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-grid-pattern" />
         </div>
+        <div className="absolute -top-12 -right-12 w-64 h-64 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {newFeatureModules.map((module, index) => (
-            <button
-              key={module.id}
-              onClick={() => onModuleSelect(module.id)}
-              className={`group relative overflow-hidden rounded-xl bg-gradient-to-br ${module.gradient} p-5 text-left transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5`}
-              style={{ animationDelay: `${index * 0.05}s` }}
-            >
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-3">
-                  <span className="text-3xl">{module.icon}</span>
-                  <span className="px-2 py-0.5 bg-white/20 rounded text-xs font-medium text-white">
-                    {module.badge}
-                  </span>
-                </div>
-                <h4 className="text-lg font-semibold text-white mb-1">{module.title}</h4>
-                <p className="text-white/80 text-sm line-clamp-2">{module.description}</p>
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
+              <span className="text-3xl">✅</span>
+            </div>
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {complianceLabels.title}
+                </h3>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-sm font-medium text-white">
+                  {complianceLabels.badge}
+                </span>
               </div>
-            </button>
-          ))}
-        </div>
-      </div>
+              <p className="text-white/80 max-w-xl mb-3">
+                {complianceLabels.description}
+              </p>
+              {/* Sub-items preview */}
+              <div className="flex flex-wrap gap-2">
+                {complianceLabels.subItems.map((item, idx) => (
+                  <span key={idx} className="px-2 py-1 bg-white/15 rounded-lg text-xs text-white/90">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
 
-      {/* Interactive Warehouse Section */}
-      <div>
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Interactive Warehouse Safety
-            </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Click on zones to explore applicable safety regulations
-            </p>
+          <div className="flex items-center gap-2 text-white font-medium">
+            <span>{t.common?.open || 'Open'}</span>
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </div>
         </div>
-        <WarehouseVisualization
-          onSelectRegulation={(reg) => {
-            // Navigate to law browser with the selected regulation
-            onModuleSelect('lawBrowser', { searchQuery: reg.abbr })
-          }}
-        />
-      </div>
+      </button>
 
       {/* Lessons Learned Feed Section */}
       <div>

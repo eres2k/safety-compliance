@@ -74,7 +74,7 @@ const severityLabels = {
   low: { en: 'Low', de: 'Niedrig', nl: 'Laag' }
 }
 
-export function PenaltyLookup({ onBack }) {
+export function PenaltyLookup({ onBack, embedded = false }) {
   const { t, framework, currentFrameworkColor, language } = useApp()
   const [searchQuery, setSearchQuery] = useState('')
   const [severityFilter, setSeverityFilter] = useState('all')
@@ -93,26 +93,28 @@ export function PenaltyLookup({ onBack }) {
   return (
     <div className="animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <button
-          onClick={onBack}
-          className="group flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-colors"
-        >
-          <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-          {t.common.back}
-        </button>
+      {!embedded && (
+        <div className="flex items-center justify-between mb-8">
+          <button
+            onClick={onBack}
+            className="group flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-colors"
+          >
+            <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            {t.common.back}
+          </button>
 
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-red-500/10 dark:bg-red-500/20 rounded-full border border-red-500/20">
-          <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-          </svg>
-          <span className="text-sm font-medium text-red-600 dark:text-red-400">
-            {currentFrameworkColor?.name || framework}
-          </span>
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-red-500/10 dark:bg-red-500/20 rounded-full border border-red-500/20">
+            <svg className="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+            </svg>
+            <span className="text-sm font-medium text-red-600 dark:text-red-400">
+              {currentFrameworkColor?.name || framework}
+            </span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Title Section */}
       <div className="mb-8">

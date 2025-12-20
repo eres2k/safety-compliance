@@ -248,6 +248,18 @@
     "queryPrompt": "Wat zijn de vereisten voor [ONDERWERP] in een verteilerstation met [GROOTTE] werknemers?",
     "quickTopics": "Snelle onderwerpen:"
   },
+  "complianceCenter": {
+    "title": "Compliance Center",
+    "description": "Uitgebreid compliancebeheer voor magazijnveiligheid",
+    "tabs": {
+      "warehouseFloor": "Magazijnvloer",
+      "complianceChecklist": "Compliance Checklist",
+      "training": "Training",
+      "bussgeld": "Boetes",
+      "glossary": "Woordenlijst"
+    },
+    "badge": "Centraal"
+  },
   "api": {
     "notConfigured": "Servicefuncties vereisen API-configuratie. Neem contact op met beheerder.",
     "error": "Fout bij het genereren van antwoord. Probeer opnieuw."

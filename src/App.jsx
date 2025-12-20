@@ -10,7 +10,8 @@ import {
   ChecklistTemplates,
   PreventionTimeCalculator,
   PenaltyLookup,
-  Glossary
+  Glossary,
+  Compliance
 } from './components/modules'
 import { RateLimitIndicator } from './components/ui'
 
@@ -20,8 +21,16 @@ import { initializeLawsDatabase } from './services/euLawsDatabase'
 function AppContent() {
   const [activeModule, setActiveModule] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [pendingLawNavigation, setPendingLawNavigation] = useState(null) // { lawId, country } for cross-module navigation
+  const [pendingLawNavigation, setPendingLawNavigation] = useState(null) // { lawId, country, searchQuery } for cross-module navigation
   const { isDark } = useApp()
+
+  // Handle module selection with optional navigation params
+  const handleModuleSelect = (moduleId, options = {}) => {
+    if (options.lawId || options.country || options.searchQuery) {
+      setPendingLawNavigation(options)
+    }
+    setActiveModule(moduleId)
+  }
 
   // Initialize database on mount - loads only the default framework (DE)
   // Other frameworks are loaded on-demand when user switches
@@ -61,6 +70,7 @@ function AppContent() {
             onBack={onBack}
             initialLawId={pendingLawNavigation?.lawId}
             initialCountry={pendingLawNavigation?.country}
+            initialSearchQuery={pendingLawNavigation?.searchQuery}
             onNavigationConsumed={clearPendingLawNavigation}
           />
         )
@@ -76,8 +86,19 @@ function AppContent() {
         return <PenaltyLookup onBack={onBack} />
       case 'glossary':
         return <Glossary onBack={onBack} />
+      case 'compliance':
+        return (
+          <Compliance
+            onBack={onBack}
+            onSelectRegulation={(reg) => {
+              // Navigate to law browser with the selected regulation
+              setPendingLawNavigation({ searchQuery: reg.abbr })
+              setActiveModule('lawBrowser')
+            }}
+          />
+        )
       default:
-        return <Dashboard onModuleSelect={setActiveModule} />
+        return <Dashboard onModuleSelect={handleModuleSelect} />
     }
   }
 

@@ -248,6 +248,18 @@
     "queryPrompt": "What are the requirements for [TOPIC] in a delivery station with [SIZE] employees?",
     "quickTopics": "Quick topics:"
   },
+  "complianceCenter": {
+    "title": "Compliance Center",
+    "description": "Comprehensive compliance management for warehouse safety",
+    "tabs": {
+      "warehouseFloor": "Warehouse Floor",
+      "complianceChecklist": "Compliance Checklist",
+      "training": "Training",
+      "bussgeld": "Penalties",
+      "glossary": "Glossary"
+    },
+    "badge": "Central Hub"
+  },
   "api": {
     "notConfigured": "Service features require API configuration. Please contact administrator.",
     "error": "Error generating response. Please try again."

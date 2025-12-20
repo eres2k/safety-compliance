@@ -248,6 +248,18 @@
     "queryPrompt": "Was sind die Anforderungen für [THEMA] in einer Verteilerstation mit [GRÖSSE] Mitarbeitern?",
     "quickTopics": "Schnellthemen:"
   },
+  "complianceCenter": {
+    "title": "Compliance-Center",
+    "description": "Umfassendes Compliance-Management für Lagersicherheit",
+    "tabs": {
+      "warehouseFloor": "Lagerhalle",
+      "complianceChecklist": "Compliance-Checkliste",
+      "training": "Schulung",
+      "bussgeld": "Bußgeld",
+      "glossary": "Glossar"
+    },
+    "badge": "Zentrale"
+  },
   "api": {
     "notConfigured": "Service-Funktionen erfordern API-Konfiguration. Bitte Administrator kontaktieren.",
     "error": "Fehler bei der Generierung. Bitte erneut versuchen."

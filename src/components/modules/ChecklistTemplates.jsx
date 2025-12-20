@@ -125,8 +125,17 @@ const CHECKLIST_TEMPLATES = {
   }
 }
 
-export function ChecklistTemplates({ onBack }) {
-  const { framework, frameworkColors, addAuditEntry } = useApp()
+export function ChecklistTemplates({ onBack, embedded = false }) {
+  const { framework, frameworkColors, addAuditEntry, t, language } = useApp()
+  const lang = language || 'en'
+
+  // Localized labels
+  const labels = {
+    en: { title: 'Compliance Checklists', subtitle: 'Pre-built safety checklists for common scenarios', print: 'Print', save: 'Save', complete: 'Complete', cancel: 'Cancel', startChecklist: 'Start Checklist', recentChecklists: 'Recent Checklists', inProgress: 'In Progress', completed: 'Completed', itemsCompleted: 'items completed', addNotes: 'Add notes...' },
+    de: { title: 'Compliance-Checklisten', subtitle: 'Vorgefertigte Sicherheits-Checklisten', print: 'Drucken', save: 'Speichern', complete: 'Abschließen', cancel: 'Abbrechen', startChecklist: 'Checkliste starten', recentChecklists: 'Letzte Checklisten', inProgress: 'In Bearbeitung', completed: 'Abgeschlossen', itemsCompleted: 'Punkte erledigt', addNotes: 'Notizen hinzufügen...' },
+    nl: { title: 'Compliance Checklists', subtitle: 'Kant-en-klare veiligheidschecklists', print: 'Afdrukken', save: 'Opslaan', complete: 'Voltooien', cancel: 'Annuleren', startChecklist: 'Checklist starten', recentChecklists: 'Recente Checklists', inProgress: 'In uitvoering', completed: 'Voltooid', itemsCompleted: 'items voltooid', addNotes: 'Notities toevoegen...' }
+  }
+  const l = labels[lang] || labels.en
 
   const [selectedTemplate, setSelectedTemplate] = useState(null)
   const [activeChecklist, setActiveChecklist] = useState(null)
@@ -264,35 +273,37 @@ export function ChecklistTemplates({ onBack }) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <button
-            onClick={activeChecklist ? () => setActiveChecklist(null) : onBack}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-whs-dark-700 rounded-lg transition-colors"
-          >
-            <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
+          {(!embedded || activeChecklist) && (
+            <button
+              onClick={activeChecklist ? () => setActiveChecklist(null) : onBack}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-whs-dark-700 rounded-lg transition-colors"
+            >
+              <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {activeChecklist ? activeChecklist.title : 'Compliance Checklists'}
+            <h1 className={`${embedded ? 'text-xl' : 'text-2xl'} font-bold text-gray-900 dark:text-white`}>
+              {activeChecklist ? activeChecklist.title : l.title}
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               {activeChecklist
-                ? `${activeChecklist.items.filter(i => i.completed).length}/${activeChecklist.items.length} items completed`
-                : 'Pre-built safety checklists for common scenarios'}
+                ? `${activeChecklist.items.filter(i => i.completed).length}/${activeChecklist.items.length} ${l.itemsCompleted}`
+                : l.subtitle}
             </p>
           </div>
         </div>
         {activeChecklist && (
           <div className="flex gap-2">
             <Button variant="secondary" size="sm" onClick={() => handleExport('print')}>
-              Print
+              {l.print}
             </Button>
             <Button variant="secondary" size="sm" onClick={saveChecklist}>
-              Save
+              {l.save}
             </Button>
             <Button size="sm" onClick={completeChecklist} disabled={progress < 100}>
-              Complete
+              {l.complete}
             </Button>
           </div>
         )}
@@ -354,7 +365,7 @@ export function ChecklistTemplates({ onBack }) {
                         </div>
                         <input
                           type="text"
-                          placeholder="Add notes..."
+                          placeholder={l.addNotes}
                           value={item.notes}
                           onChange={(e) => updateItemNotes(item.id, e.target.value)}
                           className="mt-2 w-full px-2 py-1 text-sm bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-600 rounded focus:outline-none focus:ring-1 focus:ring-whs-orange-500"
@@ -431,10 +442,10 @@ export function ChecklistTemplates({ onBack }) {
 
                   <div className="flex gap-3">
                     <Button variant="secondary" className="flex-1" onClick={() => setSelectedTemplate(null)}>
-                      Cancel
+                      {l.cancel}
                     </Button>
                     <Button className="flex-1" onClick={() => startChecklist(selectedTemplate)}>
-                      Start Checklist
+                      {l.startChecklist}
                     </Button>
                   </div>
                 </CardContent>
@@ -446,7 +457,7 @@ export function ChecklistTemplates({ onBack }) {
           {recentChecklists.length > 0 && (
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Recent Checklists</h3>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{l.recentChecklists}</h3>
                 <div className="space-y-3">
                   {recentChecklists.map(checklist => (
                     <div
@@ -459,7 +470,7 @@ export function ChecklistTemplates({ onBack }) {
                         <div>
                           <p className="font-medium text-gray-900 dark:text-white">{checklist.title}</p>
                           <p className="text-xs text-gray-500">
-                            {checklist.completedAt ? 'Completed' : 'In Progress'} •{' '}
+                            {checklist.completedAt ? l.completed : l.inProgress} •{' '}
                             {new Date(checklist.savedAt || checklist.startedAt).toLocaleDateString()}
                           </p>
                         </div>
