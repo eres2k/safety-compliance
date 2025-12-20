@@ -2191,14 +2191,20 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
               setContentSearchTerm('')
             }}
             onSearch={(term, mode) => {
-              // Also support traditional search mode
+              // Support all search modes from SmartSearch and InteractiveSearch
+              // modes: 'all', 'laws', 'topic', 'fulltext', 'pdf', 'content', 'topics'
               if (mode === 'laws' || mode === 'all') {
                 setSearchTerm(term)
               }
-              if (mode === 'content' || mode === 'all') {
+              // 'fulltext', 'content', and 'pdf' all search in law text content
+              if (mode === 'content' || mode === 'fulltext' || mode === 'pdf' || mode === 'all') {
                 setContentSearchTerm(term)
+                // Also set searchTerm for PDF/fulltext to filter the law list
+                if (mode === 'fulltext' || mode === 'pdf') {
+                  setSearchTerm(term)
+                }
               }
-              if (mode === 'topics') {
+              if (mode === 'topics' || mode === 'topic') {
                 // Search by topic - filter based on WHS topics
                 setSearchTerm(term)
               }

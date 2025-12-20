@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react'
 import { translations } from '../data/locales'
-import { lawData } from '../data/laws'
 
 const AppContext = createContext(null)
 
@@ -142,9 +141,6 @@ export function AppProvider({ children }) {
 
   // Get current translations
   const t = useMemo(() => translations[language] || translations.en, [language])
-
-  // Get current law data
-  const laws = useMemo(() => lawData[framework] || lawData.DE, [framework])
 
   // Toggle theme
   const toggleTheme = useCallback(() => {
@@ -316,8 +312,6 @@ export function AppProvider({ children }) {
     isDark,
     theme: isDark ? 'dark' : 'light',
     toggleTheme,
-    // Laws
-    laws,
     // Bookmarks
     bookmarks,
     toggleBookmark,
