@@ -1,7 +1,7 @@
 {
   "country": "NL",
   "language": "nl",
-  "scraped_at": "2025-12-20T04:43:56.612000",
+  "scraped_at": "2025-12-20T21:50:17.238649",
   "articles": {
     "Arbowet": {
       "title": "Arbeidsomstandighedenwet",
@@ -29,5 +29,102 @@
       "summary": "Hetrijtijdenbesluitis de gebruikelijke benaming voor de wetgeving, die de werkuren van onder meerbuschauffeursenvrachtwagenchauffeursregelt."
     }
   },
-  "ai_suggested_articles": []
+  "ai_suggested_articles": [
+    {
+      "law_abbr": "ASchG",
+      "title": "Arbeidsomstandighedenbesluit",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenbesluit",
+      "summary": "HetArbeidsomstandighedenbesluit(of kortwegArbobesluit) is eenalgemene maatregel van bestuuren maakt deel uit van deNederlandsearbeidsomstandighedenwetgeving. In het Arbobesluit staan concrete regels, ingedeeld naar onderwerp. De voorschriften zijn algemeen geformuleerd. Zij geven aan welk resultaat het arbobeleid moet hebben, maar leggen niet dwingend op hoe dat resultaat bereikt moet worden.",
+      "reason": "The Arbobesluit is the main decree implementing the Arbowet and details many specific obligations for employers, including those relevant to logistics and warehouse operations.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ASchG",
+      "title": "Risicoanalyse",
+      "url": "https://nl.wikipedia.org/wiki/Risicoanalyse",
+      "summary": "Eenrisicoanalyseis een methode waarbij nader benoemde risico's worden gekwantificeerd door het bepalen van de kans dat een dreiging zich voordoet en de gevolgen daarvan:Risico=KansxGevolg. De risicoanalyse is de eerste stap binnen het risicomanagementproces.",
+      "reason": "Risk assessment is a fundamental requirement of the Arbowet and Arbobesluit, crucial for identifying and mitigating hazards in a warehouse environment.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ASchG",
+      "title": "Persoonlijke beschermingsmiddelen",
+      "url": "https://nl.wikipedia.org/wiki/Persoonlijke_beschermingsmiddelen",
+      "summary": "Persoonlijke beschermingsmiddelen(PBM) worden ingezet zowel in de privésfeer als bij professioneel gebruik. Ze zijn ontwikkeld om de restrisico's af te dekken, met andere woorden de drager van het PBM beschermen tegen risico's wanneer de andere maatregelen (eliminatie van het gevaar, substitutie van het gevaar, gebruik van collectieve beschermingsmiddelen) onvoldoende blijkt te zijn.[1]",
+      "reason": "Personal protective equipment (PPE) is a key component of workplace safety regulations, particularly relevant for tasks in logistics and warehouses.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "Arbowet",
+      "title": "Arbeidsomstandighedenwet",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenwet",
+      "summary": "DeArbeidsomstandighedenwet(of kortwegArbowet) is eenNederlandse wetdie regels bevat voorwerkgeversenwerknemersom de gezondheid, de veiligheid en het welzijn van werknemers en zelfstandig ondernemers te bevorderen. Het doel is om ongevallen en ziekten, veroorzaakt door het werk, te voorkomen. De arbowet is sinds 2020 vanwege decoronapandemiegrondig aangepast omdat medewerkers nu vaker thuis moeten werken.",
+      "reason": "This is the primary law governing workplace health and safety in the Netherlands, providing the overarching framework for all related regulations.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "Arbowet",
+      "title": "Bedrijfshulpverlening",
+      "url": "https://nl.wikipedia.org/wiki/Bedrijfshulpverlening",
+      "summary": "Bedrijfshulpverlening(BHV) is de hulp die wordt verleend bij ongewenste gebeurtenissen in een organisatie, die de veiligheid en/of gezondheid van de werknemers en andere aanwezigen bedreigen, zoals ongevallen en brand. Bedrijfshulpverlening is verplicht voor werkgevers in Nederland.",
+      "reason": "Company emergency response (BHV) is a mandatory aspect of the Arbowet, essential for handling incidents in any workplace, including logistics centers.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "Arbowet",
+      "title": "Nederlandse Arbeidsinspectie",
+      "url": "https://nl.wikipedia.org/wiki/Nederlandse_Arbeidsinspectie",
+      "summary": "DeNederlandse Arbeidsinspectie(NLA) van het NederlandseMinisterie van Sociale Zaken en Werkgelegenheid(SZW) is op 1 januari 2012 ontstaan door samenvoeging van de Arbeidsinspectie, de Inspectie Werk en Inkomen en de Sociale Inlichtingen- en Opsporingsdienst. Van 1 januari 2012 tot en met 31 december 2021 heette de dienstInspectie SZW. De Nederlandse Arbeidsinspectie kent de volgende directies:",
+      "reason": "The Arbeidsinspectie (now part of Inspectie SZW) is the regulatory body responsible for enforcing the Arbowet, providing context on oversight and compliance.",
+      "priority": "low"
+    },
+    {
+      "law_abbr": "Arbobesluit",
+      "title": "Arbeidsomstandighedenbesluit",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenbesluit",
+      "summary": "HetArbeidsomstandighedenbesluit(of kortwegArbobesluit) is eenalgemene maatregel van bestuuren maakt deel uit van deNederlandsearbeidsomstandighedenwetgeving. In het Arbobesluit staan concrete regels, ingedeeld naar onderwerp. De voorschriften zijn algemeen geformuleerd. Zij geven aan welk resultaat het arbobeleid moet hebben, maar leggen niet dwingend op hoe dat resultaat bereikt moet worden.",
+      "reason": "This decree details specific obligations for employers and employees under the Arbowet, including requirements for safe working conditions, equipment, and procedures relevant to warehouses.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "Arbobesluit",
+      "title": "Ergonomie",
+      "url": "https://nl.wikipedia.org/wiki/Ergonomie",
+      "summary": "Ergonomieis de wetenschappelijke studie van de mens in relatie tot zijn omgeving. Dit kan een product, ruimte ofwerkplekzijn. Ergonomie zit vervat in ons dagelijks leven, maar is vooral bekend in arbeidssituaties. Het is afgeleid van deGrieksewoordenergon, werk, ennomos, wet, en moet ervoor zorgen dat deveiligheidengezondheidvan de werknemers verzekerd wordt. Bij het ontwerpen van consumentengoederen en interieurs speelt vooral comfort en het doeltreffend functioneren een rol. De term \"human fac",
+      "reason": "Ergonomics is a significant focus within the Arbobesluit, addressing physical strain and repetitive tasks common in logistics and warehouse environments.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "Arbobesluit",
+      "title": "Masculinisme",
+      "url": "https://nl.wikipedia.org/wiki/Masculinisme",
+      "summary": "Masculinismeis een verzameling vanmaatschappelijkeenpolitiekebewegingen die streven naar de opheffing van achterstelling/discriminatie vanmannenen hier (meer) maatschappelijke aandacht voor vragen. De beweging probeert ongelijke verhoudingen tussen mannen en vrouwenkritischte analyseren. Masculinisme wordt veelal beschouwd als de mannelijke tegenhanger van het veel bekenderefeminisme.",
+      "reason": "A general overview of workplace safety, which the Arbobesluit elaborates upon with specific regulations.",
+      "priority": "low"
+    },
+    {
+      "law_abbr": "Arbobeleidsregels",
+      "title": "Beleidsregels arbeidsomstandighedenwetgeving",
+      "url": "https://nl.wikipedia.org/wiki/Beleidsregels_arbeidsomstandighedenwetgeving",
+      "summary": "DeBeleidsregels arbeidsomstandighedenwetgeving(of kortwegArbobeleidsregels) maken deel uit van deNederlandseArbeidsomstandighedenwetgeving. De Arbobeleidsregels bevatten geen bindende voorschriften, maar geven wel suggesties hoe de werkgever de bescherming die de wet verlangt, kan bereiken. Eenwerkgeverkan dus zelf bepalen op welke manier hij dat niveau wil bereiken. Er is één regel die duidelijk afwijkt. Dat is de regel over boeteoplegging. De berekening van deboeteen wanneer de boete verhoogd ",
+      "reason": "These are administrative rules that further clarify and specify the implementation of the Arbowet and Arbobesluit, offering detailed guidance on various safety aspects.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "Arbobeleidsregels",
+      "title": "Gevaarlijke stoffen",
+      "url": "https://nl.wikipedia.org/wiki/Gevaarlijke_stoffen",
+      "summary": "Dit artikel bevat verouderde informatie en zou bijgewerkt moeten worden. U wordt uitgenodigd om dit artikel bij te werken.",
+      "reason": "If the warehouse handles any chemicals or hazardous materials, these rules provide specific guidance on their safe storage and handling.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "Arbobeleidsregels",
+      "title": "Arbo-informatieblad",
+      "url": "https://nl.wikipedia.org/wiki/Arbo-informatieblad",
+      "summary": "EenArbo-informatieblad(afgekortAI-blad) is een publicatie, uitgegeven onder toezicht van hetMinisterie van Sociale Zaken en Werkgelegenheid, die voorwerkgeversenwerknemersArbowetgevinginzichtelijk en toegankelijk maakt. AI-bladen worden uitgegeven door deSdu.",
+      "reason": "Relevant for the safe operation of machinery and equipment used in logistics and warehousing.",
+      "priority": "medium"
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "country": "AT",
   "language": "de",
-  "scraped_at": "2025-12-20T04:03:03.729840",
+  "scraped_at": "2025-12-20T21:44:43.117433",
   "articles": {
     "ASchG": {
       "title": "ArbeitnehmerInnenschutzgesetz",
@@ -44,5 +44,254 @@
       "summary": "EinGefahrstoffverzeichnisgibt einen Überblick über die in einem Betrieb (sinngemäß auch Schule, Amt, Apotheke …) verwendetenGefahrstoffe."
     }
   },
-  "ai_suggested_articles": []
+  "ai_suggested_articles": [
+    {
+      "law_abbr": "ASchG",
+      "title": "Arbeitsschutzgesetz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsschutzgesetz",
+      "summary": "DasArbeitsschutzgesetz(AbkürzungArbSchG) ist ein deutsches Gesetz zur Umsetzung derRichtlinie 89/391/EWG (Arbeitsschutz-Rahmenrichtlinie).\nDasArbeitssicherheitsgesetzist das „Controlling-Gesetz“ zum Arbeitsschutzgesetz.",
+      "reason": "This is the primary Austrian law concerning workplace safety and health, providing the foundational principles.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ASchG",
+      "title": "Gefährdungsbeurteilung",
+      "url": "https://de.wikipedia.org/wiki/Gefährdungsbeurteilung",
+      "summary": "DieGefährdungsbeurteilungbeschreibt den Prozess der systematischen Ermittlung und Bewertung aller relevanten Gefährdungen, denen die Beschäftigten im Zuge ihrer beruflichen Tätigkeit ausgesetzt sind. Hinzu kommen die Ableitung und Umsetzung aller zum Schutz der Sicherheit und der Gesundheit erforderlichen Maßnahmen, die anschließend hinsichtlich ihrer Wirksamkeit überprüft werden müssen. Das Ziel besteht darin, Gefährdungen bei der Arbeit frühzeitig zu erkennen und diesen präventiv, das heißt no",
+      "reason": "Risk assessment is a core requirement of the ASchG, crucial for identifying and mitigating workplace hazards in logistics.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ASchG",
+      "title": "Persönliche Schutzausrüstung",
+      "url": "https://de.wikipedia.org/wiki/Persönliche_Schutzausrüstung",
+      "summary": "Persönliche Schutzausrüstung(PSA) bezeichnet imArbeitsschutzund in derVerkehrssicherheitSchutzkleidungund andere Ausstattungsstücke zum Selbstschutz bei potentiell gesundheitsgefährdendenTätigkeiten.",
+      "reason": "The ASchG mandates the provision and use of PPE, which is vital in warehouse environments for preventing injuries.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ArbVG",
+      "title": "Betriebsverfassung",
+      "url": "https://de.wikipedia.org/wiki/Betriebsverfassung",
+      "summary": "Betriebsverfassungist die grundlegende Ordnung der Zusammenarbeit vonArbeitgeberund der von denArbeitnehmerngewähltenbetrieblichenInteressenvertretung. Ihre Grundlage ist in Deutschland dasBetriebsverfassungsgesetz. Die Vertretung der Beschäftigten imöffentlichen Dienstist in denPersonalvertretungsgesetzengeregelt, die der kirchlichen Mitarbeiter imMitarbeitervertretungsgesetzbzw. der Mitarbeitervertretungsordnung.",
+      "reason": "This law governs the relationship between employers and employees, including the role of works councils in workplace safety matters.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbVG",
+      "title": "Betriebsrat",
+      "url": "https://de.wikipedia.org/wiki/Betriebsrat",
+      "summary": "EinBetriebsratist eine institutionalisierteArbeitnehmervertretungin Betrieben,Unternehmenund Konzernen. Fachsprachlich bezeichnet das Wort das betriebsverfassungsrechtliche Mitbestimmungsorgan, umgangssprachlich wird darüber hinaus oft auch ein einzelnes Mitglied des Organs als Betriebsrat oder Betriebsrätin bezeichnet. In Unternehmen derHandelsschifffahrtspricht man von einemSeebetriebsrat.",
+      "reason": "Works councils have significant rights and responsibilities regarding health and safety in the workplace, as outlined in the ArbVG.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbVG",
+      "title": "Sozialpartnerschaft",
+      "url": "https://de.wikipedia.org/wiki/Sozialpartnerschaft",
+      "summary": "Der BegriffSozialpartnerschaftbezeichnet das kooperative Verhältnis der Sozialpartner (vor allem Arbeitgeber- und Arbeitnehmerverbände) mit dem Ziel, Interessengegensätze durch Konsenspolitik zu lösen und offene Konflikte einzudämmen. Sozialpartnerschaften sind in verschiedenen Staaten verschieden aufgebaut.",
+      "reason": "Understanding the concept of social partnership in Austria provides context for the collaborative approach to workplace issues, including safety.",
+      "priority": "low"
+    },
+    {
+      "law_abbr": "ArbZeitG",
+      "title": "Arbeitszeitgesetz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitszeitgesetz",
+      "summary": "Das deutscheArbeitszeitgesetzbetrifft den öffentlich-rechtlichen Arbeitsschutz vonArbeitnehmern. Es begrenzt die höchstzulässige täglicheArbeitszeit, es setzt Mindestruhepausen während der Arbeitszeit und Mindestruhezeiten zwischen Beendigung und Wiederaufnahme der Arbeit sowie die Arbeitsruhe an Sonn- und Feiertagen fest. Zudem enthält es Schutzvorschriften zur Nachtarbeit. Das Gesetz ist fürArbeitgeberund Arbeitnehmer verbindlich.",
+      "reason": "This is the primary Austrian law regulating working hours, rest periods, and breaks, directly impacting employee well-being and safety.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbZeitG",
+      "title": "Ruhezeit",
+      "url": "https://de.wikipedia.org/wiki/Ruhezeit",
+      "summary": "Ruhezeitsteht für:",
+      "reason": "Understanding rest periods and breaks is essential for preventing fatigue-related accidents in demanding logistics operations.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ArbZeitG",
+      "title": "Mehrarbeit",
+      "url": "https://de.wikipedia.org/wiki/Mehrarbeit",
+      "summary": "Mehrarbeit, auchÜberstundenoderPlusstunden, leistenArbeitnehmerdann, wenn sie die vereinbarteArbeitszeitüberschreiten. Die maßgebliche Regelarbeitszeit kann sich direkt aus demArbeitsvertragergeben, aber auch mittelbar aus einemTarifvertrag,Kollektivvertragbzw.Gesamtarbeitsvertrag, einerBetriebsvereinbarungoder einemGesetz.[1]",
+      "reason": "Regulations on overtime are critical in logistics where workload can fluctuate, and excessive overtime can increase safety risks.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "MSchG",
+      "title": "Mutterschutzgesetz",
+      "url": "https://de.wikipedia.org/wiki/Mutterschutzgesetz",
+      "summary": "Das deutscheMutterschutzgesetz(MuSchG) schützt die Gesundheit von Frauen in Anstellung, Studium oder Ausbildung und ihrer Kinder während derSchwangerschaft, nach derEntbindungund in derStillzeit.",
+      "reason": "This law protects pregnant employees and new mothers, including provisions for a safe working environment.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "MSchG",
+      "title": "Schwangerschaft",
+      "url": "https://de.wikipedia.org/wiki/Schwangerschaft",
+      "summary": "DieSchwangerschaft(fachsprachlich auchGestationoderGravidität, lateinischgraviditas) ist der Zeitraum, in dem einebefruchteteEizelleim Körper einer werdendenMutter, genanntSchwangere, zu einem Kind heranreift. Die Schwangerschaft bei Menschen dauert bei normalem Verlauf von der Befruchtung bis zur Geburt durchschnittlich 38 Wochen, mit einer Schwankungsbreite von mehreren Wochen.[1]",
+      "reason": "General information on pregnancy and its implications for work can provide context for the specific protections offered.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "MSchG",
+      "title": "Ergonomie",
+      "url": "https://de.wikipedia.org/wiki/Ergonomie",
+      "summary": "DieErgonomieoderErgonomik(vonaltgriechischἔργονergon, deutsch‚Arbeit‘, ‚Werk‘, undνόμοςnomos, deutsch‚Regel‘, ‚Gesetz‘) ist dieWissenschaftvon der Gesetzmäßigkeitmenschlicherbzw. automatisierter Arbeit. Zuerst verwendet und definiert wurde der Begriff 1857 vonWojciech Jastrzębowski.[1]Ziel der Ergonomie ist es, die Arbeitsbedingungen, den Arbeitsablauf, die Anordnung der zu greifenden Gegenstände (Werkstück,Werkzeug,Halbzeug) räumlich und zeitlich optimiert anzuordnen sowie die Arbeitsgeräte für",
+      "reason": "Understanding how workplaces can be adapted for pregnant employees is relevant to ensuring compliance with the MSchG.",
+      "priority": "low"
+    },
+    {
+      "law_abbr": "GlBG",
+      "title": "Allgemeines Gleichbehandlungsgesetz",
+      "url": "https://de.wikipedia.org/wiki/Allgemeines_Gleichbehandlungsgesetz",
+      "summary": "DasAllgemeine Gleichbehandlungsgesetz(AGG) – umgangssprachlich auchAntidiskriminierungsgesetzgenannt – ist ein deutsches Bundesgesetz, das „Benachteiligungenaus Gründen derRasseoder wegen derethnischenHerkunft, desGeschlechts, derReligionoderWeltanschauung, einerBehinderung, desAltersoder dersexuellen Identitätverhindern und beseitigen soll“ (§ 1). Zur Verwirklichung dieses Ziels erhalten die durch das Gesetz geschützten Personen Rechtsansprüche gegen Arbeitgeber und Private, wenn diese ihnen ge",
+      "reason": "This law prohibits discrimination and promotes equal treatment, which can extend to workplace safety and health provisions.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "GlBG",
+      "title": "Diskriminierung",
+      "url": "https://de.wikipedia.org/wiki/Diskriminierung",
+      "summary": "Diskriminierungbezeichnet im allgemeinen Sprachgebrauch in der Regel eine Benachteiligung oder Herabwürdigung von Gruppen oder einzelnen Personen nach Maßgabe bestimmter unterscheidender Wertvorstellungen oder aufgrund unreflektierter, z. T. auch unbewussterEinstellungen,VorurteileoderemotionalerAssoziationen.[1][2]",
+      "reason": "Understanding the broader concept of discrimination helps in recognizing how it might intersect with workplace safety.",
+      "priority": "low"
+    },
+    {
+      "law_abbr": "UVG",
+      "title": "Unfallversicherungsgesetz",
+      "url": "https://de.wikipedia.org/wiki/Unfallversicherungsgesetz",
+      "summary": "Unter dem BegriffUnfallversicherungsgesetzversteht man:",
+      "reason": "This law governs accident insurance, including provisions for preventing workplace accidents and managing their consequences.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "UVG",
+      "title": "Arbeitsunfall",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsunfall",
+      "summary": "EinArbeitsunfall(auchBetriebsunfall,Berufsunfalloder bei BeamtenDienstunfall) ist nach derDefinitiondergesetzlichen Unfallversicherung in DeutschlandeinUnfalleinesArbeitnehmers, den dieser während direkt mit der Arbeit verbundenenTätigkeitenerleidet, so z. B. während derArbeitszeit, einerDienstreiseoder auf demArbeitsweg.",
+      "reason": "Understanding what constitutes a workplace accident and the procedures following one is crucial.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "UVG",
+      "title": "Allgemeine Unfallversicherungsanstalt",
+      "url": "https://de.wikipedia.org/wiki/Allgemeine_Unfallversicherungsanstalt",
+      "summary": "DieAllgemeine Unfallversicherungsanstalt(AUVA) ist eine Einrichtung derösterreichischen Sozialversicherung. Sie ist Teil dergesetzlichen Unfallversicherung.",
+      "reason": "This is the primary institution responsible for accident insurance in Austria.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "WRG",
+      "title": "Wasserrechtsgesetz",
+      "url": "https://de.wikipedia.org/wiki/Wasserrechtsgesetz",
+      "summary": "Wasserrechtsgesetzsteht für",
+      "reason": "While not directly about worker safety, this law regulates water usage and protection, which can be relevant in industrial settings for environmental and safety compliance.",
+      "priority": "low"
+    },
+    {
+      "law_abbr": "WRG",
+      "title": "Umweltschutz",
+      "url": "https://de.wikipedia.org/wiki/Umweltschutz",
+      "summary": "Umweltschutzbezeichnet die Gesamtheit aller Maßnahmen zum Schutze derUmwelt, um die Gesundheit des Menschen zu erhalten.[1]Der Umweltschutz hat mehrere Funktionen und beinhaltet verschiedene Prinzipien. Er beugt Beeinträchtigungen der Umwelt vor (Prävention), drängt sie zurück (Repression) und stellt Naturressourcen wieder her, soweit das möglich ist (Reparation).",
+      "reason": "Understanding environmental protection regulations provides context for broader compliance obligations in industrial operations.",
+      "priority": "low"
+    },
+    {
+      "law_abbr": "Gewerbeordnung",
+      "title": "Gewerbeordnung",
+      "url": "https://de.wikipedia.org/wiki/Gewerbeordnung",
+      "summary": "Gewerbeordnungsteht für:",
+      "reason": "This comprehensive law regulates trade and industry, including provisions related to safety and operational standards for businesses.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "Gewerbeordnung",
+      "title": "Wanderlager",
+      "url": "https://de.wikipedia.org/wiki/Wanderlager",
+      "summary": "EinWanderlagerbetreibt, wer außerhalb seiner regulärenBetriebsstätteaus Räumlichkeiten heraus Waren oder Dienstleistungen bzw. Reisen vertreibt bzw. Warenbestellungen entgegennimmt (Gaststätte, bspw.Kaffeefahrt). Wird auf diese Veranstaltung durch öffentliche Ankündigung hingewiesen (Zeitung, Plakatierung, Einladung an Personen, die mit dem Veranstalter nicht in Beziehung stehen), dürfen unentgeltliche Zuwendungen (Waren oder Leistungen) und Preisausschreiben, Verlosungen sowieAusspielungennicht",
+      "reason": "These are the administrative bodies responsible for enforcing the Gewerbeordnung, including aspects of workplace safety.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "Gewerbeordnung",
+      "title": "Gaststättenkonzession",
+      "url": "https://de.wikipedia.org/wiki/Gaststättenkonzession",
+      "summary": "EineGaststättenkonzession,Gastgewerbeberechtigung(Österreich),Wirtepatent(Schweiz), altKruggerechtigkeit, neuer und öfterGaststätten-/Schankerlaubnis, wird zur Eröffnung und zum Betrieb einerGaststättebenötigt, sofern die jeweilige Rechtsordnung diesen hoheitlichen Akt verlangt. Ist so ein Akt verlangt, ist sie heute meistens einePersonalkonzession. Historisch konnte sie auch mit einem Gebäude verbunden sein; man durfte dann also Wirt werden, indem man ein Wirtshaus erwarb.",
+      "reason": "The approval process for industrial facilities often includes safety and health considerations.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "BauKG",
+      "title": "Abkürzungen/Gesetze und Recht",
+      "url": "https://de.wikipedia.org/wiki/Abkürzungen/Gesetze_und_Recht",
+      "summary": "Viele, aber nicht alle, Fachautoren kürzen ohne Punkt und Leerzeichen ab: So wird dieAbbreviaturfürin der Regel, normalerweisei. d. R., mitidRabbreviert. Ungeachtet dessen werdenAkronyme, wie sonst auch, ohne Punkte gebildet. Folgende Liste vonAbkürzungenaus derRechtsspracheversucht nur sprachlich korrekte Abbreviaturen, also mit Punkt und Leerzeichen, aufzuführen, sofern nicht die geraffte Schreibweise in den Alltag Einzug gefunden hat und dort dominiert (z. B.eG,GbRoderMdB) oder die Abbreviatu",
+      "reason": "This law focuses on safety and health protection for workers on construction sites, which can be relevant for any internal construction or maintenance work within a logistics facility.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "BauKG",
+      "title": "Baustelle",
+      "url": "https://de.wikipedia.org/wiki/Baustelle",
+      "summary": "EineBaustelle(in der Fachliteratur wird sie auch als „Arbeitsstelle“ bezeichnet) ist ein Ort, auf dem einBauwerkerrichtet, umgebaut oderabgerissenwird.[1]Sie besteht aus den Flächen für das Bauwerk und den bauzeitlich genutzten Flächen derBaustelleneinrichtung, zusammenBaufeldgenannt. Hinzu kommen die Maßnahmen für die Baustellen-Umfahrung aller fahrenden Verkehrsteilnehmer bzw. für die Baustellen-Umgehung des Fußverkehrs.",
+      "reason": "Understanding the definition and requirements for construction sites is key to applying this law.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "BauKG",
+      "title": "Sicherheits- und Gesundheitsschutzkoordinator",
+      "url": "https://de.wikipedia.org/wiki/Sicherheits-_und_Gesundheitsschutzkoordinator",
+      "summary": "DerSicherheits- und Gesundheitsschutzkoordinator(SiGeKo) wird vom Bauherrn fürBaustellenbestellt, sofern Beschäftigte mehrerer Unternehmer (Gewerke) auf der Baustelle tätig werden.",
+      "reason": "This is a key document required under the BauKG for managing safety on construction sites.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ChemG",
+      "title": "Chemikaliengesetz (Deutschland)",
+      "url": "https://de.wikipedia.org/wiki/Chemikaliengesetz_(Deutschland)",
+      "summary": "DasChemikaliengesetz(ChemG) ist ein Gesetz zum Schutz vorgefährlichen Stoffenim Bereich der Bundesrepublik Deutschland. Es gehört grundlegend zumChemikalienrechtund wurde vomDeutschen Bundestagam 25. Juni 1980 von allen Fraktionen übereinstimmend „als ein erster Schritt zum Schutz von Mensch und Umwelt“ verabschiedet.[1]",
+      "reason": "This law regulates the handling and use of chemicals, which is relevant for any substances used in a logistics or warehouse environment.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ChemG",
+      "title": "Gefahrstoffverordnung",
+      "url": "https://de.wikipedia.org/wiki/Gefahrstoffverordnung",
+      "summary": "DieGefahrstoffverordnung(GefStoffV) ist eine deutsche Verordnung zum Schutz vorgefährlichen Stoffenim deutschenArbeitsschutz. DieVerordnungsermächtigungist imChemikaliengesetz(ChemG) enthalten. Seit 2005 ist auch dasArbeitsschutzgesetzgesetzliche Grundlage für die GefStoffV.",
+      "reason": "This regulation, often linked to the ChemG, deals specifically with hazardous substances and their safe management.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ChemG",
+      "title": "Sicherheitsdatenblatt",
+      "url": "https://de.wikipedia.org/wiki/Sicherheitsdatenblatt",
+      "summary": "Sicherheitsdatenblätter(SDB) oderSafety Data Sheets(SDS), auchmaterial safety data sheets(MSDS) genannt, dienen der Übermittlung sicherheitsbezogener Informationen überGefahrstoffeund Gemische. Sie sind dazu bestimmt, dem berufsmäßigen Verwender die beim Umgang mit Stoffen und Gemischen notwendigen Daten und Umgangsempfehlungen zu vermitteln, um die für den Gesundheitsschutz, dieArbeitssicherheitund denUmweltschutzerforderlichen Maßnahmen treffen zu können.",
+      "reason": "Safety data sheets are crucial for understanding the risks associated with chemicals and how to handle them safely.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "MaschinenSicherheitV",
+      "title": "Richtlinie 2006/42/EG (Maschinenrichtlinie)",
+      "url": "https://de.wikipedia.org/wiki/Richtlinie_2006/42/EG_(Maschinenrichtlinie)",
+      "summary": "Richtlinie2006/42/EG",
+      "reason": "This regulation sets out safety requirements for machinery, which is highly relevant for automated equipment and tools used in warehouses.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "MaschinenSicherheitV",
+      "title": "Maschine",
+      "url": "https://de.wikipedia.org/wiki/Maschine",
+      "summary": "EineMaschine(entlehntausfranzösischmachine, vonlateinischmachina, dieses vonaltgriechischμηχανήmēchanḗ, deutsch‚Werkzeug‘, ‚künstliche Vorrichtung‘, ‚Mittel‘[1][2]) ist ein technisches Gebilde mit durch ein Antriebssystem bewegten Teilen. Maschinen werden alstechnischeArbeitsmittelvor allem fürmechanischeEinwirkung verwendet.",
+      "reason": "Understanding the definition and safety aspects of machinery is fundamental.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "MaschinenSicherheitV",
+      "title": "Risikobeurteilung",
+      "url": "https://de.wikipedia.org/wiki/Risikobeurteilung",
+      "summary": "DieRisikobeurteilung(englischrisk assessment) ist im Rahmen desRisikomanagementsvonUnternehmendieBeurteilungsämtlicher vorhandener technischerRisiken. Wirtschaftliche und Projektrisiken sind nicht Teil dieser Betrachtung.",
+      "reason": "Risk assessment specifically for machinery is a key component of ensuring its safe operation.",
+      "priority": "high"
+    }
+  ]
 }

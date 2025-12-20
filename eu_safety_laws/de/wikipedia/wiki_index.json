@@ -1,7 +1,7 @@
 {
   "country": "DE",
   "language": "de",
-  "scraped_at": "2025-12-20T04:08:33.694312",
+  "scraped_at": "2025-12-20T21:47:26.436543",
   "articles": {
     "ArbSchG": {
       "title": "Arbeitsschutzgesetz",
@@ -44,5 +44,174 @@
       "summary": "DieGefahrstoffverordnung(GefStoffV) ist eine deutsche Verordnung zum Schutz vorgefährlichen Stoffenim deutschenArbeitsschutz. DieVerordnungsermächtigungist imChemikaliengesetz(ChemG) enthalten. Seit 2005 ist auch dasArbeitsschutzgesetzgesetzliche Grundlage für die GefStoffV."
     }
   },
-  "ai_suggested_articles": []
+  "ai_suggested_articles": [
+    {
+      "law_abbr": "ASchG",
+      "title": "Arbeitsschutzgesetz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsschutzgesetz",
+      "summary": "DasArbeitsschutzgesetz(AbkürzungArbSchG) ist ein deutsches Gesetz zur Umsetzung derRichtlinie 89/391/EWG (Arbeitsschutz-Rahmenrichtlinie).\nDasArbeitssicherheitsgesetzist das „Controlling-Gesetz“ zum Arbeitsschutzgesetz.",
+      "reason": "This is the primary law governing workplace safety in Germany and directly addresses the core principles of the ASchG.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ASchG",
+      "title": "Gefährdungsbeurteilung",
+      "url": "https://de.wikipedia.org/wiki/Gefährdungsbeurteilung",
+      "summary": "DieGefährdungsbeurteilungbeschreibt den Prozess der systematischen Ermittlung und Bewertung aller relevanten Gefährdungen, denen die Beschäftigten im Zuge ihrer beruflichen Tätigkeit ausgesetzt sind. Hinzu kommen die Ableitung und Umsetzung aller zum Schutz der Sicherheit und der Gesundheit erforderlichen Maßnahmen, die anschließend hinsichtlich ihrer Wirksamkeit überprüft werden müssen. Das Ziel besteht darin, Gefährdungen bei der Arbeit frühzeitig zu erkennen und diesen präventiv, das heißt no",
+      "reason": "The ASchG mandates risk assessments (Gefährdungsbeurteilung) as a fundamental tool for identifying and mitigating workplace hazards, which is crucial for logistics and warehouse operations.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ASchG",
+      "title": "Persönliche Schutzausrüstung",
+      "url": "https://de.wikipedia.org/wiki/Persönliche_Schutzausrüstung",
+      "summary": "Persönliche Schutzausrüstung(PSA) bezeichnet imArbeitsschutzund in derVerkehrssicherheitSchutzkleidungund andere Ausstattungsstücke zum Selbstschutz bei potentiell gesundheitsgefährdendenTätigkeiten.",
+      "reason": "The ASchG details requirements for Personal Protective Equipment (PSA), which is essential in warehouse environments for tasks involving lifting, operating machinery, or handling goods.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ArbZG",
+      "title": "Arbeitszeitgesetz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitszeitgesetz",
+      "summary": "Das deutscheArbeitszeitgesetzbetrifft den öffentlich-rechtlichen Arbeitsschutz vonArbeitnehmern. Es begrenzt die höchstzulässige täglicheArbeitszeit, es setzt Mindestruhepausen während der Arbeitszeit und Mindestruhezeiten zwischen Beendigung und Wiederaufnahme der Arbeit sowie die Arbeitsruhe an Sonn- und Feiertagen fest. Zudem enthält es Schutzvorschriften zur Nachtarbeit. Das Gesetz ist fürArbeitgeberund Arbeitnehmer verbindlich.",
+      "reason": "This law directly regulates working hours, breaks, and rest periods, which are critical for employee well-being and safety in demanding logistics environments.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbZG",
+      "title": "Ruhezeit",
+      "url": "https://de.wikipedia.org/wiki/Ruhezeit",
+      "summary": "Ruhezeitsteht für:",
+      "reason": "Understanding 'Ruhezeit' (rest periods) is vital for preventing fatigue-related accidents in warehouse operations, as mandated by the ArbZG.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ArbZG",
+      "title": "Leistungsbereitschaft",
+      "url": "https://de.wikipedia.org/wiki/Leistungsbereitschaft",
+      "summary": "Leistungsbereitschaftbezeichnet das Maß, in dem einePersonbereit ist, ihrekörperlicheodergeistige Leistungsfähigkeitin Form vonArbeitfür ein bestimmtesZieleinzubringen.",
+      "reason": "The ArbZG specifies rules for breaks ('Pausenregelung'), which are important for maintaining concentration and preventing errors in fast-paced logistics settings.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "BetrSichV",
+      "title": "Betriebssicherheitsverordnung",
+      "url": "https://de.wikipedia.org/wiki/Betriebssicherheitsverordnung",
+      "summary": "DieBetriebssicherheitsverordnung(BetrSichV) ist die deutsche Umsetzung derRichtlinie 89/655/EWG(Arbeitsmittelrichtlinie), später ersetzt durchRichtlinie 2009/104/EG, und regelt inDeutschlanddie Bereitstellung von Arbeitsmitteln durch den Arbeitgeber, die Benutzung von Arbeitsmitteln durch die Beschäftigten bei der Arbeit sowie die Errichtung und den Betrieb vonüberwachungsbedürftigen Anlagenim Sinne desArbeitsschutzes. Das in ihr enthaltene Schutzkonzept ist auf alle von Arbeitsmitteln ausgehend",
+      "reason": "This regulation focuses on the safe use of work equipment and machinery, which is paramount in warehouses with forklifts, conveyor belts, and other industrial equipment.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "BetrSichV",
+      "title": "Betriebssicherheitsverordnung",
+      "url": "https://de.wikipedia.org/wiki/Betriebssicherheitsverordnung",
+      "summary": "DieBetriebssicherheitsverordnung(BetrSichV) ist die deutsche Umsetzung derRichtlinie 89/655/EWG(Arbeitsmittelrichtlinie), später ersetzt durchRichtlinie 2009/104/EG, und regelt inDeutschlanddie Bereitstellung von Arbeitsmitteln durch den Arbeitgeber, die Benutzung von Arbeitsmitteln durch die Beschäftigten bei der Arbeit sowie die Errichtung und den Betrieb vonüberwachungsbedürftigen Anlagenim Sinne desArbeitsschutzes. Das in ihr enthaltene Schutzkonzept ist auf alle von Arbeitsmitteln ausgehend",
+      "reason": "The BetrSichV requires regular inspections and testing of work equipment ('Prüfung von Arbeitsmitteln'), a key aspect for maintaining safety in a warehouse environment.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "BetrSichV",
+      "title": "Gabelstapler",
+      "url": "https://de.wikipedia.org/wiki/Gabelstapler",
+      "summary": "GabelstapleroderHubstaplergehören zu denFlurförderzeugenund dienen dem innerbetrieblichenWarenumschlagundTransport. Im Gegensatz etwa zu einfachenHubwagenhaben sie einen eigenen Antrieb und ein Hubgerüst, umStapelzu bilden oderLagerregalezu bedienen.",
+      "reason": "Forklifts are a common piece of equipment in logistics and warehouses, and their safe operation is heavily regulated by the BetrSichV.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "GefStoffV",
+      "title": "Gefahrstoffverordnung",
+      "url": "https://de.wikipedia.org/wiki/Gefahrstoffverordnung",
+      "summary": "DieGefahrstoffverordnung(GefStoffV) ist eine deutsche Verordnung zum Schutz vorgefährlichen Stoffenim deutschenArbeitsschutz. DieVerordnungsermächtigungist imChemikaliengesetz(ChemG) enthalten. Seit 2005 ist auch dasArbeitsschutzgesetzgesetzliche Grundlage für die GefStoffV.",
+      "reason": "This regulation deals with the handling of hazardous substances, which may be present in a logistics or warehouse setting (e.g., cleaning agents, batteries).",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "GefStoffV",
+      "title": "Sicherheitsdatenblatt",
+      "url": "https://de.wikipedia.org/wiki/Sicherheitsdatenblatt",
+      "summary": "Sicherheitsdatenblätter(SDB) oderSafety Data Sheets(SDS), auchmaterial safety data sheets(MSDS) genannt, dienen der Übermittlung sicherheitsbezogener Informationen überGefahrstoffeund Gemische. Sie sind dazu bestimmt, dem berufsmäßigen Verwender die beim Umgang mit Stoffen und Gemischen notwendigen Daten und Umgangsempfehlungen zu vermitteln, um die für den Gesundheitsschutz, dieArbeitssicherheitund denUmweltschutzerforderlichen Maßnahmen treffen zu können.",
+      "reason": "Understanding Safety Data Sheets ('Sicherheitsdatenblatt') is essential for knowing how to safely handle and store any hazardous materials encountered in a warehouse.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "GefStoffV",
+      "title": "Gefahrstoff",
+      "url": "https://de.wikipedia.org/wiki/Gefahrstoff",
+      "summary": "GefahrstoffesindStoffeundGemischemit gefährlichen physikalischen Eigenschaften oder schädlichen Wirkungen auf Mensch und Umwelt (sieheGefahrenklassen). Hierzu zählen auch Stoffe, für die ein Grenzwert festgelegt ist. Stoffe, Gemische und bestimmte Erzeugnisse, die den Kriterien derVerordnung (EG) Nr. 1272/2008 (CLP)entsprechen, werden als Gefahrstoffe eingestuft. Entsprechen sie diesen Kriterien nicht, muss dies eindeutig kenntlich gemacht werden.[1][2][3]",
+      "reason": "The GefStoffV outlines necessary protective measures ('Schutzmaßnahmen bei Gefahrstoffen') for employees working with hazardous materials.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "LärmV",
+      "title": "Transrapid",
+      "url": "https://de.wikipedia.org/wiki/Transrapid",
+      "summary": "DerTransrapidist eine inDeutschlandentwickelteMagnetschwebebahnfür denHochgeschwindigkeitsverkehr. Vermarktet, geplant und entwickelt wurde dasVerkehrssystem(bestehend aus Fahrzeuge,Betriebsleittechnikund Nebenanlagen) vonSiemensundThyssenKrupp. Zahlreiche weitere, vorrangig deutsche Unternehmen entwickelten Komponenten wie z. B. Weichen und Fahrwegträger und waren an der Entwicklung der ersten Prototypen beteiligt, die nach dem Beginn der staatlich finanzierten Entwicklung im Jahr 1969 vorgeste",
+      "reason": "This regulation addresses noise exposure in the workplace, which can be a significant issue in noisy warehouse environments with machinery and equipment.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "LärmV",
+      "title": "Beurteilungspegel",
+      "url": "https://de.wikipedia.org/wiki/Beurteilungspegel",
+      "summary": "DerBeurteilungspegelLrist ein Maß zur Kennzeichnung der auf einen Ort wirkendenSchallimmissionwährend jeder Beurteilungszeit.[1]Um einen Beurteilungspegel zu ermitteln, werden der energetischeMittelungspegelLpeqdes zu beurteilenden Geräusches unter Berücksichtigung von Einwirkdauern verschiedener Geräuschzustände und Zuschläge für besondere Geräuscheigenschaften (Tonhaltigkeit, Impulshaltigkeit, Informationshaltigkeit) zu einem Beurteilungspegel aufsummiert. Messtechnisch ermittelt wird nur der ",
+      "reason": "Understanding the risks and regulations associated with noise at work ('Lärm am Arbeitsplatz') is important for protecting hearing in logistics settings.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "LärmV",
+      "title": "Gehörschutz",
+      "url": "https://de.wikipedia.org/wiki/Gehörschutz",
+      "summary": "AlsGehörschutzwerden alle Arten vonSchutzeinrichtungenbzw. Schutzausrüstung bezeichnet, die dasGehörvor zu lautenGeräuschenschützen undSchalltraumatavorbeugen.[1]",
+      "reason": "The LärmV mandates the use of hearing protection ('Gehörschutz') when noise levels exceed certain thresholds, a common requirement in warehouses.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "PSA-BV",
+      "title": "PSA-Benutzungsverordnung",
+      "url": "https://de.wikipedia.org/wiki/PSA-Benutzungsverordnung",
+      "summary": "DiePSA-Benutzungsverordnung(PSA-BV) ist eine deutscheVerordnungzur Umsetzung der EuropäischenRichtlinie 89/656/EWGim Arbeitsschutz.",
+      "reason": "This regulation specifically details the employer's obligations regarding the provision and use of Personal Protective Equipment (PSA).",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "PSA-BV",
+      "title": "Persönliche Schutzausrüstung",
+      "url": "https://de.wikipedia.org/wiki/Persönliche_Schutzausrüstung",
+      "summary": "Persönliche Schutzausrüstung(PSA) bezeichnet imArbeitsschutzund in derVerkehrssicherheitSchutzkleidungund andere Ausstattungsstücke zum Selbstschutz bei potentiell gesundheitsgefährdendenTätigkeiten.",
+      "reason": "Reinforces the importance of PPE in workplace safety, directly relevant to warehouse operations where specific protective gear is often required.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "PSA-BV",
+      "title": "Arbeitsschutz",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsschutz",
+      "summary": "Arbeitsschutzsind in derArbeitswissenschaftund imArbeitsrechtalle Maßnahmen desArbeitgeberszur Verhütung vonArbeitsunfällenund arbeitsbedingtenGesundheitsgefahreneinschließlich Maßnahmen der menschengerechtenArbeitsgestaltung.\nDieseLegaldefinitionaus§ 2Abs. 1ArbSchGlegt das Tätigkeitsgebiet der Arbeitgeber beim Arbeitsschutz fest. Arbeitsschutz ist einePrävention, durch die Arbeitsunfälle verhindert undgesundheitsgefährdendeArbeitsbelastungenundArbeitsumgebungenvermieden werden sollen. In diesem",
+      "reason": "Provides a broader context for why PSA is mandated and its role in overall workplace safety.",
+      "priority": "low"
+    },
+    {
+      "law_abbr": "ArbStättV",
+      "title": "Arbeitsstättenverordnung (Deutschland)",
+      "url": "https://de.wikipedia.org/wiki/Arbeitsstättenverordnung_(Deutschland)",
+      "summary": "Die deutscheVerordnung über Arbeitsstätten (Arbeitsstättenverordnung - ArbStättV)enthält Mindestvorschriften für die Sicherheit und den Gesundheitsschutz der Beschäftigten beim Einrichten und Betreiben vonArbeitsstätteneinschließlichBaustellen.",
+      "reason": "This regulation sets standards for workplaces, including aspects like lighting, ventilation, and emergency exits, all crucial for a safe and functional warehouse environment.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbStättV",
+      "title": "Ergonomie",
+      "url": "https://de.wikipedia.org/wiki/Ergonomie",
+      "summary": "DieErgonomieoderErgonomik(vonaltgriechischἔργονergon, deutsch‚Arbeit‘, ‚Werk‘, undνόμοςnomos, deutsch‚Regel‘, ‚Gesetz‘) ist dieWissenschaftvon der Gesetzmäßigkeitmenschlicherbzw. automatisierter Arbeit. Zuerst verwendet und definiert wurde der Begriff 1857 vonWojciech Jastrzębowski.[1]Ziel der Ergonomie ist es, die Arbeitsbedingungen, den Arbeitsablauf, die Anordnung der zu greifenden Gegenstände (Werkstück,Werkzeug,Halbzeug) räumlich und zeitlich optimiert anzuordnen sowie die Arbeitsgeräte für",
+      "reason": "Adequate lighting ('Licht am Arbeitsplatz') is a key requirement of the ArbStättV and is essential for preventing accidents and ensuring efficiency in warehouses.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ArbStättV",
+      "title": "Fluchtweg",
+      "url": "https://de.wikipedia.org/wiki/Fluchtweg",
+      "summary": "EinFluchtwegist ein besonders gekennzeichneterWeg– meist innerhalb einesGebäudes– der im Falle einer notwendigenFluchtschnell und sicher ins Freie oder in einen gesicherten Bereich führt. Der Hauptzweck eines Fluchtwegs ist dieSelbstrettung. Einen Ausgang, der direkt ins Freie oder in einen gesicherten Bereich führt, nennt manNotausgang.",
+      "reason": "The ArbStättV mandates clear and accessible escape routes ('Fluchtwege'), a critical safety feature in any industrial or logistics facility.",
+      "priority": "high"
+    }
+  ]
 }
