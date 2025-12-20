@@ -64,7 +64,12 @@
     "pdfDocument": "PDF-Dokument",
     "htmlDocument": "HTML-Dokument",
     "rateLimited": "Bitte warten",
-    "rateLimitedDescription": "KI-Anfragen sind ratenbegrenzt. Bitte warten Sie vor der nächsten Anfrage."
+    "rateLimitedDescription": "KI-Anfragen sind ratenbegrenzt. Bitte warten Sie vor der nächsten Anfrage.",
+    "visualize": "Visualisieren",
+    "generating": "Generiere...",
+    "hideFlowchart": "Flussdiagramm ausblenden",
+    "viewOfficialPdf": "Offizielles PDF ansehen/herunterladen",
+    "viewOfficialSource": "Offizielle Quelle ansehen"
   },
   "lawBrowser": {
     "lawsAndRegs": "Gesetze & Vorschriften",
@@ -79,6 +84,7 @@
   "translation": {
     "translateTo": "Übersetzen nach",
     "translating": "Übersetze...",
+    "translated": "Übersetzt",
     "showOriginal": "Original anzeigen",
     "showTranslation": "Übersetzung anzeigen",
     "translationEnabled": "Übersetzung aktiviert",
@@ -87,7 +93,7 @@
     "german": "Deutsch",
     "dutch": "Niederländisch",
     "english": "Englisch",
-    "translateLaw": "Gesetz übersetzen"
+    "translateLaw": "Abschnitt übersetzen"
   },
   "complexity": {
     "reading": "Ansicht:",
@@ -104,7 +110,11 @@
     "obligations": "Wichtige WHS-Pflichten",
     "deadlines": "Compliance-Fristen",
     "documentation": "Erforderliche Dokumentation",
-    "relatedWiki": "Zugehörige Wikipedia-Artikel"
+    "relatedWiki": "Zugehörige Wikipedia-Artikel",
+    "overview": "Was dieser Abschnitt behandelt",
+    "requirements": "Wichtigste Anforderungen",
+    "relevance": "Compliance-Relevanz",
+    "actions": "Dokumentation/Maßnahmen erforderlich"
   },
   "sections": {
     "title": "Abschnitte"

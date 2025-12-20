@@ -64,7 +64,12 @@
     "pdfDocument": "PDF-document",
     "htmlDocument": "HTML-document",
     "rateLimited": "Even wachten",
-    "rateLimitedDescription": "AI-verzoeken zijn gelimiteerd. Wacht even voor het volgende verzoek."
+    "rateLimitedDescription": "AI-verzoeken zijn gelimiteerd. Wacht even voor het volgende verzoek.",
+    "visualize": "Visualiseren",
+    "generating": "Genereren...",
+    "hideFlowchart": "Stroomdiagram verbergen",
+    "viewOfficialPdf": "Officiële PDF bekijken/downloaden",
+    "viewOfficialSource": "Officiële bron bekijken"
   },
   "lawBrowser": {
     "lawsAndRegs": "Wetten & Regels",
@@ -79,6 +84,7 @@
   "translation": {
     "translateTo": "Vertalen naar",
     "translating": "Vertalen...",
+    "translated": "Vertaald",
     "showOriginal": "Origineel tonen",
     "showTranslation": "Vertaling tonen",
     "translationEnabled": "Vertaling ingeschakeld",
@@ -87,7 +93,7 @@
     "german": "Duits",
     "dutch": "Nederlands",
     "english": "Engels",
-    "translateLaw": "Wet vertalen"
+    "translateLaw": "Artikel vertalen"
   },
   "complexity": {
     "reading": "Weergave:",
@@ -104,7 +110,11 @@
     "obligations": "Belangrijke WHS-verplichtingen",
     "deadlines": "Nalevingsdeadlines",
     "documentation": "Vereiste documentatie",
-    "relatedWiki": "Gerelateerde Wikipedia-artikelen"
+    "relatedWiki": "Gerelateerde Wikipedia-artikelen",
+    "overview": "Wat dit artikel behandelt",
+    "requirements": "Belangrijkste vereisten",
+    "relevance": "Compliance-relevantie",
+    "actions": "Documentatie/Acties nodig"
   },
   "sections": {
     "title": "Artikelen"
