@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react'
 import { translations } from '../data/locales'
-import { lawData } from '../data/laws'
+// Note: Legacy lawData import removed - app now uses euLawsDatabase service for complete law content
 
 const AppContext = createContext(null)
 
@@ -143,8 +143,7 @@ export function AppProvider({ children }) {
   // Get current translations
   const t = useMemo(() => translations[language] || translations.en, [language])
 
-  // Get current law data
-  const laws = useMemo(() => lawData[framework] || lawData.DE, [framework])
+  // Note: Legacy laws variable removed - use euLawsDatabase.getAllLawsSync(framework) instead
 
   // Toggle theme
   const toggleTheme = useCallback(() => {
@@ -316,8 +315,7 @@ export function AppProvider({ children }) {
     isDark,
     theme: isDark ? 'dark' : 'light',
     toggleTheme,
-    // Laws
-    laws,
+    // Laws - use euLawsDatabase.getAllLawsSync(framework) instead
     // Bookmarks
     bookmarks,
     toggleBookmark,
