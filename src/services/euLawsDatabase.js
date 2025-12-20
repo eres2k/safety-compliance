@@ -1184,8 +1184,10 @@ export function getPdfSourceUrl(law) {
   if (law.source?.local_pdf_path) {
     // Convert absolute path to relative URL for serving
     const path = law.source.local_pdf_path
+    // Handle both Windows backslashes and Unix forward slashes
+    const normalizedPath = path.replace(/\\/g, '/')
     // Extract just the filename or relative path portion
-    const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
+    const match = normalizedPath.match(/eu_safety_laws\/pdfs\/(.+)$/)
     if (match) {
       return `/eu_safety_laws/pdfs/${match[1]}`
     }
@@ -1250,7 +1252,9 @@ export function hasLocalPdf(law) {
   // Method 1: Check for explicit local_pdf_path
   if (law.source?.local_pdf_path) {
     const path = law.source.local_pdf_path
-    const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
+    // Handle both Windows backslashes and Unix forward slashes
+    const normalizedPath = path.replace(/\\/g, '/')
+    const match = normalizedPath.match(/eu_safety_laws\/pdfs\/(.+)$/)
     if (match) return true
   }
 
@@ -1278,7 +1282,9 @@ export function getLocalPdfUrl(law) {
   // Method 1: Check for explicit local_pdf_path
   if (law.source?.local_pdf_path) {
     const path = law.source.local_pdf_path
-    const match = path.match(/eu_safety_laws\/pdfs\/(.+)$/)
+    // Handle both Windows backslashes and Unix forward slashes
+    const normalizedPath = path.replace(/\\/g, '/')
+    const match = normalizedPath.match(/eu_safety_laws\/pdfs\/(.+)$/)
     if (match) {
       return `/eu_safety_laws/pdfs/${match[1]}`
     }
