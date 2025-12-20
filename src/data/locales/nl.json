@@ -19,10 +19,6 @@
     "documentGenerator": {
       "title": "Document Generator",
       "description": "Maak veiligheidsdocumenten van sjablonen"
-    },
-    "quickReference": {
-      "title": "Snelle Referentie Tools",
-      "description": "Calculators, opzoektabellen en glossarium"
     }
   },
   "common": {
