@@ -2274,7 +2274,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                       )}
                     </button>
                   ))}
-                </>
+                </div>
               )}
 
               {/* Merkblätter / Supplements Section (blue styling) - Collapsible */}
