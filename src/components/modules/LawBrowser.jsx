@@ -1400,6 +1400,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
   // Per-section translation state
   const [translatedContent, setTranslatedContent] = useState({}) // { sectionId: { translatedText, isTyping } }
   const [translationLoading, setTranslationLoading] = useState(false)
+  const [translationEnabled, setTranslationEnabled] = useState(false) // Global toggle for translation feature
 
   // Get all laws and categories (uses sync function - database must be loaded)
   const allLaws = useMemo(() => {
