@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 // Default complexity levels with English fallbacks
 const getComplexityLevels = (t) => [
   { id: 'legal', label: t?.complexity?.legal || 'Legal Text', icon: '⚖️', description: t?.complexity?.legalDescription || 'Original legal language' },
-  { id: 'manager', label: t?.complexity?.manager || 'WHS Summary', icon: '📋', description: t?.complexity?.managerDescription || 'Amazon WHS key obligations & compliance requirements' },
+  { id: 'manager', label: t?.complexity?.manager || 'WHS Summary', icon: '📋', description: t?.complexity?.managerDescription || 'WHS key obligations & compliance requirements' },
   { id: 'associate', label: t?.complexity?.associate || "Explain like I'm 5", icon: '💡', description: t?.complexity?.associateDescription || 'Simple explanation anyone can understand' }
 ]
 
@@ -127,6 +127,58 @@ function parseELI5Content(content) {
     .split(/[\n\r]+/)
     .map(line => line.replace(/^[\s*•\-–\d.]+/, '').trim())
     .filter(line => line.length > 0)
+}
+
+// Render text with markdown-style bold (**text**) formatting
+function renderFormattedText(text) {
+  if (!text) return null
+
+  // Split by lines first to handle line breaks
+  const lines = text.split(/\n/)
+
+  return lines.map((line, lineIdx) => {
+    // Check if this is a header line (starts with **text:** pattern)
+    const headerMatch = line.match(/^\s*\*\*([^*]+):\*\*\s*(.*)$/)
+    if (headerMatch) {
+      const [, headerText, restOfLine] = headerMatch
+      return (
+        <div key={lineIdx} className="mb-3">
+          <h4 className="font-bold text-gray-900 dark:text-white text-base mb-1 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-whs-orange-500 flex-shrink-0"></span>
+            {headerText}:
+          </h4>
+          {restOfLine && <p className="text-gray-700 dark:text-gray-300 pl-3.5">{restOfLine}</p>}
+        </div>
+      )
+    }
+
+    // Handle inline bold within normal text
+    const parts = line.split(/(\*\*[^*]+\*\*)/g)
+    const formattedParts = parts.map((part, partIdx) => {
+      const boldMatch = part.match(/^\*\*([^*]+)\*\*$/)
+      if (boldMatch) {
+        return <strong key={partIdx} className="font-bold text-gray-900 dark:text-white">{boldMatch[1]}</strong>
+      }
+      return part
+    })
+
+    // If line is just a bullet point (starts with - or •)
+    const bulletMatch = line.match(/^[\s]*[-•]\s*(.+)$/)
+    if (bulletMatch) {
+      return (
+        <li key={lineIdx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300 mb-1">
+          <span className="text-whs-orange-500 mt-1">•</span>
+          <span>{formattedParts}</span>
+        </li>
+      )
+    }
+
+    // Regular line
+    if (line.trim()) {
+      return <p key={lineIdx} className="text-gray-700 dark:text-gray-300 mb-2">{formattedParts}</p>
+    }
+    return <br key={lineIdx} />
+  })
 }
 
 // WHS Section Component - Modern card design with improved visual hierarchy
@@ -378,8 +430,8 @@ export function SimplifiedContent({ content, level, isLoading, t = {}, wikiArtic
             )}
           </div>
         ) : (
-          <div className="text-gray-700 dark:text-gray-300 text-sm whitespace-pre-wrap leading-relaxed bg-white/60 dark:bg-gray-800/60 p-5 rounded-2xl border border-gray-100 dark:border-gray-700">
-            {content}
+          <div className="text-sm leading-relaxed bg-white/60 dark:bg-gray-800/60 p-5 rounded-2xl border border-gray-100 dark:border-gray-700">
+            {renderFormattedText(content)}
           </div>
         )}
 

@@ -1,5 +1,5 @@
 {
-  "appTitle": "Amazon MEU WHS Safety Navigator",
+  "appTitle": "MEU Safety Compliance",
   "appSubtitle": "Bezorging Laatste Mijl Logistiek Veiligheid",
   "selectFramework": "Selecteer Rechtskader",
   "frameworks": {
@@ -103,7 +103,7 @@
     "legalFull": "Originele Wettekst",
     "viewOriginal": "Bekijk originele wettekst",
     "manager": "WHS Samenvatting",
-    "managerDescription": "Amazon WHS verplichtingen & compliance-eisen",
+    "managerDescription": "WHS verplichtingen & compliance-eisen",
     "associate": "Simpel uitgelegd",
     "associateDescription": "Eenvoudige uitleg voor iedereen"
   },
@@ -269,7 +269,7 @@
     "subtitle": "Leer hoe u de WHS Safety Navigator gebruikt",
     "buttonLabel": "Hulp",
     "introTitle": "Welkom bij de WHS Safety Navigator",
-    "introText": "Deze applicatie helpt u bij het navigeren door de arbowetgeving in Oostenrijk, Duitsland en Nederland. Het is speciaal ontworpen voor Amazon MEU Delivery Last Mile Logistics locaties en biedt snelle toegang tot relevante veiligheidswetten, compliance-eisen en hulpmiddelen.",
+    "introText": "Deze applicatie helpt u bij het navigeren door de arbowetgeving in Oostenrijk, Duitsland en Nederland. Het is speciaal ontworpen voor MEU WHS-operaties en biedt snelle toegang tot relevante veiligheidswetten, compliance-eisen en hulpmiddelen.",
     "officialSourcesTitle": "Officiële Wettelijke Bronnen",
     "officialSourcesText": "Alle wetteksten die in deze applicatie worden weergegeven, zijn rechtstreeks afkomstig van officiële overheidspublicaties en toezichthouders. Dit omvat de Oostenrijkse ASchG (ArbeitnehmerInnenschutzgesetz), de Duitse DGUV-voorschriften en ArbSchG (Arbeitsschutzgesetz), en de Nederlandse Arbowet (Arbeidsomstandighedenwet). Wij garanderen nauwkeurigheid door uitsluitend gebruik te maken van gezaghebbende bronnen.",
     "updateFrequencyTitle": "Regelmatige Updates - Elke 14 Dagen",

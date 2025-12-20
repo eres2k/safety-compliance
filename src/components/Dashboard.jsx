@@ -183,7 +183,7 @@ export function Dashboard({ onModuleSelect }) {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-whs-orange-500/20 rounded-full border border-whs-orange-500/30">
                 <div className="w-2 h-2 bg-whs-orange-500 rounded-full animate-pulse" />
                 <span className="text-sm font-medium text-whs-orange-400">
-                  Amazon MEU WHS - Delivery Last Mile Logistics
+                  MEU Safety Compliance - WHS
                 </span>
               </div>
 
@@ -406,7 +406,7 @@ export function Dashboard({ onModuleSelect }) {
             </h4>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               You are browsing {currentFrameworkColor?.name || 'European'} workplace safety regulations
-              for Amazon MEU WHS Delivery Last Mile Logistics operations.
+              for MEU WHS operations.
               Switch frameworks using the selector in the header to access regulations from other countries.
             </p>
           </div>

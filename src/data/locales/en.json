@@ -1,5 +1,5 @@
 {
-  "appTitle": "Amazon MEU WHS Safety Navigator",
+  "appTitle": "MEU Safety Compliance",
   "appSubtitle": "Delivery Last Mile Logistics Safety Compliance",
   "selectFramework": "Select Legal Framework",
   "frameworks": {
@@ -103,7 +103,7 @@
     "legalFull": "Original Legal Text",
     "viewOriginal": "View original legal text",
     "manager": "WHS Summary",
-    "managerDescription": "Amazon WHS key obligations & compliance requirements",
+    "managerDescription": "WHS key obligations & compliance requirements",
     "associate": "Explain like I'm 5",
     "associateDescription": "Simple explanation anyone can understand"
   },
@@ -269,7 +269,7 @@
     "subtitle": "Learn how to use the WHS Safety Navigator",
     "buttonLabel": "Help",
     "introTitle": "Welcome to the WHS Safety Navigator",
-    "introText": "This application helps you navigate workplace health and safety (WHS) regulations across Austria, Germany, and the Netherlands. It is specifically designed for Amazon MEU Delivery Last Mile Logistics operations, providing quick access to relevant safety laws, compliance requirements, and tools.",
+    "introText": "This application helps you navigate workplace health and safety (WHS) regulations across Austria, Germany, and the Netherlands. It is specifically designed for MEU WHS operations, providing quick access to relevant safety laws, compliance requirements, and tools.",
     "officialSourcesTitle": "Official Law Sources",
     "officialSourcesText": "All legal texts displayed in this application are sourced directly from official government publications and regulatory authorities. This includes the Austrian ASchG (ArbeitnehmerInnenschutzgesetz), German DGUV regulations and ArbSchG (Arbeitsschutzgesetz), and Dutch Arbowet (Arbeidsomstandighedenwet). We ensure accuracy by referencing only authoritative sources.",
     "updateFrequencyTitle": "Regular Updates - Every 14 Days",
