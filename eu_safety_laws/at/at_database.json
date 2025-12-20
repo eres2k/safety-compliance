@@ -1,4 +1,5 @@
 {
+  "schema_version": "2.0.0",
   "metadata": {
     "country": "AT",
     "generated_at": "2025-12-20T03:46:17.101874",
@@ -10,7 +11,9 @@
     "sections_restructured_at": "2025-12-18T17:53:41.037Z",
     "auto_sections_at": "2025-12-18T17:52:16.079Z",
     "validated_at": "2025-12-20T04:02:49.573318",
-    "auto_fixes_applied": 8
+    "auto_fixes_applied": 8,
+    "data_version": "2025.12.20",
+    "migrated_at": "2025-12-20T06:02:16.513Z"
   },
   "documents": [
     {
@@ -83,7 +86,8 @@
             25
           ]
         ],
-        "critical_sections_count": 53
+        "critical_sections_count": 53,
+        "description": "ASchG (Employee Protection Act) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, employer obligations. Contains 137 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -4959,7 +4963,24 @@
           ]
         }
       ],
-      "content_hash": "411124493998deab55a6f8160e859721"
+      "content_hash": "411124493998deab55a6f8160e859721",
+      "keywords": [
+        "ASchG",
+        "employee",
+        "protection",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "risk assessment",
+        "hazard evaluation"
+      ]
     },
     {
       "id": "2010a150cb01ad77",
@@ -5031,7 +5052,8 @@
             2
           ]
         ],
-        "critical_sections_count": 31
+        "critical_sections_count": 31,
+        "description": "AZG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering working hours, employee rights, employer obligations. Contains 79 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -7202,7 +7224,24 @@
           ]
         }
       ],
-      "content_hash": "85d2d6096df742ae1c788379b2391cb1"
+      "content_hash": "85d2d6096df742ae1c788379b2391cb1",
+      "keywords": [
+        "AZG",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "arbeitszeitgesetz,",
+        "core safety",
+        "working hours",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "documentation"
+      ]
     },
     {
       "id": "7f5b62e6d376ec2d",
@@ -7274,7 +7313,8 @@
             1
           ]
         ],
-        "critical_sections_count": 2
+        "critical_sections_count": 2,
+        "description": "ARG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, employer obligations, workplace design. Contains 11 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -7566,7 +7606,24 @@
           ]
         }
       ],
-      "content_hash": "3d74f0dc4dd98267999434ed53beef77"
+      "content_hash": "3d74f0dc4dd98267999434ed53beef77",
+      "keywords": [
+        "ARG",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "betriebsbewilligung",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "workplace design",
+        "workspace"
+      ]
     },
     {
       "id": "262a3aaf02aac9b0",
@@ -7638,7 +7695,8 @@
             3
           ]
         ],
-        "critical_sections_count": 5
+        "critical_sections_count": 5,
+        "description": "MSchG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, documentation, working hours. Contains 63 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -8853,7 +8911,24 @@
           ]
         }
       ],
-      "content_hash": "4ea9f73171965e15a4aefd065c538645"
+      "content_hash": "4ea9f73171965e15a4aefd065c538645",
+      "keywords": [
+        "MSchG",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "mutterschutzgesetz",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "documentation",
+        "records",
+        "safety documents",
+        "working hours",
+        "workplace design"
+      ]
     },
     {
       "id": "f439256a19cd8afb",
@@ -8925,7 +9000,8 @@
             5
           ]
         ],
-        "critical_sections_count": 5
+        "critical_sections_count": 5,
+        "description": "KJBG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering special groups, working hours, employee rights. Contains 43 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -10048,7 +10124,24 @@
           ]
         }
       ],
-      "content_hash": "80327e344fc957bb429a32d24a9e5ed3"
+      "content_hash": "80327e344fc957bb429a32d24a9e5ed3",
+      "keywords": [
+        "KJBG",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "kinder-",
+        "core safety",
+        "special groups",
+        "working hours",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance"
+      ]
     },
     {
       "id": "6f23a05149408245",
@@ -10083,10 +10176,26 @@
             1
           ]
         ],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "AStV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights. Contains 1 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "ee712e6e93272dfc6d02001e4c3de803"
+      "content_hash": "ee712e6e93272dfc6d02001e4c3de803",
+      "keywords": [
+        "AStV",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "gesonderte",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "0080d2af121b16b0",
@@ -10145,7 +10254,8 @@
             1
           ]
         ],
-        "critical_sections_count": 1
+        "critical_sections_count": 1,
+        "description": "DOK-VO (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Sicherheits- und Gesundheitsschutzdokumente, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering health surveillance, documentation, risk assessment. Contains 7 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -10346,7 +10456,24 @@
           ]
         }
       ],
-      "content_hash": "a5e84dcd02063536af1cc9f58fe04610"
+      "content_hash": "a5e84dcd02063536af1cc9f58fe04610",
+      "keywords": [
+        "DOK-VO",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "sicherheits-",
+        "core safety",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "documentation",
+        "records",
+        "safety documents",
+        "risk assessment",
+        "hazard evaluation"
+      ]
     },
     {
       "id": "0b03e65902574f7e",
@@ -10417,7 +10544,8 @@
             6
           ]
         ],
-        "critical_sections_count": 41
+        "critical_sections_count": 41,
+        "description": "AM-VO (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsmittelverordnung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering work equipment, employee rights, workplace design. Contains 70 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -12546,7 +12674,24 @@
           ]
         }
       ],
-      "content_hash": "1562951e8833cdc1cf058ac666e77f0b"
+      "content_hash": "1562951e8833cdc1cf058ac666e77f0b",
+      "keywords": [
+        "AM-VO",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "arbeitsmittelverordnung,",
+        "core safety",
+        "work equipment",
+        "machinery",
+        "tools",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace"
+      ]
     },
     {
       "id": "3c7de69291e9e84c",
@@ -12617,7 +12762,8 @@
             1
           ]
         ],
-        "critical_sections_count": 4
+        "critical_sections_count": 4,
+        "description": "ESV 2012 (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Elektroschutzverordnung 2012, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering workplace design, risk assessment, employer obligations. Contains 17 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -13102,7 +13248,24 @@
           ]
         }
       ],
-      "content_hash": "e2fc38fe25e995a288a2cdd5c35593d1"
+      "content_hash": "e2fc38fe25e995a288a2cdd5c35593d1",
+      "keywords": [
+        "ESV 2012",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "elektroschutzverordnung",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employer duties",
+        "employer obligations"
+      ]
     },
     {
       "id": "238f08d0e7142bb3",
@@ -13163,7 +13326,19 @@
           ]
         }
       ],
-      "content_hash": "bcbb413a90a5211739a8a5a70e4868c9"
+      "content_hash": "bcbb413a90a5211739a8a5a70e4868c9",
+      "whs_summary": {
+        "description": "PSA-V (Persönliche-Schutzausrüstungs-Verordnung –PSA-V) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
+      "keywords": [
+        "PSA-V",
+        "persönliche-schutzausrüstungs-verordnung",
+        "–psa-v",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "7898abd5a2e483f9",
@@ -13234,7 +13409,8 @@
             14
           ]
         ],
-        "critical_sections_count": 74
+        "critical_sections_count": 74,
+        "description": "BauV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Bauarbeiterschutzverordnung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, ergonomics. Contains 136 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -17158,7 +17334,24 @@
           ]
         }
       ],
-      "content_hash": "c926e94a236d4b29bec060bd90e8b2ac"
+      "content_hash": "c926e94a236d4b29bec060bd90e8b2ac",
+      "keywords": [
+        "BauV",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "bauarbeiterschutzverordnung,",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "ergonomics",
+        "workplace ergonomics"
+      ]
     },
     {
       "id": "8f12ad2b6a8f0095",
@@ -17193,7 +17386,8 @@
             1
           ]
         ],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "VbA (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Einbeziehungen in die Zusatzversicherung in der Unfallversicherung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering incident reporting. Contains 3 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -17253,7 +17447,22 @@
           ]
         }
       ],
-      "content_hash": "66acc0b83173df86cadafdbbdf85248c"
+      "content_hash": "66acc0b83173df86cadafdbbdf85248c",
+      "keywords": [
+        "VbA",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "einbeziehungen",
+        "core safety",
+        "incident reporting",
+        "accident reporting",
+        "near miss",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "4fdd5e1f94c8b415",
@@ -17324,7 +17533,8 @@
             5
           ]
         ],
-        "critical_sections_count": 13
+        "critical_sections_count": 13,
+        "description": "LärmV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Lebensmittelsicherheits- und Verbraucherschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering health surveillance, employee rights, training. Contains 107 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -17867,7 +18077,24 @@
           ]
         }
       ],
-      "content_hash": "7353e965a63035c8ceea70a510c39217"
+      "content_hash": "7353e965a63035c8ceea70a510c39217",
+      "keywords": [
+        "LärmV",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "lebensmittelsicherheits-",
+        "core safety",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "training",
+        "education"
+      ]
     },
     {
       "id": "ada6dc1942510073",
@@ -17910,7 +18137,8 @@
             1
           ]
         ],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "GefStoffV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Hilfsfondsgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, training, health surveillance. Contains 6 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -18029,7 +18257,24 @@
           ]
         }
       ],
-      "content_hash": "d775d7320961a0c633df97aef87f6fab"
+      "content_hash": "d775d7320961a0c633df97aef87f6fab",
+      "keywords": [
+        "GefStoffV",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "hilfsfondsgesetz,",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "training",
+        "education",
+        "instruction",
+        "health monitoring",
+        "medical surveillance"
+      ]
     },
     {
       "id": "9a9d980d3184c5cd",
@@ -18059,10 +18304,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "VbAV (Bundesgesetzblatt authentisch ab 2004) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "VbAV",
+        "bundesgesetzblatt",
+        "authentisch",
+        "2004",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "46891881928aa9ef",
@@ -18133,7 +18389,8 @@
             25
           ]
         ],
-        "critical_sections_count": 53
+        "critical_sections_count": 53,
+        "description": "BS-V (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für ArbeitnehmerInnenschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, employer obligations. Contains 137 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -18865,7 +19122,24 @@
           ]
         }
       ],
-      "content_hash": "1b104ada67c22d932c1b4aa57e6991ce"
+      "content_hash": "1b104ada67c22d932c1b4aa57e6991ce",
+      "keywords": [
+        "BS-V",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "arbeitnehmerinnenschutzgesetz,",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "employer duties",
+        "employer obligations"
+      ]
     },
     {
       "id": "ad55d65d28d561e7",
@@ -18931,7 +19205,18 @@
           ]
         }
       ],
-      "content_hash": "640257380465ef556bb9b999c03a2795"
+      "content_hash": "640257380465ef556bb9b999c03a2795",
+      "whs_summary": {
+        "description": "BauKG (Bauarbeitenkoordinationsgesetz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
+      "keywords": [
+        "BauKG",
+        "bauarbeitenkoordinationsgesetz",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "edb58ff14b99505b",
@@ -18974,14 +19259,27 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA M.plus 330 (M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Safe storage of hazardous materials in warehouses.",
         "pdf_filename": "at_AUVA_M_plus_330_law.pdf",
         "pdf_size_bytes": 2101805,
         "is_pdf_only": true
       },
-      "content_hash": "f649ddc539a483929967c81c3f284845"
+      "content_hash": "f649ddc539a483929967c81c3f284845",
+      "keywords": [
+        "AUVA M.plus 330",
+        "m.plus",
+        "lagerung",
+        "gefährlichen",
+        "arbeitsstoffen",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "b69f16759e45098c",
@@ -19024,14 +19322,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AZG-PDF (Arbeitszeitgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "PDF verification source for AZG - Working Time Act. Original publication in Federal Law Gazette.",
         "pdf_filename": "at_AZG-PDF_law.pdf",
         "pdf_size_bytes": 1947267,
         "is_pdf_only": true
       },
-      "content_hash": "a6f872bcbae2b74f29963a2f44099f7e"
+      "content_hash": "a6f872bcbae2b74f29963a2f44099f7e",
+      "keywords": [
+        "AZG-PDF",
+        "arbeitszeitgesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "73fcb38644910d27",
@@ -19074,14 +19383,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "ASchG-PDF (ArbeitnehmerInnenschutzgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "PDF verification source for ASchG - Worker Protection Act. Original publication in Federal Law Gazette.",
         "pdf_filename": "at_ASchG-PDF_law.pdf",
         "pdf_size_bytes": 5838349,
         "is_pdf_only": true
       },
-      "content_hash": "f6f4e3fc18dbb5fb28d3b314f5d9fb6b"
+      "content_hash": "f6f4e3fc18dbb5fb28d3b314f5d9fb6b",
+      "keywords": [
+        "ASchG-PDF",
+        "arbeitnehmerinnenschutzgesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "34e56b7804426eaa",
@@ -19124,14 +19444,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "ARG-PDF (Arbeitsruhegesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "PDF verification source for ARG - Rest Period Act. Original publication in Federal Law Gazette.",
         "pdf_filename": "at_ARG-PDF_law.pdf",
         "pdf_size_bytes": 862222,
         "is_pdf_only": true
       },
-      "content_hash": "0d93ec0b0f3a55e9b45eea11178b916e"
+      "content_hash": "0d93ec0b0f3a55e9b45eea11178b916e",
+      "keywords": [
+        "ARG-PDF",
+        "arbeitsruhegesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "281f4877e088b426",
@@ -19174,14 +19505,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "MSchG-PDF (Mutterschutzgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "PDF verification source for MSchG - Maternity Protection Act. Original publication in Federal Law Gazette.",
         "pdf_filename": "at_MSchG-PDF_law.pdf",
         "pdf_size_bytes": 1059178,
         "is_pdf_only": true
       },
-      "content_hash": "b240277e30c494ed8f19cbce91cee476"
+      "content_hash": "b240277e30c494ed8f19cbce91cee476",
+      "keywords": [
+        "MSchG-PDF",
+        "mutterschutzgesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "a7a2084cf6a09737",
@@ -19224,14 +19566,26 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "KJBG-PDF (Kinder- und Jugendlichen-Beschäftigungsgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "PDF verification source for KJBG - Child and Youth Employment Act. Original publication in Federal Law Gazette.",
         "pdf_filename": "at_KJBG-PDF_law.pdf",
         "pdf_size_bytes": 966742,
         "is_pdf_only": true
       },
-      "content_hash": "08d33d1e1e7c157c5ef78f5a800b8336"
+      "content_hash": "08d33d1e1e7c157c5ef78f5a800b8336",
+      "keywords": [
+        "KJBG-PDF",
+        "kinder-",
+        "jugendlichen-beschäftigungsgesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "944b31dbbe1e9661",
@@ -19261,10 +19615,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_regulations (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_regulations",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "f6346a891c1292cf",
@@ -19294,10 +19658,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_manual_handling (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_manual_handling",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "30f16684ebf0ab41",
@@ -19340,14 +19714,26 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA M 105 (M 105 - Ergonomie in unterstützenden Berufen) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Ergonomic principles for physically demanding work.",
         "pdf_filename": "at_AUVA_M_105_law.pdf",
         "pdf_size_bytes": 2335536,
         "is_pdf_only": true
       },
-      "content_hash": "e2b064fa99c66646322bcd02424551b0"
+      "content_hash": "e2b064fa99c66646322bcd02424551b0",
+      "keywords": [
+        "AUVA M 105",
+        "ergonomie",
+        "unterstützenden",
+        "berufen",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "d1c10c43a4553efa",
@@ -19390,14 +19776,26 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA IVSS Lastenhandhabung (IVSS Leitfaden Lastenhandhabung) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "International guide for manual load handling in SMEs.",
         "pdf_filename": "at_AUVA_IVSS_Lastenhandhabung_law.pdf",
         "pdf_size_bytes": 760150,
         "is_pdf_only": true
       },
-      "content_hash": "44643458316046417192fd2ca5dbf667"
+      "content_hash": "44643458316046417192fd2ca5dbf667",
+      "keywords": [
+        "AUVA IVSS Lastenhandhabung",
+        "ivss",
+        "leitfaden",
+        "lastenhandhabung",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "d2f90fa236940e86",
@@ -19427,10 +19825,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_forklifts (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_forklifts",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "fa16bee3bd166149",
@@ -19460,10 +19868,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_warehouse (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_warehouse",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "f8512c2647264dd9",
@@ -19506,14 +19924,28 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA M.plus 942 (M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Safety for automated guided vehicles and robots - relevant for Amazon robotics.",
         "pdf_filename": "at_AUVA_M_plus_942_law.pdf",
         "pdf_size_bytes": 1321970,
         "is_pdf_only": true
       },
-      "content_hash": "03743339dca8031a18146e64d4a0b923"
+      "content_hash": "03743339dca8031a18146e64d4a0b923",
+      "keywords": [
+        "AUVA M.plus 942",
+        "m.plus",
+        "fahrerlose",
+        "transportsysteme",
+        "mobile",
+        "roboter",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "f90c4c66419e0acd",
@@ -19543,10 +19975,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_transport (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_transport",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "86d88599f4d1965c",
@@ -19576,10 +20018,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_training (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_training",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "1e4c135e24f84a5d",
@@ -19622,14 +20074,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA M.plus 801 (M.plus 801 - Fahrradbotendienste) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Safety for bicycle delivery operations.",
         "pdf_filename": "at_AUVA_M_plus_801_law.pdf",
         "pdf_size_bytes": 1745532,
         "is_pdf_only": true
       },
-      "content_hash": "c7095e9fa7a728a236056c2e1e4f7831"
+      "content_hash": "c7095e9fa7a728a236056c2e1e4f7831",
+      "keywords": [
+        "AUVA M.plus 801",
+        "m.plus",
+        "fahrradbotendienste",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "a081195567dd0470",
@@ -19672,14 +20135,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA M.plus 070 (M.plus 070 - Unterweisung) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Guidelines for workplace safety training and instruction.",
         "pdf_filename": "at_AUVA_M_plus_070_law.pdf",
         "pdf_size_bytes": 1553688,
         "is_pdf_only": true
       },
-      "content_hash": "b889c7611924091684d7c5659bc0abcb"
+      "content_hash": "b889c7611924091684d7c5659bc0abcb",
+      "keywords": [
+        "AUVA M.plus 070",
+        "m.plus",
+        "unterweisung",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "2c47f307b355199d",
@@ -19709,10 +20183,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_psychological (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_psychological",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "c778a59fe083745c",
@@ -19755,14 +20239,24 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA M 030 (M 030 - ArbeitnehmerInnenschutzgesetz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Summary of the Austrian Worker Protection Act (ASchG).",
         "pdf_filename": "at_AUVA_M_030_law.pdf",
         "pdf_size_bytes": 2637357,
         "is_pdf_only": true
       },
-      "content_hash": "8471706d4c53e12b1639c6cd74f8be77"
+      "content_hash": "8471706d4c53e12b1639c6cd74f8be77",
+      "keywords": [
+        "AUVA M 030",
+        "arbeitnehmerinnenschutzgesetz",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "785e3f9e5b532e61",
@@ -19805,14 +20299,28 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA E 14 (E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Psychological stress evaluation using ABS group method.",
         "pdf_filename": "at_AUVA_E_14_law.pdf",
         "pdf_size_bytes": 1629312,
         "is_pdf_only": true
       },
-      "content_hash": "8e5bcc0bf432e64ba54b16c3c49cc6de"
+      "content_hash": "8e5bcc0bf432e64ba54b16c3c49cc6de",
+      "keywords": [
+        "AUVA E 14",
+        "evaluierung",
+        "psychischer",
+        "belastungen",
+        "(abs",
+        "gruppe)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "6cbfb8723a976c48",
@@ -19842,10 +20350,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_ppe (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_ppe",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "f62b7fde91a5d804",
@@ -19888,14 +20406,28 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA E 24 EVALOG (E 24 EVALOG - Evaluierung psychischer Belastung im Dialog) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Comprehensive psychological stress evaluation guide.",
         "pdf_filename": "at_AUVA_E_24_EVALOG_law.pdf",
         "pdf_size_bytes": 9134807,
         "is_pdf_only": true
       },
-      "content_hash": "de8e9b3eac13e83dfeac52b76dc2b429"
+      "content_hash": "de8e9b3eac13e83dfeac52b76dc2b429",
+      "keywords": [
+        "AUVA E 24 EVALOG",
+        "evalog",
+        "evaluierung",
+        "psychischer",
+        "belastung",
+        "dialog",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "00b86324f3b4d96c",
@@ -19938,14 +20470,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA M.plus 700 (M.plus 700 - Gehörschutz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Selection and use of hearing protection.",
         "pdf_filename": "at_AUVA_M_plus_700_law.pdf",
         "pdf_size_bytes": 3329721,
         "is_pdf_only": true
       },
-      "content_hash": "e64f697976222ec09794cc4e63e040c4"
+      "content_hash": "e64f697976222ec09794cc4e63e040c4",
+      "keywords": [
+        "AUVA M.plus 700",
+        "m.plus",
+        "gehörschutz",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     },
     {
       "id": "7d9669046ea3b346",
@@ -19988,14 +20531,24 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "AUVA M 705 (M 705 - Schutzhandschuhe) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Selection and use of protective gloves.",
         "pdf_filename": "at_AUVA_M_705_law.pdf",
         "pdf_size_bytes": 681400,
         "is_pdf_only": true
       },
-      "content_hash": "76ee25c0b8e2c6f451d4127bceac2291"
+      "content_hash": "76ee25c0b8e2c6f451d4127bceac2291",
+      "keywords": [
+        "AUVA M 705",
+        "schutzhandschuhe",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ]
     }
   ]
 }

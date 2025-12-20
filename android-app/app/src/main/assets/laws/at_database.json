@@ -1,77 +1,1065 @@
 {
   "laws": [
     {
-      "id": "at-aschg",
-      "title": "ArbeitnehmerInnenschutzgesetz",
+      "id": "63b3839c5d19d0fc",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für ArbeitnehmerInnenschutzgesetz, Fassung vom 20.12.2025",
       "abbreviation": "ASchG",
-      "description": "Austrian Employee Protection Act - Core workplace health and safety law",
+      "description": "Employee Protection Act",
       "type": "law",
-      "summary": "The ASchG is Austria's primary workplace safety legislation, establishing employer duties for employee protection including risk assessment, safety measures, and health surveillance.",
-      "whs_summary": "Comprehensive workplace safety law covering risk assessment, workplace design, PPE, training, and emergency procedures for all Austrian employers.",
-      "keywords": ["workplace safety", "employee protection", "risk assessment", "employer duties", "Austria"],
+      "summary": "ASchG (Employee Protection Act) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, employer obligations. Contains 137 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ASchG (Employee Protection Act) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, employer obligations. Contains 137 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ASchG",
+        "employee",
+        "protection",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "risk assessment",
+        "hazard evaluation"
+      ],
       "content": {
-        "full_text": "§ 1. Geltungsbereich: Dieses Bundesgesetz gilt für die Beschäftigung von Arbeitnehmern.\n\n§ 3. Allgemeine Pflichten der Arbeitgeber: Arbeitgeber sind verpflichtet, für Sicherheit und Gesundheitsschutz der Arbeitnehmer in Bezug auf alle Aspekte, die die Arbeit betreffen, zu sorgen.\n\n§ 4. Ermittlung und Beurteilung der Gefahren: Arbeitgeber sind verpflichtet, die für die Sicherheit und Gesundheit der Arbeitnehmer bestehenden Gefahren zu ermitteln und zu beurteilen.\n\n§ 5. Sicherheits- und Gesundheitsschutzdokumente: Arbeitgeber haben die Ergebnisse der Ermittlung und Beurteilung der Gefahren sowie die festgelegten Maßnahmen schriftlich festzuhalten.\n\n§ 12. Information: Arbeitgeber haben dafür zu sorgen, dass die Arbeitnehmer ausreichend und angemessen informiert werden.\n\n§ 14. Unterweisung: Arbeitgeber haben für eine ausreichende Unterweisung der Arbeitnehmer zu sorgen.",
+        "full_text": "§ 1. Geltungsbereich\n§ 1. Geltungsbereich: (1) Dieses Bundesgesetz gilt für die Beschäftigung von Arbeitnehmern. (2) Dieses Bundesgesetz gilt nicht für die Beschäftigung von 1. Arbeitnehmern der Länder, Gemeinden und Gemeindeverbände, die nicht in Betrieben beschäftigt sind; 2. Arbeitnehmern des Bundes in Dienststellen, auf die das Bundes-Bedienstetenschutzgesetz, BGBl. I Nr. 70/1999, anzuwenden ist; 3. Arbeitnehmern in land- und forstwirtschaftlichen Betrieben im Sinne des Landarbeitsgesetzes 1984, BGBl. Nr. 287; 4. Hausgehilfen und Hausangestellten in privaten Haushalten; 5. Heimarbeitern im Sinne des Heimarbeitsgesetzes 1960, BGBl. Nr. 105/1961. (Anm.: Abs. 3 aufgehoben durch BGBl. I Nr. 38/1999)\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen: (1) Arbeitnehmer im Sinne dieses Bundesgesetzes sind alle Personen, die im Rahmen eines Beschäftigungs- oder Ausbildungsverhältnisses tätig sind. Geistliche Amtsträger gesetzlich anerkannter Kirchen und Religionsgesellschaften sind keine Arbeitnehmer im Sinne dieses Bundesgesetzes. Arbeitgeber im Sinne dieses Bundesgesetzes ist jede natürliche oder juristische Person oder eingetragene Personengesellschaft, die als Vertrag\n\n§ 3. Allgemeine Pflichten der Arbeitgeber\nAllgemeine Pflichten der Arbeitgeber § 3 . (1) Arbeitgeber sind verpflichtet, für Sicherheit und Gesundheitsschutz der Arbeitnehmer in Bezug auf alle Aspekte, die die Arbeit betreffen, zu sorgen . Die Kosten dafür dürfen auf keinen Fall zu Lasten der Arbeitnehmer gehen . Arbeitgeber haben die zum Schutz des Lebens, der Gesundheit sowie der Integrität und Würde erforderlichen Maßnahmen zu treffen, einschließlich der Maßnahmen zur Verhütung arbeitsbedingter Gefahren, zur Information und zur Unterweisung sowie der Bereitstellung einer geeigneten Organisation und der erforderlichen Mittel . (2) Arbeitgeber haben sich unter Berücksichtigung der bestehenden Gefahren über den neuesten Stand der Technik und der Erkenntnisse auf dem Gebiet der Arbeitsgestaltung entsprechend zu informieren . (3) Arbeitgeber sind verpflichtet, durch geeignete Maßnahmen und Anweisungen zu ermöglichen, daß die Arbeitnehmer bei ernster, unmittelbarer und nicht vermeidbarer Gefahr 1 . ihre Tätigkeit einstellen, 2 . sich durch sofortiges Verlassen des Arbeitsplatzes in Sicherheit bringen und 3 . außer in begründeten Ausnahmefällen ihre Arbeit nicht wieder aufnehmen, solange eine ernste und unmittelbare Gefahr besteht . (4) Arbeitgeber haben durch Anweisungen und sonstige geeignete Maßnahmen dafür zu sorgen, daß Arbeitnehmer bei ernster und unmittelbarer Gefahr für die eigene Sicherheit oder für die Sicherheit anderer Personen in der Lage sind, selbst die erforderlichen Maßnahmen zur Verringerung oder Beseitigung der Gefahr zu treffen, wenn sie die zuständigen Vorgesetzten oder die sonst zuständigen Personen nicht erreichen . Bei diesen Vorkehrungen sind die Kenntnisse der Arbeitnehmer und die ihnen zur Verfügung stehenden technischen Mittel zu berücksichtigen . (5) Arbeitgeber, die selbst eine Tätigkeit in Arbeitsstätten oder auf Baustellen oder auf auswärtigen Arbeitsstellen ausüben, haben sich so zu verhalten, daß sie die dort beschäftigten Arbeitnehmer nicht gefährden . (6) Für eine Arbeitsstätte, Baustelle oder auswärtige Arbeitsstelle, in/auf der der Arbeitgeber nicht im notwendigen Umfang selbst anwesend ist, ist eine geeignete Person zu beauftragen, die auf die Durchführung und Einhaltung der notwendigen Schutzmaßnahmen zu achten hat . (7) Arbeitgeber haben für eine geeignete Sicherheits- und Gesundheitsschutzkennzeichnung zu sorgen, wenn Gefahren für Sicherheit oder Gesundheit der Arbeitnehmer nicht durch sonstige technische und organisatorische Maßnahmen vermieden oder ausreichend begrenzt werden können .\n\n§ 4. Ermittlung und Beurteilung der Gefahren; Festlegung von Maßnahmen\nErmittlung und Beurteilung der Gefahren Festlegung von Maßnahmen (Arbeitsplatzevaluierung) § 4 . (1) Arbeitgeber sind verpflichtet, die für die Sicherheit und Gesundheit der Arbeitnehmer bestehenden Gefahren zu ermitteln und zu beurteilen . Dabei sind die Grundsätze der Gefahrenverhütung gemäß § 7 anzuwenden . Insbesondere sind dabei zu berücksichtigen: Arbeitgeber sind verpflichtet, die für die Sicherheit und Gesundheit der Arbeitnehmer bestehenden Gefahren zu ermitteln und zu beurteilen . Dabei sind die Grundsätze der Gefahrenverhütung gemäß anzuwenden . Insbesondere sind dabei zu berücksichtigen: 1 . die Gestaltung und die Einrichtung der Arbeitsstätte, 2 . die Gestaltung und der Einsatz von Arbeitsmitteln, 3 . die Verwendung von Arbeitsstoffen, 4 . die Gestaltung der Arbeitsplätze, 5 . die Gestaltung der Arbeitsverfahren und Arbeitsvorgänge und deren Zusammenwirken, 6 . die Gestaltung der Arbeitsaufgaben und die Art der Tätigkeiten, der Arbeitsumgebung, der Arbeitsabläufe sowie der Arbeitsorganisation und 7 . der Stand der Ausbildung und Unterweisung der Arbeitnehmer . (2) Bei der Ermittlung und Beurteilung der Gefahren sind auch besonders gefährdete oder schutzbedürftige Arbeitnehmer sowie die Eignung der Arbeitnehmer im Hinblick auf Konstitution, Körperkräfte, Alter und Qualifikation (§ 6 Abs . 1) zu berücksichtigen . Insbesondere ist zu ermitteln und zu beurteilen, Inwieweit sich an bestimmten Arbeitsplätzen oder bei bestimmten Arbeitsvorgängen spezifische Gefahren für Arbeitnehmer ergeben können, für die ein besonderer Personenschutz besteht . Bei der Ermittlung und Beurteilung der Gefahren sind auch besonders gefährdete oder schutzbedürftige Arbeitnehmer sowie die Eignung der Arbeitnehmer im Hinblick auf Konstitution, Körperkräfte, Alter und Qualifikation zu berücksichtigen . . (3) Auf Grundlage der Ermittlung und Beurteilung der Gefahren gemäß Abs . 1 und 2 sind die durchzuführenden Maßnahmen zur Gefahrenverhütung festzulegen . Dabei sind auch Vorkehrungen für absehbare Betriebsstörungen und für Not- und Rettungsmaßnahmen zu treffen . Diese Maßnahmen müssen in alle Tätigkeiten und auf allen Führungsebenen einbezogen werden . Schutzmaßnahmen müssen soweit wie möglich auch bei menschlichem Fehlverhalten wirksam sein . Auf Grundlage der Ermittlung und Beurteilung der Gefahren gemäß und 2 sind die durchzuführenden Maßnahmen zur Gefahrenverhütung festzulegen . . . . (4) Die Ermittlung und Beurteilung der Gefahren ist erforderlichenfalls zu überprüfen und sich ändernden Gegebenheiten anzupassen . Die festgelegten Maßnahmen sind auf ihre Wirksamkeit zu überprüfen und erforderlichenfalls anzupassen, dabei ist eine Verbesserung der Arbeitsbedingungen anzustreben . (5) Eine Überprüfung und erforderlichenfalls eine Anpassung im Sinne des Abs . 4 hat insbesondere zu erfolgen: Eine Überprüfung und erforderlichenfalls eine Anpassung im Sinne des hat insbesondere zu erfolgen: 1 . nach Unfällen, 2 . bei Auftreten von Erkrankungen, wenn der begründete Verdacht besteht, daß sie arbeitsbedingt sind, 2a . a nach Zwischenfällen mit erhöhter arbeitsbedingter psychischer Fehlbeanspruchung, 3 . bei sonstigen Umständen oder Ereignissen, die auf eine Gefahr für Sicherheit oder Gesundheit der Arbeitnehmer schließen lassen, 4 . bei Einführung neuer Arbeitsmittel, Arbeitsstoffe oder Arbeitsverfahren, 5 . bei neuen Erkenntnissen im Sinne des § 3 Abs . 2 und bei neuen Erkenntnissen im Sinne des und 6 . auf begründetes Verlangen des Arbeitsinspektorates . (6) Bei der Ermittlung und Beurteilung der Gefahren und der Festlegung der Maßnahmen sind erforderlichenfalls geeignete Fachleute heranzuziehen . Mit der Ermittlung und Beurteilung der Gefahren können auch die Sicherheitsfachkräfte und Arbeitsmediziner sowie sonstige geeignete Fachleute, wie Chemiker, Toxikologen, Ergonomen, insbesondere jedoch Arbeitspsychologen, beauftragt werden .\n\n§ 5. Sicherheits- und Gesundheitsschutzdokumente\nBeachte für folgende Bestimmung Zum Inkrafttreten vgl . § 102\n\nSicherheits- und Gesundheitsschutzdokumente § 5 . Arbeitgeber sind verpflichtet, in einer der Anzahl der Beschäftigten und den Gefahren entsprechenden Weise die Ergebnisse der Ermittlung und Beurteilung der Gefahren sowie die durchzuführenden Maßnahmen zur Gefahrenverhütung schriftlich festzuhalten (Sicherheits- und Gesundheitsschutzdokumente) . Soweit dies aus Gründen der Gefahrenverhütung erforderlich ist, ist diese Dokumentation arbeitsplatzbezogen vorzunehmen .\n\n§ 6. Einsatz der Arbeitnehmer\n§ 6. Einsatz der Arbeitnehmer: (1) Arbeitgeber haben bei der Übertragung von Aufgaben an Arbeitnehmer deren Eignung in Bezug auf Sicherheit und Gesundheit zu berücksichtigen . Dabei ist insbesondere auf Konstitution und Körperkräfte, Alter und Qualifikation Rücksicht zu nehmen . (2) Arbeitgeber haben durch geeignete Maßnahmen dafür zu sorgen, daß nur jene Arbeitnehmer Zugang zu Bereichen mit erheblichen oder spezifischen Gefahren haben, die zuvor ausreichende Anweisungen erhalten haben . (3) Arbeitnehmer, von denen dem Arbeitgeber bekannt ist, dass sie auf Grund ihrer gesundheitlichen Verfassung bei bestimmten Arbeiten einer besonderen Gefahr ausgesetzt wären oder andere Arbeitnehmer gefährden könnten, dürfen mit Arbeiten dieser Art nicht beschäftigt werden . Dies gilt insbesondere für Anfallsleiden, Krämpfe, zeitweilige Bewußtseinstrübungen, Beeinträchtigungen des Seh- oder Hörvermögens und schwere Depressionszustände . (4) Arbeitnehmerinnen dürfen mit Arbeiten, die infolge ihrer Art für Frauen eine spezifische Gefahr bewirken können, nicht oder nur unter Bedingungen oder Einschränkungen beschäftigt werden, die geeignet sind, diese besondere Gefahr zu vermeiden . (5) Bei Beschäftigung von behinderten Arbeitnehmern ist auf deren körperlichen und geistigen Zustand jede mögliche Rücksicht zu nehmen . Das Arbeitsinspektorat hat ihre Beschäftigung mit Arbeiten, die für sie auf Grund ihres körperlichen oder geistigen Zustandes eine Gefahr bewirken können, durch Bescheid zu untersagen oder von bestimmten Bedingungen abhängig zu machen .\n\n[SECTION\n\n§ 7. Grundsätze der Gefahrenverhütung\nGrundsätze der Gefahrenverhütung § 7 . Arbeitgeber haben bei der\n\n[Content truncated for mobile - view full version online]",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "at-arbstv",
-      "title": "Arbeitsstättenverordnung",
+      "id": "2010a150cb01ad77",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 20.12.2025",
+      "abbreviation": "AZG",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "AZG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering working hours, employee rights, employer obligations. Contains 79 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AZG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitszeitgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering working hours, employee rights, employer obligations. Contains 79 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AZG",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "arbeitszeitgesetz,",
+        "core safety",
+        "working hours",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "documentation"
+      ],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich\nABSCHNITT 1 Geltungsbereich § 1 . (1) Die Bestimmungen dieses Bundesgesetzes gelten für die Beschäftigung von Arbeitnehmern (Lehrlingen), die das 18 . Lebensjahr vollendet haben . (2) Ausgenommen vom Geltungsbereich dieses Bundesgesetzes sind: 1 . Arbeitnehmer, die in einem Arbeitsverhältnis zu einer Gebietskörperschaft, zu einer Stiftung, zu einem Fonds oder zu einer Anstalt stehen, sofern diese Einrichtungen von Organen einer Gebietskörperschaft oder von Personen verwaltet werden, die hiezu von Organen einer Gebietskörperschaft bestellt sind ; die Bestimmungen dieses Bundesgesetzes gelten jedoch für Arbeitnehmer, die nicht im Bereich der Hoheitsverwaltung tätig sind, sofern für ihr Arbeitsverhältnis ein Kollektivvertrag wirksam ist ; 2 . Arbeitnehmerinnen und Arbeitnehmer im Sinne des Landarbeitsgesetzes 2021, BGBl . I Nr . 78/2021 ; 3 . Arbeitnehmer, für die die Vorschriften des Bäckereiarbeiter/innengesetzes 1996, BGBl . Nr . 410, gelten ; 4 . Arbeitnehmer, für die die Vorschriften des Hausgehilfen- und Hausangestelltengesetzes, BGBl . Nr . 235/1962 , gelten ; 5 . Arbeitnehmer, a) für die die Vorschriften des Hausbesorgergesetzes, BGBl . Nr . 16/1970 , gelten ; b) denen die Hausbetreuung im Sinne des § 23 Abs . 1 Mietrechtsgesetz, BGBl . Nr . 520/1981 , obliegt und die in einem Arbeitsverhältnis stehen aa) zum Hauseigentümer oder zu einer im mehrheitlichen Eigentum des Hauseigentümers stehenden juristischen Person, soweit sich die zu betreuenden Häuser im Eigentum des Hauseigentümers befinden ; bb) zu einer im Sinne des § 7 Abs . 4b Wohnungsgemeinnützigkeitsgesetz, BGBl . Nr . 139/1979 , gegründeten Gesellschaft . Für diese Arbeitnehmer ist jedoch § 19 anzuwenden . 6 . Lehr- und Erziehungskräfte an Unterrichts- und Erziehungsanstalten, soweit sie nicht unter Z 1 fallen ; 7 . nahe Angehörige der Arbeitgeberin bzw . des Arbeitgebers (Eltern, volljährige Kinder, im gemeinsamen Haushalt lebende Ehegattin oder Ehegatte, eingetragene Partnerin oder Partner, sowie Lebensgefährtin oder Lebensgefährte, wenn seit mindestens drei Jahren ein gemeinsamer Haushalt besteht), deren gesamte Arbeitszeit auf Grund der besonderen Merkmale der Tätigkeit a) nicht gemessen oder im Voraus festgelegt wird, oder b) von diesen Arbeitnehmerinnen bzw . Arbeitnehmern hinsichtlich Lage und Dauer selbst festgelegt werden kann ; 8 . leitende Angestellte oder sonstige Arbeitnehmerinnen und Arbeitnehmer, denen maßgebliche selbständige Entscheidungsbefugnis übertragen ist und deren gesamte Arbeitszeit auf Grund der besonderen Merkmale der Tätigkeit a) nicht gemessen oder im Voraus festgelegt wird, oder b) von diesen Arbeitnehmerinnen bzw . ; 9 . Heimarbeiter im Sinne des Heimarbeitsgesetzes, 1960, BGBl . Nr . 105/1961 ; 10 . Dienstnehmer, die unter das Krankenanstalten-Arbeitszeitgesetz, BGBl . I Nr . 8/1997 , fallen .\n\n§ 1a. Regelungen durch Betriebsvereinbarung\nRegelungen durch Betriebsvereinbarung § 1a . a, Soweit im Folgenden nicht Anderes bestimmt wird, können Regelungen, zu denen der Kollektivvertrag nach diesem Bundesgesetz ermächtigt ist, durch Betriebsvereinbarung zugelassen werden, wenn 1 . der Kollektivvertrag die Betriebsvereinbarung dazu ermächtigt, oder 2 . für die betroffenen Arbeitnehmer mangels Bestehen einer kollektivvertragsfähigen Körperschaft auf Arbeitgeberseite kein Kollektivvertrag abgeschlossen werden kann .\n\n§ 2. Ausnahmen vom Geltungsbereich\nABSCHNITT 2 Arbeitszeit Begriff der Arbeitszeit § 2 . (1) Im Sinne dieses Bundesgesetzes ist: 1 . Arbeitszeit die Zeit vom Beginn bis zum Ende der Arbeit ohne die Ruhepausen ; 2 . Tagesarbeitszeit die Arbeitszeit innerhalb eines ununterbrochenen Zeitraumes von vierundzwanzig Stunden ; 3 . Wochenarbeitszeit die Arbeitszeit innerhalb des Zeitraumes von Montag bis einschließlich Sonntag . (2) Arbeitszeit im Sinne des Abs . 1 Z 1 ist auch die Zeit, während der ein im übrigen im Betrieb Beschäftigter in seiner eigenen Wohnung oder Werkstätte oder sonst außerhalb des Betriebes beschäftigt wird . Werden Arbeitnehmer von mehreren Arbeitgebern beschäftigt, so dürfen die einzelnen Beschäftigungen zusammen die gesetzliche Höchstgrenze der Arbeitszeit nicht überschreiten . (3) Soweit in diesem Bundesgesetz personenbezogene Bezeichnungen noch nicht geschlechtsneutral formuliert sind, gilt die gewählte Form für beide Geschlechter .\n\n§ 3. Begriff der Arbeitszeit\n§ 3. Begriff der Arbeitszeit: (1) Die tägliche Normalarbeitszeit darf acht Stunden, die wöchentliche Normalarbeitszeit vierzig Stunden nicht überschreiten, soweit im folgenden nicht anderes bestimmt wird . (2) Aus Anlaß der mit dem Inkrafttreten dieses Bundesgesetzes eintretenden Arbeitszeitverkürzung darf das Entgelt der betroffenen Arbeitnehmer nicht gekürzt werden (Lohnausgleich) . Ein nach Stunden bemessenes Entgelt ist dabei in dem gleichen Verhältnis zu erhöhen, in dem die Arbeitszeit verkürzt wird . Akkord-, Stück- und Gedinglöhne sowie auf Grund anderer Leistungslohnarten festgelegte Löhne sind entsprechend zu berichtigen . Durch Kollektivvertrag kann eine andere Regelung des Lohnausgleiches vereinbart werden .\n\n§ 4. Normalarbeitszeit\n§ 4. Normalarbeitszeit: (1) Der Kollektivvertrag kann eine tägliche Normalarbeitszeit von bis zu zehn Stunden zulassen, soweit nach diesem Bundesgesetz eine kürzere Normalarbeitszeit vorgesehen ist . Darüber hinaus gehende Verlängerungsmöglichkeiten bleiben unberührt . (2) Zur Erreichung einer längeren Freizeit, die mit der wöchentlichen Ruhezeit oder einer Ruhezeit gemäß § 12 zusammenhängen muss, kann die Normalarbeitszeit an einzelnen Tagen regelmäßig gekürzt und die ausfallende Normalarbeitszeit auf die übrigen Tage der Woche verteilt werden . Die Betriebsvereinbarung, für Arbeitnehmer in Betrieben, in denen kein Betriebsrat\n\n§ 4a. Andere Verteilung der Normalarbeitszeit\nNormalarbeitszeit bei Schichtarbeit § 4a . a,\n\n(1) Bei mehrschichtiger Arbeitsweise ist ein Schichtplan zu erstellen . Die wöchentliche Normalarbeitszeit darf 1 . innerhalb des Schichtturnusses oder 2 . bei Durchrechnung der Normalarbeitszeit gemäß § 4 Abs . 6 innerhalb des Durchrechnungszeitraumes bei Durchrechnung der Normalarbeitszeit gemäß innerhalb des Durchrechnungszeitraumes im Durchschnitt 40 Stunden bzw . die durch Kollektivvertrag festgelegte Normalarbeitszeit nicht überschreiten . (2) Die tägliche Normalarbeitszeit darf neun Stunden nicht überschreiten, soweit nicht nach § 4 eine längere Normalarbeitszeit zulässig ist . Die tägliche Normalarbeitszeit darf neun Stunden nicht überschreiten, soweit nicht nach eine längere Normalarbeitszeit zulässig ist . (3) Bei durchlaufender mehrschichtiger Arbeitsweise mit Schichtwechsel kann die tägliche Normalarbeitszeit bis auf zwölf Stunden ausgedehnt werden, 1 . am Wochenende (Beginn der Nachtschicht zum Samstag bis zum Ende der Nachtschicht zum Montag), wenn dies durch Betriebsvereinbarung geregelt ist, oder 2 . wenn dies mit einem Schichtwechsel in Verbindung steht . (4) Der Kollektivvertrag kann zulassen, dass 1 . die Normalarbeitszeit in einzelnen Wochen bis auf 56 Stunden ausgedehnt wird ; 2 . die tägliche Normalarbeitszeit bis auf zwölf Stunden unter der Bedingung ausgedehnt wird, dass die arbeitsmedizinische Unbedenklichkeit dieser Arbeitszeitverlängerung für die betreffenden Tätigkeiten durch einen Arbeitsmediziner festgestellt wird . Auf Verlangen des Betriebsrates, in Betrieben ohne Betriebsrat auf Verlangen der Mehrheit der betroffenen Arbeitnehmer, ist ein weiterer, einvernehmlich bestellter Arbeitsmediziner zu befassen .\n\n§ 4b. Gleitende Arbeitszeit\nGleitende Arbeitszeit § 4b . b,\n\n(1) Gleitende Arbeitszeit liegt vor, wenn der Arbeitnehmer innerhalb eines vereinbarten zeitlichen Rahmens Beginn und Ende seiner täglichen Normalarbeitszeit selbst bestimmen kann . (2) Die gleitende Arbeitszeit muß durch Betriebsvereinbarung, in Betrieben, in denen kein Betriebsrat errichtet ist, durch schriftliche Vereinbarung geregelt werden (Gleitzeitvereinbarung) . (3) Die Gleitzeitvereinbarung hat zu enthalten: 1 . die Dauer der Gleitzeitperiode, 2 . den Gleitzeitrahmen, 3 . das Höchstausmaß allfälliger Übertragungsmöglichkeiten von Zeitguthaben und Zeitschulden in die nächste Gleitzeitperiode und 4 . Dauer und Lage der fiktiven Normalarbeitszeit . (4) Die tägliche Normalarbeitszeit darf zehn Stunden nicht überschreiten . Eine Verlängerung der täglichen Normalarbeitszeit auf bis zu zwölf Stunden ist zulässig, wenn die Gleitzeitvereinbarung vorsieht, dass ein Zeitguthaben ganztägig verbraucht werden kann und ein Verbrauch in Zusammenhang mit einer wöchentlichen Ruhezeit nicht ausgeschlossen ist . Die wöchentliche Normalarbeitszeit darf innerhalb der Gleitzeitperiode die wöchentliche Normalarbeitszeit gemäß § 3 im Durchschnitt nur insoweit überschreiten, als Übertragungsmöglichkeiten von Zeitguthaben vorgesehen sind . Die tägliche Normalarbeitszeit darf zehn Stunden nicht überschreiten . . . (5) Ordnet die Arbeitgeberin bzw . der Arbeitgeber Arbeitsstunden an, die über die Normalarbeitszeit gemäß § 3 Abs . 1 hinausgehen, gelten diese als Überstunden . Ordnet die Arbeitgeberin bzw . der Arbeitgeber Arbeitsstunden an, die über die Normalarbeitszeit gemäß hinausgehen, gelten diese als Überstunden .\n\n§ 4c. Dekadenarbeit\nDekadenarbeit § 4c . c,\n\n(1) Für Arbeitnehmer, die auf im öffentlichen Interesse betriebenen Großbaustellen oder auf Baustellen der Wildbach- und Lawinenverbauung in Gebirgsregionen beschäftigt sind, kann der Kollektivvertrag zulassen, daß die wöchentliche Normalarbeitszeit mehr als 40 Stunden beträgt, wenn innerhalb eines Durchrechnungszeitraumes von zwei Wochen die wöchentliche Normalarbeitszeit im Durchschnitt die Normalarbeitszeit gemäß § 3 nicht überschreitet . Für Arbeitnehmer, die auf im öffentlichen Interesse betriebenen Großbaustellen oder auf Baustellen der Wildbach- und Lawinenverbauung in Gebirgsregionen beschäftigt sind, kann der Kollektivvertrag zulassen, daß die wöchentliche Normalarbeitszeit mehr als 40 Stunden beträgt, wenn innerhalb\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "7f5b62e6d376ec2d",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025",
+      "abbreviation": "ARG",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "ARG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, employer obligations, workplace design. Contains 11 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ARG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, employer obligations, workplace design. Contains 11 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ARG",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "betriebsbewilligung",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "workplace design",
+        "workspace"
+      ],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich\nGeltungsbereich § 1 . Diese Verordnung gilt für Betriebe, die unter die Bestimmungen des Arbeitnehmerschutzgesetzes fallen, soweit für diese Betriebe nach den folgenden Bestimmungen eine Betriebsbewilligung erforderlich ist ; sie gilt jedoch nicht für Betriebe, die dem Verkehrs-Arbeitsinspektionsgesetz, BGBl . Nr . 99/1952 , unterliegen . ; sie gilt jedoch nicht für Betriebe, die dem Verkehrs-Arbeitsinspektionsgesetz, unterliegen .\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\nBetriebsbewilligung § 2 . (1) Betriebe, bei deren Führung infolge der Art der Betriebseinrichtungen, der Betriebsmittel, der verwendeten Arbeitsstoffe oder der Arbeitsverfahren in besonderem Maße eine Gefährdung des Lebens und der Gesundheit der Arbeitnehmer auftreten kann, dürfen nur auf Grund einer Bewilligung der zuständigen Behörde geführt werden . (2) Eine Bewilligung nach Abs . 1 ist nicht erforderlich bei Betrieben, für die durch eine andere bundesgesetzliche Vorschrift eine Bewilligung vorgeschrieben ist, sowie bei sonstigen Betrieben, die unter die Bestimmungen der Gewerbeordnung 1973 fallen . (3) Eine Bewilligung nach Abs . 1 ist, soweit sich aus Abs . 2 nicht anderes ergibt, insbesondere erforderlich für: Elektrizitätserzeugungsanlagen mit einer gesamten installierten Maschinenleistung (Klemmenleistung) von mehr als 10 MW sowie Umspann- und Schaltanlagen mit einer gesamten installierten Transformatorenleistung von mehr als 50 MVA und einer Nennspannung von 110 kV und darüber ; Schlachthöfe ; Müllverbrennungsanlagen ; Tierkörperverwertungsanstalten ; Badeanstalten, soweit Wärmepumpen oder für die Wasserentkeimung gesundheitsschädliche Stoffe verwendet werden ; Sportanlagen mit Kunsteisbahnen ; Rundfunk- und Fernsehanstalten hinsichtlich ihrer Produktionsstudios mit besonderen Einrichtungen, wie Filmentwicklung, Werkstätten oder zentraler Energieversorgung, und der Großsendeanlagen ; Theater mit maschinellen Bühneneinrichtungen, Theaterwerkstätten ; Filmateliers einschließlich ihrer Werkstätten ; Betriebe mit solchen Kraftfahrzeug-Einstellräumen, die auch als Arbeitsräume verwendet werden, wenn deren Stellplätze mehr als 5 m unter dem angrenzenden Gelände liegen ; Krankenanstalten ; Betriebe, die unter den Geltungsbereich der Verordnung über die gesundheitliche Eignung von Arbeitnehmern für bestimmte Tätigkeiten, BGBl . Nr . 39/1974 , fallen . . (4) Werden in einem Betrieb, für den eine Betriebsbewilligung nach Abs . 1 nicht erforderlich ist, Änderungen vorgenommen, die die Bewilligungspflicht zur Folge haben, so ist für die Weiterführung dieses Betriebes eine Bewilligung erforderlich . (5) Die Verwendung von Betriebseinrichtungen, Betriebsmitteln, Arbeitsstoffen oder Ausrüstungen, für die eine Zulassung nach § 26 des Arbeitnehmerschutzgesetzes erteilt wurde, bedingt für den betreffenden Betrieb an sich keine Betriebsbewilligung nach Abs . 1 .\n\n(6) Werden Umstände bekannt, die die Bewilligungspflicht eines Betriebes im Sinne des Abs . 1 begründen könnten, zweifelt jedoch der Arbeitgeber daran, daß der Betrieb nur auf Grund einer Bewilligung geführt werden darf, so hat die zuständige Behörde zu prüfen und von Amts wegen durch Bescheid festzustellen, ob für die Führung des Betriebes eine Bewilligung notwendig ist . Ein Feststellungsbescheid ist jedoch nicht zu erlassen, wenn die Bewilligungspflicht offenkundig ist . . (7) Durch ein Verfahren nach Abs . 6 wird späteren Feststellungen über Art und Ausmaß der Gefährdung nach Abs . 1 nicht vorgegriffen . (8) Abs . 6 ist sinngemäß anzuwenden, wenn der Arbeitgeber beantragt festzustellen, ob der Betrieb nur auf Grund einer Bewilligung nach Abs . 1 geführt werden darf .\n\n§ 3. Wochenendruhe\n§ 3. Wochenendruhe:\nAnsuchen um Betriebsbewilligung § 3 . (1) Um die Erteilung der Betriebsbewilligung hat der Arbeitgeber bei der zuständigen Behörde anzusuchen . (2) Dem Ansuchen sind eine Betriebsbeschreibung, die erforderlichen Pläne und sonstige für die Beurteilung des Betriebes notwendige Unterlagen in dreifacher Ausfertigung anzuschließen . Diesen Unterlagen müssen die für die Beurteilung des Betriebes vom Standpunkt des Arbeitnehmerschutzes maßgebenden Umstände zu entnehmen sein . Die Pläne müssen vor allem Aufschluß geben über die Größe und Lage der Arbeitsräume und die Belichtung derselben, über sonstige Betriebsräume und Lagerräume, über die Ausgänge, Verkehrs- und Fluchtwege, die Betriebseinrichtungen sowie die sanitären Vorkehrungen . Die Betriebsbeschreibung und die sonstigen Unterlagen müssen insbesondere Angaben enthalten über die Art des Betriebes und der Erzeugnisse desselben oder der in diesem ausgeübten Tätigkeiten, die Beleuchtung, Beheizung und Lüftung der Betriebsräume, die verwendeten Betriebseinrichtungen, sonstigen mechanischen Einrichtungen sowie Betriebsmittel, die Arbeitsvorgänge und Arbeitsverfahren, die zur Verwendung kommenden Arbeitsstoffe, die Art und Menge allfälliger Lagerungen und über die Zahl der im Betrieb Beschäftigten .\n\n§ 4. Wochenruhe\n§ 4. Wochenruhe:\nErteilung der Betriebsbewilligung § 4 . (1) Die zuständige Behörde hat über das Ansuchen um Betriebsbewilligung das Ermittlungsverfahren durchzuführen und nötigenfalls einen Augenschein anzuberaumen . (2) Die Betriebsbewilligung ist zu erteilen, wenn anzunehmen ist, daß den Erfordernissen des Schutzes des Lebens und der Gesundheit der Arbeitnehmer entsprochen werden kann . Erfordern es die für die Erteilung der Betriebsbewilligung maßgebenden Umstände, insbesondere in jenen Fällen, in denen in einem Teil des Betriebes die für die Betriebsbewilligung notwendigen Voraussetzungen nicht gegeben sind, so kann die Bewilligung auf bestimmte Teile des Betriebes beschränkt werden, sofern die Art derselben eine selbständige Führung dieser Betriebsteile zuläßt ; andernfalls ist die Betriebsbewilligung nicht zu erteilen . Ist bei einem Betrieb nur für einen Teil desselben eine Bewilligung nach § 2 Abs . 1 notwendig, so hat sich die Bewilligung auf den gesamten Betrieb zu beziehen . (3) Im Bewilligungsbescheid sind die aus Gründen des Arbeitnehmerschutzes notwendigen Bedingungen und Auflagen vorzuschreiben, soweit nicht bereits durch auf Grund des § 24 des Arbeitnehmerschutzgesetzes erlassene Verordnungen oder der im § 33 dieses Gesetzes angeführten Rechtsvorschriften die Verpflichtung zur Herstellung eines bestimmten Zustandes oder zur Durchführung bestimmter Vorkehrungen oder sonstiger Maßnahmen zum Schutz des Lebens und der Gesundheit der Arbeitnehmer gegeben ist . (4) Von der Betriebsbewilligung darf erst Gebrauch gemacht werden, wenn den Bedingungen und Auflagen des rechtskräftigen Bescheides entsprochen worden ist . Die Aufnahme der Tätigkeit im Betrieb ist der zuständigen Behörde und dem Arbeitsinspektorat unverzüglich schriftlich mitzuteilen . Wird die Tätigkeit im Betrieb nicht innerhalb von drei Jahren nach dem Zeitpunkt, zu dem die Bewilligung in Rechtskraft erwachsen ist, aufgenommen oder wird der Betrieb nach erfolgter Bewilligung durch mehr als drei Jahre nicht geführt, so erlischt die Bewilligung . Die zuständige Behörde kann diese Fristen auf Grund eines vor Ablauf derselben vom Arbeitgeber gestellten Antrages verlängern, wenn ihrer Einhaltung unvorhergesehene Schwierigkeiten entgegenstehen, wobei die Frist nur so weit erstreckt werden kann, daß ein Zeitraum von fünf Jahren insgesamt nicht überschritten wird . (5) Die Wirksamkeit der Betriebsbewilligung wird durch einen Wechsel in der Person des Arbeitgebers nicht berührt .\n\n§ 5. Ersatzruhe\n§ 5. Ersatzruhe:\nBewilligungspflichtige Änderungen § 5 . (1) Werden in einem Betrieb, für den eine Bewilligung nach § 2 Abs . 1 erforderlich ist, Änderungen vorgenommen, durch die das Ausmaß der Gefährdung im Sinne des § 2 Abs . 1 gegenüber dem im Zeitpunkt der Erteilung der Bewilligung bestandenen vergrößert wird, oder die mit einer derartigen Gefährdung anderer Art als der bisher bestandenen verbunden sind, so ist für diese Änderungen die Bewilligung der zuständigen Behörde einzuholen . (2) Für das Ansuchen um Bewilligung der Änderung und die Erteilung derselben gelten § 3 und § 4 sinngemäß .\n\n§ 6. Feiertagsruhe\n§ 6. Feiertagsruhe:\nVorschreibung weiterer Maßnahmen § 6 . (1) Zeigt sich in einem Betrieb nach rechtskräftig erteilter Betriebsbewilligung, daß den Erfordernissen des Schutzes des Lebens und der Gesundheit der Arbeitnehmer unter den vorgeschriebenen Bedingungen und Auflagen nicht in ausreichendem Maße entsprochen wird, so sind die zur Erreichung dieser Erfordernisse unbedingt notwendigen Maßnahmen von der zuständigen Behörde aufzutragen . (2) Hinsichtlich der Aufträge nach Abs . 1 gilt § 4 Abs . 3 sinngemäß .\n\n§ 7. Feiertage\nAuflegen von Vorschriften und Bescheiden § 7 . Der Arbeitgeber hat neben den sonst für seinen Betrieb in Betracht kommenden Arbeitnehmerschutzvorschriften eine Abschrift der ihm mit dem Bewilligungsbescheid vorgeschriebenen Bedingungen und Auflagen sowie der nach § 6 erteilten Aufträge im Betrieb an geeigneter, für die Arbeitnehmer leicht zugänglicher Stelle aufzulegen . .\n\n§ 8. Ausnahmen von der Wochenend- und Feiertagsruhe\nBehördenzuständigkeit § 8 . Zuständige Behörde im Sinne dieser Verordnung ist die nach § 30 des Arbeitnehmerschutzgesetzes zuständige Behörde . Zuständige Behörde im Sinne dieser Verordnung ist die nach des Arbeitnehmerschutzgesetzes zuständige Behörde .\n\n§ 9. Behördliche Ausnahmen\nStrafbestimmungen § 9 . Übertretungen dieser Verordnung sind nach Maßgabe des § 31 des Arbeitnehmerschutzgesetzes zu ahnden . Übertretungen dieser Verordnung sind nach Maßgabe des des Arbeitnehmerschutzgesetzes zu ahnden .\n\n§ 10. Strafbestimmungen\n§ 10. Strafbestimmungen: Übergangsbestimmungen (1) Betriebe, für die eine Bewilligung nach § 2 Abs . 1 erforderlich wäre, dürfen ohne eine solche weitergeführt werden, wenn sie bereits am 1 . Jänner 1973 geführt wurden . Solchen Betrieben hat die zuständige Behörde die zum Schutz der Arbeitnehmer erforderlichen Aufträge zu erteilen, soweit dies im Hinblick auf § 4 Abs . \n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "262a3aaf02aac9b0",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 20.12.2025",
+      "abbreviation": "MSchG",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "MSchG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, documentation, working hours. Contains 63 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "MSchG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, documentation, working hours. Contains 63 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "MSchG",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "mutterschutzgesetz",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "documentation",
+        "records",
+        "safety documents",
+        "working hours",
+        "workplace design"
+      ],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich\n§ 1. Geltungsbereich: (1) Dieses Bundesgesetz gilt für 1 . Dienstnehmerinnen, 2 . Heimarbeiterinnen . (2) Dieses Bundesgesetz ist nicht anzuwenden auf 1 . Dienstnehmerinnen, für deren Dienstverhältnis das Landarbeitsgesetz 1984, BGBl . Nr . 287, gilt, 2 . Dienstnehmerinnen, die in einem Dienstverhältnis zu einem Land, einer Gemeinde oder einem Gemeindeverband stehen, sofern sie nicht in Betrieben tätig sind . (3) Abweichend von Abs . 2 Z 2 ist dieses Bundesgesetz auf Dienstnehmerinnen anzuwenden, deren Dienstrecht gemäß Art . 14 Abs . 2 oder Art . 14a Abs . 3 lit . b B-VG gesetzlich vom Bund zu regeln ist . (4) Die in diesem Bundesgesetz für Dienstnehmerinnen getroffenen Regelungen gelten auch für weibliche Lehrlinge, die für Dienstgeber getroffenen Regelungen auch für Auftraggeber im Sinne des Heimarbeitsgesetzes 1960, BGBl . Nr . 105/1961 . (5) Auf freie Dienstnehmerinnen im Sinne des § 4 Abs . 4 des Allgemeinen Sozialversicherungsgesetzes (ASVG), BGBl . Nr . 189/1955 sind § 3 sowie § 5 Abs . 1 und 3 anzuwenden .\n\n§ 2. Mitteilungspflicht\n§ 2. Mitteilungspflicht: Abschnitte 2 bis 7 dieses Bundesgesetzes gelten 1 . für Dienstnehmerinnen, die in einem der in § 18 genannten Dienstverhältnisse stehen, mit den in Abschnitt 8 vorgesehenen Abweichungen ; 2 . für die in privaten Haushalten beschäftigten Dienstnehmerinnen mit den in Abschnitt 9 vorgesehenen Abweichungen ; 3 . für Heimarbeiterinnen mit den in Abschnitt 10 vorgesehenen Abweichungen .\n\n§ 3. Beschäftigungsverbot vor der Entbindung\n§ 3. Beschäftigungsverbot vor der Entbindung:\n§ 3. (1) Werdende Mütter dürfen in den letzten acht Wochen vor der voraussichtlichen Entbindung (Achtwochenfrist) nicht beschäftigt werden. (2) Die Achtwochenfrist (Abs. 1) ist auf Grund eines ärztlichen Zeugnisses zu berechnen. Erfolgt die Entbindung früher oder später als im Zeugnis angegeben, so verkürzt oder verlängert sich diese Frist entsprechend. (3) Über die Achtwochenfrist (Abs. 1) hinaus darf eine werdende Mutter auch dann nicht beschäftigt werden, wenn nach einem von ihr vorgelegten fachärztlichen Zeugnis Leben oder Gesundheit von Mutter oder Kind bei Fortdauer der Beschäftigung gefährdet wäre. Der Bundesminister für Arbeit hat durch Verordnung festzulegen, 1. bei welchen medizinischen Indikationen ein Freistellungszeugnis auszustellen ist, 2. welche Fachärzte ein Freistellungszeugnis ausstellen können, 3. nähere Bestimmungen über Ausstellung, Form und Inhalt des Freistellungszeugnisses. Eine Freistellung wegen anderer als der in dieser Verordnung genannter medizinischer Indikationen ist im Einzelfall auf Grund eines Zeugnisses eines Arbeitsinspektionsarztes oder eines Amtsarztes vorzunehmen. (3a) Ist das Arbeitsverhältnis zum Zeitpunkt der Vorlage des Freistellungszeugnisses nach Abs. 3 karenziert, tritt das Beschäftig\n\n§ 3a. Sonderfreistellung COVID-19\nSonderfreistellung COVID-19 § 3a . a, (Anm . : Abs . 1 bis 6 mit Ablauf des 31 . 12 . 2022 außer Kraft getreten) Anmerkung,  bis 6 mit Ablauf des 31 . 12 . 2022 außer Kraft getreten)\n\n(7) Abweichend von § 39 Abs . 1 ist mit der Vollziehung der Abs . 3 bis 5 für Dienstnehmerinnen nach Abs . 6 Z 2 und 3 die Landesregierung betraut . Abweichend von ist mit der Vollziehung der bis 5 für Dienstnehmerinnen nach und 3 die Landesregierung betraut . (8) Die Krankenversicherungsträger sind im übertragenen Wirkungsbereich unter Bindung an die Weisungen des Bundesministers für Arbeit tätig . (9) Abweichend von § 39 Abs . 2 und 3 ist zur Erlassung der Verordnung hinsichtlich der Dienstnehmerinnen nach Abs . 6 Z 2 der Bundesminister für Arbeit im Einvernehmen mit der Bundesministerin bzw . dem Bundesminister für Soziales, Gesundheit, Pflege und Konsumentenschutz betraut . Abweichend von und 3 ist zur Erlassung der Verordnung hinsichtlich der Dienstnehmerinnen nach der Bundesminister für Arbeit im Einvernehmen mit der Bundesministerin bzw . . (10) Abs . 1 bis 9 in der Fassung des Bundesgesetzes BGBl . I Nr . 87/2022 treten mit 1 . Juli 2022 in Kraft . Abs . 1 bis 6 treten mit Ablauf des 31 . Dezember 2022 außer Kraft . Die Abs . 5, 6, 7 und 8 sind jedoch weiterhin auf erfolgte Sonderfreistellungen gemäß Abs . 1 anzuwenden . Die Verordnung nach Abs . 1 in der Fassung des Bundesgesetzes BGBl . I Nr . 87/2022 kann mit Ablauf des Tages der Kundmachung dieses Bundesgesetzes erlassen werden . Sie kann frühestens mit 1 . Juli 2022 in Kraft gesetzt werden . bis 9 in der Fassung des Bundesgesetzes treten mit 1 . Juli 2022 in Kraft . bis 6 treten mit Ablauf des 31 . . Die , 6, 7 und 8 sind jedoch weiterhin auf erfolgte Sonderfreistellungen gemäß anzuwenden . Die Verordnung nach in der Fassung des Bundesgesetzes kann mit Ablauf des Tages der Kundmachung dieses Bundesgesetzes erlassen werden . . . (11) § 3a Abs . 1 bis 3 und 5 bis 8 in der bis zum Ablauf des 30 . Juni 2022 geltenden Fassung ist auch nach Ablauf des 30 . Juni 2022 weiterhin auf alle schwangeren Dienstnehmerinnen anzuwenden, deren Schwangerschaft vor dem Ablauf des 30 . Juni 2022 eingetreten ist und sich über den 1 . Juli 2022 hinaus erstreckt . a, bis 3 und 5 bis 8 in der bis zum Ablauf des 30 . . . . .\n\n§ 4. Individuelles Beschäftigungsverbot\n§ 4 . (1) Werdende Mütter dürfen keinesfalls mit schweren körperlichen Arbeiten oder mit Arbeiten oder in Arbeitsverfahren beschäftigt werden, die nach der Art des Arbeitsvorganges oder der verwendeten Arbeitsstoffe oder -geräte für ihren Organismus oder für das werdende Kind schädlich sind . (2) Als Arbeiten im Sinne des Abs . 1 sind insbesondere anzusehen: Als Arbeiten im Sinne des sind insbesondere anzusehen: 1 . Arbeiten, bei denen regelmäßig Lasten von mehr als 5 kg Gewicht oder gelegentlich Lasten von mehr als 10 kg Gewicht ohne mechanische Hilfsmittel von Hand gehoben oder regelmäßig Lasten von mehr als 8 kg Gewicht oder gelegentlich Lasten von mehr als 15 kg Gewicht ohne mechanische Hilfsmittel von Hand bewegt oder befördert werden ; wenn größere Lasten mit mechanischen Hilfsmitteln gehoben, bewegt oder befördert werden, darf die körperliche Beanspruchung nicht größer sein als bei vorstehend angeführten Arbeiten ; 2 . Arbeiten, die von werdenden Müttern überwiegend im Stehen verrichtet werden müssen, sowie Arbeiten, die diesen in ihrer statischen Belastung gleichkommen, es sei denn, daß Sitzgelegenheiten zum kurzen Ausruhen benützt werden können ; nach Ablauf der 20 . Schwangerschaftswoche alle derartigen Arbeiten, sofern sie länger als vier Stunden verrichtet werden, auch dann, wenn Sitzgelegenheiten zum kurzen Ausruhen benützt werden können ; 3 . Arbeiten, bei denen die Gefahr einer Berufserkrankung im Sinne der einschlägigen Vorschriften des Allgemeinen Sozialversicherungsgesetzes, BGBl . Nr . 189/1955 , gegeben ist ; ; 4 . Arbeiten, bei denen werdende Mütter Einwirkungen von gesundheitsgefährdenden Stoffen, gleich ob in festem, flüssigem, staub-, gas- oder dampfförmigem Zustand, gesundheitsgefährdenden Strahlen, gesundheitsgefährdenden elektromagnetischen Feldern oder schädlichen Einwirkungen von Hitze, Kälte oder Nässe ausgesetzt sind, bei denen eine Schädigung nicht ausgeschlossen werden kann ; 5 . die Bedienung von Geräten und Maschinen aller Art, sofern damit eine hohe Fußbeanspruchung verbunden ist ; 6 . die Bedienung von Geräten und Maschinen mit Fußantrieb, sofern damit eine hohe Fußbeanspruchung verbunden ist ; 7 . die Beschäftigung auf Beförderungsmitteln ; 8 . das Schälen von Holz mit Handmessern ; 9 . Akkordarbeiten, akkordähnliche Arbeiten, Fließarbeiten mit vorgeschriebenem Arbeitstempo, leistungsbezogene Prämienarbeiten und sonstige Arbeiten, bei denen durch gesteigertes Arbeitstempo ein höheres Entgelt erzielt werden kann, wie beispielsweise Arbeiten, für die Entgelt gebührt, das auf Arbeits(Persönlichkeits)bewertungsverfahren, statistischen Verfahren, Datenerfassungsverfahren, Kleinstzeitverfahren oder ähnlichen Entgeltfindungsmethoden beruht, wenn die damit verbundene durchschnittliche Arbeitsleistung die Kräfte der werdenden Mutter übersteigt . Nach Ablauf der 20 . Schwangerschaftswoche sind Akkordarbeiten, akkordähnliche Arbeiten, leistungsbezogene Prämienarbeiten sowie Fließarbeiten mit vorgeschriebenem Arbeitstempo jedenfalls untersagt ; Arbeiten, für die Entgelt gebührt, das auf Arbeits(Persönlichkeits)bewertungsverfahren, statistischen Verfahren, Datenerfassungsverfahren, Kleinstzeitverfahren oder ähnlichen Entgeltfindungsmethoden beruht, können im Einzelfall vom zuständigen Arbeitsinspektorat untersagt werden ; 10 . Arbeiten, die von werdenden Müttern ständig im Sitzen verrichtet werden müssen, es sei denn, daß ihnen Gelegenheit zu kurzen Unterbrechungen ihrer Arbeit gegeben wird ; 11 . Arbeiten mit biologischen Arbeitsstoffen im Sinne des § 40 Abs . 5 Z 2 bis 4 ASchG, soweit bekannt ist, daß diese Stoffe oder die im Falle einer durch sie hervorgerufenen Schädigung anzuwendenden therapeutischen Maßnahmen die Gesundheit der werdenden Mutter oder des werdenden Kindes gefährden ; Arbeiten mit biologischen Arbeitsstoffen im Sinne des bis 4 ASchG, soweit bekannt ist, daß diese Stoffe oder die im Falle einer durch sie hervorgerufenen Schädigung anzuwendenden therapeutischen Maßnahmen die Gesundheit der werdenden Mutter oder des werdenden Kindes gefährden ; 12 . Bergbauarbeiten unter Tage ; 13 . Arbeiten in Druckluft (Luft mit einem Überdruck von mehr als 0,1 bar), insbesondere in Druckkammern und beim Tauchen . (3) Werdende Mütter dürfen nicht mit Arbeiten beschäftigt werden, bei denen sie mit Rücksicht auf ihre Schwangerschaft besonderen Unfallsgefahren ausgesetzt sind . (4) Im Zweifelsfall entscheidet das Arbeitsinspektorat, ob eine Arbeit unter ein Verbot gemäß den Abs . 1 bis 3 fällt . Im Zweifelsfall entscheidet das Arbeitsinspektorat, ob eine Arbeit unter ein Verbot gemäß den bis 3 fällt . (5) Werdende Mütter dürfen mit Arbeiten, 1 . bei denen sie sich häufig übermäßig strecken oder beugen oder bei denen sie häufig hocken oder sich gebückt halten müssen, sowie 2 . bei denen der Körper üb\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "f439256a19cd8afb",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 20.12.2025",
+      "abbreviation": "KJBG",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "KJBG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering special groups, working hours, employee rights. Contains 43 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "KJBG (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Kinder- und Jugendlichen-Beschäftigungsgesetz 1987, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering special groups, working hours, employee rights. Contains 43 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "KJBG",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "kinder-",
+        "core safety",
+        "special groups",
+        "working hours",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance"
+      ],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich\n§ 1. Geltungsbereich: (1) Dieses Bundesgesetz gilt für die Beschäftigung von 1 . Kindern mit Arbeiten jeder Art und 2 . Jugendlichen bis zur Vollendung des 18 . Lebensjahres, die in einem Dienstverhältnis, einem Lehr- oder sonstigen Ausbildungsverhältnis stehen . (1a) Abweichend von Abs . 1 Z 2 gelten für Lehrlinge, die das 18 . Lebensjahr vollendet haben, 1 . § 14 Abs . 2 mit der Maßgabe, daß für die Berechnung des Grundlohnes und des Überstundenzuschlages der niedrigste im Betrieb vereinbarte Facharbeiterlohn bzw . Angestelltengehalt heranzuziehen ist ; 2 . § 11 Abs . 4, 5, 6 Z 1 und 3, Abs . 7 und 8, § 21 und § 25 Abs . 1 und 2 sinngemäß . (2) Dieses Bundesgesetz ist, unbeschadet des Abs . 3 Z 1, nicht anzuwenden auf vereinzelte, geringfügige, aus Gefälligkeit erwiesene leichte Hilfeleistungen von Kindern, sofern eine solche Hilfeleistung nur von kurzer Dauer ist, ihrer Art nach nicht einer Dienstleistung von Dienstnehmern, Lehrlingen oder Heimarbeitern entspricht, die Kinder hiebei keinen Unfallgefahren ausgesetzt und weder in ihrer körperlichen und geistigen Gesundheit und Entwicklung noch in ihrer Sittlichkeit gefährdet sind . (3\n\n§ 2. Begriffsbestimmungen\nBegriffsbestimmungen § 2 . (1) Kinder im Sinne dieses Bundesgesetzes sind Minderjährige 1 . bis zur Vollendung des 15 . Lebensjahres oder 2 . bis zur späteren Beendigung der Schulpflicht . (1a) a Für Minderjährige (Abs . 1 Z 1), die die Schulpflicht vollendet haben und Für Minderjährige (), die die Schulpflicht vollendet haben und 1 . in einem Lehrverhältnis oder 2 . im Rahmen eines Ferialpraktikums (§ 20 Abs . 4 des Schulunterrichtsgesetzes, BGBl . Nr . 472/1986 ) oder im Rahmen eines Ferialpraktikums oder 3 . im Rahmen eines Pflichtpraktikums nach dem Schulorganisationsgesetz, BGBl . Nr . 242/1962 oder im Rahmen eines Pflichtpraktikums nach dem Schulorganisationsgesetz, oder 4 . im Rahmen eines Ausbildungsverhältnisses gemäß § 8b Abs . 2 Berufsausbildungsgesetz, BGBl . Nr . 142/1969 , im Rahmen eines Ausbildungsverhältnisses gemäß b, Berufsausbildungsgesetz, , beschäftigt werden, gelten die Bestimmungen der Abschnitte 3 bis 5 für Jugendliche . (2) Als eigene Kinder im Sinne dieses Bundesgesetzes gelten Kinder (Abs . 1), die mit jenem, der sie beschäftigt, im gemeinsamen Haushalt leben und mit ihm bis zum dritten Grad verwandt oder verschwägert sind oder zu ihm im Verhältnis von Stiefkindern oder Wahlkindern stehen . Alle übrigen Kinder gelten als fremde Kinder . Als eigene Kinder im Sinne dieses Bundesgesetzes gelten Kinder (), die mit jenem, der sie beschäftigt, im gemeinsamen Haushalt leben und mit ihm bis zum dritten Grad verwandt oder verschwägert sind oder zu ihm im Verhältnis von Stiefkindern oder Wahlkindern stehen . .\n\n§ 3. Jugendliche\n§ 3 . Jugendliche im Sinne dieses Bundesgesetzes sind Personen bis zur Vollendung des 18 . Lebensjahres, die nicht als Kinder im Sinne des § 2 Abs . 1 gelten . . Lebensjahres, die nicht als Kinder im Sinne des gelten .\n\n§ 4. Verbot der Kinderarbeit\nAbschnitt 2 Begriff der Kinderarbeit § 4 . (1) Als Kinderarbeit im Sinne dieses Bundesgesetzes gilt die Beschäftigung von Kindern mit Arbeiten jeder Art . (2) Als Kinderarbeit gilt nicht die Beschäftigung von Kindern, die ausschließlich zu Zwecken des Unterrichts oder der Erziehung erfolgt, und die Beschäftigung eigener Kinder mit leichten Leistungen von geringer Dauer im Haushalt . ( BGBl . Nr . 113/1962 , Art . I Z 3) , Art . römisch eins )\n\n§ 5. Kinder dürfen\nBeschränkung der Beschäftigung von Kindern ( BGBl . Nr . 113/1962 , Art . I Z 4) , Art . römisch eins ) § 5 . Kinder dürfen, soweit in diesem Bundesgesetz nicht anderes bestimmt ist, zu Arbeiten irgendwelcher Art nicht herangezogen werden .\n\n§ 5a. Bewilligungspflichtige Beschäftigung\n§ 5a. Bewilligungspflichtige Beschäftigung:\n(1) Kinder, die das 13 . Lebensjahr vollendet haben, dürfen außerhalb der für den Schulbesuch vorgesehenen Stunden beschäftigt werden 1 . mit Arbeiten in Betrieben, in denen ausschließlich Mitglieder der Familie des Betriebsinhabers beschäftigt sind, sofern es sich hiebei um Kinder handelt, die mit dem Betriebsinhaber bis zum dritten Grad verwandt sind oder zu ihm im Verhältnis eines Stief- oder Wahlkindes stehen sowie mit ihm im gemeinsamen Haushalt leben ; Kinder, die mit dem Betriebsinhaber im dritten Grad verwandt sind, dürfen nur dann beschäftigt werden, wenn ihr gesetzlicher Vertreter mit der Beschäftigung einverstanden ist, 2 . mit Arbeiten in einem Privathaushalt, 3 . mit Botengängen, mit Handreichungen auf Sport- und Spielplätzen, mit dem Sammeln von Blumen, Kräutern, Pilzen und Früchten sowie mit den diesen Arbeiten im einzelnen jeweils gleichwertigen Tätigkeiten, sofern es sich hiebei um leichte und vereinzelte Arbeiten handelt und die unter Z 3 angeführten Arbeiten weder in einem Betrieb gewerblicher Art geleistet werden noch ein Dienstverhältnis vorliegt .\n(2) Vereinzelte Arbeiten gelten dann nicht als leichte Arbeiten im Sinne des Abs . 1, wenn bei deren Ausführung das dem Kind zumutbare Leistungsausmaß unter Berücksichtigung des durch das Alter und die persönliche Veranlagung bedingten unterschiedlichen Leistungsvermögens überschritten wird ; dies\n\n§ 6. Beschäftigungsverbote für Jugendliche\nVerwendung und Beschäftigung von Kindern bei öffentlichen Schaustellungen § 6 . (1) Der Landeshauptmann kann die Verwendung von Kindern bei Musikaufführungen, Theatervorstellungen und sonstigen Aufführungen sowie bei Foto-, Film-, Fernseh- und Tonaufnahmen bewilligen . Die Bewilligung darf nur erteilt werden, wenn 1 . ein besonderes Interesse der Kunst, der Wissenschaft oder des Unterrichts vorliegt oder es sich um Werbeaufnahmen handelt und 2 . die Beschaffenheit und Eigenart der betreffenden Beschäftigung es rechtfertigen . Die Verwendung von Kindern in Varietes, Kabaretts, Bars, Sexshops, Tanzlokalen, Diskotheken und ähnlichen Betrieben darf nicht bewilligt werden . (2) Der Landeshauptmann kann die Bezirksverwaltungsbehörden ermächtigen, die Bewilligung zur Verwendung von Kindern nach Abs . 1 zu erteilen, wenn es sich nicht um erwerbsmäßige Aufführungen handelt . Der Landeshauptmann kann die Bezirksverwaltungsbehörden ermächtigen, die Bewilligung zur Verwendung von Kindern nach zu erteilen, wenn es sich nicht um erwerbsmäßige Aufführungen handelt . (3) Handelt es sich um erwerbsmäßige Aufführungen, so hat der Landeshauptmann das nach dem Standort des Betriebes zuständige Arbeitsinspektorat zu hören . (4) Die Bewilligung darf nur erteilt werden, wenn der gesetzliche Vertreter des Kindes schriftlich zustimmt . Bei erwerbsmäßigen Aufführungen muss die körperliche Eignung des Kindes für die Beschäftigung amtsärztlich oder durch Ärztinnen/Ärzte für Allgemeinmedizin oder Fachärztinnen/Fachärzten für Kinder- und Jugendheilkunde festgestellt sein . Im Falle der Beschäftigung bei Film- und Fernsehaufnahmen oder vergleichbaren Aufnahmen darf die Bewilligung nur erteilt werden, wenn das Gutachten eines Facharztes für Augenheilkunde bescheinigt, dass gegen eine solche Beschäftigung keine Bedenken bestehen . (5) Die Bewilligung kann für eine bestimmte Aufführung oder jeweils für einen begrenzten Zeitraum erteilt werden . Handelt es sich um erwerbsmäßige Aufführungen, so sind in den Bewilligungsbescheid Bestimmungen über Dauer und Lage der Arbeitszeit und der Ruhepausen und über etwaige Sonn- und Feiertagsarbeit aufzunehmen . Diese Bedingungen hat das zuständige Arbeitsinspektorat dem Landeshauptmann in der gutächtlichen Äußerung (Abs . 3) bekanntzugeben . Die Bewilligung kann für eine bestimmte Aufführung oder jeweils für einen begrenzten Zeitraum erteilt werden . . . (6) Der Landeshauptmann hat Abschriften seiner Bewilligungsbescheide der nach dem Beschäftigungsort des Kindes zuständigen Bezirksverwaltungsbehörde zu übermitteln . Bei erwerbsmäßigen Aufführungen hat der Landeshauptmann eine weitere Bescheidabschrift dem örtlich zuständigen Arbeitsinspektorat zu übermitteln . (7) Die Verwendung von Kindern bei Musikaufführungen, Theatervorstellungen und sonstigen Aufführungen, die von der Schule oder einer Schulbehörde veranstaltet werden, bedarf der Bewilligung im Sinne der Abs . 1 bis 6 nicht . In diesen Fällen ist die schriftliche Zustimmung des gesetzlichen Vertreters des Kindes erforderlich . Die Verwendung von Kindern bei Musikaufführungen, Theatervorstellungen und sonstigen Aufführungen, die von der Schule oder einer Schulbehörde veranstaltet werden, bedarf der Bewilligung im Sinne der bis 6 nicht . . (Anm . : Abs . 8 aufgehoben durch BGBl . I Nr . 71/2013 ) Anmerkung,  aufgehoben durch )\n\n§ 7. Gefährliche Arbeiten\n§ 7 . (1) Kinder dürfen nur insoweit verwendet werden, als sie dadurch in ihrer Gesundheit, in ihrer körperlichen und geistigen Entwicklung oder in der Sittlichkeit nicht gefährdet, im Besuch der Schule und in der Möglichkeit, dem Schulunterricht mit Nutzen zu folgen, nicht behindert und in der Erfüllung ihrer religiösen Pflichten nicht beeinträchtigt werden . (2) Für die Beschäftigung von Kindern nach § 6 gelten folgende weitere Beschränkungen: Für die Beschäftigung von Kindern nach gelten folgende weitere Beschränkungen: 1 . Kinder dürfen nur in der Zeit zwischen acht und 23 Uhr und nicht vor dem Vormittagsunterricht beschäftigt werden ; in diesen Grenzen muß auch die für den Weg zur und von der Arbeitsstätte aufzuwendende Zeit liegen . 2 . Nach dem Vormittagsunterricht ist eine mindestens zweistündige, nach dem Nachmittagsunterricht eine mindestens einstündige ununterbrochene arbeitsfreie Zeit zu gewähren ; in diese Freizeiten sind die Zeiten, die zur Zurücklegung des Weges zur und von der Schule erforderlich sind, nicht einzurechnen . 3 . Die Beschäftigung von Kindern während der Schulferien ist nach Maßgabe des § 6 zulässig, wenn durch die Bewilligung sichergestellt ist, daß die Kinder höchstens während eines Drittels der Schulferien und nur im unbedingt erforderlichen Ausmaß beschäftigt werden, die Aufführungen oder Foto-, Film-, Fernseh- und Tonaufna\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "6f23a05149408245",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 20.12.2025",
       "abbreviation": "AStV",
-      "description": "Austrian Workplace Regulation - Requirements for workplace design and facilities",
-      "type": "regulation",
-      "summary": "Detailed requirements for workplace facilities, including lighting, ventilation, sanitary facilities, and workspace dimensions.",
-      "whs_summary": "Specifies minimum requirements for workplaces including floor space, room height, lighting levels, temperature, ventilation, and welfare facilities.",
-      "keywords": ["workplace design", "facilities", "lighting", "ventilation", "ergonomics", "Austria"],
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "AStV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights. Contains 1 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AStV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights. Contains 1 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AStV",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "gesonderte",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
       "content": {
-        "full_text": "Die Arbeitsstättenverordnung regelt die Mindestanforderungen an Arbeitsstätten hinsichtlich Raumgröße, Beleuchtung, Belüftung und sanitärer Einrichtungen.",
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "0080d2af121b16b0",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Sicherheits- und Gesundheitsschutzdokumente, Fassung vom 20.12.2025",
+      "abbreviation": "DOK-VO",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Sicherheits- und Gesundheitsschutzdokumente, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "DOK-VO (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Sicherheits- und Gesundheitsschutzdokumente, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering health surveillance, documentation, risk assessment. Contains 7 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "DOK-VO (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Sicherheits- und Gesundheitsschutzdokumente, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering health surveillance, documentation, risk assessment. Contains 7 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "DOK-VO",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "sicherheits-",
+        "core safety",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "documentation",
+        "records",
+        "safety documents",
+        "risk assessment",
+        "hazard evaluation"
+      ],
+      "content": {
+        "full_text": "§ 1\n§ 1: Allgemeine Bestimmungen (1) Das Sicherheits- und Gesundheitsschutzdokument im Sinne des § 5 ASchG ist übersichtlich zu gestalten . Gleichartige Arbeitsplätze oder Arbeitsvorgänge oder Gefahrenbereiche können zusammengefaßt dokumentiert werden . Die für eine Arbeitsstätte erstellten Sicherheits- und Gesundheitsschutzdokumente sind möglichst einheitlich zu gestalten . (2) Die Dokumentation kann auch in graphischer Form erfolgen, soweit dies zweckmäßig ist, insbesondere durch Verwendung von Symbolen, Plänen, Layouts, und Skizzen . (3) Die Dokumentation kann auch automationsunterstützt erfolgen . Es muß gewährleistet sein, daß alle Berechtigten Zugang zu den Sicherheits- und Gesundheitsschutzdokumenten haben . Ist der ausreichende Zugang nicht auf andere Weise gewährleistet, muß ein Ausdruck der Sicherheits- und Gesundheitsschutzdokumente zur Einsichtnahme aufliegen .\n\n§ 2\n§ 2: Inhalt (1) Das Sicherheits- und Gesundheitsschutzdokument muß jedenfalls enthalten: 1 . Angaben über die Person, die die Ermittlung und Beurteilung der Gefahren durchgeführt hat ; wenn die Ermittlung und Beurteilung der Gefahren von mehreren Personen durchgeführt wurde, weiters Angaben über ihren Aufgabenbereich ; Angaben über allfällige für Messungen, Berechnungen und Analysen beigezogene fachkundige Personen ; 2 . Angaben über den Tag oder den Zeitraum der erstmaligen Ermittlung und Beurteilung der Gefahren ; 3 . Angaben über den Bereich (insbesondere Arbeitsplatz, Arbeitsraum, Organisationseinheit, Arbeitsstätte), auf den sich das Sicherheits- und Gesundheitsschutzdokument bezieht und über die Anzahl der in diesem Bereich zum Zeitpunkt der Ermittlung und Beurteilung der Gefahren beschäftigten Arbeitnehmer/innen ; 4 . die festgestellten Gefahren ; 5 . die durchzuführenden Maßnahmen zur Gefahrenverhütung auf technischem und organisatorischem Gebiet ; 6 . bei jenen vorgesehenen Maßnahmen, die nicht umgehend umgesetzt werden können, zusätzlich Angaben über die Zuständigkeit für die Umsetzung und über die Umsetzungsfrist . (2) Soweit dies für den Bereich, auf den sich das Sicherheits- und Gesundheitsschutzdokument bezieht, zutrifft, muß es auch enthalten: 1 . die Festlegung der Arbeitsplätze oder Arbeitsbereiche, für die nach dem 5 . Abschnitt des ASchG Eignungsuntersuchungen, Folgeuntersuchungen, Untersuchungen bei Lärmeinwirkung oder sonstige besondere Untersuchungen vorgesehen sind ; 2 . die Festlegung der Tätigkeiten, für die ein Nachweis der Fachkenntnisse im Sinne des § 63 ASchG notwendig ist ; 3 . Angaben über die notwendigen persönlichen Schutzausrüstungen ; 4 . Angaben über Bereiche, die besonders zu kennzeichnen sind, oder für die Zutrittsbeschränkungen bestehen ; 5 . Vorkehrungen für ernste und unmittelbare Gefahren im Sinne des § 3 Abs . 3 und 4 ASchG . (3) Soweit dies für den Bereich, auf den sich das Sicherheits- und Gesundheitsschutzdokument bezieht, zutrifft, muß es auch enthalten: 1 . ein Verzeichnis der verwendeten gefährlichen Arbeitsstoffe im Sinne des § 40 ASchG ; 2 . ein Verzeichnis der Arbeitsmittel, für die Prüfungen im Sinne des § 37 ASchG notwendig sind, samt allfälligen Prüfplänen ; gegebenenfalls Wartungspläne für Arbeitsmittel ; 3 . Brandschutzordnung, Evakuierungspläne, Explosionsschutzdokument . (4) Die in Abs . 3 angeführten Unterlagen können auch gesondert geführt werden . In diesem Fall muß das Sicherheits- und Gesundheitsschutzdokument einen Verweis auf diese Unterlagen enthalten . (5) Werden in dem Bereich, auf den sich das Sicherheits- und Gesundheitsschutzdokument bezieht, gefährliche Arbeitsstoffe verwendet, für die Grenzwerte im Sinne des § 45 ASchG gelten, sind im Dokument auch die zur Anwendung kommenden MAK-Werte oder TRK-Werte anzuführen . (6) Werden bei der Festlegung von Maßnahmen zur Gefahrenverhütung ÖNORMEN, harmonisierte europäische Normen (EN oder ÖNORM EN), ÖVE-Vorschriften, Unfallverhütungsvorschriften, Technische Richtlinien oder sonstige anerkannte Regeln der Technik zugrundegelegt, sind diese im Sicherheits- und Gesundheitsschutzdokument anzuführen .\n\n§ 2a\n§ 2a . a, Die Sicherheits- und Gesundheitsschutzdokumente für Arbeitsstätten, in denen nicht mehr als zehn Arbeitnehmer/innen regelmäßig beschäftigt werden und in denen keine Gefahren bestehen, für die Schutzmaßnahmen festzulegen sind, können entsprechend der Anlage zu dieser Verordnung gestaltet werden .\n\n§ 3\n§ 3: Überprüfung und Anpassung (1) Bei einer Überprüfung und Anpassung der Ermittlung und Beurteilung der Gefahren oder der Maßnahmen zur Gefahrenverhütung im Sinne des § 4 Abs . 4 und 5 ASchG muß auch eine Anpassung des Sicherheits- und Gesundheitsschutzdokumentes erfolgen . (2) Aus dem Sicherheits- und Gesundheitsschutzdokument muß sich ergeben, wer die Überprüfung und Anpassung der Ermittlung und Beurteilung der Gefahren vorgenommen hat, wann sie erfolgt ist und auf welchen Bereich sie sich bezieht .\n\n§ 4\nZuständige Personen § 4 . Aus dem Sicherheits- und Gesundheitsschutzdokument muß sich ergeben, welche Personen innerbetrieblich für Fragen der Sicherheit und des Gesundheitsschutzes zuständig sind, oder welche innerbetriebliche Stelle nähere Auskünfte über Personen und Dienste mit besonderen Aufgaben auf diesem Gebiet erteilt .\n\n§ 5\nInkrafttreten § 5 . (1) Diese Verordnung tritt mit dem der Kundmachung folgenden Tag in Kraft . (2) § 2a in der Fassung der Verordnung BGBl . II Nr . 53 tritt mit 1 . Jänner 1997 in Kraft . a, in der Fassung der Verordnung Bundesgesetzblatt römisch II Nr . 53 tritt mit 1 . .",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "at-am-vo",
-      "title": "Arbeitsmittelverordnung",
+      "id": "0b03e65902574f7e",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsmittelverordnung, Fassung vom 20.12.2025",
       "abbreviation": "AM-VO",
-      "description": "Austrian Work Equipment Regulation - Safety requirements for work equipment",
-      "type": "regulation",
-      "summary": "Establishes safety requirements for the use of work equipment, machinery, and tools in the workplace.",
-      "whs_summary": "Covers machinery safety, equipment inspection, operator training, and maintenance requirements for all work equipment.",
-      "keywords": ["machinery", "equipment safety", "inspection", "maintenance", "Austria"],
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsmittelverordnung, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "AM-VO (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsmittelverordnung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering work equipment, employee rights, workplace design. Contains 70 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AM-VO (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsmittelverordnung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering work equipment, employee rights, workplace design. Contains 70 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AM-VO",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "arbeitsmittelverordnung,",
+        "core safety",
+        "work equipment",
+        "machinery",
+        "tools",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace"
+      ],
       "content": {
-        "full_text": "Arbeitsmittelverordnung regelt die sichere Verwendung von Arbeitsmitteln einschließlich Prüfungen und Instandhaltung.",
+        "full_text": "§ 1. Anwendungsbereich\n1 . Abschnitt Allgemeine Bestimmungen Anwendungsbereich § 1 . (1) Diese Verordnung gilt für Arbeitsstätten, auswärtige Arbeitsstellen und Baustellen, die unter das ArbeitnehmerInnenschutzgesetz (ASchG) fallen . (2) Der 4 . Abschnitt ist nicht anzuwenden auf Arbeitsmittel, die nach den im Anhang A angeführten Vorschriften in Verkehr gebracht wurden oder nach den im Anhang B angeführten Vorschriften aufgestellt wurden oder betrieben werden .\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen: (1) Arbeitsmittel im Sinne dieser Verordnung sind alle Maschinen, Apparate, Werkzeuge, Geräte und Anlagen, die zur Benutzung durch ArbeitnehmerInnen vorgesehen sind . Zu den Arbeitsmitteln gehören insbesondere auch Beförderungsmittel zur Beförderung von Personen oder Gütern, Aufzüge, Leitern, Gerüste, Dampfkessel, Druckbehälter, Feuerungsanlagen, Behälter, Silos, Förderleitungen, kraftbetriebene Türen und Tore sowie Hub-, Kipp- und Rolltore . (2) Benutzung im Sinne dieser Verordnung umfasst alle ein Arbeitsmittel betreffende Tätigkeiten wie In- und Außerbetriebnahme, Gebrauch, Transport, Instandsetzung, Umbau, Instandhaltung, Wartung und Reinigung . (3) Fachkundig im Sinne dieser Verordnung sind Personen, die die erforderlichen fachlichen Kenntnisse und Berufserfahrungen besitzen und auch die Gewähr für eine gewissenhafte Durchführung der ihnen übertragenen Arbeiten bieten . Als fachkundige Personen können auch Betriebsangehörige eingesetzt werden . (4) Aufsicht im Sinne dieser Verordnung ist die Überwachung von ArbeitnehmerInnen durch eine geeignete Person, die im Gefahrenfall unverzüglich eingreifen und die erforderlichen Maßnahmen setzen kann . (5) Gefahrenbereich im Sinne dieser Verordnung ist der Bereich innerhalb oder im Umkreis eines Arbeitsmittels, in dem die Sicherheit oder die Gesundheit von sich darin aufhaltenden ArbeitnehmerInnen gefährdet ist oder gefährdet sein könnte . (6) Schutzeinrichtungen im Sinne dieser Verordnung sind technische Vorkehrungen, die dazu bestimmt sind, den Zugang zu Gefahrenbereichen oder ein Hineinlangen in diese zu verhindern, oder die eine andere geeignete Schutzfunktion bewirken . (7) Krane im Sinne dieser Verordnung sind Arbeitsmittel zum Heben von Lasten, die die gehobene Last unabhängig von der Hubbewegung in mindestens einer Richtung motorisch angetrieben bewegen können . Regalbedienungsgeräte, Hubstapler, Bagger und Radlader gelten nicht als Krane . (8) Selbstfahrende Arbeitsmittel sind motorisch angetriebene schienengebundene oder nicht-schienengebundene Fahrzeuge, die entsprechend dem vom Hersteller angegebenen Verwendungszweck für die Durchführung von Arbeitsvorgängen bestimmt sind . (9) Hubstapler sind mit Gabeln, Plattformen oder anderen Lastaufnahmemitteln ausgerüstete selbstfahrende Arbeitsmittel mit Hubmast, die dazu bestimmt sind, Lasten zu heben, sie an einen anderen Ort zu verbringen, dort abzusetzen oder zu stapeln oder in Regale einzubringen oder um sonstige Manipulationstätigkeiten mit Lasten unter Verwendung besonderer Zusatzgeräte durchzuführen . Hubstapler mit hubbewegtem Fahrersitz sind Hubstapler, die mit einem Fahrerplatz ausgerüstet sind, der mit dem Lastaufnahmemittel zum Einlagern von Lasten in Regale angehoben wird . (10) Mechanische Leitern sind fahrbare freistehend verwendbare Schiebeleitern oder Schiebedrehleitern, die hand- oder kraftbetrieben aufgerichtet, gedreht oder ausgeschoben werden . (11),Kraftbetrieben` im Sinne dieser Verordnung sind Arbeitsmittel nur bei Antriebsformen, die den Kraftantrieb mittels technisch freigemachter Energie bewirken, wie elektrische, pneumatische oder hydraulische Antriebe, nicht jedoch Antriebe, die durch Schwerkraft oder allein durch menschliche Muskelkraft (unmittelbar oder mittelbar) erfolgen .\n\n§ 3. Sicherheits- und Gesundheitsanforderungen\n§ 3. Sicherheits- und Gesundheitsanforderungen: (1) ArbeitgeberInnen dürfen nur solche Arbeitsmittel zur Verfügung stellen, die hinsichtlich Konstruktion, Bau und weiterer Schutzmaßnahmen den für sie geltenden Rechtsvorschriften über Sicherheits- und Gesundheitsanforderungen entsprechen . Zu diesen Rechtsvorschriften gehören die in den Anhängen A und B angeführten Vorschriften sowie der 4 . Abschnitt . (2) Wenn ArbeitgeberInnen ein Arbeitsmittel erwerben, das nach einer im Anhang A angeführten Vorschrift gekennzeichnet ist, können sie davon ausgehen, dass dieses Arbeitsmittel hinsichtlich Konstruktion, Bau und weiterer Schutzmaßnahmen dieser Vorschrift über Sicherheits- und Gesundheitsanforderungen entspricht . (3) Abs . 2 gilt nicht, wenn ArbeitgeberInnen über andere Erkenntnisse verfügen, insbesondere wenn sie auf Grund eines Unfalls oder eines Beinaheunfalles oder auf Grund von Informationen von Herstellern, Sicherheitsfachkräften, Arbeitsmedizinern, ArbeitnehmerInnen, Prüfern, Unfallversicherungsträgern, Behörden oder sonstiger Stellen annehmen können, dass ein Arbeitsmittel den im Anhang A angeführten Vorschriften über Sicherheits- und Gesundheitsanforderungen nicht entspricht . (4) In Fällen nach Abs . 3 ist unverzüglich die Ermittlung und Beurteilung der vom Arbeitsmittel ausgehenden Gefahren zu überprüfen . Ergibt diese Überprüfung eine Gefahr für ArbeitnehmerInnen, haben die ArbeitgeberInnen geeignete Maßnahmen zum Schutz des Lebens und der Gesundheit der ArbeitnehmerInnen zu ergreifen . Erforderlichenfalls ist das Arbeitsmittel stillzulegen und von der weiteren Benutzung auszuschließen . (5) Die gemäß Abs . 4 durchzuführenden Maßnahmen sind in den Sicherheits- und Gesundheitsschutzdokumenten im Sinne des § 5 ASchG zu dokumentieren . In dieser Dokumentation sind die festgestellten Gefahren und die dagegen ergriffenen Schutzmaßnahmen darzustellen .\n\n§ 4. Information\n§ 4. Information: (1) Wenn die Benutzung eines Arbeitsmittels mit einer Gefahr für Sicherheit und Gesundheit von ArbeitnehmerInnen verbunden ist, müssen ArbeitgeberInnen dafür sorgen, dass alle ArbeitnehmerInnen, die diese Arbeitsmittel benutzen, ausreichende Informationen im Sinne des § 12 ASchG erhalten . Diese Informationen müssen zumindest folgende Angaben in Bezug auf die Sicherheit und Gesundheit enthalten: 1 . Einsatzbedingungen des jeweiligen Arbeitsmittels, 2 . absehbare Störungen, 3 . Rückschlüsse aus den bei der Benutzung von Arbeitsmitteln gegebenenfalls gesammelten Erfahrungen . (2) Die Information nach Abs . 1 ist nicht erforderlich, soweit die zu informierenden ArbeitnehmerInnen im Rahmen ihrer Ausbildung oder ihrer bisherigen beruflichen Tätigkeit ausreichende Kenntnisse über die Arbeitsweise und Verwendung der Arbeitsmittel erworben haben . (3) ArbeitgeberInnen müssen dafür sorgen, dass alle ArbeitnehmerInnen im Sinne des § 12 ASchG informiert werden über: 1 . die sie betreffenden Gefährdungen durch die in ihrer unmittelbaren Arbeitsumgebung vorhandenen Arbeitsmittel, 2 . entsprechende Veränderungen, sofern diese Veränderungen jeweils Arbeitsmittel in ihrer unmittelbaren Arbeitsumgebung betreffen, auch wenn sie diese Arbeitsmittel nicht unmittelbar benutzen . (4) Wenn für das sichere Verwenden, Einspannen oder Befestigen von Werkzeugen die Kenntnis besonderer Daten erforderlich ist, wie höchstzulässige Drehzahl, Abmessungen, Angaben über zu bearbeitende Werkstoffe oder Lager- und Ablauffristen, sind die ArbeitnehmerInnen über diese Daten zu informieren . Erforderlichenfalls sind diese Informationen den ArbeitnehmerInnen zur Verfügung zu stellen .\n\n§ 5. Unterweisung\n§ 5. Unterweisung: (1) Wenn die Verwendung eines Arbeitsmittels mit einer Gefahr für Sicherheit und Gesundheit von ArbeitnehmerInnen verbunden ist, müssen ArbeitgeberInnen dafür sorgen, dass alle ArbeitnehmerInnen, die diese Arbeitsmittel verwenden, eine angemessene Unterweisung im Sinne des § 14 ASchG erhalten . (2) Die Unterweisung vor der erstmaligen Verwendung von Arbeitsmitteln im Sinne des § 14 Abs . 2 Z 1 und Z 3 ASchG muss zumindest beinhalten: 1 . Inbetriebnahme, Verwendung, 2 . gegebenenfalls Auf- und Abbau, 3 . Beseitigen von Störungen im Arbeitsablauf der Arbeitsmittel, 4 . erforderlichenfalls Rüsten der Arbeitsmittel, 5 . für den jeweiligen Verwendungszweck vorgesehene Schutzeinrichtungen, 6 . notwendige Schutzmaßnahmen . (3) Die Unterweisung nach Abs . 2 Z 1 kann entfallen, soweit die zu unterweisenden ArbeitnehmerInnen im Rahmen ihrer Ausbildung oder ihrer bisherigen beruflichen Tätigkeit ausreichende Kenntnisse über die Arbeitsweise und Verwendung der jeweiligen Arbeitsmittel erwor\n\n§ 6. Prüfpflichten\n§ 6. Prüfpflichten: (1) Arbeitsmittel dürfen nur verwendet werden, wenn die für sie erforderlichen Prüfungen durchgeführt wurden . Dies gilt für 1 . Abnahmeprüfungen, wiederkehrende Prüfungen, Prüfungen nach außergewöhnlichen Ereignissen und Prüfungen nach Aufstellung im Sinne dieser Verordnung, 2 . Erstprüfungen bzw . Prüfungen für das rechtmäßige Inverkehrbringen und die erste Betriebsprüfung bei Druckgeräten, 3 . Periodische Kontrollen bzw . wiederkehrende Untersuchungen und Überprüfungen bei Druckgeräten (Dampfkesseln, Druckbehältern, Versandbehältern und Rohrleitungen), 4 . Abnahmeprüfungen und regelmäßige Überprüfungen bei überwachungspflichtigen Hebeanlagen, die unter die Hebeanlagen-Betriebsverordnung 2009, BGBl . II Nr . 210/2009 , fallen . (2) Werden bei der Prüfung Mängel festgestellt, darf das Arbeitsmittel erst nach der Mängelbehebung benutzt werden . (3) Werden bei einer wiederkehrenden Prüfung Mängel des Arbeitsmittels festgestellt, darf das Arbeitsmittel abweichend von Abs . 2 auch vor Mängelbehebung wieder benutzt werden, wenn 1 . die Person, die die Prüfung durchgeführt hat, im Prüfbefund schriftlich festhält, dass das Arbeitsmittel bereits vor Mängelbehebung wieder benutzt werden darf und 2 . die betroffenen ArbeitnehmerInnen über die Mängel des Arbeitsmitt\n\n§ 7. Abnahmeprüfung\nAbnahmeprüfung § 7 . (1) Folgende Arbeitsmittel sind vor der ersten Inbetriebnahme einer Abnahmeprüfung zu unterziehen: 1 . Krane einschließlich Ladekrane auf Fahrzeugen, ausgenommen a . schienengebu\n\n[Content truncated for mobile - view full version online]",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "at-psa-v",
-      "title": "PSA-Verordnung",
+      "id": "3c7de69291e9e84c",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Elektroschutzverordnung 2012, Fassung vom 20.12.2025",
+      "abbreviation": "ESV 2012",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Elektroschutzverordnung 2012, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "ESV 2012 (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Elektroschutzverordnung 2012, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering workplace design, risk assessment, employer obligations. Contains 17 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ESV 2012 (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Elektroschutzverordnung 2012, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering workplace design, risk assessment, employer obligations. Contains 17 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ESV 2012",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "elektroschutzverordnung",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employer duties",
+        "employer obligations"
+      ],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich und Begriffsbestimmungen\n§ 1. Geltungsbereich und Begriffsbestimmungen:\n(1) Diese Verordnung gilt in Arbeitsstätten, auf Baustellen und an auswärtigen Arbeitsstellen im Sinne des ASchG . (2) §§ 4 und 5 gelten nur für elektrische Anlagen mit Nennspannungen bis 1000 V Wechselspannung oder 1500 V Gleichspannung . (3) Im Sinne dieser Verordnung ist eine 1 . Elektrofachkraft: eine Person mit geeigneter fachlicher Ausbildung, Kenntnissen und Erfahrungen, sodass sie Gefahren erkennen und vermeiden kann, die von der Elektrizität ausgehen können ; 2 . elektrotechnisch unterwiesene Person: eine Person, die durch Elektrofachkräfte ausreichend unterrichtet wurde, sodass sie Gefahren vermeiden kann, die von der Elektrizität ausgehen können .\n\n§ 2. Allgemeine Bestimmungen\n§ 2. Allgemeine Bestimmungen:\n(1) Zum Schutz der Sicherheit und der Gesundheit der Arbeitnehmer/innen vor Gefahren, die vom elektrischen Strom ausgehen, haben Arbeitgeber/innen dafür zu sorgen, dass elektrische Anlagen und elektrische Betriebsmittel nach den anerkannten Regeln der Technik betrieben werden, sich stets in sicherem Zustand befinden und Mängel unverzüglich behoben werden . Wenn die Betriebsverhältnisse eine unverzügliche Mängelbehebung nicht zulassen, sind geeignete Maßnahmen zum Schutz des Lebens und der Gesundheit der Arbeitnehmer/innen zu ergreifen (z . B . durch Absperren, Kenntlichmachen, Anbringen von Schildern) und die betroffenen Arbeitnehmer/innen darüber zu informieren . (2) Arbeitgeber/innen haben dafür zu sorgen, dass nur solche elektrische Anlagen und elektrische Betriebsmittel verwendet werden, die im Hinblick auf Betriebsart und Umgebungseinflüsse den jeweiligen betrieblichen und örtlichen Anforderungen entsprechen und den zu erwartenden Beanspruchungen (wie gegebenenfalls insbesondere Hitze, Kälte, Feuchtigkeit sowie elektrische, mechanische oder chemische Beanspruchungen) sicher widerstehen können . (3) Elektrische Anlagen und elektrische Betriebsmittel, von denen eine Gefahr durch den elektrischen Strom für die Arbeitnehmer/innen ausgeht, dürfen nicht verwendet werden .\n\n§ 3. Basisschutz (Schutz gegen direktes Berühren)\n§ 3. Basisschutz (Schutz gegen direktes Berühren):\n(1) Elektrische Anlagen und elektrische Betriebsmittel dürfen nur verwendet werden, wenn ihre betriebsmäßig unter Spannung stehenden Teile entweder in ihrem ganzen Verlauf isoliert oder durch ihre Bauart, Lage oder Anordnung oder durch besondere Vorrichtungen gegen direktes Berühren geschützt sind . (2) Abs . 1 gilt nicht 1 . in abgeschlossenen elektrischen Betriebsstätten, 2 . in Sonderfällen, in denen die anerkannten Regeln der Technik dies erlauben .\n\n§ 4. Fehlerschutz (Schutz bei indirektem Berühren)\n§ 4. Fehlerschutz (Schutz bei indirektem Berühren):\n(1) In elektrischen Anlagen und für elektrische Betriebsmittel ist mindestens eine Maßnahme des Fehlerschutzes anzuwenden, wie insbesondere: 1 . Nullung, 2 . Fehlerstrom-Schutzschaltung, 3 . Isolationsüberwachungssystem, 4 . Schutzisolierung, 5 . Schutzkleinspannung, 6 . Funktionskleinspannung, 7 . Schutztrennung, 8 . Schutzerdung bei elektrischen Anlagen, die a . vor dem 1 . 1 . 2011 errichtet wurden oder b . nach dem 1 . 1 . 2011 errichtet wurden, sofern Nullung und Fehlerstrom-Schutzschaltung nicht angewendet werden können . (2) Abs . 1 gilt nicht für Ausnahmen, die in den anerkannten Regeln der Technik ausdrücklich festgehalten sind, insbesondere 1 . Betriebsmittel der Stromversorgung zur Messung elektrischer Arbeit und Leistung mit Nennspannungen bis 250 V gegen Erde, 2 . Metallteile zur Führung oder Bewehrung von Leitungen und Kabeln, wenn zwischen Metallteilen und Leitern Schutzisolierung besteht, 3 . Stahl- und Stahlbetonmasten in Verteilnetzen, 4 . Dachständer und mit diesen leitend verbundene Metallteile in Verteilnetzen . (3) Für elektrische Anlagen muss ein Hauptpotentialausgleich errichtet sein . Bei Untertagebauarbeiten muss zur\n\n§ 5. Zusatzschutz durch Fehlerstrom-Schutzeinrichtungen\nBeachte für folgende Bestimmung zur Anwendung in Dienststellen des Bundes vgl . B-ESV, BGBl . II Nr . 228/2007\n\nZusatzschutz durch Fehlerstrom-Schutzeinrichtungen § 5 . Arbeitgeber/innen haben dafür zu sorgen, dass 1 . in Arbeitsstätten Stromkreise mit Steckdosen für den Hausgebrauch gemäß ÖVE/ÖNORM IEC 60884-1 oder für industrielle Anwendungen gemäß ÖVE/ÖNORM EN 60309 bis 16 Ampere Nennstrom bei Anwendung der Maßnahmen des Fehlerschutzes Schutzerdung, Nullung oder Fehlerstrom-Schutzschaltung mit einem Zusatzschutz in Form von Fehlerstrom-Schutzeinrichtungen mit einem Nennfehlerstrom von maximal 0,03 Ampere ausgestattet sind, 2 . von Baustromverteilern gespeiste Stromkreise mit Steckdosen bis 32 Ampere Nennstrom, bei Anwendung der Maßnahmen des Fehlerschutzes Nullung oder Fehlerstrom-Schutzschaltung, mit einem Zusatzschutz in Form von Fehlerstrom-Schutzeinrichtungen mit einem Nennfehlerstrom von maximal 0,03 Ampere ausgestattet sind, 3 . ortsveränderliche elektrische Betriebsmittel, die sie ihren Arbeitnehmer/innen als Arbeitsmittel zur Verfügung stellen, auf Baustellen oder auf auswärtigen Arbeitsstellen nur dann an Steckdosen, die Teil einer bestehenden Hausinstallation oder einer ähnlichen Anlage sind, betrieben werden, wenn a) feststeht, dass die Steckdose durch eine Fehlerstrom-Schutzeinrichtung mit einem Nennfehlerstrom von maximal 0,03 Ampere geschützt ist oder b) ein ortsveränderlicher Adapter mit eingebauter Fehlerstrom-Schutzeinrichtung mit einem Nennfehlerstrom von maximal 0,03 Ampere verwendet wird .\n\n§ 6. Leitungsroller\nBeachte für folgende Bestimmung zur Anwendung in Dienststellen des Bundes vgl . B-ESV, BGBl . II Nr . 228/2007\n\nLeitungsroller § 6 . Arbeitgeber/innen haben dafür zu sorgen, dass Leitungsroller vorzugsweise mit eingebauter Überhitzungsschutzeinrichtung verwendet werden . Leitungsroller ohne Überhitzungsschutzeinrichtung dürfen nur bei vollständig abgerolltem Kabel verwendet werden .\n\n§ 7. Kontrollen und Prüfungen\nBeachte für folgende Bestimmung zur Anwendung in Dienststellen des Bundes vgl . B-ESV, BGBl . II Nr . 228/2007\n\nKontrollen und Prüfungen § 7 . (1) Arbeitgeber/innen haben dafür zu sorgen, dass die elektrischen Anlagen in ihren Arbeitsstätten und auf Baustellen sowie die von ihnen ihren Arbeitnehmer/innen als Arbeitsmittel zur Verfügung gestellten ortsveränderlichen elektrischen Betriebsmittel nur verwendet werden, wenn 1 . die für diese nach Abs . 3 erforderlichen Kontrollen durchgeführt wurden, die für diese nach erforderlichen Kontrollen durchgeführt wurden, 2 . die für diese nach §§ 8 und 9 erforderlichen Prüfungen von Elektrofachkräften, die Kenntnisse durch Prüfung vergleichbarer Anlagen und Betriebsmittel haben, durchgeführt wurden, und die für diese nach Paragraphen 8 und 9 erforderlichen Prüfungen von Elektrofachkräften, die Kenntnisse durch Prüfung vergleichbarer Anlagen und Betriebsmittel haben, durchgeführt wurden, und 3 . Angaben von Hersteller/innen oder von Inverkehrbringer/innen über die Prüfungen der elektrischen Anlagen oder elektrischen Betriebsmitteln eingehalten werden . (2) Abs . 1 Z 2 gilt nicht für elektrische Anlagen der öffentlichen Stromversorgung . gilt nicht für elektrische Anlagen der öffentlichen Stromversorgung . (3) Folgende Kontrollen durch eine elektrotechnisch unterwiesene Person sind erforderlich: 1 . Kontrolle der Funktion von Fehlerstrom-Schutzeinrichtungen, jedenfalls für jene, die den Fehler- oder Zusatzschutz nach den Regeln der Technik gewährleisten, durch Betätigung der Prüftaste in den von den Hersteller/innen oder Inverkehrbringer/innen angegebenen Intervallen, falls solche Intervalle nicht angegeben sind, zumindest alle sechs Monate, sowie nach einem Fehlerfall, 2 . auf Baustellen: Kontrolle der elektrischen Anlagen für den Betrieb der Baustelle und der elektrischen Betriebsmittel auf offensichtliche Mängel mindestens einmal wöchentlich, 3 . bei Untertagebauarbeiten: a) wöchentliche Kontrolle der Funktion von Fehlerstrom-Schutzeinrichtungen durch Betätigen der Prüftaste, der Einrichtungen zur Erfassung von Erdschlüssen, der Einrichtungen zur Überwachung des Schutzleiters und des Isolationswiderstandes, der Notbeleuchtungen sowie der Einrichtungen zur Notabschaltung, b) zumindest monatliche Kontrolle der Funktion von Fehlerstrom-Schutzeinrichtungen mit geeigneten Messgeräten . (4) Über die Ergebnisse der Kontrollen nach Abs . 3 Z 3 sind Vormerke zu führen, die zumindest das Datum sowie Namen und Unterschrift der Person, die die Kontrolle durchgeführt hat, enthalten . Die jeweils letzten beiden Vormerke sind aufzubewahren . Über die Ergebnisse der Kontrollen nach sind Vormerke zu führen, die zumindest das Datum sowie Namen und Unterschrift der Person, die die Kontrolle durchgeführt hat, enthalten . . (5) Im Bergbau ist für die systematische Prüfung, Wartung und gegebenenfalls Erprobung von maschinellen und elektrischen Betriebsmitteln und Anlagen ein geeigneter Plan aufzustellen . Sämtliche Wartungs-, Prüf- und Erprobungsarbeiten an elektrischen Anlagen oder elektrischen Betriebsmitteln sind von einer Elektrofachkraft durchzuführen . Die Prüfungen und Tests sind in einem Protokoll festzuhalten, das entsprechend aufzubewahren ist .\n\n§ 8. Prüfungen vor Inbetriebnahme\nBeachte für folgende Bestimmung zur Anwendung in Dienststellen des Bundes vgl . B-ESV, BGBl . II Nr . 228/2007\n\nPrüfungen vor Inbetriebnahme § 8 . Eine Prüfung vor Inbetriebnahme ist erforderlich für 1 . elektrische Anlagen nach ihrer Errichtung oder Wiedererrichtung, 2 . elektrische Anlagen oder Anlagenteile nach wesentlichen Änderungen, wesentlichen Erweiterungen oder nach Instandsetzung, 3 . ortsveränderliche elektrische Betriebsmittel nach Änderungen oder nach Instandsetzung .\n\n§ 9. Wiederkehrende Prüfungen\nBeachte für folgende Bestimmung zur Anwendung in Dienststellen des Bundes vgl . B-ESV, BGBl . II Nr . 228/2007\n\nWiederkehrende Prüfungen § 9 . (1) Wiederkehrende Prüfungen sind erforderlich für 1 . elektrische Anlagen, 2 . ortsveränderliche elek\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "238f08d0e7142bb3",
+      "title": "Persönliche-Schutzausrüstungs-Verordnung –PSA-V",
       "abbreviation": "PSA-V",
-      "description": "Austrian PPE Regulation - Personal Protective Equipment requirements",
-      "type": "regulation",
-      "summary": "Requirements for the selection, provision, and use of personal protective equipment in the workplace.",
-      "whs_summary": "Specifies PPE requirements including selection criteria, employer duties for provision, employee training, and maintenance obligations.",
-      "keywords": ["PPE", "protective equipment", "safety gear", "Austria"],
+      "description": "Persönliche-Schutzausrüstungs-Verordnung –PSA-V",
+      "type": "law",
+      "summary": "PSA-V (Persönliche-Schutzausrüstungs-Verordnung –PSA-V) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "PSA-V (Persönliche-Schutzausrüstungs-Verordnung –PSA-V) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "PSA-V",
+        "persönliche-schutzausrüstungs-verordnung",
+        "–psa-v",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
       "content": {
-        "full_text": "PSA-Verordnung regelt die Bereitstellung und Verwendung persönlicher Schutzausrüstungen am Arbeitsplatz.",
+        "full_text": "§ 1\nVerordnung der Landesregierung vom 16 . Dezember 2003 über\npersönliche Schutzausrüstungen und Dienstbekleidung (Persönliche-\nSchutzausrüstungs-Verordnung –PSA-V)\nLGBl . Nr . 139/2003",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "at-kenn-v",
-      "title": "Kennzeichnungsverordnung",
-      "abbreviation": "KennV",
-      "description": "Austrian Safety Signage Regulation",
-      "type": "regulation",
-      "summary": "Requirements for safety and health signs, signals, and markings in the workplace.",
-      "whs_summary": "Defines mandatory safety signage including prohibition signs, warning signs, mandatory signs, emergency signs, and floor markings.",
-      "keywords": ["safety signs", "signage", "warnings", "emergency exits", "Austria"],
+      "id": "7898abd5a2e483f9",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Bauarbeiterschutzverordnung, Fassung vom 20.12.2025",
+      "abbreviation": "BauV",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Bauarbeiterschutzverordnung, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "BauV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Bauarbeiterschutzverordnung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, ergonomics. Contains 136 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "BauV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Bauarbeiterschutzverordnung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, ergonomics. Contains 136 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "BauV",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "bauarbeiterschutzverordnung,",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "ergonomics",
+        "workplace ergonomics"
+      ],
       "content": {
-        "full_text": "Kennzeichnungsverordnung regelt die Sicherheits- und Gesundheitsschutzkennzeichnung am Arbeitsplatz.",
+        "full_text": "§ 1. Geltungsbereich\n§ 1 . (1) Diese Verordnung gilt für die Beschäftigung von Arbeitnehmern auf Baustellen im Sinn des § 2 Abs . 3 dritter Satz ASchG . Diese Verordnung gilt für die Beschäftigung von Arbeitnehmern auf Baustellen im Sinn des dritter Satz ASchG . (2) Folgende Bestimmungen dieser Verordnung gelten auch für die Beschäftigung von Arbeitnehmern auf auswärtigen Arbeitsstellen im Sinn des § 2 Abs . 3 letzter Satz ASchG: Folgende Bestimmungen dieser Verordnung gelten auch für die Beschäftigung von Arbeitnehmern auf auswärtigen Arbeitsstellen im Sinn des letzter Satz ASchG: 1 . § 6 Abs . 2 zweiter Satz, Abs . 3, Abs . 7 und Abs . 8, zweiter Satz, , und , 2 . §§ 7 bis 10, 3 . §§ 48 bis 54, 3 . §§ 87 bis 93, 4 . §§ 106, 108 und 109, 5 . § 157 . (3) Diese Verordnung ist nicht auf Arbeiten anzuwenden, die durch die Tagbauarbeitenverordnung – TAV, BGBl . II Nr . 416/2010 , in der jeweils geltenden Fassung, geregelt werden . Diese Verordnung ist nicht auf Arbeiten anzuwenden, die durch die Tagbauarbeitenverordnung – TAV, , in der jeweils geltenden\n\n§ 2. Begriffsbestimmungen\nBegriffsbestimmungen § 2 . (1) Bauarbeiten sind Arbeiten zur Herstellung, Instandhaltung, Sanierung, Reparatur, Änderung und Beseitigung von baulichen Anlagen aller Art, einschließlich der hiefür erforderlichen Vorbereitungs- und Abschlußarbeiten . Bauarbeiten sind insbesondere auch Zimmerer-, Dachdecker-, Glaser-, Maler-, Anstreicher-, Spengler-, Fliesenleger-, Estrich-, Isolierarbeiten, und Gerüstbauarbeiten, Stahlbauarbeiten, Gas-, Wasser-, Heizungs-, Lüftungs- und Elektroinstallationsarbeiten, Sprengarbeiten, Abbrucharbeiten sowie Fassadenreinigungsarbeiten und Rauchfangkehrerarbeiten . Als Bauarbeiten gelten auch Erdarbeiten, wie Aufschüttungen, Auf- und Abgrabungen sowie die Herstellung von künstlichen Hohlräumen unterhalb der Erdoberfläche . (2) Fachkundige im Sinne dieser Verordnung sind Personen, die die erforderlichen fachlichen Kenntnisse und Berufserfahrungen besitzen und auch die Gewähr für eine gewissenhafte Durchführung der ihnen übertragenen Arbeiten bieten . Als fachkundige Personen im Sinne dieser Verordnung gelten fachkundige Organe von Anstalten des Bundes oder eines Bundeslandes, von staatlich autorisierten Anstalten, sowie Ziviltechniker oder Gewerbetreibende, jeweils im Rahmen ihrer Befugnisse . Als fachkundige Personen können auch Betriebsangehörige eingesetzt werden . (3) Soweit in dieser Verordnung personenbezogene Bezeichnungen nur in männlicher Form angeführt sind, beziehen sie sich auf Frauen und Männer in gleicher Weise .\n\n§ 3. Meldung von Bauarbeiten\nMeldung von Bauarbeiten § 3 . (1) Dem zuständigen Arbeitsinspektorat ist nachweislich Meldung zu erstatten, wenn Bauarbeiten im Sinne dieser Verordnung ausgeführt werden, die voraussichtlich länger als fünf Arbeitstage dauern . (2) Von der Meldepflicht nach Abs . 1 ausgenommen sind Glaser-, Maler-, Anstreicher-, Fliesenleger-, Estrich-, Isolier-, Gas-, Wasser-, Heizungs-, Lüftungs- und Elektroinstallationsarbeiten, soweit diese Arbeiten im Gebäude ausgeführt werden . Von der Meldepflicht nach ausgenommen sind Glaser-, Maler-, Anstreicher-, Fliesenleger-, Estrich-, Isolier-, Gas-, Wasser-, Heizungs-, Lüftungs- und Elektroinstallationsarbeiten, soweit diese Arbeiten im Gebäude ausgeführt werden . (3) Meldungen nach Abs . 1 haben zu enthalten: Meldungen nach haben zu enthalten: 1 . die genaue Lage der Baustelle, 2 . den Zeitpunkt des Arbeitsbeginnes, 3 . Art und Umfang der Arbeiten, 4 . die voraussichtliche Zahl der Beschäftigten und 5 . den Namen der vorgesehenen Aufsichtsperson . (4) Werden die Bauarbeiten von mehreren Arbeitgebern unmittelbar aufeinanderfolgend ausgeführt, obliegt die Meldepflicht jenem Arbeitgeber, der als erster auf der Baustelle mit gemäß Abs . 1 meldepflichtigen Bauarbeiten beginnt . Werden die Bauarbeiten von mehreren Arbeitgebern unmittelbar aufeinanderfolgend ausgeführt, obliegt die Meldepflicht jenem Arbeitgeber, der als erster auf der Baustelle mit gemäß meldepflichtigen Bauarbeiten beginnt . (5) Abweichend von Abs . 4 müssen Abweichend von müssen 1 . Arbeiten in Behältern, Gruben, Schächten, Kanälen oder Rohrleitungen, für die gemäß § 120 Abs . 1 und 2 Schutzmaßnahmen schriftlich angeordnet werden müssen, Arbeiten in Behältern, Gruben, Schächten, Kanälen oder Rohrleitungen, für die gemäß und 2 Schutzmaßnahmen schriftlich angeordnet werden müssen, (Anm . : Z 2 aufgehoben durch BGBl . II Nr . 242/2006 ) Anmerkung,  aufgehoben durch ) 3 . Arbeiten gemäß § 125 Abs . 2, bei denen Bleistaub frei wird, Arbeiten gemäß , bei denen Bleistaub frei wird, 4 . Sandstrahlarbeiten gemäß § 126, Sandstrahlarbeiten gemäß , 5 . Arbeiten auf Dächern, bei denen die Absturzhöhe mehr als 5,00 m beträgt, in jedem Fall gesondert gemeldet werden, sofern die Arbeiten voraussichtlich länger als fünf Arbeitstage dauern . (6) Meldungen nach Abs . 1, 4 und 5 sind spätestens eine Woche vor Arbeitsbeginn zu erstatten . In Katastrophenfällen, bei unaufschiebbaren Arbeiten oder bei kurzfristig zu erledigenden Aufträgen ist die Meldung spätestens am Tage des Arbeitsbeginnes zu erstatten . Meldungen nach , 4 und 5 sind spätestens eine Woche vor Arbeitsbeginn zu erstatten . .\n\n§ 3a. Anwendung der Grundsätze der Gefahrenverhütung auf Baustellen\nAnwendung der Grundsätze der Gefahrenverhütung auf Baustellen § 3a . a, Arbeitgeber/innen haben dafür zu sorgen, dass die in § 7 ASchG genannten Grundsätze der Gefahrenverhütung angewendet werden, insbesondere in Bezug auf Arbeitgeber/innen haben dafür zu sorgen, dass die in ASchG genannten Grundsätze der Gefahrenverhütung angewendet werden, insbesondere in Bezug auf 1 . die Aufrechterhaltung von Ordnung und Sauberkeit auf der Baustelle ; 2 . die Wahl des Standorts der Arbeitsplätze unter Berücksichtigung der Zugangsbedingungen zu diesen Arbeitsplätzen und die Festlegung der Verkehrswege oder Verkehrszonen ; 3 . die Bedingungen für die Handhabung der verschiedenen Materialien ; 4 . die Instandhaltung, die Kontrolle vor Inbetriebnahme und die regelmäßige Kontrolle der Anlagen und Einrichtungen, um Mängel, die die Sicherheit und die Gesundheit der Arbeitnehmer/innen beeinträchtigen können, auszuschalten ; 5 . die Abgrenzung und die Einrichtung von Lagerbereichen für die verschiedenen Materialien, insbesondere wenn es sich um gefährliche Materialien oder Stoffe handelt ; 6 . die Bedingungen für die Entfernung von benutzten gefährlichen Materialien ; 7 . die Lagerung und die Beseitigung bzw . den Abtransport von Abfällen und Schutt ; 8 . die Anpassung der tatsächlichen Dauer für die verschiedenen Arbeiten oder Arbeitsabschnitte unter Berücksichtigung der Arbeiten auf der Baustelle, 9 . die Zusammenarbeit zwischen Arbeitgeber/innen und Selbständigen, 10 . die Wechselwirkungen zu betrieblichen Tätigkeiten auf dem Gelände, auf dem oder in dessen Nähe die Baustelle liegt .\n\n§ 4. Aufsicht und Koordination\nAufsicht und Koordination § 4 . (1) Bauarbeiten dürfen nur unter Aufsicht einer geeigneten Aufsichtsperson, mit der erforderlichen Sorgfalt und nach fachmännischen Grundsätzen durchgeführt werden . Als Aufsichtsperson kann der Arbeitgeber oder eine von ihm bevollmächtigte, mit entsprechenden Befugnissen ausgestattete Person tätig sein . Als Aufsichtsperson ist nur geeignet, wer 1 . die für die auszuführenden Arbeiten erforderlichen theoretischen und praktischen Kenntnisse und Erfahrungen in allen Fragen besitzt, die mit den in Betracht kommenden Arbeiten vom Standpunkt der Sicherheit zusammenhängen, 2 . Kenntnisse über die in Betracht kommenden Arbeitnehmerschutzvorschriften besitzt und 3 . die Gewähr für eine gewissenhafte Durchführung der übertragenen Aufgaben bietet . (Anm . : Abs . 2 aufgehoben durch BGBl . II Nr . 13/2007 ) Anmerkung,  aufgehoben durch )\n\n(3) Die erforderlichen Kenntnisse gemäß Abs . 1 Z 2 sind in geeigneter Form nachzuweisen, zB . durch ein Zeugnis über die erfolgreiche Ablegung einer Meisterprüfung . Die erforderlichen Kenntnisse gemäß sind in geeigneter Form nachzuweisen, zB . . (4) Wenn die Aufsichtsperson auf der Baustelle nicht ständig anwesend ist, ist ein auf der Baustelle beschäftigter geeigneter Arbeitnehmer zu bestellen, der in Abwesenheit der Aufsichtsperson auf die Durchführung und Einhaltung der zum Schutz der Arbeitnehmer notwendigen Maßnahmen zu achten hat . Es darf nur ein Arbeitnehmer bestellt werden, der 1 . die Gewähr für eine gewissenhafte Durchführung der übertragenen Aufgaben bietet, 2 . die für die auszuführenden Arbeiten erforderlichen praktischen Kenntnisse besitzt, 3 . von der Aufsichtsperson über die bei den auszuführenden Arbeiten zum Schutz der Arbeitnehmer notwendigen Maßnahmen nachweislich besonders unterwiesen worden ist und 4 . seiner Bestellung nachweislich zugestimmt hat . (5) Zur Abwendung einer unmittelbar drohenden oder eingetretenen Gefährdung des Lebens oder der Gesundheit von Arbeitnehmern kann die Aufsichtsperson oder, wenn diese nicht ausreichend schnell herbeigerufen werden kann, der gemäß Abs . 4 bestellte Arbeitnehmer von den Bestimmungen dieser Verordnung abweichende Anordnungen treffen, soweit dies im Interesse des Schutzes der Arbeitnehmer geboten erscheint, um die Gefährdung abzuwenden oder zu beseitigen . Die bei der Durchführung dieser Anordnungen Beschäftigten sind besonders zu unterweisen und zu sichern . Zur Abwendung einer unmittelbar drohenden oder eingetretenen Gefährdung des Lebens oder der Gesundheit von Arbeitnehmern kann die Aufsichtsperson oder, wenn diese nicht ausreichend schnell herbeigerufen werden kann, der gemäß bestellte Arbeitnehmer von den Bestimmungen dieser Verordnung abweichende Anordnungen treffen, soweit dies im Interesse des Schutzes der Arbeitnehmer geboten erscheint, um die Gefährdung abzuwenden oder zu beseitigen . . (6) Sind auf einer Baustelle Arbeitnehmer verschiedener Arbeitgeber tätig, so hat jeder Arbeitgeber dafür zu sorgen, daß die von ihm getroffenen Maßnahmen zum Schutz seiner Arbeitnehmer sich für die Arbeitnehmer anderer Arbeit\n\n[Content truncated for mobile - view full version online]",
         "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "8f12ad2b6a8f0095",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Einbeziehungen in die Zusatzversicherung in der Unfallversicherung, Fassung vom 20.12.2025",
+      "abbreviation": "VbA",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Einbeziehungen in die Zusatzversicherung in der Unfallversicherung, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "VbA (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Einbeziehungen in die Zusatzversicherung in der Unfallversicherung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering incident reporting. Contains 3 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "VbA (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Einbeziehungen in die Zusatzversicherung in der Unfallversicherung, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering incident reporting. Contains 3 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "VbA",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "einbeziehungen",
+        "core safety",
+        "incident reporting",
+        "accident reporting",
+        "near miss",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": "§ 0\nLangtitel Verordnung des Bundesministers für soziale Verwaltung vom 26 . November 1984 über Einbeziehungen in die Zusatzversicherung in der Unfallversicherung\nPräambel/Promulgationsklausel Auf Grund des § 22a des Allgemeinen Sozialversicherungsgesetzes, BGBl . Nr . 189/1955 , in der Fassung der Bundesgesetze BGBl . Nr . 530/1979 , 647/1982 und 656/1983 wird verordnet:\n\n§ 1\n§ 1 . In die Zusatzversicherung gemäß § 22a des Allgemeinen Sozialversicherungsgesetzes werden die Mitglieder folgender im § 176 Abs . 1 Z 7 des Allgemeinen Sozialversicherungsgesetzes genannten Körperschaften (Vereinigungen) des Landes Tirol einbezogen: 1 . Die Mitglieder der örtlichen Lawinenkommission der Gemeinde Waidring ; 2 . Die Mitglieder der örtlichen Lawinenkommission der Gemeinde Absam ; 3 . Die Mitglieder der örtlichen Lawinenkommission der Gemeinde Finkenberg ; 4 . Die Mitglieder der örtlichen Lawinenkommission der Gemeinde Rum ; 5 . Die Mitglieder der örtlichen Lawinenkommission der Gemeinde Bichlbach ; (Anm . : Z 6 aufgehoben durch BGBl . II Nr . 165/2003 )\n\n§ 2\n§ 2 . Diese Verordnung tritt mit 1 . Jänner 1985 in Kraft .",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "4fdd5e1f94c8b415",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Lebensmittelsicherheits- und Verbraucherschutzgesetz, Fassung vom 20.12.2025",
+      "abbreviation": "LärmV",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Lebensmittelsicherheits- und Verbraucherschutzgesetz, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "LärmV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Lebensmittelsicherheits- und Verbraucherschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering health surveillance, employee rights, training. Contains 107 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "LärmV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Lebensmittelsicherheits- und Verbraucherschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering health surveillance, employee rights, training. Contains 107 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "LärmV",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "lebensmittelsicherheits-",
+        "core safety",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "training",
+        "education"
+      ],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich\n1 . Hauptstück Grundsätze und Anforderungen an Lebensmittel, Wasser für den menschlichen Gebrauch, Gebrauchsgegenstände und kosmetische Mittel 1 . Abschnitt Allgemeine Bestimmungen § 1 . (1) Dieses Bundesgesetz regelt die Anforderungen an Lebensmittel, Wasser für den menschlichen Gebrauch, Gebrauchsgegenstände und kosmetische Mittel und die damit verbundene Verantwortung der Unternehmer . Es gilt für alle Produktions-, Verarbeitungs- und Vertriebsstufen . (2) Dieses Bundesgesetz gilt nicht für die Primärproduktion für den privaten häuslichen Gebrauch oder für die häusliche Verarbeitung, Handhabung oder Lagerung von Lebensmitteln, Gebrauchsgegenständen und kosmetischen Mitteln zum häuslichen privaten Verbrauch .\n\n§ 2. Zielbestimmung\n§ 2 . (1) Ziel dieses Bundesgesetzes ist der Gesundheitsschutz des Verbrauchers sowie der Schutz des Verbrauchers vor Täuschung . Diese Ziele sind durch die in der Verordnung (EG) Nr . 178/2002 vom 28 . Jänner 2002 zur Festlegung der allgemeinen Grundsätze und Anforderungen des Lebensmittelrechts, zur Errichtung der Europäischen Behörde für Lebensmittelsicherheit und zur Festlegung von Verfahren zur Lebensmittelsicherheit (ABl . Nr . L 31 vom 1 . Februar 2002) dargelegten Grundsätze der Risikoanalyse, des Vorsorgeprinzips und der Transparenz zu gewährleisten . (2) Dieses Bundesgesetz dient ferner der Umsetzung und Durchführung von Rechtsakten der Europäischen Union, die den Geltungsbereich dieses Gesetzes betreffen .\n\n§ 3. Begriffsbestimmungen\nBegriffsbestimmungen § 3 . Für dieses Bundesgesetz gelten folgende Begriffsbestimmungen: 1 . Lebensmittel: Lebensmittel gemäß Art . 2 der Verordnung (EG) Nr . 178/2002 . 2 . Wasser für den menschlichen Gebrauch: Wasser vom Wasserspender bis zum Abnehmer zum Zweck der Verwendung als Lebensmittel und in Lebensmittelunternehmen gemäß Z 1 . Satz . 3 . Lebensmittel für spezielle Gruppen: Lebensmittel, die gemäß Art . 2 Abs . 2 der Verordnung (EU) Nr . 609/2013 (ABl . Nr . L 181 vom 29 . Juni 2013) in die Lebensmittelkategorien Säuglingsanfangsnahrung und Folgenahrung, Getreidebeikost und andere Beikost, Lebensmittel für besondere medizinische Zwecke oder Tagesrationen für eine gewichtskontrollierende Ernährung einzuordnen sind . 4 . Nahrungsergänzungsmittel: Lebensmittel, die dazu bestimmt sind, die normale Ernährung zu ergänzen und die aus Einfach- oder Mehrfachkonzentraten von Nährstoffen oder sonstigen Stoffen mit ernährungsspezifischer oder physiologischer Wirkung bestehen und in dosierter Form in Verkehr gebracht werden, d . h . in Form von zB Kapseln, Pastillen, Tabletten, Pillen und anderen ähnlichen Darreichungsformen, Pulverbeuteln, Flüssigampullen, Flaschen mit Tropfeinsätzen und ähnlichen Darreichungs\n\n§ 4. Vollziehung von Verordnungen der Europäischen Union\nVollziehung von Verordnungen der Europäischen Union § 4 . (1) Die in der Anlage genannten unmittelbar anwendbaren Rechtsakte der Europäischen Union sind samt Änderungsrechtsakten, delegierten Rechtsakten und Durchführungsrechtsakten im Rahmen dieses Bundesgesetzes zu vollziehen . (2) Der Bundesminister für Gesundheit hat durch Verordnung die Anlage zu aktualisieren . (3) Der Bundesminister für Gesundheit kann unter Bedachtnahme auf die Zielsetzung dieses Bundesgesetzes sowie den anerkannten Stand der Wissenschaft und Technologie nach Anhören der Codexkommission mit Verordnung nähere Vorschriften zur Durchführung der in der Anlage genannten unmittelbar anwendbaren Rechtsakte der Europäischen Union samt Änderungsrechtsakten, delegierten Rechtsakten und Durchführungsrechtsakten in sinngemäßer Anwendung der §§ 6, 19 und 20 erlassen . Der Bundesminister für Gesundheit kann unter Bedachtnahme auf die Zielsetzung dieses Bundesgesetzes sowie den anerkannten Stand der Wissenschaft und Technologie nach Anhören der Codexkommission mit Verordnung nähere Vorschriften zur Durchführung der in der Anlage genannten unmittelbar anwendbaren Rechtsakte der Europäischen Union samt Änderungsrechtsakten, delegierten Rechtsakten und Durchführungsrechtsakten in sinngemäßer Anwendung der Paragraphen 6,, 19 und 20 erlassen . (4) Antrags- oder Meldeverfahren auf Grund von in der Anlage Teil 1 genannten Rechtsvorschriften vorbehaltlich des Abs . 6 sind von dem Bundesminister für Gesundheit durchzuführen . Antrags- oder Meldeverfahren auf Grund von in der Anlage Teil 1 genannten Rechtsvorschriften vorbehaltlich des sind von dem Bundesminister für Gesundheit durchzuführen . (5) Antrags-, Melde-, Genehmigungs-, Zulassungs- oder Untersagungsverfahren auf Grund von in der Anlage Teil 2 genannten Rechtsvorschriften sind vom Landeshauptmann durchzuführen . (6) Verfahren zur Festlegung, Änderung oder Streichung von Rückstandshöchstgehalten bei Lebensmitteln auf Grund der Verordnung (EG) Nr . 396/2005 über Höchstgehalte an Pestizidrückständen in oder auf Lebens- und Futtermitteln pflanzlichen und tierischen Ursprungs und zur Änderung der Richtlinie 91/414/EWG des Rates (ABl . Nr . L 70 vom 16 . März 2005) sind von der Agentur durchzuführen . Bei der Wahrnehmung dieser Aufgaben hat die Agentur das Allgemeine Verwaltungsverfahrensgesetz 1991 – AVG, BGBl . Nr . 51/1991 , das Zustellgesetz, BGBl . Nr . 200/1982 , und das Verwaltungsvollstreckungsgesetz 1919 – VVG, BGBl . Nr . 53/1991 , anzuwenden . Der Bundesminister für Gesundheit ist sachlich in Betracht kommende Oberbehörde und im Instanzenzug übergeordnete Behörde . Die Agentur ist an seine Weisungen gebunden . Verfahren zur Festlegung, Änderung oder Streichung von Rückstandshöchstgehalten bei Lebensmitteln auf Grund der Verordnung (EG) Nr . . Nr . L 70 vom 16 . . . . .\n\n§ 5. Allgemeine Anforderungen\n2 . Abschnitt Lebensmittel Allgemeine Anforderungen § 5 . (1) Es ist verboten, Lebensmittel, die 1 . nicht sicher gemäß Art . 14 der Verordnung (EG) Nr . 178/2002 sind, d . h . gesundheitsschädlich oder für den menschlichen Verzehr ungeeignet sind, oder nicht sicher gemäß Artikel 14, der Verordnung (EG) Nr . 178/2002 sind, d . h . gesundheitsschädlich oder für den menschlichen Verzehr ungeeignet sind, oder 2 . verfälscht oder wertgemindert sind, ohne dass dieser Umstand deutlich und allgemein verständlich kenntlich gemacht ist, oder 3 . den nach den § 4 Abs . 3, §§ 6 oder 57 Abs . 1 erlassenen Verordnungen nicht entsprechen, den nach den , Paragraphen 6, oder 57 erlassenen Verordnungen nicht entsprechen, in Verkehr zu bringen . (2) Es ist verboten, Lebensmittel mit zur Irreführung geeigneten Informationen in Verkehr zu bringen oder zu bewerben, insbesondere 1 . in Bezug auf die Eigenschaften des Lebensmittels wie Art, Identität, Zusammensetzung, Menge, Haltbarkeit, Ursprungsland oder Herkunftsort und Methode der Herstellung oder Erzeugung ; 2 . indem dem Lebensmittel Wirkungen oder Eigenschaften zugeschrieben werden, die es nicht besitzt ; 3 . indem zu verstehen gegeben wird, dass sich das Lebensmittel durch besondere Merkmale auszeichnet, obwohl alle vergleichbaren Lebensmittel dieselben Merkmale aufweisen, insbesondere durch besondere Hervorhebung des Vorhandenseins oder Nicht-Vorhandenseins bestimmter Zutaten oder Nährstoffe ; 4 . indem durch das Aussehen, die Bezeichnung oder bildliche Darstellungen das Vorhandensein eines bestimmten Lebensmittels oder einer Zutat suggeriert wird, obwohl tatsächlich in dem Lebensmittel ein von Natur aus vorhandener Bestandteil oder eine normalerweise in diesem Lebensmittel verwendete Zutat durch einen anderen Bestandteil oder eine andere Zutat ersetzt wurde . (3) Es ist verboten, beim Inverkehrbringen oder in der Werbung einem Lebensmittel Eigenschaften der Vorbeugung, Behandlung oder Heilung einer menschlichen Krankheit zuzuschreiben oder den Eindruck dieser Eigenschaften entstehen zu lassen . Dies gilt nicht im Fall von Angaben über die Verringerung eines Krankheitsrisikos, sofern eine Zulassung gemäß der Verordnung (EG) Nr . 1924/2006 vorliegt . (4) Die Verbote der Abs . 2 und 3 gelten sinngemäß auch für die Aufmachung . Die Verbote der und 3 gelten sinngemäß auch für die Aufmachung . (5) Lebensmittel sind 1 . gesundheitsschädlich, wenn sie geeignet sind, die Gesundheit zu gefährden oder zu schädigen ; 2 . für den menschlichen Verzehr ungeeignet, wenn die bestimmungsgemäße Verwendbarkeit nicht gewährleistet ist ; 3 . verfälscht, wenn ihnen wertbestimmende Bestandteile, deren Gehalt vorausgesetzt wird, nicht oder nicht ausreichend hinzugefügt oder ganz oder teilweise entzogen wurden, oder sie durch Zusatz oder Nichtentzug wertvermindernder Stoffe verschlechtert wurden, oder ihnen durch Zusätze oder Manipulationen der Anschein einer besseren Beschaffenheit verliehen oder ihre Minderwertigkeit überdeckt wurde, oder wenn sie nach einer unzulässigen Verfahrensart hergestellt wurden ; 4 . wertgemindert, wenn sie entweder während der Herstellung oder nach der Herstellung, ohne dass eine weitere Behandlung erfolgt ist, eine erhebliche Minderung an wertbestimmenden Bestandteilen oder ihrer spezifischen, wertbestimmenden Wirkung oder Eigenschaft erfahren haben, soweit sie nicht für den menschlichen Verzehr ungeeignet sind . (6) Lebensmittel oder ihre Bestandteile sowie Bestandteile von Gebrauchsgegenständen und kosmetischen Mitteln, die nur nach erfolgter Zulassung in Verkehr gebracht werden dürfen, dürfen zu Forschungs- und Entwicklungszwecken verwendet werden, wenn 1 . der Studienleiter oder eine vom ihm beauftragte Person über jedes Experiment oder jede Studie schriftliche Aufzeichnungen führt, in denen die Identität und Herkunft des nicht zugelassenen Lebensmittels, eines Bestandteiles davon oder des nicht zugelassenen Bestandteiles eines Gebrauchsgegenstandes oder kosmetischen Mittels, die gelieferten Mengen sowie Namen und Anschriften der Personen, die die Ware erhalten haben, festgehalten werden, und ferner Unterlagen zusammenstellt, in denen alle verfügbaren Angaben über mögliche Auswirkungen auf die Gesundheit von Menschen enthalten sind, und 2 . die Zustimmung der Ethikkommission gemäß § 41 des Arzneimittelgesetz\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "ada6dc1942510073",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Hilfsfondsgesetz, Fassung vom 20.12.2025",
+      "abbreviation": "GefStoffV",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Hilfsfondsgesetz, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "GefStoffV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Hilfsfondsgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, training, health surveillance. Contains 6 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "GefStoffV (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Hilfsfondsgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, training, health surveillance. Contains 6 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "GefStoffV",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "hilfsfondsgesetz,",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "training",
+        "education",
+        "instruction",
+        "health monitoring",
+        "medical surveillance"
+      ],
+      "content": {
+        "full_text": "§ 0\nLangtitel Bundesgesetz vom 18 . Jänner 1956, womit Bundesmittel zur Hilfeleistung an politisch Verfolgte, zur Verfügung gestellt werden (Hilfsfondsgesetz) . StF: BGBl . Nr . 25/1956 (NR: GP VII RV 637 AB 720 S . 92 . BR: S . 113 . )\n\nÄnderung BGBl . Nr . 178/1962 (NR: GP IX RV 648 AB 681 S . 100 . BR: S . 190 . ) BGBl . Nr . 714/1976 (NR: GP XIV RV 306 AB 400 S . 42 . BR: AB 1607 S . 358 . )\n\nPräambel/Promulgationsklausel Der Nationalrat hat beschlossen:\n\n§ 1\n§ 1. (1) Das Bundesministerium für Finanzen wird ermächtigt, zur Hilfeleistung an politische Verfolgte einen Betrag von insgesamt 550 Millionen Schilling zu widmen; dieser Betrag ist in einen zu diesem Zweck zu errichtenden Fonds einzubringen, dessen Aufgabe es ist, nach Maßgabe seiner Statuten Personen, die in der Zeit zwischen dem 5. März 1933 und dem 8. Mai 1945 aus politischen Gründen – mit Ausnahme wegen nationalsozialistischer Betätigung – verfolgt worden sind, ihren Wohnsitz und ständigen Aufenthalt im Auslande haben und keine im Opferfürsorgegesetz vorgesehenen Leistungen – ausgenommen Haftentschädigung – erhalten haben, Hilfe zu leisten. (2) Dieser Betrag ist innerhalb von elf Jahren, beginnend im Jahre 1955, in jährlichen Teilbeträgen, flüssigzumachen.\n\n§ 1a\n§ 1a. (1) Das Bundesministerium für Finanzen wird ermächtigt, dem auf Grund des § 1 Abs. 1 dieses Bundesgesetzes errichteten Fonds einen weiteren Betrag von 600 Millionen Schilling zuzuwenden. Dieser Betrag ist in fünfzehn gleichen aufeinanderfolgenden Vierteljahresraten zu je 40 Millionen Schilling zur Zahlung fällig. Die Fälligkeit der ersten Rate tritt zwei Monate nach Inkrafttreten des Finanz- und Ausgleichsvertrages zwischen der Republik Österreich und der Bundesrepublik Deutschland vom 27. November 1961 ein. (2) Der im Abs. 1 genannte Betrag ist nach Maßgabe der Fondsstatuten ausschließlich für Zuwendungen wegen Berufsschäden und wegen Schäden infolge des Abbruches oder einer mehr als 3 ½jährigen Unterbrechung einer Berufsausbildung oder einer vorberuflichen Ausbildung zu verwenden. (3) In den Statuten des Fonds ist sicherzustellen, daß Personen, die am 13. März 1938 die deutsche Staatsangehörigkeit besessen haben und infolge politischer Verfolgung aus Österreich ausgewandert sind, den im § 1 Abs. 1 genannten Begünstigten gleichgestellt werden. Der Ablauf der in den Fondsstatuten zur Stellung von Anträgen bestimmten Frist steht der Antragstellung der vorgenannten gleichgestellten Personen nicht entgegen; für derartige Anträge ist in den Fondsstatuten eine neue Frist zu setzen.\n\n§ 1b\n§ 1b. (1) Der Bundesminister für Finanzen wird ermächtigt, dem Fonds zur Hilfeleistung an politisch Verfolgte einen weiteren Betrag von 440 Mill. S zu widmen, der in folgenden Teilbeträgen anzuweisen ist: Innerhalb von 30 Tagen nach dem Inkrafttreten dieses Bundesgesetzes und ab 1. Jänner 1977 am Ende jedes Vierteljahres 30 Mill. S; am 30 Juni 1980 der sich ergebende Rest von 20 Mill. S. (2) Der im Abs. 1 genannte Betrag ist nach Maßgabe besonderer Bestimmungen der Fondsstatuten zur Leistung von Aushilfen an bedürtige Personen zu verwenden, die 1. in der Zeit zwischen dem 5. März 1933 und dem 8. Mai 1945, jedoch vor dem Zusammenbruch des nationalsozialistischen Regimes, in ihrem Aufenthaltsort aus politischen Gründen, welcher Art immer, besonders wegen ihrer Abstammung, Religion oder Nationalität – mit Ausnahme wegen nationalsozialistischer Betätigung – verfolgt worden sind und 2. am Tage des Inkrafttretens dieses Bundesgesetzes die österreichische Staatsbürgerschaft besessen haben oder am 13. März 1938 österreichische Bundesbürger gewesen sind oder vor dem 13. März 1938 mindestens zehn Jahre ununterbrochen ihren Wohnsitz und ständigen Aufenthalt in Österreich gehabt haben. (Verfolgte.) (3) Einem Verfolgten gleichgestellt sind die nicht wieder verehelichte Witwe oder unverheiratet gebliebene Lebensgefährtin (Hinterbliebene) eines Verfolgten, der in der Zeit zwischen dem 5. März 1933 und dem 8. Mai 1945 entweder 1. als Opfer der politischen Verfolgung das Leben verloren hat\n\n§ 2\n§ 2. (1) Der zu errichtende Fonds sowie die von diesem gemäß den Statuten beteilten Personen – letztere hinsichtlich der ihnen aus dem Fonds zukommenden Leistungen – sind von allen bundesrechtlich geregelten Abgaben befreit. Die Abgabenbefreiung erstreckt sich jedoch nicht auf einen wirtschaftlichen Geschäftsbetrieb des Fonds, der über den Rahmen einer Vermögensverwaltung hinausgeht. (2) Die durch die Errichtung des Fonds unmittelbar veranlaßten Schriften sind von den Stempel- und Rechtsgebühren und von den Bundesverwaltungsabgaben befreit. Der Fonds ist von der Entrichtung der Stempelgebühren hinsichtlich seines Schriftverkehrs mit den öffentlichen Behörden und Ämtern befreit.\n\n§ 3\n§ 3 . Mit der Vollziehung dieses Bundesgesetzes ist das Bundesministerium für Finanzen, bezüglich der Bundesverwaltungsabgaben die Bundesregierung betraut .",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "9a9d980d3184c5cd",
+      "title": "Bundesgesetzblatt authentisch ab 2004",
+      "abbreviation": "VbAV",
+      "description": "Bundesgesetzblatt authentisch ab 2004",
+      "type": "law",
+      "summary": "VbAV (Bundesgesetzblatt authentisch ab 2004) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "VbAV (Bundesgesetzblatt authentisch ab 2004) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "VbAV",
+        "bundesgesetzblatt",
+        "authentisch",
+        "2004",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "46891881928aa9ef",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für ArbeitnehmerInnenschutzgesetz, Fassung vom 20.12.2025",
+      "abbreviation": "BS-V",
+      "description": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für ArbeitnehmerInnenschutzgesetz, Fassung vom 20.12.2025",
+      "type": "law",
+      "summary": "BS-V (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für ArbeitnehmerInnenschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, employer obligations. Contains 137 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "BS-V (Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für ArbeitnehmerInnenschutzgesetz, Fassung vom 20.12.2025) is Austrian Primary legislation establishing legal requirements covering employee rights, workplace design, employer obligations. Contains 137 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "BS-V",
+        "bundesrecht",
+        "konsolidiert:",
+        "gesamte",
+        "rechtsvorschrift",
+        "arbeitnehmerinnenschutzgesetz,",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "employer duties",
+        "employer obligations"
+      ],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich\n§ 1. Geltungsbereich: (1) Dieses Bundesgesetz gilt für die Beschäftigung von Arbeitnehmern . (2) Dieses Bundesgesetz gilt nicht für die Beschäftigung von 1 . Arbeitnehmern der Länder, Gemeinden und Gemeindeverbände, die nicht in Betrieben beschäftigt sind ; 2 . Arbeitnehmern des Bundes in Dienststellen, auf die das Bundes-Bedienstetenschutzgesetz, BGBl . I Nr . 70/1999 , anzuwenden ist ; ; 3 . Arbeitnehmern in land- und forstwirtschaftlichen Betrieben im Sinne des Landarbeitsgesetzes 1984, BGBl . Nr . 287 ; 4 . Hausgehilfen und Hausangestellten in privaten Haushalten ; 5 . Heimarbeitern im Sinne des Heimarbeitsgesetzes 1960, BGBl . Nr . 105/1961 . (Anm . : Abs . 3 aufgehoben durch BGBl . I Nr . 38/1999 )\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen: (1) Arbeitnehmer im Sinne dieses Bundesgesetzes sind alle Personen, die im Rahmen eines Beschäftigungs- oder Ausbildungsverhältnisses tätig sind . Geistliche Amtsträger gesetzlich anerkannter Kirchen und Religionsgesellschaften sind keine Arbeitnehmer im Sinne dieses Bundesgesetzes . Arbeitgeber im Sinne dieses Bundesgesetzes ist jede natürliche oder juristische Person oder eingetragene Personengesellschaft, die als\n\n§ 3. Allgemeine Pflichten der Arbeitgeber\n§ 3. Allgemeine Pflichten der Arbeitgeber: (1) Arbeitgeber sind verpflichtet, für Sicherheit und Gesundheitsschutz der Arbeitnehmer in Bezug auf alle Aspekte, die die Arbeit betreffen, zu sorgen . Die Kosten dafür dürfen auf keinen Fall zu Lasten der Arbeitnehmer gehen . Arbeitgeber haben die zum Schutz des Lebens, der Gesundheit sowie der Integrität und Würde erforderlichen Maßnahmen zu treffen, einschließlich der Maßnahmen zur Verhütung arbeitsbedingter Gefahren, zur Information und zur Unterweisung sowie der Bereitstellung einer geeigneten Organisation und der erforderlichen Mittel . (2) Arbeitgeber haben sich unter Berücksichtigung der bestehenden Gefahren über den neuesten Stand der Technik und der Erkenntnisse auf dem Gebiet der Arbeitsgestaltung entsprechend zu informieren . (3) Arbeitgeber sind verpflichtet, durch geeignete Maßnahmen und Anweisungen zu ermöglichen, daß die Arbeitnehmer bei ernster, unmittelbarer und nicht vermeidbarer Gefahr 1 . ihre Tätigkeit einstellen, 2 . sich durch sofortiges Verlassen des Arbeitsplatzes in Sicherheit bringen und 3 . außer in begründeten Ausnahmefällen ihre Arbeit nicht wieder aufnehmen, solange eine ernste und unmittelbare Gefahr besteht . (4) Arbeitgeber haben durch Anweisungen und sonstige geeignete Maßnahmen dafür zu sorgen, daß Arbeitnehmer bei ernster und unmittelbarer Gefahr für die eigene Sicherheit oder für die Sicherheit anderer Personen in der Lage sind, selbst die erforderlichen Maßnahmen zur Verringerung oder Beseitigung der Gefahr zu treffen, wenn sie die zuständigen Vorgesetzten oder die sonst zuständigen Personen nicht erreichen . Bei diesen Vorkehrungen sind die Kenntnisse der Arbeitnehmer und die ihnen zur Verfügung stehenden technischen Mittel zu berücksichtigen . (5) Arbeitgeber, die selbst eine Tätigkeit in Arbeitsstätten oder auf Baustellen oder auf auswärtigen Arbeitsstellen ausüben, haben sich so zu verhalten, daß sie die dort beschäftigten Arbeitnehmer nicht gefährden . (6) Für eine Arbeitsstätte, Baustelle oder auswärtige Arbeitsstelle, in/auf der der Arbeitgeber nicht im notwendigen Umfang selbst anwesend ist, ist eine geeignete Person zu beauftragen, die auf die Durchführung und Einhaltung der notwendigen Schutzmaßnahmen zu achten hat . (7) Arbeitgeber haben für eine geeignete Sicherheits- und Gesundheitsschutzkennzeichnung zu sorgen, wenn Gefahren für Sicherheit oder Gesundheit der Arbeitnehmer nicht durch sonstige technische und organisatorische Maßnahmen vermieden oder ausreichend begrenzt werden können .\n\n§ 4. Ermittlung und Beurteilung der Gefahren Festlegung von Maßnahmen (Arbeitsplatzevaluierung)\n§ 4. Ermittlung und Beurteilung der Gefahren Festlegung von Maßnahmen (Arbeitsplatzevaluierung): (1) Arbeitgeber sind verpflichtet, die für die Sicherheit und Gesundheit der Arbeitnehmer bestehenden Gefahren zu ermitteln und zu beurteilen . Dabei sind die Grundsätze der Gefahrenverhütung gemäß § 7 anzuwenden . Insbesondere sind dabei zu berücksichtigen: 1 . die Gestaltung und die Einrichtung der Arbeitsstätte, 2 . die Gestaltung und der Einsatz von Arbeitsmitteln, 3 . die Verwendung von Arbeitsstoffen, 4 . die Gestaltung der Arbeitsplätze, 5 . die Gestaltung der Arbeitsverfahren und Arbeitsvorgänge und deren Zusammenwirken, 6 . die Gestaltung der Arbeitsaufgaben und die Art der Tätigkeiten, der Arbeitsumgebung, der Arbeitsabläufe sowie der Arbeitsorganisation und 7 . der Stand der Ausbildung und Unterweisung der Arbeitnehmer . (2) Bei der Ermittlung und Beurteilung der Gefahren sind auch besonders gefährdete oder schutzbedürftige Arbeitnehmer sowie die Eignung der Arbeitnehmer im Hinblick auf Konstitution, Körperkräfte, Alter und Qualifikation (§ 6 Abs . 1) zu berücksichtigen . Insbesondere ist zu ermitteln und zu beurteilen, Inwieweit sich an bestimmten Arbeitsplätzen oder bei bestimmten Arbeitsvorgängen spezifische Gefahren für Arbeitnehmer ergeben können, für die ein besonderer Personenschutz besteht . (3) Auf Grundlage der Ermittlung und Beurteilung der Gefahren gemäß Abs . 1 und 2 sind die durchzuführenden Maßnahmen zur Gefahrenverhütung festzulegen . Dabei sind auch Vorkehrungen für absehbare Betriebsstörungen und für Not- und Rettungsmaßnahmen zu treffen . Diese Maßnahmen müssen in alle Tätigkeiten und auf allen Führungsebenen einbezogen werden . Schutzmaßnahmen müssen soweit wie möglich auch bei menschlichem Fehlverhalten wirksam sein . (4) Die Ermittlung und Beurteilung der Gefahren ist erforderlichenfalls zu überprüfen und sich ändernden Gegebenheiten anzupassen . Die festgelegten Maßnahmen sind auf ihre Wirksamkeit zu überprüfen und erforderlichenfalls anzupassen, dabei ist eine Verbesserung der Arbeitsbedingungen anzustreben . (5) Eine Überprüfung und erforderlichenfalls eine Anpassung im Sinne des Abs . 4 hat insbesondere zu erfolgen: 1 . nach Unfällen, 2 . bei Auftreten von Erkrankungen, wenn der begründete Verdacht besteht, daß sie arbeitsbedingt sind, 2a . a nach Zwischenfällen mit erhöhter arbeitsbedingter psychischer Fehlbeanspruchung, 3 . bei sonstigen Umständen oder Ereignissen, die auf eine Gefahr für Sicherheit oder Gesundheit der Arbeitnehmer schließen lassen, 4 . bei Einführung neuer Arbeitsmittel, Arbeitsstoffe oder Arbeitsverfahren, 5 . bei neuen Erkenntnissen im Sinne des § 3 Abs . 2 und 6 . auf begründetes Verlangen des Arbeitsinspektorates . (6) Bei der Ermittlung und Beurteilung der Gefahren und der Festlegung der Maßnahmen sind erforderlichenfalls geeignete Fachleute heranzuziehen . Mit der Ermittlung und Beurteilung der Gefahren können auch die Sicherheitsfachkräfte und Arbeitsmediziner sowie sonstige geeignete Fachleute, wie Chemiker, Toxikologen, Ergonomen, insbesondere jedoch Arbeitspsychologen, beauftragt werden .\n\n§ 5. Sicherheits- und Gesundheitsschutzdokumente\n§ 5. Sicherheits- und Gesundheitsschutzdokumente: Arbeitgeber sind verpflichtet, in einer der Anzahl der Beschäftigten und den Gefahren entsprechenden Weise die Ergebnisse der Ermittlung und Beurteilung der Gefahren sowie die durchzuführenden Maßnahmen zur Gefahrenverhütung schriftlich festzuhalten (Sicherheits- und Gesundheitsschutzdokumente) . Soweit dies aus Gründen der Gefahrenverhütung erforderlich ist, ist diese Dokumentation arbeitsplatzbezogen vorzunehmen .\n\n§ 6. Einsatz der Arbeitnehmer\n§ 6. Einsatz der Arbeitnehmer: (1) Arbeitgeber haben bei der Übertragung von Aufgaben an Arbeitnehmer deren Eignung in Bezug auf Sicherheit und Gesundheit zu berücksichtigen . Dabei ist insbesondere auf Konstitution und Körperkräfte, Alter und Qualifikation Rücksicht zu nehmen . (2) Arbeitgeber haben durch geeignete Maßnahmen dafür zu sorgen, daß nur jene Arbeitnehmer Zugang zu Bereichen mit erheblichen oder spezifischen Gefahren haben, die zuvor ausreichende Anweisungen erhalten haben . (3) Arbeitnehmer, von denen dem Arbeitgeber bekannt ist, dass sie auf Grund ihrer gesundheitlichen Verfassung bei bestimmten Arbeiten einer besonderen Gefahr ausgesetzt wären oder andere Arbeitnehmer gefährden könnten, dürfen mit Arbeiten dieser Art nicht beschäftigt werden . Dies gilt insbesondere für Anfallsleiden, Krämpfe, zeitweilige Bewußtseinstrübungen, Beeinträchtigungen des Seh- oder Hörvermögens und schwere Depressionszustände . (4) Arbeitnehmerinnen dürfen mit Arbeiten, die infolge ihrer Art für Frauen eine spezifische Gefahr bewirken können, nicht oder nur unter Bedingungen oder Einschränkungen beschäftigt werden, die geeignet sind, diese besondere Gefahr zu vermeiden . (5) Bei Beschäftigung von behinderten Arbeitnehmern ist auf deren körperlichen und geistigen Zustand jede mögliche Rücksicht zu nehmen . Das Arbeitsinspektorat hat ihre Beschäftigung mit Arbeiten, die für sie auf Grund ihres körperlichen oder geistigen Zustandes eine Gefahr bewirken können, durch Bescheid zu untersagen oder von bestimmten Bedingungen abhängig zu machen .\n\n§ 7. Grundsätze der Gefahrenverhütung\n§ 7. Grundsätze der Gefahrenverhütung: Arbeitgeber haben bei der Gestaltung der Arbeitsstätten, Arbeitsplätze und Arbeitsvorgänge, bei der Auswahl und Verwendung von Arbeitsmitteln und Arbeitsstoffen, beim Einsatz der Arbeitnehmer sowie bei allen Maßnahmen zum Schutz der Arbeitnehmer folgende allgemeine Grundsätze der Gefahrenverhütung umzusetzen: 1 . Vermeidung von Risiken ; 2 . Abschätzung nicht vermeidbarer Risiken ; 3 . Gefahrenbekämpfung an der Quelle ; 4 . Berücksichtigung des Faktors „Mensch“ bei der Arbeit, insbesondere bei der Gestaltung von Arbeitsplätzen sowie bei der Auswahl von Arbeitsmitteln und Arbeits- und Fertigungsverfahren, vor allem im Hinblick auf eine Erleichterung bei eintöniger Arbeit und bei maschinenbestimmtem Arbeitsrhythmus sowie auf eine Abschwächung ihrer gesundheitsschädigenden Auswirkungen ; 4a . a Berücksichtigung der Gestaltu\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "ad55d65d28d561e7",
+      "title": "Bauarbeitenkoordinationsgesetz",
+      "abbreviation": "BauKG",
+      "description": "Bauarbeitenkoordinationsgesetz",
+      "type": "law",
+      "summary": "BauKG (Bauarbeitenkoordinationsgesetz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "BauKG (Bauarbeitenkoordinationsgesetz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "BauKG",
+        "bauarbeitenkoordinationsgesetz",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": "§ 1\nBauarbeitenkoordinationsgesetz\nBauKG\nArtikel II\n(§§ 1 – 12)\n§ 1 BauKG (weggefallen)\n§ 2 BauKG (weggefallen)\n§ 3 BauKG (weggefallen)\n§ 4 BauKG (weggefallen)\n§ 5 BauKG (weggefallen)\n§ 7 BauKG (weggefallen)\n§ 8 BauKG (weggefallen)\n§ 10 BauKG (weggefallen)\n§ 11 BauKG (weggefallen)\n§ 12 BauKG (weggefallen)\nArtikel\n(§§ Art . 1 – Art . 2 § 12)\nArt . 1 BauKG\nArt . 2 § 1 BauKG\nArt . 2 § 2 BauKG Begriffsbestimmungen\nArt . 2 § 3 BauKG Bestellung von Koordinatoren für Sicherheit und Gesundheitsschutz\nArt . 2 § 4 BauKG Vorbereitung des Bauprojekts\nArt . 2 § 5 BauKG Ausführung des Bauwerks\nArt . 2 § 6 BauKG Vorankündigung\nArt . 2 § 7 BauKG Sicherheits- und Gesundheitsschutzplan\nArt . 2 § 8 BauKG Unterlage für spätere Arbeiten\nArt . 2 § 9 BauKG Übertragung von Pflichten des Bauherrn\nArt . 2 § 10",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "edb58ff14b99505b",
+      "title": "M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
+      "abbreviation": "AUVA M.plus 330",
+      "description": "M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
+      "type": "law",
+      "summary": "AUVA M.plus 330 (M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA M.plus 330 (M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA M.plus 330",
+        "m.plus",
+        "lagerung",
+        "gefährlichen",
+        "arbeitsstoffen",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "b69f16759e45098c",
+      "title": "Arbeitszeitgesetz (PDF)",
+      "abbreviation": "AZG-PDF",
+      "description": "Arbeitszeitgesetz (PDF)",
+      "type": "law",
+      "summary": "AZG-PDF (Arbeitszeitgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AZG-PDF (Arbeitszeitgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AZG-PDF",
+        "arbeitszeitgesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "73fcb38644910d27",
+      "title": "ArbeitnehmerInnenschutzgesetz (PDF)",
+      "abbreviation": "ASchG-PDF",
+      "description": "ArbeitnehmerInnenschutzgesetz (PDF)",
+      "type": "law",
+      "summary": "ASchG-PDF (ArbeitnehmerInnenschutzgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ASchG-PDF (ArbeitnehmerInnenschutzgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ASchG-PDF",
+        "arbeitnehmerinnenschutzgesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "34e56b7804426eaa",
+      "title": "Arbeitsruhegesetz (PDF)",
+      "abbreviation": "ARG-PDF",
+      "description": "Arbeitsruhegesetz (PDF)",
+      "type": "law",
+      "summary": "ARG-PDF (Arbeitsruhegesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ARG-PDF (Arbeitsruhegesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ARG-PDF",
+        "arbeitsruhegesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "281f4877e088b426",
+      "title": "Mutterschutzgesetz (PDF)",
+      "abbreviation": "MSchG-PDF",
+      "description": "Mutterschutzgesetz (PDF)",
+      "type": "law",
+      "summary": "MSchG-PDF (Mutterschutzgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "MSchG-PDF (Mutterschutzgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "MSchG-PDF",
+        "mutterschutzgesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "a7a2084cf6a09737",
+      "title": "Kinder- und Jugendlichen-Beschäftigungsgesetz (PDF)",
+      "abbreviation": "KJBG-PDF",
+      "description": "Kinder- und Jugendlichen-Beschäftigungsgesetz (PDF)",
+      "type": "law",
+      "summary": "KJBG-PDF (Kinder- und Jugendlichen-Beschäftigungsgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "KJBG-PDF (Kinder- und Jugendlichen-Beschäftigungsgesetz (PDF)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "KJBG-PDF",
+        "kinder-",
+        "jugendlichen-beschäftigungsgesetz",
+        "(pdf)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "944b31dbbe1e9661",
+      "title": "Herzlich willkommen!",
+      "abbreviation": "_category_regulations",
+      "description": "Herzlich willkommen!",
+      "type": "law",
+      "summary": "_category_regulations (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_regulations (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_regulations",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "f6346a891c1292cf",
+      "title": "Herzlich willkommen!",
+      "abbreviation": "_category_manual_handling",
+      "description": "Herzlich willkommen!",
+      "type": "law",
+      "summary": "_category_manual_handling (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_manual_handling (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_manual_handling",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "30f16684ebf0ab41",
+      "title": "M 105 - Ergonomie in unterstützenden Berufen",
+      "abbreviation": "AUVA M 105",
+      "description": "M 105 - Ergonomie in unterstützenden Berufen",
+      "type": "law",
+      "summary": "AUVA M 105 (M 105 - Ergonomie in unterstützenden Berufen) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA M 105 (M 105 - Ergonomie in unterstützenden Berufen) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA M 105",
+        "ergonomie",
+        "unterstützenden",
+        "berufen",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "d1c10c43a4553efa",
+      "title": "IVSS Leitfaden Lastenhandhabung",
+      "abbreviation": "AUVA IVSS Lastenhandhabung",
+      "description": "IVSS Leitfaden Lastenhandhabung",
+      "type": "law",
+      "summary": "AUVA IVSS Lastenhandhabung (IVSS Leitfaden Lastenhandhabung) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA IVSS Lastenhandhabung (IVSS Leitfaden Lastenhandhabung) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA IVSS Lastenhandhabung",
+        "ivss",
+        "leitfaden",
+        "lastenhandhabung",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "d2f90fa236940e86",
+      "title": "Herzlich willkommen!",
+      "abbreviation": "_category_forklifts",
+      "description": "Herzlich willkommen!",
+      "type": "law",
+      "summary": "_category_forklifts (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_forklifts (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_forklifts",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "fa16bee3bd166149",
+      "title": "Herzlich willkommen!",
+      "abbreviation": "_category_warehouse",
+      "description": "Herzlich willkommen!",
+      "type": "law",
+      "summary": "_category_warehouse (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_warehouse (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_warehouse",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "f8512c2647264dd9",
+      "title": "M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter",
+      "abbreviation": "AUVA M.plus 942",
+      "description": "M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter",
+      "type": "law",
+      "summary": "AUVA M.plus 942 (M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA M.plus 942 (M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA M.plus 942",
+        "m.plus",
+        "fahrerlose",
+        "transportsysteme",
+        "mobile",
+        "roboter",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "f90c4c66419e0acd",
+      "title": "Herzlich willkommen!",
+      "abbreviation": "_category_transport",
+      "description": "Herzlich willkommen!",
+      "type": "law",
+      "summary": "_category_transport (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_transport (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_transport",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "86d88599f4d1965c",
+      "title": "Herzlich willkommen!",
+      "abbreviation": "_category_training",
+      "description": "Herzlich willkommen!",
+      "type": "law",
+      "summary": "_category_training (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_training (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_training",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "1e4c135e24f84a5d",
+      "title": "M.plus 801 - Fahrradbotendienste",
+      "abbreviation": "AUVA M.plus 801",
+      "description": "M.plus 801 - Fahrradbotendienste",
+      "type": "law",
+      "summary": "AUVA M.plus 801 (M.plus 801 - Fahrradbotendienste) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA M.plus 801 (M.plus 801 - Fahrradbotendienste) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA M.plus 801",
+        "m.plus",
+        "fahrradbotendienste",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "a081195567dd0470",
+      "title": "M.plus 070 - Unterweisung",
+      "abbreviation": "AUVA M.plus 070",
+      "description": "M.plus 070 - Unterweisung",
+      "type": "law",
+      "summary": "AUVA M.plus 070 (M.plus 070 - Unterweisung) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA M.plus 070 (M.plus 070 - Unterweisung) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA M.plus 070",
+        "m.plus",
+        "unterweisung",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "2c47f307b355199d",
+      "title": "Herzlich willkommen!",
+      "abbreviation": "_category_psychological",
+      "description": "Herzlich willkommen!",
+      "type": "law",
+      "summary": "_category_psychological (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_psychological (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_psychological",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "c778a59fe083745c",
+      "title": "M 030 - ArbeitnehmerInnenschutzgesetz",
+      "abbreviation": "AUVA M 030",
+      "description": "M 030 - ArbeitnehmerInnenschutzgesetz",
+      "type": "law",
+      "summary": "AUVA M 030 (M 030 - ArbeitnehmerInnenschutzgesetz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA M 030 (M 030 - ArbeitnehmerInnenschutzgesetz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA M 030",
+        "arbeitnehmerinnenschutzgesetz",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "785e3f9e5b532e61",
+      "title": "E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)",
+      "abbreviation": "AUVA E 14",
+      "description": "E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)",
+      "type": "law",
+      "summary": "AUVA E 14 (E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA E 14 (E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA E 14",
+        "evaluierung",
+        "psychischer",
+        "belastungen",
+        "(abs",
+        "gruppe)",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "6cbfb8723a976c48",
+      "title": "Herzlich willkommen!",
+      "abbreviation": "_category_ppe",
+      "description": "Herzlich willkommen!",
+      "type": "law",
+      "summary": "_category_ppe (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_ppe (Herzlich willkommen!) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_ppe",
+        "herzlich",
+        "willkommen!",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "f62b7fde91a5d804",
+      "title": "E 24 EVALOG - Evaluierung psychischer Belastung im Dialog",
+      "abbreviation": "AUVA E 24 EVALOG",
+      "description": "E 24 EVALOG - Evaluierung psychischer Belastung im Dialog",
+      "type": "law",
+      "summary": "AUVA E 24 EVALOG (E 24 EVALOG - Evaluierung psychischer Belastung im Dialog) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA E 24 EVALOG (E 24 EVALOG - Evaluierung psychischer Belastung im Dialog) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA E 24 EVALOG",
+        "evalog",
+        "evaluierung",
+        "psychischer",
+        "belastung",
+        "dialog",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "00b86324f3b4d96c",
+      "title": "M.plus 700 - Gehörschutz",
+      "abbreviation": "AUVA M.plus 700",
+      "description": "M.plus 700 - Gehörschutz",
+      "type": "law",
+      "summary": "AUVA M.plus 700 (M.plus 700 - Gehörschutz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA M.plus 700 (M.plus 700 - Gehörschutz) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA M.plus 700",
+        "m.plus",
+        "gehörschutz",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "7d9669046ea3b346",
+      "title": "M 705 - Schutzhandschuhe",
+      "abbreviation": "AUVA M 705",
+      "description": "M 705 - Schutzhandschuhe",
+      "type": "law",
+      "summary": "AUVA M 705 (M 705 - Schutzhandschuhe) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "AUVA M 705 (M 705 - Schutzhandschuhe) is Austrian Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "AUVA M 705",
+        "schutzhandschuhe",
+        "core safety",
+        "Austria",
+        "Austrian law",
+        "ASchG"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
         "format": "text"
       }
     }

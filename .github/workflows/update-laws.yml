@@ -97,6 +97,23 @@ jobs:
           # Rebuild the database
           python law_manager.py build
 
+      - name: Set up Node.js
+        if: steps.check_updates.outputs.updates_available == 'true' && github.event.inputs.check_only != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Apply schema migration and generate mobile database
+        if: steps.check_updates.outputs.updates_available == 'true' && github.event.inputs.check_only != 'true'
+        run: |
+          # Apply schema migration (adds schema_version, descriptions, keywords)
+          node scripts/migrate-schema-v2.js
+
+          # Generate mobile-compatible databases
+          node scripts/generate-mobile-database.js
+
+          echo "Schema migration and mobile database generation complete"
+
       - name: Check for changes
         id: git_status
         if: github.event.inputs.check_only != 'true'
