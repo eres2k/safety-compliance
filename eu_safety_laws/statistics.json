@@ -1,50 +1,21 @@
 {
-  "generated_at": "2025-12-14T00:24:17.331535+00:00",
+  "generated_at": "2025-12-20T06:05:58.506Z",
   "statistics": {
-    "total_documents": 59,
-    "total_errors": 6,
+    "total_documents": 94,
+    "total_errors": 0,
     "by_jurisdiction": {
-      "AT": 20,
-      "DE": 24,
-      "NL": 15
+      "AT": 41,
+      "DE": 26,
+      "NL": 27
     },
     "by_type": {
-      "law": 34,
-      "ordinance": 7,
-      "wikipedia": 18
+      "law": 94
     },
     "by_category": {
-      "Core Safety": 3,
-      "Working Time": 5,
-      "Labor Relations": 1,
-      "Protection": 4,
-      "Enforcement": 1,
-      "Equality": 1,
-      "Insurance": 2,
-      "Employment": 2,
-      "Equipment": 4,
-      "Workplace": 2,
-      "Chemical": 2,
-      "PPE": 2,
-      "Signage": 1,
-      "Physical": 2,
-      "Ergonomics": 2,
-      "Organization": 6,
-      "Biological": 1,
-      "Health": 2,
-      "Decree": 1,
-      "Regulation": 1,
-      "Major Hazards": 1,
-      "Construction": 1,
-      "Nuclear": 1,
-      "Core": 2,
-      "Process": 1,
-      "Topic": 3,
-      "Role": 3,
-      "Law": 2
+      "Core Safety": 94
     },
-    "total_chars": 9450298,
-    "total_words": 1338930,
-    "documents_with_content": 59
+    "total_chars": 1845113,
+    "total_words": 262566,
+    "documents_with_content": 41
   }
 }

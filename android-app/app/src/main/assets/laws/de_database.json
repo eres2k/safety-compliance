@@ -1,92 +1,719 @@
 {
   "laws": [
     {
-      "id": "de-arbschg",
-      "title": "Arbeitsschutzgesetz",
+      "id": "09dfe5e34e973e46",
+      "title": "Gesetz über die Durchführung von Maßnahmen des Arbeitsschutzes zur Verbesserung der Sicherheit und des Gesundheitsschutzes der Beschäftigten bei der Arbeit",
       "abbreviation": "ArbSchG",
-      "description": "German Occupational Safety and Health Act - Core workplace safety legislation",
+      "description": "Occupational Safety Act",
       "type": "law",
-      "summary": "Germany's primary occupational safety law establishing employer duties, risk assessment requirements, and employee participation in workplace safety.",
-      "whs_summary": "Fundamental German WHS law requiring employers to implement protective measures, conduct risk assessments, and ensure employee training and information.",
-      "keywords": ["workplace safety", "employer duties", "risk assessment", "Germany"],
+      "summary": "ArbSchG (Occupational Safety Act) is German Primary legislation establishing legal requirements covering employee rights, employer obligations, prevention services. Contains 29 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ArbSchG (Occupational Safety Act) is German Primary legislation establishing legal requirements covering employee rights, employer obligations, prevention services. Contains 29 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ArbSchG",
+        "occupational",
+        "safety",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "prevention",
+        "safety services",
+        "occupational safety",
+        "health monitoring",
+        "medical surveillance"
+      ],
       "content": {
-        "full_text": "§ 1 Zielsetzung und Anwendungsbereich: Dieses Gesetz dient dazu, Sicherheit und Gesundheitsschutz der Beschäftigten bei der Arbeit durch Maßnahmen des Arbeitsschutzes zu sichern und zu verbessern.\n\n§ 3 Grundpflichten des Arbeitgebers: Der Arbeitgeber ist verpflichtet, die erforderlichen Maßnahmen des Arbeitsschutzes unter Berücksichtigung der Umstände zu treffen.\n\n§ 5 Beurteilung der Arbeitsbedingungen: Der Arbeitgeber hat durch eine Beurteilung der für die Beschäftigten mit ihrer Arbeit verbundenen Gefährdung zu ermitteln, welche Maßnahmen des Arbeitsschutzes erforderlich sind.\n\n§ 6 Dokumentation: Der Arbeitgeber muss über die Gefährdungsbeurteilung und die festgelegten Maßnahmen verfügen.\n\n§ 12 Unterweisung: Der Arbeitgeber hat die Beschäftigten über Sicherheit und Gesundheitsschutz bei der Arbeit zu unterweisen.",
+        "full_text": "§ 1. Zielsetzung und Anwendungsbereich\n§ 1. Zielsetzung und Anwendungsbereich:\n(1) Dieses Gesetz dient dazu, Sicherheit und Gesundheitsschutz der Beschäftigten bei der Arbeit durch Maßnahmen des Arbeitsschutzes zu sichern und zu verbessern. Es gilt in allen Tätigkeitsbereichen und findet im Rahmen der Vorgaben des Seerechtsübereinkommens der Vereinten Nationen vom 10. Dezember 1982 (BGBl. 1994 II S. 1799) auch in der ausschließlichen Wirtschaftszone Anwendung.\n\n(2) Dieses Gesetz gilt nicht für den Arbeitsschutz von Hausangestellten in privaten Haushalten. Es gilt nicht für den Arbeitsschutz von Beschäftigten auf Seeschiffen und in Betrieben, die dem Bundesberggesetz unterliegen, soweit dafür entsprechende Rechtsvorschriften bestehen.\n\n(3) Pflichten, die die Arbeitgeber zur Gewährleistung von Sicherheit und Gesundheitsschutz der Beschäftigten bei der Arbeit nach sonstigen Rechtsvorschriften haben, bleiben unberührt. Satz 1 gilt entsprechend für Pflichten und Rechte der Beschäftigten. Unberührt bleiben Gesetze, die andere Personen als Arbeitgeber zu Maßnahmen des Arbeitsschutzes verpflichten.\n\n(4) Bei öffentlich-rechtlichen Religionsgemeinschaften treten an die Stelle der Betriebs- oder Personalräte die Mitarbeitervertretungen entsprechend dem kirchlichen Recht.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Maßnahmen des Arbeitsschutzes im Sinne dieses Gesetzes sind Maßnahmen zur Verhütung von Unfällen bei der Arbeit und arbeitsbedingten Gesundheitsgefahren einschließlich Maßnahmen der menschengerechten Gestaltung der Arbeit.\n\n(2) Beschäftigte im Sinne dieses Gesetzes sind:\n1. Arbeitnehmerinnen und Arbeitnehmer,\n2. die zu ihrer Berufsbildung Beschäftigten,\n3. arbeitnehmerähnliche Personen im Sinne des § 5 Abs. 1 des Arbeitsgerichtsgesetzes, ausgenommen die in Heimarbeit Beschäftigten und die ihnen Gleichgestellten,\n4. Beamtinnen und Beamte,\n5. Richterinnen und Richter,\n6. Soldatinnen und Soldaten,\n7. die in Werkstätten für Behinderte Beschäftigten.\n\n(3) Arbeitgeber im Sinne dieses Gesetzes sind natürliche und juristische Personen und rechtsfähige Personengesellschaften, die Personen nach Absatz 2 beschäftigen.\n\n(4) Sonstige Rechtsvorschriften im Sinne dieses Gesetzes sind Regelungen über Maßnahmen des Arbeitsschutzes in anderen Gesetzen, in Rechtsverordnungen und Unfallverhütungsvorschriften.\n\n(5) Als Betriebe im Sinne dieses Gesetzes gelten für den Bereich des öffentlichen Dienstes die Dienststellen. Dienststellen sind die einzelnen Behörden, Verwaltungsstellen und Betriebe der Verwaltungen des Bundes, der Länder, der Gemeinden und der sonstigen Körperschaften, Anstalten und Stiftungen des öffentlichen Rechts, die Gerichte des Bundes und der Länder sowie die entsprechenden Einrichtungen der Streitkräfte.\n\n§ 3. Grundpflichten des Arbeitgebers\n§ 3. Grundpflichten des Arbeitgebers:\n(1) Der Arbeitgeber ist verpflichtet, die erforderlichen Maßnahmen des Arbeitsschutzes unter Berücksichtigung der Umstände zu treffen, die Sicherheit und Gesundheit der Beschäftigten bei der Arbeit beeinflussen. Er hat die Maßnahmen auf ihre Wirksamkeit zu überprüfen und erforderlichenfalls sich ändernden Gegebenheiten anzupassen. Dabei hat er eine Verbesserung von Sicherheit und Gesundheitsschutz der Beschäftigten anzustreben.\n\n(2) Zur Planung und Durchführung der Maßnahmen nach Absatz 1 hat der Arbeitgeber unter Berücksichtigung der Art der Tätigkeiten und der Zahl der Beschäftigten 1. für eine geeignete Organisation zu sorgen und die erforderlichen Mittel bereitzustellen sowie 2. Vorkehrungen zu treffen, daß die Maßnahmen erforderlichenfalls bei allen Tätigkeiten und eingebunden in die betrieblichen Führungsstrukturen beachtet werden und die Beschäftigten ihren Mitwirkungspflichten nachkommen können.\n\n(3) Kosten für Maßnahmen nach diesem Gesetz darf der Arbeitgeber nicht den Beschäftigten auferlegen.\n\n§ 4. Allgemeine Grundsätze\n§ 4. Allgemeine Grundsätze:\nDer Arbeitgeber hat bei Maßnahmen des Arbeitsschutzes von folgenden allgemeinen Grundsätzen auszugehen: 1. Die Arbeit ist so zu gestalten, daß eine Gefährdung für das Leben sowie die physische und die psychische Gesundheit möglichst vermieden und die verbleibende Gefährdung möglichst gering gehalten wird; 2. Gefahren sind an ihrer Quelle zu bekämpfen; 3. bei den Maßnahmen sind der Stand von Technik, Arbeitsmedizin und Hygiene sowie sonstige gesicherte arbeitswissenschaftliche Erkenntnisse zu berücksichtigen; 4. Maßnahmen sind mit dem Ziel zu planen, Technik, Arbeitsorganisation, sonstige Arbeitsbedingungen, soziale Beziehungen und Einfluß der Umwelt auf den Arbeitsplatz sachgerecht zu verknüpfen; 5. individuelle Schutzmaßnahmen sind nachrangig zu anderen Maßnahmen; 6. spezielle Gefahren für besonders schutzbedürftige Beschäftigtengruppen sind zu berücksichtigen; 7. den Beschäftigten sind geeignete Anweisungen zu erteilen; 8. mittelbar oder unmittelbar geschlechtsspezifisch wirkende Regelungen sind nur zulässig, wenn dies aus biologischen Gründen zwingend geboten ist.\n\n§ 5. Beurteilung der Arbeitsbedingungen\n§ 5. Beurteilung der Arbeitsbedingungen:\n(1) Der Arbeitgeber hat durch eine Beurteilung der für die Beschäftigten mit ihrer Arbeit verbundenen Gefährdung zu ermitteln, welche Maßnahmen des Arbeitsschutzes erforderlich sind.\n\n(2) Der Arbeitgeber hat die Beurteilung je nach Art der Tätigkeiten vorzunehmen. Bei gleichartigen Arbeitsbedingungen ist die Beurteilung eines Arbeitsplatzes oder einer Tätigkeit ausreichend.\n\n(3) Eine Gefährdung kann sich insbesondere ergeben durch 1. die Gestaltung und die Einrichtung der Arbeitsstätte und des Arbeitsplatzes, 2. physikalische, chemische und biologische Einwirkungen, 3. die Gestaltung, die Auswahl und den Einsatz von Arbeitsmitteln, insbesondere von Arbeitsstoffen, Maschinen, Geräten und Anlagen sowie den Umgang damit, 4. die Gestaltung von Arbeits- und Fertigungsverfahren, Arbeitsabläufen und Arbeitszeit und deren Zusammenwirken, 5. unzureichende Qualifikation und Unterweisung der Beschäftigten, 6. psychische Belastungen bei der Arbeit.\n\n§ 6. Dokumentation\n§ 6. Dokumentation:\n(1) Der Arbeitgeber muß über die je nach Art der Tätigkeiten und der Zahl der Beschäftigten erforderlichen Unterlagen verfügen, aus denen das Ergebnis der Gefährdungsbeurteilung, die von ihm festgelegten Maßnahmen des Arbeitsschutzes und das Ergebnis ihrer Überprüfung ersichtlich sind. Bei gleichartiger Gefährdungssituation ist es ausreichend, wenn die Unterlagen zusammengefaßte Angaben enthalten.\n\n(2) Unfälle in seinem Betrieb, bei denen ein Beschäftigter getötet oder so verletzt wird, daß er stirbt oder für mehr als drei Tage völlig oder teilweise arbeits- oder dienstunfähig wird, hat der Arbeitgeber zu erfassen.\n\n§ 7. Übertragung von Aufgaben\nBei der Übertragung von Aufgaben auf Beschäftigte hat der Arbeitgeber je nach Art der Tätigkeiten zu berücksichtigen, ob die Beschäftigten befähigt sind, die für die Sicherheit und den Gesundheitsschutz bei der Aufgabenerfüllung zu beachtenden Bestimmungen und Maßnahmen einzuhalten.\n\n§ 8. Zusammenarbeit mehrerer Arbeitgeber\n§ 8. Zusammenarbeit mehrerer Arbeitgeber:\n(1) Werden Beschäftigte mehrerer Arbeitgeber an einem Arbeitsplatz tätig, sind die Arbeitgeber verpflichtet, bei der Durchführung der Sicherheits- und Gesundheitsschutzbestimmungen zusammenzuarbeiten. Soweit dies für die Sicherheit und den Gesundheitsschutz der Beschäftigten bei der Arbeit erforderlich ist, haben die Arbeitgeber je nach Art der Tätigkeiten insbesondere sich gegenseitig und ihre Beschäftigten über die mit den Arbeiten verbundenen Gefahren für Sicherheit und Gesundheit der Beschäftigten zu unterrichten und Maßnahmen zur Verhütung dieser Gefahren abzustimmen.\n\n(2) Der Arbeitgeber muß sich je nach Art der Tätigkeit vergewissern, daß die Beschäftigten anderer Arbeitgeber, die in seinem Betrieb tätig werden, hinsichtlich der Gefahren für ihre Sicherheit und Gesundheit während ihrer Tätigkeit in seinem Betrieb angemessene Anweisungen erhalten haben.\n\n§ 9. Besondere Gefahren\n§ 9. Besondere Gefahren:\n(1) Der Arbeitgeber hat Maßnahmen zu treffen, damit nur Beschäftigte Zugang zu besonders gefährlichen Arbeitsbereichen haben, die zuvor geeignete Anweisungen erhalten haben.\n\n(2) Der Arbeitgeber hat Vorkehrungen zu treffen, daß alle Beschäftigten, die einer unmittelbaren erheblichen Gefahr ausgesetzt sind oder sein können, möglichst frühzeitig über diese Gefahr und die getroffenen oder zu treffenden Schutzmaßnahmen unterrichtet sind. Bei unmittelbarer erheblicher Gefahr für die eigene Sicherheit oder die Sicherheit anderer Personen müssen die Beschäftigten die geeigneten Maßnahmen zur Gefahrenabwehr und Schadensbegrenzung selbst treffen können, wenn der zuständige Vorgesetzte nicht erreichbar ist; dabei sind die Kenntnisse der Beschäftigten und die vorhandenen technischen Mittel zu berücksichtigen. Den Beschäftigten dürfen aus ihrem Handeln keine Nachteile entstehen, es sei denn, sie haben vorsätzlich oder grob fahrlässig ungeeignete Maßnahmen getroffen.\n\n(3) Der Arbeitgeber hat Maßnahmen zu treffen, die es den Beschäftigten bei unmittelbarer erheblicher Gefahr ermöglichen, sich durch sofortiges Verlassen der Arbeitsplätze in Sicherheit zu bringen. Den Beschäftigten dürfen hierdurch keine Nachteile entstehen. Hält die unmittelbare erhebliche Gefahr an, darf der Arbeitgeber die Beschäftigten nur in besonders begründeten Ausnahmefällen auffordern, ihre Tätigkeit wieder aufzunehmen. Gesetzliche Pflichten der Beschäftigten zur Abwehr von Gefahren für die öffentliche Sicherheit sowie die §§ 7 und 11 des Soldatengesetzes bleiben unberührt.\n\n§ 10. Erste Hilfe und sonstige Notfallmaßnahmen\n§ 10. Erste Hilfe und sonstige Notfallmaßnahmen:\n(1) Der Arbeitgeber hat entsprechend der Art der Arbeitsstätte und der Tätigkeiten sowie der Zahl der Beschäftigten die Maßnahmen zu treffen, die zur Ersten Hilfe, Brandbekämpfung und Evakuierung der Beschäftigten erforderlich sind. Dabei hat er der Anwesenheit anderer Personen Rechnung zu tragen. Er hat auch dafür zu sorge\n\n[Content truncated for mobile - view full version online]",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "de-dguv-v1",
-      "title": "DGUV Vorschrift 1",
-      "abbreviation": "DGUV V1",
-      "description": "German Social Accident Insurance Regulation 1 - Basic principles of prevention",
-      "type": "regulation",
-      "summary": "Fundamental accident prevention regulation establishing basic employer and employee duties for workplace safety.",
-      "whs_summary": "Core DGUV regulation covering employer obligations, employee duties, first aid, occupational physicians, and safety specialists.",
-      "keywords": ["accident prevention", "DGUV", "first aid", "safety specialists", "Germany"],
+      "id": "6b8beb7e7529b408",
+      "title": "Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit",
+      "abbreviation": "ASiG",
+      "description": "Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit",
+      "type": "law",
+      "summary": "ASiG (Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit) is German Primary legislation establishing legal requirements covering prevention services, employee rights, employer obligations. Contains 23 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ASiG (Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit) is German Primary legislation establishing legal requirements covering prevention services, employee rights, employer obligations. Contains 23 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ASiG",
+        "gesetz",
+        "über",
+        "betriebsärzte,",
+        "sicherheitsingenieure",
+        "andere",
+        "core safety",
+        "prevention",
+        "safety services",
+        "occupational safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations"
+      ],
       "content": {
-        "full_text": "DGUV Vorschrift 1 enthält die Grundsätze der Prävention und regelt die grundlegenden Pflichten der Unternehmer und Versicherten.",
+        "full_text": "§ 1. Grundsatz\n§ 1. Grundsatz: Der Arbeitgeber hat nach Maßgabe dieses Gesetzes Betriebsärzte und Fachkräfte für Arbeitssicherheit zu bestellen. Diese sollen ihn beim Arbeitsschutz und bei der Unfallverhütung unterstützen. Damit soll erreicht werden, daß\n1. die dem Arbeitsschutz und der Unfallverhütung dienenden Vorschriften den besonderen Betriebsverhältnissen entsprechend angewandt werden,\n2. gesicherte arbeitsmedizinische und sicherheitstechnische Erkenntnisse zur Verbesserung des Arbeitsschutzes und der Unfallverhütung verwirklicht werden können,\n3. die dem Arbeitsschutz und der Unfallverhütung dienenden Maßnahmen einen möglichst hohen Wirkungsgrad erreichen.\n\n§ 2. Bestellung von Betriebsärzten\n§ 2. Bestellung von Betriebsärzten:\n(1) Der Arbeitgeber hat Betriebsärzte schriftlich zu bestellen und ihnen die in § 3 genannten Aufgaben zu übertragen, soweit dies erforderlich ist im Hinblick auf\n1. die Betriebsart und die damit für die Arbeitnehmer verbundenen Unfall- und Gesundheitsgefahren,\n2. die Zahl der beschäftigten Arbeitnehmer und die Zusammensetzung der Arbeitnehmerschaft und\n3. die Betriebsorganisation, insbesondere im Hinblick auf die Zahl und die Art der für den Arbeitsschutz und die Unfallverhütung verantwortlichen Personen.\n\n(2) Der Arbeitgeber hat dafür zu sorgen, daß die von ihm bestellten Betriebsärzte ihre Aufgaben erfüllen. Er hat sie bei der Erfüllung ihrer Aufgaben zu unterstützen; insbesondere ist er verpflichtet, ihnen, soweit dies zur Erfüllung ihrer Aufgaben erforderlich ist, Hilfspersonal sowie Räume, Einrichtungen, Geräte und Mittel zur Verfügung zu stellen. Er hat sie über den Einsatz von Personen zu unterrichten, die mit einem befristeten Arbeitsvertrag beschäftigt oder ihm zur Arbeitsleistung überlassen sind.\n\n(3) Der Arbeitgeber hat den Betriebsärzten die zur Erfüllung ihrer Aufgaben erforderliche Fortbildung unter Berücksichtigung der betrieblichen Belange zu ermöglichen. Ist der Betriebsarzt als Arbeitnehmer eingestellt, so ist er für die Zeit der Fortbildung unter Fortentrichtung der Arbeitsvergütung von der Arbeit freizustellen. Die Kosten der Fortbildung trägt der Arbeitgeber. Ist der Betriebsarzt nicht als Arbeitnehmer eingestellt, so ist er für die Zeit der Fortbildung von der Erfüllung der ihm übertragenen Aufgaben freizustellen.\n\n§ 3. Aufgaben der Betriebsärzte\n§ 3. Aufgaben der Betriebsärzte:\n(1) Die Betriebsärzte haben die Aufgabe, den Arbeitgeber beim Arbeitsschutz und bei der Unfallverhütung in allen Fragen des Gesundheitsschutzes zu unterstützen. Sie haben insbesondere\n1. den Arbeitgeber und die sonst für den Arbeitsschutz und die Unfallverhütung verantwortlichen Personen zu beraten, insbesondere bei\na) der Planung, Ausführung und Unterhaltung von Betriebsanlagen und von sozialen und sanitären Einrichtungen,\nb) der Beschaffung von technischen Arbeitsmitteln und der Einführung von Arbeitsverfahren und Arbeitsstoffen,\nc) der Auswahl und Erprobung von Körperschutzmitteln,\nd) arbeitsphysiologischen, arbeitspsychologischen und sonstigen ergonomischen sowie arbeitshygienischen Fragen, insbesondere des Arbeitsrhythmus, der Arbeitszeit und der Pausenregelung, der Gestaltung der Arbeitsplätze, des Arbeitsablaufs und der Arbeitsumgebung,\ne) der Organisation der \"Ersten Hilfe\" im Betrieb,\nf) Fragen des Arbeitsplatzwechsels sowie der Eingliederung und Wiedereingliederung Behinderter in den Arbeitsprozeß,\ng) der Beurteilung der Arbeitsbedingungen,\n2. die Arbeitnehmer zu untersuchen, arbeitsmedizinisch zu beurteilen und zu beraten sowie die Untersuchungsergebnisse zu erfassen und auszuwerten,\n3. die Durchführung des Arbeitsschutzes und der Unfallverhütung zu beobachten und im Zusammenhang damit\na) die Arbeitsstätten in regelmäßigen Abständen zu begehen und festgestellte Mängel dem Arbeitgeber oder der sonst für den Arbeitsschutz und die Unfallverhütung verantwortlichen Person mitzuteilen, Maßnahmen zur Beseitigung dieser Mängel vorzuschlagen und auf deren Durchführung hinzuwirken,\nb) auf die Benutzung der Körperschutzmittel zu achten,\nc) Ursachen von arbeitsbedingten Erkrankungen zu untersuchen, die Untersuchungsergebnisse zu erfassen und auszuwerten und dem Arbeitgeber Maßnahmen zur Verhütung dieser Erkrankungen vorzuschlagen,\n4. darauf hinzuwirken, daß sich alle im Betrieb Beschäftigten den Anforderungen des Arbeitsschutzes und der Unfallverhütung entsprechend verhalten, insbesondere sie über die Unfall- und Gesundheitsgefahren, denen sie bei der Arbeit ausgesetzt sind, sowie über die Einrichtungen und Maßnahmen zur Abwendung dieser Gefahren zu belehren und bei der Einsatzplanung und Schulung der Helfer in \"Erster Hilfe\" und des medizinischen Hilfspersonals mitzuwirken.\n\n(2) Die Betriebsärzte haben auf Wunsch des Arbeitnehmers diesem das Ergebnis arbeitsmedizinischer Untersuchungen mitzuteilen; § 8 Abs. 1 Satz 3 bleibt unberührt.\n\n(3) Zu den Aufgaben der Betriebsärzte gehört es nicht, Krankmeldungen der Arbeitnehmer auf ihre Berechtigung zu überprüfen.\n\n§ 4. Anforderungen an Betriebsärzte\nDer Arbeitgeber darf als Betriebsärzte nur Personen bestellen, die berechtigt sind, den ärztlichen Beruf auszuüben, und die über die zur Erfüllung der ihnen übertragenen Aufgaben erforderliche arbeitsmedizinische Fachkunde verfügen.\n\n§ 5. Bestellung von Fachkräften für Arbeitssicherheit\n§ 5. Bestellung von Fachkräften für Arbeitssicherheit:\n(1) Der Arbeitgeber hat Fachkräfte für Arbeitssicherheit (Sicherheitsingenieure, -techniker, -meister) schriftlich zu bestellen und ihnen die in § 6 genannten Aufgaben zu übertragen, soweit dies erforderlich ist im Hinblick auf\n1. die Betriebsart und die damit für die Arbeitnehmer verbundenen Unfall- und Gesundheitsgefahren,\n2. die Zahl der beschäftigten Arbeitnehmer und die Zusammensetzung der Arbeitnehmerschaft,\n3. die Betriebsorganisation, insbesondere im Hinblick auf die Zahl und Art der für den Arbeitsschutz und die Unfallverhütung verantwortlichen Personen,\n4. die Kenntnisse und die Schulung des Arbeitgebers oder der nach § 13 Abs. 1 Nr. 1, 2 oder 3 des Arbeitsschutzgesetzes verantwortlichen Personen in Fragen des Arbeitsschutzes.\n\n(2) Der Arbeitgeber hat dafür zu sorgen, daß die von ihm bestellten Fachkräfte für Arbeitssicherheit ihre Aufgaben erfüllen. Er hat sie bei der Erfüllung ihrer Aufgaben zu unterstützen; insbesondere ist er verpflichtet, ihnen, soweit dies zur Erfüllung ihrer Aufgaben erforderlich ist, Hilfspersonal sowie Räume, Einrichtungen, Geräte und Mittel zur Verfügung zu stellen. Er hat sie über den Einsatz von Personen zu unterrichten, die mit einem befristeten Arbeitsvertrag beschäftigt oder ihm zur Arbeitsleistung überlassen sind.\n\n(3) Der Arbeitgeber hat den Fachkräften für Arbeitssicherheit die zur Erfüllung ihrer Aufgaben erforderliche Fortbildung unter Berücksichtigung der betrieblichen Belange zu ermöglichen. Ist die Fachkraft für Arbeitssicherheit als Arbeitnehmer eingestellt, so ist sie für die Zeit der Fortbildung unter Fortentrichtung der Arbeitsvergütung von der Arbeit freizustellen. Die Kosten der Fortbildung trägt der Arbeitgeber. Ist die Fachkraft für Arbeitssicherheit nicht als Arbeitnehmer eingestellt, so ist sie für die Zeit der Fortbildung von der Erfüllung der ihr übertragenen Aufgaben freizustellen.\n\n§ 6. Aufgaben der Fachkräfte für Arbeitssicherheit\n§ 6. Aufgaben der Fachkräfte für Arbeitssicherheit:\nDie Fachkräfte für Arbeitssicherheit haben die Aufgabe, den Arbeitgeber beim Arbeitsschutz und bei der Unfallverhütung in allen Fragen der Arbeitssicherheit einschließlich der menschengerechten Gestaltung der Arbeit zu unterstützen. Sie haben insbesondere\n1. den Arbeitgeber und die sonst für den Arbeitsschutz und die Unfallverhütung verantwortlichen Personen zu beraten, insbesondere bei\na) der Planung, Ausführung und Unterhaltung von Betriebsanlagen und von sozialen und sanitären Einrichtungen,\nb) der Beschaffung von technischen Arbeitsmitteln und der Einführung von Arbeitsverfahren und Arbeitsstoffen,\nc) der Auswahl und Erprobung von Körperschutzmitteln,\nd) der Gestaltung der Arbeitsplätze, des Arbeitsablaufs, der Arbeitsumgebung und in sonstigen Fragen der Ergonomie,\ne) der Beurteilung der Arbeitsbedingungen,\n2. die Betriebsanlagen und die technischen Arbeitsmittel insbesondere vor der Inbetriebnahme und Arbeitsverfahren insbesondere vor ihrer Einführung sicherheitstechnisch zu überprüfen,\n3. die Durchführung des Arbeitsschutzes und der Unfallverhütung zu beobachten und im Zusammenhang damit\na) die Arbeitsstätten in regelmäßigen Abständen zu begehen und festgestellte Mängel dem Arbeitgeber oder der sonst für den Arbeitsschutz und die Unfallverhütung verantwortlichen Person mitzuteilen, Maßnahmen zur Beseitigung dieser Mängel vorzuschlagen und auf deren Durchführung hinzuwirken,\nb) auf die Benutzung der Körperschutzmittel zu achten,\nc) Ursachen von Arbeitsunfällen zu untersuchen, die Untersuchungsergebnisse zu erfassen und auszuwerten und dem Arbeitgeber Maßnahmen zur Verhütung dieser Arbeitsunfälle vorzuschlagen,\n4. darauf hinzuwirken, daß sich alle im Betrieb Beschäftigten den Anforderungen des Arbeitsschutzes und der Unfallverhütung entsprechend verhalten, insbesondere sie über die Unfall- und Gesundheitsgefahren, denen sie bei der Arbeit ausgesetzt sind, sowie über die Einrichtungen und Maßnahmen zur Abwendung dieser Gefahren zu belehren und bei der Schulung der Sicherheitsbeauftragten mitzuwirken.\n\n§ 7. Anforderungen an Fachkräfte für Arbeitssicherheit\n§ 7. Anforderungen an Fachkräfte für Arbeitssicherheit:\n(1) Der Arbeitgeber darf als Fachkräfte für Arbeitssicherheit nur Personen bestellen, die den nachstehenden Anforderungen genügen: Der Sicherheitsingenieur muß berechtigt sein, die Berufsbezeichnung Ingenieur zu führen und über die zur Erfüllung der ihm übertragenen Aufgaben erforderliche sicherheitstechnische Fachkunde verfügen. Der Sicherheitstechniker oder -meister muß über die zur Erfüllung der ihm übertragenen Aufgaben erforderliche sicherheitstechnische Fachkunde verfügen.\n\n(2) Die zuständige Behörde k\n\n[Content truncated for mobile - view full version online]",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "de-arbstattv",
-      "title": "Arbeitsstättenverordnung",
+      "id": "b5f004e236cec425",
+      "title": "Arbeitszeitgesetz",
+      "abbreviation": "ArbZG",
+      "description": "Arbeitszeitgesetz",
+      "type": "law",
+      "summary": "ArbZG (Arbeitszeitgesetz) is German Primary legislation establishing legal requirements covering employee rights, working hours, employer obligations. Contains 27 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ArbZG (Arbeitszeitgesetz) is German Primary legislation establishing legal requirements covering employee rights, working hours, employer obligations. Contains 27 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ArbZG",
+        "arbeitszeitgesetz",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "working hours",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "health monitoring",
+        "medical surveillance"
+      ],
+      "content": {
+        "full_text": "§ 1. Zweck des Gesetzes\nZweck des Gesetzes ist es,\n1.\ndie Sicherheit und den Gesundheitsschutz der Arbeitnehmer in der Bundesrepublik Deutschland und in der ausschließlichen Wirtschaftszone bei der Arbeitszeitgestaltung zu gewährleisten und die Rahmenbedingungen für flexible Arbeitszeiten zu verbessern sowie\n2.\nden Sonntag und die staatlich anerkannten Feiertage als Tage der Arbeitsruhe und der seelischen Erhebung der Arbeitnehmer zu schützen.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Arbeitszeit im Sinne dieses Gesetzes ist die Zeit vom Beginn bis zum Ende der Arbeit ohne die Ruhepausen; Arbeitszeiten bei mehreren Arbeitgebern sind zusammenzurechnen. Im Bergbau unter Tage zählen die Ruhepausen zur Arbeitszeit.\n\n(2) Arbeitnehmer im Sinne dieses Gesetzes sind Arbeiter und Angestellte sowie die zu ihrer Berufsbildung Beschäftigten.\n\n(3) Nachtzeit im Sinne dieses Gesetzes ist die Zeit von 23 bis 6 Uhr, in Bäckereien und Konditoreien die Zeit von 22 bis 5 Uhr.\n\n(4) Nachtarbeit im Sinne dieses Gesetzes ist jede Arbeit, die mehr als zwei Stunden der Nachtzeit umfaßt.\n\n(5) Nachtarbeitnehmer im Sinne dieses Gesetzes sind Arbeitnehmer, die 1. auf Grund ihrer Arbeitszeitgestaltung normalerweise Nachtarbeit in Wechselschicht zu leisten haben oder 2. Nachtarbeit an mindestens 48 Tagen im Kalenderjahr leisten.\n\n§ 3. Arbeitszeit der Arbeitnehmer\nDie werktägliche Arbeitszeit der Arbeitnehmer darf acht Stunden nicht überschreiten. Sie kann auf bis zu zehn Stunden nur verlängert werden, wenn innerhalb von sechs Kalendermonaten oder innerhalb von 24 Wochen im Durchschnitt acht Stunden werktäglich nicht überschritten werden.\n\n§ 4. Ruhepausen\nDie Arbeit ist durch im voraus feststehende Ruhepausen von mindestens 30 Minuten bei einer Arbeitszeit von mehr als sechs bis zu neun Stunden und 45 Minuten bei einer Arbeitszeit von mehr als neun Stunden insgesamt zu unterbrechen. Die Ruhepausen nach Satz 1 können in Zeitabschnitte von jeweils mindestens 15 Minuten aufgeteilt werden. Länger als sechs Stunden hintereinander dürfen Arbeitnehmer nicht ohne Ruhepause beschäftigt werden.\n\n§ 5. Ruhezeit\n§ 5. Ruhezeit:\n(1) Die Arbeitnehmer müssen nach Beendigung der täglichen Arbeitszeit eine ununterbrochene Ruhezeit von mindestens elf Stunden haben.\n(2) Die Dauer der Ruhezeit des Absatzes 1 kann in Krankenhäusern und anderen Einrichtungen zur Behandlung, Pflege und Betreuung von Personen, in Gaststätten und anderen Einrichtungen zur Bewirtung und Beherbergung, in Verkehrsbetrieben, beim Rundfunk sowie in der Landwirtschaft und in der Tierhaltung um bis zu eine Stunde verkürzt werden, wenn jede Verkürzung der Ruhezeit innerhalb eines Kalendermonats oder innerhalb von vier Wochen durch Verlängerung einer anderen Ruhezeit auf mindestens zwölf Stunden ausgeglichen wird.\n(3) Abweichend von Absatz 1 können in Krankenhäusern und anderen Einrichtungen zur Behandlung, Pflege und Betreuung von Personen Kürzungen der Ruhezeit durch Inanspruchnahmen während der Rufbereitschaft, die nicht mehr als die Hälfte der Ruhezeit betragen, zu anderen Zeiten ausgeglichen werden.\n(4) (weggefallen)\n\n§ 6. Nacht- und Schichtarbeit\n§ 6. Nacht- und Schichtarbeit:\n(1) Die Arbeitszeit der Nacht- und Schichtarbeitnehmer ist nach den gesicherten arbeitswissenschaftlichen Erkenntnissen über die menschengerechte Gestaltung der Arbeit festzulegen.\n(2) Die werktägliche Arbeitszeit der Nachtarbeitnehmer darf acht Stunden nicht überschreiten. Sie kann auf bis zu zehn Stunden nur verlängert werden, wenn abweichend von § 3 innerhalb von einem Kalendermonat oder innerhalb von vier Wochen im Durchschnitt acht Stunden werktäglich nicht überschritten werden. Für Zeiträume, in denen Nachtarbeitnehmer im Sinne des § 2 Abs. 5 Nr. 2 nicht zur Nachtarbeit herangezogen werden, findet § 3 Satz 2 Anwendung.\n(3) Nachtarbeitnehmer sind berechtigt, sich vor Beginn der Beschäftigung und danach in regelmäßigen Zeitabständen von nicht weniger als drei Jahren arbeitsmedizinisch untersuchen zu lassen. Nach Vollendung des 50. Lebensjahres steht Nachtarbeitnehmern dieses Recht in Zeitabständen von einem Jahr zu. Die Kosten der Untersuchungen hat der Arbeitgeber zu tragen, sofern er die Untersuchungen den Nachtarbeitnehmern nicht kostenlos durch einen Betriebsarzt oder einen überbetrieblichen Dienst von Betriebsärzten anbietet.\n(4) Der Arbeitgeber hat den Nachtarbeitnehmer auf dessen Verlangen auf einen für ihn geeigneten Tagesarbeitsplatz umzusetzen, wenn\na) nach arbeitsmedizinischer Feststellung die weitere Verrichtung von Nachtarbeit den Arbeitnehmer in seiner Gesundheit gefährdet oder\nb) im Haushalt des Arbeitnehmers ein Kind unter zwölf Jahren lebt, das nicht von einer anderen im Haushalt lebenden Person betreut werden kann, oder\nc) der Arbeitnehmer einen schwerpflegebedürftigen Angehörigen zu versorgen hat, der nicht von einem anderen im Haushalt lebenden Angehörigen versorgt werden kann,\nsofern dem nicht dringende betriebliche Erfordernisse entgegenstehen. Stehen der Umsetzung des Nachtarbeitnehmers auf einen für ihn geeigneten Tagesarbeitsplatz nach Auffassung des Arbeitgebers dringende betriebliche Erfordernisse entgegen, so ist der Betriebs- oder Personalrat zu hören. Der Betriebs- oder Personalrat kann dem Arbeitgeber Vorschläge für eine Umsetzung unterbreiten.\n(5) Soweit keine tarifvertraglichen Ausgleichsregelungen bestehen, hat der Arbeitgeber dem Nachtarbeitnehmer für die während der Nachtzeit geleisteten Arbeitsstunden eine angemessene Zahl bezahlter freier Tage oder einen angemessenen Zuschlag auf das ihm hierfür zustehende Bruttoarbeitsentgelt zu gewähren.\n(6) Es ist sicherzustellen, daß Nachtarbeitnehmer den gleichen Zugang zur betrieblichen Weiterbildung und zu aufstiegsfördernden Maßnahmen haben wie die übrigen Arbeitnehmer.\n\n§ 7. Abweichende Regelungen\n§ 7. Abweichende Regelungen:\n(1) In einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung kann zugelassen werden,\n1. abweichend von § 3\n    a) die Arbeitszeit über zehn Stunden werktäglich zu verlängern, wenn in die Arbeitszeit regelmäßig und in erheblichem Umfang Arbeitsbereitschaft oder Bereitschaftsdienst fällt,\n    b) einen anderen Ausgleichszeitraum festzulegen,\n    c) (weggefallen)\n2. abweichend von § 4 Satz 2 die Gesamtdauer der Ruhepausen in Schichtbetrieben und Verkehrsbetrieben auf Kurzpausen von angemessener Dauer aufzuteilen,\n3. abweichend von § 5 Abs. 1 die Ruhezeit um bis zu zwei Stunden zu kürzen, wenn die Art der Arbeit dies erfordert und die Kürzung der Ruhezeit innerhalb eines festzulegenden Ausgleichszeitraums ausgeglichen wird,\n4. abweichend von § 6 Abs. 2\n    a) die Arbeitszeit über zehn Stunden werktäglich hinaus zu verlängern, wenn in die Arbeitszeit regelmäßig und in erheblichem Umfang Arbeitsbereitschaft oder Bereitschaftsdienst fällt,\n    b) einen anderen Ausgleichszeitraum festzulegen,\n5. den Beginn des siebenstündigen Nachtzeitraums des § 2 Abs. 3 auf die Zeit zwischen 22 und 24 Uhr festzulegen.\n(2) Sofern der Gesundheitsschutz der Arbeitnehmer durch einen entsprechenden Zeitausgleich gewährleistet wird, kann in einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung ferner zugelassen werden,\n1. abweichend von § 5 Abs. 1 die Ruhezeiten bei Rufbereitschaft den Besonderheiten dieses Dienstes anzupassen, insbesondere Kürzungen der Ruhezeit infolge von Inanspruchnahmen während dieses Dienstes zu anderen Zeiten auszugleichen,\n2. die Regelungen der §§ 3, 5 Abs. 1 und § 6 Abs. 2 in der Landwirtschaft der Bestellungs- und Erntezeit sowie den Witterungseinflüssen anzupassen,\n3. die Regelungen der §§ 3, 4, 5 Abs. 1 und § 6 Abs. 2 bei der Behandlung, Pflege und Betreuung von Personen der Eigenart dieser Tätigkeit und dem Wohl dieser Personen entsprechend anzupassen,\n4. die Regelungen der §§ 3, 4, 5 Abs. 1 und § 6 Abs. 2 bei Verwaltungen und Betrieben des Bundes, der Länder, der Gemeinden und sonstigen Körperschaften, Anstalten und Stiftungen des öffentlichen Rechts sowie bei anderen Arbeitgebern, die der Tarifbindung eines für den öffentlichen Dienst geltenden oder eines im wesentlichen inhaltsgleichen Tarifvertrags unterliegen, der Eigenart der Tätigkeit bei diesen Stellen anzupassen.\n(2a) In einem Tarifvertrag oder auf Grund eines Tarifvertrags in einer Betriebs- oder Dienstvereinbarung kann abweichend von den §§ 3, 5 Abs. 1 und § 6 Abs. 2 zugelassen werden, die werktägliche Arbeitszeit auch ohne Ausgleich über acht Stunden zu verlängern, wenn in die Arbeitszeit regelmäßig und in erheblichem Umfang Arbeitsbereitschaft oder Bereitschaftsdienst fällt und durch besondere Regelungen sichergestellt wird, dass die Gesundheit der Arbeitnehmer nicht gefährdet wird.\n(3) Im Geltungsbereich eines Tarifvertrags nach Absatz 1, 2 oder 2a können abweichende tarifvertragliche Regelungen im Betrieb eines nicht tarifgebundenen Arbeitgebers durch Betriebs- oder Dienstvereinbarung oder, wenn ein Betriebs- oder Personalrat nicht besteht, durch schriftliche Vereinbarung zwischen dem Arbeitgeber und dem Arbeitnehmer übernommen werden. Können auf Grund eines solchen Tarifvertrags abweichende Regelungen in einer Betriebs- oder Dienstvereinbarung getroffen werden, kann auch in Betrieben eines nicht tarifgebundenen Arbeitgebers davon Gebrauch gemacht werden. Eine nach Absatz 2 Nr. 4 getroffene abweichende tarifvertragliche Regelung hat zwischen nicht tarifgebundenen Arbeitgebern und Arbeitnehmern Geltung, wenn zwischen ihnen die Anwendung der für den öffentlichen Dienst geltenden tarifvertraglichen Bestimmungen vereinbart ist und die Arbeitgeber die Kosten des Betriebs überwiegend mit Zuwendungen im Sinne des Haushaltsrechts decken.\n(4) Die Kirchen und die öffentlich-rechtlichen Religionsgesellschaften können die in Absatz 1, 2 oder 2a genannten Abweichungen in ihren Regelungen vorsehen.\n(5) In einem Bereich, in dem Regelungen durch Tarifvertrag üblicherweise nicht getroffen werden, können Ausnahmen im Rahmen des Absatzes 1, 2 oder 2a durch die Auf\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "bc358a450db43410",
+      "title": "Gesetz zum Schutze der arbeitenden Jugend",
+      "abbreviation": "JArbSchG",
+      "description": "Gesetz zum Schutze der arbeitenden Jugend",
+      "type": "law",
+      "summary": "JArbSchG (Gesetz zum Schutze der arbeitenden Jugend) is German Primary legislation establishing legal requirements covering special groups, employer obligations, employee rights. Contains 68 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "JArbSchG (Gesetz zum Schutze der arbeitenden Jugend) is German Primary legislation establishing legal requirements covering special groups, employer obligations, employee rights. Contains 68 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "JArbSchG",
+        "gesetz",
+        "schutze",
+        "arbeitenden",
+        "jugend",
+        "core safety",
+        "special groups",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "health monitoring",
+        "medical surveillance"
+      ],
+      "content": {
+        "full_text": "§ 1. Geltungsbereich\n§ 1. Geltungsbereich:\n(1) Dieses Gesetz gilt in der Bundesrepublik Deutschland und in der ausschließlichen Wirtschaftszone für die Beschäftigung von Personen, die noch nicht 18 Jahre alt sind, 1. in der Berufsausbildung, 2. als Arbeitnehmer oder Heimarbeiter, 3. mit sonstigen Dienstleistungen, die der Arbeitsleistung von Arbeitnehmern oder Heimarbeitern ähnlich sind, 4. in einem der Berufsausbildung ähnlichen Ausbildungsverhältnis.\n\n(2) Dieses Gesetz gilt nicht 1. für geringfügige Hilfeleistungen, soweit sie gelegentlich a) aus Gefälligkeit, b) auf Grund familienrechtlicher Vorschriften, c) in Einrichtungen der Jugendhilfe, d) in Einrichtungen zur Eingliederung Behinderter erbracht werden, 2. für die Beschäftigung durch die Personensorgeberechtigten im Familienhaushalt.\n\n§ 1a. Formvorgaben\nSoweit in diesem Gesetz schriftliche Handlungen vorgesehen sind, können diese auch in Textform erfolgen. Dies gilt nicht für § 6 Absatz 4 Satz 1 und § 21a Absatz 2.\n\n§ 2. Kind, Jugendlicher\n(1) Kind im Sinne dieses Gesetzes ist, wer noch nicht 15 Jahre alt ist.\n\n(2) Jugendlicher im Sinne dieses Gesetzes ist, wer 15, aber noch nicht 18 Jahre alt ist.\n\n(3) Auf Jugendliche, die der Vollzeitschulpflicht unterliegen, finden die für Kinder geltenden Vorschriften Anwendung.\n\n§ 3. Arbeitgeber\nArbeitgeber im Sinne dieses Gesetzes ist, wer ein Kind oder einen Jugendlichen gemäß § 1 beschäftigt.\n\n§ 4. Arbeitszeit\n§ 4. Arbeitszeit:\n(1) Tägliche Arbeitszeit ist die Zeit vom Beginn bis zum Ende der täglichen Beschäftigung ohne die Ruhepausen (§ 11).\n\n(2) Schichtzeit ist die tägliche Arbeitszeit unter Hinzurechnung der Ruhepausen (§ 11).\n\n(3) Im Bergbau unter Tage gilt die Schichtzeit als Arbeitszeit. Sie wird gerechnet vom Betreten des Förderkorbs bei der Einfahrt bis zum Verlassen des Förderkorbs bei der Ausfahrt oder vom Eintritt des einzelnen Beschäftigten in das Stollenmundloch bis zu seinem Wiederaustritt.\n\n(4) Für die Berechnung der wöchentlichen Arbeitszeit ist als Woche die Zeit von Montag bis einschließlich Sonntag zugrunde zu legen. Die Arbeitszeit, die an einem Werktag infolge eines gesetzlichen Feiertags ausfällt, wird auf die wöchentliche Arbeitszeit angerechnet.\n\n(5) Wird ein Kind oder ein Jugendlicher von mehreren Arbeitgebern beschäftigt, so werden die Arbeits- und Schichtzeiten sowie die Arbeitstage zusammengerechnet.\n\n§ 5. Verbot der Beschäftigung von Kindern\n§ 5. Verbot der Beschäftigung von Kindern:\n(1) Die Beschäftigung von Kindern (§ 2 Abs. 1) ist verboten.\n\n(2) Das Verbot des Absatzes 1 gilt nicht für die Beschäftigung von Kindern\n1. zum Zwecke der Beschäftigungs- und Arbeitstherapie,\n2. im Rahmen des Betriebspraktikums während der Vollzeitschulpflicht,\n3. in Erfüllung einer richterlichen Weisung.\nAuf die Beschäftigung finden § 7 Satz 1 Nr. 2 und die §§ 9 bis 46 entsprechende Anwendung.\n\n(3) Das Verbot des Absatzes 1 gilt ferner nicht für die Beschäftigung von Kindern über 13 Jahre mit Einwilligung des Personensorgeberechtigten, soweit die Beschäftigung leicht und für Kinder geeignet ist. Die Beschäftigung ist leicht, wenn sie auf Grund ihrer Beschaffenheit und der besonderen Bedingungen, unter denen sie ausgeführt wird,\n1. die Sicherheit, Gesundheit und Entwicklung der Kinder,\n2. ihren Schulbesuch, ihre Beteiligung an Maßnahmen zur Berufswahlvorbereitung oder Berufsausbildung, die von der zuständigen Stelle anerkannt sind, und\n3. ihre Fähigkeit, dem Unterricht mit Nutzen zu folgen,\nnicht nachteilig beeinflußt. Die Kinder dürfen nicht mehr als zwei Stunden täglich, in landwirtschaftlichen Familienbetrieben nicht mehr als drei Stunden täglich, nicht zwischen 18 und 8 Uhr, nicht vor dem Schulunterricht und nicht während des Schulunterrichts beschäftigt werden. Auf die Beschäftigung finden die §§ 15 bis 31 entsprechende Anwendung.\n\n(4) Das Verbot des Absatzes 1 gilt ferner nicht für die Beschäftigung von Jugendlichen (§ 2 Abs. 3) während der Schulferien für höchstens vier Wochen im Kalenderjahr. Auf die Beschäftigung finden die §§ 8 bis 31 entsprechende Anwendung.\n\n(4a) Die Bundesregierung hat durch Rechtsverordnung mit Zustimmung des Bundesrates die Beschäftigung nach Absatz 3 näher zu bestimmen.\n\n(4b) Der Arbeitgeber unterrichtet die Personensorgeberechtigten der von ihm beschäftigten Kinder über mögliche Gefahren sowie über alle zu ihrer Sicherheit und ihrem Gesundheitsschutz getroffenen Maßnahmen.\n\n(5) Für Veranstaltungen kann die Aufsichtsbehörde Ausnahmen gemäß § 6 bewilligen.\n\n§ 6. Behördliche Ausnahmen für Veranstaltungen\n§ 6. Behördliche Ausnahmen für Veranstaltungen:\n(1) Die Aufsichtsbehörde kann auf Antrag bewilligen, daß\n1. bei Theatervorstellungen Kinder über sechs Jahre bis zu vier Stunden täglich in der Zeit von 10 bis 23 Uhr,\n2. bei Musikaufführungen und anderen Aufführungen, bei Werbeveranstaltungen sowie bei Aufnahmen im Rundfunk (Hörfunk und Fernsehen), auf Ton- und Bildträger sowie bei Film- und Fotoaufnahmen\na) Kinder über drei bis sechs Jahre bis zu zwei Stunden täglich in der Zeit von 8 bis 17 Uhr,\nb) Kinder über sechs Jahre bis zu drei Stunden täglich in der Zeit von 8 bis 22 Uhr\ngestaltend mitwirken und an den erforderlichen Proben teilnehmen. Eine Ausnahme darf nicht bewilligt werden für die Mitwirkung in Kabaretts, Tanzlokalen und ähnlichen Betrieben sowie auf Vergnügungsparks, Kirmessen, Jahrmärkten und bei ähnlichen Veranstaltungen, Schaustellungen oder Darbietungen.\n\n(2) Die Aufsichtsbehörde darf nach Anhörung des zuständigen Jugendamts die Beschäftigung nur bewilligen, wenn\n1. die Personensorgeberechtigten in die Beschäftigung schriftlich eingewilligt haben,\n2. der Aufsichtsbehörde eine nicht länger als vor drei Monaten ausgestellte ärztliche Bescheinigung vorgelegt wird, nach der gesundheitliche Bedenken gegen die Beschäftigung nicht bestehen,\n3. die erforderlichen Vorkehrungen und Maßnahmen zum Schutz des Kindes gegen Gefahren für Leben und Gesundheit sowie zur Vermeidung einer Beeinträchtigung der körperlichen oder seelisch-geistigen Entwicklung getroffen sind,\n4. Betreuung und Beaufsichtigung des Kindes bei der Beschäftigung sichergestellt sind,\n5. nach Beendigung der Beschäftigung eine ununterbrochene Freizeit von mindestens 14 Stunden eingehalten wird,\n6. das Fortkommen in der Schule nicht beeinträchtigt wird.\n\n(3) Die Aufsichtsbehörde bestimmt,\n1. wie lange, zu welcher Zeit und an welchem Tag das Kind beschäftigt werden darf,\n2. Dauer und Lage der Ruhepausen,\n3. die Höchstdauer des täglichen Aufenthalts an der Beschäftigungsstätte.\n\n(4) Die Entscheidung der Aufsichtsbehörde ist dem Arbeitgeber schriftlich bekanntzugeben. Er darf das Kind erst nach Empfang des Bewilligungsbescheids beschäftigen.\n\n§ 7. Beschäftigung von nicht vollzeitschulpflichtigen Kindern\nKinder, die der Vollzeitschulpflicht nicht mehr unterliegen, dürfen\n1.\nim Berufsausbildungsverhältnis,\n2.\naußerhalb eines Berufsausbildungsverhältnisses nur mit leichten und für sie geeigneten Tätigkeiten bis zu sieben Stunden täglich und 35 Stunden wöchentlich\nbeschäftigt werden. Auf die Beschäftigung finden die §§ 8 bis 46 entsprechende Anwendung.\n\n§ 8. Dauer der Arbeitszeit\n§ 8. Dauer der Arbeitszeit:\n(1) Jugendliche dürfen nicht mehr als acht Stunden täglich und nicht mehr als 40 Stunden wöchentlich beschäftigt werden.\n\n(2) Wenn in Verbindung mit Feiertagen an Werktagen nicht gearbeitet wird, damit die Beschäftigten eine längere zusammenhängende Freizeit haben, so darf die ausfallende Arbeitszeit auf die Werktage von fünf zusammenhängenden, die Ausfalltage einschließenden Wochen nur dergestalt verteilt werden, daß die Wochenarbeitszeit im Durchschnitt dieser fünf Wochen 40 Stunden nicht überschreitet. Die tägliche Arbeitszeit darf hierbei achteinhalb Stunden nicht überschreiten.\n\n(2a) Wenn an einzelnen Werktagen die Arbeitszeit auf weniger als acht Stunden verkürzt ist, können Jugendliche an den übrigen Werktagen derselben Woche achteinhalb Stunden beschäftigt werden.\n\n(3) In der Landwirtschaft dürfen Jugendliche über 16 Jahre während der Erntezeit nicht mehr als neun Stunden täglich und nicht mehr als 85 Stunden in der Doppelwoche beschäftigt werden.\n\n§ 9. Berufsschule\n§ 9. Berufsschule:\n(1) Der Arbeitgeber hat den Jugendlichen für die Teilnahme am Berufsschulunterricht freizustellen. Er darf den Jugendlichen nicht beschäftigen\n1. vor einem vor 9 Uhr beginnenden Unterricht; dies gilt auch für Personen, die über 18 Jahre alt und noch berufsschulpflichtig sind,\n2. an einem Berufsschultag mit mehr als fünf Unterrichtsstunden von mindestens je 45 Minuten, einmal in der Woche,\n3. in Berufsschulwochen mit einem planmäßigen Blockunterricht von mindestens 25 Stunden an mindestens fünf Tagen; zusätzliche betriebliche Ausbildungsveranstaltungen bis zu zwei Stunden wöchentlich sind zulässig.\n\n(2) Auf die Arbeitszeit des Jugendlichen werden angerechnet\n1. Berufsschultage nach Absatz 1 Satz 2 Nummer 2 mit der durchschnittlichen täglichen Arbeitszeit,\n2. Berufsschulwochen nach Absatz 1 Satz 2 Nummer 3 mit der durchschnittlichen wöchentlichen Arbeitszeit,\n3. im Übrigen die Unterrichtszeit einschließlich der Pausen und der notwendigen Wegezeiten zwischen Berufsschule und Ausbildungsstätte.\n\n(3) Ein Entgeltausfall darf durch den Besuch der Berufsschule nicht eintreten.\n\n§ 10. Prüfungen und außerbetriebliche Ausbildungsmaßnahmen\n§ 10. Prüfungen und außerbetriebliche Ausbildungsmaßnahmen:\n(1) Der Arbeitgeber hat den Jugendlichen\n1. für die Teilnahme an Prüfungen und Ausbildungsmaßnahmen, die auf Grund öffentlich-rechtlicher oder vertraglicher Bestimmungen außerhalb der Ausbildungsstätte durchzuführen sind,\n2. an dem Arbeitstag, der der schriftlichen Abschlußprüfung unmittelbar vorangeht,\nfreizustellen.\n\n(2) Auf die Arbeitszeit des Jugendlichen werden angerechnet\n1. die Freistellung nach Absatz 1 Nr. 1 mit der Zeit der Teilnahme einschließlich der Pausen und der notwendigen Wegezeiten zwischen Teilnahmeort und Ausbildungsstätte,\n2. die Freistellung nach Absatz 1 Nr. 2 mit der durchschnittlichen täglichen Arbeitszeit.\nEin E\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "1e8af9cb004227b2",
+      "title": "Verordnung über Arbeitsstätten",
       "abbreviation": "ArbStättV",
-      "description": "German Workplace Ordinance - Requirements for workplace setup and operation",
-      "type": "regulation",
-      "summary": "Detailed requirements for the setup, operation, and maintenance of workplaces including facilities and working conditions.",
-      "whs_summary": "Specifies requirements for workplace dimensions, lighting, ventilation, temperature, sanitary facilities, rest rooms, and first aid rooms.",
-      "keywords": ["workplace", "facilities", "working conditions", "Germany"],
+      "description": "Verordnung über Arbeitsstätten",
+      "type": "law",
+      "summary": "ArbStättV (Verordnung über Arbeitsstätten) is German Primary legislation establishing legal requirements covering workplace design, risk assessment, prevention services. Contains 10 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ArbStättV (Verordnung über Arbeitsstätten) is German Primary legislation establishing legal requirements covering workplace design, risk assessment, prevention services. Contains 10 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ArbStättV",
+        "verordnung",
+        "über",
+        "arbeitsstätten",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "prevention",
+        "safety services",
+        "occupational safety",
+        "employer duties"
+      ],
       "content": {
-        "full_text": "Die Arbeitsstättenverordnung regelt die Anforderungen an die Einrichtung und den Betrieb von Arbeitsstätten.",
+        "full_text": "§ 1. Ziel, Anwendungsbereich\n§ 1. Ziel, Anwendungsbereich:\n(1) Diese Verordnung dient der Sicherheit und dem Schutz der Gesundheit der Beschäftigten beim Einrichten und Betreiben von Arbeitsstätten.\n\n(2) Für folgende Arbeitsstätten gelten nur § 5 und der Anhang Nummer 1.3:\n1. Arbeitsstätten im Reisegewerbe und im Marktverkehr,\n2. Transportmittel, die im öffentlichen Verkehr eingesetzt werden,\n3. Felder, Wälder und sonstige Flächen, die zu einem land- oder forstwirtschaftlichen Betrieb gehören, aber außerhalb der von ihm bebauten Fläche liegen.\n\n(3) Für Gemeinschaftsunterkünfte außerhalb des Geländes eines Betriebes oder einer Baustelle gelten nur\n1. § 3,\n2. § 3a und\n3. Nummer 4.4 des Anhangs.\n\n(4) Für Telearbeitsplätze gelten nur\n1. § 3 bei der erstmaligen Beurteilung der Arbeitsbedingungen und des Arbeitsplatzes,\n2. § 6 und der Anhang Nummer 6,\nsoweit der Arbeitsplatz von dem im Betrieb abweicht. Die in Satz 1 genannten Vorschriften gelten, soweit Anforderungen unter Beachtung der Eigenart von Telearbeitsplätzen auf diese anwendbar sind.\n\n(5) Der Anhang Nummer 6 gilt nicht für\n1. Bedienerplätze von Maschinen oder Fahrerplätze von Fahrzeugen mit Bildschirmgeräten,\n2. tragbare Bildschirmgeräte für die ortsveränderliche Verwendung, die nicht regelmäßig an einem Arbeitsplatz verwendet werden,\n3. Rechenmaschinen, Registrierkassen oder andere Arbeitsmittel mit einer kleinen Daten- oder Messwertanzeigevorrichtung, die zur unmittelbaren Benutzung des Arbeitsmittels erforderlich ist und\n4. Schreibmaschinen klassischer Bauart mit einem Display.\n\n(6) Diese Verordnung ist für Arbeitsstätten in Betrieben, die dem Bundesberggesetz unterliegen, nur für Bildschirmarbeitsplätze einschließlich Telearbeitsplätze anzuwenden.\n\n(7) Das Bundeskanzleramt, das Bundesministerium des Innern, für Bau und Heimat, das Bundesministerium für Verkehr und digitale Infrastruktur, das Bundesministerium für Umwelt, Naturschutz und nukleare Sicherheit, das Bundesministerium der Verteidigung oder das Bundesministerium der Finanzen können, soweit sie hierfür jeweils zuständig sind, im Einvernehmen mit dem Bundesministerium für Arbeit und Soziales und, soweit nicht das Bundesministerium des Innern, für Bau und Heimat selbst zuständig ist, im Einvernehmen mit dem Bundesministerium des Innern, für Bau und Heimat Ausnahmen von den Vorschriften dieser Verordnung zulassen, soweit öffentliche Belange dies zwingend erfordern, insbesondere zur Aufrechterhaltung oder Wiederherstellung der öffentlichen Sicherheit. In diesem Fall ist gleichzeitig festzulegen, wie die Sicherheit und der Schutz der Gesundheit der Beschäftigten nach dieser Verordnung auf andere Weise gewährleistet werden.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Arbeitsstätten sind:\n1. Arbeitsräume oder andere Orte in Gebäuden auf dem Gelände eines Betriebes,\n2. Orte im Freien auf dem Gelände eines Betriebes,\n3. Orte auf Baustellen,\nsofern sie zur Nutzung für Arbeitsplätze vorgesehen sind.\n\n(2) Zur Arbeitsstätte gehören insbesondere auch:\n1. Orte auf dem Gelände eines Betriebes oder einer Baustelle, zu denen Beschäftigte im Rahmen ihrer Arbeit Zugang haben,\n2. Verkehrswege, Fluchtwege, Notausgänge, Lager-, Maschinen- und Nebenräume, Sanitärräume, Kantinen, Pausen- und Bereitschaftsräume, Erste-Hilfe-Räume, Unterkünfte sowie\n3. Einrichtungen, die dem Betreiben der Arbeitsstätte dienen, insbesondere Sicherheitsbeleuchtungen, Feuerlöscheinrichtungen, Versorgungseinrichtungen, Beleuchtungsanlagen, raumlufttechnische Anlagen, Signalanlagen, Energieverteilungsanlagen, Türen und Tore, Fahrsteige, Fahrtreppen, Laderampen und Steigleitern.\n\n(3) Arbeitsräume sind die Räume, in denen Arbeitsplätze innerhalb von Gebäuden dauerhaft eingerichtet sind.\n\n(4) Arbeitsplätze sind Bereiche, in denen Beschäftigte im Rahmen ihrer Arbeit tätig sind.\n\n(5) Bildschirmarbeitsplätze sind Arbeitsplätze, die sich in Arbeitsräumen befinden und die mit Bildschirmgeräten und sonstigen Arbeitsmitteln ausgestattet sind.\n\n(6) Bildschirmgeräte sind Funktionseinheiten, zu denen insbesondere Bildschirme zur Darstellung von visuellen Informationen, Einrichtungen zur Datenein- und -ausgabe, sonstige Steuerungs- und Kommunikationseinheiten (Rechner) sowie eine Software zur Steuerung und Umsetzung der Arbeitsaufgabe gehören.\n\n(7) Telearbeitsplätze sind vom Arbeitgeber fest eingerichtete Bildschirmarbeitsplätze im Privatbereich der Beschäftigten, für die der Arbeitgeber eine mit den Beschäftigten vereinbarte wöchentliche Arbeitszeit und die Dauer der Einrichtung festgelegt hat. Ein Telearbeitsplatz ist vom Arbeitgeber erst dann eingerichtet, wenn Arbeitgeber und Beschäftigte die Bedingungen der Telearbeit arbeitsvertraglich oder im Rahmen einer Vereinbarung festgelegt haben und die benötigte Ausstattung des Telearbeitsplatzes mit Mobiliar, Arbeitsmitteln einschließlich der Kommunikationseinrichtungen durch den Arbeitgeber oder eine von ihm beauftragte Person im Privatbereich des Beschäftigten bereitgestellt und installiert ist.\n\n(8) Gemeinschaftsunterkünfte im Sinne dieser Verordnung sind Unterkünfte innerhalb oder außerhalb des Geländes eines Betriebes oder einer Baustelle, die\n1. den Beschäftigten durch den Arbeitgeber oder auf dessen Veranlassung durch Dritte entgeltlich oder unentgeltlich zur Verfügung gestellt werden und\n2. von mehreren Beschäftigten und insgesamt von mindestens vier Personen gemeinschaftlich genutzt werden.\n\n(9) Einrichten ist das Bereitstellen und Ausgestalten der Arbeitsstätte. Das Einrichten umfasst insbesondere:\n1. bauliche Maßnahmen oder Veränderungen,\n2. das Ausstatten mit Maschinen, Anlagen, anderen Arbeitsmitteln und Mobiliar sowie mit Beleuchtungs-, Lüftungs-, Heizungs-, Feuerlösch- und Versorgungseinrichtungen,\n3. das Anlegen und Kennzeichnen von Verkehrs- und Fluchtwegen sowie das Kennzeichnen von Gefahrenstellen und brandschutztechnischen Ausrüstungen und\n4. das Festlegen von Arbeitsplätzen.\n\n(10) Das Betreiben von Arbeitsstätten umfasst das Benutzen, Instandhalten und Optimieren der Arbeitsstätten sowie die Organisation und Gestaltung der Arbeit einschließlich der Arbeitsabläufe in Arbeitsstätten.\n\n(11) Instandhalten ist die Wartung, Inspektion, Instandsetzung oder Verbesserung der Arbeitsstätten zum Erhalt des baulichen und technischen Zustandes.\n\n(12) Stand der Technik ist der Entwicklungsstand fortschrittlicher Verfahren, Einrichtungen oder Betriebsweisen, der die praktische Eignung einer Maßnahme zur Gewährleistung der Sicherheit und zum Schutz der Gesundheit der Beschäftigten gesichert erscheinen lässt. Bei der Bestimmung des Stands der Technik sind insbesondere vergleichbare Verfahren, Einrichtungen oder Betriebsweisen heranzuziehen, die mit Erfolg in der Praxis erprobt worden sind. Gleiches gilt für die Anforderungen an die Arbeitsmedizin und die Hygiene.\n\n(13) Fachkundig ist, wer über die zur Ausübung einer in dieser Verordnung bestimmten Aufgabe erforderlichen Fachkenntnisse verfügt. Die Anforderungen an die Fachkunde sind abhängig von der jeweiligen Art der Aufgabe. Zu den Anforderungen zählen eine entsprechende Berufsausbildung, Berufserfahrung oder eine zeitnah ausgeübte entsprechende berufliche Tätigkeit. Die Fachkenntnisse sind durch Teilnahme an Schulungen auf aktuellem Stand zu halten.\n\n§ 3. Gefährdungsbeurteilung\n§ 3. Gefährdungsbeurteilung:\n(1) Bei der Beurteilung der Arbeitsbedingungen nach § 5 des Arbeitsschutzgesetzes hat der Arbeitgeber zunächst festzustellen, ob die Beschäftigten Gefährdungen beim Einrichten und Betreiben von Arbeitsstätten ausgesetzt sind oder ausgesetzt sein können. Ist dies der Fall, hat er alle möglichen Gefährdungen der Sicherheit und der Gesundheit der Beschäftigten zu beurteilen und dabei die Auswirkungen der Arbeitsorganisation und der Arbeitsabläufe in der Arbeitsstätte zu berücksichtigen. Bei der Gefährdungsbeurteilung hat er die physischen und psychischen Belastungen sowie bei Bildschirmarbeitsplätzen insbesondere die Belastungen der Augen oder die Gefährdung des Sehvermögens der Beschäftigten zu berücksichtigen. Entsprechend dem Ergebnis der Gefährdungsbeurteilung hat der Arbeitgeber Maßnahmen zum Schutz der Beschäftigten gemäß den Vorschriften dieser Verordnung einschließlich ihres Anhangs nach dem Stand der Technik, Arbeitsmedizin und Hygiene festzulegen. Sonstige gesicherte arbeitswissenschaftliche Erkenntnisse sind zu berücksichtigen.\n\n(2) Der Arbeitgeber hat sicherzustellen, dass die Gefährdungsbeurteilung fachkundig durchgeführt wird. Verfügt der Arbeitgeber nicht selbst über die entsprechenden Kenntnisse, hat er sich fachkundig beraten zu lassen.\n\n(3) Der Arbeitgeber hat die Gefährdungsbeurteilung vor Aufnahme der Tätigkeiten zu dokumentieren. In der Dokumentation ist anzugeben, welche Gefährdungen am Arbeitsplatz auftreten können und welche Maßnahmen nach Absatz 1 Satz 4 durchgeführt werden müssen.\n\n(Fundstelle des Originaltextes: BGBl. I 2004, 2182 - 2188;\nbzgl. der einzelnen Änderungen vgl. Fußnote)\n\n1 Allgemeine Anforderungen\n1.1 Anforderungen an Konstruktion und Festigkeit von Gebäuden\n1.2 Abmessungen von Räumen, Luftraum\n1.3 Sicherheits- und Gesundheitsschutzkennzeichnung\n1.4 Energieverteilungsanlagen\n1.5 Fußböden, Wände, Decken, Dächer\n1.6 Fenster, Oberlichter\n1.7 Türen, Tore\n1.8 Verkehrswege\n1.9 Fahrtreppen, Fahrsteige\n1.10 Laderampen\n1.11 Steigleitern, Steigeisengänge\n2 Maßnahmen zum Schutz vor besonderen Gefahren\n2.1 Schutz vor Absturz und herabfallenden Gegenständen, Betreten von Gefahrenbereichen\n2.2 Maßnahmen gegen Brände\n2.3 Fluchtwege und Notausgänge\n3 Arbeitsbedingungen\n3.1 Bewegungsfläche\n3.2 Anordnung der Arbeitsplätze\n3.3 Ausstattung\n3.4 Beleuchtung und Sichtverbindung\n3.5 Raumtemperatur\n3.6 Lüftung\n3.7 Lärm\n4 Sanitär-, Pausen- und Bereitschaftsräume, Kantinen, Erste-Hilfe-Räume und Unterkünfte\n4.1 Sanitärräume\n4.2 Pausen- und Bereitschaftsräume\n4.3 Erste-Hilfe-Räume\n4.4 Unterkünfte\n5 Ergänzende Anforderungen und Maßnahmen für besondere Arbeitsstätten und Arbeitsplätze\n5.1 Arbeitsplätze in nicht allseits umsch\n\n[Content truncated for mobile - view full version online]",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "de-betrsichv",
-      "title": "Betriebssicherheitsverordnung",
+      "id": "b4dbab1ce215b8c8",
+      "title": "Verordnung über Sicherheit und Gesundheitsschutz bei der Verwendung von Arbeitsmitteln",
       "abbreviation": "BetrSichV",
-      "description": "German Industrial Safety Ordinance - Work equipment and installations",
-      "type": "regulation",
-      "summary": "Requirements for safe use of work equipment and operation of installations requiring monitoring.",
-      "whs_summary": "Covers machinery safety, equipment inspections, maintenance requirements, and operation of pressure equipment and lifting gear.",
-      "keywords": ["machinery", "equipment", "inspections", "installations", "Germany"],
+      "description": "Verordnung über Sicherheit und Gesundheitsschutz bei der Verwendung von Arbeitsmitteln",
+      "type": "law",
+      "summary": "BetrSichV (Verordnung über Sicherheit und Gesundheitsschutz bei der Verwendung von Arbeitsmitteln) is German Primary legislation establishing legal requirements covering risk assessment, employer obligations, work equipment. Contains 24 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "BetrSichV (Verordnung über Sicherheit und Gesundheitsschutz bei der Verwendung von Arbeitsmitteln) is German Primary legislation establishing legal requirements covering risk assessment, employer obligations, work equipment. Contains 24 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "BetrSichV",
+        "verordnung",
+        "über",
+        "sicherheit",
+        "gesundheitsschutz",
+        "verwendung",
+        "core safety",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "work equipment",
+        "machinery"
+      ],
       "content": {
-        "full_text": "Die Betriebssicherheitsverordnung regelt die sichere Verwendung von Arbeitsmitteln und den sicheren Betrieb überwachungsbedürftiger Anlagen.",
+        "full_text": "§ 1. Anwendungsbereich und Zielsetzung\n§ 1. Anwendungsbereich und Zielsetzung:\n(1) Diese Verordnung gilt für die Verwendung von Arbeitsmitteln. Ziel dieser Verordnung ist es, die Sicherheit und den Schutz der Gesundheit von Beschäftigten bei der Verwendung von Arbeitsmitteln zu gewährleisten. Dies soll insbesondere erreicht werden durch 1. die Auswahl geeigneter Arbeitsmittel und deren sichere Verwendung, 2. die für den vorgesehenen Verwendungszweck geeignete Gestaltung von Arbeits- und Fertigungsverfahren sowie 3. die Qualifikation und Unterweisung der Beschäftigten. Diese Verordnung regelt hinsichtlich der in § 18 und in Anhang 2 genannten überwachungsbedürftigen Anlagen zugleich Maßnahmen zum Schutz anderer Personen im Gefahrenbereich, soweit diese aufgrund der Verwendung dieser Anlagen durch Arbeitgeber im Sinne des § 2 Absatz 3 gefährdet werden können.\n\n(2) Diese Verordnung gilt nicht in Betrieben, die dem Bundesberggesetz unterliegen, soweit dafür entsprechende Rechtsvorschriften bestehen. Abweichend von Satz 1 gilt sie jedoch für überwachungsbedürftige Anlagen in Tagesanlagen, mit Ausnahme von Rohrleitungen nach Anhang 2 Abschnitt 4 Nummer 2.1 Satz 1 Buchstabe d.\n\n(3) Diese Verordnung gilt nicht auf Seeschiffen unter fremder Flagge und auf Seeschiffen, für die das Bundesministerium für Verkehr und digitale Infrastruktur nach § 10 des Flaggenrechtsgesetzes die Befugnis zur Führung der Bundesflagge lediglich für die erste Überführungsreise in einen anderen Hafen verliehen hat.\n\n(4) Abschnitt 3 gilt nicht für Energieanlagen im Sinne des § 3 Nummer 15 des Energiewirtschaftsgesetzes, soweit sie Druckanlagen im Sinne des Anhangs 2 Abschnitt 4 Nummer 2.1 Buchstabe b, c oder d dieser Verordnung sind. Satz 1 gilt nicht für Gasfüllanlagen, die Energieanlagen im Sinne des § 3 Nummer 15 des Energiewirtschaftsgesetzes sind und nicht auf dem Betriebsgelände von Unternehmen der öffentlichen Gasversorgung von diesen errichtet und betrieben werden.\n\n(5) Das Bundesministerium der Verteidigung kann Ausnahmen von den Vorschriften dieser Verordnung zulassen, wenn zwingende Gründe der Verteidigung oder die Erfüllung zwischenstaatlicher Verpflichtungen der Bundesrepublik Deutschland dies erfordern und die Sicherheit auf andere Weise gewährleistet ist.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Arbeitsmittel sind Werkzeuge, Geräte, Maschinen oder Anlagen, die für die Arbeit verwendet werden, sowie überwachungsbedürftige Anlagen.\n\n(2) Die Verwendung von Arbeitsmitteln umfasst jegliche Tätigkeit mit diesen. Hierzu gehören insbesondere das Montieren und Installieren, Bedienen, An- oder Abschalten oder Einstellen, Gebrauchen, Betreiben, Instandhalten, Reinigen, Prüfen, Umbauen, Erproben, Demontieren, Transportieren und Überwachen.\n\n(3) Arbeitgeber ist, wer nach § 2 Absatz 3 des Arbeitsschutzgesetzes als solcher bestimmt ist. Dem Arbeitgeber steht gleich, 1. wer, ohne Arbeitgeber zu sein, zu gewerblichen oder wirtschaftlichen Zwecken eine überwachungsbedürftige Anlage verwendet, sowie 2. der Auftraggeber und der Zwischenmeister im Sinne des Heimarbeitsgesetzes.\n\n(4) Beschäftigte sind Personen, die nach § 2 Absatz 2 des Arbeitsschutzgesetzes als solche bestimmt sind. Den Beschäftigten stehen folgende Personen gleich, sofern sie Arbeitsmittel verwenden: 1. Schülerinnen und Schüler sowie Studierende, 2. in Heimarbeit Beschäftigte nach § 1 Absatz 1 des Heimarbeitsgesetzes sowie 3. sonstige Personen, insbesondere Personen, die in wissenschaftlichen Einrichtungen tätig sind.\n\n(5) Fachkundig ist, wer zur Ausübung einer in dieser Verordnung bestimmten Aufgabe über die erforderlichen Fachkenntnisse verfügt. Die Anforderungen an die Fachkunde sind abhängig von der jeweiligen Art der Aufgabe. Zu den Anforderungen zählen eine entsprechende Berufsausbildung, Berufserfahrung oder eine zeitnah ausgeübte entsprechende berufliche Tätigkeit. Die Fachkenntnisse sind durch Teilnahme an Schulungen auf aktuellem Stand zu halten.\n\n(6) Zur Prüfung befähigte Person ist eine Person, die durch ihre Berufsausbildung, ihre Berufserfahrung und ihre zeitnahe berufliche Tätigkeit über die erforderlichen Kenntnisse zur Prüfung von Arbeitsmitteln verfügt; soweit hinsichtlich der Prüfung von Arbeitsmitteln in den Anhängen 2 und 3 weitergehende Anforderungen festgelegt sind, sind diese zu erfüllen.\n\n(7) Instandhaltung ist die Gesamtheit aller Maßnahmen zur Erhaltung des sicheren Zustands oder der Rückführung in diesen. Instandhaltung umfasst insbesondere Inspektion, Wartung und Instandsetzung.\n\n(8) Prüfung ist die Ermittlung des Istzustands, der Vergleich des Istzustands mit dem Sollzustand sowie die Bewertung der Abweichung des Istzustands vom Sollzustand.\n\n(9) Prüfpflichtige Änderung ist jede Maßnahme, durch welche die Sicherheit eines Arbeitsmittels beeinflusst wird. Auch Instandsetzungsarbeiten können solche Maßnahmen sein.\n\n(10) Stand der Technik ist der Entwicklungsstand fortschrittlicher Verfahren, Einrichtungen oder Betriebsweisen, der die praktische Eignung einer Maßnahme oder Vorgehensweise zum Schutz der Gesundheit und zur Sicherheit der Beschäftigten oder anderer Personen gesichert erscheinen lässt. Bei der Bestimmung des Stands der Technik sind insbesondere vergleichbare Verfahren, Einrichtungen oder Betriebsweisen heranzuziehen, die mit Erfolg in der Praxis erprobt worden sind.\n\n(11) Gefahrenbereich ist der Bereich innerhalb oder im Umkreis eines Arbeitsmittels, in dem die Sicherheit oder die Gesundheit von Beschäftigten und anderen Personen durch die Verwendung des Arbeitsmittels gefährdet ist.\n\n(12) Errichtung umfasst die Montage und Installation am Verwendungsort.\n\n(13) Überwachungsbedürftige Anlagen sind die Anlagen, die in Anhang 2 genannt oder nach § 18 Absatz 1 erlaubnispflichtig sind. Zu den überwachungsbedürftigen Anlagen gehören auch Mess-, Steuer- und Regeleinrichtungen, die dem sicheren Betrieb dieser überwachungsbedürftigen Anlagen dienen.\n\n(14) Zugelassene Überwachungsstellen sind die in Anhang 2 Abschnitt 1 genannten Stellen.\n\n(15) Andere Personen sind Personen, die nicht Beschäftigte oder Gleichgestellte nach Absatz 4 sind und sich im Gefahrenbereich einer überwachungsbedürftigen Anlage innerhalb oder außerhalb eines Betriebsgeländes befinden.\n\n§ 3. Gefährdungsbeurteilung\n§ 3. Gefährdungsbeurteilung:\n(1) Der Arbeitgeber hat vor der Verwendung von Arbeitsmitteln die auftretenden Gefährdungen zu beurteilen (Gefährdungsbeurteilung) und daraus notwendige und geeignete Schutzmaßnahmen abzuleiten. Das Vorhandensein einer CE-Kennzeichnung am Arbeitsmittel entbindet nicht von der Pflicht zur Durchführung einer Gefährdungsbeurteilung. Für Aufzugsanlagen gilt Satz 1 nur, wenn sie von einem Arbeitgeber im Sinne des § 2 Absatz 3 Satz 1 verwendet werden.\n\n(2) In die Beurteilung sind alle Gefährdungen einzubeziehen, die bei der Verwendung von Arbeitsmitteln ausgehen, und zwar von\n1. den Arbeitsmitteln selbst,\n2. der Arbeitsumgebung und\n3. den Arbeitsgegenständen, an denen Tätigkeiten mit Arbeitsmitteln durchgeführt werden.\nBei der Gefährdungsbeurteilung ist insbesondere Folgendes zu berücksichtigen:\n1. die Gebrauchstauglichkeit von Arbeitsmitteln einschließlich der ergonomischen, alters- und alternsgerechten Gestaltung,\n2. die sicherheitsrelevanten einschließlich der ergonomischen Zusammenhänge zwischen Arbeitsplatz, Arbeitsmittel, Arbeitsverfahren, Arbeitsorganisation, Arbeitsablauf, Arbeitszeit und Arbeitsaufgabe,\n3. die physischen und psychischen Belastungen der Beschäftigten, die bei der Verwendung von Arbeitsmitteln auftreten,\n4. vorhersehbare Betriebsstörungen und die Gefährdung bei Maßnahmen zu deren Beseitigung.\n\n(3) Die Gefährdungsbeurteilung soll bereits vor der Auswahl und der Beschaffung der Arbeitsmittel begonnen werden. Dabei sind insbesondere die Eignung des Arbeitsmittels für die geplante Verwendung, die Arbeitsabläufe und die Arbeitsorganisation zu berücksichtigen. Die Gefährdungsbeurteilung darf nur von fachkundigen Personen durchgeführt werden. Verfügt der Arbeitgeber nicht selbst über die entsprechenden Kenntnisse, so hat er sich fachkundig beraten zu lassen.\n\n(4) Der Arbeitgeber hat sich die Informationen zu beschaffen, die für die Gefährdungsbeurteilung notwendig sind. Dies sind insbesondere die nach § 21 Absatz 6 Nummer 1 bekannt gegebenen Regeln und Erkenntnisse, Gebrauchs- und Betriebsanleitungen sowie die ihm zugänglichen Erkenntnisse aus der arbeitsmedizinischen Vorsorge. Der Arbeitgeber darf diese Informationen übernehmen, sofern sie auf die Arbeitsmittel, Arbeitsbedingungen und Verfahren in seinem Betrieb anwendbar sind. Bei der Informationsbeschaffung kann der Arbeitgeber davon ausgehen, dass die vom Hersteller des Arbeitsmittels mitgelieferten Informationen zutreffend sind, es sei denn, dass er über andere Erkenntnisse verfügt.\n\n(5) Der Arbeitgeber kann bei der Festlegung der Schutzmaßnahmen bereits vorhandene Gefährdungsbeurteilungen, hierzu gehören auch gleichwertige Unterlagen, die ihm der Hersteller oder Inverkehrbringer mitgeliefert hat, übernehmen, sofern die Angaben und Festlegungen in dieser Gefährdungsbeurteilung den Arbeitsmitteln einschließlich der Arbeitsbedingungen und -verfahren, im eigenen Betrieb entsprechen.\n\n(6) Der Arbeitgeber hat Art und Umfang erforderlicher Prüfungen von Arbeitsmitteln sowie die Fristen von wiederkehrenden Prüfungen nach den §§ 14 und 16 zu ermitteln und festzulegen, soweit diese Verordnung nicht bereits entsprechende Vorgaben enthält. Satz 1 gilt auch für Aufzugsanlagen. Die Fristen für die wiederkehrenden Prüfungen sind so festzulegen, dass die Arbeitsmittel bis zur nächsten festgelegten Prüfung sicher verwendet werden können. Bei der Festlegung der Fristen für die wiederkehrenden Prüfungen nach § 14 Absatz 2 Satz 1 für die in Anhang 3 genannten Arbeitsmittel dürfen die dort genannten Prüffristen nicht überschritten werden. Bei der Festlegung der Fristen für die wiederkehrenden Prüfungen nach § 16 dürfen die in Anhang 2 Abschnitt 2 Nummer 4.1 und 4.3, Abschnitt 3 N\n\n[Content truncated for mobile - view full version online]",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "de-gefstoffv",
-      "title": "Gefahrstoffverordnung",
+      "id": "21605d54d00bc93d",
+      "title": "Verordnung zum Schutz vor Gefahrstoffen*)",
       "abbreviation": "GefStoffV",
-      "description": "German Hazardous Substances Ordinance",
-      "type": "regulation",
-      "summary": "Comprehensive regulation for handling hazardous substances in the workplace including assessment, labeling, and protective measures.",
-      "whs_summary": "Regulates identification, assessment, and handling of hazardous substances, exposure limits, protective measures, and health surveillance.",
-      "keywords": ["hazardous substances", "chemicals", "safety data sheets", "exposure limits", "Germany"],
+      "description": "Verordnung zum Schutz vor Gefahrstoffen*)",
+      "type": "law",
+      "summary": "GefStoffV (Verordnung zum Schutz vor Gefahrstoffen*)) is German Primary legislation establishing legal requirements covering hazardous substances, risk assessment, employer obligations. Contains 37 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "GefStoffV (Verordnung zum Schutz vor Gefahrstoffen*)) is German Primary legislation establishing legal requirements covering hazardous substances, risk assessment, employer obligations. Contains 37 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "GefStoffV",
+        "verordnung",
+        "schutz",
+        "gefahrstoffen*)",
+        "core safety",
+        "hazardous materials",
+        "chemical safety",
+        "dangerous substances",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights"
+      ],
       "content": {
-        "full_text": "Die Gefahrstoffverordnung regelt den Umgang mit Gefahrstoffen am Arbeitsplatz.",
+        "full_text": "§ 1. Zielsetzung und Anwendungsbereich\n§ 1. Zielsetzung und Anwendungsbereich:\n(1) Ziel dieser Verordnung ist es, den Menschen und die Umwelt vor stoffbedingten Schädigungen zu schützen durch\n1. Regelungen zur Einstufung, Kennzeichnung und Verpackung gefährlicher Stoffe und Gemische,\n2. Maßnahmen zum Schutz der Beschäftigten und anderer Personen bei Tätigkeiten mit Gefahrstoffen und\n3. Beschränkungen für das Herstellen und Verwenden bestimmter gefährlicher Stoffe, Gemische und Erzeugnisse.\n\n(2) Abschnitt 2 gilt für das Inverkehrbringen von\n1. gefährlichen Stoffen und Gemischen,\n2. bestimmten Stoffen, Gemischen und Erzeugnissen, die mit zusätzlichen Kennzeichnungen zu versehen sind, nach Maßgabe der Richtlinie 96/59/EG des Rates vom 16. September 1996 über die Beseitigung polychlorierter Biphenyle und polychlorierter Terphenyle (PCB/PCT) (ABl. L 243 vom 24.9.1996, S. 31), die durch die Verordnung (EG) Nr. 596/2009 (ABl. L 188 vom 18.7.2009, S. 14) geändert worden ist,\n3. Biozid-Produkten im Sinne des § 3 Nummer 11 des Chemikaliengesetzes, die keine gefährlichen Stoffe oder Gemische sind, sowie\n4. Biozid-Wirkstoffen im Sinne des § 3 Nummer 12 des Chemikaliengesetzes, die biologische Arbeitsstoffe im Sinne der Biostoffverordnung sind, und Biozid-Produkten im Sinne des § 3 Nummer 11 des Chemikaliengesetzes, die als Wirkstoffe solche biologischen Arbeitsstoffe enthalten.\nAbschnitt 2 gilt auch für das Veranlassen von Tätigkeiten an baulichen und technischen Anlagen, die Gefahrstoffe enthalten können, welche durch die Tätigkeiten freigesetzt werden können und zu besonderen Gesundheitsgefahren führen können.\nAbschnitt 2 gilt nicht für Lebensmittel oder Futtermittel in Form von Fertigerzeugnissen, die für den Endverbrauch bestimmt sind.\n\n(3) Die Abschnitte 3 bis 6 gelten für Tätigkeiten, bei denen die Sicherheit und Gesundheit der Beschäftigten durch Stoffe, Gemische und Erzeugnisse gefährdet sein kann. Sie gelten auch, wenn die Sicherheit und Gesundheit anderer Personen aufgrund von Tätigkeiten im Sinne von § 2 Absatz 5 gefährdet sein können, die durch Beschäftigte oder Unternehmer ohne Beschäftigte ausgeübt werden. Die Sätze 1 und 2 finden auch Anwendung auf Tätigkeiten, die im Zusammenhang mit der Beförderung von Stoffen, Gemischen und Erzeugnissen ausgeübt werden. Die Vorschriften des Gefahrgutbeförderungsgesetzes und der darauf gestützten Rechtsverordnungen bleiben unberührt.\n\n(4) Sofern nicht ausdrücklich etwas anderes bestimmt ist, gilt diese Verordnung nicht für\n1. biologische Arbeitsstoffe im Sinne der Biostoffverordnung und\n2. private Haushalte.\nDiese Verordnung gilt ferner nicht für Betriebe, die dem Bundesberggesetz unterliegen, soweit dort oder in Rechtsverordnungen, die auf Grund dieses Gesetzes erlassen worden sind, entsprechende Rechtsvorschriften bestehen.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Gefahrstoffe im Sinne dieser Verordnung sind\n1. gefährliche Stoffe und Gemische nach § 3,\n1a. Stoffe oder Gemische, die über die Gefahrenklasse gewässergefährdend nach der Verordnung (EG) Nr. 1272/2008 des Europäischen Parlaments und des Rates vom 16. Dezember 2008 über die Einstufung, Kennzeichnung und Verpackung von Stoffen und Gemischen, zur Änderung und Aufhebung der Richtlinien 67/548/EWG und 1999/45/EG und zur Änderung der Verordnung (EG) Nr. 1907/2006 (ABl. L 353 vom 31.12.2008, S. 1), die zuletzt durch die Delegierte Verordnung (EU) 2022/692 (ABl. L 129 vom 3.5.2022, S. 1) geändert worden ist, hinaus umweltgefährlich sind, indem sie selbst oder deren Umwandlungsprodukte sonst geeignet sind, die Beschaffenheit des Naturhaushaltes, von Wasser, Boden oder Luft, Klima, Tieren, Pflanzen oder Mikroorganismen derart zu verändern, dass dadurch sofort oder später Gefahren für die Umwelt herbeigeführt werden können,\n2. Stoffe, Gemische und Erzeugnisse, die explosionsfähig sind,\n3. Stoffe, Gemische und Erzeugnisse, aus denen bei der Herstellung oder Verwendung Stoffe nach Nummer 1 oder Nummer 2 entstehen oder freigesetzt werden,\n4. Stoffe und Gemische, die die Kriterien nach den Nummern 1 bis 3 nicht erfüllen, aber auf Grund ihrer physikalisch-chemischen, chemischen oder toxischen Eigenschaften und der Art und Weise, wie sie am Arbeitsplatz vorhanden sind oder verwendet werden, die Gesundheit und die Sicherheit der Beschäftigten gefährden können,\n5. alle Stoffe, denen ein Arbeitsplatzgrenzwert zugewiesen worden ist.\n\n(2) Für die Begriffe Stoff, Gemisch, Erzeugnis, Lieferant, nachgeschalteter Anwender und Hersteller gelten die Begriffsbestimmungen nach Artikel 2 der Verordnung (EG) Nr. 1272/2008.\n\n(2a) (weggefallen)\n\n(3) Krebserzeugend, keimzellmutagen oder reproduktionstoxisch sind\n1. Stoffe, die in Anhang VI der Verordnung (EG) Nr. 1272/2008 in der jeweils geltenden Fassung als karzinogen, keimzellmutagen oder reproduktionstoxisch eingestuft sind,\n2. Stoffe, welche die Kriterien für die Einstufung als karzinogen, keimzellmutagen oder reproduktionstoxisch nach Anhang I der Verordnung (EG) Nr. 1272/2008 in der jeweils geltenden Fassung erfüllen,\n3. Gemische, die einen oder mehrere der in § 2 Absatz 3 Nummer 1 oder 2 genannten Stoffe enthalten, wenn die Konzentration dieses Stoffs oder dieser Stoffe die stoffspezifischen oder die allgemeinen Konzentrationsgrenzen nach der Verordnung (EG) Nr. 1272/2008 in der jeweils geltenden Fassung erreicht oder übersteigt, die für die Einstufung eines Gemischs als karzinogen, keimzellmutagen oder reproduktionstoxisch festgelegt sind,\n4. Stoffe, Gemische, Tätigkeiten oder Verfahren, die in den nach § 20 Absatz 4 bekannt gegebenen Regeln und Erkenntnissen als krebserzeugend, keimzellmutagen oder reproduktionstoxisch bezeichnet werden.\n\n(4) Organische Peroxide im Sinne des § 12 Absatz 4 und des Anhangs III sind Stoffe, die sich vom Wasserstoffperoxid dadurch ableiten, dass ein oder beide Wasserstoffatome durch organische Gruppen ersetzt sind, sowie Gemische, die diese Stoffe enthalten.\n\n(4a) Asbest sind folgende Silikate mit Faserstruktur:\n1. Aktinolith, CAS-Nummer 77536-66-4,\n2. Amosit, CAS-Nummer 12172-73-5,\n3. Anthophyllit, CAS-Nummer 77536-67-5,\n4. Chrysotil, CAS-Nummer 12001-29-5 und CAS-Nummer 132207-32-0,\n5. Krokydolith, CAS-Nummer 12001-28-4,\n6. Tremolit, CAS-Nummer 77536-68-6.\n\n(4b) Asbesthaltige Materialien sind jeweils Asbest enthaltende natürlich vorkommende mineralische Rohstoffe, Gemische oder Erzeugnisse.\n\n(4c) Anerkannte emissionsarme Verfahren sind behördlich oder von den Trägern der gesetzlichen Unfallversicherung geprüfte und anerkannte Arbeitsverfahren für Tätigkeiten mit asbesthaltigen Materialien, die nachweislich im Bereich niedrigen Risikos erfolgen.\n\n(5) Eine Tätigkeit ist jede Arbeit mit Stoffen, Gemischen oder Erzeugnissen, einschließlich Herstellung, Mischung, Ge- und Verbrauch, Lagerung, Aufbewahrung, Be- und Verarbeitung, Ab- und Umfüllung, Entfernung, Entsorgung und Vernichtung. Zu den Tätigkeiten zählen auch das innerbetriebliche Befördern sowie Bedien- und Überwachungsarbeiten.\n\n(5a) Begasung bezeichnet eine Verwendung von Biozid-Produkten oder Pflanzenschutzmitteln\n1. bei der bestimmungsgemäß Stoffe gasförmig freigesetzt werden,\na) die als akut toxisch Kategorie 1, 2 oder 3 eingestuft sind oder\nb) für die in der Zulassung festgelegt wurde, dass eine Messung oder Überwachung der Wirkstoff- oder Sauerstoffkonzentration zu erfolgen hat,\n2. für die in der Zulassung die Bereitstellung und Verwendung eines unabhängig von der Umgebungsatmosphäre wirkenden Atemschutzgeräts festgelegt wurde oder\n3. die zur Raumdesinfektion sämtlicher Flächen eines umschlossenen Raums eingesetzt werden, wobei Formaldehyd aus einer wässrigen Formaldehydlösung in Form schwebfähiger Flüssigkeitstropfen ausgebracht wird.\n\n(6) Lagern ist das Aufbewahren zur späteren Verwendung sowie zur Abgabe an andere. Es schließt die Bereitstellung zur Beförderung ein, wenn die Beförder\n\n§ 3. Gefahrenklassen\n§ 3. Gefahrenklassen:\n(1) Gefährlich im Sinne dieser Verordnung sind Stoffe, Gemische und bestimmte Erzeugnisse, die den in Anhang I der Verordnung (EG) Nr. 1272/2008 dargelegten Kriterien entsprechen.\n\n(2) Die folgenden Gefahrenklassen geben die Art der Gefährdung wieder und werden unter Angabe der Nummerierung des Anhangs I der Verordnung (EG) Nr. 1272/2008 aufgelistet:\n1. Physikalische Gefahren\n   a) Explosive Stoffe/Gemische und Erzeugnisse mit Explosivstoff (2.1)\n   b) Entzündbare Gase (2.2)\n   c) Aerosole (2.3)\n   d) Oxidierende Gase (2.4)\n   e) Gase unter Druck (2.5)\n   f) Entzündbare Flüssigkeiten (2.6)\n   g) Entzündbare Feststoffe (2.7)\n   h) Selbstzersetzliche Stoffe und Gemische (2.8)\n   i) Pyrophore Flüssigkeiten (2.9)\n   j) Pyrophore Feststoffe (2.10)\n   k) Selbsterhitzungsfähige Stoffe und Gemische (2.11)\n   l) Stoffe und Gemische, die in Berührung mit Wasser entzündbare Gase entwickeln (2.12)\n   m) Oxidierende Flüssigkeiten (2.13)\n   n) Oxidierende Feststoffe (2.14)\n   o) Organische Peroxide (2.15)\n   p) Korrosiv gegenüber Metallen (2.16)\n   q) Desensibilisierte explosive Stoffe/Gemische (2.17)\n2. Gesundheitsgefahren\n   a) Akute Toxizität (oral, dermal und inhalativ) (3.1)\n   b) Ätzwirkung auf die Haut/Hautreizung (3.2)\n   c) Schwere Augenschädigung/Augenreizung (3.3)\n   d) Sensibilisierung der Atemwege oder der Haut (3.4)\n   e) Keimzellmutagenität (3.5)\n   f) Karzinogenität (3.6)\n   g) Reproduktionstoxizität (3.7)\n   h) Spezifische Zielorgan-Toxizität, einmalige Exposition (STOT SE) (3.8)\n   i) Spezifische Zielorgan-Toxizität, wiederholte Exposition (STOT RE) (3.9)\n   j) Aspirationsgefahr (3.10)\n3. Umweltgefahren\n   Gewässergefährdend (akut und chronisch) (4.1)\n4. Weitere Gefahren\n   Die Ozonschicht schädigend (5.1)\n\n§ 4. Einstufung, Kennzeichnung, Verpackung\n§ 4. Einstufung, Kennzeichnung, Verpackung:\n(1) Die Einstufung, Kennzeichnung und Verpackung von Stoffen und Gemischen sowie von Erzeugnissen mit Explosivstoff richten sich nach den Bestimmungen der Verordnung (EG) Nr. 1272/2008.\n\n(2) Bei der Einstufung von Stoffen und Gemischen sind die nach § 20 Abs\n\n[Content truncated for mobile - view full version online]",
         "available": true,
         "format": "text"
       }
     },
     {
-      "id": "de-lastenhandhabv",
-      "title": "Lastenhandhabungsverordnung",
-      "abbreviation": "LasthandhabV",
-      "description": "German Manual Handling Operations Regulation",
-      "type": "regulation",
-      "summary": "Requirements for manual handling of loads to prevent musculoskeletal injuries.",
-      "whs_summary": "Addresses ergonomic requirements for manual handling including risk assessment, weight limits, training, and technical aids.",
-      "keywords": ["manual handling", "ergonomics", "lifting", "musculoskeletal", "Germany"],
+      "id": "88ffa4f0b33988b9",
+      "title": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
+      "abbreviation": "MuSchG",
+      "description": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
+      "type": "law",
+      "summary": "MuSchG (Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium) is German Primary legislation establishing legal requirements covering employer obligations, special groups, risk assessment. Contains 34 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "MuSchG (Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium) is German Primary legislation establishing legal requirements covering employer obligations, special groups, risk assessment. Contains 34 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "MuSchG",
+        "gesetz",
+        "schutz",
+        "müttern",
+        "arbeit,",
+        "ausbildung",
+        "core safety",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "special groups",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employee rights"
+      ],
       "content": {
-        "full_text": "Die Lastenhandhabungsverordnung regelt den Schutz der Beschäftigten bei manueller Handhabung von Lasten.",
+        "full_text": "§ 1. Anwendungsbereich, Ziel des Mutterschutzes\n§ 1. Anwendungsbereich, Ziel des Mutterschutzes:\n(1) Dieses Gesetz schützt die Gesundheit der Frau und ihres Kindes am Arbeits-, Ausbildungs- und Studienplatz während der Schwangerschaft, nach der Entbindung und in der Stillzeit. Das Gesetz ermöglicht es der Frau, ihre Beschäftigung oder sonstige Tätigkeit in dieser Zeit ohne Gefährdung ihrer Gesundheit oder der ihres Kindes fortzusetzen und wirkt Benachteiligungen während der Schwangerschaft, nach der Entbindung und in der Stillzeit entgegen. Regelungen in anderen Arbeitsschutzgesetzen bleiben unberührt.\n\n(2) Dieses Gesetz gilt für Frauen in einer Beschäftigung im Sinne von § 7 Absatz 1 des Vierten Buches Sozialgesetzbuch. Unabhängig davon, ob ein solches Beschäftigungsverhältnis vorliegt, gilt dieses Gesetz auch für\n1. Frauen in betrieblicher Berufsbildung und Praktikantinnen im Sinne von § 26 des Berufsbildungsgesetzes,\n2. Frauen mit Behinderung, die in einer Werkstatt für behinderte Menschen beschäftigt sind,\n3. Frauen, die als Entwicklungshelferinnen im Sinne des Entwicklungshelfer-Gesetzes tätig sind, jedoch mit der Maßgabe, dass die §§ 18 bis 22 auf sie nicht anzuwenden sind,\n4. Frauen, die als Freiwillige im Sinne des Jugendfreiwilligendienstegesetzes oder des Bundesfreiwilligendienstgesetzes tätig sind,\n5. Frauen, die als Mitglieder einer geistlichen Genossenschaft, Diakonissen oder Angehörige einer ähnlichen Gemeinschaft auf einer Planstelle oder aufgrund eines Gestellungsvertrages für diese tätig werden, auch während der Zeit ihrer dortigen außerschulischen Ausbildung,\n6. Frauen, die in Heimarbeit beschäftigt sind, und ihnen Gleichgestellte im Sinne von § 1 Absatz 1 und 2 des Heimarbeitsgesetzes, soweit sie am Stück mitarbeiten, jedoch mit der Maßgabe, dass die §§ 10 und 14 auf sie nicht anzuwenden sind und § 9 Absatz 1 bis 5 auf sie entsprechend anzuwenden ist,\n7. Frauen, die wegen ihrer wirtschaftlichen Unselbstständigkeit als arbeitnehmerähnliche Person anzusehen sind, jedoch mit der Maßgabe, dass die §§ 18, 19 Absatz 2 und § 20 auf sie nicht anzuwenden sind, und\n8. Schülerinnen und Studentinnen, soweit die Ausbildungsstelle Ort, Zeit und Ablauf der Ausbildungsveranstaltung verpflichtend vorgibt oder die ein im Rahmen der schulischen oder hochschulischen Ausbildung verpflichtend vorgegebenes Praktikum ableisten, jedoch mit der Maßgabe, dass die §§ 17 bis 24 auf sie nicht anzuwenden sind.\n\n(3) Das Gesetz gilt nicht für Beamtinnen und Richterinnen. Das Gesetz gilt ebenso nicht für Soldatinnen, auch soweit die Voraussetzungen des Absatzes 2 erfüllt sind, es sei denn, sie werden aufgrund dienstlicher Anordnung oder Gestattung außerhalb des Geschäftsbereiches des Bundesministeriums der Verteidigung tätig.\n\n(4) Dieses Gesetz gilt für jede Person, die schwanger ist, ein Kind geboren hat oder stillt. Die Absätze 2 und 3 gelten entsprechend.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Arbeitgeber im Sinne dieses Gesetzes ist die natürliche oder juristische Person oder die rechtsfähige Personengesellschaft, die Personen nach § 1 Absatz 2 Satz 1 beschäftigt. Dem Arbeitgeber stehen gleich:\n1. die natürliche oder juristische Person oder die rechtsfähige Personengesellschaft, die Frauen im Fall von § 1 Absatz 2 Satz 2 Nummer 1 ausbildet oder für die Praktikantinnen im Fall von § 1 Absatz 2 Satz 2 Nummer 1 tätig sind,\n2. der Träger der Werkstatt für behinderte Menschen im Fall von § 1 Absatz 2 Satz 2 Nummer 2,\n3. der Träger des Entwicklungsdienstes im Fall von § 1 Absatz 2 Satz 2 Nummer 3,\n4. die Einrichtung, in der der Freiwilligendienst nach dem Jugendfreiwilligendienstegesetz oder nach dem Bundesfreiwilligendienstgesetz im Fall von § 1 Absatz 2 Satz 2 Nummer 4 geleistet wird,\n5. die geistliche Genossenschaft und ähnliche Gemeinschaft im Fall von § 1 Absatz 2 Satz 2 Nummer 5,\n6. der Auftraggeber und der Zwischenmeister von Frauen im Fall von § 1 Absatz 2 Satz 2 Nummer 6,\n7. die natürliche oder juristische Person oder die rechtsfähige Personengesellschaft, für die Frauen im Sinne von § 1 Absatz 2 Satz 2 Nummer 7 tätig sind, und\n8. die natürliche oder juristische Person oder die rechtsfähige Personengesellschaft, mit der das Ausbildungs- oder Praktikumsverhältnis im Fall von § 1 Absatz 2 Satz 2 Nummer 8 besteht (Ausbildungsstelle).\n\n(2) Eine Beschäftigung im Sinne der nachfolgenden Vorschriften erfasst jede Form der Betätigung, die eine Frau im Rahmen eines Beschäftigungsverhältnisses nach § 1 Absatz 2 Satz 1 oder die eine Frau im Sinne von § 1 Absatz 2 Satz 2 im Rahmen ihres Rechtsverhältnisses zu ihrem Arbeitgeber nach § 2 Absatz 1 Satz 2 ausübt.\n\n(3) Ein Beschäftigungsverbot im Sinne dieses Gesetzes ist nur ein Beschäftigungsverbot nach den §§ 3 bis 6, 10 Absatz 3, § 13 Absatz 1 Nummer 3 und § 16. Für eine in Heimarbeit beschäftigte Frau und eine ihr Gleichgestellte tritt an die Stelle des Beschäftigungsverbots das Verbot der Ausgabe von Heimarbeit nach den §§ 3, 8, 13 Absatz 2 und § 16. Für eine Frau, die wegen ihrer wirtschaftlichen Unselbstständigkeit als arbeitnehmerähnliche Person anzusehen ist, tritt an die Stelle des Beschäftigungsverbots nach Satz 1 die Befreiung von der vertraglich vereinbarten Leistungspflicht; die Frau kann sich jedoch gegenüber der dem Arbeitgeber gleichgestellten Person oder Gesellschaft im Sinne von Absatz 1 Satz 2 Nummer 7 dazu bereit erklären, die vertraglich vereinbarte Leistung zu erbringen.\n\n(4) Alleinarbeit im Sinne dieses Gesetzes liegt vor, wenn der Arbeitgeber eine Frau an einem Arbeitsplatz in seinem räumlichen Verantwortungsbereich beschäftigt, ohne dass gewährleistet ist, dass sie jederzeit den Arbeitsplatz verlassen oder Hilfe erreichen kann.\n\n(5) Arbeitsentgelt im Sinne dieses Gesetzes ist das Arbeitsentgelt, das nach § 14 des Vierten Buches Sozialgesetzbuch in Verbindung mit einer aufgrund des § 17 des Vierten Buches Sozialgesetzbuch erlassenen Verordnung bestimmt wird. Für Frauen im Sinne von § 1 Absatz 2 Satz 2 gilt als Arbeitsentgelt ihre jeweilige Vergütung.\n\n(6) Eine Entbindung ist eine Lebend- oder eine Totgeburt. Die Regelungen zur Entbindung finden im Falle einer Fehlgeburt ab der 13. Schwangerschaftswoche entsprechende Anwendung, soweit nicht in diesem oder einem anderen Gesetz Abweichendes geregelt ist.\n\n§ 3. Schutzfristen vor und nach der Entbindung\n§ 3. Schutzfristen vor und nach der Entbindung:\n(1) Der Arbeitgeber darf eine schwangere Frau in den letzten sechs Wochen vor der Entbindung nicht beschäftigen (Schutzfrist vor der Entbindung), soweit sie sich nicht zur Arbeitsleistung ausdrücklich bereit erklärt. Sie kann die Erklärung nach Satz 1 jederzeit mit Wirkung für die Zukunft widerrufen. Für die Berechnung der Schutzfrist vor der Entbindung ist der voraussichtliche Tag der Entbindung maßgeblich, wie er sich aus dem ärztlichen Zeugnis oder dem Zeugnis einer Hebamme oder eines Entbindungspflegers ergibt. Entbindet eine Frau nicht am voraussichtlichen Tag, verkürzt oder verlängert sich die Schutzfrist vor der Entbindung entsprechend.\n\n(2) Der Arbeitgeber darf eine Frau bis zum Ablauf von acht Wochen nach der Entbindung nicht beschäftigen (Schutzfrist nach der Entbindung). Die Schutzfrist nach der Entbindung verlängert sich auf zwölf Wochen 1. bei Frühgeburten, 2. bei Mehrlingsgeburten und, 3. wenn vor Ablauf von acht Wochen nach der Entbindung bei dem Kind eine Behinderung im Sinne von § 2 Absatz 1 Satz 1 des Neunten Buches Sozialgesetzbuch ärztlich festgestellt wird. Bei vorzeitiger Entbindung verlängert sich die Schutzfrist nach der Entbindung nach Satz 1 oder nach Satz 2 um den Zeitraum der Verkürzung der Schutzfrist vor der Entbindung nach Absatz 1 Satz 4. Nach Satz 2 Nummer 3 verlängert sich die Schutzfrist nach der Entbindung nur, wenn die Frau dies beantragt. Satz 2 gilt nicht bei einer Totgeburt.\n\n(3) Die Ausbildungsstelle darf eine Frau im Sinne von § 1 Absatz 2 Satz 2 Nummer 8 bereits in der Schutzfrist nach der Entbindung im Rahmen der schulischen oder hochschulischen Ausbildung tätig werden lassen, wenn die Frau dies ausdrücklich gegenüber ihrer Ausbildungsstelle verlangt. Die Frau kann ihre Erklärung jederzeit mit Wirkung für die Zukunft widerrufen.\n\n(4) Der Arbeitgeber darf eine Frau nach dem Tod ihres Kindes bereits nach Ablauf der ersten zwei Wochen nach der Entbindung beschäftigen, wenn 1. die Frau dies ausdrücklich verlangt und 2. nach ärztlichem Zeugnis nichts dagegen spricht. Sie kann ihre Erklärung nach Satz 1 Nummer 1 jederzeit mit Wirkung für die Zukunft widerrufen.\n\n(5) Bei einer Fehlgeburt darf der Arbeitgeber eine Frau nicht beschäftigen, soweit sie sich nicht zur Arbeitsleistung ausdrücklich bereit erklärt, 1. bis zum Ablauf von zwei Wochen bei einer Fehlgeburt ab der 13. Schwangerschaftswoche oder 2. bis zum Ablauf von sechs Wochen bei einer Fehlgeburt ab der 17. Schwangerschaftswoche oder 3. bis zum Ablauf von acht Wochen bei einer Fehlgeburt ab der 20. Schwangerschaftswoche. Sie kann ihre Erklärung nach Satz 1 jederzeit mit Wirkung für die Zukunft widerrufen. Die Absätze 1 bis 3 gelten nicht.\n\n§ 4. Verbot der Mehrarbeit; Ruhezeit\n§ 4. Verbot der Mehrarbeit; Ruhezeit:\n(1) Der Arbeitgeber darf eine schwangere oder stillende Frau, die 18 Jahre oder älter ist, nicht mit einer Arbeit beschäftigen, die die Frau über achteinhalb Stunden täglich oder über 90 Stunden in der Doppelwoche hinaus zu leisten hat. Eine schwangere oder stillende Frau unter 18 Jahren darf der Arbeitgeber nicht mit einer Arbeit beschäftigen, die die Frau über acht Stunden täglich oder über 80 Stunden in der Doppelwoche hinaus zu leisten hat. In die Doppelwoche werden die Sonntage eingerechnet. Der Arbeitgeber darf eine schwangere oder stillende Frau nicht in einem Umfang beschäftigen, der die vertraglich vereinbarte wöchentliche Arbeitszeit im Durchschnitt des Monats übersteigt. Bei mehreren Arbeitgebern sind die Arbeitszeiten zusammenzurechnen.\n\n(2) Der Arbeitgeber muss der schwangeren oder stillenden Frau nach Beendigung der täglichen Arbeit\n\n[Content truncated for mobile - view full version online]",
         "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "d108263040ad5045",
+      "title": "Verordnung zum Schutz der Beschäftigten vor Gefährdungen durch Lärm und Vibrationen",
+      "abbreviation": "LärmVibrationsArbSchV",
+      "description": "Verordnung zum Schutz der Beschäftigten vor Gefährdungen durch Lärm und Vibrationen",
+      "type": "law",
+      "summary": "LärmVibrationsArbSchV (Verordnung zum Schutz der Beschäftigten vor Gefährdungen durch Lärm und Vibrationen) is German Primary legislation establishing legal requirements covering risk assessment, workplace design, prevention services. Contains 17 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "LärmVibrationsArbSchV (Verordnung zum Schutz der Beschäftigten vor Gefährdungen durch Lärm und Vibrationen) is German Primary legislation establishing legal requirements covering risk assessment, workplace design, prevention services. Contains 17 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "LärmVibrationsArbSchV",
+        "verordnung",
+        "schutz",
+        "beschäftigten",
+        "gefährdungen",
+        "durch",
+        "core safety",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "prevention",
+        "safety services"
+      ],
+      "content": {
+        "full_text": "§ 1. Anwendungsbereich\n§ 1. Anwendungsbereich:\n(1) Diese Verordnung gilt zum Schutz der Beschäftigten vor tatsächlichen oder möglichen Gefährdungen ihrer Gesundheit und Sicherheit durch Lärm oder Vibrationen bei der Arbeit.\n\n(2) Das Bundesministerium der Verteidigung kann für Beschäftigte, die Lärm und Vibrationen ausgesetzt sind oder ausgesetzt sein können, Ausnahmen von den Vorschriften dieser Verordnung zulassen, soweit öffentliche Belange dies zwingend erfordern, insbesondere für Zwecke der Landesverteidigung oder zur Erfüllung zwischenstaatlicher Verpflichtungen der Bundesrepublik Deutschland. In diesem Fall ist gleichzeitig festzulegen, wie die Sicherheit und der Gesundheitsschutz der Beschäftigten nach dieser Verordnung auf andere Weise gewährleistet werden kann.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Lärm im Sinne dieser Verordnung ist jeder Schall, der zu einer Beeinträchtigung des Hörvermögens oder zu einer sonstigen mittelbaren oder unmittelbaren Gefährdung von Sicherheit und Gesundheit der Beschäftigten führen kann.\n\n(2) Der Tages-Lärmexpositionspegel (L (tief) EX,8h ) ist der über die Zeit gemittelte Lärmexpositionspegel bezogen auf eine Achtstundenschicht. Er umfasst alle am Arbeitsplatz auftretenden Schallereignisse.\n\n(3) Der Wochen-Lärmexpositionspegel (L (tief) EX,40h ) ist der über die Zeit gemittelte Tages-Lärmexpositionspegel bezogen auf eine 40-Stundenwoche.\n\n(4) Der Spitzenschalldruckpegel (L (tief) pC,peak ) ist der Höchstwert des momentanen Schalldruckpegels.\n\n(5) Vibrationen sind alle mechanischen Schwingungen, die durch Gegenstände auf den menschlichen Körper übertragen werden und zu einer mittelbaren oder unmittelbaren Gefährdung von Sicherheit und Gesundheit der Beschäftigten führen können. Dazu gehören insbesondere\n1. mechanische Schwingungen, die bei Übertragung auf das Hand-Arm-System des Menschen Gefährdungen für die Gesundheit und Sicherheit der Beschäftigten verursachen oder verursachen können (Hand-Arm-Vibrationen), insbesondere Knochen- oder Gelenkschäden, Durchblutungsstörungen oder neurologische Erkrankungen, und\n2. mechanische Schwingungen, die bei Übertragung auf den gesamten Körper Gefährdungen für die Gesundheit und Sicherheit der Beschäftigten verursachen oder verursachen können (Ganzkörper-Vibrationen), insbesondere Rückenschmerzen und Schädigungen der Wirbelsäule.\n\n(6) Der Tages-Vibrationsexpositionswert A(8) ist der über die Zeit nach Nummer 1.1 des Anhangs für Hand-Arm-Vibrationen und nach Nummer 2.1 des Anhangs für Ganzkörper-Vibrationen gemittelte Vibrationsexpositionswert bezogen auf eine Achtstundenschicht.\n\n(7) Fachkundig ist, wer über die erforderlichen Fachkenntnisse zur Ausübung einer in dieser Verordnung bestimmten Aufgabe verfügt. Die Anforderungen an die Fachkunde sind abhängig von der jeweiligen Art der Aufgabe. Zu den Anforderungen zählen eine entsprechende Berufsausbildung oder Berufserfahrung jeweils in Verbindung mit einer zeitnah ausgeübten einschlägigen beruflichen Tätigkeit sowie die Teilnahme an spezifischen Fortbildungsmaßnahmen.\n\n(8) Der Stand der Technik ist der Entwicklungsstand fortschrittlicher Verfahren, Einrichtungen oder Betriebsweisen, der die praktische Eignung einer Maßnahme zum Schutz der Gesundheit und zur Sicherheit der Beschäftigten gesichert erscheinen lässt. Bei der Bestimmung des Standes der Technik sind insbesondere vergleichbare Verfahren, Einrichtungen oder Betriebsweisen heranzuziehen, die mit Erfolg in der Praxis erprobt worden sind. Gleiches gilt für die Anforderungen an die Arbeitsmedizin und die Arbeitshygiene.\n\n(9) Den Beschäftigten stehen Schülerinnen und Schüler, Studierende und sonstige in Ausbildungseinrichtungen tätige Personen, die bei ihren Tätigkeiten Lärm und Vibrationen ausgesetzt sind, gleich.\n\n§ 3. Gefährdungsbeurteilung\n§ 3. Gefährdungsbeurteilung:\n(1) Bei der Beurteilung der Arbeitsbedingungen nach § 5 des Arbeitsschutzgesetzes hat der Arbeitgeber zunächst festzustellen, ob die Beschäftigten Lärm oder Vibrationen ausgesetzt sind oder ausgesetzt sein können. Ist dies der Fall, hat er alle hiervon ausgehenden Gefährdungen für die Gesundheit und Sicherheit der Beschäftigten zu beurteilen. Dazu hat er die auftretenden Expositionen am Arbeitsplatz zu ermitteln und zu bewerten. Der Arbeitgeber kann sich die notwendigen Informationen beim Hersteller oder Inverkehrbringer von Arbeitsmitteln oder bei anderen ohne weiteres zugänglichen Quellen beschaffen. Lässt sich die Einhaltung der Auslöse- und Expositionsgrenzwerte nicht sicher ermitteln, hat er den Umfang der Exposition durch Messungen nach § 4 festzustellen. Entsprechend dem Ergebnis der Gefährdungsbeurteilung hat der Arbeitgeber Schutzmaßnahmen nach dem Stand der Technik festzulegen.\n\n(2) Die Gefährdungsbeurteilung nach Absatz 1 umfasst insbesondere\n1. bei Exposition der Beschäftigten durch Lärm\n    a) Art, Ausmaß und Dauer der Exposition durch Lärm,\n    b) die Auslösewerte nach § 6 Satz 1 und die Expositionswerte nach § 8 Abs. 2,\n    c) die Verfügbarkeit alternativer Arbeitsmittel und Ausrüstungen, die zu einer geringeren Exposition der Beschäftigten führen (Substitutionsprüfung),\n    d) Erkenntnisse aus der arbeitsmedizinischen Vorsorge sowie allgemein zugängliche, veröffentlichte Informationen hierzu,\n    e) die zeitliche Ausdehnung der beruflichen Exposition über eine Achtstundenschicht hinaus,\n    f) die Verfügbarkeit und Wirksamkeit von Gehörschutzmitteln,\n    g) Auswirkungen auf die Gesundheit und Sicherheit von Beschäftigten, die besonders gefährdeten Gruppen angehören, und\n    h) Herstellerangaben zu Lärmemissionen sowie\n2. bei Exposition der Beschäftigten durch Vibrationen\n    a) Art, Ausmaß und Dauer der Exposition durch Vibrationen, einschließlich besonderer Arbeitsbedingungen, wie zum Beispiel Tätigkeiten bei niedrigen Temperaturen,\n    b) die Expositionsgrenzwerte und Auslösewerte nach § 9 Abs. 1 und 2,\n    c) die Verfügbarkeit und die Möglichkeit des Einsatzes alternativer Arbeitsmittel und Ausrüstungen, die zu einer geringeren Exposition der Beschäftigten führen (Substitutionsprüfung),\n    d) Erkenntnisse aus der arbeitsmedizinischen Vorsorge sowie allgemein zugängliche, veröffentlichte Informationen hierzu,\n    e) die zeitliche Ausdehnung der beruflichen Exposition über eine Achtstundenschicht hinaus,\n    f) Auswirkungen auf die Gesundheit und Sicherheit von Beschäftigten, die besonders gefährdeten Gruppen angehören, und\n    g) Herstellerangaben zu Vibrationsemissionen.\n\n(3) Die mit der Exposition durch Lärm oder Vibrationen verbundenen Gefährdungen sind unabhängig voneinander zu beurteilen und in der Gefährdungsbeurteilung zusammenzuführen. Mögliche Wechsel- oder Kombinationswirkungen sind bei der Gefährdungsbeurteilung zu berücksichtigen. Dies gilt insbesondere bei Tätigkeiten mit gleichzeitiger Belastung durch Lärm, arbeitsbedingten ototoxischen Substanzen oder Vibrationen, soweit dies technisch durchführbar ist. Zu berücksichtigen sind auch mittelbare Auswirkungen auf die Gesundheit und Sicherheit der Beschäftigten, zum Beispiel durch Wechselwirkungen zwischen Lärm und Warnsignalen oder anderen Geräuschen, deren Wahrnehmung zur Vermeidung von Gefährdungen erforderlich ist. Bei Tätigkeiten, die eine hohe Konzentration und Aufmerksamkeit erfordern, sind störende und negative Einflüsse infolge einer Exposition durch Lärm oder Vibrationen zu berücksichtigen.\n\n(4) Der Arbeitgeber hat die Gefährdungsbeurteilung unabhängig von der Zahl der Beschäftigten zu dokumentieren. In der Dokumentation ist anzugeben, welche Gefährdungen am Arbeitsplatz auftreten können und welche Maßnahmen zur Vermeidung oder Minimierung der Gefährdung der Beschäftigten durchgeführt werden müssen. Die Gefährdungsbeurteilung ist zu aktualisieren, wenn maßgebliche Veränderungen der Arbeitsbedingungen dies erforderlich machen oder wenn sich eine Aktualisierung auf Grund der Ergebnisse der arbeitsmedizinischen Vorsorge als notwendig erweist.\n\n§ 4. Messungen\n§ 4. Messungen:\n(1) Der Arbeitgeber hat sicherzustellen, dass Messungen nach dem Stand der Technik durchgeführt werden. Dazu müssen\n1. Messverfahren und -geräte den vorhandenen Arbeitsplatz- und Expositionsbedingungen angepasst sein; dies betrifft insbesondere die Eigenschaften des zu messenden Lärms oder der zu messenden Vibrationen, die Dauer der Einwirkung und die Umgebungsbedingungen und\n2. die Messverfahren und -geräte geeignet sein, die jeweiligen physikalischen Größen zu bestimmen, und die Entscheidung erlauben, ob die in den §§ 6 und 9 festgesetzten Auslöse- und Expositionsgrenzwerte eingehalten werden.\nDie durchzuführenden Messungen können auch eine Stichprobenerhebung umfassen, die für die persönliche Exposition eines Beschäftigten repräsentativ ist. Der Arbeitgeber hat die Dokumentation über die ermittelten Messergebnisse mindestens 30 Jahre in einer Form aufzubewahren, die eine spätere Einsichtnahme ermöglicht.\n\n(2) Messungen zur Ermittlung der Exposition durch Vibrationen sind zusätzlich zu den Anforderungen nach Absatz 1 entsprechend den Nummern 1.2 und 2.2 des Anhangs durchzuführen.\n\n§ 5. Fachkunde\n§ 5. Fachkunde:\nDer Arbeitgeber hat sicherzustellen, dass die Gefährdungsbeurteilung nur von fachkundigen Personen durchgeführt wird. Verfügt der Arbeitgeber nicht selbst über die entsprechenden Kenntnisse, hat er sich fachkundig beraten zu lassen. Fachkundige Personen können insbesondere der Betriebsarzt und die Fachkraft für Arbeitssicherheit sein. Der Arbeitgeber darf mit der Durchführung von Messungen nur Personen beauftragen, die über die dafür notwendige Fachkunde und die erforderlichen Einrichtungen verfügen.\n\n§ 6. Auslösewerte bei Lärm\nDie Auslösewerte in Bezug auf den Tages-Lärmexpositionspegel und den Spitzenschalldruckpegel betragen:\n1.\nObere Auslösewerte: L (tief) EX,8h = 85 dB(A) beziehungsweise L (tief) pC,peak = 137 dB(C),\n2.\nUntere Auslösewerte: L (tief) EX,8h = 80 dB(A) beziehungsweise L (tief) pC,peak = 135 dB(C).\nBei der Anwendung der Auslösewerte wird die dämmende Wirkung \n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "c26a142c9167ec49",
+      "title": "Verordnung über Sicherheit und Gesundheitsschutz bei Tätigkeiten mit Biologischen Arbeitsstoffen",
+      "abbreviation": "BioStoffV",
+      "description": "Verordnung über Sicherheit und Gesundheitsschutz bei Tätigkeiten mit Biologischen Arbeitsstoffen",
+      "type": "law",
+      "summary": "BioStoffV (Verordnung über Sicherheit und Gesundheitsschutz bei Tätigkeiten mit Biologischen Arbeitsstoffen) is German Primary legislation establishing legal requirements covering risk assessment, employee rights, employer obligations. Contains 22 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "BioStoffV (Verordnung über Sicherheit und Gesundheitsschutz bei Tätigkeiten mit Biologischen Arbeitsstoffen) is German Primary legislation establishing legal requirements covering risk assessment, employee rights, employer obligations. Contains 22 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "BioStoffV",
+        "verordnung",
+        "über",
+        "sicherheit",
+        "gesundheitsschutz",
+        "tätigkeiten",
+        "core safety",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations"
+      ],
+      "content": {
+        "full_text": "§ 1. Anwendungsbereich\n§ 1. Anwendungsbereich:\n(1) Diese Verordnung gilt für Tätigkeiten mit Biologischen Arbeitsstoffen (Biostoffen). Sie regelt Maßnahmen zum Schutz von Sicherheit und Gesundheit der Beschäftigten vor Gefährdungen durch diese Tätigkeiten. Sie regelt zugleich auch Maßnahmen zum Schutz von 1. Beschäftigten in Arbeitsbereichen, in denen diese durch Tätigkeiten nach § 2 Absatz 7 gefährdet werden können, ohne selbst diese Tätigkeiten auszuüben sowie 2. anderen Personen, soweit diese aufgrund des Verwendens von Biostoffen durch Beschäftigte oder durch Unternehmer ohne Beschäftigte gefährdet werden können.\n\n(2) Die Verordnung gilt auch für Tätigkeiten, die dem Gentechnikrecht unterliegen, sofern dort keine gleichwertigen oder strengeren Regelungen zum Schutz der Beschäftigten bestehen.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Biostoffe sind 1. Mikroorganismen, Zellkulturen und Endoparasiten einschließlich ihrer gentechnisch veränderten Formen, 2. mit Transmissibler Spongiformer Enzephalopathie (TSE) assoziierte Agenzien, die den Menschen durch Infektionen, infektionsbedingte akute oder chronische Krankheiten, Toxinbildung oder sensibilisierende Wirkungen gefährden können.\n\n(2) Den Biostoffen gleichgestellt sind 1. Ektoparasiten, die beim Menschen eigenständige Erkrankungen verursachen oder sensibilisierende oder toxische Wirkungen hervorrufen können, 2. technisch hergestellte biologische Einheiten mit neuen Eigenschaften, die den Menschen in gleicher Weise gefährden können wie Biostoffe.\n\n(3) Mikroorganismen sind alle zellulären oder nichtzellulären mikroskopisch oder submikroskopisch kleinen biologischen Einheiten, die zur Vermehrung oder zur Weitergabe von genetischem Material fähig sind, insbesondere Bakterien, Viren, Protozoen und Pilze.\n\n(4) Zellkulturen sind in-vitro-vermehrte Zellen, die aus vielzelligen Organismen isoliert worden sind.\n\n(5) Toxine im Sinne von Absatz 1 sind Stoffwechselprodukte oder Zellbestandteile von Biostoffen, die infolge von Einatmen, Verschlucken oder Aufnahme über die Haut beim Menschen toxische Wirkungen hervorrufen und dadurch akute oder chronische Gesundheitsschäden oder den Tod bewirken können.\n\n(6) Biostoffe der Risikogruppe 3, die mit (**) gekennzeichnet sind, sind solche Biostoffe, bei denen das Infektionsrisiko für Beschäftigte begrenzt ist, weil eine Übertragung über den Luftweg normalerweise nicht erfolgen kann. Diese Biostoffe sind in Anhang III der Richtlinie 2000/54/EG des Europäischen Parlaments und des Rates vom 18. September 2000 über den Schutz der Arbeitnehmer gegen Gefährdung durch biologische Arbeitsstoffe bei der Arbeit (ABl. L 262 vom 17.10.2000, S. 21) sowie in den Bekanntmachungen nach § 19 Absatz 4 Nummer 1 entsprechend aufgeführt.\n\n(7) Tätigkeiten sind 1. das Verwenden von Biostoffen, insbesondere das Isolieren, Erzeugen und Vermehren, das Aufschließen, das Ge- und Verbrauchen, das Be- und Verarbeiten, das Ab- und Umfüllen, das Mischen und Abtrennen sowie das innerbetriebliche Befördern, das Aufbewahren einschließlich des Lagerns, das Inaktivieren und das Entsorgen sowie 2. die berufliche Arbeit mit Menschen, Tieren, Pflanzen, Produkten, Gegenständen oder Materialien, wenn aufgrund dieser Arbeiten Biostoffe auftreten oder freigesetzt werden und Beschäftigte damit in Kontakt kommen können.\n\n(8) Gezielte Tätigkeiten liegen vor, wenn 1. die Tätigkeiten auf einen oder mehrere Biostoffe unmittelbar ausgerichtet sind, 2. der Biostoff oder die Biostoffe mindestens der Spezies nach bekannt sind und 3. die Exposition der Beschäftigten im Normalbetrieb hinreichend bekannt oder abschätzbar ist. Nicht gezielte Tätigkeiten liegen vor, wenn mindestens eine Voraussetzung nach Satz 1 nicht vorliegt. Dies ist insbesondere bei Tätigkeiten nach Absatz 7 Nummer 2 gegeben.\n\n(9) Beschäftigte sind Personen, die nach § 2 Absatz 2 des Arbeitsschutzgesetzes als solche bestimmt sind. Den Beschäftigten stehen folgende Personen gleich, sofern sie Tätigkeiten mit Biostoffen durchführen: 1. Schülerinnen und Schüler, 2. Studierende, 3. sonstige Personen, insbesondere in wissenschaftlichen Einrichtungen und in Einrichtungen des Gesundheitsdienstes Tätige, 4. in Heimarbeit Beschäftigte nach § 1 Absatz 1 des Heimarbeitsgesetzes. Auf Schülerinnen und Schüler, Studierende sowie sonstige Personen nach Nummer 3 finden die Regelungen dieser Verordnung über die Beteiligung der Vertretungen keine Anwendung.\n\n(10) Arbeitgeber ist, wer nach § 2 Absatz 3 des Arbeitsschutzgesetzes als solcher bestimmt ist. Dem Arbeitgeber stehen gleich 1. der Unternehmer ohne Beschäftigte, 2. der Auftraggeber und der Zwischenmeister im Sinne des Heimarbeitsgesetzes.\n\n(11) Fachkundig im Sinne dieser Verordnung ist, wer zur Ausübung einer in dieser Verordnung bestimmten Aufgabe befähigt ist. Die Anforderungen an die Fachkunde sind abhängig von der jeweiligen Art der Aufgabe und der Höhe der Gefährdung. Die für die Fachkunde erforderlichen Kenntnisse sind durch eine geeignete Berufsausbildung und eine zeitnahe einschlägige berufliche Tätigkeit nachzuweisen. In Abhängigkeit von der Aufgabe und der Höhe der Gefährdung kann zusätzlich die Teilnahme an spezifischen Fortbildungsmaßnahmen erforderlich sein.\n\n(12) Stand der Technik ist der Entwicklungsstand fortschrittlicher Verfahren, Einrichtungen oder Betriebsweisen, der die praktische Eignung einer Maßnahme zum Schutz von Sicherheit und Gesundheit der Beschäftigten gesichert erscheinen lässt. Bei der Bestimmung des Standes der Technik sind insbesondere vergleichbare Verfahren, Einrichtungen oder Betriebsweisen heranzuziehen, die mit Erfolg in der Praxis erprobt worden sind.\n\n(13) Schutzstufen orientieren sich an der Risikogruppe des jeweiligen Biostoffs und sind ein Maßstab für die Höhe der Infektionsgefährdung einer Tätigkeit. Entsprechend den Risikogruppen\n\n§ 3. Einstufung von Biostoffen in Risikogruppen\n§ 3. Einstufung von Biostoffen in Risikogruppen:\n(1) Biostoffe werden entsprechend dem von ihnen ausgehenden Infektionsrisiko nach dem Stand der Wissenschaft in eine der folgenden Risikogruppen eingestuft:\n1. Risikogruppe 1: Biostoffe, bei denen es unwahrscheinlich ist, dass sie beim Menschen eine Krankheit hervorrufen,\n2. Risikogruppe 2: Biostoffe, die eine Krankheit beim Menschen hervorrufen können und eine Gefahr für Beschäftigte darstellen könnten; eine Verbreitung in der Bevölkerung ist unwahrscheinlich; eine wirksame Vorbeugung oder Behandlung ist normalerweise möglich,\n3. Risikogruppe 3: Biostoffe, die eine schwere Krankheit beim Menschen hervorrufen und eine ernste Gefahr für Beschäftigte darstellen können; die Gefahr einer Verbreitung in der Bevölkerung kann bestehen, doch ist normalerweise eine wirksame Vorbeugung oder Behandlung möglich,\n4. Risikogruppe 4: Biostoffe, die eine schwere Krankheit beim Menschen hervorrufen und eine ernste Gefahr für Beschäftigte darstellen; die Gefahr einer Verbreitung in der Bevölkerung ist unter Umständen groß; normalerweise ist eine wirksame Vorbeugung oder Behandlung nicht möglich.\n\n(2) Für die Einstufung der Biostoffe in die Risikogruppen 2 bis 4 gilt Anhang III der Richtlinie 2000/54/EG des Europäischen Parlaments und des Rates vom 18. September 2000 über den Schutz der Arbeitnehmer gegen Gefährdung durch biologische Arbeitsstoffe bei der Arbeit (ABl. L 262 vom 17.10.2000, S. 21). Wird dieser Anhang im Verfahren nach Artikel 19 dieser Richtlinie an den technischen Fortschritt angepasst, so kann die geänderte Fassung bereits ab ihrem Inkrafttreten angewendet werden. Sie ist nach Ablauf der festgelegten Umsetzungsfrist anzuwenden.\n\n(3) Ist ein Biostoff nicht nach Absatz 2 eingestuft, kann das Bundesministerium für Arbeit und Soziales nach Beratung durch den Ausschuss nach § 19 die Einstufung in eine Risikogruppe nach Absatz 1 vornehmen. Die Einstufungen werden im Gemeinsamen Ministerialblatt bekannt gegeben. Der Arbeitgeber hat diese Einstufungen zu beachten.\n\n(4) Liegt für einen Biostoff weder eine Einstufung nach Absatz 2 noch eine nach Absatz 3 vor, hat der Arbeitgeber, der eine gezielte Tätigkeit mit diesem Biostoff beabsichtigt, diesen in eine der Risikogruppen nach Absatz 1 einzustufen. Dabei hat der Arbeitgeber Folgendes zu beachten:\n1. kommen für die Einstufung mehrere Risikogruppen in Betracht, ist der Biostoff in die höchste infrage kommende Risikogruppe einzustufen,\n2. Viren, die bereits beim Menschen isoliert wurden, sind mindestens in die Risikogruppe 2 einzustufen, es sei denn, es ist unwahrscheinlich, dass diese Viren beim Menschen eine Krankheit verursachen,\n3. Stämme, die abgeschwächt sind oder bekannte Virulenzgene verloren haben, können vorbehaltlich einer angemessenen Ermittlung und Bewertung in eine niedrigere Risikogruppe eingestuft werden als der Elternstamm (parentaler Stamm); ist der Elternstamm in die Risikogruppe 3 oder 4 eingestuft, kann eine Herabstufung nur auf der Grundlage einer wissenschaftlichen Bewertung erfolgen, die insbesondere der Ausschuss nach § 19 vornehmen kann.\n\n§ 4. Gefährdungsbeurteilung\n§ 4. Gefährdungsbeurteilung:\n(1) Im Rahmen der Gefährdungsbeurteilung nach § 5 des Arbeitsschutzgesetzes hat der Arbeitgeber die Gefährdung der Beschäftigten durch die Tätigkeiten mit Biostoffen vor Aufnahme der Tätigkeit zu beurteilen. Die Gefährdungsbeurteilung ist fachkundig durchzuführen. Verfügt der Arbeitgeber nicht selbst über die entsprechenden Kenntnisse, so hat er sich fachkundig beraten zu lassen.\n\n(2) Der Arbeitgeber hat die Gefährdungsbeurteilung unverzüglich zu aktualisieren, wenn\n1. maßgebliche Veränderungen der Arbeitsbedingungen oder neue Informationen, zum Beispiel Unfallberichte oder Erkenntnisse aus arbeitsmedizinischen Vorsorgeuntersuchungen, dies erfordern oder\n2. die Prüfung von Funktion und Wirksamkeit der Schutzmaßnahmen ergeben hat, dass die festgelegten Schutzmaßnahmen nicht wirksam sind.\nAnsonsten hat der Arbeitgeber die Gefährdungsbeurteilung mindestens jedes zweite Jahr zu überprüfen und bei Bedarf zu aktualisieren. Ergibt die Überprüfun\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "461ebe4d1632037f",
+      "title": "Verordnung zur arbeitsmedizinischen Vorsorge",
+      "abbreviation": "ArbMedVV",
+      "description": "Verordnung zur arbeitsmedizinischen Vorsorge",
+      "type": "law",
+      "summary": "ArbMedVV (Verordnung zur arbeitsmedizinischen Vorsorge) is German Primary legislation establishing legal requirements covering health surveillance, employer obligations, employee rights. Contains 11 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ArbMedVV (Verordnung zur arbeitsmedizinischen Vorsorge) is German Primary legislation establishing legal requirements covering health surveillance, employer obligations, employee rights. Contains 11 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ArbMedVV",
+        "verordnung",
+        "arbeitsmedizinischen",
+        "vorsorge",
+        "core safety",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "prevention"
+      ],
+      "content": {
+        "full_text": "§ 1. Ziel und Anwendungsbereich\n§ 1. Ziel und Anwendungsbereich:\n(1) Ziel der Verordnung ist es, durch Maßnahmen der arbeitsmedizinischen Vorsorge arbeitsbedingte Erkrankungen einschließlich Berufskrankheiten frühzeitig zu erkennen und zu verhüten. Arbeitsmedizinische Vorsorge soll zugleich einen Beitrag zum Erhalt der Beschäftigungsfähigkeit und zur Fortentwicklung des betrieblichen Gesundheitsschutzes leisten.\n\n(2) Diese Verordnung gilt für die arbeitsmedizinische Vorsorge im Geltungsbereich des Arbeitsschutzgesetzes.\n\n(3) Diese Verordnung lässt sonstige arbeitsmedizinische Präventionsmaßnahmen, insbesondere nach dem Arbeitsschutzgesetz und dem Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit (Arbeitssicherheitsgesetz), unberührt.\n\n§ 2. Begriffsbestimmungen\n§ 2. Begriffsbestimmungen:\n(1) Arbeitsmedizinische Vorsorge im Sinne dieser Verordnung\n1. ist Teil der arbeitsmedizinischen Präventionsmaßnahmen im Betrieb;\n2. dient der Beurteilung der individuellen Wechselwirkungen von Arbeit und physischer und psychischer Gesundheit und der Früherkennung arbeitsbedingter Gesundheitsstörungen sowie der Feststellung, ob bei Ausübung einer bestimmten Tätigkeit eine erhöhte gesundheitliche Gefährdung besteht;\n3. beinhaltet ein ärztliches Beratungsgespräch mit Anamnese einschließlich Arbeitsanamnese sowie körperliche oder klinische Untersuchungen, soweit diese für die individuelle Aufklärung und Beratung erforderlich sind und der oder die Beschäftigte diese Untersuchungen nicht ablehnt;\n4. umfasst die Nutzung von Erkenntnissen aus der Vorsorge für die Gefährdungsbeurteilung und für sonstige Maßnahmen des Arbeitsschutzes;\n5. umfasst nicht den Nachweis der gesundheitlichen Eignung für berufliche Anforderungen nach sonstigen Rechtsvorschriften oder individual- oder kollektivrechtlichen Vereinbarungen.\n\n(2) Pflichtvorsorge ist arbeitsmedizinische Vorsorge, die bei bestimmten besonders gefährdenden Tätigkeiten veranlasst werden muss.\n\n(3) Angebotsvorsorge ist arbeitsmedizinische Vorsorge, die bei bestimmten gefährdenden Tätigkeiten angeboten werden muss.\n\n(4) Wunschvorsorge ist arbeitsmedizinische Vorsorge, die bei Tätigkeiten, bei denen ein Gesundheitsschaden nicht ausgeschlossen werden kann, auf Wunsch des oder der Beschäftigten ermöglicht werden muss.\n\n§ 3. Allgemeine Pflichten des Arbeitgebers\n§ 3. Allgemeine Pflichten des Arbeitgebers:\n(1) Der Arbeitgeber hat auf der Grundlage der Gefährdungsbeurteilung für eine angemessene arbeitsmedizinische Vorsorge zu sorgen. Dabei hat er die Vorschriften dieser Verordnung einschließlich des Anhangs zu beachten und die nach § 9 Abs. 4 bekannt gegebenen Regeln und Erkenntnisse zu berücksichtigen. Bei Einhaltung der Regeln und Erkenntnisse nach Satz 2 ist davon auszugehen, dass die gestellten Anforderungen erfüllt sind. Arbeitsmedizinische Vorsorge kann auch weitere Maßnahmen der Gesundheitsvorsorge umfassen.\n\n(2) Der Arbeitgeber hat zur Durchführung der arbeitsmedizinischen Vorsorge einen Arzt oder eine Ärztin nach § 7 zu beauftragen. Ist ein Betriebsarzt oder eine Betriebsärztin nach § 2 des Arbeitssicherheitsgesetzes bestellt, soll der Arbeitgeber vorrangig diesen oder diese auch mit der arbeitsmedizinischen Vorsorge beauftragen. Dem Arzt oder der Ärztin sind alle erforderlichen Auskünfte über die Arbeitsplatzverhältnisse, insbesondere über den Anlass der arbeitsmedizinischen Vorsorge und die Ergebnisse der Gefährdungsbeurteilung, zu erteilen und die Begehung des Arbeitsplatzes zu ermöglichen. Ihm oder ihr ist auf Verlangen Einsicht in die Unterlagen nach Absatz 4 Satz 1 zu gewähren.\n\n(3) Arbeitsmedizinische Vorsorge soll während der Arbeitszeit stattfinden. Ergibt die Gefährdungsbeurteilung für die Tätigkeit oder die Tätigkeiten des oder der Beschäftigten mehrere Vorsorgeanlässe, soll die arbeitsmedizinische Vorsorge in einem Termin stattfinden. Arbeitsmedizinische Vorsorge soll nicht zusammen mit Untersuchungen, die dem Nachweis der gesundheitlichen Eignung für berufliche Anforderungen dienen, durchgeführt werden, es sei denn, betriebliche Gründe erfordern dies; in diesem Fall hat der Arbeitgeber den Arzt oder die Ärztin zu verpflichten, die unterschiedlichen Zwecke von arbeitsmedizinischer Vorsorge und Eignungsuntersuchung gegenüber dem oder der Beschäftigten offenzulegen.\n\n(4) Der Arbeitgeber hat eine Vorsorgekartei zu führen mit Angaben, dass, wann und aus welchen Anlässen arbeitsmedizinische Vorsorge stattgefunden hat; die Kartei kann automatisiert geführt werden. Die Angaben sind bis zur Beendigung des Beschäftigungsverhältnisses aufzubewahren und anschließend zu löschen, es sei denn, dass Rechtsvorschriften oder die nach § 9 Absatz 4 bekannt gegebenen Regeln etwas anderes bestimmen. Der Arbeitgeber hat der zuständigen Behörde auf Anordnung eine Kopie der Vorsorgekartei zu übermitteln. Bei Beendigung des Beschäftigungsverhältnisses hat der Arbeitgeber der betroffenen Person eine Kopie der sie betreffenden Angaben auszuhändigen; § 34 des Bundesdatenschutzgesetzes bleibt unberührt.\n\n§ 4. Pflichtvorsorge\n(1) Der Arbeitgeber hat nach Maßgabe des Anhangs Pflichtvorsorge für die Beschäftigten zu veranlassen. Pflichtvorsorge muss vor Aufnahme der Tätigkeit und anschließend in regelmäßigen Abständen veranlasst werden.\n\n(2) Der Arbeitgeber darf eine Tätigkeit nur ausüben lassen, wenn der oder die Beschäftigte an der Pflichtvorsorge teilgenommen hat.\n\n(3) (weggefallen)\n\n§ 5. Angebotsvorsorge\n§ 5. Angebotsvorsorge:\n(1) Der Arbeitgeber hat den Beschäftigten Angebotsvorsorge nach Maßgabe des Anhangs anzubieten. Angebotsvorsorge muss vor Aufnahme der Tätigkeit und anschließend in regelmäßigen Abständen angeboten werden. Das Ausschlagen eines Angebots entbindet den Arbeitgeber nicht von der Verpflichtung, weiter regelmäßig Angebotsvorsorge anzubieten.\n\n(2) Erhält der Arbeitgeber Kenntnis von einer Erkrankung, die im ursächlichen Zusammenhang mit der Tätigkeit des oder der Beschäftigten stehen kann, so hat er ihm oder ihr unverzüglich Angebotsvorsorge anzubieten. Dies gilt auch für Beschäftigte mit vergleichbaren Tätigkeiten, wenn Anhaltspunkte dafür bestehen, dass sie ebenfalls gefährdet sein können.\n\n(3) Der Arbeitgeber hat Beschäftigten sowie ehemals Beschäftigten nach Maßgabe des Anhangs nach Beendigung bestimmter Tätigkeiten, bei denen nach längeren Latenzzeiten Gesundheitsstörungen auftreten können, nachgehende Vorsorge anzubieten. Am Ende des Beschäftigungsverhältnisses überträgt der Arbeitgeber diese Verpflichtung auf den zuständigen gesetzlichen Unfallversicherungsträger und überlässt ihm die erforderlichen Unterlagen in Kopie, sofern der oder die Beschäftigte eingewilligt hat.\n\n§ 5a. Wunschvorsorge\nÜber die Vorschriften des Anhangs hinaus hat der Arbeitgeber den Beschäftigten auf ihren Wunsch hin regelmäßig arbeitsmedizinische Vorsorge nach § 11 des Arbeitsschutzgesetzes zu ermöglichen, es sei denn, auf Grund der Beurteilung der Arbeitsbedingungen und der getroffenen Schutzmaßnahmen ist nicht mit einem Gesundheitsschaden zu rechnen.\n\n§ 6. Pflichten des Arztes oder der Ärztin\n§ 6. Pflichten des Arztes oder der Ärztin:\n(1) Bei der arbeitsmedizinischen Vorsorge hat der Arzt oder die Ärztin die Vorschriften dieser Verordnung einschließlich des Anhangs zu beachten und die dem Stand der Arbeitsmedizin entsprechenden Regeln und Erkenntnisse zu berücksichtigen. Vor Durchführung der arbeitsmedizinischen Vorsorge muss er oder sie sich die notwendigen Kenntnisse über die Arbeitsplatzverhältnisse verschaffen. In die Arbeitsanamnese müssen alle Arbeitsbedingungen und arbeitsbedingten Gefährdungen einfließen. Vor Durchführung körperlicher oder klinischer Untersuchungen hat der Arzt oder die Ärztin deren Erforderlichkeit nach pflichtgemäßem ärztlichen Ermessen zu prüfen und den oder die Beschäftigte über die Inhalte, den Zweck und die Risiken der Untersuchung aufzuklären. Untersuchungen nach Satz 3 dürfen nicht gegen den Willen des oder der Beschäftigten durchgeführt werden. Der Arzt oder die Ärztin hat die ärztliche Schweigepflicht zu beachten.\n\n(2) Biomonitoring ist Bestandteil der arbeitsmedizinischen Vorsorge, soweit dafür arbeitsmedizinisch anerkannte Analyseverfahren und geeignete Werte zur Beurteilung zur Verfügung stehen. Biomonitoring darf nicht gegen den Willen der oder des Beschäftigten durchgeführt werden. Impfungen sind Bestandteil der arbeitsmedizinischen Vorsorge und den Beschäftigten anzubieten, soweit das Risiko einer Infektion tätigkeitsbedingt und im Vergleich zur Allgemeinbevölkerung erhöht ist. Satz 3 gilt nicht, wenn der oder die Beschäftigte bereits über einen ausreichenden Immunschutz verfügt.\n\n(3) Der Arzt oder die Ärztin hat\n1. das Ergebnis sowie die Befunde der arbeitsmedizinischen Vorsorge schriftlich festzuhalten und den oder die Beschäftigte darüber zu beraten,\n2. dem oder der Beschäftigten auf seinen oder ihren Wunsch hin das Ergebnis zur Verfügung zu stellen sowie\n3. der oder dem Beschäftigten und dem Arbeitgeber eine Vorsorgebescheinigung darüber auszustellen, dass, wann und aus welchem Anlass ein arbeitsmedizinischer Vorsorgetermin stattgefunden hat; die Vorsorgebescheinigung enthält auch die Angabe, wann eine weitere arbeitsmedizinische Vorsorge aus ärztlicher Sicht angezeigt ist.\n\n(4) Der Arzt oder die Ärztin hat die Erkenntnisse arbeitsmedizinischer Vorsorge auszuwerten. Ergeben sich Anhaltspunkte dafür, dass die Maßnahmen des Arbeitsschutzes für den Beschäftigten oder die Beschäftigte oder andere Beschäftigte nicht ausreichen, so hat der Arzt oder die Ärztin dies dem Arbeitgeber mitzuteilen und Maßnahmen des Arbeitsschutzes vorzuschlagen. Hält der Arzt oder die Ärztin aus medizinischen Gründen, die ausschließlich in der Person des oder der Beschäftigten liegen, einen Tätigkeitswechsel für erforderlich, so bedarf diese Mitteilung an den Arbeitgeber der Einwilligung des oder der Beschäftigten.\n\n§ 7. Anforderungen an den Arzt oder die Ärztin\n§ 7. Anforderungen an den Arzt oder die Ärztin:\n(1) Unbeschadet anderer Bestimmu\n\n[Content truncated for mobile - view full version online]",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "7978a564fbd1cc01",
+      "title": "Verordnung über Sicherheit und Gesundheitsschutz bei der manuellen Handhabung von Lasten bei der Arbeit",
+      "abbreviation": "LastenhandhabV",
+      "description": "Verordnung über Sicherheit und Gesundheitsschutz bei der manuellen Handhabung von Lasten bei der Arbeit",
+      "type": "law",
+      "summary": "LastenhandhabV (Verordnung über Sicherheit und Gesundheitsschutz bei der manuellen Handhabung von Lasten bei der Arbeit) is German Primary legislation establishing legal requirements covering prevention services, risk assessment, ergonomics. Contains 4 sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "LastenhandhabV (Verordnung über Sicherheit und Gesundheitsschutz bei der manuellen Handhabung von Lasten bei der Arbeit) is German Primary legislation establishing legal requirements covering prevention services, risk assessment, ergonomics. Contains 4 sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "LastenhandhabV",
+        "verordnung",
+        "über",
+        "sicherheit",
+        "gesundheitsschutz",
+        "manuellen",
+        "core safety",
+        "prevention",
+        "safety services",
+        "occupational safety",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "ergonomics",
+        "workplace ergonomics"
+      ],
+      "content": {
+        "full_text": "§ 1. Anwendungsbereich\n§ 1. Anwendungsbereich:\n(1) Diese Verordnung gilt für die manuelle Handhabung von Lasten, die aufgrund ihrer Merkmale oder ungünstiger ergonomischer Bedingungen für die Beschäftigten eine Gefährdung für Sicherheit und Gesundheit, insbesondere der Lendenwirbelsäule, mit sich bringt.\n\n(2) Manuelle Handhabung im Sinne dieser Verordnung ist jedes Befördern oder Abstützen einer Last durch menschliche Kraft, unter anderem das Heben, Absetzen, Schieben, Ziehen, Tragen oder Bewegen einer Last.\n\n(3) Das Bundeskanzleramt, das Bundesministerium des Innern, für Bau und Heimat, das Bundesministerium für Verkehr und digitale Infrastruktur, das Bundesministerium der Verteidigung oder das Bundesministerium der Finanzen können, soweit sie hierfür jeweils zuständig sind, im Einvernehmen mit dem Bundesministerium für Arbeit und Soziales und, soweit nicht das Bundesministerium des Innern, für Bau und Heimat selbst zuständig ist, im Einvernehmen mit dem Bundesministerium des Innern, für Bau und Heimat bestimmen, daß für bestimmte Tätigkeiten im öffentlichen Dienst des Bundes, insbesondere bei der Bundeswehr, der Polizei, den Zivil- und Katastrophenschutzdiensten, dem Zoll oder den Nachrichtendiensten, Vorschriften dieser Verordnung ganz oder zum Teil nicht anzuwenden sind, soweit öffentliche Belange dies zwingend erfordern, insbesondere zur Aufrechterhaltung oder Wiederherstellung der öffentlichen Sicherheit. In diesem Fall ist gleichzeitig festzulegen, wie die Sicherheit und der Gesundheitsschutz der Beschäftigten nach dieser Verordnung auf andere Weise gewährleistet werden.\n\n§ 2. Maßnahmen\n§ 2. Maßnahmen:\n(1) Der Arbeitgeber hat unter Zugrundelegung des Anhangs geeignete organisatorische Maßnahmen zu treffen oder geeignete Arbeitsmittel, insbesondere mechanische Ausrüstungen, einzusetzen, um manuelle Handhabungen von Lasten, die für die Beschäftigten eine Gefährdung für Sicherheit und Gesundheit, insbesondere der Lendenwirbelsäule mit sich bringen, zu vermeiden.\n\n(2) Können diese manuellen Handhabungen von Lasten nicht vermieden werden, hat der Arbeitgeber bei der Beurteilung der Arbeitsbedingungen nach § 5 des Arbeitsschutzgesetzes die Arbeitsbedingungen insbesondere unter Zugrundelegung des Anhangs zu beurteilen. Aufgrund der Beurteilung hat der Arbeitgeber geeignete Maßnahmen zu treffen, damit eine Gefährdung von Sicherheit und Gesundheit der Beschäftigten möglichst gering gehalten wird.\n\n§ 3. Übertragung von Aufgaben\nBei der Übertragung von Aufgaben der manuellen Handhabung von Lasten, die für die Beschäftigten zu einer Gefährdung für Sicherheit und Gesundheit führen, hat der Arbeitgeber die körperliche Eignung der Beschäftigten zur Ausführung der Aufgaben zu berücksichtigen.\n\n§ 4. Unterweisung\nBei der Unterweisung nach § 12 des Arbeitsschutzgesetzes hat der Arbeitgeber insbesondere den Anhang und die körperliche Eignung der Beschäftigten zu berücksichtigen. Er hat den Beschäftigten, soweit dies möglich ist, genaue Angaben zu machen über die sachgemäße manuelle Handhabung von Lasten und über die Gefahren, denen die Beschäftigten insbesondere bei unsachgemäßer Ausführung der Tätigkeit ausgesetzt sind.",
+        "available": true,
+        "format": "text"
+      }
+    },
+    {
+      "id": "b8c10daf93aa323d",
+      "title": "Gesetze im Internet",
+      "abbreviation": "_category_regulations",
+      "description": "Gesetze im Internet",
+      "type": "law",
+      "summary": "_category_regulations (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_regulations (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_regulations",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "2b1fa9b6088b1b42",
+      "title": "Gesetze im Internet",
+      "abbreviation": "_category_manual_handling",
+      "description": "Gesetze im Internet",
+      "type": "law",
+      "summary": "_category_manual_handling (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_manual_handling (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_manual_handling",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "32ee2cf6210adcbf",
+      "title": "Gesetze im Internet",
+      "abbreviation": "_category_forklifts",
+      "description": "Gesetze im Internet",
+      "type": "law",
+      "summary": "_category_forklifts (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_forklifts (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_forklifts",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "e9652c14e5b82ced",
+      "title": "DGUV Information 208-033 - Muskel-Skelett-Belastungen",
+      "abbreviation": "DGUV Information 208-033",
+      "description": "DGUV Information 208-033 - Muskel-Skelett-Belastungen",
+      "type": "law",
+      "summary": "DGUV Information 208-033 (DGUV Information 208-033 - Muskel-Skelett-Belastungen) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "DGUV Information 208-033 (DGUV Information 208-033 - Muskel-Skelett-Belastungen) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "DGUV Information 208-033",
+        "dguv",
+        "information",
+        "208-033",
+        "muskel-skelett-belastungen",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "ae933169bcfa7184",
+      "title": "Gesetze im Internet",
+      "abbreviation": "_category_warehouse",
+      "description": "Gesetze im Internet",
+      "type": "law",
+      "summary": "_category_warehouse (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_warehouse (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_warehouse",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "cc12b32f42d66941",
+      "title": "Gesetze im Internet",
+      "abbreviation": "_category_transport",
+      "description": "Gesetze im Internet",
+      "type": "law",
+      "summary": "_category_transport (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_transport (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_transport",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "01a3a0159a16ffc5",
+      "title": "Gesetze im Internet",
+      "abbreviation": "_category_training",
+      "description": "Gesetze im Internet",
+      "type": "law",
+      "summary": "_category_training (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_training (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_training",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "6cbcd1a390689b65",
+      "title": "Gesetze im Internet",
+      "abbreviation": "_category_shift_work",
+      "description": "Gesetze im Internet",
+      "type": "law",
+      "summary": "_category_shift_work (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_shift_work (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_shift_work",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "53b9946020723c11",
+      "title": "Gesetze im Internet",
+      "abbreviation": "_category_technical_rules",
+      "description": "Gesetze im Internet",
+      "type": "law",
+      "summary": "_category_technical_rules (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "_category_technical_rules (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "_category_technical_rules",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "9df1942530e60e18",
+      "title": "TRBS 2121 - Gefährdung durch Absturz",
+      "abbreviation": "TRBS 2121",
+      "description": "TRBS 2121 - Gefährdung durch Absturz",
+      "type": "law",
+      "summary": "TRBS 2121 (TRBS 2121 - Gefährdung durch Absturz) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "TRBS 2121 (TRBS 2121 - Gefährdung durch Absturz) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "TRBS 2121",
+        "trbs",
+        "2121",
+        "gefährdung",
+        "durch",
+        "absturz",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "9f796d1d6736a684",
+      "title": "TRGS 510 - Lagerung von Gefahrstoffen",
+      "abbreviation": "TRGS 510",
+      "description": "TRGS 510 - Lagerung von Gefahrstoffen",
+      "type": "law",
+      "summary": "TRGS 510 (TRGS 510 - Lagerung von Gefahrstoffen) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "TRGS 510 (TRGS 510 - Lagerung von Gefahrstoffen) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "TRGS 510",
+        "trgs",
+        "lagerung",
+        "gefahrstoffen",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "1b3e812353c6973c",
+      "title": "ASR A1.3 - Sicherheitskennzeichnung",
+      "abbreviation": "ASR A1.3",
+      "description": "ASR A1.3 - Sicherheitskennzeichnung",
+      "type": "law",
+      "summary": "ASR A1.3 (ASR A1.3 - Sicherheitskennzeichnung) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ASR A1.3 (ASR A1.3 - Sicherheitskennzeichnung) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ASR A1.3",
+        "a1.3",
+        "sicherheitskennzeichnung",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "54bf2f85f16f1ec3",
+      "title": "TRBS 1111 - Gefährdungsbeurteilung",
+      "abbreviation": "TRBS 1111",
+      "description": "TRBS 1111 - Gefährdungsbeurteilung",
+      "type": "law",
+      "summary": "TRBS 1111 (TRBS 1111 - Gefährdungsbeurteilung) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "TRBS 1111 (TRBS 1111 - Gefährdungsbeurteilung) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "TRBS 1111",
+        "trbs",
+        "1111",
+        "gefährdungsbeurteilung",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
+        "format": "text"
+      }
+    },
+    {
+      "id": "74f3cba7b260f20a",
+      "title": "ASR A2.2 - Maßnahmen gegen Brände",
+      "abbreviation": "ASR A2.2",
+      "description": "ASR A2.2 - Maßnahmen gegen Brände",
+      "type": "law",
+      "summary": "ASR A2.2 (ASR A2.2 - Maßnahmen gegen Brände) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "whs_summary": "ASR A2.2 (ASR A2.2 - Maßnahmen gegen Brände) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees.",
+      "keywords": [
+        "ASR A2.2",
+        "a2.2",
+        "maßnahmen",
+        "gegen",
+        "brände",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ],
+      "content": {
+        "full_text": null,
+        "available": false,
         "format": "text"
       }
     }

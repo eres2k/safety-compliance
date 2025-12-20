@@ -1,4 +1,5 @@
 {
+  "schema_version": "2.0.0",
   "metadata": {
     "country": "DE",
     "generated_at": "2025-12-20T04:03:15.678234",
@@ -9,7 +10,9 @@
     "sections_restructured_at": "2025-12-18T17:53:41.001Z",
     "auto_sections_at": "2025-12-18T17:52:16.040Z",
     "validated_at": "2025-12-20T04:08:20.685583",
-    "auto_fixes_applied": 8
+    "auto_fixes_applied": 8,
+    "data_version": "2025.12.20",
+    "migrated_at": "2025-12-20T06:02:16.536Z"
   },
   "documents": [
     {
@@ -82,7 +85,8 @@
             2
           ]
         ],
-        "critical_sections_count": 10
+        "critical_sections_count": 10,
+        "description": "ArbSchG (Occupational Safety Act) is German Primary legislation establishing legal requirements covering employee rights, employer obligations, prevention services. Contains 29 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -1204,7 +1208,24 @@
           ]
         }
       ],
-      "content_hash": "941e5916c8ae5e058d705a41da4a4d68"
+      "content_hash": "941e5916c8ae5e058d705a41da4a4d68",
+      "keywords": [
+        "ArbSchG",
+        "occupational",
+        "safety",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "prevention",
+        "safety services",
+        "occupational safety",
+        "health monitoring",
+        "medical surveillance"
+      ]
     },
     {
       "id": "6b8beb7e7529b408",
@@ -1276,7 +1297,8 @@
             1
           ]
         ],
-        "critical_sections_count": 4
+        "critical_sections_count": 4,
+        "description": "ASiG (Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit) is German Primary legislation establishing legal requirements covering prevention services, employee rights, employer obligations. Contains 23 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -1964,7 +1986,24 @@
           ]
         }
       ],
-      "content_hash": "fb0dee55fad017e0bcf4afbad0236fc5"
+      "content_hash": "fb0dee55fad017e0bcf4afbad0236fc5",
+      "keywords": [
+        "ASiG",
+        "gesetz",
+        "über",
+        "betriebsärzte,",
+        "sicherheitsingenieure",
+        "andere",
+        "core safety",
+        "prevention",
+        "safety services",
+        "occupational safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations"
+      ]
     },
     {
       "id": "b5f004e236cec425",
@@ -2036,7 +2075,8 @@
             1
           ]
         ],
-        "critical_sections_count": 7
+        "critical_sections_count": 7,
+        "description": "ArbZG (Arbeitszeitgesetz) is German Primary legislation establishing legal requirements covering employee rights, working hours, employer obligations. Contains 27 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -2957,7 +2997,24 @@
           ]
         }
       ],
-      "content_hash": "c46393c83662e6489dce3b9f998dd742"
+      "content_hash": "c46393c83662e6489dce3b9f998dd742",
+      "keywords": [
+        "ArbZG",
+        "arbeitszeitgesetz",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "working hours",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "health monitoring",
+        "medical surveillance"
+      ]
     },
     {
       "id": "bc358a450db43410",
@@ -3029,7 +3086,8 @@
             4
           ]
         ],
-        "critical_sections_count": 9
+        "critical_sections_count": 9,
+        "description": "JArbSchG (Gesetz zum Schutze der arbeitenden Jugend) is German Primary legislation establishing legal requirements covering special groups, employer obligations, employee rights. Contains 68 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -5125,7 +5183,24 @@
           ]
         }
       ],
-      "content_hash": "7fdd26f6dc1efdf244735eb7b003391b"
+      "content_hash": "7fdd26f6dc1efdf244735eb7b003391b",
+      "keywords": [
+        "JArbSchG",
+        "gesetz",
+        "schutze",
+        "arbeitenden",
+        "jugend",
+        "core safety",
+        "special groups",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "health monitoring",
+        "medical surveillance"
+      ]
     },
     {
       "id": "1e8af9cb004227b2",
@@ -5197,7 +5272,8 @@
             1
           ]
         ],
-        "critical_sections_count": 7
+        "critical_sections_count": 7,
+        "description": "ArbStättV (Verordnung über Arbeitsstätten) is German Primary legislation establishing legal requirements covering workplace design, risk assessment, prevention services. Contains 10 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -5623,7 +5699,24 @@
           ]
         }
       ],
-      "content_hash": "638d9a682611eb5b396bbd7f929e1664"
+      "content_hash": "638d9a682611eb5b396bbd7f929e1664",
+      "keywords": [
+        "ArbStättV",
+        "verordnung",
+        "über",
+        "arbeitsstätten",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "prevention",
+        "safety services",
+        "occupational safety",
+        "employer duties"
+      ]
     },
     {
       "id": "b4dbab1ce215b8c8",
@@ -5695,7 +5788,8 @@
             3
           ]
         ],
-        "critical_sections_count": 15
+        "critical_sections_count": 15,
+        "description": "BetrSichV (Verordnung über Sicherheit und Gesundheitsschutz bei der Verwendung von Arbeitsmitteln) is German Primary legislation establishing legal requirements covering risk assessment, employer obligations, work equipment. Contains 24 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -6615,7 +6709,24 @@
           ]
         }
       ],
-      "content_hash": "467459875c385ce75acce7741b3789e0"
+      "content_hash": "467459875c385ce75acce7741b3789e0",
+      "keywords": [
+        "BetrSichV",
+        "verordnung",
+        "über",
+        "sicherheit",
+        "gesundheitsschutz",
+        "verwendung",
+        "core safety",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "work equipment",
+        "machinery"
+      ]
     },
     {
       "id": "21605d54d00bc93d",
@@ -6687,7 +6798,8 @@
             5
           ]
         ],
-        "critical_sections_count": 20
+        "critical_sections_count": 20,
+        "description": "GefStoffV (Verordnung zum Schutz vor Gefahrstoffen*)) is German Primary legislation establishing legal requirements covering hazardous substances, risk assessment, employer obligations. Contains 37 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -7996,7 +8108,24 @@
           ]
         }
       ],
-      "content_hash": "f19b5eb5c39b74b8d8fad1fb699cde4a"
+      "content_hash": "f19b5eb5c39b74b8d8fad1fb699cde4a",
+      "keywords": [
+        "GefStoffV",
+        "verordnung",
+        "schutz",
+        "gefahrstoffen*)",
+        "core safety",
+        "hazardous materials",
+        "chemical safety",
+        "dangerous substances",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights"
+      ]
     },
     {
       "id": "88ffa4f0b33988b9",
@@ -8068,7 +8197,8 @@
             5
           ]
         ],
-        "critical_sections_count": 2
+        "critical_sections_count": 2,
+        "description": "MuSchG (Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium) is German Primary legislation establishing legal requirements covering employer obligations, special groups, risk assessment. Contains 34 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -9192,7 +9322,24 @@
           ]
         }
       ],
-      "content_hash": "6668d6088a03fe44025002be8c40ec3e"
+      "content_hash": "6668d6088a03fe44025002be8c40ec3e",
+      "keywords": [
+        "MuSchG",
+        "gesetz",
+        "schutz",
+        "müttern",
+        "arbeit,",
+        "ausbildung",
+        "core safety",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "special groups",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employee rights"
+      ]
     },
     {
       "id": "d108263040ad5045",
@@ -9264,7 +9411,8 @@
             4
           ]
         ],
-        "critical_sections_count": 10
+        "critical_sections_count": 10,
+        "description": "LärmVibrationsArbSchV (Verordnung zum Schutz der Beschäftigten vor Gefährdungen durch Lärm und Vibrationen) is German Primary legislation establishing legal requirements covering risk assessment, workplace design, prevention services. Contains 17 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -9858,7 +10006,24 @@
           ]
         }
       ],
-      "content_hash": "cdccfd8582299062af45fbe41a49e054"
+      "content_hash": "cdccfd8582299062af45fbe41a49e054",
+      "keywords": [
+        "LärmVibrationsArbSchV",
+        "verordnung",
+        "schutz",
+        "beschäftigten",
+        "gefährdungen",
+        "durch",
+        "core safety",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "prevention",
+        "safety services"
+      ]
     },
     {
       "id": "c26a142c9167ec49",
@@ -9930,7 +10095,8 @@
             3
           ]
         ],
-        "critical_sections_count": 11
+        "critical_sections_count": 11,
+        "description": "BioStoffV (Verordnung über Sicherheit und Gesundheitsschutz bei Tätigkeiten mit Biologischen Arbeitsstoffen) is German Primary legislation establishing legal requirements covering risk assessment, employee rights, employer obligations. Contains 22 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -10746,7 +10912,24 @@
           ]
         }
       ],
-      "content_hash": "5b5bb363e82bf4a0c18a346087216682"
+      "content_hash": "5b5bb363e82bf4a0c18a346087216682",
+      "keywords": [
+        "BioStoffV",
+        "verordnung",
+        "über",
+        "sicherheit",
+        "gesundheitsschutz",
+        "tätigkeiten",
+        "core safety",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations"
+      ]
     },
     {
       "id": "461ebe4d1632037f",
@@ -10818,7 +11001,8 @@
             1
           ]
         ],
-        "critical_sections_count": 3
+        "critical_sections_count": 3,
+        "description": "ArbMedVV (Verordnung zur arbeitsmedizinischen Vorsorge) is German Primary legislation establishing legal requirements covering health surveillance, employer obligations, employee rights. Contains 11 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -11246,7 +11430,24 @@
           ]
         }
       ],
-      "content_hash": "c5a0898d7a88d7fdd5821f342b74600c"
+      "content_hash": "c5a0898d7a88d7fdd5821f342b74600c",
+      "keywords": [
+        "ArbMedVV",
+        "verordnung",
+        "arbeitsmedizinischen",
+        "vorsorge",
+        "core safety",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "prevention"
+      ]
     },
     {
       "id": "7978a564fbd1cc01",
@@ -11310,7 +11511,8 @@
             1
           ]
         ],
-        "critical_sections_count": 3
+        "critical_sections_count": 3,
+        "description": "LastenhandhabV (Verordnung über Sicherheit und Gesundheitsschutz bei der manuellen Handhabung von Lasten bei der Arbeit) is German Primary legislation establishing legal requirements covering prevention services, risk assessment, ergonomics. Contains 4 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -11482,7 +11684,24 @@
           ]
         }
       ],
-      "content_hash": "f4c8e467bb59043b1e150ff96fe2bb70"
+      "content_hash": "f4c8e467bb59043b1e150ff96fe2bb70",
+      "keywords": [
+        "LastenhandhabV",
+        "verordnung",
+        "über",
+        "sicherheit",
+        "gesundheitsschutz",
+        "manuellen",
+        "core safety",
+        "prevention",
+        "safety services",
+        "occupational safety",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "ergonomics",
+        "workplace ergonomics"
+      ]
     },
     {
       "id": "b8c10daf93aa323d",
@@ -11513,10 +11732,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_regulations (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_regulations",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "2b1fa9b6088b1b42",
@@ -11547,10 +11777,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_manual_handling (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_manual_handling",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "32ee2cf6210adcbf",
@@ -11581,10 +11822,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_forklifts (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_forklifts",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "e9652c14e5b82ced",
@@ -11627,14 +11879,28 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "DGUV Information 208-033 (DGUV Information 208-033 - Muskel-Skelett-Belastungen) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Recognition and assessment of musculoskeletal loads.",
         "pdf_filename": "de_DGUV_Information_208-033_law.pdf",
         "pdf_size_bytes": 2416467,
         "is_pdf_only": true
       },
-      "content_hash": "8b02b31e6052ae7e78460c757cdf6465"
+      "content_hash": "8b02b31e6052ae7e78460c757cdf6465",
+      "keywords": [
+        "DGUV Information 208-033",
+        "dguv",
+        "information",
+        "208-033",
+        "muskel-skelett-belastungen",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "ae933169bcfa7184",
@@ -11665,10 +11931,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_warehouse (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_warehouse",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "cc12b32f42d66941",
@@ -11699,10 +11976,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_transport (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_transport",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "01a3a0159a16ffc5",
@@ -11733,10 +12021,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_training (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_training",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "6cbcd1a390689b65",
@@ -11767,10 +12066,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_shift_work (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_shift_work",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "53b9946020723c11",
@@ -11801,10 +12111,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_technical_rules (Gesetze im Internet) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_technical_rules",
+        "gesetze",
+        "internet",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "9df1942530e60e18",
@@ -11847,14 +12168,29 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "TRBS 2121 (TRBS 2121 - Gefährdung durch Absturz) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Protection against falling from heights.",
         "pdf_filename": "de_TRBS_2121_law.pdf",
         "pdf_size_bytes": 207865,
         "is_pdf_only": true
       },
-      "content_hash": "8577fb12a9256899059b8c1406129bf3"
+      "content_hash": "8577fb12a9256899059b8c1406129bf3",
+      "keywords": [
+        "TRBS 2121",
+        "trbs",
+        "2121",
+        "gefährdung",
+        "durch",
+        "absturz",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "9f796d1d6736a684",
@@ -11897,14 +12233,27 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "TRGS 510 (TRGS 510 - Lagerung von Gefahrstoffen) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Hazardous substance storage in portable containers.",
         "pdf_filename": "de_TRGS_510_law.pdf",
         "pdf_size_bytes": 687525,
         "is_pdf_only": true
       },
-      "content_hash": "1d9da7ce158111ffef7a8afc0f9a41e1"
+      "content_hash": "1d9da7ce158111ffef7a8afc0f9a41e1",
+      "keywords": [
+        "TRGS 510",
+        "trgs",
+        "lagerung",
+        "gefahrstoffen",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "1b3e812353c6973c",
@@ -11947,14 +12296,26 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "ASR A1.3 (ASR A1.3 - Sicherheitskennzeichnung) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Safety and health protection signage requirements.",
         "pdf_filename": "de_ASR_A1_3_law.pdf",
         "pdf_size_bytes": 2476823,
         "is_pdf_only": true
       },
-      "content_hash": "94e015b85b903b404e8572d307ba5c48"
+      "content_hash": "94e015b85b903b404e8572d307ba5c48",
+      "keywords": [
+        "ASR A1.3",
+        "a1.3",
+        "sicherheitskennzeichnung",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "54bf2f85f16f1ec3",
@@ -11997,14 +12358,27 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "TRBS 1111 (TRBS 1111 - Gefährdungsbeurteilung) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Technical rule for risk assessment of work equipment.",
         "pdf_filename": "de_TRBS_1111_law.pdf",
         "pdf_size_bytes": 3861750,
         "is_pdf_only": true
       },
-      "content_hash": "b85b38dc2c7f9249430e3f8f9a7d29f0"
+      "content_hash": "b85b38dc2c7f9249430e3f8f9a7d29f0",
+      "keywords": [
+        "TRBS 1111",
+        "trbs",
+        "1111",
+        "gefährdungsbeurteilung",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     },
     {
       "id": "74f3cba7b260f20a",
@@ -12047,14 +12421,28 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "ASR A2.2 (ASR A2.2 - Maßnahmen gegen Brände) is German Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Fire prevention and fire extinguisher requirements.",
         "pdf_filename": "de_ASR_A2_2_law.pdf",
         "pdf_size_bytes": 609670,
         "is_pdf_only": true
       },
-      "content_hash": "4e944a926be7fd3f99c9de6305b3e0e6"
+      "content_hash": "4e944a926be7fd3f99c9de6305b3e0e6",
+      "keywords": [
+        "ASR A2.2",
+        "a2.2",
+        "maßnahmen",
+        "gegen",
+        "brände",
+        "core safety",
+        "Germany",
+        "German law",
+        "ArbSchG",
+        "DGUV"
+      ]
     }
   ]
 }

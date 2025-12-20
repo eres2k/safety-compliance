@@ -1,4 +1,5 @@
 {
+  "schema_version": "2.0.0",
   "metadata": {
     "country": "NL",
     "generated_at": "2025-12-20T04:08:42.081687",
@@ -10,7 +11,9 @@
     "sections_restructured_at": "2025-12-18T17:53:41.068Z",
     "titles_updated_at": "2025-12-18T21:52:19.965Z",
     "validated_at": "2025-12-20T04:43:48.543447",
-    "auto_fixes_applied": 4
+    "auto_fixes_applied": 4,
+    "data_version": "2025.12.20",
+    "migrated_at": "2025-12-20T06:02:16.548Z"
   },
   "documents": [
     {
@@ -83,7 +86,8 @@
             7
           ]
         ],
-        "critical_sections_count": 9
+        "critical_sections_count": 9,
+        "description": "Arbowet (Working Conditions Act) is Dutch Primary legislation establishing legal requirements covering employer obligations, employee rights, workplace design. Contains 72 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -1907,7 +1911,24 @@
           ]
         }
       ],
-      "content_hash": "432abda490fe7400f08b36642660d976"
+      "content_hash": "432abda490fe7400f08b36642660d976",
+      "keywords": [
+        "Arbowet",
+        "working",
+        "conditions",
+        "core safety",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation"
+      ]
     },
     {
       "id": "70a29c6299ea0866",
@@ -1979,7 +2000,8 @@
             1
           ]
         ],
-        "critical_sections_count": 5
+        "critical_sections_count": 5,
+        "description": "Arbobesluit (Arbeidsomstandighedenbesluit) is Dutch Primary legislation establishing legal requirements covering workplace design, risk assessment, employee rights. Contains 9 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -2327,7 +2349,24 @@
           ]
         }
       ],
-      "content_hash": "cb28491149024adbf722ceadb8c76377"
+      "content_hash": "cb28491149024adbf722ceadb8c76377",
+      "keywords": [
+        "Arbobesluit",
+        "arbeidsomstandighedenbesluit",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health"
+      ]
     },
     {
       "id": "2b1aec624c968b45",
@@ -2399,7 +2438,8 @@
             1
           ]
         ],
-        "critical_sections_count": 3
+        "critical_sections_count": 3,
+        "description": "Arboregeling (Arbeidsomstandighedenregeling) is Dutch Primary legislation establishing legal requirements covering health surveillance, workplace design, incident reporting. Contains 9 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -2604,7 +2644,24 @@
           ]
         }
       ],
-      "content_hash": "d138241ef1103aea5983875721a68c84"
+      "content_hash": "d138241ef1103aea5983875721a68c84",
+      "keywords": [
+        "Arboregeling",
+        "arbeidsomstandighedenregeling",
+        "core safety",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "incident reporting",
+        "accident reporting",
+        "near miss",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis"
+      ]
     },
     {
       "id": "b9fe06655134f5ff",
@@ -2676,7 +2733,8 @@
             1
           ]
         ],
-        "critical_sections_count": 1
+        "critical_sections_count": 1,
+        "description": "Arbeidstijdenwet (Arbeidstijdenwet) is Dutch Primary legislation establishing legal requirements covering employer obligations, employee rights, documentation. Contains 12 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -3058,7 +3116,24 @@
           ]
         }
       ],
-      "content_hash": "0d1d47efdfc66fee5a17b7cdfac4290c"
+      "content_hash": "0d1d47efdfc66fee5a17b7cdfac4290c",
+      "keywords": [
+        "Arbeidstijdenwet",
+        "arbeidstijdenwet",
+        "core safety",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "documentation",
+        "records",
+        "safety documents",
+        "workplace design",
+        "workspace",
+        "work environment"
+      ]
     },
     {
       "id": "aa89fb9d053834ef",
@@ -3122,7 +3197,8 @@
             1
           ]
         ],
-        "critical_sections_count": 1
+        "critical_sections_count": 1,
+        "description": "ATB (Arbeidstijdenbesluit) is Dutch Primary legislation establishing legal requirements covering employer obligations, employee rights, health surveillance. Contains 7 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -3318,7 +3394,24 @@
           ]
         }
       ],
-      "content_hash": "9fd99393fe1e87a548e45a045672b2b4"
+      "content_hash": "9fd99393fe1e87a548e45a045672b2b4",
+      "keywords": [
+        "ATB",
+        "arbeidstijdenbesluit",
+        "core safety",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "working hours",
+        "penalties",
+        "fines"
+      ]
     },
     {
       "id": "379622bc98858fcd",
@@ -3349,10 +3442,22 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "REACH (Beleidsregel Meldingsformulier substantiële deelneming) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "REACH",
+        "beleidsregel",
+        "meldingsformulier",
+        "substantiële",
+        "deelneming",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "0e832a8c9c470024",
@@ -3383,10 +3488,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "PGS (Publicatiereeks Gevaarlijke Stoffen) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "PGS",
+        "publicatiereeks",
+        "gevaarlijke",
+        "stoffen",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "47ad0a0dd8f029ca",
@@ -3434,7 +3550,8 @@
             1
           ]
         ],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": " Warenwetbesluit machines (Handhavingsvoorschrift Terlet) is Dutch Primary legislation establishing legal requirements covering documentation, incident reporting, health surveillance. Contains 16 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -3752,7 +3869,24 @@
           ]
         }
       ],
-      "content_hash": "503cb2e9413f78862c7f9800f00dd244"
+      "content_hash": "503cb2e9413f78862c7f9800f00dd244",
+      "keywords": [
+        " Warenwetbesluit machines",
+        "handhavingsvoorschrift",
+        "terlet",
+        "core safety",
+        "documentation",
+        "records",
+        "safety documents",
+        "incident reporting",
+        "accident reporting",
+        "near miss",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "penalties",
+        "fines"
+      ]
     },
     {
       "id": "ffea95dd2c3a4e87",
@@ -3824,7 +3958,8 @@
             1
           ]
         ],
-        "critical_sections_count": 3
+        "critical_sections_count": 3,
+        "description": "WOR (Wet op de ondernemingsraden) is Dutch Primary legislation establishing legal requirements covering employee rights, employer obligations, documentation. Contains 82 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -5546,7 +5681,24 @@
           ]
         }
       ],
-      "content_hash": "140fcb8d15e395efcad0237309c2ade1"
+      "content_hash": "140fcb8d15e395efcad0237309c2ade1",
+      "keywords": [
+        "WOR",
+        "ondernemingsraden",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "documentation",
+        "records",
+        "safety documents",
+        "workplace design",
+        "workspace",
+        "work environment"
+      ]
     },
     {
       "id": "e4f91822794c6b62",
@@ -5610,7 +5762,8 @@
             1
           ]
         ],
-        "critical_sections_count": 1
+        "critical_sections_count": 1,
+        "description": "WAZO (Besluit gegevensverwerving CBS) is Dutch Primary legislation establishing legal requirements covering employee rights, health surveillance, employer obligations. Contains 21 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -6021,7 +6174,24 @@
           ]
         }
       ],
-      "content_hash": "0f5d9afa8214ac7fd4584ceaf4f1fa9b"
+      "content_hash": "0f5d9afa8214ac7fd4584ceaf4f1fa9b",
+      "keywords": [
+        "WAZO",
+        "besluit",
+        "gegevensverwerving",
+        "core safety",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "incident reporting",
+        "accident reporting"
+      ]
     },
     {
       "id": "b785f3707d631907",
@@ -6089,7 +6259,8 @@
             2
           ]
         ],
-        "critical_sections_count": 4
+        "critical_sections_count": 4,
+        "description": "WED (Wet op de economische delicten) is Dutch Primary legislation establishing legal requirements covering penalties, employee rights, employer obligations. Contains 96 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -7902,7 +8073,24 @@
           ]
         }
       ],
-      "content_hash": "4151891cb69ba95e88dd8d5c55963650"
+      "content_hash": "4151891cb69ba95e88dd8d5c55963650",
+      "keywords": [
+        "WED",
+        "economische",
+        "delicten",
+        "core safety",
+        "penalties",
+        "fines",
+        "sanctions",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "employer duties",
+        "employer obligations",
+        "compliance",
+        "documentation",
+        "records"
+      ]
     },
     {
       "id": "e5d8971b830729a8",
@@ -7938,7 +8126,8 @@
             2
           ]
         ],
-        "critical_sections_count": 1
+        "critical_sections_count": 1,
+        "description": "UAVG (Tijdelijke vrijstelling ter bescherming (groeiregulatie) van de onbedekte pot- en\n                     [...] Viburnum, chrysant, Azalea, Aster en Hortensia, 2018) is Dutch Primary legislation establishing legal requirements covering ppe. Contains 4 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -8018,7 +8207,22 @@
           ]
         }
       ],
-      "content_hash": "dad94078853506eca0c073137f9c4a78"
+      "content_hash": "dad94078853506eca0c073137f9c4a78",
+      "keywords": [
+        "UAVG",
+        "tijdelijke",
+        "vrijstelling",
+        "bescherming",
+        "(groeiregulatie)",
+        "onbedekte",
+        "core safety",
+        "personal protective equipment",
+        "PPE",
+        "protective gear",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "1ae833656581994d",
@@ -8078,7 +8282,8 @@
             1
           ]
         ],
-        "critical_sections_count": 1
+        "critical_sections_count": 1,
+        "description": "Wazo (Besluit vervuilingswaarde ingenomen water) is Dutch Primary legislation establishing legal requirements covering workplace design, hazardous substances, ppe. Contains 7 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -8232,7 +8437,24 @@
           ]
         }
       ],
-      "content_hash": "f9234639f9e81758b466578380c2726b"
+      "content_hash": "f9234639f9e81758b466578380c2726b",
+      "keywords": [
+        "Wazo",
+        "besluit",
+        "vervuilingswaarde",
+        "ingenomen",
+        "water",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "hazardous materials",
+        "chemical safety",
+        "dangerous substances",
+        "personal protective equipment",
+        "PPE",
+        "protective gear"
+      ]
     },
     {
       "id": "ed73c48c4fa4036c",
@@ -8304,7 +8526,8 @@
             1
           ]
         ],
-        "critical_sections_count": 5
+        "critical_sections_count": 5,
+        "description": "AI-19 (Arbeidsomstandighedenbesluit) is Dutch Primary legislation establishing legal requirements covering workplace design, risk assessment, employee rights. Contains 9 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -8596,7 +8819,24 @@
           ]
         }
       ],
-      "content_hash": "cb28491149024adbf722ceadb8c76377"
+      "content_hash": "cb28491149024adbf722ceadb8c76377",
+      "keywords": [
+        "AI-19",
+        "arbeidsomstandighedenbesluit",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health"
+      ]
     },
     {
       "id": "2e585dfedcedbdcd",
@@ -8668,7 +8908,8 @@
             1
           ]
         ],
-        "critical_sections_count": 5
+        "critical_sections_count": 5,
+        "description": "AI-13 (Arbeidsomstandighedenbesluit) is Dutch Primary legislation establishing legal requirements covering workplace design, risk assessment, employee rights. Contains 9 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -8960,7 +9201,24 @@
           ]
         }
       ],
-      "content_hash": "cb28491149024adbf722ceadb8c76377"
+      "content_hash": "cb28491149024adbf722ceadb8c76377",
+      "keywords": [
+        "AI-13",
+        "arbeidsomstandighedenbesluit",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health"
+      ]
     },
     {
       "id": "6548cb4cec0d5255",
@@ -9032,7 +9290,8 @@
             1
           ]
         ],
-        "critical_sections_count": 5
+        "critical_sections_count": 5,
+        "description": "AI-15 (Arbeidsomstandighedenbesluit) is Dutch Primary legislation establishing legal requirements covering workplace design, risk assessment, employee rights. Contains 9 sections with comprehensive requirements for employers and employees."
       },
       "chapters": [
         {
@@ -9324,7 +9583,24 @@
           ]
         }
       ],
-      "content_hash": "cb28491149024adbf722ceadb8c76377"
+      "content_hash": "cb28491149024adbf722ceadb8c76377",
+      "keywords": [
+        "AI-15",
+        "arbeidsomstandighedenbesluit",
+        "core safety",
+        "workplace design",
+        "workspace",
+        "work environment",
+        "risk assessment",
+        "hazard evaluation",
+        "safety analysis",
+        "employee rights",
+        "worker protection",
+        "labor rights",
+        "health monitoring",
+        "medical surveillance",
+        "occupational health"
+      ]
     },
     {
       "id": "9014d2edb333d632",
@@ -9355,10 +9631,22 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "PGS 15 (15Opslag van verpakte gevaarlijke stoffen) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "PGS 15",
+        "15opslag",
+        "verpakte",
+        "gevaarlijke",
+        "stoffen",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "d66064e6bf7c5223",
@@ -9389,10 +9677,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_arbocatalogi (Wet- en regelgeving) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_arbocatalogi",
+        "wet-",
+        "regelgeving",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "ad51f5b2e2dd104d",
@@ -9435,14 +9733,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "STL Arbocatalogus Warehouse (Arbocatalogus Warehouse/Distributiecentrum/Magazijn) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Comprehensive safety guide for warehouse and distribution center operations.",
         "pdf_filename": "nl_STL_Arbocatalogus_Warehouse_law.pdf",
         "pdf_size_bytes": 259793,
         "is_pdf_only": true
       },
-      "content_hash": "6ebe667ef09fe7e5e284df04cbd530fd"
+      "content_hash": "6ebe667ef09fe7e5e284df04cbd530fd",
+      "keywords": [
+        "STL Arbocatalogus Warehouse",
+        "arbocatalogus",
+        "warehouse/distributiecentrum/magazijn",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "936823318293f1f0",
@@ -9485,14 +9794,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "STL Arbocatalogus Onderhoudswerkplaats (Arbocatalogus Onderhoudswerkplaats) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Safety guide for vehicle maintenance workshops.",
         "pdf_filename": "nl_STL_Arbocatalogus_Onderhoudswerkplaats_law.pdf",
         "pdf_size_bytes": 273202,
         "is_pdf_only": true
       },
-      "content_hash": "2aa688f52ebafc2d4a56a534e1a49034"
+      "content_hash": "2aa688f52ebafc2d4a56a534e1a49034",
+      "keywords": [
+        "STL Arbocatalogus Onderhoudswerkplaats",
+        "arbocatalogus",
+        "onderhoudswerkplaats",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "de1db1145046330a",
@@ -9535,14 +9855,27 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "STL Arbocatalogus Transport Logistiek (Arbocatalogus Transport en Logistiek (volledig)) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Complete arbocatalogus for the transport and logistics sector.",
         "pdf_filename": "nl_STL_Arbocatalogus_Transport_Logistiek_law.pdf",
         "pdf_size_bytes": 1702932,
         "is_pdf_only": true
       },
-      "content_hash": "364d09e4a471f198f5c34c0e98cde727"
+      "content_hash": "364d09e4a471f198f5c34c0e98cde727",
+      "keywords": [
+        "STL Arbocatalogus Transport Logistiek",
+        "arbocatalogus",
+        "transport",
+        "logistiek",
+        "(volledig)",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "a2700c57a8b7b570",
@@ -9573,10 +9906,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_regulations (Wet- en regelgeving) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_regulations",
+        "wet-",
+        "regelgeving",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "0f21bf32309cdd06",
@@ -9607,10 +9950,20 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "_category_pdf_verification (Wet- en regelgeving) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "_category_pdf_verification",
+        "wet-",
+        "regelgeving",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "1d285a9cd7844384",
@@ -9641,10 +9994,21 @@
           "low": 0
         },
         "top_whs_topics": [],
-        "critical_sections_count": 0
+        "critical_sections_count": 0,
+        "description": "PGS Overview (Publicatiereeks Gevaarlijke Stoffen) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "keywords": [
+        "PGS Overview",
+        "publicatiereeks",
+        "gevaarlijke",
+        "stoffen",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "1dab0e0fd39a5b98",
@@ -9687,14 +10051,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "Arbowet-PDF (Arbeidsomstandighedenwet (PDF)) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Official PDF of the Working Conditions Act.",
         "pdf_filename": "nl_Arbowet-PDF_law.pdf",
         "pdf_size_bytes": 665506,
         "is_pdf_only": true
       },
-      "content_hash": "a164e3e8aea651e0eef11ffcac9ae390"
+      "content_hash": "a164e3e8aea651e0eef11ffcac9ae390",
+      "keywords": [
+        "Arbowet-PDF",
+        "arbeidsomstandighedenwet",
+        "(pdf)",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "ec61425deffda99b",
@@ -9737,14 +10112,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "Arbeidstijdenwet-PDF (Arbeidstijdenwet (PDF)) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Official PDF of the Working Time Act.",
         "pdf_filename": "nl_Arbeidstijdenwet-PDF_law.pdf",
         "pdf_size_bytes": 994294,
         "is_pdf_only": true
       },
-      "content_hash": "76a8edc5727f11696a8d8dbe64380d51"
+      "content_hash": "76a8edc5727f11696a8d8dbe64380d51",
+      "keywords": [
+        "Arbeidstijdenwet-PDF",
+        "arbeidstijdenwet",
+        "(pdf)",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     },
     {
       "id": "bad7ca42948167da",
@@ -9787,14 +10173,25 @@
       "chapters": [],
       "sections": [],
       "whs_topics": [],
-      "whs_summary": {},
+      "whs_summary": {
+        "description": "Arbobesluit-PDF (Arbeidsomstandighedenbesluit (PDF)) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
+      },
       "metadata": {
         "description": "Official PDF of the Working Conditions Decree.",
         "pdf_filename": "nl_Arbobesluit-PDF_law.pdf",
         "pdf_size_bytes": 4691347,
         "is_pdf_only": true
       },
-      "content_hash": "1fe94014ed9b75b467f4034172b8f576"
+      "content_hash": "1fe94014ed9b75b467f4034172b8f576",
+      "keywords": [
+        "Arbobesluit-PDF",
+        "arbeidsomstandighedenbesluit",
+        "(pdf)",
+        "core safety",
+        "Netherlands",
+        "Dutch law",
+        "Arbowet"
+      ]
     }
   ]
 }
