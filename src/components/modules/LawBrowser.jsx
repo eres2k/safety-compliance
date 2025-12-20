@@ -2143,7 +2143,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
               {t.modules?.lawBrowser?.title || 'Law Browser'}
             </h2>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              {pagination.total} laws and regulations
+              {filteredLaws.length} laws and regulations
             </p>
           </div>
 
