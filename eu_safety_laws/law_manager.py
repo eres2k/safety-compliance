@@ -5240,9 +5240,10 @@ class DGUVScraper(MerkblattScraper):
                 doc = self._create_merkblatt_document(
                     abbrev=link_info['abbrev'],
                     title=link_info['title'],
-                    pdf_url=link_info['url'],
+                    source_url=link_info['url'],
                     series=link_info['series'],
-                    authority="DGUV"
+                    authority="DGUV",
+                    source_type="pdf"
                 )
                 if doc:
                     documents.append(doc)
@@ -5261,9 +5262,24 @@ class DGUVScraper(MerkblattScraper):
                         doc = self._create_merkblatt_document(
                             abbrev=link_info['abbrev'],
                             title=link_info['title'],
-                            pdf_url=pdf_url,
+                            source_url=pdf_url,
                             series=link_info['series'],
-                            authority="DGUV"
+                            authority="DGUV",
+                            source_type="pdf"
+                        )
+                        if doc:
+                            documents.append(doc)
+                    else:
+                        # No PDF found - use HTML fallback
+                        # Store the HTML page content directly for modal display
+                        log_info(f"  No PDF found for {link_info['abbrev']}, using HTML fallback...")
+                        doc = self._create_merkblatt_document(
+                            abbrev=link_info['abbrev'],
+                            title=link_info['title'],
+                            source_url=link_info['url'],
+                            series=link_info['series'],
+                            authority="DGUV",
+                            source_type="html"
                         )
                         if doc:
                             documents.append(doc)
@@ -5356,35 +5372,27 @@ class ArboportaalScraper(MerkblattScraper):
                     doc = self._create_merkblatt_document(
                         abbrev=link_info['abbrev'],
                         title=link_info['title'],
-                        pdf_url=pdf_url,
+                        source_url=pdf_url,
                         series="Arbocatalogi",
                         description=f"Sector: {link_info['sector']}",
-                        authority="Arboportaal"
+                        authority="Arboportaal",
+                        source_type="pdf"
                     )
                     if doc:
                         documents.append(doc)
                 else:
-                    # HTML-based catalogue - extract content directly
-                    main_content = catalogue_soup.find('main') or catalogue_soup.find('article') or catalogue_soup.body
-                    if main_content:
-                        full_text = main_content.get_text(separator='\n', strip=True)
-
-                        doc = create_unified_document(
-                            country="NL",
-                            abbrev=link_info['abbrev'],
-                            title=link_info['title'],
-                            doc_type=DocType.GUIDELINE,
-                            source_url=link_info['url'],
-                            source_authority="Arboportaal",
-                            content_text=full_text[:50000],
-                            full_text=full_text[:100000],
-                            metadata={
-                                "series": "Arbocatalogi",
-                                "sector": link_info['sector'],
-                                "is_supplementary": True,
-                                "source_type": "html"
-                            }
-                        )
+                    # HTML-based catalogue - store HTML directly for modal display
+                    log_info(f"  No PDF found for {link_info['abbrev']}, using HTML fallback...")
+                    doc = self._create_merkblatt_document(
+                        abbrev=link_info['abbrev'],
+                        title=link_info['title'],
+                        source_url=link_info['url'],
+                        series="Arbocatalogi",
+                        description=f"Sector: {link_info['sector']}",
+                        authority="Arboportaal",
+                        source_type="html"
+                    )
+                    if doc:
                         documents.append(doc)
 
             time.sleep(CONFIG.rate_limit_delay)
