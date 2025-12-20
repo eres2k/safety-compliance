@@ -1,501 +1,654 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "enabled_sources": {},
   "disabled_sources": {},
   "custom_sources": {
     "AT": {
+      "_category_regulations": {
+        "_folder": true,
+        "_name": "Regulations",
+        "_description": "Austrian safety regulations and ordinances"
+      },
       "BauV": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008904",
         "name": "Bauarbeiterschutzverordnung",
-        "description": "Regulation concerning the protection of construction workers. Covers specific safety requirements for construction sites and construction work, aiming to prevent accidents and health hazards in the construction industry. Includes provisions on scaffolding, excavation, demolition, and other construction-related activities.",
+        "description": "Regulation concerning the protection of construction workers. Covers specific safety requirements for construction sites.",
         "enabled": true,
-        "created_at": "2025-12-18T02:50:08.876565",
+        "category": "regulations",
         "source_type": "custom"
       },
       "ESV 2012": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20007682",
-        "name": "Elektroschutzverordnung 2012 (Electrical Safety Regulation 2012)",
-        "description": "Regulation regarding safety requirements for electrical work activities. Covers requirements for qualified electricians (Elektrofachkraft), safety procedures, and protective equipment for work on electrical installations.",
+        "name": "Elektroschutzverordnung 2012",
+        "description": "Electrical safety regulation for work on electrical installations.",
         "enabled": true,
-        "created_at": "2025-12-18T00:42:55.567687",
+        "category": "regulations",
         "source_type": "custom"
-      },
-      "PSA-V": {
-        "url": "https://www.jusline.at/gesetz/psa-v",
-        "name": "Verordnung über den Schutz der Arbeitnehmer/innen vor Gefahren durch physikalische Einwirkungen",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T19:11:27.136401",
-        "original_url_failed": true
       },
       "VbA": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008545",
-        "name": "Verordnung über den Schutz der Arbeitnehmer vor Gefahren durch chemische Arbeitsstoffe (VbA)",
-        "description": "Sets out specific requirements for protecting employees from risks associated with hazardous chemical agents in the workplace, including classification, labeling, risk assessment, and control measures.",
+        "name": "Verordnung über Gefahren durch chemische Arbeitsstoffe (VbA)",
+        "description": "Protection from chemical hazards in the workplace.",
         "enabled": true,
-        "created_at": "2025-12-18T16:23:40.805691",
+        "category": "regulations",
         "source_type": "custom"
-      },
-      "BauKG": {
-        "url": "https://www.jusline.at/gesetz/baukg",
-        "name": "Bundesgesetz über die Koordination von Sicherheits- und Gesundheitsschutz auf Baustellen (Bauarbeitenkoordinationsgesetz – BauKG)",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-19T11:53:56.813126",
-        "original_url_failed": true
-      },
-      "GefStoffV": {
-        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001710",
-        "name": "Verordnung der Bundesministerin für Arbeit, Soziales und Konsumentenschutz über den Schutz der Arbeitnehmer/innen vor Gefahren durch chemische Arbeitsstoffe (Gefahrstoffverordnung 2001 – GefStoffV 2001)",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T17:42:07.859365",
-        "original_url_failed": true
       },
       "LärmV": {
         "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20004546",
         "name": "Lärm- und Vibrations-Arbeitnehmerschutzverordnung",
-        "description": "Regulates the protection of employees from risks arising from exposure to noise and mechanical vibrations at the workplace, setting exposure limits and requiring protective measures.",
+        "description": "Protection from noise and vibration exposure at work.",
         "enabled": true,
-        "created_at": "2025-12-18T16:31:35.876813",
+        "category": "regulations",
         "source_type": "custom"
       },
-      "BS-V": {
-        "url": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",
-        "name": "Bildschirmarbeitsverordnung – BS-V",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T17:42:17.162047",
-        "original_url_failed": true
+      "_category_manual_handling": {
+        "_folder": true,
+        "_name": "Manual Handling & Ergonomics",
+        "_description": "Publications on lifting, carrying, pushing, pulling and ergonomics"
       },
-      "VbAV": {
-        "url": "https://www.ris.bka.gv.at/eli/bgbl/II/2006/400",
-        "name": "Verordnung über die Sicherheits- und Gesundheitsschutzdokumente",
-        "description": "Specifies the content and structure requirements for safety and health protection documents, which are essential for systematic workplace safety management and risk assessment documentation.",
+      "AUVA M 025": {
+        "url": "https://auva.at/media/gxzb0ql4/m_025_heben_und_tragen_schieben_und_ziehen_bf.pdf",
+        "name": "M 025 - Heben und Tragen, Schieben und Ziehen",
+        "name_en": "Lifting, Carrying, Pushing and Pulling",
+        "description": "Safety guidelines for manual load handling - essential for warehouse picking and stowing operations.",
         "enabled": true,
-        "created_at": "2025-12-18T17:40:27.088393",
-        "source_type": "custom"
+        "category": "manual_handling",
+        "source_type": "pdf",
+        "amazon_relevance": ["stower", "picker", "dock worker", "manual handling"]
+      },
+      "AUVA M.plus 040.E13": {
+        "url": "https://auva.at/media/kqxjzqpj/mplus_040e13_evaluierung_von_hebe_und_tragetaetigkeiten_bf.pdf",
+        "name": "M.plus 040.E13 - Evaluierung von Hebe- und Tragetätigkeiten",
+        "name_en": "Evaluation of Lifting and Carrying Activities",
+        "description": "Risk assessment for lifting and carrying tasks - key for stowing/picking evaluation.",
+        "enabled": true,
+        "category": "manual_handling",
+        "source_type": "pdf",
+        "amazon_relevance": ["stower", "picker", "risk assessment"]
+      },
+      "AUVA M 105": {
+        "url": "https://auva.at/media/4jsltvw2/m_105_ergonomie-in-unterstuetzenden-berufen_bf.pdf",
+        "name": "M 105 - Ergonomie in unterstützenden Berufen",
+        "name_en": "Ergonomics in Support Professions",
+        "description": "Ergonomic principles for physically demanding work.",
+        "enabled": true,
+        "category": "manual_handling",
+        "source_type": "pdf"
+      },
+      "AUVA IVSS Lastenhandhabung": {
+        "url": "https://auva.at/media/i0andidy/ivss_lastenhandhabung.pdf",
+        "name": "IVSS Leitfaden Lastenhandhabung",
+        "name_en": "ISSA Manual Load Handling Guide",
+        "description": "International guide for manual load handling in SMEs.",
+        "enabled": true,
+        "category": "manual_handling",
+        "source_type": "pdf"
+      },
+      "_category_forklifts": {
+        "_folder": true,
+        "_name": "Forklifts & Material Handling",
+        "_description": "Publications on forklifts, pallet jacks, and transport equipment"
+      },
+      "AUVA M 841.1": {
+        "url": "https://auva.at/media/2c1p2ukt/m_8411_stapler_mit_fahrersitz_bf.pdf",
+        "name": "M 841.1 - Stapler mit Fahrersitz",
+        "name_en": "Forklifts with Driver Seat",
+        "description": "Safety requirements for sit-down forklifts - essential for dock operations.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf",
+        "amazon_relevance": ["forklift", "dock", "yard marshal"]
+      },
+      "AUVA M 841.2": {
+        "url": "https://auva.at/media/zksfjgql/m_8412_deichselgefuehrte_stapler_bf.pdf",
+        "name": "M 841.2 - Deichselgeführte Stapler",
+        "name_en": "Pedestrian Pallet Trucks",
+        "description": "Safety for electric pallet jacks - used extensively in Amazon facilities.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf",
+        "amazon_relevance": ["pallet jack", "water spider", "picker"]
+      },
+      "AUVA M.plus 841.3": {
+        "url": "https://auva.at/media/lxhjyj5r/mplus_8413_ausbildung_bei_staplern_kranen_kombinationsgeraeten_bf.pdf",
+        "name": "M.plus 841.3 - Ausbildung bei Staplern, Kranen",
+        "name_en": "Training for Forklifts and Cranes",
+        "description": "Training requirements for forklift and crane operators.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf"
+      },
+      "AUVA M.plus 842": {
+        "url": "https://auva.at/media/uw0lli55/mplus_842_batterieladeanlagen_fuer_flurfoerderzeuge_bf.pdf",
+        "name": "M.plus 842 - Batterieladeanlagen für Flurförderzeuge",
+        "name_en": "Battery Charging for Industrial Trucks",
+        "description": "Safety for battery charging operations in warehouses.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf"
+      },
+      "AUVA M.plus 942": {
+        "url": "https://auva.at/media/3scjz5tv/mplus_942_fahrerlose_transportsysteme_und_mobile_roboter_bf.pdf",
+        "name": "M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter",
+        "name_en": "AGVs and Mobile Robots",
+        "description": "Safety for automated guided vehicles and robots - relevant for Amazon robotics.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf",
+        "amazon_relevance": ["robotics", "AGV", "automation"]
+      },
+      "_category_warehouse": {
+        "_folder": true,
+        "_name": "Warehouse Safety",
+        "_description": "Publications on warehouse design, racking, and storage"
       },
       "AUVA M.plus 330": {
         "url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf",
-        "name": "AUVA M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
+        "name": "M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
         "name_en": "Storage of Hazardous Substances",
-        "description": "Guidelines for safe storage of hazardous substances in the workplace. Covers storage requirements, labeling, and safety measures.",
+        "description": "Safe storage of hazardous materials in warehouses.",
         "enabled": true,
-        "source_type": "pdf",
-        "is_supplementary": true
+        "category": "warehouse",
+        "source_type": "pdf"
       },
       "AUVA M.plus 340": {
         "url": "https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
-        "name": "AUVA M.plus 340 - Arbeitsmittel",
+        "name": "M.plus 340 - Arbeitsmittel",
         "name_en": "Work Equipment",
-        "description": "Safety requirements for work equipment. Covers selection, use, and maintenance of machinery and tools.",
+        "description": "Safety requirements for work equipment selection and use.",
         "enabled": true,
-        "source_type": "pdf",
-        "is_supplementary": true
+        "category": "warehouse",
+        "source_type": "pdf"
       },
       "AUVA M.plus 350": {
         "url": "https://auva.at/media/r2qfq5at/mplus_350_arbeitsstaetten_bf_2405.pdf",
-        "name": "AUVA M.plus 350 - Arbeitsstätten",
+        "name": "M.plus 350 - Arbeitsstätten",
         "name_en": "Workplaces",
-        "description": "Workplace design and safety requirements. Covers ventilation, lighting, temperature, and ergonomic design.",
+        "description": "Workplace design requirements - ventilation, lighting, temperature.",
         "enabled": true,
+        "category": "warehouse",
         "source_type": "pdf",
-        "is_supplementary": true
+        "amazon_relevance": ["facility", "warehouse design"]
       },
       "AUVA M.plus 360": {
         "url": "https://auva.at/media/faqbqzk0/mplus_360_ergonomie_bf_2405.pdf",
-        "name": "AUVA M.plus 360 - Ergonomie",
+        "name": "M.plus 360 - Ergonomie",
         "name_en": "Ergonomics",
-        "description": "Ergonomic workplace design guidelines. Covers manual handling, workstation design, and repetitive strain prevention.",
+        "description": "Ergonomic workplace design guidelines.",
         "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf"
+      },
+      "_category_transport": {
+        "_folder": true,
+        "_name": "Delivery & Transport",
+        "_description": "Publications on road safety and delivery operations"
+      },
+      "AUVA M.plus 800": {
+        "url": "https://auva.at/media/nh1bq3eh/mplus_800_sicher_unterwegs_bf.pdf",
+        "name": "M.plus 800 - Sicher unterwegs",
+        "name_en": "Safe on the Road",
+        "description": "Traffic safety for work-related travel - essential for delivery drivers.",
+        "enabled": true,
+        "category": "transport",
         "source_type": "pdf",
-        "is_supplementary": true
+        "amazon_relevance": ["DA", "DSP", "delivery driver"]
+      },
+      "AUVA M.plus 801": {
+        "url": "https://auva.at/media/nrljnr11/mplus_801_fahrradbotendienste_2023-02_bf.pdf",
+        "name": "M.plus 801 - Fahrradbotendienste",
+        "name_en": "Bicycle Courier Services",
+        "description": "Safety for bicycle delivery operations.",
+        "enabled": true,
+        "category": "transport",
+        "source_type": "pdf",
+        "amazon_relevance": ["bike delivery", "last mile"]
+      },
+      "_category_training": {
+        "_folder": true,
+        "_name": "Training & Instruction",
+        "_description": "Publications on safety training and employee instruction"
+      },
+      "AUVA M.plus 070": {
+        "url": "https://auva.at/media/jyvn53st/mplus_070_unterweisung_0725_bf.pdf",
+        "name": "M.plus 070 - Unterweisung",
+        "name_en": "Safety Instruction",
+        "description": "Guidelines for workplace safety training and instruction.",
+        "enabled": true,
+        "category": "training",
+        "source_type": "pdf",
+        "amazon_relevance": ["safety training", "onboarding", "learning"]
+      },
+      "AUVA M 030": {
+        "url": "https://auva.at/media/kwjputxz/m_030_arbeitnehmerinnenschutzgesetz_bf_2505.pdf",
+        "name": "M 030 - ArbeitnehmerInnenschutzgesetz",
+        "name_en": "Worker Protection Act Overview",
+        "description": "Summary of the Austrian Worker Protection Act (ASchG).",
+        "enabled": true,
+        "category": "training",
+        "source_type": "pdf"
+      },
+      "_category_psychological": {
+        "_folder": true,
+        "_name": "Psychological Safety",
+        "_description": "Publications on work-related stress and mental health"
       },
       "AUVA M.plus 910": {
         "url": "https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
-        "name": "AUVA M.plus 910 - Evaluierung psychischer Belastungen",
+        "name": "M.plus 910 - Evaluierung psychischer Belastungen",
         "name_en": "Assessment of Psychological Stress",
-        "description": "Guidelines for assessing psychological stress at work. Covers stress factors, assessment methods, and prevention measures.",
+        "description": "Guidelines for assessing work-related psychological stress.",
         "enabled": true,
+        "category": "psychological",
         "source_type": "pdf",
-        "is_supplementary": true
+        "amazon_relevance": ["work pace", "mental health", "stress"]
       },
-      "ASchG-PDF": {
-        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1994_450_0/1994_450_0.pdf",
-        "name": "ArbeitnehmerInnenschutzgesetz (PDF)",
-        "description": "PDF verification source for ASchG - Worker Protection Act. Original publication in Federal Law Gazette.",
+      "AUVA E 14": {
+        "url": "https://auva.at/media/1klpjgis/e_14_evaluierung_psychischer_belastungen_abs_bf.pdf",
+        "name": "E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)",
+        "name_en": "Psychological Stress Evaluation (ABS Group Method)",
+        "description": "Psychological stress evaluation using ABS group method.",
         "enabled": true,
+        "category": "psychological",
+        "source_type": "pdf"
+      },
+      "AUVA E 24 EVALOG": {
+        "url": "https://auva.at/media/gybkl0hm/e_24_evalog_evaluierung_psychischer_belastung_im_dialog_bf.pdf",
+        "name": "E 24 EVALOG - Evaluierung psychischer Belastung im Dialog",
+        "name_en": "EVALOG - Psychological Stress Evaluation through Dialogue",
+        "description": "Comprehensive psychological stress evaluation guide.",
+        "enabled": true,
+        "category": "psychological",
+        "source_type": "pdf"
+      },
+      "_category_ppe": {
+        "_folder": true,
+        "_name": "Personal Protective Equipment",
+        "_description": "Publications on PPE selection and use"
+      },
+      "AUVA M.plus 700": {
+        "url": "https://auva.at/media/cjwjl21s/mplus-700-gehoerschutz-bf.pdf",
+        "name": "M.plus 700 - Gehörschutz",
+        "name_en": "Hearing Protection",
+        "description": "Selection and use of hearing protection.",
+        "enabled": true,
+        "category": "ppe",
+        "source_type": "pdf"
+      },
+      "AUVA M 705": {
+        "url": "https://auva.at/media/efdj33nn/m705-schutzhandschuhe-bf.pdf",
+        "name": "M 705 - Schutzhandschuhe",
+        "name_en": "Protective Gloves",
+        "description": "Selection and use of protective gloves.",
+        "enabled": true,
+        "category": "ppe",
         "source_type": "pdf",
-        "verification_for": "ASchG"
+        "amazon_relevance": ["gloves", "PPE", "hand protection"]
       },
-      "AZG-PDF": {
-        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1969_461_0/1969_461_0.pdf",
-        "name": "Arbeitszeitgesetz (PDF)",
-        "description": "PDF verification source for AZG - Working Time Act. Original publication in Federal Law Gazette.",
+      "AUVA M 719": {
+        "url": "https://auva.at/media/gw3oqohc/m_719_sicherheitsschuhe_bf.pdf",
+        "name": "M 719 - Sicherheitsschuhe",
+        "name_en": "Safety Footwear",
+        "description": "Selection and use of safety shoes.",
         "enabled": true,
+        "category": "ppe",
         "source_type": "pdf",
-        "verification_for": "AZG"
-      },
-      "ARG-PDF": {
-        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1983_144_0/1983_144_0.pdf",
-        "name": "Arbeitsruhegesetz (PDF)",
-        "description": "PDF verification source for ARG - Rest Period Act. Original publication in Federal Law Gazette.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "ARG"
-      },
-      "MSchG-PDF": {
-        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1979_221_0/1979_221_0.pdf",
-        "name": "Mutterschutzgesetz (PDF)",
-        "description": "PDF verification source for MSchG - Maternity Protection Act. Original publication in Federal Law Gazette.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "MSchG"
-      },
-      "KJBG-PDF": {
-        "url": "https://www.ris.bka.gv.at/Dokumente/BgblPdf/1987_599_0/1987_599_0.pdf",
-        "name": "Kinder- und Jugendlichen-Beschäftigungsgesetz (PDF)",
-        "description": "PDF verification source for KJBG - Child and Youth Employment Act. Original publication in Federal Law Gazette.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "KJBG"
-      }
-    },
-    "NL": {
-      "REACH": {
-        "url": "/BWBR0020808/geldend",
-        "name": "Wet milieubeheer",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T03:37:50.661460",
-        "original_url_failed": true
-      },
-      " Warenwetbesluit machines": {
-        "url": "/BWBR0010898/geldend",
-        "name": "Warenwetbesluit machines 2016",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T04:06:28.648525",
-        "original_url_failed": true
-      },
-      "PGS": {
-        "url": "https://www.publicatiereeksgevaarlijkestoffen.nl/",
-        "name": "Publicatiereeks Gevaarlijke Stoffen (Publication Series Hazardous Substances)",
-        "description": "PGS isn't a law, but a series of publications containing detailed safety requirements for the storage and handling of specific hazardous substances. These requirements are often referred to in permits and are considered best practices, thus functioning as de facto regulations. While the website hosts all PGS guidelines, accessing the specific ones relevant to workplace safety is very helpful and is considered part of the 'Arbo' rules, indirectly. The direct link leads to the overview page of all available PGS guides.",
-        "enabled": true,
-        "created_at": "2025-12-18T02:50:38.638998",
-        "source_type": "custom"
-      },
-      "WOR": {
-        "url": "https://wetten.overheid.nl/BWBR0002747/2023-01-01",
-        "name": "Wet op de ondernemingsraden",
-        "description": "Regulates the establishment and functioning of works councils (ondernemingsraden), which have significant rights and duties regarding workplace safety and health policies, employee well-being, and working conditions within a company.",
-        "enabled": true,
-        "created_at": "2025-12-18T16:36:58.517145",
-        "source_type": "custom"
-      },
-      "Wazo": {
-        "url": "/BWBR0011867/geldend",
-        "name": "Wet arbeid en zorg",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T18:05:21.026670",
-        "original_url_failed": true
-      },
-      "WED": {
-        "url": "https://wetten.overheid.nl/BWBR0002063",
-        "name": "Wet op de economische delicten",
-        "description": "This act defines economic offenses, including violations of workplace safety and health legislation (like the Arbowet), and outlines the investigative and enforcement powers of authorities such as the Inspectie SZW.",
-        "enabled": true,
-        "created_at": "2025-12-18T17:41:27.169653",
-        "source_type": "custom"
-      },
-      "WAZO": {
-        "url": "https://wetten.overheid.nl/BWBR0016060",
-        "name": "Wet arbeid en zorg",
-        "description": "While primarily regulating leave arrangements, this act contains crucial provisions for the protection of specific worker groups, such as pregnant and breastfeeding employees, directly impacting their health and safety at the workplace.",
-        "enabled": true,
-        "created_at": "2025-12-18T17:41:27.180595",
-        "source_type": "custom"
-      },
-      "UAVG": {
-        "url": "https://wetten.overheid.nl/BWBR0040933",
-        "name": "Uitvoeringswet Algemene verordening gegevensbescherming",
-        "description": "This implementing act for the GDPR in the Netherlands includes specific rules for processing sensitive personal data, such as health data, in the employment context, which is highly relevant for occupational health services, accident reporting, and overall workplace health management.",
-        "enabled": true,
-        "created_at": "2025-12-18T17:41:27.190448",
-        "source_type": "custom"
-      },
-      "PGS 15": {
-        "url": "https://publicatiereeksgevaarlijkestoffen.nl/publicaties/online/pgs-15/",
-        "name": "PGS 15: Opslag van verpakte gevaarlijke stoffen (versie 3.1, 2023)",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-19T12:27:07.382611",
-        "original_url_failed": true
-      },
-      "AI-13": {
-        "url": "/BWBR0008498/geldend#Hoofdstuk5_Paragraaf2",
-        "name": "Arbeidsomstandighedenbesluit (Chapter 5, Section 2: Fysieke belasting)",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-19T02:39:18.790118",
-        "original_url_failed": true
-      },
-      "AI-15": {
-        "url": "/BWBR0008498/geldend",
-        "name": "Besluit van 15 maart 1997, houdende nadere regels met betrekking tot de arbeidsomstandigheden",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-19T12:26:11.082217",
-        "original_url_failed": true
-      },
-      "AI-19": {
-        "url": "/BWBR0008498/geldend",
-        "name": "Arbeidsomstandighedenbesluit",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-19T02:38:47.761223",
-        "original_url_failed": true
-      },
-      "Arbowet-PDF": {
-        "url": "https://wetten.overheid.nl/BWBR0010346/2024-01-01/0/pdf",
-        "name": "Arbeidsomstandighedenwet (PDF)",
-        "description": "PDF verification source for Arbowet - Working Conditions Act. Official consolidated text from wetten.overheid.nl.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "Arbowet"
-      },
-      "Arbobesluit-PDF": {
-        "url": "https://wetten.overheid.nl/BWBR0008498/2024-01-01/0/pdf",
-        "name": "Arbeidsomstandighedenbesluit (PDF)",
-        "description": "PDF verification source for Arbobesluit - Working Conditions Decree. Official consolidated text from wetten.overheid.nl.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "Arbobesluit"
-      },
-      "Arboregeling-PDF": {
-        "url": "https://wetten.overheid.nl/BWBR0008587/2024-01-01/0/pdf",
-        "name": "Arbeidsomstandighedenregeling (PDF)",
-        "description": "PDF verification source for Arboregeling - Working Conditions Regulation. Official consolidated text from wetten.overheid.nl.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "Arboregeling"
-      },
-      "Arbeidstijdenwet-PDF": {
-        "url": "https://wetten.overheid.nl/BWBR0007671/2024-01-01/0/pdf",
-        "name": "Arbeidstijdenwet (PDF)",
-        "description": "PDF verification source for Arbeidstijdenwet - Working Time Act. Official consolidated text from wetten.overheid.nl.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "Arbeidstijdenwet"
-      },
-      "ATB-PDF": {
-        "url": "https://wetten.overheid.nl/BWBR0007687/2024-01-01/0/pdf",
-        "name": "Arbeidstijdenbesluit (PDF)",
-        "description": "PDF verification source for ATB - Working Time Decree. Official consolidated text from wetten.overheid.nl.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "ATB"
+        "amazon_relevance": ["safety shoes", "PPE", "footwear"]
       }
     },
     "DE": {
+      "_category_regulations": {
+        "_folder": true,
+        "_name": "Regulations",
+        "_description": "German safety regulations and technical rules"
+      },
       "DGUV Vorschrift 1": {
         "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2909",
         "name": "DGUV Vorschrift 1 - Grundsätze der Prävention",
-        "description": "Fundamental principles of prevention for occupational safety and health in Germany. Covers employer and employee obligations, risk assessment, and prevention organization.",
+        "description": "Fundamental principles of prevention for occupational safety.",
         "enabled": true,
-        "created_at": "2025-12-18T02:50:24.524085",
+        "category": "regulations",
         "source_type": "pdf"
       },
-      "BildscharbV": {
-        "url": "https://www.gesetze-im-internet.de/arbst_ttv_2004/",
-        "name": "Bildschirmarbeitsverordnung (repealed - now in ArbStättV Anhang 6)",
-        "description": "The Bildschirmarbeitsverordnung was repealed in 2016. Its contents were transferred to Appendix 6 (Anhang 6) of the Arbeitsstättenverordnung (ArbStättV). Since July 2024, ASR A6 'Bildschirmarbeit' provides additional technical specifications.",
-        "enabled": false,
-        "created_at": "2025-12-18T01:18:07.386751",
-        "source_type": "custom",
-        "repealed": true,
-        "repealed_note": "Integrated into ArbStättV Anhang 6 since 2016"
+      "DGUV Vorschrift 68": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1518",
+        "name": "DGUV Vorschrift 68 - Flurförderzeuge",
+        "description": "Industrial trucks safety regulation.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 70": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1125",
+        "name": "DGUV Vorschrift 70 - Fahrzeuge",
+        "description": "Vehicle safety regulation including loading/unloading.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "pdf"
+      },
+      "LärmVibrationsArbSchV": {
+        "url": "https://www.gesetze-im-internet.de/l_rmvibrationsarbschv/",
+        "name": "Lärm- und Vibrations-Arbeitsschutzverordnung",
+        "description": "Noise and vibration protection regulation.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom"
+      },
+      "ArbMedVV": {
+        "url": "https://www.gesetze-im-internet.de/arbmedvv/",
+        "name": "Verordnung zur arbeitsmedizinischen Vorsorge",
+        "description": "Occupational medical prevention regulation.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom"
+      },
+      "_category_manual_handling": {
+        "_folder": true,
+        "_name": "Manual Handling & Ergonomics",
+        "_description": "Publications on lifting, carrying, pushing, pulling and ergonomics"
+      },
+      "DGUV Information 208-053": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3499",
+        "name": "DGUV Information 208-053 - Mensch und Arbeitsplatz – Physische Belastungen",
+        "name_en": "Human and Workplace - Physical Loads",
+        "description": "Comprehensive guide on physical loads - lifting, carrying, pushing, pulling.",
+        "enabled": true,
+        "category": "manual_handling",
+        "source_type": "pdf",
+        "amazon_relevance": ["stower", "picker", "manual handling"]
+      },
+      "DGUV Information 208-033": {
+        "url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Informationen/208-033.pdf",
+        "name": "DGUV Information 208-033 - Muskel-Skelett-Belastungen",
+        "name_en": "Musculoskeletal Load Assessment",
+        "description": "Recognition and assessment of musculoskeletal loads.",
+        "enabled": true,
+        "category": "manual_handling",
+        "source_type": "pdf",
+        "amazon_relevance": ["ergonomics", "MSD prevention"]
+      },
+      "_category_forklifts": {
+        "_folder": true,
+        "_name": "Forklifts & Material Handling",
+        "_description": "Publications on forklifts, pallet jacks, and transport equipment"
+      },
+      "DGUV Information 208-004": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/310",
+        "name": "DGUV Information 208-004 - Gabelstapler",
+        "name_en": "Forklifts",
+        "description": "Comprehensive forklift safety guide.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf",
+        "amazon_relevance": ["forklift", "dock", "yard marshal"]
+      },
+      "DGUV Grundsatz 308-001": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/48",
+        "name": "DGUV Grundsatz 308-001 - Qualifizierung Flurförderzeugfahrer",
+        "name_en": "Forklift Operator Qualification",
+        "description": "Training and certification requirements for forklift operators.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf"
+      },
+      "DGUV Information 208-031": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2872",
+        "name": "DGUV Information 208-031 - Einsatz von Arbeitsbühnen an Flurförderzeugen",
+        "name_en": "Work Platforms on Forklifts",
+        "description": "Safety for using work platforms on industrial trucks.",
+        "enabled": true,
+        "category": "forklifts",
+        "source_type": "pdf"
+      },
+      "_category_warehouse": {
+        "_folder": true,
+        "_name": "Warehouse Safety",
+        "_description": "Publications on warehouse design, racking, and storage"
+      },
+      "DGUV Information 208-061": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4719",
+        "name": "DGUV Information 208-061 - Lagereinrichtungen und Ladungsträger",
+        "name_en": "Storage Facilities and Load Carriers",
+        "description": "Comprehensive guide on storage equipment safety - racking, pallets, containers.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["racking", "warehouse", "storage"]
+      },
+      "DGUV Information 208-043": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/785",
+        "name": "DGUV Information 208-043 - Sicherheit von Regalen",
+        "name_en": "Shelving Safety",
+        "description": "Safety requirements for shelving and racking systems.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["racking", "shelving", "warehouse"]
+      },
+      "DGUV Information 208-048": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3106",
+        "name": "DGUV Information 208-048 - Sicherung palettierter Ladeeinheiten",
+        "name_en": "Securing Palletized Load Units",
+        "description": "Load securing for palletized goods.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["pallet", "load securing", "dock"]
+      },
+      "_category_transport": {
+        "_folder": true,
+        "_name": "Delivery & Transport",
+        "_description": "Publications on road safety and delivery operations"
+      },
+      "DGUV Information 214-083": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2948",
+        "name": "DGUV Information 214-083 - Der sicherheits-optimierte Transporter",
+        "name_en": "The Safety-Optimized Van",
+        "description": "Safety features for delivery vans - essential for DSP operations.",
+        "enabled": true,
+        "category": "transport",
+        "source_type": "pdf",
+        "amazon_relevance": ["DA", "DSP", "delivery van"]
+      },
+      "DGUV Information 208-035": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/856",
+        "name": "DGUV Information 208-035 - Zustellen von Sendungen",
+        "name_en": "Delivering Parcels",
+        "description": "Safety for courier, express, and parcel delivery - key for Amazon Last Mile.",
+        "enabled": true,
+        "category": "transport",
+        "source_type": "pdf",
+        "amazon_relevance": ["DA", "DSP", "last mile", "delivery"]
+      },
+      "DGUV Information 214-082": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3696",
+        "name": "DGUV Information 214-082 - Dieselemissionen in KEP-Hallen",
+        "name_en": "Diesel Emissions in Courier/Parcel Halls",
+        "description": "Diesel emissions in loading/sorting halls of courier services.",
+        "enabled": true,
+        "category": "transport",
+        "source_type": "pdf",
+        "amazon_relevance": ["dock", "delivery station", "emissions"]
+      },
+      "_category_training": {
+        "_folder": true,
+        "_name": "Training & Instruction",
+        "_description": "Publications on safety training and employee instruction"
+      },
+      "DGUV Information 211-005": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/292",
+        "name": "DGUV Information 211-005 - Unterweisung",
+        "name_en": "Safety Instruction",
+        "description": "Comprehensive guide for conducting safety instructions.",
+        "enabled": true,
+        "category": "training",
+        "source_type": "pdf",
+        "amazon_relevance": ["safety training", "onboarding"]
+      },
+      "_category_shift_work": {
+        "_folder": true,
+        "_name": "Working Time & Shifts",
+        "_description": "Publications on shift work, night work, and working time"
+      },
+      "DGUV Information 206-024": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3551",
+        "name": "DGUV Information 206-024 - Leben mit Schichtarbeit",
+        "name_en": "Living with Shift Work",
+        "description": "Tips for employees working shifts - relevant for night/early shifts.",
+        "enabled": true,
+        "category": "shift_work",
+        "source_type": "pdf",
+        "amazon_relevance": ["night shift", "early shift", "shift work"]
+      },
+      "_category_technical_rules": {
+        "_folder": true,
+        "_name": "Technical Rules",
+        "_description": "TRBS, TRGS, and ASR technical rules"
       },
       "TRBS 1111": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1111.pdf?__blob=publicationFile&v=8",
         "name": "TRBS 1111 - Gefährdungsbeurteilung",
-        "description": "Technical Rule for Industrial Safety - Risk assessment requirements for work equipment and hazardous substances.",
+        "name_en": "Risk Assessment",
+        "description": "Technical rule for risk assessment of work equipment.",
         "enabled": true,
-        "source_type": "pdf"
-      },
-      "TRBS 1201": {
-        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1201.pdf?__blob=publicationFile",
-        "name": "TRBS 1201 - Prüfungen von Arbeitsmitteln",
-        "description": "Technical Rule for Industrial Safety - Testing requirements for work equipment and installations.",
-        "enabled": true,
+        "category": "technical_rules",
         "source_type": "pdf"
       },
       "TRBS 2121": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121.pdf?__blob=publicationFile",
-        "name": "TRBS 2121 - Gefährdung von Beschäftigten durch Absturz",
-        "description": "Technical Rule for Industrial Safety - Protection against falling from heights. Covers scaffolding, ladders, and fall protection.",
+        "name": "TRBS 2121 - Gefährdung durch Absturz",
+        "name_en": "Fall Protection",
+        "description": "Protection against falling from heights.",
         "enabled": true,
-        "source_type": "pdf"
-      },
-      "TRGS 400": {
-        "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-400.pdf?__blob=publicationFile",
-        "name": "TRGS 400 - Gefährdungsbeurteilung für Tätigkeiten mit Gefahrstoffen",
-        "description": "Technical Rule for Hazardous Substances - Risk assessment for activities involving hazardous substances.",
-        "enabled": true,
+        "category": "technical_rules",
         "source_type": "pdf"
       },
       "TRGS 510": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-510.pdf?__blob=publicationFile",
-        "name": "TRGS 510 - Lagerung von Gefahrstoffen in ortsbeweglichen Behältern",
-        "description": "Technical Rule for Hazardous Substances - Storage of hazardous substances in portable containers.",
+        "name": "TRGS 510 - Lagerung von Gefahrstoffen",
+        "name_en": "Storage of Hazardous Substances",
+        "description": "Hazardous substance storage in portable containers.",
         "enabled": true,
+        "category": "technical_rules",
         "source_type": "pdf"
       },
       "ASR A1.3": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile",
-        "name": "ASR A1.3 - Sicherheits- und Gesundheitsschutzkennzeichnung",
-        "description": "Workplace Rule - Safety and health protection signage requirements.",
+        "name": "ASR A1.3 - Sicherheitskennzeichnung",
+        "name_en": "Safety Signage",
+        "description": "Safety and health protection signage requirements.",
         "enabled": true,
+        "category": "technical_rules",
         "source_type": "pdf"
       },
       "ASR A2.2": {
         "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile",
         "name": "ASR A2.2 - Maßnahmen gegen Brände",
-        "description": "Workplace Rule - Fire prevention measures and fire extinguisher requirements.",
+        "name_en": "Fire Prevention Measures",
+        "description": "Fire prevention and fire extinguisher requirements.",
         "enabled": true,
+        "category": "technical_rules",
+        "source_type": "pdf"
+      }
+    },
+    "NL": {
+      "_category_arbocatalogi": {
+        "_folder": true,
+        "_name": "Arbocatalogi Transport & Logistiek",
+        "_description": "Sector-specific safety catalogs for transport and logistics"
+      },
+      "STL Arbocatalogus Warehouse": {
+        "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf",
+        "name": "Arbocatalogus Warehouse/Distributiecentrum/Magazijn",
+        "name_en": "Warehouse/Distribution Center Safety Catalog",
+        "description": "Comprehensive safety guide for warehouse and distribution center operations.",
+        "enabled": true,
+        "category": "arbocatalogi",
+        "source_type": "pdf",
+        "amazon_relevance": ["warehouse", "distribution center", "fulfillment"]
+      },
+      "STL Arbocatalogus Transport Logistiek": {
+        "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/220512-Arbocatalogus-Transport-en-Logistiek-Versie-DEF.pdf",
+        "name": "Arbocatalogus Transport en Logistiek (volledig)",
+        "name_en": "Transport & Logistics Safety Catalog (Complete)",
+        "description": "Complete arbocatalogus for the transport and logistics sector.",
+        "enabled": true,
+        "category": "arbocatalogi",
+        "source_type": "pdf",
+        "amazon_relevance": ["logistics", "transport", "delivery"]
+      },
+      "STL Arbocatalogus Onderhoudswerkplaats": {
+        "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Onderhoudswerkplaats.pdf",
+        "name": "Arbocatalogus Onderhoudswerkplaats",
+        "name_en": "Maintenance Workshop Safety Catalog",
+        "description": "Safety guide for vehicle maintenance workshops.",
+        "enabled": true,
+        "category": "arbocatalogi",
         "source_type": "pdf"
       },
-      "MuSchG": {
-        "url": "/muschg_2018/",
-        "name": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T04:03:09.008077",
-        "original_url_failed": true
+      "_category_regulations": {
+        "_folder": true,
+        "_name": "Regulations",
+        "_description": "Dutch safety regulations and legal requirements"
       },
-      "JArbSchG": {
-        "url": "/jarbschg/",
-        "name": "Gesetz zum Schutz der arbeitenden Jugend",
-        "description": "URL auto-corrected by AI",
+      "WOR": {
+        "url": "https://wetten.overheid.nl/BWBR0002747/2023-01-01",
+        "name": "Wet op de ondernemingsraden",
+        "name_en": "Works Councils Act",
+        "description": "Works council rights regarding workplace safety policies.",
         "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T04:03:09.983053",
-        "original_url_failed": true
-      },
-      "LärmVibrationsArbSchV": {
-        "url": "https://www.gesetze-im-internet.de/l_rmvibrationsarbschv/",
-        "name": "Lärm- und Vibrations-Arbeitsschutzverordnung",
-        "description": "This ordinance regulates the protection of employees from health risks due to noise and vibration at work, setting out requirements for risk assessment, exposure limits, and protective measures.",
-        "enabled": true,
-        "created_at": "2025-12-18T17:41:02.656802",
+        "category": "regulations",
         "source_type": "custom"
       },
-      "BioStoffV": {
-        "url": "https://www.gesetze-im-internet.de/biostoffv_2013/",
-        "name": "Biostoffverordnung",
-        "description": "This ordinance specifies measures for the protection of employees from health risks due to biological agents (e.g., bacteria, viruses, fungi) at work, including risk assessment, classification, and containment.",
+      "WED": {
+        "url": "https://wetten.overheid.nl/BWBR0002063",
+        "name": "Wet op de economische delicten",
+        "name_en": "Economic Offenses Act",
+        "description": "Economic offenses including safety violations.",
         "enabled": true,
-        "created_at": "2025-12-18T17:41:02.667963",
+        "category": "regulations",
         "source_type": "custom"
       },
-      "ArbMedVV": {
-        "url": "https://www.gesetze-im-internet.de/arbmedvv/",
-        "name": "Verordnung zur arbeitsmedizinischen Vorsorge (Arbeitsmedizinische Vorsorgeverordnung)",
-        "description": "Specifies the requirements for occupational medical prevention, including mandatory, offered, and voluntary check-ups for employees exposed to specific hazards.",
+      "PGS Overview": {
+        "url": "https://www.publicatiereeksgevaarlijkestoffen.nl/",
+        "name": "Publicatiereeks Gevaarlijke Stoffen (PGS)",
+        "name_en": "Hazardous Substances Publication Series",
+        "description": "Overview of all PGS guidelines for hazardous substance storage.",
         "enabled": true,
-        "created_at": "2025-12-18T16:36:09.047806",
+        "category": "regulations",
         "source_type": "custom"
       },
-      "LastenhandhabV": {
-        "url": "/lasthandhabv/",
-        "name": "Verordnung über Sicherheit und Gesundheitsschutz bei der manuellen Handhabung von Lasten bei der Arbeit (Lastenhandhabungsverordnung - LasthandhabV)",
-        "description": "URL auto-corrected by AI",
-        "enabled": true,
-        "ai_corrected": true,
-        "corrected_at": "2025-12-18T19:29:50.317683",
-        "original_url_failed": true
+      "_category_pdf_verification": {
+        "_folder": true,
+        "_name": "PDF Verification Sources",
+        "_description": "Official PDF versions of key legislation"
       },
-      "ArbSchG-PDF": {
-        "url": "https://www.gesetze-im-internet.de/arbschg/arbschg.pdf",
-        "name": "Arbeitsschutzgesetz (PDF)",
-        "description": "PDF verification source for ArbSchG - Occupational Safety and Health Act. Official consolidated text.",
+      "Arbowet-PDF": {
+        "url": "https://wetten.overheid.nl/BWBR0010346/2024-01-01/0/pdf",
+        "name": "Arbeidsomstandighedenwet (PDF)",
+        "description": "Official PDF of the Working Conditions Act.",
         "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "ArbSchG"
+        "category": "pdf_verification",
+        "source_type": "pdf"
       },
-      "ASiG-PDF": {
-        "url": "https://www.gesetze-im-internet.de/asig/asig.pdf",
-        "name": "Arbeitssicherheitsgesetz (PDF)",
-        "description": "PDF verification source for ASiG - Workplace Safety Act. Official consolidated text.",
+      "Arbobesluit-PDF": {
+        "url": "https://wetten.overheid.nl/BWBR0008498/2024-01-01/0/pdf",
+        "name": "Arbeidsomstandighedenbesluit (PDF)",
+        "description": "Official PDF of the Working Conditions Decree.",
         "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "ASiG"
+        "category": "pdf_verification",
+        "source_type": "pdf"
       },
-      "ArbZG-PDF": {
-        "url": "https://www.gesetze-im-internet.de/arbzg/arbzg.pdf",
-        "name": "Arbeitszeitgesetz (PDF)",
-        "description": "PDF verification source for ArbZG - Working Time Act. Official consolidated text.",
+      "Arbeidstijdenwet-PDF": {
+        "url": "https://wetten.overheid.nl/BWBR0007671/2024-01-01/0/pdf",
+        "name": "Arbeidstijdenwet (PDF)",
+        "description": "Official PDF of the Working Time Act.",
         "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "ArbZG"
-      },
-      "MuSchG-PDF": {
-        "url": "https://www.gesetze-im-internet.de/muschg_2018/muschg_2018.pdf",
-        "name": "Mutterschutzgesetz (PDF)",
-        "description": "PDF verification source for MuSchG - Maternity Protection Act. Official consolidated text.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "MuSchG"
-      },
-      "JArbSchG-PDF": {
-        "url": "https://www.gesetze-im-internet.de/jarbschg/jarbschg.pdf",
-        "name": "Jugendarbeitsschutzgesetz (PDF)",
-        "description": "PDF verification source for JArbSchG - Youth Labor Protection Act. Official consolidated text.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "JArbSchG"
-      },
-      "ArbStättV-PDF": {
-        "url": "https://www.gesetze-im-internet.de/arbst_ttv_2004/arbst_ttv_2004.pdf",
-        "name": "Arbeitsstättenverordnung (PDF)",
-        "description": "PDF verification source for ArbStättV - Workplace Ordinance. Official consolidated text.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "ArbStättV"
-      },
-      "BetrSichV-PDF": {
-        "url": "https://www.gesetze-im-internet.de/betrsichv_2015/betrsichv_2015.pdf",
-        "name": "Betriebssicherheitsverordnung (PDF)",
-        "description": "PDF verification source for BetrSichV - Industrial Safety Regulation. Official consolidated text.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "BetrSichV"
-      },
-      "GefStoffV-PDF": {
-        "url": "https://www.gesetze-im-internet.de/gefstoffv_2010/gefstoffv_2010.pdf",
-        "name": "Gefahrstoffverordnung (PDF)",
-        "description": "PDF verification source for GefStoffV - Hazardous Substances Ordinance. Official consolidated text.",
-        "enabled": true,
-        "source_type": "pdf",
-        "verification_for": "GefStoffV"
+        "category": "pdf_verification",
+        "source_type": "pdf"
       }
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-19T12:27:07.382616"
+  "updated_at": "2025-12-20T12:00:00.000000"
 }
