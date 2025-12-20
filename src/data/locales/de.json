@@ -46,6 +46,7 @@
     "error": "Fehler",
     "success": "Erfolg",
     "close": "Schließen",
+    "updated": "Aktualisiert",
     "all": "Alle",
     "compare": "Vergleichen",
     "compareAll": "Alle",
@@ -254,6 +255,14 @@
   "footer": {
     "disclaimer": "Nur zu Informationszwecken",
     "advice": "Konsultieren Sie immer offizielle Quellen und Rechtsexperten für verbindliche Beratung"
+  },
+  "dashboard": {
+    "databaseStatus": "Datenbank-Status",
+    "recentlyUpdated": "Kürzlich aktualisiert",
+    "lastUpdated": "Letzte Aktualisierung",
+    "nextUpdate": "Nächste Aktualisierung",
+    "updateCycle": "14-Tage Aktualisierungszyklus",
+    "updatedLaws": "Aktualisierte Gesetze"
   },
   "help": {
     "title": "Hilfe & Anleitung",

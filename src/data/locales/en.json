@@ -46,6 +46,7 @@
     "error": "Error",
     "success": "Success",
     "close": "Close",
+    "updated": "Updated",
     "all": "All",
     "compare": "Compare",
     "compareAll": "All",
@@ -254,6 +255,14 @@
   "footer": {
     "disclaimer": "For informational purposes only",
     "advice": "Always consult official sources and legal professionals for binding advice"
+  },
+  "dashboard": {
+    "databaseStatus": "Database Status",
+    "recentlyUpdated": "Recently Updated",
+    "lastUpdated": "Last updated",
+    "nextUpdate": "Next update",
+    "updateCycle": "14-day update cycle",
+    "updatedLaws": "Updated Laws"
   },
   "help": {
     "title": "Help & Guide",
