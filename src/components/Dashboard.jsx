@@ -118,22 +118,31 @@ export function Dashboard({ onModuleSelect }) {
   const getComplianceLabels = () => {
     const labels = {
       en: {
-        title: 'Compliance Center',
-        description: 'Interactive warehouse floor plan, checklists, training, penalties, and glossary',
-        badge: 'Central Hub',
-        subItems: ['Warehouse Floor', 'Checklists', 'Training', 'Penalties', 'Glossary']
+        sectionTitle: 'Compliance Management',
+        sectionSubtitle: 'Track, assess, and manage your safety compliance',
+        warehouseFloor: { title: 'Warehouse Floor', description: 'Interactive warehouse floor plan with safety zones' },
+        complianceChecklist: { title: 'Compliance Checklist', description: 'Pre-built checklists for audits and inspections' },
+        training: { title: 'Training', description: 'Safety training materials and resources' },
+        bussgeld: { title: 'Penalties', description: 'Lookup fines for safety violations' },
+        glossary: { title: 'Glossary', description: 'Safety terms and abbreviations' }
       },
       de: {
-        title: 'Compliance-Center',
-        description: 'Interaktiver Lagerhallenplan, Checklisten, Schulung, Bußgeld und Glossar',
-        badge: 'Zentrale',
-        subItems: ['Lagerhalle', 'Checklisten', 'Schulung', 'Bußgeld', 'Glossar']
+        sectionTitle: 'Compliance-Management',
+        sectionSubtitle: 'Verfolgen, bewerten und verwalten Sie Ihre Sicherheits-Compliance',
+        warehouseFloor: { title: 'Lagerhalle', description: 'Interaktiver Lagerhallenplan mit Sicherheitszonen' },
+        complianceChecklist: { title: 'Checklisten', description: 'Vorgefertigte Checklisten für Audits und Inspektionen' },
+        training: { title: 'Schulung', description: 'Schulungsmaterialien für Arbeitssicherheit' },
+        bussgeld: { title: 'Bußgeld', description: 'Bußgelder für Arbeitsschutzverstöße' },
+        glossary: { title: 'Glossar', description: 'Fachbegriffe und Abkürzungen' }
       },
       nl: {
-        title: 'Compliance Center',
-        description: 'Interactieve magazijnplattegrond, checklists, training, boetes en woordenlijst',
-        badge: 'Centraal',
-        subItems: ['Magazijnvloer', 'Checklists', 'Training', 'Boetes', 'Woordenlijst']
+        sectionTitle: 'Compliancebeheer',
+        sectionSubtitle: 'Volg, beoordeel en beheer uw veiligheidscompliance',
+        warehouseFloor: { title: 'Magazijnvloer', description: 'Interactieve magazijnplattegrond met veiligheidszones' },
+        complianceChecklist: { title: 'Checklists', description: 'Kant-en-klare checklists voor audits en inspecties' },
+        training: { title: 'Training', description: 'Veiligheidstrainingen en materialen' },
+        bussgeld: { title: 'Boetes', description: 'Boetes voor overtredingen arbowetgeving' },
+        glossary: { title: 'Woordenlijst', description: 'Vakbegrippen en afkortingen' }
       }
     }
     const lang = t.appTitle?.includes('MEU') ? 'en' : (t.appSubtitle?.includes('Letzte') ? 'de' : (t.appSubtitle?.includes('Laatste') ? 'nl' : 'en'))
@@ -141,6 +150,50 @@ export function Dashboard({ onModuleSelect }) {
   }
 
   const complianceLabels = getComplianceLabels()
+
+  // Compliance modules - 5 separate buttons
+  const complianceModules = [
+    {
+      id: 'warehouseVisualization',
+      icon: '🏭',
+      title: complianceLabels.warehouseFloor.title,
+      description: complianceLabels.warehouseFloor.description,
+      gradient: 'from-indigo-500 to-purple-600',
+      badge: 'Interactive'
+    },
+    {
+      id: 'checklistTemplates',
+      icon: '📋',
+      title: complianceLabels.complianceChecklist.title,
+      description: complianceLabels.complianceChecklist.description,
+      gradient: 'from-teal-500 to-teal-600',
+      badge: 'Checklists'
+    },
+    {
+      id: 'trainingResources',
+      icon: '🎓',
+      title: complianceLabels.training.title,
+      description: complianceLabels.training.description,
+      gradient: 'from-purple-500 to-purple-600',
+      badge: 'Training'
+    },
+    {
+      id: 'penaltyLookup',
+      icon: '⚖️',
+      title: complianceLabels.bussgeld.title,
+      description: complianceLabels.bussgeld.description,
+      gradient: 'from-red-500 to-red-600',
+      badge: 'Reference'
+    },
+    {
+      id: 'glossary',
+      icon: '📖',
+      title: complianceLabels.glossary.title,
+      description: complianceLabels.glossary.description,
+      gradient: 'from-violet-500 to-violet-600',
+      badge: 'Reference'
+    }
+  ]
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -333,53 +386,42 @@ export function Dashboard({ onModuleSelect }) {
         </div>
       </div>
 
-      {/* Compliance Center - Main Feature Button */}
-      <button
-        onClick={() => onModuleSelect('compliance')}
-        className="w-full group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 p-6 md:p-8 text-left transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1"
-      >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-grid-pattern" />
+      {/* Compliance Management - 5 Module Cards */}
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              {complianceLabels.sectionTitle}
+            </h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {complianceLabels.sectionSubtitle}
+            </p>
+          </div>
         </div>
-        <div className="absolute -top-12 -right-12 w-64 h-64 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
 
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
-              <span className="text-3xl">✅</span>
-            </div>
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
-                  {complianceLabels.title}
-                </h3>
-                <span className="px-3 py-1 bg-white/20 rounded-full text-sm font-medium text-white">
-                  {complianceLabels.badge}
-                </span>
-              </div>
-              <p className="text-white/80 max-w-xl mb-3">
-                {complianceLabels.description}
-              </p>
-              {/* Sub-items preview */}
-              <div className="flex flex-wrap gap-2">
-                {complianceLabels.subItems.map((item, idx) => (
-                  <span key={idx} className="px-2 py-1 bg-white/15 rounded-lg text-xs text-white/90">
-                    {item}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+          {complianceModules.map((module, index) => (
+            <button
+              key={module.id}
+              onClick={() => onModuleSelect(module.id)}
+              className={`group relative overflow-hidden rounded-xl bg-gradient-to-br ${module.gradient} p-5 text-left transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5`}
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
+              <div className="relative z-10">
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-3xl">{module.icon}</span>
+                  <span className="px-2 py-0.5 bg-white/20 rounded text-xs font-medium text-white">
+                    {module.badge}
                   </span>
-                ))}
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-1">{module.title}</h4>
+                <p className="text-white/80 text-sm line-clamp-2">{module.description}</p>
               </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 text-white font-medium">
-            <span>{t.common?.open || 'Open'}</span>
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </div>
+            </button>
+          ))}
         </div>
-      </button>
+      </div>
 
       {/* Lessons Learned Feed Section */}
       <div>
