@@ -127,11 +127,14 @@ class Config:
     max_retries: int = 3
     gemini_model: str = "gemini-2.5-flash-lite"  # Higher rate limits for scraping
     # Parallel processing settings (optimized for Gemini 2.5 Flash Lite limits)
-    # Rate Limits: 4K RPM, 4M TPM
-    max_parallel_scrapes: int = 4  # Concurrent law scrapes (non-AI)
-    max_parallel_ai_requests: int = 10  # Gemini 2.5 supports higher RPM
-    ai_rate_limit_delay: float = 0.05  # 50ms between AI batches
+    # Rate Limits: 4K RPM, 4M TPM, Unlimited RPD
+    max_parallel_scrapes: int = 8  # Concurrent law scrapes (non-AI)
+    max_parallel_ai_requests: int = 50  # 4K RPM allows many parallel requests
+    ai_rate_limit_delay: float = 0.02  # 20ms between AI batches (4K RPM = 66/sec)
     ai_max_tokens: int = 8192
+    # Cost warning thresholds (in characters)
+    large_file_warning_chars: int = 100000  # Warn when file > 100K chars
+    massive_file_warning_chars: int = 500000  # Strong warning when file > 500K chars
 
     # PDF storage directory
     pdf_storage_dir: Path = field(default_factory=lambda: Path(__file__).parent / "pdfs")
@@ -6738,6 +6741,43 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
         return True
 
     log_info(f"Processing {len(cleanable_docs)} documents...")
+
+    # Check for large files and warn about costs
+    if use_ai:
+        total_chars = 0
+        large_files = []
+        massive_files = []
+        for orig_idx, doc in cleanable_docs:
+            doc_chars = len(doc.get('full_text', ''))
+            for ch in doc.get('chapters', []):
+                doc_chars += len(ch.get('content', ''))
+                for sec in ch.get('sections', []):
+                    doc_chars += len(sec.get('content', ''))
+            total_chars += doc_chars
+            abbrev = doc.get('abbreviation', f'Doc {orig_idx+1}')
+            if doc_chars >= CONFIG.massive_file_warning_chars:
+                massive_files.append((abbrev, doc_chars))
+            elif doc_chars >= CONFIG.large_file_warning_chars:
+                large_files.append((abbrev, doc_chars))
+
+        # Display cost warnings
+        if massive_files:
+            log_warning(f"{'='*60}")
+            log_warning(f"COST WARNING: {len(massive_files)} MASSIVE file(s) detected!")
+            for name, chars in massive_files:
+                tokens = chars // 4  # Rough estimate: 4 chars per token
+                cost = (tokens / 1_000_000) * 0.075  # gemini-2.5-flash-lite pricing
+                log_warning(f"  {name}: {chars:,} chars (~{tokens:,} tokens, ~${cost:.3f})")
+            log_warning(f"{'='*60}")
+
+        if large_files:
+            log_info(f"Large files ({len(large_files)}): " +
+                     ", ".join(f"{n} ({c//1000}K)" for n, c in large_files))
+
+        total_tokens = total_chars // 4
+        total_cost = (total_tokens / 1_000_000) * 0.075
+        log_info(f"Total: ~{total_chars:,} chars (~{total_tokens:,} tokens)")
+        log_info(f"Estimated cost: ~${total_cost:.3f} (gemini-2.5-flash-lite)")
 
     if use_ai:
         # Use parallel processing for AI cleaning (optimized for Gemini 2K RPM)
