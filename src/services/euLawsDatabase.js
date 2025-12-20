@@ -920,14 +920,19 @@ export async function getLawsStatistics(country = 'DE') {
   const db = await getLawsDatabase(country)
   const stats = await loadStatistics()
 
+  // Handle case where database is not loaded or has no data
+  const items = db?.items || []
+  const categories = db?.categories || {}
+  const totalLaws = items.length
+
   return {
-    totalLaws: db.items.length,
-    byType: Object.entries(db.categories).map(([type, count]) => ({
+    totalLaws,
+    byType: Object.entries(categories).map(([type, count]) => ({
       type,
       count,
-      percentage: Math.round((count / db.items.length) * 100)
+      percentage: totalLaws > 0 ? Math.round((count / totalLaws) * 100) : 0
     })),
-    metadata: db.metadata,
+    metadata: db?.metadata || {},
     lastUpdated: stats?.generated_at || null,
     globalStats: stats?.statistics || null
   }

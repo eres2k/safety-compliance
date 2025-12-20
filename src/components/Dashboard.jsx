@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
 import { ModuleCard } from './ModuleCard'
 import { getLawsStatistics } from '../services/euLawsDatabase'
@@ -25,13 +26,17 @@ const moduleColors = {
 export function Dashboard({ onModuleSelect }) {
   const { t, framework, currentFrameworkColor } = useApp()
 
-  // Get statistics for the hero section
-  let stats = { totalLaws: 0, byType: [], lastUpdated: null, globalStats: null }
-  try {
-    stats = getLawsStatistics(framework)
-  } catch (e) {
-    // Database not loaded yet, use defaults
-  }
+  // Get statistics for the hero section (loaded asynchronously)
+  const [stats, setStats] = useState({ totalLaws: 0, byType: [], lastUpdated: null, globalStats: null })
+
+  useEffect(() => {
+    getLawsStatistics(framework)
+      .then(data => setStats(data))
+      .catch(() => {
+        // Database not loaded yet, use defaults
+        setStats({ totalLaws: 0, byType: [], lastUpdated: null, globalStats: null })
+      })
+  }, [framework])
 
   // Format the last updated date
   const formatLastUpdated = (dateStr) => {
