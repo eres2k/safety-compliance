@@ -6,10 +6,8 @@ import { Dashboard } from './components/Dashboard'
 import {
   LawBrowser,
   ComplianceChecker,
-  ComplianceDashboard,
   TrainingResources,
   ChecklistTemplates,
-  AuditTrail,
   PreventionTimeCalculator,
   PenaltyLookup,
   Glossary
@@ -68,14 +66,10 @@ function AppContent() {
         )
       case 'complianceChecker':
         return <ComplianceChecker onBack={onBack} onNavigateToLaw={navigateToLaw} />
-      case 'complianceDashboard':
-        return <ComplianceDashboard onBack={onBack} />
       case 'trainingResources':
         return <TrainingResources onBack={onBack} />
       case 'checklistTemplates':
         return <ChecklistTemplates onBack={onBack} />
-      case 'auditTrail':
-        return <AuditTrail onBack={onBack} />
       case 'preventionTimeCalculator':
         return <PreventionTimeCalculator onBack={onBack} />
       case 'penaltyLookup':

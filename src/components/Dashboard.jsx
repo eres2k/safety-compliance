@@ -115,20 +115,12 @@ export function Dashboard({ onModuleSelect }) {
 
   const newFeatureModules = [
     {
-      id: 'complianceDashboard',
-      icon: '📊',
-      title: 'Compliance Dashboard',
-      description: 'Track compliance status across all jurisdictions with visual overview',
-      gradient: 'from-blue-500 to-blue-600',
-      badge: 'New'
-    },
-    {
       id: 'trainingResources',
       icon: '🎓',
       title: 'Training Resources',
-      description: 'Access mandatory and recommended safety training materials',
+      description: 'Access external workplace safety training courses and materials',
       gradient: 'from-purple-500 to-purple-600',
-      badge: 'New'
+      badge: 'Training'
     },
     {
       id: 'checklistTemplates',
@@ -136,14 +128,6 @@ export function Dashboard({ onModuleSelect }) {
       title: 'Compliance Checklists',
       description: 'Pre-built checklists for site setup, audits, and inspections',
       gradient: 'from-teal-500 to-teal-600',
-      badge: 'New'
-    },
-    {
-      id: 'auditTrail',
-      icon: '🕐',
-      title: 'Audit Trail',
-      description: 'View history of all compliance activities and reviews',
-      gradient: 'from-gray-500 to-gray-600',
       badge: 'New'
     },
     {

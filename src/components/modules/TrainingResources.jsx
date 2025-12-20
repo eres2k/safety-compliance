@@ -16,7 +16,170 @@ const TRAINING_CATEGORIES = [
   { id: 'mental-health', label: 'Mental Health & Wellbeing', icon: '🧠' }
 ]
 
-// Training resources by framework
+// External training resources - curated links to reputable safety training providers
+const EXTERNAL_TRAINING_RESOURCES = [
+  // International / General
+  {
+    id: 'ext-1',
+    category: 'onboarding',
+    title: 'OSHAcademy - Free Safety Courses',
+    description: 'Nearly 200 free self-paced OSHA training courses for all industries',
+    type: 'course',
+    duration: 'Various',
+    provider: 'OSHAcademy',
+    url: 'https://www.oshacademy.com/',
+    region: 'international'
+  },
+  {
+    id: 'ext-2',
+    category: 'safety-basics',
+    title: 'Oregon OSHA - Free Online Training',
+    description: 'Free workplace safety courses including accident investigation, hazard assessment, and more',
+    type: 'course',
+    duration: 'Various',
+    provider: 'Oregon OSHA',
+    url: 'https://osha.oregon.gov/edu/courses/pages/default.aspx',
+    region: 'international'
+  },
+  {
+    id: 'ext-3',
+    category: 'safety-basics',
+    title: 'Cal/OSHA Training Academy',
+    description: 'Free access to comprehensive workplace safety training courses and materials',
+    type: 'course',
+    duration: 'Various',
+    provider: 'Cal/OSHA',
+    url: 'https://trainingacademy.dir.ca.gov/page/home-english',
+    region: 'international'
+  },
+  {
+    id: 'ext-4',
+    category: 'onboarding',
+    title: 'OSHA Training Resources',
+    description: 'Official OSHA training page with outreach programs and educational materials',
+    type: 'course',
+    duration: 'Various',
+    provider: 'OSHA.gov',
+    url: 'https://www.osha.gov/training',
+    region: 'international'
+  },
+  // Germany-specific
+  {
+    id: 'ext-de-1',
+    category: 'onboarding',
+    title: 'DGUV - Training and Qualification',
+    description: 'German Social Accident Insurance training portal for occupational safety professionals',
+    type: 'course',
+    duration: 'Various',
+    provider: 'DGUV',
+    url: 'https://www.dguv.de/en/qualification/index.jsp',
+    region: 'DE'
+  },
+  {
+    id: 'ext-de-2',
+    category: 'safety-basics',
+    title: 'IAG Dresden - Professional Safety Training',
+    description: 'Institute of Work and Health - leading German OSH training center',
+    type: 'course',
+    duration: 'Various',
+    provider: 'DGUV IAG',
+    url: 'https://www.dguv.de/iag/qualifizierung/index-2.jsp',
+    region: 'DE'
+  },
+  {
+    id: 'ext-de-3',
+    category: 'safety-basics',
+    title: 'BAuA - Occupational Safety Specialist Training',
+    description: 'Federal Institute for Occupational Safety and Health training requirements',
+    type: 'document',
+    duration: 'Reference',
+    provider: 'BAuA',
+    url: 'https://www.baua.de/EN/Topics/Work-design/Working-organisation/OSH-Organisation/Training-and-appointment-sifa',
+    region: 'DE'
+  },
+  {
+    id: 'ext-de-4',
+    category: 'emergency',
+    title: 'WINGS Academy - Online Safety Instructions',
+    description: 'Online occupational health and safety training courses in German',
+    type: 'interactive',
+    duration: 'Various',
+    provider: 'WINGS Academy',
+    url: 'https://www.wingsacademy.de/en/training/course-catalogue/health-and-safety',
+    region: 'DE'
+  },
+  {
+    id: 'ext-de-5',
+    category: 'emergency',
+    title: 'WINGS Academy - Fire Safety Training',
+    description: 'Online courses for workplace fire safety training',
+    type: 'interactive',
+    duration: 'Various',
+    provider: 'WINGS Academy',
+    url: 'https://www.wingsacademy.de/en/training/course-catalogue/fire-safety',
+    region: 'DE'
+  },
+  // Netherlands-specific
+  {
+    id: 'ext-nl-1',
+    category: 'safety-basics',
+    title: 'EU-OSHA Netherlands Portal',
+    description: 'Netherlands national focal point for European Agency for Safety and Health at Work',
+    type: 'document',
+    duration: 'Reference',
+    provider: 'EU-OSHA',
+    url: 'https://osha.europa.eu/en/about-eu-osha/national-focal-points/netherlands',
+    region: 'NL'
+  },
+  // European Networks
+  {
+    id: 'ext-eu-1',
+    category: 'safety-basics',
+    title: 'ENETOSH - European Safety Training Network',
+    description: 'European Network Education and Training in Occupational Safety and Health',
+    type: 'document',
+    duration: 'Reference',
+    provider: 'ENETOSH / EU-OSHA',
+    url: 'https://healthy-workplaces.osha.europa.eu/en/campaign-partners/european-network-education-and-training-occupational-safety-and-health-enetosh',
+    region: 'EU'
+  },
+  // Professional Certifications
+  {
+    id: 'ext-cert-1',
+    category: 'onboarding',
+    title: 'Astutis - IOSH Accredited Training',
+    description: 'Internationally recognised health and safety qualifications for Europe',
+    type: 'course',
+    duration: 'Various',
+    provider: 'Astutis',
+    url: 'https://www.astutisinternational.com/europe/index.html',
+    region: 'EU'
+  },
+  {
+    id: 'ext-cert-2',
+    category: 'safety-basics',
+    title: 'CareerSafe - OSHA Authorized Training',
+    description: 'OSHA 10-Hour and 30-Hour certification courses online',
+    type: 'course',
+    duration: '10-30 hours',
+    provider: 'CareerSafe',
+    url: 'https://www.careersafeonline.com/',
+    region: 'international'
+  },
+  {
+    id: 'ext-cert-3',
+    category: 'safety-basics',
+    title: 'Georgia Tech OSHA Education Center',
+    description: 'Free introduction to OSHA for small businesses and safety training calendar',
+    type: 'course',
+    duration: 'Various',
+    provider: 'Georgia Tech',
+    url: 'https://oshainfo.gatech.edu/safety-and-health-training-events/safety-and-health-training-courses/',
+    region: 'international'
+  }
+]
+
+// Training resources by framework (for internal tracking of training topics)
 const TRAINING_RESOURCES = {
   AT: [
     {
@@ -27,7 +190,7 @@ const TRAINING_RESOURCES = {
       type: 'video',
       duration: '45 min',
       legalRef: '§ 14 ASchG',
-      url: '#',
+      url: 'https://www.oshacademy.com/',
       required: true
     },
     {
@@ -38,7 +201,7 @@ const TRAINING_RESOURCES = {
       type: 'interactive',
       duration: '30 min',
       legalRef: '§ 62-64 ASchG, VOLV',
-      url: '#',
+      url: 'https://osha.oregon.gov/edu/courses/pages/default.aspx',
       required: true
     },
     {
@@ -49,7 +212,7 @@ const TRAINING_RESOURCES = {
       type: 'course',
       duration: '4 hours',
       legalRef: '§ 26 ASchG',
-      url: '#',
+      url: 'https://www.oshacademy.com/courses/list/course-catalog.html',
       required: true
     },
     {
@@ -60,7 +223,7 @@ const TRAINING_RESOURCES = {
       type: 'video',
       duration: '60 min',
       legalRef: 'StVO, FSG',
-      url: '#',
+      url: 'https://www.careersafeonline.com/',
       required: false
     },
     {
@@ -71,7 +234,7 @@ const TRAINING_RESOURCES = {
       type: 'interactive',
       duration: '25 min',
       legalRef: '§ 25 ASchG, TRVB',
-      url: '#',
+      url: 'https://www.wingsacademy.de/en/training/course-catalogue/fire-safety',
       required: true
     }
   ],
@@ -84,7 +247,7 @@ const TRAINING_RESOURCES = {
       type: 'video',
       duration: '45 min',
       legalRef: '§ 12 ArbSchG',
-      url: '#',
+      url: 'https://www.dguv.de/en/qualification/index.jsp',
       required: true
     },
     {
@@ -95,7 +258,7 @@ const TRAINING_RESOURCES = {
       type: 'interactive',
       duration: '30 min',
       legalRef: 'LasthandhabV, DGUV Info 208-033',
-      url: '#',
+      url: 'https://www.dguv.de/iag/qualifizierung/index-2.jsp',
       required: true
     },
     {
@@ -106,7 +269,7 @@ const TRAINING_RESOURCES = {
       type: 'course',
       duration: '90 min',
       legalRef: 'DGUV Vorschrift 70',
-      url: '#',
+      url: 'https://www.dguv.de/en/qualification/index.jsp',
       required: true
     },
     {
@@ -117,7 +280,7 @@ const TRAINING_RESOURCES = {
       type: 'interactive',
       duration: '20 min',
       legalRef: '§ 10 ArbSchG, ASR A2.3',
-      url: '#',
+      url: 'https://www.wingsacademy.de/en/training/course-catalogue/health-and-safety',
       required: true
     },
     {
@@ -128,7 +291,7 @@ const TRAINING_RESOURCES = {
       type: 'webinar',
       duration: '60 min',
       legalRef: '§ 5 ArbSchG, GDA-Leitlinie',
-      url: '#',
+      url: 'https://www.baua.de/EN/Topics/Work-design/Working-organisation/OSH-Organisation/Training-and-appointment-sifa',
       required: false
     },
     {
@@ -139,7 +302,7 @@ const TRAINING_RESOURCES = {
       type: 'video',
       duration: '25 min',
       legalRef: 'PSA-BV, DGUV Regel 112-989',
-      url: '#',
+      url: 'https://www.dguv.de/en/qualification/index.jsp',
       required: true
     }
   ],
@@ -152,7 +315,7 @@ const TRAINING_RESOURCES = {
       type: 'video',
       duration: '45 min',
       legalRef: 'Arbowet Art. 8',
-      url: '#',
+      url: 'https://osha.europa.eu/en/about-eu-osha/national-focal-points/netherlands',
       required: true
     },
     {
@@ -163,7 +326,7 @@ const TRAINING_RESOURCES = {
       type: 'interactive',
       duration: '30 min',
       legalRef: 'Arbobesluit Art. 5.2-5.4',
-      url: '#',
+      url: 'https://www.oshacademy.com/',
       required: true
     },
     {
@@ -174,7 +337,7 @@ const TRAINING_RESOURCES = {
       type: 'course',
       duration: '60 min',
       legalRef: 'Arbobesluit Art. 7.17a',
-      url: '#',
+      url: 'https://www.careersafeonline.com/',
       required: true
     },
     {
@@ -185,7 +348,7 @@ const TRAINING_RESOURCES = {
       type: 'course',
       duration: '4 hours',
       legalRef: 'Arbowet Art. 15',
-      url: '#',
+      url: 'https://www.oshacademy.com/courses/list/course-catalog.html',
       required: true
     },
     {
@@ -196,7 +359,7 @@ const TRAINING_RESOURCES = {
       type: 'webinar',
       duration: '45 min',
       legalRef: 'Arbobesluit Art. 2.15',
-      url: '#',
+      url: 'https://healthy-workplaces.osha.europa.eu/en/campaign-partners/european-network-education-and-training-occupational-safety-and-health-enetosh',
       required: false
     }
   ]
@@ -427,9 +590,17 @@ export function TrainingResources({ onBack }) {
                           'Mark Complete'
                         )}
                       </button>
-                      <Button variant="ghost" size="sm">
-                        Start Training →
-                      </Button>
+                      <a
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-whs-orange-500 hover:bg-whs-orange-600 text-white rounded-lg text-sm font-medium transition-colors"
+                      >
+                        Start Training
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -446,6 +617,61 @@ export function TrainingResources({ onBack }) {
           </p>
         </Card>
       )}
+
+      {/* External Training Resources Section */}
+      <div className="mt-8">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+          External Training Resources
+        </h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+          Free and accredited workplace safety training from trusted providers
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {EXTERNAL_TRAINING_RESOURCES
+            .filter(r => r.region === 'international' || r.region === 'EU' || r.region === framework)
+            .map(resource => (
+            <a
+              key={resource.id}
+              href={resource.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
+            >
+              <Card className="h-full hover:border-whs-orange-500 transition-colors">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <span className="text-2xl">{TYPE_ICONS[resource.type] || '📚'}</span>
+                    <span className={`px-2 py-0.5 text-xs font-medium rounded ${
+                      resource.region === 'DE' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' :
+                      resource.region === 'NL' ? 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400' :
+                      resource.region === 'EU' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' :
+                      'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                    }`}>
+                      {resource.region === 'international' ? 'Global' : resource.region}
+                    </span>
+                  </div>
+                  <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-whs-orange-500 transition-colors">
+                    {resource.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+                    {resource.description}
+                  </p>
+                  <div className="flex items-center justify-between mt-3 text-xs text-gray-400">
+                    <span>{resource.provider}</span>
+                    <span className="flex items-center gap-1">
+                      {resource.duration}
+                      <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
