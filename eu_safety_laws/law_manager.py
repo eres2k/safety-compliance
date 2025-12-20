@@ -1871,14 +1871,20 @@ def log_success(msg: str) -> None:
     print(f"{Colors.GREEN}✓ {msg}{Colors.RESET}")
 
 
-def log_warning(msg: str) -> None:
-    """Print a warning message."""
+def log_warning(msg: str, category: str = "general", collect: bool = True, **kwargs) -> None:
+    """Print a warning message and optionally collect it for the error report."""
     print(f"{Colors.YELLOW}⚠ {msg}{Colors.RESET}")
+    # Also collect for error report if collector is initialized
+    if collect and 'PIPELINE_ERRORS' in globals():
+        PIPELINE_ERRORS.add_warning(category, msg, **kwargs)
 
 
-def log_error(msg: str) -> None:
-    """Print an error message."""
+def log_error(msg: str, category: str = "general", collect: bool = True, **kwargs) -> None:
+    """Print an error message and optionally collect it for the error report."""
     print(f"{Colors.RED}✗ {msg}{Colors.RESET}")
+    # Also collect for error report if collector is initialized
+    if collect and 'PIPELINE_ERRORS' in globals():
+        PIPELINE_ERRORS.add_error(category, msg, **kwargs)
 
 
 def log_progress(msg: str) -> None:
@@ -1920,6 +1926,124 @@ class SimpleProgressBar:
 
     def close(self) -> None:
         print()
+
+
+# =============================================================================
+# Error Collection System for Pipeline
+# =============================================================================
+
+class PipelineErrorCollector:
+    """Collects errors during pipeline execution for Claude Code to fix later."""
+
+    def __init__(self):
+        self.errors: List[Dict[str, Any]] = []
+        self.warnings: List[Dict[str, Any]] = []
+        self.start_time = datetime.now()
+        self.pipeline_name = None
+        self.country = None
+
+    def set_context(self, pipeline_name: str, country: str = None):
+        """Set the current pipeline context."""
+        self.pipeline_name = pipeline_name
+        self.country = country
+
+    def add_error(self, category: str, message: str, details: Dict[str, Any] = None,
+                  file_path: str = None, line_number: int = None, suggestion: str = None):
+        """Add an error to the collection."""
+        self.errors.append({
+            "timestamp": datetime.now().isoformat(),
+            "category": category,
+            "message": message,
+            "details": details or {},
+            "file_path": file_path,
+            "line_number": line_number,
+            "suggestion": suggestion,
+            "pipeline": self.pipeline_name,
+            "country": self.country
+        })
+
+    def add_warning(self, category: str, message: str, details: Dict[str, Any] = None):
+        """Add a warning to the collection."""
+        self.warnings.append({
+            "timestamp": datetime.now().isoformat(),
+            "category": category,
+            "message": message,
+            "details": details or {},
+            "pipeline": self.pipeline_name,
+            "country": self.country
+        })
+
+    def get_summary(self) -> Dict[str, Any]:
+        """Get summary statistics of collected errors."""
+        error_categories = {}
+        for err in self.errors:
+            cat = err.get("category", "unknown")
+            error_categories[cat] = error_categories.get(cat, 0) + 1
+
+        return {
+            "total_errors": len(self.errors),
+            "total_warnings": len(self.warnings),
+            "error_categories": error_categories,
+            "duration_seconds": (datetime.now() - self.start_time).total_seconds()
+        }
+
+    def save_to_file(self, output_path: Path = None) -> str:
+        """Save errors to a JSON file for Claude Code to process."""
+        if output_path is None:
+            output_path = CONFIG.base_path / "pipeline_errors.json"
+
+        report = {
+            "generated_at": datetime.now().isoformat(),
+            "pipeline": self.pipeline_name,
+            "country": self.country,
+            "duration_seconds": (datetime.now() - self.start_time).total_seconds(),
+            "summary": self.get_summary(),
+            "errors": self.errors,
+            "warnings": self.warnings,
+            "instructions_for_claude": {
+                "description": "This file contains errors from the last pipeline run. Please review and fix the issues listed below.",
+                "priority_order": [
+                    "1. Critical errors (data loss, broken functionality)",
+                    "2. PDF/source errors (broken links, corrupt files)",
+                    "3. AI/parsing errors (failed AI calls, parsing issues)",
+                    "4. Validation warnings (missing fields, data quality)"
+                ],
+                "common_fixes": {
+                    "broken_pdf_link": "Verify URL exists, update custom_sources.json if needed",
+                    "ai_rate_limit": "Reduce parallel requests or add delays",
+                    "parse_error": "Check source HTML structure for changes",
+                    "missing_content": "Source may have changed format, update scraper"
+                }
+            }
+        }
+
+        try:
+            with open(output_path, 'w', encoding='utf-8') as f:
+                json.dump(report, f, indent=2, ensure_ascii=False)
+            return str(output_path)
+        except Exception as e:
+            log_error(f"Failed to save error report: {e}")
+            return None
+
+    def clear(self):
+        """Clear all collected errors and warnings."""
+        self.errors = []
+        self.warnings = []
+        self.start_time = datetime.now()
+
+
+# Global error collector instance
+PIPELINE_ERRORS = PipelineErrorCollector()
+
+
+def collect_error(category: str, message: str, **kwargs):
+    """Convenience function to collect a pipeline error."""
+    PIPELINE_ERRORS.add_error(category, message, **kwargs)
+
+
+def collect_warning(category: str, message: str, **kwargs):
+    """Convenience function to collect a pipeline warning."""
+    PIPELINE_ERRORS.add_warning(category, message, **kwargs)
 
 
 def create_progress_bar(total: int, desc: str = "Processing"):
@@ -7910,6 +8034,19 @@ def cmd_all(args) -> int:
     if not args.skip_build:
         log_info("Step 6: Building master database...")
         build_master_database()
+
+    # Generate error report for Claude Code
+    PIPELINE_ERRORS.set_context("full_pipeline", ",".join(countries))
+    summary = PIPELINE_ERRORS.get_summary()
+
+    if summary["total_errors"] > 0 or summary["total_warnings"] > 0:
+        error_file = PIPELINE_ERRORS.save_to_file()
+        if error_file:
+            log_warning(f"Found {summary['total_errors']} errors and {summary['total_warnings']} warnings")
+            log_info(f"Error report saved to: {error_file}")
+            log_info("Claude Code can use this file to fix issues in future revisions")
+    else:
+        log_success("No errors or warnings collected during pipeline")
 
     log_success("Pipeline complete!")
     return 0
