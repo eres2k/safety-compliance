@@ -216,13 +216,113 @@ class Config:
                 # AUVA downloads search page - source for all publications with download links
                 "catalog_url": "https://auva.at/downloads/downloads-search/?publicationsWithDownloadOnly=true&category=publications&showTabs=publications%2Cadditional-documents",
                 "publications": [
+                    # === M.plus Series (Expanded Information Sheets, DIN-A4) ===
+                    # M.plus 0xx - General/Legal
+                    {
+                        "abbrev": "AUVA M.plus 012",
+                        "title": "M.plus 012 - Sommerliche Hitze - Präventionsmaßnahmen",
+                        "title_en": "Summer Heat - Prevention Measures",
+                        "url": "https://auva.at/media/n4kpeyhq/mplus_012_sommerliche_hitze_praeventionsmassnahmen_2023-07_.pdf",
+                        "series": "M.plus",
+                        "description": "Prevention measures for summer heat at the workplace"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 019",
+                        "title": "M.plus 019 - Gesetzliche Bestimmungen für Lärmbetriebe",
+                        "title_en": "Legal Regulations for Noisy Workplaces",
+                        "url": "https://auva.at/media/v5sbtwcv/mplus_019_gesetzliche_bestimmungen_fuer_laermbetriebe_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Legal requirements for noise control in workplaces"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 022",
+                        "title": "M.plus 022 - Telearbeitsplätze",
+                        "title_en": "Telework/Remote Workplaces",
+                        "url": "https://auva.at/media/iswlvmmn/mplus-022_telearbeitsplaetze_bf_2504.pdf",
+                        "series": "M.plus",
+                        "description": "Safety guidelines for remote work and home offices"
+                    },
+                    # M.plus 040 - Workplace Evaluation Series
+                    {
+                        "abbrev": "AUVA M.plus 040",
+                        "title": "M.plus 040 - Arbeitsplatzevaluierung",
+                        "title_en": "Workplace Evaluation",
+                        "url": "https://auva.at/media/zzcjdtxk/mplus_040_arbeitsplatzevaluierung_bf_06-2022.pdf",
+                        "series": "M.plus",
+                        "description": "Comprehensive guide for workplace hazard evaluation"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E1",
+                        "title": "M.plus 040.E1 - Evaluierung von mechanischen Gefährdungen",
+                        "title_en": "Evaluation of Mechanical Hazards",
+                        "url": "https://auva.at/media/mcnkpcmc/mplus_040e1_evaluierung_von_mechanischen_gefaehrdungen_202.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of mechanical hazards in the workplace"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E2",
+                        "title": "M.plus 040.E2 - Evaluierung von Sturz- und Absturzgefahren",
+                        "title_en": "Evaluation of Fall Hazards",
+                        "url": "https://auva.at/media/jvuf53wp/mplus_040e2_evaluierung_sturz-und_absturzgefahren_personen.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of fall and trip hazards"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E4",
+                        "title": "M.plus 040.E4 - Evaluierung chemischer Arbeitsstoffe",
+                        "title_en": "Evaluation of Chemical Substances",
+                        "url": "https://auva.at/media/ry0gy2cs/mplus-040e4-chemische-arbeitsstoffe-bf.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of chemical workplace hazards"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E8",
+                        "title": "M.plus 040.E8 - Evaluierung von Lärmbelastungen",
+                        "title_en": "Evaluation of Noise Exposure",
+                        "url": "https://auva.at/media/vs0j2fpc/mplus_040e8_evaluierung_von_laermbelastung_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of noise exposure at work"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E17",
+                        "title": "M.plus 040.E17 - Evaluierung von Büro- und Bildschirmarbeitsplätzen",
+                        "title_en": "Evaluation of Office and Screen Workplaces",
+                        "url": "https://auva.at/media/ghlabert/mplus_040e17_evaluierung_buero_bildschirmarbeitsplaetze_20.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of office and computer workstations"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 070",
+                        "title": "M.plus 070 - Unterweisung",
+                        "title_en": "Safety Training/Instruction",
+                        "url": "https://auva.at/media/jyvn53st/mplus_070_unterweisung_0725_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Guidelines for workplace safety training and instruction"
+                    },
+                    # M.plus 3xx - Hazardous Substances
+                    {
+                        "abbrev": "AUVA M.plus 302",
+                        "title": "M.plus 302 - Gefährliche Arbeitsstoffe - Information und Unterweisung",
+                        "title_en": "Hazardous Substances - Information and Training",
+                        "url": "https://auva.at/media/cxskvf0b/mplus_302_gefaehrliche_arbeitsstoffe_information_und_unterw.pdf",
+                        "series": "M.plus",
+                        "description": "Information and training for handling hazardous substances"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 327",
+                        "title": "M.plus 327 - Einsteigen in enge Räume und Behälter",
+                        "title_en": "Entering Confined Spaces and Containers",
+                        "url": "https://auva.at/media/4jdoprhy/mplus_327_einsteigen_in_enge_raeume_und_behaelter_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety guidelines for confined space entry"
+                    },
                     {
                         "abbrev": "AUVA M.plus 330",
                         "title": "M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
                         "title_en": "Storage of Hazardous Substances",
                         "url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf",
                         "series": "M.plus",
-                        "description": "Guidelines for safe storage of hazardous substances in the workplace"
+                        "description": "Guidelines for safe storage of hazardous substances"
                     },
                     {
                         "abbrev": "AUVA M.plus 340",
@@ -231,6 +331,14 @@ class Config:
                         "url": "https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
                         "series": "M.plus",
                         "description": "Safety requirements for work equipment"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 340.7",
+                        "title": "M.plus 340.7 - Gesundheitsgefährdende Stoffe in öffentlichen Apotheken",
+                        "title_en": "Hazardous Substances in Public Pharmacies",
+                        "url": "https://auva.at/media/siqp5rqv/mplus_3407_gesundheitsgefaehrdende_stoffe_in_oeffentlichen.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for handling hazardous substances in pharmacies"
                     },
                     {
                         "abbrev": "AUVA M.plus 350",
@@ -249,12 +357,140 @@ class Config:
                         "description": "Ergonomic workplace design guidelines"
                     },
                     {
+                        "abbrev": "AUVA M.plus 369",
+                        "title": "M.plus 369 - Kühlschmierstoffe",
+                        "title_en": "Cooling Lubricants",
+                        "url": "https://auva.at/media/fkmeiimb/mplus-369-kuehlschmierstoffe-bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safe handling of cooling lubricants in machining"
+                    },
+                    # M.plus 5xx - Forestry
+                    {
+                        "abbrev": "AUVA M.plus 521",
+                        "title": "M.plus 521 - Forstliche Arbeiten mit der Motorsäge",
+                        "title_en": "Forestry Work with Chainsaws",
+                        "url": "https://auva.at/media/p0ybmq2g/mplus_521_forstliche_arbeiten_mit_der_motorsaege_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety guidelines for chainsaw work in forestry"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 523",
+                        "title": "M.plus 523 - Forstliche Seilbringung",
+                        "title_en": "Forestry Cable Logging",
+                        "url": "https://auva.at/media/lrgf0pdk/mplus_523_forstliche_seilbringung_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for cable logging operations in forestry"
+                    },
+                    # M.plus 7xx - Personal Protective Equipment
+                    {
+                        "abbrev": "AUVA M.plus 700",
+                        "title": "M.plus 700 - Gehörschutz",
+                        "title_en": "Hearing Protection",
+                        "url": "https://auva.at/media/cjwjl21s/mplus-700-gehoerschutz-bf.pdf",
+                        "series": "M.plus",
+                        "description": "Selection and use of hearing protection"
+                    },
+                    # M.plus 8xx - Transport & Vehicles
+                    {
+                        "abbrev": "AUVA M.plus 800",
+                        "title": "M.plus 800 - Sicher unterwegs",
+                        "title_en": "Safe on the Road",
+                        "url": "https://auva.at/media/nh1bq3eh/mplus_800_sicher_unterwegs_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Traffic safety for work-related travel"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 801",
+                        "title": "M.plus 801 - Fahrradbotendienste",
+                        "title_en": "Bicycle Courier Services",
+                        "url": "https://auva.at/media/nrljnr11/mplus_801_fahrradbotendienste_2023-02_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for bicycle courier services"
+                    },
+                    # M.plus 9xx - Special Topics
+                    {
                         "abbrev": "AUVA M.plus 910",
                         "title": "M.plus 910 - Evaluierung psychischer Belastungen",
                         "title_en": "Assessment of Psychological Stress",
                         "url": "https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
                         "series": "M.plus",
                         "description": "Guidelines for assessing psychological stress at work"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 931",
+                        "title": "M.plus 931 - XR-Technologien am Arbeitsplatz",
+                        "title_en": "XR Technologies at the Workplace",
+                        "url": "https://auva.at/media/jvcpfyhg/mplus_931_xr_technologien_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for extended reality technologies at work"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 942",
+                        "title": "M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter",
+                        "title_en": "Driverless Transport Systems and Mobile Robots",
+                        "url": "https://auva.at/media/3scjz5tv/mplus_942_fahrerlose_transportsysteme_und_mobile_roboter_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for autonomous transport systems and mobile robots"
+                    },
+                    # === M-Reihe (Compact Information Sheets, DIN-A5) ===
+                    # M 0xx - General/Legal
+                    {
+                        "abbrev": "AUVA M 030",
+                        "title": "M 030 - ArbeitnehmerInnenschutzgesetz",
+                        "title_en": "Worker Protection Act",
+                        "url": "https://auva.at/media/kwjputxz/m_030_arbeitnehmerinnenschutzgesetz_bf_2505.pdf",
+                        "series": "M",
+                        "description": "Overview of the Austrian Worker Protection Act (ASchG)"
+                    },
+                    {
+                        "abbrev": "AUVA M 041",
+                        "title": "M 041 - Verordnung über Sicherheits- und Gesundheitsschutzdokumente",
+                        "title_en": "Regulation on Safety and Health Documents",
+                        "url": "https://auva.at/media/gf3drt5e/m_041_verordnung_ueber_sicherheits-_und_gesundheitsschutzdok.pdf",
+                        "series": "M",
+                        "description": "Requirements for safety and health documentation"
+                    },
+                    {
+                        "abbrev": "AUVA M 080",
+                        "title": "M 080 - Grundlagen der Lasersicherheit",
+                        "title_en": "Fundamentals of Laser Safety",
+                        "url": "https://auva.at/media/ahopxkb3/m_080_grundlagen_der_lasersicherheit_2023-07_bf.pdf",
+                        "series": "M",
+                        "description": "Basics of laser safety in the workplace"
+                    },
+                    # M 3xx - Hazardous Substances
+                    {
+                        "abbrev": "AUVA M 364",
+                        "title": "M 364 - Umgang mit ätzenden Stoffen",
+                        "title_en": "Handling Corrosive Substances",
+                        "url": "https://auva.at/media/tytfmukw/m_364_umgang_mit_aetzenden_stoffen.pdf",
+                        "series": "M",
+                        "description": "Safe handling of corrosive acids and alkalis"
+                    },
+                    {
+                        "abbrev": "AUVA M 391",
+                        "title": "M 391 - Sicherer Umgang mit gefährlichen Arbeitsstoffen",
+                        "title_en": "Safe Handling of Hazardous Substances",
+                        "url": "https://auva.at/media/ds1jpe1o/m_391_sicherer_umgang_mit_gefaehrlichen_arbeitsstoffen.pdf",
+                        "series": "M",
+                        "description": "General guidelines for safe handling of hazardous substances"
+                    },
+                    # M 7xx - Personal Protective Equipment
+                    {
+                        "abbrev": "AUVA M 705",
+                        "title": "M 705 - Schutzhandschuhe",
+                        "title_en": "Protective Gloves",
+                        "url": "https://auva.at/media/efdj33nn/m705-schutzhandschuhe-bf.pdf",
+                        "series": "M",
+                        "description": "Selection and use of protective gloves"
+                    },
+                    {
+                        "abbrev": "AUVA M 719",
+                        "title": "M 719 - Atemschutzfilter gegen Schwebstoffe, Gase und Dämpfe",
+                        "title_en": "Respiratory Protection Filters",
+                        "url": "https://auva.at/media/nwwlrfpq/m_719_atemschutzfilter_gegen_schwebstoffe_gase_daempfe_bf_20.pdf",
+                        "series": "M",
+                        "description": "Selection of respiratory protection filters"
                     }
                 ]
             }
