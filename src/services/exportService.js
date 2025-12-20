@@ -153,7 +153,7 @@ function generatePrintableHTML(title, content, metadata = {}) {
       </div>
       ${content}
       <div class="footer">
-        WHS Safety Compliance Navigator - Amazon MEU WHS Delivery Last Mile Logistics
+        MEU Safety Compliance - WHS Navigator
       </div>
     </body>
     </html>

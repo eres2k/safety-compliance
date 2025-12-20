@@ -1,5 +1,5 @@
 {
-  "appTitle": "Amazon MEU WHS Safety Navigator",
+  "appTitle": "MEU Safety Compliance",
   "appSubtitle": "Zustellung Letzte Meile Logistik Arbeitsschutz",
   "selectFramework": "Rechtsrahmen wählen",
   "frameworks": {
@@ -103,7 +103,7 @@
     "legalFull": "Originaler Gesetzestext",
     "viewOriginal": "Original-Gesetzestext anzeigen",
     "manager": "WHS-Zusammenfassung",
-    "managerDescription": "Amazon WHS Pflichten & Compliance-Anforderungen",
+    "managerDescription": "WHS Pflichten & Compliance-Anforderungen",
     "associate": "Einfach erklärt",
     "associateDescription": "Einfache Erklärung für jedermann"
   },
@@ -269,7 +269,7 @@
     "subtitle": "Lernen Sie den WHS Safety Navigator kennen",
     "buttonLabel": "Hilfe",
     "introTitle": "Willkommen beim WHS Safety Navigator",
-    "introText": "Diese Anwendung hilft Ihnen bei der Navigation durch die Arbeitsschutzvorschriften in Österreich, Deutschland und den Niederlanden. Sie wurde speziell für Amazon MEU Delivery Last Mile Logistics-Standorte entwickelt und bietet schnellen Zugriff auf relevante Sicherheitsgesetze, Compliance-Anforderungen und Tools.",
+    "introText": "Diese Anwendung hilft Ihnen bei der Navigation durch die Arbeitsschutzvorschriften in Österreich, Deutschland und den Niederlanden. Sie wurde speziell für MEU WHS-Operationen entwickelt und bietet schnellen Zugriff auf relevante Sicherheitsgesetze, Compliance-Anforderungen und Tools.",
     "officialSourcesTitle": "Offizielle Rechtsquellen",
     "officialSourcesText": "Alle in dieser Anwendung angezeigten Gesetzestexte stammen direkt aus offiziellen Regierungspublikationen und Aufsichtsbehörden. Dazu gehören das österreichische ASchG (ArbeitnehmerInnenschutzgesetz), die deutschen DGUV-Vorschriften und das ArbSchG (Arbeitsschutzgesetz) sowie das niederländische Arbowet (Arbeidsomstandighedenwet). Wir gewährleisten Genauigkeit durch ausschließliche Verwendung amtlicher Quellen.",
     "updateFrequencyTitle": "Regelmäßige Aktualisierungen - Alle 14 Tage",

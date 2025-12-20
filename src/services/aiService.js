@@ -41,7 +41,7 @@ const LANGUAGE_LABELS = {
   en: {
     whatThisSectionCovers: 'What this section covers',
     keyRequirements: 'Key requirements from this text',
-    complianceRelevance: 'Compliance relevance for Amazon',
+    complianceRelevance: 'Compliance relevance',
     documentationActions: 'Documentation/Actions',
     noRequirements: 'This section covers [scope/definitions/exceptions/etc.] - no direct compliance requirements',
     noDocumentation: 'No specific documentation requirements in this section'
@@ -49,7 +49,7 @@ const LANGUAGE_LABELS = {
   de: {
     whatThisSectionCovers: 'Was dieser Abschnitt behandelt',
     keyRequirements: 'Wichtige Anforderungen aus diesem Text',
-    complianceRelevance: 'Relevanz für Amazon-Compliance',
+    complianceRelevance: 'Relevanz für Compliance',
     documentationActions: 'Dokumentation/Maßnahmen',
     noRequirements: 'Dieser Abschnitt behandelt [Geltungsbereich/Definitionen/Ausnahmen/etc.] - keine direkten Compliance-Anforderungen',
     noDocumentation: 'Keine spezifischen Dokumentationsanforderungen in diesem Abschnitt'
@@ -57,7 +57,7 @@ const LANGUAGE_LABELS = {
   nl: {
     whatThisSectionCovers: 'Wat dit artikel behandelt',
     keyRequirements: 'Belangrijke vereisten uit deze tekst',
-    complianceRelevance: 'Relevantie voor Amazon-compliance',
+    complianceRelevance: 'Relevantie voor compliance',
     documentationActions: 'Documentatie/Acties',
     noRequirements: 'Dit artikel behandelt [toepassingsgebied/definities/uitzonderingen/etc.] - geen directe compliance-vereisten',
     noDocumentation: 'Geen specifieke documentatievereisten in dit artikel'
@@ -699,7 +699,7 @@ export async function simplifyForManager(lawText, sectionTitle, framework, langu
     return `**Section:** ${sectionTitle}\n\n**Status:** No content available for analysis.`
   }
 
-  const prompt = `You are an Amazon Workplace Health and Safety (WHS) expert. Analyze ONLY the legal text provided below.
+  const prompt = `You are a Workplace Health and Safety (WHS) expert. Analyze ONLY the legal text provided below.
 
 === SECTION ===
 ${sectionTitle || 'Legal Provision'}
@@ -868,7 +868,7 @@ export async function generateSemanticTags(lawText, sectionNumber, framework, la
   const cached = getCachedResponse(cacheKey)
   if (cached) return cached
 
-  const prompt = `You are a logistics safety expert. Analyze this regulation and tag it with relevant Amazon Logistics roles and equipment.
+  const prompt = `You are a logistics safety expert. Analyze this regulation and tag it with relevant logistics roles and equipment.
 
 REGULATION:
 ${lawText.substring(0, 2000)}
