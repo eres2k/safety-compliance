@@ -8,8 +8,77 @@ import React from 'react'
  * - Numbered lists
  * - Bold text (**text** or __text__)
  * - Proper paragraph spacing
+ * - Clickable law references
  */
-export function FormattedAIResponse({ content, className = '' }) {
+
+// Common law abbreviations for detection
+const LAW_ABBREVIATIONS = [
+  // Austrian
+  'ASchG', 'ArbIG', 'AZG', 'KSchG', 'ARG', 'KJBG', 'MSchG', 'GlBG', 'AVRAG', 'BauKG',
+  'AM-VO', 'AStV', 'AMVO', 'VGÜ', 'ESV', 'PSA-V', 'BS', 'BauV', 'DOK-VO', 'AAV',
+  'AUVA', 'Merkblatt',
+  // German
+  'DGUV', 'ArbSchG', 'ArbStättV', 'BetrSichV', 'GefStoffV', 'BioStoffV', 'LärmVibrationsArbSchV',
+  'ArbMedVV', 'LasthandhabV', 'PSA-BV', 'ASiG', 'JArbSchG', 'MuSchG', 'ArbZG',
+  'TRBS', 'TRGS', 'ASR', 'PGS', 'DGUV Vorschrift', 'DGUV Regel', 'DGUV Information',
+  // Dutch
+  'Arbowet', 'Arbobesluit', 'Arboregeling', 'ATW', 'WAB', 'BW', 'WOR', 'ARBO',
+  // EU
+  'EU-Richtlinie', 'Richtlinie', 'Verordnung'
+]
+
+// Create regex pattern for law references
+const createLawReferencePattern = () => {
+  // Escape special regex characters in abbreviations
+  const escapedAbbrs = LAW_ABBREVIATIONS.map(abbr =>
+    abbr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  ).join('|')
+
+  // Pattern matches:
+  // 1. "§ X AbbName" or "§§ X-Y AbbName" (German/Austrian section references)
+  // 2. "Artikel X AbbName" or "Art. X" (Dutch/EU article references)
+  // 3. Standalone abbreviations with optional numbers (e.g., "DGUV Vorschrift 1")
+  return new RegExp(
+    `(§§?\\s*\\d+[a-z]?(?:\\s*(?:bis|[-–])\\s*\\d+[a-z]?)?(?:\\s+(?:Abs\\.?|Absatz)\\s*\\d+)?(?:\\s+(?:${escapedAbbrs})))|` +
+    `((?:Artikel|Art\\.)\\s*\\d+(?:\\.\\d+)?(?:\\s+(?:${escapedAbbrs})))|` +
+    `(\\b(?:${escapedAbbrs})(?:\\s+(?:Vorschrift|Regel|Information|Nr\\.|Nummer))?\\s*\\d*\\b)`,
+    'gi'
+  )
+}
+
+const LAW_REFERENCE_PATTERN = createLawReferencePattern()
+
+// Find law ID from reference text
+function findLawIdFromReference(referenceText, allLaws) {
+  if (!allLaws || allLaws.length === 0) return null
+
+  const normalizedRef = referenceText.toLowerCase().trim()
+
+  // Try to find a matching law
+  for (const law of allLaws) {
+    const abbr = (law.abbreviation || law.abbr || '').toLowerCase()
+    const title = (law.title || '').toLowerCase()
+
+    // Check if reference contains the abbreviation
+    if (abbr && normalizedRef.includes(abbr)) {
+      return { id: law.id, country: law.jurisdiction || law.country }
+    }
+
+    // Check for DGUV pattern matching
+    if (normalizedRef.includes('dguv') && abbr.includes('dguv')) {
+      // Try to match specific DGUV Vorschrift/Regel/Information number
+      const dguNumberMatch = normalizedRef.match(/dguv\s*(?:vorschrift|regel|information)?\s*(\d+)/i)
+      const lawNumberMatch = abbr.match(/dguv\s*(?:vorschrift|regel|information)?\s*(\d+)/i)
+      if (dguNumberMatch && lawNumberMatch && dguNumberMatch[1] === lawNumberMatch[1]) {
+        return { id: law.id, country: law.jurisdiction || law.country }
+      }
+    }
+  }
+
+  return null
+}
+
+export function FormattedAIResponse({ content, className = '', onLawClick, allLaws = [] }) {
   if (!content) return null
 
   // Try to parse JSON if it looks like JSON
@@ -31,7 +100,7 @@ export function FormattedAIResponse({ content, className = '' }) {
   return (
     <div className={`space-y-4 ${className}`}>
       {sections.map((section, index) => (
-        <Section key={index} section={section} />
+        <Section key={index} section={section} onLawClick={onLawClick} allLaws={allLaws} />
       ))}
     </div>
   )
@@ -183,12 +252,12 @@ function parseContent(text) {
 }
 
 // Render a section
-function Section({ section }) {
+function Section({ section, onLawClick, allLaws }) {
   if (section.type === 'paragraph') {
     return (
       <div className="space-y-2">
         {section.content.map((item, index) => (
-          <ContentItem key={index} item={item} />
+          <ContentItem key={index} item={item} onLawClick={onLawClick} allLaws={allLaws} />
         ))}
       </div>
     )
@@ -206,7 +275,7 @@ function Section({ section }) {
       )}
       <div className="space-y-1 pl-1">
         {section.content.map((item, index) => (
-          <ContentItem key={index} item={item} />
+          <ContentItem key={index} item={item} onLawClick={onLawClick} allLaws={allLaws} />
         ))}
       </div>
     </div>
@@ -214,8 +283,8 @@ function Section({ section }) {
 }
 
 // Render a content item (bullet, numbered, or text)
-function ContentItem({ item }) {
-  const formattedText = formatText(item.text)
+function ContentItem({ item, onLawClick, allLaws }) {
+  const formattedText = formatText(item.text, onLawClick, allLaws)
 
   if (item.type === 'bullet') {
     return (
@@ -242,25 +311,102 @@ function ContentItem({ item }) {
   )
 }
 
-// Format inline text (bold, etc.)
-function formatText(text) {
+// Format inline text (bold, law references, etc.)
+function formatText(text, onLawClick, allLaws) {
   if (!text) return null
 
-  // Split by bold markers and render
+  // First, split by bold markers
   const parts = text.split(/(\*\*[^*]+\*\*|__[^_]+__)/g)
 
-  return parts.map((part, index) => {
+  return parts.map((part, partIndex) => {
     // Check for bold
     const boldMatch = part.match(/^\*\*(.+)\*\*$/) || part.match(/^__(.+)__$/)
     if (boldMatch) {
+      // Process law references inside bold text too
       return (
-        <strong key={index} className="font-semibold text-gray-900 dark:text-white">
-          {boldMatch[1]}
+        <strong key={partIndex} className="font-semibold text-gray-900 dark:text-white">
+          {processLawReferences(boldMatch[1], onLawClick, allLaws, `${partIndex}-bold`)}
         </strong>
       )
     }
-    return <React.Fragment key={index}>{part}</React.Fragment>
+
+    // Process law references in regular text
+    return (
+      <React.Fragment key={partIndex}>
+        {processLawReferences(part, onLawClick, allLaws, partIndex)}
+      </React.Fragment>
+    )
   })
+}
+
+// Process text to find and linkify law references
+function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
+  if (!text || !onLawClick) return text
+
+  // Reset the regex lastIndex for fresh matching
+  LAW_REFERENCE_PATTERN.lastIndex = 0
+
+  const result = []
+  let lastIndex = 0
+  let match
+
+  while ((match = LAW_REFERENCE_PATTERN.exec(text)) !== null) {
+    // Add text before the match
+    if (match.index > lastIndex) {
+      result.push(
+        <React.Fragment key={`${keyPrefix}-text-${lastIndex}`}>
+          {text.slice(lastIndex, match.index)}
+        </React.Fragment>
+      )
+    }
+
+    const matchedText = match[0]
+    const lawInfo = findLawIdFromReference(matchedText, allLaws)
+
+    if (lawInfo) {
+      // Render as clickable link
+      result.push(
+        <button
+          key={`${keyPrefix}-law-${match.index}`}
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            onLawClick(lawInfo.id, lawInfo.country)
+          }}
+          className="inline-flex items-center gap-1 text-whs-orange-600 dark:text-whs-orange-400 hover:text-whs-orange-700 dark:hover:text-whs-orange-300 hover:underline font-medium transition-colors cursor-pointer"
+          title={`View ${matchedText} in Law Browser`}
+        >
+          {matchedText}
+          <svg className="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </button>
+      )
+    } else {
+      // No matching law found, render as highlighted text (still recognizable as law reference)
+      result.push(
+        <span
+          key={`${keyPrefix}-lawref-${match.index}`}
+          className="text-whs-orange-600 dark:text-whs-orange-400 font-medium"
+        >
+          {matchedText}
+        </span>
+      )
+    }
+
+    lastIndex = match.index + matchedText.length
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    result.push(
+      <React.Fragment key={`${keyPrefix}-text-end`}>
+        {text.slice(lastIndex)}
+      </React.Fragment>
+    )
+  }
+
+  return result.length > 0 ? result : text
 }
 
 export default FormattedAIResponse
