@@ -1,0 +1,5 @@
+{
+  "updates": [],
+  "last_check": null,
+  "description": "This file tracks changes to laws detected during update checks. Run 'python law_manager.py check-updates --all' to populate."
+}

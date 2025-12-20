@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useApp } from '../context/AppContext'
 
 // Help icon for feature sections
@@ -103,6 +104,9 @@ export function HelpModal({ isOpen, onClose }) {
 
   if (!isOpen) return null
 
+  // Use portal to render modal at document body level, escaping any parent stacking contexts
+  const modalRoot = document.body
+
   const features = [
     { key: 'lawBrowser', icon: 'lawBrowser' },
     { key: 'complianceChecker', icon: 'complianceChecker' },
@@ -115,9 +119,9 @@ export function HelpModal({ isOpen, onClose }) {
     { key: 'glossary', icon: 'glossary' }
   ]
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] bg-black/60 flex items-start justify-center overflow-y-auto py-8 px-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[9999] bg-black/60 flex items-start justify-center overflow-y-auto py-8 px-4 backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
       }}
@@ -344,7 +348,8 @@ export function HelpModal({ isOpen, onClose }) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    modalRoot
   )
 }
 

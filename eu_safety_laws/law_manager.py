@@ -61,7 +61,7 @@ import hashlib
 import argparse
 import re
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Optional, Dict, List, Any, Tuple
 from dataclasses import dataclass, field, asdict
 from urllib.parse import urljoin
@@ -125,7 +125,7 @@ class Config:
     request_timeout: int = 60
     rate_limit_delay: float = 0.1  # 100ms base delay between requests
     max_retries: int = 3
-    gemini_model: str = "gemini-2.5-flash"  # Stable model
+    gemini_model: str = "gemini-3-flash"  # Latest Gemini 3 Flash model
     # Parallel processing settings (optimized for Gemini 2.5 Flash limits)
     # Rate Limits: 2K RPM, 4M TPM
     max_parallel_scrapes: int = 4  # Concurrent law scrapes (non-AI)
@@ -2986,6 +2986,119 @@ def check_for_updates(country: str) -> Dict[str, Any]:
 
     pbar.close()
     return results
+
+
+def get_changelog_path() -> Path:
+    """Get path to the update changelog file."""
+    return CONFIG.base_path / "update_changelog.json"
+
+
+def load_changelog() -> Dict[str, Any]:
+    """Load the update changelog from file."""
+    changelog_path = get_changelog_path()
+    if changelog_path.exists():
+        try:
+            with open(changelog_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError):
+            pass
+    return {"updates": [], "last_check": None}
+
+
+def save_changelog(changelog: Dict[str, Any]) -> None:
+    """Save the update changelog to file."""
+    changelog_path = get_changelog_path()
+    with open(changelog_path, 'w', encoding='utf-8') as f:
+        json.dump(changelog, f, indent=2, ensure_ascii=False)
+    log_info(f"Changelog saved to {changelog_path}")
+
+
+def record_update(country: str, update_results: Dict[str, Any], scraped_laws: List[str] = None) -> None:
+    """Record an update event to the changelog.
+
+    Args:
+        country: Country code (AT, DE, NL)
+        update_results: Results from check_for_updates
+        scraped_laws: List of law abbreviations that were actually scraped/updated
+    """
+    changelog = load_changelog()
+
+    # Create update entry
+    update_entry = {
+        "timestamp": datetime.now().isoformat(),
+        "country": country,
+        "new_laws": [item['abbreviation'] for item in update_results.get('new', [])],
+        "updated_laws": [item['abbreviation'] for item in update_results.get('updated', [])],
+        "unchanged_laws": [item['abbreviation'] for item in update_results.get('unchanged', [])],
+        "scraped_laws": scraped_laws or [],
+        "details": {
+            "new": update_results.get('new', []),
+            "updated": update_results.get('updated', [])
+        }
+    }
+
+    # Add to changelog (keep last 50 entries)
+    changelog["updates"].insert(0, update_entry)
+    changelog["updates"] = changelog["updates"][:50]
+    changelog["last_check"] = datetime.now().isoformat()
+
+    save_changelog(changelog)
+
+
+def get_recent_changes(days: int = 14) -> List[Dict[str, Any]]:
+    """Get list of laws that changed within the specified number of days.
+
+    Returns list of dicts with: abbreviation, country, change_type, timestamp
+    """
+    changelog = load_changelog()
+    cutoff = datetime.now() - timedelta(days=days)
+
+    recent_changes = []
+    seen = set()  # Track unique law changes
+
+    for update in changelog.get("updates", []):
+        try:
+            update_time = datetime.fromisoformat(update["timestamp"])
+            if update_time < cutoff:
+                continue
+
+            country = update.get("country", "")
+
+            # Add new laws
+            for abbrev in update.get("new_laws", []):
+                key = f"{country}:{abbrev}"
+                if key not in seen:
+                    recent_changes.append({
+                        "abbreviation": abbrev,
+                        "country": country,
+                        "change_type": "new",
+                        "timestamp": update["timestamp"]
+                    })
+                    seen.add(key)
+
+            # Add updated laws
+            for abbrev in update.get("updated_laws", []):
+                key = f"{country}:{abbrev}"
+                if key not in seen:
+                    # Find details for this update
+                    details = next(
+                        (d for d in update.get("details", {}).get("updated", [])
+                         if d.get("abbreviation") == abbrev),
+                        {}
+                    )
+                    recent_changes.append({
+                        "abbreviation": abbrev,
+                        "country": country,
+                        "change_type": "updated",
+                        "timestamp": update["timestamp"],
+                        "old_hash": details.get("old_hash"),
+                        "new_hash": details.get("new_hash")
+                    })
+                    seen.add(key)
+        except (ValueError, KeyError):
+            continue
+
+    return recent_changes
 
 
 def interactive_law_menu(country: str, check_updates: bool = False) -> List[str]:
@@ -7602,6 +7715,9 @@ def cmd_check_updates(args) -> int:
         if results.get('error'):
             log_error(f"Error checking {country}")
             continue
+
+        # Record the check results to changelog (even if nothing changed)
+        record_update(country, results)
 
         # Display results
         print()
