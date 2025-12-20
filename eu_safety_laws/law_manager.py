@@ -6760,15 +6760,47 @@ def clean_database(country: str, use_ai: bool = True, fast_mode: bool = False) -
             elif doc_chars >= CONFIG.large_file_warning_chars:
                 large_files.append((abbrev, doc_chars))
 
-        # Display cost warnings
+        # Display cost warnings and ask about massive files
+        skipped_massive = []
         if massive_files:
             log_warning(f"{'='*60}")
             log_warning(f"COST WARNING: {len(massive_files)} MASSIVE file(s) detected!")
+            log_warning(f"{'='*60}")
+
             for name, chars in massive_files:
                 tokens = chars // 4  # Rough estimate: 4 chars per token
                 cost = (tokens / 1_000_000) * 0.075  # gemini-2.5-flash-lite pricing
                 log_warning(f"  {name}: {chars:,} chars (~{tokens:,} tokens, ~${cost:.3f})")
-            log_warning(f"{'='*60}")
+
+                # Ask user whether to process or skip
+                print(f"\n{Colors.YELLOW}Process '{name}'? [y/n/a] (yes/no/all): {Colors.RESET}", end='')
+                try:
+                    response = input().strip().lower()
+                    if response == 'a':
+                        log_info("Processing all remaining massive files...")
+                        break  # Process all, don't ask again
+                    elif response != 'y':
+                        log_info(f"Skipping {name}")
+                        skipped_massive.append(name)
+                except (EOFError, KeyboardInterrupt):
+                    log_info("\nSkipping all massive files (non-interactive mode)")
+                    skipped_massive = [name for name, _ in massive_files]
+                    break
+
+        # Remove skipped files from cleanable_docs
+        if skipped_massive:
+            cleanable_docs = [(idx, doc) for idx, doc in cleanable_docs
+                             if doc.get('abbreviation') not in skipped_massive]
+            # Recalculate totals
+            total_chars = 0
+            for orig_idx, doc in cleanable_docs:
+                doc_chars = len(doc.get('full_text', ''))
+                for ch in doc.get('chapters', []):
+                    doc_chars += len(ch.get('content', ''))
+                    for sec in ch.get('sections', []):
+                        doc_chars += len(sec.get('content', ''))
+                total_chars += doc_chars
+            log_info(f"Skipped {len(skipped_massive)} massive file(s)")
 
         if large_files:
             log_info(f"Large files ({len(large_files)}): " +
