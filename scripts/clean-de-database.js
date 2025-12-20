@@ -21,7 +21,7 @@ const CONFIG = {
   inputFile: path.join(__dirname, '../eu_safety_laws/de/de_database.json'),
   outputFile: path.join(__dirname, '../eu_safety_laws/de/de_database_cleaned.json'),
   backupFile: path.join(__dirname, '../eu_safety_laws/de/de_database_backup.json'),
-  geminiModel: 'gemini-3-flash-preview',
+  geminiModel: 'gemini-2.5-flash-lite',  // 4K RPM for batch processing
   maxRetries: 3,
   retryDelayMs: 2000,
   rateLimitDelayMs: 50,
