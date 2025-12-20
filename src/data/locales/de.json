@@ -19,10 +19,6 @@
     "documentGenerator": {
       "title": "Dokumenten-Generator",
       "description": "Sicherheitsdokumente aus Vorlagen erstellen"
-    },
-    "quickReference": {
-      "title": "Schnellreferenz-Tools",
-      "description": "Rechner, Nachschlagewerke und Glossar"
     }
   },
   "common": {

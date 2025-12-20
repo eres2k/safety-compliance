@@ -19,10 +19,6 @@
     "documentGenerator": {
       "title": "Document Generator",
       "description": "Create safety documents from templates"
-    },
-    "quickReference": {
-      "title": "Quick Reference Tools",
-      "description": "Calculators, lookups, and glossary"
     }
   },
   "common": {

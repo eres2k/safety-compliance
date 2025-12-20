@@ -13,19 +13,13 @@ const moduleIcons = {
     <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
-  ),
-  quickReference: (
-    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
-    </svg>
   )
 }
 
 // Accent colors for each module
 const moduleColors = {
   lawBrowser: 'from-whs-orange-500 to-whs-orange-600',
-  complianceChecker: 'from-whs-success-500 to-whs-success-600',
-  quickReference: 'from-whs-yellow-500 to-whs-yellow-600'
+  complianceChecker: 'from-whs-success-500 to-whs-success-600'
 }
 
 export function Dashboard({ onModuleSelect }) {
@@ -63,14 +57,6 @@ export function Dashboard({ onModuleSelect }) {
       description: t.modules.complianceChecker.description,
       gradient: moduleColors.complianceChecker,
       badge: 'Guidance'
-    },
-    {
-      id: 'quickReference',
-      icon: moduleIcons.quickReference,
-      title: t.modules.quickReference.title,
-      description: t.modules.quickReference.description,
-      gradient: moduleColors.quickReference,
-      badge: 'Calculators'
     }
   ]
 
@@ -81,14 +67,6 @@ export function Dashboard({ onModuleSelect }) {
       title: 'Compliance Dashboard',
       description: 'Track compliance status across all jurisdictions with visual overview',
       gradient: 'from-blue-500 to-blue-600',
-      badge: 'New'
-    },
-    {
-      id: 'riskAssessment',
-      icon: '⚠️',
-      title: 'Risk Assessment Matrix',
-      description: 'Identify, evaluate, and manage workplace hazards with risk scoring',
-      gradient: 'from-red-500 to-red-600',
       badge: 'New'
     },
     {

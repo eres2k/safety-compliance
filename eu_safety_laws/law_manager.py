@@ -216,13 +216,113 @@ class Config:
                 # AUVA downloads search page - source for all publications with download links
                 "catalog_url": "https://auva.at/downloads/downloads-search/?publicationsWithDownloadOnly=true&category=publications&showTabs=publications%2Cadditional-documents",
                 "publications": [
+                    # === M.plus Series (Expanded Information Sheets, DIN-A4) ===
+                    # M.plus 0xx - General/Legal
+                    {
+                        "abbrev": "AUVA M.plus 012",
+                        "title": "M.plus 012 - Sommerliche Hitze - Präventionsmaßnahmen",
+                        "title_en": "Summer Heat - Prevention Measures",
+                        "url": "https://auva.at/media/n4kpeyhq/mplus_012_sommerliche_hitze_praeventionsmassnahmen_2023-07_.pdf",
+                        "series": "M.plus",
+                        "description": "Prevention measures for summer heat at the workplace"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 019",
+                        "title": "M.plus 019 - Gesetzliche Bestimmungen für Lärmbetriebe",
+                        "title_en": "Legal Regulations for Noisy Workplaces",
+                        "url": "https://auva.at/media/v5sbtwcv/mplus_019_gesetzliche_bestimmungen_fuer_laermbetriebe_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Legal requirements for noise control in workplaces"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 022",
+                        "title": "M.plus 022 - Telearbeitsplätze",
+                        "title_en": "Telework/Remote Workplaces",
+                        "url": "https://auva.at/media/iswlvmmn/mplus-022_telearbeitsplaetze_bf_2504.pdf",
+                        "series": "M.plus",
+                        "description": "Safety guidelines for remote work and home offices"
+                    },
+                    # M.plus 040 - Workplace Evaluation Series
+                    {
+                        "abbrev": "AUVA M.plus 040",
+                        "title": "M.plus 040 - Arbeitsplatzevaluierung",
+                        "title_en": "Workplace Evaluation",
+                        "url": "https://auva.at/media/zzcjdtxk/mplus_040_arbeitsplatzevaluierung_bf_06-2022.pdf",
+                        "series": "M.plus",
+                        "description": "Comprehensive guide for workplace hazard evaluation"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E1",
+                        "title": "M.plus 040.E1 - Evaluierung von mechanischen Gefährdungen",
+                        "title_en": "Evaluation of Mechanical Hazards",
+                        "url": "https://auva.at/media/mcnkpcmc/mplus_040e1_evaluierung_von_mechanischen_gefaehrdungen_202.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of mechanical hazards in the workplace"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E2",
+                        "title": "M.plus 040.E2 - Evaluierung von Sturz- und Absturzgefahren",
+                        "title_en": "Evaluation of Fall Hazards",
+                        "url": "https://auva.at/media/jvuf53wp/mplus_040e2_evaluierung_sturz-und_absturzgefahren_personen.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of fall and trip hazards"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E4",
+                        "title": "M.plus 040.E4 - Evaluierung chemischer Arbeitsstoffe",
+                        "title_en": "Evaluation of Chemical Substances",
+                        "url": "https://auva.at/media/ry0gy2cs/mplus-040e4-chemische-arbeitsstoffe-bf.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of chemical workplace hazards"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E8",
+                        "title": "M.plus 040.E8 - Evaluierung von Lärmbelastungen",
+                        "title_en": "Evaluation of Noise Exposure",
+                        "url": "https://auva.at/media/vs0j2fpc/mplus_040e8_evaluierung_von_laermbelastung_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of noise exposure at work"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E17",
+                        "title": "M.plus 040.E17 - Evaluierung von Büro- und Bildschirmarbeitsplätzen",
+                        "title_en": "Evaluation of Office and Screen Workplaces",
+                        "url": "https://auva.at/media/ghlabert/mplus_040e17_evaluierung_buero_bildschirmarbeitsplaetze_20.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of office and computer workstations"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 070",
+                        "title": "M.plus 070 - Unterweisung",
+                        "title_en": "Safety Training/Instruction",
+                        "url": "https://auva.at/media/jyvn53st/mplus_070_unterweisung_0725_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Guidelines for workplace safety training and instruction"
+                    },
+                    # M.plus 3xx - Hazardous Substances
+                    {
+                        "abbrev": "AUVA M.plus 302",
+                        "title": "M.plus 302 - Gefährliche Arbeitsstoffe - Information und Unterweisung",
+                        "title_en": "Hazardous Substances - Information and Training",
+                        "url": "https://auva.at/media/cxskvf0b/mplus_302_gefaehrliche_arbeitsstoffe_information_und_unterw.pdf",
+                        "series": "M.plus",
+                        "description": "Information and training for handling hazardous substances"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 327",
+                        "title": "M.plus 327 - Einsteigen in enge Räume und Behälter",
+                        "title_en": "Entering Confined Spaces and Containers",
+                        "url": "https://auva.at/media/4jdoprhy/mplus_327_einsteigen_in_enge_raeume_und_behaelter_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety guidelines for confined space entry"
+                    },
                     {
                         "abbrev": "AUVA M.plus 330",
                         "title": "M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
                         "title_en": "Storage of Hazardous Substances",
                         "url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf",
                         "series": "M.plus",
-                        "description": "Guidelines for safe storage of hazardous substances in the workplace"
+                        "description": "Guidelines for safe storage of hazardous substances"
                     },
                     {
                         "abbrev": "AUVA M.plus 340",
@@ -231,6 +331,14 @@ class Config:
                         "url": "https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
                         "series": "M.plus",
                         "description": "Safety requirements for work equipment"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 340.7",
+                        "title": "M.plus 340.7 - Gesundheitsgefährdende Stoffe in öffentlichen Apotheken",
+                        "title_en": "Hazardous Substances in Public Pharmacies",
+                        "url": "https://auva.at/media/siqp5rqv/mplus_3407_gesundheitsgefaehrdende_stoffe_in_oeffentlichen.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for handling hazardous substances in pharmacies"
                     },
                     {
                         "abbrev": "AUVA M.plus 350",
@@ -249,12 +357,140 @@ class Config:
                         "description": "Ergonomic workplace design guidelines"
                     },
                     {
+                        "abbrev": "AUVA M.plus 369",
+                        "title": "M.plus 369 - Kühlschmierstoffe",
+                        "title_en": "Cooling Lubricants",
+                        "url": "https://auva.at/media/fkmeiimb/mplus-369-kuehlschmierstoffe-bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safe handling of cooling lubricants in machining"
+                    },
+                    # M.plus 5xx - Forestry
+                    {
+                        "abbrev": "AUVA M.plus 521",
+                        "title": "M.plus 521 - Forstliche Arbeiten mit der Motorsäge",
+                        "title_en": "Forestry Work with Chainsaws",
+                        "url": "https://auva.at/media/p0ybmq2g/mplus_521_forstliche_arbeiten_mit_der_motorsaege_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety guidelines for chainsaw work in forestry"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 523",
+                        "title": "M.plus 523 - Forstliche Seilbringung",
+                        "title_en": "Forestry Cable Logging",
+                        "url": "https://auva.at/media/lrgf0pdk/mplus_523_forstliche_seilbringung_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for cable logging operations in forestry"
+                    },
+                    # M.plus 7xx - Personal Protective Equipment
+                    {
+                        "abbrev": "AUVA M.plus 700",
+                        "title": "M.plus 700 - Gehörschutz",
+                        "title_en": "Hearing Protection",
+                        "url": "https://auva.at/media/cjwjl21s/mplus-700-gehoerschutz-bf.pdf",
+                        "series": "M.plus",
+                        "description": "Selection and use of hearing protection"
+                    },
+                    # M.plus 8xx - Transport & Vehicles
+                    {
+                        "abbrev": "AUVA M.plus 800",
+                        "title": "M.plus 800 - Sicher unterwegs",
+                        "title_en": "Safe on the Road",
+                        "url": "https://auva.at/media/nh1bq3eh/mplus_800_sicher_unterwegs_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Traffic safety for work-related travel"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 801",
+                        "title": "M.plus 801 - Fahrradbotendienste",
+                        "title_en": "Bicycle Courier Services",
+                        "url": "https://auva.at/media/nrljnr11/mplus_801_fahrradbotendienste_2023-02_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for bicycle courier services"
+                    },
+                    # M.plus 9xx - Special Topics
+                    {
                         "abbrev": "AUVA M.plus 910",
                         "title": "M.plus 910 - Evaluierung psychischer Belastungen",
                         "title_en": "Assessment of Psychological Stress",
                         "url": "https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
                         "series": "M.plus",
                         "description": "Guidelines for assessing psychological stress at work"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 931",
+                        "title": "M.plus 931 - XR-Technologien am Arbeitsplatz",
+                        "title_en": "XR Technologies at the Workplace",
+                        "url": "https://auva.at/media/jvcpfyhg/mplus_931_xr_technologien_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for extended reality technologies at work"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 942",
+                        "title": "M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter",
+                        "title_en": "Driverless Transport Systems and Mobile Robots",
+                        "url": "https://auva.at/media/3scjz5tv/mplus_942_fahrerlose_transportsysteme_und_mobile_roboter_bf.pdf",
+                        "series": "M.plus",
+                        "description": "Safety for autonomous transport systems and mobile robots"
+                    },
+                    # === M-Reihe (Compact Information Sheets, DIN-A5) ===
+                    # M 0xx - General/Legal
+                    {
+                        "abbrev": "AUVA M 030",
+                        "title": "M 030 - ArbeitnehmerInnenschutzgesetz",
+                        "title_en": "Worker Protection Act",
+                        "url": "https://auva.at/media/kwjputxz/m_030_arbeitnehmerinnenschutzgesetz_bf_2505.pdf",
+                        "series": "M",
+                        "description": "Overview of the Austrian Worker Protection Act (ASchG)"
+                    },
+                    {
+                        "abbrev": "AUVA M 041",
+                        "title": "M 041 - Verordnung über Sicherheits- und Gesundheitsschutzdokumente",
+                        "title_en": "Regulation on Safety and Health Documents",
+                        "url": "https://auva.at/media/gf3drt5e/m_041_verordnung_ueber_sicherheits-_und_gesundheitsschutzdok.pdf",
+                        "series": "M",
+                        "description": "Requirements for safety and health documentation"
+                    },
+                    {
+                        "abbrev": "AUVA M 080",
+                        "title": "M 080 - Grundlagen der Lasersicherheit",
+                        "title_en": "Fundamentals of Laser Safety",
+                        "url": "https://auva.at/media/ahopxkb3/m_080_grundlagen_der_lasersicherheit_2023-07_bf.pdf",
+                        "series": "M",
+                        "description": "Basics of laser safety in the workplace"
+                    },
+                    # M 3xx - Hazardous Substances
+                    {
+                        "abbrev": "AUVA M 364",
+                        "title": "M 364 - Umgang mit ätzenden Stoffen",
+                        "title_en": "Handling Corrosive Substances",
+                        "url": "https://auva.at/media/tytfmukw/m_364_umgang_mit_aetzenden_stoffen.pdf",
+                        "series": "M",
+                        "description": "Safe handling of corrosive acids and alkalis"
+                    },
+                    {
+                        "abbrev": "AUVA M 391",
+                        "title": "M 391 - Sicherer Umgang mit gefährlichen Arbeitsstoffen",
+                        "title_en": "Safe Handling of Hazardous Substances",
+                        "url": "https://auva.at/media/ds1jpe1o/m_391_sicherer_umgang_mit_gefaehrlichen_arbeitsstoffen.pdf",
+                        "series": "M",
+                        "description": "General guidelines for safe handling of hazardous substances"
+                    },
+                    # M 7xx - Personal Protective Equipment
+                    {
+                        "abbrev": "AUVA M 705",
+                        "title": "M 705 - Schutzhandschuhe",
+                        "title_en": "Protective Gloves",
+                        "url": "https://auva.at/media/efdj33nn/m705-schutzhandschuhe-bf.pdf",
+                        "series": "M",
+                        "description": "Selection and use of protective gloves"
+                    },
+                    {
+                        "abbrev": "AUVA M 719",
+                        "title": "M 719 - Atemschutzfilter gegen Schwebstoffe, Gase und Dämpfe",
+                        "title_en": "Respiratory Protection Filters",
+                        "url": "https://auva.at/media/nwwlrfpq/m_719_atemschutzfilter_gegen_schwebstoffe_gase_daempfe_bf_20.pdf",
+                        "series": "M",
+                        "description": "Selection of respiratory protection filters"
                     }
                 ]
             }
@@ -279,7 +515,92 @@ class Config:
                         "description": "Informationsschriften"
                     }
                 },
-                "catalog_url": "https://publikationen.dguv.de/regelwerk/"
+                "catalog_url": "https://publikationen.dguv.de/regelwerk/",
+                "publications": [
+                    # === DGUV Vorschriften (Regulations) ===
+                    {
+                        "abbrev": "DGUV Vorschrift 1",
+                        "title": "DGUV Vorschrift 1 - Grundsätze der Prävention",
+                        "title_en": "Principles of Prevention",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2909",
+                        "series": "vorschriften",
+                        "description": "Basic prevention principles for all industries"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 3",
+                        "title": "DGUV Vorschrift 3 - Elektrische Anlagen und Betriebsmittel",
+                        "title_en": "Electrical Installations and Equipment",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1052",
+                        "series": "vorschriften",
+                        "description": "Safety requirements for electrical installations"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 4",
+                        "title": "DGUV Vorschrift 4 - Elektrische Anlagen und Betriebsmittel",
+                        "title_en": "Electrical Installations and Equipment (Public)",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1457",
+                        "series": "vorschriften",
+                        "description": "Electrical safety for public sector"
+                    },
+                    # === DGUV Regeln (Rules) ===
+                    {
+                        "abbrev": "DGUV Regel 100-001",
+                        "title": "DGUV Regel 100-001 - Grundsätze der Prävention",
+                        "title_en": "Principles of Prevention - Implementation Rule",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2942",
+                        "series": "regeln",
+                        "description": "Detailed implementation of DGUV Vorschrift 1"
+                    },
+                    {
+                        "abbrev": "DGUV Regel 100-500",
+                        "title": "DGUV Regel 100-500 - Betreiben von Arbeitsmitteln",
+                        "title_en": "Operating Work Equipment",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/997",
+                        "series": "regeln",
+                        "description": "Safe operation of work equipment"
+                    },
+                    {
+                        "abbrev": "DGUV Regel 100-500 R2.10",
+                        "title": "DGUV Regel 100-500 R2.10 - Betreiben von Hebebühnen",
+                        "title_en": "Operating Lifting Platforms",
+                        "url": "https://publikationen.dguv.de/media/pdf/ba/08/b6/R500_210.pdf",
+                        "series": "regeln",
+                        "description": "Safe operation of lifting platforms"
+                    },
+                    {
+                        "abbrev": "DGUV Regel 100-500 R2.12",
+                        "title": "DGUV Regel 100-500 R2.12 - Betreiben von Erdbaumaschinen",
+                        "title_en": "Operating Earthmoving Machines",
+                        "url": "https://publikationen.dguv.de/media/pdf/f7/bb/ef/R500_212.pdf",
+                        "series": "regeln",
+                        "description": "Safe operation of earthmoving equipment"
+                    },
+                    # === DGUV Informationen (Information) ===
+                    {
+                        "abbrev": "DGUV Information 203-006",
+                        "title": "DGUV Information 203-006 - Auswahl und Betrieb elektrischer Anlagen",
+                        "title_en": "Selection and Operation of Electrical Systems",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/792",
+                        "series": "information",
+                        "description": "Electrical safety guidance"
+                    },
+                    {
+                        "abbrev": "DGUV Information 204-022",
+                        "title": "DGUV Information 204-022 - Erste Hilfe im Betrieb",
+                        "title_en": "First Aid at Work",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/759",
+                        "series": "information",
+                        "description": "First aid requirements and procedures"
+                    },
+                    {
+                        "abbrev": "DGUV Information 206-004",
+                        "title": "DGUV Information 206-004 - Gesund und fit im Kleinbetrieb",
+                        "title_en": "Health and Fitness in Small Businesses",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/801",
+                        "series": "information",
+                        "description": "Health promotion for small businesses"
+                    }
+                ]
             }
         },
         "NL": {
@@ -298,13 +619,457 @@ class Config:
                         "description": "Tools and checklists for workplace safety"
                     }
                 },
-                "catalog_url": "https://www.arboportaal.nl/onderwerpen/arbocatalogi"
+                "catalog_url": "https://www.arboportaal.nl/onderwerpen/arbocatalogi",
+                "publications": [
+                    # === Dutch Arbocatalogi (Sector Catalogues) ===
+                    {
+                        "abbrev": "Arbocatalogus Hoveniers",
+                        "title": "Arbocatalogus Hoveniers en Groenvoorziening",
+                        "title_en": "Occupational Health Catalogue - Gardeners and Landscaping",
+                        "url": "https://www.landschapnoordholland.nl/files/2018-07/arbo%20catalogus%20hoveniers%20en%20groenvoorziening.pdf",
+                        "series": "arbocatalogi",
+                        "description": "Safety standards for gardening and landscaping sector"
+                    },
+                    {
+                        "abbrev": "Arbocatalogus Kantoor",
+                        "title": "Handreiking Kantooromgeving voor de Arbocatalogus",
+                        "title_en": "Office Environment Guide for Arbocatalogi",
+                        "url": "https://dearbocatalogus.nl/sites/default/files/stvda/handreikingen/handreiking_kantooromgeving.pdf",
+                        "series": "arbocatalogi",
+                        "description": "Safety standards for office environments"
+                    },
+                    {
+                        "abbrev": "Arbocatalogus Linnen",
+                        "title": "Arbocatalogus Linnenverhuur- en Wasserijbedrijven",
+                        "title_en": "Occupational Health Catalogue - Linen Rental and Laundry",
+                        "url": "https://www.raltex.nl/cms/files/2017-01/2012-arbocatalogus-linnen-en-wasserijbedrijven-lr.pdf",
+                        "series": "arbocatalogi",
+                        "description": "Safety standards for linen and laundry businesses"
+                    },
+                    {
+                        "abbrev": "Arbocatalogus Retail Mode",
+                        "title": "Arbocatalogus Retail Mode, Schoenen & Sport",
+                        "title_en": "Occupational Health Catalogue - Fashion and Sports Retail",
+                        "url": "https://www.werkindewinkel.nl/uploads/arbocatalogus-retail-mode-schoenen-sport-2020.cd5ead.pdf",
+                        "series": "arbocatalogi",
+                        "description": "Safety standards for fashion and sports retail"
+                    },
+                    {
+                        "abbrev": "Arbocatalogus Bloemen",
+                        "title": "Arbocatalogus Groothandel Bloemen en Planten",
+                        "title_en": "Occupational Health Catalogue - Flower and Plant Wholesale",
+                        "url": "https://www.vgb.nl/files/arbocatalogus.pdf",
+                        "series": "arbocatalogi",
+                        "description": "Safety standards for flower and plant wholesale"
+                    },
+                    {
+                        "abbrev": "Arbocatalogus Uitzendbranche",
+                        "title": "Arbocatalogus Arbobeleid Uitzendbranche",
+                        "title_en": "Occupational Health Catalogue - Temporary Employment",
+                        "url": "https://www.abu.nl/app/uploads/2019/09/Arbocatalogus-Algemeen-onderdeel-Arbobeleid-voor-vaste-medewerkers-in-de-uitzendbranche.pdf",
+                        "series": "arbocatalogi",
+                        "description": "Safety standards for temporary employment agencies"
+                    }
+                ]
             }
         }
     })
 
 
 CONFIG = Config()
+
+# =============================================================================
+# Logistics Context Layer - Amazon Jargon Mapping
+# =============================================================================
+# Maps Amazon logistics terminology to legal/safety concepts for "native" context
+
+LOGISTICS_JARGON_MAP = {
+    # === Roles ===
+    "stower": ["manual handling", "lifting", "ergonomics", "Lastenhandhabung", "tillen"],
+    "picker": ["manual handling", "walking distances", "ergonomics", "repetitive motion"],
+    "water spider": ["mobile workers", "manual handling", "forklift safety", "internal transport"],
+    "problem solver": ["safety coordination", "incident reporting", "first aid"],
+    "area manager": ["safety supervision", "instruction", "Unterweisung", "toezicht"],
+    "dsp": ["road safety", "driving regulations", "working time", "Fahrpersonal", "rijden"],
+    "da": ["delivery associate", "road safety", "manual handling", "driver safety"],
+    "loader": ["manual handling", "loading safety", "vehicle safety", "Ladungssicherung"],
+    "unloader": ["manual handling", "unloading", "conveyor safety", "ergonomics"],
+    "sorter": ["conveyor safety", "repetitive motion", "PPE", "noise exposure"],
+
+    # === Tasks / Operations ===
+    "stowing": ["manual handling", "lifting weight limits", "Lastenhandhabung", "tillen"],
+    "picking": ["walking", "manual handling", "repetitive tasks"],
+    "inducting": ["conveyor operation", "machine safety", "Maschinensicherheit"],
+    "diverting": ["conveyor operation", "sorting"],
+    "loading vans": ["manual handling", "vehicle safety", "Ladungssicherung"],
+    "sort": ["night work", "shift work", "working time", "Arbeitszeitgesetz", "Arbeidstijdenwet"],
+    "night shift": ["night work", "Nachtarbeit", "nachtdienst", "health surveillance"],
+    "day shift": ["working hours", "rest periods", "Ruhepausen"],
+    "sunday work": ["rest day work", "Sonntagsarbeit", "zondagsarbeid"],
+
+    # === Equipment ===
+    "tote": ["manual handling", "lifting", "container handling"],
+    "gaylord": ["bulk container", "manual handling", "pallet handling"],
+    "pallet jack": ["forklift", "powered truck", "Flurförderzeug", "vorkheftruck"],
+    "conveyor": ["conveyor belt", "Förderband", "transportband", "machine safety"],
+    "scanner": ["ergonomics", "repetitive motion", "hand-arm vibration"],
+    "van": ["commercial vehicle", "driving safety", "Fahrersicherheit"],
+    "dolly": ["manual handling", "pushing/pulling", "Schieben und Ziehen"],
+
+    # === Facilities ===
+    "delivery station": ["workplace", "Arbeitsstätte", "arbeidsplaats", "warehouse"],
+    "fc": ["fulfillment center", "warehouse", "Lager", "magazijn"],
+    "dock": ["loading dock", "vehicle interface", "Laderampe"],
+    "staging area": ["storage area", "pedestrian safety", "Verkehrswege"],
+    "breakroom": ["rest area", "sanitary facilities", "Pausenraum", "pauzeruimte"],
+
+    # === Safety Topics ===
+    "safety shoes": ["Fußschutz", "Sicherheitsschuhe", "veiligheidsschoenen", "PPE footwear"],
+    "high vis": ["high visibility", "Warnkleidung", "waarschuwingskleding", "PPE visibility"],
+    "safety vest": ["high visibility vest", "Warnweste", "veiligheidsvest"],
+    "ppe": ["personal protective equipment", "PSA", "persönliche Schutzausrüstung", "PBM"],
+    "stretching": ["ergonomics", "warm-up exercises", "musculoskeletal prevention"],
+}
+
+# Cross-reference metrics for MEU Harmonizer
+CROSS_BORDER_METRICS = {
+    "max_lifting_weight": {
+        "AT": {
+            "value": "25kg (men) / 15kg (women)",
+            "source": "ASchG + ÖNORM",
+            "notes": "Reference values with risk assessment required above limits"
+        },
+        "DE": {
+            "value": "25kg (reference, risk assessment)",
+            "source": "Lastenhandhabungsverordnung",
+            "notes": "No absolute limit, depends on risk assessment"
+        },
+        "NL": {
+            "value": "23kg (NIOSH recommendation)",
+            "source": "Arbobesluit + NIOSH",
+            "notes": "Inspectorate uses NIOSH lifting equation"
+        },
+        "recommendation": "Adopt 23kg as internal limit to comply across all MEU stations"
+    },
+    "noise_limit": {
+        "AT": {
+            "value": "85 dB(A) action value, 87 dB(A) limit",
+            "source": "VOLV §§ 4-6",
+            "notes": "Hearing protection mandatory above 85 dB(A)"
+        },
+        "DE": {
+            "value": "80/85 dB(A) action, 87 dB(A) limit",
+            "source": "Lärm- und Vibrations-ArSchV",
+            "notes": "Two-tier action values (80 = offer, 85 = mandatory)"
+        },
+        "NL": {
+            "value": "80/85 dB(A) action, 87 dB(A) limit",
+            "source": "Arbobesluit art. 6.7-6.11",
+            "notes": "Similar to EU directive implementation"
+        },
+        "recommendation": "Use 80 dB(A) as trigger for hearing protection across all sites"
+    },
+    "rest_periods": {
+        "AT": {
+            "value": "30 min after 6h, 11h daily rest",
+            "source": "AZG §§ 11, 12",
+            "notes": "Breaks can be split into 15min parts"
+        },
+        "DE": {
+            "value": "30 min after 6h (45 min after 9h), 11h daily rest",
+            "source": "ArbZG §§ 4, 5",
+            "notes": "Additional break required for 9+ hours"
+        },
+        "NL": {
+            "value": "30 min after 5.5h, 11h daily rest",
+            "source": "Arbeidstijdenwet art. 5:4",
+            "notes": "Can be split into 2x15min"
+        },
+        "recommendation": "Apply NL standard (30min after 5.5h) for uniform MEU policy"
+    },
+    "first_aid_personnel": {
+        "AT": {
+            "value": "1 per 20-29 employees, 2 per 30-49",
+            "source": "ASchG § 26",
+            "notes": "Higher ratios for hazardous workplaces"
+        },
+        "DE": {
+            "value": "1 per 20+ employees (5% minimum)",
+            "source": "DGUV Vorschrift 1 § 26",
+            "notes": "Minimum 5% of workforce"
+        },
+        "NL": {
+            "value": "Sufficient based on RI&E",
+            "source": "Arbobesluit art. 15",
+            "notes": "Number determined by risk assessment"
+        },
+        "recommendation": "Apply 5% minimum or 1 per 20 employees across all sites"
+    },
+    "safety_officer_threshold": {
+        "AT": {
+            "value": "250+ employees require safety officer",
+            "source": "ASchG § 73",
+            "notes": "External SFK allowed for smaller sites"
+        },
+        "DE": {
+            "value": "Required for all sizes (Fachkraft für Arbeitssicherheit)",
+            "source": "ASiG § 5",
+            "notes": "Hours depend on company size and hazard class"
+        },
+        "NL": {
+            "value": "Required for all sizes (preventiemedewerker)",
+            "source": "Arbowet art. 13",
+            "notes": "Owner can be own prevention worker for <25 employees"
+        },
+        "recommendation": "Designate safety officer for all sites regardless of size"
+    }
+}
+
+# Task-based requirement mapping
+TASK_REQUIREMENTS_MAP = {
+    # Task categories mapped to legal requirements
+    "unloading": {
+        "topics": ["manual handling", "PPE", "conveyor safety", "vehicle interface"],
+        "laws": {
+            "AT": ["ASchG §§ 62-64", "AM-VO", "AStV"],
+            "DE": ["Lastenhandhabungsverordnung", "BetrSichV", "ArbStättV"],
+            "NL": ["Arbobesluit Hfdst. 5", "NIOSH lifting equation"]
+        },
+        "shift_modifiers": {
+            "night": ["Nachtarbeit provisions", "health surveillance"],
+            "sunday": ["Sunday work approval", "extra compensation"]
+        }
+    },
+    "sorting": {
+        "topics": ["conveyor safety", "noise exposure", "repetitive motion", "PPE"],
+        "laws": {
+            "AT": ["ASchG", "VOLV", "AM-VO"],
+            "DE": ["BetrSichV", "Lärm-VibrationsArbSchV", "ArbSchG"],
+            "NL": ["Arbobesluit Hfdst. 6", "Machine-richtlijn"]
+        }
+    },
+    "driving": {
+        "topics": ["road safety", "working time", "rest periods", "vehicle safety"],
+        "laws": {
+            "AT": ["AZG", "ARG", "StVO", "KFG"],
+            "DE": ["ArbZG", "FPersV", "StVO"],
+            "NL": ["Arbeidstijdenwet", "Rijtijdenwet", "WvW"]
+        },
+        "equipment": ["van", "delivery vehicle"]
+    },
+    "office": {
+        "topics": ["display screen work", "ergonomics", "indoor climate"],
+        "laws": {
+            "AT": ["BS-V (Bildschirmarbeitsverordnung)", "AStV"],
+            "DE": ["ArbStättV Anhang 6", "Bildschirmarbeitsverordnung"],
+            "NL": ["Arbobesluit art. 5.4-5.12"]
+        }
+    }
+}
+
+
+def translate_jargon_to_legal(search_term: str) -> List[str]:
+    """
+    Translate Amazon logistics jargon to legal/safety search terms.
+
+    Example: "stower" -> ["manual handling", "lifting", "ergonomics", "Lastenhandhabung", "tillen"]
+    """
+    search_lower = search_term.lower().strip()
+
+    # Direct match
+    if search_lower in LOGISTICS_JARGON_MAP:
+        return LOGISTICS_JARGON_MAP[search_lower]
+
+    # Partial match
+    expanded_terms = []
+    for jargon, legal_terms in LOGISTICS_JARGON_MAP.items():
+        if jargon in search_lower or search_lower in jargon:
+            expanded_terms.extend(legal_terms)
+
+    return list(set(expanded_terms)) if expanded_terms else [search_term]
+
+
+def get_meu_harmonized_standard(metric_name: str) -> Optional[Dict[str, Any]]:
+    """
+    Get the strictest common denominator for a cross-border metric.
+
+    Returns comparison across AT/DE/NL with AI recommendation.
+    """
+    if metric_name in CROSS_BORDER_METRICS:
+        return CROSS_BORDER_METRICS[metric_name]
+
+    # Fuzzy match
+    metric_lower = metric_name.lower().replace("_", " ").replace("-", " ")
+    for key, value in CROSS_BORDER_METRICS.items():
+        key_readable = key.replace("_", " ")
+        if metric_lower in key_readable or key_readable in metric_lower:
+            return value
+
+    return None
+
+
+def get_task_requirements(task: str, shift: str = "day", equipment: List[str] = None) -> Dict[str, Any]:
+    """
+    Generate legal requirements based on task, shift, and equipment.
+
+    Example: get_task_requirements("sorting", shift="night", equipment=["conveyor"])
+    """
+    task_lower = task.lower().strip()
+
+    # Find matching task
+    task_config = None
+    for task_key, config in TASK_REQUIREMENTS_MAP.items():
+        if task_key in task_lower or task_lower in task_key:
+            task_config = config
+            break
+
+    if not task_config:
+        return {"error": f"Unknown task: {task}. Available: {list(TASK_REQUIREMENTS_MAP.keys())}"}
+
+    result = {
+        "task": task,
+        "shift": shift,
+        "topics": task_config.get("topics", []),
+        "laws_by_country": task_config.get("laws", {}),
+        "equipment_required": equipment or []
+    }
+
+    # Add shift modifiers
+    if shift.lower() in task_config.get("shift_modifiers", {}):
+        result["shift_requirements"] = task_config["shift_modifiers"][shift.lower()]
+
+    return result
+
+
+# =============================================================================
+# AI-Powered Dead Link Detection and Auto-Fix
+# =============================================================================
+
+def check_url_validity(url: str, timeout: int = 10) -> Dict[str, Any]:
+    """Check if a URL is valid and accessible."""
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        response = requests.head(url, timeout=timeout, headers=headers, allow_redirects=True)
+        return {
+            "url": url,
+            "valid": response.status_code == 200,
+            "status_code": response.status_code,
+            "final_url": response.url if response.url != url else None,
+            "content_type": response.headers.get('Content-Type', '')
+        }
+    except requests.RequestException as e:
+        return {
+            "url": url,
+            "valid": False,
+            "status_code": None,
+            "error": str(e)
+        }
+
+
+def find_replacement_url_with_ai(broken_url: str, doc_title: str, authority: str) -> Optional[str]:
+    """Use AI to suggest a replacement URL for a dead link."""
+    if not HAS_GEMINI:
+        return None
+
+    prompt = f"""A PDF document link is broken. Help find the correct URL.
+
+Document: {doc_title}
+Authority: {authority}
+Broken URL: {broken_url}
+
+Based on the URL pattern and document title, suggest what the correct URL might be.
+Consider:
+1. The authority's website structure
+2. Common URL patterns for PDFs (e.g., /media/, /downloads/, /publikationen/)
+3. Document naming conventions
+
+Return ONLY the suggested URL, nothing else. If you cannot determine a valid URL, return "UNKNOWN"."""
+
+    try:
+        model = genai.GenerativeModel(CONFIG.gemini_model)
+        response = model.generate_content(prompt)
+        suggested_url = response.text.strip()
+
+        if suggested_url and suggested_url != "UNKNOWN" and suggested_url.startswith("http"):
+            return suggested_url
+    except Exception as e:
+        log_warning(f"AI URL suggestion failed: {e}")
+
+    return None
+
+
+def validate_and_fix_merkblaetter_urls(country: str = None, auto_fix: bool = False) -> Dict[str, Any]:
+    """
+    Validate all Merkblätter URLs and optionally attempt to fix broken ones.
+
+    Returns report of valid, broken, and fixed URLs.
+    """
+    results = {
+        "checked": 0,
+        "valid": [],
+        "broken": [],
+        "fixed": [],
+        "unfixable": []
+    }
+
+    sources = CONFIG.merkblaetter_sources
+    countries = [country] if country else sources.keys()
+
+    for c in countries:
+        if c not in sources:
+            continue
+
+        for source_key, source_config in sources[c].items():
+            publications = source_config.get("publications", [])
+
+            for pub in publications:
+                url = pub.get("url", "")
+                title = pub.get("title", "")
+                abbrev = pub.get("abbrev", "")
+                authority = source_config.get("authority", "")
+
+                results["checked"] += 1
+
+                # Check URL validity
+                check = check_url_validity(url)
+
+                if check["valid"]:
+                    results["valid"].append({
+                        "country": c,
+                        "abbrev": abbrev,
+                        "title": title,
+                        "url": url
+                    })
+                else:
+                    broken_entry = {
+                        "country": c,
+                        "abbrev": abbrev,
+                        "title": title,
+                        "url": url,
+                        "status": check.get("status_code"),
+                        "error": check.get("error")
+                    }
+
+                    if auto_fix:
+                        # Attempt to find replacement
+                        new_url = find_replacement_url_with_ai(url, title, authority)
+
+                        if new_url:
+                            # Verify the new URL works
+                            new_check = check_url_validity(new_url)
+                            if new_check["valid"]:
+                                broken_entry["suggested_url"] = new_url
+                                results["fixed"].append(broken_entry)
+                                log_success(f"Found replacement for {abbrev}: {new_url}")
+                                continue
+
+                    results["broken"].append(broken_entry)
+                    results["unfixable"].append(broken_entry)
+
+    return results
+
 
 # Custom sources configuration file
 CUSTOM_SOURCES_FILE = CONFIG.base_path / "custom_sources.json"
