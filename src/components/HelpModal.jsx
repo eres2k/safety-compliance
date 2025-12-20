@@ -122,7 +122,7 @@ export function HelpModal({ isOpen, onClose }) {
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-fade-in-up">
+      <div className="bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-scale-in">
         {/* Header */}
         <div className="bg-gradient-to-r from-whs-orange-500 to-whs-orange-600 px-6 py-5 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">

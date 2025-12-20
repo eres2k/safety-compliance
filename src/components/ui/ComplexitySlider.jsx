@@ -134,27 +134,47 @@ function WHSSection({ icon, title, items, color }) {
   if (!items || items.length === 0) return null
 
   const colorClasses = {
-    orange: 'bg-orange-100 dark:bg-orange-900/30 border-orange-300 dark:border-orange-700',
-    blue: 'bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700',
-    purple: 'bg-purple-100 dark:bg-purple-900/30 border-purple-300 dark:border-purple-700'
+    orange: 'bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border-orange-200 dark:border-orange-800',
+    blue: 'bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-900/20 dark:to-sky-900/20 border-blue-200 dark:border-blue-800',
+    purple: 'bg-gradient-to-br from-purple-50 to-fuchsia-50 dark:from-purple-900/20 dark:to-fuchsia-900/20 border-purple-200 dark:border-purple-800',
+    green: 'bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800'
   }
 
   const iconBg = {
-    orange: 'bg-orange-200 dark:bg-orange-800',
-    blue: 'bg-blue-200 dark:bg-blue-800',
-    purple: 'bg-purple-200 dark:bg-purple-800'
+    orange: 'bg-gradient-to-br from-orange-400 to-amber-500 text-white shadow-sm',
+    blue: 'bg-gradient-to-br from-blue-400 to-sky-500 text-white shadow-sm',
+    purple: 'bg-gradient-to-br from-purple-400 to-fuchsia-500 text-white shadow-sm',
+    green: 'bg-gradient-to-br from-green-400 to-emerald-500 text-white shadow-sm'
+  }
+
+  const titleColor = {
+    orange: 'text-orange-800 dark:text-orange-200',
+    blue: 'text-blue-800 dark:text-blue-200',
+    purple: 'text-purple-800 dark:text-purple-200',
+    green: 'text-green-800 dark:text-green-200'
+  }
+
+  const bulletColor = {
+    orange: 'text-orange-400 dark:text-orange-500',
+    blue: 'text-blue-400 dark:text-blue-500',
+    purple: 'text-purple-400 dark:text-purple-500',
+    green: 'text-green-400 dark:text-green-500'
   }
 
   return (
-    <div className={`rounded-lg p-3 ${colorClasses[color]} border`}>
-      <div className="flex items-center gap-2 mb-2">
-        <span className={`w-6 h-6 rounded-full ${iconBg[color]} flex items-center justify-center text-sm`}>{icon}</span>
-        <h6 className="font-semibold text-gray-800 dark:text-gray-100 text-sm">{title}</h6>
+    <div className={`rounded-xl p-4 ${colorClasses[color]} border shadow-sm`}>
+      <div className="flex items-center gap-3 mb-3">
+        <span className={`w-8 h-8 rounded-lg ${iconBg[color]} flex items-center justify-center text-base`}>{icon}</span>
+        <h6 className={`font-bold ${titleColor[color]} text-sm tracking-wide`}>{title}</h6>
       </div>
-      <ul className="space-y-1.5 ml-8">
+      <ul className="space-y-2 ml-11">
         {items.map((item, idx) => (
-          <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2">
-            <span className="text-gray-400 mt-1">•</span>
+          <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2 leading-relaxed">
+            <span className={`${bulletColor[color]} mt-1.5 flex-shrink-0`}>
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3"/>
+              </svg>
+            </span>
             <span>{item}</span>
           </li>
         ))}
@@ -206,14 +226,20 @@ export function SimplifiedContent({ content, level, isLoading, t = {}, wikiArtic
     const hasStructuredContent = sections.overview.length > 0 || sections.requirements.length > 0 || sections.relevance.length > 0 || sections.actions.length > 0
 
     return (
-      <div className={`rounded-xl p-4 ${config.bg} border ${config.border} shadow-sm`}>
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-xl">{config.icon}</span>
-          <h5 className="font-bold text-gray-900 dark:text-white">{config.title}</h5>
+      <div className={`rounded-2xl p-5 ${config.bg} border ${config.border} shadow-md`}>
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-5 pb-4 border-b border-blue-200 dark:border-blue-700">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-md">
+            <span className="text-xl">{config.icon}</span>
+          </div>
+          <div>
+            <h5 className="font-bold text-gray-900 dark:text-white text-lg">{config.title}</h5>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{t?.whs?.subtitle || "Key obligations & compliance requirements"}</p>
+          </div>
         </div>
 
         {hasStructuredContent ? (
-          <div className="space-y-3">
+          <div className="space-y-4">
             <WHSSection
               icon="📋"
               title={t?.whs?.overview || "What This Section Covers"}
@@ -236,11 +262,11 @@ export function SimplifiedContent({ content, level, isLoading, t = {}, wikiArtic
               icon="📄"
               title={t?.whs?.actions || "Documentation/Actions Needed"}
               items={sections.actions}
-              color="blue"
+              color="green"
             />
           </div>
         ) : (
-          <div className="text-gray-700 dark:text-gray-300 text-sm whitespace-pre-wrap leading-relaxed">
+          <div className="text-gray-700 dark:text-gray-300 text-sm whitespace-pre-wrap leading-relaxed bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl">
             {content}
           </div>
         )}
