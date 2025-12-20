@@ -1736,6 +1736,47 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
     }
   }, [filteredSections])
 
+  // Select a law - defined early as useCallback so it can be used in handleLawReferenceClick
+  const selectLaw = useCallback((law) => {
+    setSelectedLaw(law)
+    setActiveSection(null)
+    setSearchInLaw('')
+    setContentSearchTerm('')
+    // Clear inline document view
+    setInlineDocView(null)
+    // Reset flowchart state
+    setFlowchartData(null)
+    setFlowchartSectionId(null)
+    // Reset complexity slider state - per-section
+    setSectionComplexityLevels({})
+    setSimplifiedContent({})
+    // Reset translation state
+    setTranslatedContent({})
+    setTranslationEnabled(false)
+    // Reset cross-border state
+    setShowCrossBorder(false)
+    setCrossBorderData(null)
+    setCrossBorderTarget(null)
+    setCrossBorderError(null)
+    setCrossBorderSection(null)
+    // Reset multi-country state
+    setShowMultiCountry(false)
+    setMultiCountryData(null)
+    setMultiCountryError(null)
+    // Reset section collapse state - all collapsed by default
+    setExpandedSections({})
+    // Reset chapter collapse state - all collapsed by default
+    setExpandedChapters({})
+    // Reset comparison modal
+    setComparisonModal({ open: false, type: null, section: null })
+    // Reset section refs to avoid stale references
+    sectionRefs.current = {}
+    // Scroll content to top
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0
+    }
+  }, [])
+
   // Handle search
   const handleSearch = useCallback((term) => {
     setSearchTerm(term)
@@ -2044,47 +2085,6 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
       setTranslationEnabled(true)
       setTranslationLanguage(targetLang)
       setTranslatedContent({})
-    }
-  }
-
-  // Select a law
-  const selectLaw = (law) => {
-    setSelectedLaw(law)
-    setActiveSection(null)
-    setSearchInLaw('')
-    setContentSearchTerm('')
-    // Clear inline document view
-    setInlineDocView(null)
-    // Reset flowchart state
-    setFlowchartData(null)
-    setFlowchartSectionId(null)
-    // Reset complexity slider state - per-section
-    setSectionComplexityLevels({})
-    setSimplifiedContent({})
-    // Reset translation state
-    setTranslatedContent({})
-    setTranslationEnabled(false)
-    // Reset cross-border state
-    setShowCrossBorder(false)
-    setCrossBorderData(null)
-    setCrossBorderTarget(null)
-    setCrossBorderError(null)
-    setCrossBorderSection(null)
-    // Reset multi-country state
-    setShowMultiCountry(false)
-    setMultiCountryData(null)
-    setMultiCountryError(null)
-    // Reset section collapse state - all collapsed by default
-    setExpandedSections({})
-    // Reset chapter collapse state - all collapsed by default
-    setExpandedChapters({})
-    // Reset comparison modal
-    setComparisonModal({ open: false, type: null, section: null })
-    // Reset section refs to avoid stale references
-    sectionRefs.current = {}
-    // Scroll content to top
-    if (contentRef.current) {
-      contentRef.current.scrollTop = 0
     }
   }
 
