@@ -677,10 +677,13 @@ function formatLawText(text) {
     const numberedMatch = line.match(/^(\d+\s*\.|[a-z]\)|[a-z]\.|[ivxIVX]+\.)\s+(.+)/)
     if (numberedMatch && !line.match(/^\d+\.\s*(Abschnitt|Artikel|Hoofdstuk)/i)) {
       // Check if this is actually a subsection indicator (should be absatz) vs a list item
-      // If it starts with a number and we're already in an Absatz context, treat as list item
+      // If it starts with a number/letter and we're not in an Absatz context, treat as absatz
       const isNumericList = /^\d+\s*\./.test(numberedMatch[1])
-      if (isNumericList && !currentAbsatz) {
-        // This might be a Dutch lid or numbered paragraph - treat as absatz
+      const isLetteredList = /^[a-z]\./.test(numberedMatch[1])
+
+      if ((isNumericList || isLetteredList) && !currentAbsatz) {
+        // This is a numbered or lettered paragraph - treat as absatz
+        // This ensures NL (a. b. c.) gets same styling as AT/DE (1. 2. 3.)
         flushAbsatz()
         flushList()
         flushParagraph()
@@ -689,7 +692,7 @@ function formatLawText(text) {
         elements.push(currentAbsatz)
         continue
       }
-      // Otherwise treat as list item
+      // Otherwise treat as list item (when inside an existing absatz)
       flushParagraph()
       inList = true
       listItems.push({ marker: numberedMatch[1].trim(), content: numberedMatch[2] })
@@ -2969,12 +2972,21 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                                                   </div>
                                                 </div>
                                               ) : translatedContent[section.id]?.translatedText ? (
-                                                /* Translation complete - show overwrite effect */
+                                                /* Translation complete - show overwrite effect with formatted text after */
                                                 <OverwriteText
                                                   originalText={section.content}
                                                   translatedText={translatedContent[section.id].translatedText}
                                                   speed={3}
                                                   className="text-gray-800 dark:text-gray-200"
+                                                  renderComplete={(text) => (
+                                                    <FormattedText
+                                                      text={text}
+                                                      searchTerm={contentSearchTerm}
+                                                      crosslinks={whsCrosslinks}
+                                                      onCrosslinkClick={handleCrosslinkClick}
+                                                      onLawReferenceClick={handleLawReferenceClick}
+                                                    />
+                                                  )}
                                                 />
                                               ) : (
                                                 /* Original content when no translation */
