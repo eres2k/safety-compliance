@@ -11,6 +11,7 @@ export { FormattedAIResponse } from './FormattedAIResponse'
 export { RateLimitIndicator, useRateLimitStatus } from './RateLimitIndicator'
 export { SearchHistory } from './SearchHistory'
 export { PdfViewer, PdfSourceBadge, SupplementaryBadge } from './PdfViewer'
+export { TypewriterText, TypewriterParagraph, TransitionText } from './TypewriterText'
 
 // Re-export default components
 export { default as ButtonDefault } from './Button'

@@ -181,6 +181,26 @@ export function useAI() {
     }
   }, [framework, language])
 
+  // Feature: Translate law text to a different language
+  const translateLawText = useCallback(async (lawText, sourceLanguage, targetLanguage) => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const response = await aiService.translateLawText(lawText, sourceLanguage, targetLanguage, framework)
+      return response
+    } catch (err) {
+      setError(err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [framework])
+
+  // Get rate limit status
+  const getRateLimitStatus = useCallback(() => {
+    return aiService.getRateLimitStatus()
+  }, [])
+
   return {
     isLoading,
     error,
@@ -195,7 +215,9 @@ export function useAI() {
     simplifyForBothLevels,
     findEquivalentLaw,
     generateSemanticTags,
-    compareMultipleCountries
+    compareMultipleCountries,
+    translateLawText,
+    getRateLimitStatus
   }
 }
 

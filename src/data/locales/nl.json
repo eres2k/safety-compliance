@@ -52,7 +52,42 @@
     "compareAllCountries": "Dit artikel vergelijken in alle 3 landen",
     "compareTwoCountries": "Dit artikel vergelijken met een ander land",
     "filterBySection": "Filteren op artikel nr./titel...",
-    "fullTextSearch": "Zoeken in deze wet..."
+    "fullTextSearch": "Zoeken in deze wet...",
+    "openNewTab": "Openen in nieuw tabblad",
+    "selectLaw": "Selecteer een Wet",
+    "selectLawDescription": "Kies een wet uit de lijst om de volledige tekst met artikelnavigatie te lezen.",
+    "noContentAvailable": "Geen inhoud beschikbaar",
+    "noContentDescription": "De volledige tekst voor deze wet is niet geladen.",
+    "viewOnOfficialSource": "Bekijk op officiële bron",
+    "relatedLaws": "Gerelateerde Wetten",
+    "source": "Bron",
+    "pdfDocument": "PDF-document",
+    "htmlDocument": "HTML-document",
+    "rateLimited": "Even wachten",
+    "rateLimitedDescription": "AI-verzoeken zijn gelimiteerd. Wacht even voor het volgende verzoek."
+  },
+  "lawBrowser": {
+    "lawsAndRegs": "Wetten & Regels",
+    "laws": "wetten",
+    "merkbl": "Merkbl.",
+    "lawPdfs": "Wet PDFs",
+    "searchLaws": "Zoek wetten...",
+    "auvaMerkblaetter": "AUVA Merkblätter",
+    "dguvRules": "DGUV / Technische Regels",
+    "arbocatalogi": "Arbocatalogi"
+  },
+  "translation": {
+    "translateTo": "Vertalen naar",
+    "translating": "Vertalen...",
+    "showOriginal": "Origineel tonen",
+    "showTranslation": "Vertaling tonen",
+    "translationEnabled": "Vertaling ingeschakeld",
+    "translationDisabled": "Vertaling uitgeschakeld",
+    "selectLanguage": "Selecteer doeltaal",
+    "german": "Duits",
+    "dutch": "Nederlands",
+    "english": "Engels",
+    "translateLaw": "Wet vertalen"
   },
   "complexity": {
     "reading": "Weergave:",
