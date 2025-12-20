@@ -551,87 +551,72 @@ class Config:
                 "catalog_url": "https://publikationen.dguv.de/regelwerk/",
                 "publications": [
                     # === DGUV Vorschriften (Regulations) ===
+                    # Note: Using alternative BG sources since publikationen.dguv.de blocks automated requests
                     {
                         "abbrev": "DGUV Vorschrift 1",
                         "title": "DGUV Vorschrift 1 - Grundsätze der Prävention",
                         "title_en": "Principles of Prevention",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2909",
+                        "url": "https://www.bgw-online.de/resource/blob/14912/e141a3911799926481707fcc42781122/dguv-vorschrift1-grundsaetze-der-praevention-data.pdf",
                         "series": "vorschriften",
                         "description": "Basic prevention principles for all industries"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 1 (UK-NRW)",
+                        "title": "DGUV Vorschrift 1 - Grundsätze der Prävention (Unfallkasse NRW)",
+                        "title_en": "Principles of Prevention (NRW Accident Insurance)",
+                        "url": "https://www.unfallkasse-nrw.de/fileadmin/server/download/Regeln_und_Schriften/Unfallverhuetungsvorschriften/Vorschrift_01.pdf",
+                        "series": "vorschriften",
+                        "description": "Basic prevention principles - NRW version"
                     },
                     {
                         "abbrev": "DGUV Vorschrift 3",
                         "title": "DGUV Vorschrift 3 - Elektrische Anlagen und Betriebsmittel",
                         "title_en": "Electrical Installations and Equipment",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1052",
+                        "url": "https://www.bgw-online.de/resource/blob/20602/a08d0fafd101155ffffad8739e108152/dguv-vorschrift3-unfallverhuetungsvorschrift-elektrische-anlagen-data.pdf",
                         "series": "vorschriften",
                         "description": "Safety requirements for electrical installations"
                     },
                     {
-                        "abbrev": "DGUV Vorschrift 4",
-                        "title": "DGUV Vorschrift 4 - Elektrische Anlagen und Betriebsmittel",
-                        "title_en": "Electrical Installations and Equipment (Public)",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1457",
+                        "abbrev": "DGUV Vorschrift 3 (VBG)",
+                        "title": "DGUV Vorschrift 3 - Elektrische Anlagen und Betriebsmittel (VBG)",
+                        "title_en": "Electrical Installations and Equipment (VBG)",
+                        "url": "https://cdn.vbg.de/media/4d4d9675222842eb908cfe7c27afad8b/dld:attachment/DGUV_Vorschrift_3_Elektrische_Anlagen_und_Betriebsmittel.pdf",
                         "series": "vorschriften",
-                        "description": "Electrical safety for public sector"
+                        "description": "Electrical safety - VBG version"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 3 (BGHM)",
+                        "title": "DGUV Vorschrift 3 - Elektrische Anlagen und Betriebsmittel (BGHM)",
+                        "title_en": "Electrical Installations and Equipment (BGHM)",
+                        "url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Vorschriften/DGUV-Vorschrift-3.pdf",
+                        "series": "vorschriften",
+                        "description": "Electrical safety for wood and metal industries"
                     },
                     # === DGUV Regeln (Rules) ===
                     {
                         "abbrev": "DGUV Regel 100-001",
                         "title": "DGUV Regel 100-001 - Grundsätze der Prävention",
                         "title_en": "Principles of Prevention - Implementation Rule",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2942",
+                        "url": "https://www.bgw-online.de/resource/blob/13680/d302a42daa2cf8f05d66662c8e9e70e7/dguv-regel100-001-grundsaetze-der-praevention-data.pdf",
                         "series": "regeln",
                         "description": "Detailed implementation of DGUV Vorschrift 1"
                     },
-                    {
-                        "abbrev": "DGUV Regel 100-500",
-                        "title": "DGUV Regel 100-500 - Betreiben von Arbeitsmitteln",
-                        "title_en": "Operating Work Equipment",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/997",
-                        "series": "regeln",
-                        "description": "Safe operation of work equipment"
-                    },
-                    {
-                        "abbrev": "DGUV Regel 100-500 R2.10",
-                        "title": "DGUV Regel 100-500 R2.10 - Betreiben von Hebebühnen",
-                        "title_en": "Operating Lifting Platforms",
-                        "url": "https://publikationen.dguv.de/media/pdf/ba/08/b6/R500_210.pdf",
-                        "series": "regeln",
-                        "description": "Safe operation of lifting platforms"
-                    },
-                    {
-                        "abbrev": "DGUV Regel 100-500 R2.12",
-                        "title": "DGUV Regel 100-500 R2.12 - Betreiben von Erdbaumaschinen",
-                        "title_en": "Operating Earthmoving Machines",
-                        "url": "https://publikationen.dguv.de/media/pdf/f7/bb/ef/R500_212.pdf",
-                        "series": "regeln",
-                        "description": "Safe operation of earthmoving equipment"
-                    },
                     # === DGUV Informationen (Information) ===
-                    {
-                        "abbrev": "DGUV Information 203-006",
-                        "title": "DGUV Information 203-006 - Auswahl und Betrieb elektrischer Anlagen",
-                        "title_en": "Selection and Operation of Electrical Systems",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/792",
-                        "series": "information",
-                        "description": "Electrical safety guidance"
-                    },
                     {
                         "abbrev": "DGUV Information 204-022",
                         "title": "DGUV Information 204-022 - Erste Hilfe im Betrieb",
                         "title_en": "First Aid at Work",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/759",
+                        "url": "https://www.bgw-online.de/resource/blob/20492/528509ed5ef93ff67b6d414d55f78f84/dguv-information-204-022-erste-hilfe-im-betrieb-data.pdf",
                         "series": "information",
                         "description": "First aid requirements and procedures"
                     },
                     {
-                        "abbrev": "DGUV Information 206-004",
-                        "title": "DGUV Information 206-004 - Gesund und fit im Kleinbetrieb",
-                        "title_en": "Health and Fitness in Small Businesses",
-                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/801",
+                        "abbrev": "DGUV Information 204-022 (BGBAU)",
+                        "title": "DGUV Information 204-022 - Erste Hilfe im Betrieb (BG BAU)",
+                        "title_en": "First Aid at Work (Construction Industry)",
+                        "url": "https://www.bgbau.de/fileadmin/Medien-Objekte/Medien/DGUV-Informationen/204_022/204_022.pdf",
                         "series": "information",
-                        "description": "Health promotion for small businesses"
+                        "description": "First aid for construction industry"
                     }
                 ]
             }
