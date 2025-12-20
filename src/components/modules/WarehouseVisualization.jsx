@@ -19,6 +19,9 @@ const UI_LABELS = {
     selectZoneDesc: 'Click or hover over any zone in the warehouse to see applicable safety regulations',
     quickAccess: 'Quick access',
     clickToView: 'Click on any zone to view safety regulations',
+    countryFilter: 'Country',
+    allCountries: 'All',
+    noRegsForCountry: 'No regulations for this country in this zone',
   },
   de: {
     title: 'Interaktiver Lagerhallenplan',
@@ -31,6 +34,9 @@ const UI_LABELS = {
     selectZoneDesc: 'Klicken oder fahren Sie über eine Zone, um die geltenden Sicherheitsvorschriften anzuzeigen',
     quickAccess: 'Schnellzugriff',
     clickToView: 'Klicken Sie auf eine Zone, um Sicherheitsvorschriften anzuzeigen',
+    countryFilter: 'Land',
+    allCountries: 'Alle',
+    noRegsForCountry: 'Keine Vorschriften für dieses Land in dieser Zone',
   },
   nl: {
     title: 'Interactieve Magazijnplattegrond',
@@ -43,8 +49,19 @@ const UI_LABELS = {
     selectZoneDesc: 'Klik of beweeg over een zone om de geldende veiligheidsvoorschriften te bekijken',
     quickAccess: 'Snelle toegang',
     clickToView: 'Klik op een zone om veiligheidsvoorschriften te bekijken',
+    countryFilter: 'Land',
+    allCountries: 'Alle',
+    noRegsForCountry: 'Geen voorschriften voor dit land in deze zone',
   },
 }
+
+// Country options for filtering
+const COUNTRY_OPTIONS = [
+  { code: 'all', label: 'All', flag: '🌍' },
+  { code: 'DE', label: 'Germany', flag: '🇩🇪' },
+  { code: 'AT', label: 'Austria', flag: '🇦🇹' },
+  { code: 'NL', label: 'Netherlands', flag: '🇳🇱' },
+]
 
 // Localized zone data
 const ZONE_LABELS = {
@@ -516,6 +533,7 @@ export function WarehouseVisualization({ onSelectRegulation }) {
 
   const [selectedZone, setSelectedZone] = useState(null)
   const [hoveredZone, setHoveredZone] = useState(null)
+  const [selectedCountry, setSelectedCountry] = useState('all') // Country filter: 'all', 'DE', 'AT', 'NL'
 
   // Get localized zone data
   const getZoneLabel = useCallback((zoneId) => ZONE_LABELS[zoneId]?.[lang] || ZONE_LABELS[zoneId]?.en || zoneId, [lang])
@@ -527,6 +545,13 @@ export function WarehouseVisualization({ onSelectRegulation }) {
     const zoneId = selectedZone || hoveredZone
     return zoneId ? WAREHOUSE_ZONES[zoneId] : null
   }, [selectedZone, hoveredZone])
+
+  // Filter regulations by selected country
+  const filteredRegulations = useMemo(() => {
+    if (!activeZone) return []
+    if (selectedCountry === 'all') return activeZone.regulations
+    return activeZone.regulations.filter(reg => reg.country === selectedCountry)
+  }, [activeZone, selectedCountry])
 
   const handleZoneClick = useCallback((zoneId) => {
     setSelectedZone(zoneId === selectedZone ? null : zoneId)
@@ -542,7 +567,7 @@ export function WarehouseVisualization({ onSelectRegulation }) {
     <div className="bg-white dark:bg-whs-dark-800 rounded-2xl border border-gray-200 dark:border-whs-dark-700 overflow-hidden">
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200 dark:border-whs-dark-700 bg-gradient-to-r from-indigo-500 to-purple-600">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <span className="text-3xl">🏭</span>
             <div>
@@ -550,8 +575,26 @@ export function WarehouseVisualization({ onSelectRegulation }) {
               <p className="text-sm text-indigo-200">{l.subtitle}</p>
             </div>
           </div>
-          <div className="hidden md:flex items-center gap-2">
-            <span className="px-3 py-1 bg-white/20 rounded-lg text-sm text-white">
+          <div className="flex items-center gap-3">
+            {/* Country Filter */}
+            <div className="flex items-center gap-1 bg-white/10 rounded-lg p-1">
+              <span className="text-xs text-indigo-200 px-2">{l.countryFilter}:</span>
+              {COUNTRY_OPTIONS.map(country => (
+                <button
+                  key={country.code}
+                  onClick={() => setSelectedCountry(country.code)}
+                  className={`px-2 py-1 rounded-md text-sm font-medium transition-colors ${
+                    selectedCountry === country.code
+                      ? 'bg-white text-indigo-600'
+                      : 'text-white hover:bg-white/20'
+                  }`}
+                  title={country.label}
+                >
+                  {country.flag}
+                </button>
+              ))}
+            </div>
+            <span className="hidden md:inline-block px-3 py-1 bg-white/20 rounded-lg text-sm text-white">
               {Object.keys(WAREHOUSE_ZONES).length} {l.safetyZones}
             </span>
           </div>
@@ -581,29 +624,40 @@ export function WarehouseVisualization({ onSelectRegulation }) {
                 </div>
               </div>
 
-              {/* Regulations */}
+              {/* Regulations - filtered by selected country */}
               <div>
                 <h5 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
                   <span>📋</span> {l.applicableRegs}
+                  {selectedCountry !== 'all' && (
+                    <span className="text-xs px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
+                      {COUNTRY_OPTIONS.find(c => c.code === selectedCountry)?.flag}
+                    </span>
+                  )}
                 </h5>
                 <div className="space-y-2">
-                  {activeZone.regulations.map((reg, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleRegulationClick(reg)}
-                      className="w-full text-left p-2 rounded-lg bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-700 hover:border-whs-orange-500 dark:hover:border-whs-orange-500 transition-colors group"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-whs-orange-600 dark:group-hover:text-whs-orange-400">
-                          {reg.abbr}
-                        </span>
-                        <span className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-whs-dark-700 text-gray-500 dark:text-gray-400">
-                          {reg.country === 'AT' ? '🇦🇹' : reg.country === 'DE' ? '🇩🇪' : '🇳🇱'}
-                        </span>
-                      </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">{reg.title}</p>
-                    </button>
-                  ))}
+                  {filteredRegulations.length > 0 ? (
+                    filteredRegulations.map((reg, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleRegulationClick(reg)}
+                        className="w-full text-left p-2 rounded-lg bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-700 hover:border-whs-orange-500 dark:hover:border-whs-orange-500 transition-colors group"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-whs-orange-600 dark:group-hover:text-whs-orange-400">
+                            {reg.abbr}
+                          </span>
+                          <span className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-whs-dark-700 text-gray-500 dark:text-gray-400">
+                            {reg.country === 'AT' ? '🇦🇹' : reg.country === 'DE' ? '🇩🇪' : '🇳🇱'}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">{reg.title}</p>
+                      </button>
+                    ))
+                  ) : (
+                    <p className="text-sm text-gray-500 dark:text-gray-400 italic py-2">
+                      {l.noRegsForCountry}
+                    </p>
+                  )}
                 </div>
               </div>
 
