@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
-import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge, TypewriterText, OverwriteText, useRateLimitStatus, SmartSearch } from '../ui'
+import { Button, Card, CardContent, LawVisualizer, ComplexitySlider, SimplifiedContent, CrossBorderComparison, MultiCountryComparison, PdfViewer, PdfSourceBadge, SupplementaryBadge, TypewriterText, OverwriteText, useRateLimitStatus, SmartSearch, InteractiveSearch } from '../ui'
 import { getRateLimitStatus } from '../../services/aiService'
 import {
   getAllLawsSync,
@@ -2163,36 +2163,32 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
           </div>
         </div>
 
-        {/* Smart Search Bar */}
+        {/* Interactive Search Bar - Real-time search with category grouping */}
         <div className="mt-4">
-          <SmartSearch
+          <InteractiveSearch
             laws={allLaws}
             t={t}
+            onSelectResult={(result) => {
+              // Directly select the law when clicking a search result
+              setSelectedLaw(result)
+              setSearchTerm('')
+              setContentSearchTerm('')
+            }}
             onSearch={(term, mode) => {
+              // Also support traditional search mode
               if (mode === 'laws' || mode === 'all') {
                 setSearchTerm(term)
               }
-              if (mode === 'fulltext' || mode === 'all') {
+              if (mode === 'content' || mode === 'all') {
                 setContentSearchTerm(term)
               }
-              if (mode === 'topic') {
+              if (mode === 'topics') {
                 // Search by topic - filter based on WHS topics
                 setSearchTerm(term)
               }
             }}
-            onModeChange={(mode) => {
-              // Clear search when mode changes
-              if (mode !== 'all') {
-                setSearchTerm('')
-                setContentSearchTerm('')
-              }
-            }}
-            onAISearch={(query, result) => {
-              // Handle AI search results for PDFs
-              console.log('AI PDF Search:', query, result)
-            }}
-            placeholder={t.search?.smartSearch || 'Smart search laws, topics, content, PDFs...'}
-            className="max-w-2xl"
+            placeholder={t.search?.smartSearch || 'Search laws, topics, PDF content...'}
+            className="max-w-3xl"
           />
         </div>
       </div>
