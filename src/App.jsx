@@ -11,7 +11,7 @@ import {
   PreventionTimeCalculator,
   PenaltyLookup,
   Glossary,
-  Compliance
+  WarehouseVisualization
 } from './components/modules'
 import { RateLimitIndicator } from './components/ui'
 
@@ -86,16 +86,28 @@ function AppContent() {
         return <PenaltyLookup onBack={onBack} />
       case 'glossary':
         return <Glossary onBack={onBack} />
-      case 'compliance':
+      case 'warehouseVisualization':
         return (
-          <Compliance
-            onBack={onBack}
-            onSelectRegulation={(reg) => {
-              // Navigate to law browser with the selected regulation
-              setPendingLawNavigation({ searchQuery: reg.abbr })
-              setActiveModule('lawBrowser')
-            }}
-          />
+          <div className="space-y-6 animate-fade-in">
+            {/* Header */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={onBack}
+                className="p-2 rounded-xl bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-700 hover:bg-gray-50 dark:hover:bg-whs-dark-700 transition-colors"
+              >
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            </div>
+            <WarehouseVisualization
+              onSelectRegulation={(reg) => {
+                // Navigate to law browser with the selected regulation
+                setPendingLawNavigation({ searchQuery: reg.abbr })
+                setActiveModule('lawBrowser')
+              }}
+            />
+          </div>
         )
       default:
         return <Dashboard onModuleSelect={handleModuleSelect} />
