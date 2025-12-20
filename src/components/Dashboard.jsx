@@ -1,7 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useApp } from '../context/AppContext'
 import { ModuleCard } from './ModuleCard'
 import { getLawsStatistics } from '../services/euLawsDatabase'
+
+// Check if database was updated recently (within last 14 days)
+function isRecentlyUpdated(dateStr) {
+  if (!dateStr) return false
+  try {
+    const updateDate = new Date(dateStr)
+    const now = new Date()
+    const diffDays = (now - updateDate) / (1000 * 60 * 60 * 24)
+    return diffDays <= 14
+  } catch {
+    return false
+  }
+}
 
 // Module icons as SVG components for better styling
 const moduleIcons = {
@@ -53,6 +66,23 @@ export function Dashboard({ onModuleSelect }) {
     }
   }
   const lastUpdatedFormatted = formatLastUpdated(stats.lastUpdated)
+  const recentlyUpdated = useMemo(() => isRecentlyUpdated(stats.lastUpdated), [stats.lastUpdated])
+
+  // Calculate next update date (14 days from last update)
+  const nextUpdateFormatted = useMemo(() => {
+    if (!stats.lastUpdated) return null
+    try {
+      const lastUpdate = new Date(stats.lastUpdated)
+      const nextUpdate = new Date(lastUpdate.getTime() + 14 * 24 * 60 * 60 * 1000)
+      return nextUpdate.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      })
+    } catch {
+      return null
+    }
+  }, [stats.lastUpdated])
 
   const modules = [
     {
@@ -186,6 +216,51 @@ export function Dashboard({ onModuleSelect }) {
           </div>
         </div>
       </div>
+
+      {/* Database Update Status Banner */}
+      {lastUpdatedFormatted && (
+        <div className={`rounded-2xl p-5 border ${recentlyUpdated ? 'bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800' : 'bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800'}`}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${recentlyUpdated ? 'bg-green-100 dark:bg-green-800/30' : 'bg-blue-100 dark:bg-blue-800/30'}`}>
+                <svg className={`w-6 h-6 ${recentlyUpdated ? 'text-green-600 dark:text-green-400' : 'text-blue-600 dark:text-blue-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h3 className={`font-semibold ${recentlyUpdated ? 'text-green-900 dark:text-green-100' : 'text-blue-900 dark:text-blue-100'}`}>
+                    {t.dashboard?.databaseStatus || 'Database Status'}
+                  </h3>
+                  {recentlyUpdated && (
+                    <span className="px-2 py-0.5 bg-green-500 text-white text-xs font-medium rounded-full">
+                      {t.dashboard?.recentlyUpdated || 'Recently Updated'}
+                    </span>
+                  )}
+                </div>
+                <p className={`text-sm ${recentlyUpdated ? 'text-green-700 dark:text-green-300' : 'text-blue-700 dark:text-blue-300'}`}>
+                  {t.dashboard?.lastUpdated || 'Last updated'}: <span className="font-medium">{lastUpdatedFormatted}</span>
+                  {nextUpdateFormatted && (
+                    <span className="ml-2">
+                      • {t.dashboard?.nextUpdate || 'Next update'}: {nextUpdateFormatted}
+                    </span>
+                  )}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className={`px-3 py-1.5 rounded-lg text-sm font-medium ${recentlyUpdated ? 'bg-green-100 dark:bg-green-800/30 text-green-700 dark:text-green-300' : 'bg-blue-100 dark:bg-blue-800/30 text-blue-700 dark:text-blue-300'}`}>
+                <span className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {t.dashboard?.updateCycle || '14-day update cycle'}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Law Database - Main Feature */}
       <button

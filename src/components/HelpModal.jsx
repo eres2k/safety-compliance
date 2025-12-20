@@ -117,12 +117,12 @@ export function HelpModal({ isOpen, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-black/60 flex items-center justify-center p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] bg-black/60 flex items-start justify-center overflow-y-auto py-8 px-4 backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-scale-in">
+      <div className="bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden animate-scale-in my-auto">
         {/* Header */}
         <div className="bg-gradient-to-r from-whs-orange-500 to-whs-orange-600 px-6 py-5 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">

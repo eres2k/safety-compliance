@@ -255,6 +255,13 @@
     "disclaimer": "For informational purposes only",
     "advice": "Always consult official sources and legal professionals for binding advice"
   },
+  "dashboard": {
+    "databaseStatus": "Database Status",
+    "recentlyUpdated": "Recently Updated",
+    "lastUpdated": "Last updated",
+    "nextUpdate": "Next update",
+    "updateCycle": "14-day update cycle"
+  },
   "help": {
     "title": "Help & Guide",
     "subtitle": "Learn how to use the WHS Safety Navigator",

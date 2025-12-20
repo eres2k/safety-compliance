@@ -255,6 +255,13 @@
     "disclaimer": "Nur zu Informationszwecken",
     "advice": "Konsultieren Sie immer offizielle Quellen und Rechtsexperten für verbindliche Beratung"
   },
+  "dashboard": {
+    "databaseStatus": "Datenbank-Status",
+    "recentlyUpdated": "Kürzlich aktualisiert",
+    "lastUpdated": "Letzte Aktualisierung",
+    "nextUpdate": "Nächste Aktualisierung",
+    "updateCycle": "14-Tage Aktualisierungszyklus"
+  },
   "help": {
     "title": "Hilfe & Anleitung",
     "subtitle": "Lernen Sie den WHS Safety Navigator kennen",
