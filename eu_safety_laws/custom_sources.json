@@ -837,6 +837,93 @@
         "category": "arbocatalogi",
         "source_type": "pdf"
       },
+      "STL Arbocatalogus Verticaal Transport": {
+        "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/Arbocatalogus-VVT-2022-definitief-getekend-SvL.pdf",
+        "name": "Arbocatalogus Verticaal Transport (VVT 2022)",
+        "name_en": "Vertical Transport Safety Catalog",
+        "description": "Safety guide for vertical transport operations - cranes, hoisting. Valid until 2028.",
+        "enabled": true,
+        "category": "arbocatalogi",
+        "source_type": "pdf",
+        "amazon_relevance": ["crane", "hoisting", "lifting"]
+      },
+      "_category_physical_load": {
+        "_folder": true,
+        "_name": "Physical Workload (TNO)",
+        "_description": "TNO research on physical workload, lifting, carrying, and ergonomics"
+      },
+      "TNO Factsheet Fysieke Belasting 2023": {
+        "url": "https://publications.tno.nl/publication/34642121/WDOzBl/TNO-2024-fysieke.pdf",
+        "name": "TNO Factsheet Fysieke Arbeidsbelasting 2023",
+        "name_en": "TNO Physical Workload Factsheet 2023",
+        "description": "Latest TNO research on physical workload in the Netherlands - statistics and trends.",
+        "enabled": true,
+        "category": "physical_load",
+        "source_type": "pdf",
+        "amazon_relevance": ["manual handling", "ergonomics", "MSD"]
+      },
+      "TNO Wegwijzer Fysieke Belasting": {
+        "url": "https://fysiekebelasting.tno.nl/wp-content/uploads/sites/6/2021/09/Wegwijzer_FysiekeBelasting.pdf",
+        "name": "TNO Wegwijzer Fysieke Belasting",
+        "name_en": "TNO Physical Workload Guide",
+        "description": "Comprehensive guide on physical workload - lifting, carrying, pushing, pulling.",
+        "enabled": true,
+        "category": "physical_load",
+        "source_type": "pdf",
+        "amazon_relevance": ["lifting", "carrying", "pushing", "pulling", "stower", "picker"]
+      },
+      "TNO Preventie Beroepsziekten": {
+        "url": "https://fysiekebelasting.tno.nl/wp-content/uploads/sites/6/2021/10/TNO-Rapport_Preventie-BeroepsziektenFysiekeBelasting_2020_verkleind.pdf",
+        "name": "TNO Preventie Beroepsziekten Fysieke Belasting",
+        "name_en": "TNO Occupational Disease Prevention - Physical Load",
+        "description": "TNO research on prevention of occupational diseases from physical workload.",
+        "enabled": true,
+        "category": "physical_load",
+        "source_type": "pdf"
+      },
+      "NL Arbeidsinspectie Pakketdiensten": {
+        "url": "https://www.nlarbeidsinspectie.nl/binaries/nlarbeidsinspectie/documenten/publicaties/2025/03/17/onderzoek-fysieke-belasting-in-de-pakketdienstensector/rapportage-onderzoek-pakketdienstensector-door-vhp-en-tno.pdf",
+        "name": "Fysieke Belasting in de Pakketdienstensector",
+        "name_en": "Physical Workload in Parcel Delivery Sector",
+        "description": "Dutch Labour Inspectorate research on physical strain in parcel/courier services.",
+        "enabled": true,
+        "category": "physical_load",
+        "source_type": "pdf",
+        "amazon_relevance": ["delivery", "DSP", "last mile", "parcel"]
+      },
+      "_category_hazmat": {
+        "_folder": true,
+        "_name": "Hazardous Substances (PGS)",
+        "_description": "PGS guidelines for hazardous substance storage"
+      },
+      "PGS 15 Opslag Gevaarlijke Stoffen": {
+        "url": "https://content.publicatiereeksgevaarlijkestoffen.nl/documents/PGS15/PGS_15_2016_versie_1_0_sept_2016_definitief.pdf",
+        "name": "PGS 15 - Opslag van verpakte gevaarlijke stoffen (2016)",
+        "name_en": "PGS 15 - Storage of Packaged Hazardous Substances",
+        "description": "Guidelines for safe storage of packaged hazardous substances in warehouses.",
+        "enabled": true,
+        "category": "hazmat",
+        "source_type": "pdf",
+        "amazon_relevance": ["hazmat", "dangerous goods", "storage"]
+      },
+      "PGS 15 Interim 2021": {
+        "url": "https://publicatiereeksgevaarlijkestoffen.nl/documents/81474/1664357600-interim_pgs_15_v1-0_augustus_2021.pdf",
+        "name": "PGS 15 Interim versie 2021",
+        "name_en": "PGS 15 Interim Version 2021",
+        "description": "Interim version of PGS 15 with updated hazardous substance storage requirements.",
+        "enabled": true,
+        "category": "hazmat",
+        "source_type": "pdf"
+      },
+      "PGS 30.3 Gevaarlijke Vloeistoffen": {
+        "url": "https://publicatiereeksgevaarlijkestoffen.nl/documents/81474/1664357987-pgs-2031-20versie-202018_1-0_20180416-20definitief.pdf",
+        "name": "PGS 30.3 - Overige gevaarlijke vloeistoffen opslag",
+        "name_en": "PGS 30.3 - Other Hazardous Liquids Storage",
+        "description": "Guidelines for storage of other hazardous liquids not covered by PGS 15.",
+        "enabled": true,
+        "category": "hazmat",
+        "source_type": "pdf"
+      },
       "_category_regulations": {
         "_folder": true,
         "_name": "Regulations",
