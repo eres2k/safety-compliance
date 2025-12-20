@@ -2689,7 +2689,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                         <button
                           onClick={() => openPdfModal(selectedLaw)}
                           className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
-                          title="View/Download Official PDF"
+                          title={t.common?.viewOfficialPdf || 'View/Download Official PDF'}
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -2703,7 +2703,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
-                          title="View official source"
+                          title={t.common?.viewOfficialSource || 'View official source'}
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -2953,45 +2953,61 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                                           </div>
                                         )}
 
-                                        {/* Feature 2: Complexity Slider - per-section reading level */}
-                                        <div className="mb-3">
+                                        {/* Feature 2: Complexity Slider + Translate Button - per-section reading level */}
+                                        <div className="mb-3 flex flex-wrap items-center gap-3">
                                           <ComplexitySlider
                                             currentLevel={sectionComplexityLevels[section.id] || 'legal'}
                                             onLevelChange={(level) => handleComplexityChange(level, section)}
                                             isLoading={simplifyLoading && activeSimplifySectionId === section.id}
                                             t={t}
                                           />
+
+                                          {/* Per-section Translation Button - shown only in legal view */}
+                                          {(sectionComplexityLevels[section.id] || 'legal') === 'legal' && (
+                                            <div className="inline-flex items-center gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                                              <span className="text-sm px-2 text-gray-500 dark:text-gray-400">🌐</span>
+                                              {translatedContent[section.id]?.isTyping ? (
+                                                <div className="flex items-center gap-2 px-2 py-1 text-sm text-whs-orange-500">
+                                                  <div className="w-3 h-3 border-2 border-whs-orange-300 border-t-whs-orange-500 rounded-full animate-spin"></div>
+                                                  <span className="text-xs">{t.translation?.translating || 'Translating...'}</span>
+                                                </div>
+                                              ) : translatedContent[section.id]?.translatedText ? (
+                                                <>
+                                                  <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-md">
+                                                    {translatedContent[section.id]?.language === 'de' ? '🇩🇪' : translatedContent[section.id]?.language === 'nl' ? '🇳🇱' : '🇬🇧'} {t.translation?.translated || 'Translated'}
+                                                  </span>
+                                                  <button
+                                                    onClick={() => setTranslatedContent(prev => ({ ...prev, [section.id]: null }))}
+                                                    className="px-2 py-1 text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                                                    title={t.translation?.showOriginal || 'Show original'}
+                                                  >
+                                                    ✕
+                                                  </button>
+                                                </>
+                                              ) : (
+                                                ['de', 'nl', 'en'].filter(lang => lang !== getSourceLanguage()).map(lang => (
+                                                  <button
+                                                    key={lang}
+                                                    onClick={() => handleTranslateSection(section, lang)}
+                                                    disabled={rateLimitInfo.isLimited || translationLoading}
+                                                    className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                    title={rateLimitInfo.isLimited ? `${t.common?.rateLimited || 'Please wait'} (${rateLimitInfo.remainingSeconds}s)` : `${t.translation?.translateTo || 'Translate to'} ${lang === 'de' ? t.translation?.german || 'German' : lang === 'nl' ? t.translation?.dutch || 'Dutch' : t.translation?.english || 'English'}`}
+                                                  >
+                                                    <span>{lang === 'de' ? '🇩🇪' : lang === 'nl' ? '🇳🇱' : '🇬🇧'}</span>
+                                                    <span className="hidden sm:inline">{lang === 'de' ? 'DE' : lang === 'nl' ? 'NL' : 'EN'}</span>
+                                                  </button>
+                                                ))
+                                              )}
+                                            </div>
+                                          )}
                                         </div>
 
                                         {/* Section Content - switches based on complexity level and translation */}
                                         <div className="pl-4 border-l-2 border-gray-100 dark:border-whs-dark-700">
                                           {(sectionComplexityLevels[section.id] || 'legal') === 'legal' ? (
                                             <>
-                                              {/* Translation indicator and translate button */}
-                                              {translationEnabled && translationLanguage && (
-                                                <div className="mb-3 flex items-center gap-2">
-                                                  {translatedContent[section.id]?.isTyping ? (
-                                                    <div className="flex items-center gap-2 text-sm text-whs-orange-500">
-                                                      <div className="w-3 h-3 border-2 border-whs-orange-300 border-t-whs-orange-500 rounded-full animate-spin"></div>
-                                                      <span>{t.translation?.translating || 'Translating...'}</span>
-                                                    </div>
-                                                  ) : translatedContent[section.id]?.translatedText ? (
-                                                    <span className="text-xs px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full">
-                                                      {translationLanguage === 'de' ? '🇩🇪' : translationLanguage === 'nl' ? '🇳🇱' : '🇬🇧'} {t.translation?.translationEnabled || 'Translated'}
-                                                    </span>
-                                                  ) : (
-                                                    <button
-                                                      onClick={() => handleTranslateSection(section, translationLanguage)}
-                                                      disabled={rateLimitInfo.isLimited || translationLoading}
-                                                      className="text-xs px-2 py-1 bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300 rounded hover:bg-whs-orange-200 dark:hover:bg-whs-orange-900/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                                                    >
-                                                      {rateLimitInfo.isLimited ? `${t.common?.rateLimited || 'Wait'} (${rateLimitInfo.remainingSeconds}s)` : (t.translation?.translateLaw || 'Translate this section')}
-                                                    </button>
-                                                  )}
-                                                </div>
-                                              )}
                                               {/* Show translated or original content */}
-                                              {translationEnabled && translatedContent[section.id]?.translatedText ? (
+                                              {translatedContent[section.id]?.translatedText ? (
                                                 <div className="prose dark:prose-invert prose-sm max-w-none">
                                                   <TypewriterText
                                                     text={translatedContent[section.id].translatedText}
@@ -3042,14 +3058,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                                             {flowchartLoading && flowchartSectionId === section.id ? (
                                               <>
                                                 <div className="w-4 h-4 border-2 border-whs-orange-300 border-t-whs-orange-600 rounded-full animate-spin"></div>
-                                                <span>Generating...</span>
+                                                <span>{t.common?.generating || 'Generating...'}</span>
                                               </>
                                             ) : (
                                               <>
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
                                                 </svg>
-                                                <span>{flowchartSectionId === section.id && flowchartData ? 'Hide Flowchart' : 'Visualize'}</span>
+                                                <span>{flowchartSectionId === section.id && flowchartData ? (t.common?.hideFlowchart || 'Hide Flowchart') : (t.common?.visualize || 'Visualize')}</span>
                                               </>
                                             )}
                                           </button>
@@ -3084,8 +3100,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                       <svg className="w-16 h-16 mb-4 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
-                      <p className="text-lg font-medium mb-2">No content available</p>
-                      <p className="text-sm text-center mb-4">The full text for this law has not been loaded.</p>
+                      <p className="text-lg font-medium mb-2">{t.common?.noContentAvailable || 'No content available'}</p>
+                      <p className="text-sm text-center mb-4">{t.common?.noContentDescription || 'The full text for this law has not been loaded.'}</p>
                       {selectedLaw.source?.url && (
                         <a
                           href={selectedLaw.source.url}
@@ -3093,7 +3109,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, onNavigationC
                           rel="noopener noreferrer"
                           className="text-whs-orange-500 hover:text-whs-orange-600 flex items-center gap-2"
                         >
-                          View on official source
+                          {t.common?.viewOnOfficialSource || 'View on official source'}
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>

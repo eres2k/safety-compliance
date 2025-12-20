@@ -64,7 +64,12 @@
     "pdfDocument": "PDF Document",
     "htmlDocument": "HTML Document",
     "rateLimited": "Please wait",
-    "rateLimitedDescription": "AI requests are rate limited. Please wait before making another request."
+    "rateLimitedDescription": "AI requests are rate limited. Please wait before making another request.",
+    "visualize": "Visualize",
+    "generating": "Generating...",
+    "hideFlowchart": "Hide Flowchart",
+    "viewOfficialPdf": "View/Download Official PDF",
+    "viewOfficialSource": "View official source"
   },
   "lawBrowser": {
     "lawsAndRegs": "Laws & Regulations",
@@ -79,6 +84,7 @@
   "translation": {
     "translateTo": "Translate to",
     "translating": "Translating...",
+    "translated": "Translated",
     "showOriginal": "Show Original",
     "showTranslation": "Show Translation",
     "translationEnabled": "Translation enabled",
@@ -87,7 +93,7 @@
     "german": "German",
     "dutch": "Dutch",
     "english": "English",
-    "translateLaw": "Translate Law"
+    "translateLaw": "Translate Section"
   },
   "complexity": {
     "reading": "Reading:",
@@ -99,6 +105,16 @@
     "managerDescription": "Amazon WHS key obligations & compliance requirements",
     "associate": "Explain like I'm 5",
     "associateDescription": "Simple explanation anyone can understand"
+  },
+  "whs": {
+    "obligations": "Key WHS Obligations",
+    "deadlines": "Compliance Deadlines",
+    "documentation": "Required Documentation",
+    "relatedWiki": "Related Wikipedia Articles",
+    "overview": "What This Section Covers",
+    "requirements": "Key Requirements",
+    "relevance": "Compliance Relevance",
+    "actions": "Documentation/Actions Needed"
   },
   "sections": {
     "title": "Sections"
