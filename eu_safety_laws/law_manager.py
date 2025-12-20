@@ -325,12 +325,12 @@ class Config:
                         "description": "Guidelines for safe storage of hazardous substances"
                     },
                     {
-                        "abbrev": "AUVA M.plus 340",
-                        "title": "M.plus 340 - Arbeitsmittel",
-                        "title_en": "Work Equipment",
-                        "url": "https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
+                        "abbrev": "AUVA M.plus 340.2",
+                        "title": "M.plus 340.2 - Krebserzeugende Arbeitsstoffe in Kunststoffspritzgießereien",
+                        "title_en": "Carcinogenic Substances in Plastic Injection Molding",
+                        "url": "https://auva.at/media/nodjy2jp/mplus_3402_krebserzeugende_arbeitsstoffe_kunststoffspritzg.pdf",
                         "series": "M.plus",
-                        "description": "Safety requirements for work equipment"
+                        "description": "Safety for carcinogenic substances in plastic manufacturing"
                     },
                     {
                         "abbrev": "AUVA M.plus 340.7",
@@ -341,20 +341,20 @@ class Config:
                         "description": "Safety for handling hazardous substances in pharmacies"
                     },
                     {
-                        "abbrev": "AUVA M.plus 350",
-                        "title": "M.plus 350 - Arbeitsstätten",
-                        "title_en": "Workplaces",
-                        "url": "https://auva.at/media/r2qfq5at/mplus_350_arbeitsstaetten_bf_2405.pdf",
+                        "abbrev": "AUVA M.plus 301",
+                        "title": "M.plus 301 - Explosionsschutz",
+                        "title_en": "Explosion Protection",
+                        "url": "https://auva.at/media/zhxfgjcu/mplus_301_explosionsschutz_bf.pdf",
                         "series": "M.plus",
-                        "description": "Workplace design and safety requirements"
+                        "description": "Explosion protection in the workplace"
                     },
                     {
-                        "abbrev": "AUVA M.plus 360",
-                        "title": "M.plus 360 - Ergonomie",
-                        "title_en": "Ergonomics",
-                        "url": "https://auva.at/media/faqbqzk0/mplus_360_ergonomie_bf_2405.pdf",
+                        "abbrev": "AUVA M.plus 361",
+                        "title": "M.plus 361 - Musterbetriebsanweisung Ergänzung",
+                        "title_en": "Sample Operating Instructions Supplement",
+                        "url": "https://auva.at/media/a2km3njh/mplus_361_ergaenzung_4_musterbetriebsanweisung_2023_bf.pdf",
                         "series": "M.plus",
-                        "description": "Ergonomic workplace design guidelines"
+                        "description": "Sample operating instructions for hazardous substances"
                     },
                     {
                         "abbrev": "AUVA M.plus 369",
@@ -407,14 +407,30 @@ class Config:
                         "series": "M.plus",
                         "description": "Safety for bicycle courier services"
                     },
-                    # M.plus 9xx - Special Topics
+                    # AUVA E-Series - Evaluation Documents
                     {
-                        "abbrev": "AUVA M.plus 910",
-                        "title": "M.plus 910 - Evaluierung psychischer Belastungen",
-                        "title_en": "Assessment of Psychological Stress",
-                        "url": "https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
-                        "series": "M.plus",
-                        "description": "Guidelines for assessing psychological stress at work"
+                        "abbrev": "AUVA E 14",
+                        "title": "E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)",
+                        "title_en": "Evaluation of Psychological Stress (ABS Group Method)",
+                        "url": "https://auva.at/media/1klpjgis/e_14_evaluierung_psychischer_belastungen_abs_bf.pdf",
+                        "series": "E",
+                        "description": "Psychological stress evaluation using ABS group method"
+                    },
+                    {
+                        "abbrev": "AUVA E 24 EVALOG",
+                        "title": "E 24 EVALOG - Evaluierung psychischer Belastung im Dialog",
+                        "title_en": "EVALOG - Psychological Stress Evaluation through Dialogue",
+                        "url": "https://auva.at/media/gybkl0hm/e_24_evalog_evaluierung_psychischer_belastung_im_dialog_bf.pdf",
+                        "series": "E",
+                        "description": "Comprehensive psychological stress evaluation guide"
+                    },
+                    {
+                        "abbrev": "AUVA E 13",
+                        "title": "E 13 - Evaluierung physischer Belastungen",
+                        "title_en": "Evaluation of Physical Stress",
+                        "url": "https://auva.at/media/qvnajezk/e_13_physische_belastungen.pdf",
+                        "series": "E",
+                        "description": "Physical ergonomic stress evaluation"
                     },
                     {
                         "abbrev": "AUVA M.plus 931",
@@ -491,6 +507,23 @@ class Config:
                         "url": "https://auva.at/media/nwwlrfpq/m_719_atemschutzfilter_gegen_schwebstoffe_gase_daempfe_bf_20.pdf",
                         "series": "M",
                         "description": "Selection of respiratory protection filters"
+                    },
+                    # === General Resources ===
+                    {
+                        "abbrev": "AUVA Basiswissen 2025",
+                        "title": "Basiswissen Arbeitnehmer:innenschutz 2025",
+                        "title_en": "Basic Knowledge Worker Protection 2025",
+                        "url": "https://auva.at/media/peujs3al/basiswissen-arbeitnehmerschutz-bf.pdf",
+                        "series": "Basiswissen",
+                        "description": "Comprehensive overview of Austrian worker protection laws 2025"
+                    },
+                    {
+                        "abbrev": "AUVAsicher 2024-2025",
+                        "title": "AUVAsicher Informationsbroschüre 2024-2025",
+                        "title_en": "AUVAsicher Information Brochure 2024-2025",
+                        "url": "https://auva.at/media/0cpp1f4l/auvasicher_informationsbroschuere_2024.pdf",
+                        "series": "AUVAsicher",
+                        "description": "Annual safety information and prevention resources"
                     }
                 ]
             }
