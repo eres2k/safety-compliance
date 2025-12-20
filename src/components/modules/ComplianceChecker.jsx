@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useAI } from '../../hooks/useAI'
 import { Button, Select, Card, CardContent, FormattedAIResponse } from '../ui'
@@ -6,6 +6,20 @@ import { LoadingSpinner, DotsLoading } from '../ui/LoadingSpinner'
 import { searchLaws, getAllLawsSync } from '../../services/euLawsDatabase'
 
 const COMPANY_SIZES = ['1-10', '11-50', '51-100', '101-250', '250+']
+
+// Topic category icons for visual grouping
+const CATEGORY_ICONS = {
+  '_category_manual_handling': '📦',
+  '_category_pit': '🚜',
+  '_category_warehouse': '🏭',
+  '_category_delivery': '🚚',
+  '_category_ppe': '🦺',
+  '_category_training': '📚',
+  '_category_emergency': '🚨',
+  '_category_work_org': '⏰',
+  '_category_special': '👥',
+  '_category_compliance': '✅'
+}
 
 // Compliance status indicators
 const ComplianceIndicator = ({ status }) => {
@@ -91,10 +105,34 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const topicOptions = Object.entries(t.topics).map(([key, value]) => ({
-    value,
-    label: value
-  }))
+  // Build topic options with category grouping
+  const topicOptions = useMemo(() => {
+    const options = []
+    let currentCategory = null
+
+    Object.entries(t.topics).forEach(([key, value]) => {
+      if (key.startsWith('_category_')) {
+        // This is a category header
+        currentCategory = value
+        options.push({
+          value: '',
+          label: value,
+          isCategory: true,
+          disabled: true
+        })
+      } else {
+        // This is a topic
+        const icon = currentCategory ? CATEGORY_ICONS[Object.keys(t.topics).find(k => t.topics[k] === currentCategory)] : ''
+        options.push({
+          value: value,
+          label: `${icon ? '  ' : ''}${value}`,
+          isCategory: false
+        })
+      }
+    })
+
+    return options
+  }, [t.topics])
 
   const sizeOptions = COMPANY_SIZES.map(size => ({
     value: size,
@@ -161,13 +199,43 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 {t.common.topic}
               </label>
-              <Select
+              <select
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
-                options={topicOptions}
-                placeholder={t.common.selectOption}
-                variant="glass"
-              />
+                className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-whs-dark-600 bg-white/50 dark:bg-whs-dark-800/50 backdrop-blur-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-whs-orange-500/50 focus:border-whs-orange-500 transition-all"
+              >
+                <option value="">{t.common.selectOption}</option>
+                {(() => {
+                  const groups = []
+                  let currentGroup = null
+                  let currentOptions = []
+
+                  Object.entries(t.topics).forEach(([key, value]) => {
+                    if (key.startsWith('_category_')) {
+                      if (currentGroup) {
+                        groups.push({ label: currentGroup, options: currentOptions })
+                      }
+                      currentGroup = value
+                      currentOptions = []
+                    } else {
+                      currentOptions.push({ key, value })
+                    }
+                  })
+                  if (currentGroup) {
+                    groups.push({ label: currentGroup, options: currentOptions })
+                  }
+
+                  return groups.map((group, idx) => (
+                    <optgroup key={idx} label={group.label}>
+                      {group.options.map(opt => (
+                        <option key={opt.key} value={opt.value}>
+                          {opt.value}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ))
+                })()}
+              </select>
             </div>
           </div>
 
