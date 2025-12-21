@@ -130,7 +130,7 @@ function AppContent() {
       case 'checklistTemplates':
         return <ChecklistTemplates onBack={onBack} />
       case 'preventionTimeCalculator':
-        return <PreventionTimeCalculator onBack={onBack} />
+        return <PreventionTimeCalculator onBack={onBack} onNavigateToLaw={navigateToLaw} />
       case 'penaltyLookup':
         return <PenaltyLookup onBack={onBack} onNavigateToLaw={navigateToLaw} />
       case 'glossary':
