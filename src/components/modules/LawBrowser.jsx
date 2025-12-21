@@ -604,10 +604,13 @@ function formatLawText(text) {
 
   const flushList = () => {
     if (listItems.length > 0) {
+      if (DEBUG_BESCHAEFTIGTE) console.log('[PARSER v2] flushList called with', listItems.length, 'items, currentAbsatz:', currentAbsatz?.number, 'lastElement:', elements[elements.length-1]?.type, elements[elements.length-1]?.number)
       // If we have a current Absatz, attach list items to it
       if (currentAbsatz && elements.length > 0 && elements[elements.length - 1] === currentAbsatz) {
-        currentAbsatz.subItems = [...listItems]
+        if (DEBUG_BESCHAEFTIGTE) console.log('[PARSER v2] ATTACHING to absatz', currentAbsatz.number, '- items:', listItems.map(i => i.marker).join(', '))
+        currentAbsatz.subItems = [...currentAbsatz.subItems, ...listItems] // FIX: append instead of replace
       } else {
+        if (DEBUG_BESCHAEFTIGTE) console.log('[PARSER v2] Creating STANDALONE list with items:', listItems.map(i => i.marker).join(', '))
         elements.push({ type: 'list', items: [...listItems] })
       }
       listItems = []
