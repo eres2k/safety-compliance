@@ -860,16 +860,12 @@ function parseLawReference(ref) {
 function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClick = null, onLawReferenceClick = null }) {
   const elements = formatLawText(text)
 
-  // DEBUG: Log parsed elements to help diagnose display issues
-  if (text?.includes('Beschäftigte im Sinne dieses Gesetzes sind')) {
-    console.log('[DEBUG] FormattedText for Beschäftigte section:')
-    console.log('[DEBUG] Input text length:', text?.length)
-    console.log('[DEBUG] Parsed elements:', JSON.stringify(elements, null, 2))
-    const absatz2 = elements?.find(el => el.type === 'absatz' && el.number === '2')
-    console.log('[DEBUG] Absatz 2 subItems count:', absatz2?.subItems?.length || 0)
-    if (absatz2?.subItems) {
-      absatz2.subItems.forEach((item, i) => console.log(`[DEBUG] SubItem ${i+1}:`, item.marker, item.content?.substring(0, 50)))
-    }
+  // DEBUG: Show visible indicator for Beschäftigte section parsing
+  const debugAbsatz2 = text?.includes('Beschäftigte im Sinne dieses Gesetzes sind')
+    ? elements?.find(el => el.type === 'absatz' && el.number === '2')
+    : null
+  if (debugAbsatz2) {
+    console.log('[DEBUG] Absatz 2 parsed with', debugAbsatz2.subItems?.length || 0, 'subItems')
   }
 
   // Create crosslink highlighter if crosslinks are available
@@ -1659,6 +1655,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
               displayNumber = 'Präambel'
             } else {
               displayNumber = framework === 'NL' ? `Artikel ${section.number}` : `§ ${section.number}`
+            }
+
+            // DEBUG: Check raw section.text before processing
+            if (section.text?.includes('Beschäftigte im Sinne dieses Gesetzes sind')) {
+              console.log('[DEBUG RAW] section.text length:', section.text?.length)
+              console.log('[DEBUG RAW] section.text has item 1:', section.text?.includes('1. Arbeitnehmerinnen'))
+              console.log('[DEBUG RAW] section.text has item 5:', section.text?.includes('5. Richterinnen'))
+              console.log('[DEBUG RAW] section.text preview:', section.text?.substring(0, 500))
             }
 
             sections.push({
