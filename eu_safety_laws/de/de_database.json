@@ -11635,7 +11635,7 @@
       "abbreviation": "DGUV Information 208-033",
       "title": "DGUV Information 208-033 - Muskel-Skelett-Belastungen",
       "title_en": "DGUV Information 208-033 - Muskel-Skelett-Belastungen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -11653,10 +11653,10 @@
         "title": "DGUV Information 208-033 - Muskel-Skelett-Belastungen",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV_Information_208-033_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV_Information_208-033_merkblatt.pdf",
         "pdf_url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Informationen/208-033.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV_Information_208-033_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV_Information_208-033_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:48.382183",
@@ -11671,9 +11671,12 @@
         "description": "Recognition and assessment of musculoskeletal loads.",
         "pdf_filename": "de_DGUV_Information_208-033_law.pdf",
         "pdf_size_bytes": 2416467,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "8b02b31e6052ae7e78460c757cdf6465"
+      "content_hash": "8b02b31e6052ae7e78460c757cdf6465",
+      "subcategory": "DGUV",
+      "subcategory_name": "DGUV (Berufsgenossenschaft)"
     },
     {
       "id": "bc8ce595015c3b66",
@@ -11855,7 +11858,7 @@
       "abbreviation": "TRBS 2121",
       "title": "TRBS 2121 - Gefährdung durch Absturz",
       "title_en": "TRBS 2121 - Gefährdung durch Absturz",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -11873,10 +11876,10 @@
         "title": "TRBS 2121 - Gefährdung durch Absturz",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_2121_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_2121_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_2121_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_2121_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:55.906348",
@@ -11891,9 +11894,12 @@
         "description": "Protection against falling from heights.",
         "pdf_filename": "de_TRBS_2121_law.pdf",
         "pdf_size_bytes": 207865,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "8577fb12a9256899059b8c1406129bf3"
+      "content_hash": "8577fb12a9256899059b8c1406129bf3",
+      "subcategory": "TRBS",
+      "subcategory_name": "TRBS (Technische Regeln Betriebssicherheit)"
     },
     {
       "id": "3fa493342910304a",
@@ -11905,7 +11911,7 @@
       "abbreviation": "TRGS 510",
       "title": "TRGS 510 - Lagerung von Gefahrstoffen",
       "title_en": "TRGS 510 - Lagerung von Gefahrstoffen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -11923,10 +11929,10 @@
         "title": "TRGS 510 - Lagerung von Gefahrstoffen",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_510_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_510_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-510.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_510_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_510_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:56.437029",
@@ -11941,9 +11947,12 @@
         "description": "Hazardous substance storage in portable containers.",
         "pdf_filename": "de_TRGS_510_law.pdf",
         "pdf_size_bytes": 687525,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "1d9da7ce158111ffef7a8afc0f9a41e1"
+      "content_hash": "1d9da7ce158111ffef7a8afc0f9a41e1",
+      "subcategory": "TRGS",
+      "subcategory_name": "TRGS (Technische Regeln Gefahrstoffe)"
     },
     {
       "id": "70e1b6a36bfa0c0d",
@@ -11955,7 +11964,7 @@
       "abbreviation": "ASR A1.3",
       "title": "ASR A1.3 - Sicherheitskennzeichnung",
       "title_en": "ASR A1.3 - Sicherheitskennzeichnung",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -11973,10 +11982,10 @@
         "title": "ASR A1.3 - Sicherheitskennzeichnung",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_3_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_3_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_3_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_3_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:57.520467",
@@ -11991,9 +12000,12 @@
         "description": "Safety and health protection signage requirements.",
         "pdf_filename": "de_ASR_A1_3_law.pdf",
         "pdf_size_bytes": 2476823,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "94e015b85b903b404e8572d307ba5c48"
+      "content_hash": "94e015b85b903b404e8572d307ba5c48",
+      "subcategory": "ASR",
+      "subcategory_name": "ASR (Arbeitsstättenregeln)"
     },
     {
       "id": "81cc9cfd3d479643",
@@ -12005,7 +12017,7 @@
       "abbreviation": "TRBS 1111",
       "title": "TRBS 1111 - Gefährdungsbeurteilung",
       "title_en": "TRBS 1111 - Gefährdungsbeurteilung",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12023,10 +12035,10 @@
         "title": "TRBS 1111 - Gefährdungsbeurteilung",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_1111_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_1111_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1111.pdf?__blob=publicationFile&v=8"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_1111_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_1111_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:56.883102",
@@ -12041,9 +12053,12 @@
         "description": "Technical rule for risk assessment of work equipment.",
         "pdf_filename": "de_TRBS_1111_law.pdf",
         "pdf_size_bytes": 3861750,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "b85b38dc2c7f9249430e3f8f9a7d29f0"
+      "content_hash": "b85b38dc2c7f9249430e3f8f9a7d29f0",
+      "subcategory": "TRBS",
+      "subcategory_name": "TRBS (Technische Regeln Betriebssicherheit)"
     },
     {
       "id": "ae3be47c0b17a500",
@@ -12055,7 +12070,7 @@
       "abbreviation": "ASR A2.2",
       "title": "ASR A2.2 - Maßnahmen gegen Brände",
       "title_en": "ASR A2.2 - Maßnahmen gegen Brände",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12073,10 +12088,10 @@
         "title": "ASR A2.2 - Maßnahmen gegen Brände",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A2_2_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A2_2_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A2_2_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A2_2_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:57.170817",
@@ -12091,9 +12106,12 @@
         "description": "Fire prevention and fire extinguisher requirements.",
         "pdf_filename": "de_ASR_A2_2_law.pdf",
         "pdf_size_bytes": 609670,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "4e944a926be7fd3f99c9de6305b3e0e6"
+      "content_hash": "4e944a926be7fd3f99c9de6305b3e0e6",
+      "subcategory": "ASR",
+      "subcategory_name": "ASR (Arbeitsstättenregeln)"
     },
     {
       "id": "bab8989483cca422",
@@ -12105,7 +12123,7 @@
       "abbreviation": "TRBS 1112",
       "title": "TRBS 1112 - Instandhaltung",
       "title_en": "TRBS 1112 - Instandhaltung",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12123,10 +12141,10 @@
         "title": "TRBS 1112 - Instandhaltung",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_1112_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_1112_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-1112.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_1112_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_1112_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:57.037552",
@@ -12141,9 +12159,12 @@
         "description": "Technical rule for maintenance of work equipment.",
         "pdf_filename": "de_TRBS_1112_law.pdf",
         "pdf_size_bytes": 226931,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "eb399e43d5d35ea57169adb89b5e5a81"
+      "content_hash": "eb399e43d5d35ea57169adb89b5e5a81",
+      "subcategory": "TRBS",
+      "subcategory_name": "TRBS (Technische Regeln Betriebssicherheit)"
     },
     {
       "id": "f9a08e9261f54d6a",
@@ -12155,7 +12176,7 @@
       "abbreviation": "TRBS 2111",
       "title": "TRBS 2111 - Mechanische Gefährdungen",
       "title_en": "TRBS 2111 - Mechanische Gefährdungen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12173,10 +12194,10 @@
         "title": "TRBS 2111 - Mechanische Gefährdungen",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_2111_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_2111_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2111.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_2111_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_2111_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:57.396852",
@@ -12191,9 +12212,12 @@
         "description": "Protection against mechanical hazards from work equipment.",
         "pdf_filename": "de_TRBS_2111_law.pdf",
         "pdf_size_bytes": 144459,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "745b83f58b0a7244321f26e97ca22fb0"
+      "content_hash": "745b83f58b0a7244321f26e97ca22fb0",
+      "subcategory": "TRBS",
+      "subcategory_name": "TRBS (Technische Regeln Betriebssicherheit)"
     },
     {
       "id": "1db4796840ff5ffb",
@@ -12205,7 +12229,7 @@
       "abbreviation": "TRGS 400",
       "title": "TRGS 400 - Gefährdungsbeurteilung für Tätigkeiten mit Gefahrstoffen",
       "title_en": "TRGS 400 - Gefährdungsbeurteilung für Tätigkeiten mit Gefahrstoffen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12223,10 +12247,10 @@
         "title": "TRGS 400 - Gefährdungsbeurteilung für Tätigkeiten mit Gefahrstoffen",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_400_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_400_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-400.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_400_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_400_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:58.159639",
@@ -12241,9 +12265,12 @@
         "description": "Risk assessment guidelines for work with hazardous substances.",
         "pdf_filename": "de_TRGS_400_law.pdf",
         "pdf_size_bytes": 201328,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "89560c947ec875a9657bcecfcdde611a"
+      "content_hash": "89560c947ec875a9657bcecfcdde611a",
+      "subcategory": "TRGS",
+      "subcategory_name": "TRGS (Technische Regeln Gefahrstoffe)"
     },
     {
       "id": "d71dce8acbad944d",
@@ -12255,7 +12282,7 @@
       "abbreviation": "TRGS 555",
       "title": "TRGS 555 - Betriebsanweisung und Information der Beschäftigten",
       "title_en": "TRGS 555 - Betriebsanweisung und Information der Beschäftigten",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12273,10 +12300,10 @@
         "title": "TRGS 555 - Betriebsanweisung und Information der Beschäftigten",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_555_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_555_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-555.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_555_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_555_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:58.282184",
@@ -12291,9 +12318,12 @@
         "description": "Requirements for operating instructions and employee training on hazardous substances.",
         "pdf_filename": "de_TRGS_555_law.pdf",
         "pdf_size_bytes": 159324,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "56be4ba30f3590861a66bb4d0c5d06e0"
+      "content_hash": "56be4ba30f3590861a66bb4d0c5d06e0",
+      "subcategory": "TRGS",
+      "subcategory_name": "TRGS (Technische Regeln Gefahrstoffe)"
     },
     {
       "id": "aba530f11f99c11f",
@@ -12305,7 +12335,7 @@
       "abbreviation": "TRGS 500",
       "title": "TRGS 500 - Schutzmaßnahmen",
       "title_en": "TRGS 500 - Schutzmaßnahmen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12323,10 +12353,10 @@
         "title": "TRGS 500 - Schutzmaßnahmen",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_500_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_500_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRGS/pdf/TRGS-500.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_500_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRGS_500_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:58.377103",
@@ -12341,9 +12371,12 @@
         "description": "Protective measures when working with hazardous substances.",
         "pdf_filename": "de_TRGS_500_law.pdf",
         "pdf_size_bytes": 1021388,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "2d575972072460cb1280a76742e31d4f"
+      "content_hash": "2d575972072460cb1280a76742e31d4f",
+      "subcategory": "TRGS",
+      "subcategory_name": "TRGS (Technische Regeln Gefahrstoffe)"
     },
     {
       "id": "dc530c26c674089b",
@@ -12355,7 +12388,7 @@
       "abbreviation": "ASR A1.8",
       "title": "ASR A1.8 - Verkehrswege",
       "title_en": "ASR A1.8 - Verkehrswege",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12373,10 +12406,10 @@
         "title": "ASR A1.8 - Verkehrswege",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_8_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_8_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-8.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_8_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_8_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:58.822487",
@@ -12391,9 +12424,12 @@
         "description": "Requirements for traffic routes in workplaces.",
         "pdf_filename": "de_ASR_A1_8_law.pdf",
         "pdf_size_bytes": 694146,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "6fb5d76f643d32977d66093cd041c37c"
+      "content_hash": "6fb5d76f643d32977d66093cd041c37c",
+      "subcategory": "ASR",
+      "subcategory_name": "ASR (Arbeitsstättenregeln)"
     },
     {
       "id": "c400c54e4ac73e42",
@@ -12405,7 +12441,7 @@
       "abbreviation": "ASR A2.1",
       "title": "ASR A2.1 - Schutz vor Absturz und herabfallenden Gegenständen",
       "title_en": "ASR A2.1 - Schutz vor Absturz und herabfallenden Gegenständen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12423,10 +12459,10 @@
         "title": "ASR A2.1 - Schutz vor Absturz und herabfallenden Gegenständen",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A2_1_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A2_1_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-1.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A2_1_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A2_1_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:59.039899",
@@ -12441,9 +12477,12 @@
         "description": "Protection against falls from height and falling objects.",
         "pdf_filename": "de_ASR_A2_1_law.pdf",
         "pdf_size_bytes": 808920,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "2b2fba2730718466f50d9db928d8e695"
+      "content_hash": "2b2fba2730718466f50d9db928d8e695",
+      "subcategory": "ASR",
+      "subcategory_name": "ASR (Arbeitsstättenregeln)"
     },
     {
       "id": "3e46716c6f75575d",
@@ -12455,7 +12494,7 @@
       "abbreviation": "ASR A3.4",
       "title": "ASR A3.4 - Beleuchtung",
       "title_en": "ASR A3.4 - Beleuchtung",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12473,10 +12512,10 @@
         "title": "ASR A3.4 - Beleuchtung",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A3_4_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A3_4_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-4.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A3_4_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A3_4_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:59.093327",
@@ -12491,9 +12530,12 @@
         "description": "Workplace lighting requirements.",
         "pdf_filename": "de_ASR_A3_4_law.pdf",
         "pdf_size_bytes": 771899,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "098587d90a4b090f395e16a1d26a2496"
+      "content_hash": "098587d90a4b090f395e16a1d26a2496",
+      "subcategory": "ASR",
+      "subcategory_name": "ASR (Arbeitsstättenregeln)"
     },
     {
       "id": "ef433b113558998b",
@@ -12505,7 +12547,7 @@
       "abbreviation": "TRBS 3151",
       "title": "TRBS 3151 - Vermeidung von Brand- und Explosionsgefährdungen an Tankstellen",
       "title_en": "TRBS 3151 - Vermeidung von Brand- und Explosionsgefährdungen an Tankstellen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12523,10 +12565,10 @@
         "title": "TRBS 3151 - Vermeidung von Brand- und Explosionsgefährdungen an Tankstellen",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_3151_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_3151_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-3151.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_3151_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_TRBS_3151_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:59.150264",
@@ -12541,9 +12583,12 @@
         "description": "Prevention of fire and explosion hazards at fuel stations.",
         "pdf_filename": "de_TRBS_3151_law.pdf",
         "pdf_size_bytes": 3316600,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "8ed7e2e5c19f9aa2acb9ffc095a3bb4b"
+      "content_hash": "8ed7e2e5c19f9aa2acb9ffc095a3bb4b",
+      "subcategory": "TRBS",
+      "subcategory_name": "TRBS (Technische Regeln Betriebssicherheit)"
     },
     {
       "id": "bd62bf2b7a98455e",
@@ -12555,7 +12600,7 @@
       "abbreviation": "ASR A3.5",
       "title": "ASR A3.5 - Raumtemperatur",
       "title_en": "ASR A3.5 - Raumtemperatur",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -12573,10 +12618,10 @@
         "title": "ASR A3.5 - Raumtemperatur",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A3_5_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A3_5_merkblatt.pdf",
         "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-5.pdf?__blob=publicationFile"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A3_5_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A3_5_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-20T21:44:59.403077",
@@ -12591,9 +12636,12 @@
         "description": "Workplace temperature requirements.",
         "pdf_filename": "de_ASR_A3_5_law.pdf",
         "pdf_size_bytes": 595706,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "25f43ec237ce63b8590cd6dc3b023e25"
+      "content_hash": "25f43ec237ce63b8590cd6dc3b023e25",
+      "subcategory": "ASR",
+      "subcategory_name": "ASR (Arbeitsstättenregeln)"
     },
     {
       "id": "6fd865c07a9948bb",
