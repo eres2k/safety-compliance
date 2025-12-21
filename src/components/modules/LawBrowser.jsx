@@ -579,6 +579,10 @@ function preprocessLawText(text) {
 function formatLawText(text) {
   if (!text) return null
 
+  // VERSION MARKER: fix-v2-2025-12-21
+  const DEBUG_BESCHAEFTIGTE = text?.includes('Beschäftigte im Sinne dieses Gesetzes sind')
+  if (DEBUG_BESCHAEFTIGTE) console.log('[PARSER v2] Starting formatLawText')
+
   // Preprocess to handle inline formatting issues
   const preprocessed = preprocessLawText(text)
   const lines = preprocessed.split('\n')
@@ -686,12 +690,14 @@ function formatLawText(text) {
         // Check if the previous element is an absatz ending with ":" - these introduce lists
         // e.g., "(2) Beschäftigte im Sinne dieses Gesetzes sind:" followed by "1. ..., 2. ..."
         const lastElement = elements[elements.length - 1]
+        if (DEBUG_BESCHAEFTIGTE) console.log('[PARSER v2] Numbered item without currentAbsatz:', numberedMatch[1], 'lastElement:', lastElement?.type, lastElement?.number)
         if (lastElement?.type === 'absatz' && lastElement.content?.trim().endsWith(':')) {
           // Restore absatz context - numbered items belong to the previous absatz as subItems
+          if (DEBUG_BESCHAEFTIGTE) console.log('[PARSER v2] RESTORING absatz context from', lastElement.number)
           currentAbsatz = lastElement
         } else {
           // This is a numbered or lettered paragraph - treat as absatz
-          // This ensures NL (a. b. c.) gets same styling as AT/DE (1. 2. 3.)
+          if (DEBUG_BESCHAEFTIGTE) console.log('[PARSER v2] Creating NEW absatz for:', numberedMatch[1])
           flushAbsatz()
           flushList()
           flushParagraph()
@@ -702,6 +708,7 @@ function formatLawText(text) {
         }
       }
       // Treat as list item (when inside an existing absatz)
+      if (DEBUG_BESCHAEFTIGTE) console.log('[PARSER v2] Adding list item:', numberedMatch[1], 'to currentAbsatz:', currentAbsatz?.number)
       flushParagraph()
       inList = true
       listItems.push({ marker: numberedMatch[1].trim(), content: numberedMatch[2] })
@@ -1657,19 +1664,21 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
               displayNumber = framework === 'NL' ? `Artikel ${section.number}` : `§ ${section.number}`
             }
 
-            // DEBUG: Check raw section.text before processing
+            // DEBUG: Check before and after cleanSectionContent
+            const cleanedContent = cleanSectionContent(section.text, section.number)
             if (section.text?.includes('Beschäftigte im Sinne dieses Gesetzes sind')) {
-              console.log('[DEBUG RAW] section.text length:', section.text?.length)
-              console.log('[DEBUG RAW] section.text has item 1:', section.text?.includes('1. Arbeitnehmerinnen'))
-              console.log('[DEBUG RAW] section.text has item 5:', section.text?.includes('5. Richterinnen'))
-              console.log('[DEBUG RAW] section.text preview:', section.text?.substring(0, 500))
+              console.log('[DEBUG] RAW length:', section.text?.length, '| CLEANED length:', cleanedContent?.length)
+              console.log('[DEBUG] RAW has item 1:', section.text?.includes('1. Arbeitnehmerinnen'))
+              console.log('[DEBUG] CLEANED has item 1:', cleanedContent?.includes('1. Arbeitnehmerinnen'))
+              console.log('[DEBUG] CLEANED has item 5:', cleanedContent?.includes('5. Richterinnen'))
+              console.log('[DEBUG] CLEANED text:', cleanedContent?.substring(0, 700))
             }
 
             sections.push({
               id: section.id,
               number: displayNumber,
               title: sectionTitle,
-              content: cleanSectionContent(section.text, section.number),
+              content: cleanedContent,
               rawNumber: section.number,
               abschnitt: {
                 number: chapter.number,
