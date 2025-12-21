@@ -178,6 +178,9 @@ export function TransitionText({
  * @param {function} onComplete - Callback when animation completes
  * @param {function} renderComplete - Optional render function for formatted content after completion
  *                                    Receives translatedText as argument
+ * @param {function} renderDuring - Optional render function for formatted content DURING animation
+ *                                  Receives partial translatedText as argument. If not provided,
+ *                                  falls back to renderComplete for consistent styling.
  */
 export function OverwriteText({
   originalText,
@@ -185,7 +188,8 @@ export function OverwriteText({
   speed = 8,
   className = '',
   onComplete,
-  renderComplete
+  renderComplete,
+  renderDuring
 }) {
   const [displayedLength, setDisplayedLength] = useState(0)
   const [isComplete, setIsComplete] = useState(false)
@@ -249,7 +253,10 @@ export function OverwriteText({
   const displayedText = translatedText ? translatedText.slice(0, displayedLength) : ''
   const originalToShow = originalText || ''
 
-  // Format text into paragraphs for proper styling
+  // Get the renderer for during animation (prefer renderDuring, fall back to renderComplete)
+  const duringRenderer = renderDuring || renderComplete
+
+  // Format text into paragraphs for proper styling (fallback if no renderer provided)
   const formatAsParagraphs = (text) => {
     if (!text) return null
     const paragraphs = text.split('\n').filter(p => p.trim())
@@ -270,16 +277,27 @@ export function OverwriteText({
       {/* Original text as base - visible parts that haven't been overwritten */}
       <div className="text-sm leading-relaxed text-gray-400 dark:text-gray-500 transition-opacity duration-500"
            style={{ opacity: isComplete ? 0 : 0.3 }}>
-        {formatAsParagraphs(originalToShow)}
+        {renderComplete ? renderComplete(originalToShow) : formatAsParagraphs(originalToShow)}
       </div>
 
-      {/* Translated text overlay - types over the original */}
-      <div className="absolute inset-0 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-        <span className="bg-white dark:bg-whs-dark-800">
-          {displayedText}
-        </span>
-        {!isComplete && displayedLength > 0 && (
-          <span className="inline-block w-0.5 h-4 bg-whs-orange-500 animate-pulse ml-0.5 align-middle"></span>
+      {/* Translated text overlay - types over the original with proper formatting */}
+      <div className="absolute inset-0">
+        {duringRenderer ? (
+          <div className="relative">
+            {duringRenderer(displayedText)}
+            {!isComplete && displayedLength > 0 && (
+              <span className="inline-block w-0.5 h-4 bg-whs-orange-500 animate-pulse ml-0.5 align-middle absolute"></span>
+            )}
+          </div>
+        ) : (
+          <div className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            <span className="bg-white dark:bg-whs-dark-800">
+              {displayedText}
+            </span>
+            {!isComplete && displayedLength > 0 && (
+              <span className="inline-block w-0.5 h-4 bg-whs-orange-500 animate-pulse ml-0.5 align-middle"></span>
+            )}
+          </div>
         )}
       </div>
     </div>

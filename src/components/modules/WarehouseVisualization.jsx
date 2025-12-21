@@ -138,54 +138,54 @@ const HAZARDS = {
 
 const PPE_ITEMS = {
   loading_dock: {
-    en: ['Safety shoes', 'High-vis vest', 'Gloves', 'Hard hat'],
-    de: ['Sicherheitsschuhe', 'Warnweste', 'Handschuhe', 'Schutzhelm'],
-    nl: ['Veiligheidsschoenen', 'Veiligheidsvest', 'Handschoenen', 'Helm'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves', 'Yard Access Badge'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Sicherheitshandschuhe', 'Yard-Zugangsausweis'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Veiligheidshandschoenen', 'Yard-toegangsbadge'],
   },
   forklift_area: {
-    en: ['Safety shoes', 'High-vis vest', 'Seat belt (forklift)'],
-    de: ['Sicherheitsschuhe', 'Warnweste', 'Sicherheitsgurt (Stapler)'],
-    nl: ['Veiligheidsschoenen', 'Veiligheidsvest', 'Veiligheidsgordel (heftruck)'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves', 'Seat belt (forklift)'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Sicherheitshandschuhe', 'Sicherheitsgurt (Stapler)'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Veiligheidshandschoenen', 'Veiligheidsgordel (heftruck)'],
   },
   racking_storage: {
-    en: ['Hard hat', 'Safety shoes', 'Gloves'],
-    de: ['Schutzhelm', 'Sicherheitsschuhe', 'Handschuhe'],
-    nl: ['Helm', 'Veiligheidsschoenen', 'Handschoenen'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Sicherheitshandschuhe'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Veiligheidshandschoenen'],
   },
   battery_charging: {
-    en: ['Face shield', 'Chemical gloves', 'Safety glasses', 'Acid-resistant apron'],
-    de: ['Gesichtsschutz', 'Chemikalienhandschuhe', 'Schutzbrille', 'Säureschutzschürze'],
-    nl: ['Gelaatsscherm', 'Chemische handschoenen', 'Veiligheidsbril', 'Zuurbestendig schort'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Chemical gloves', 'Face shield', 'Safety glasses'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Chemikalienhandschuhe', 'Gesichtsschutz', 'Schutzbrille'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Chemische handschoenen', 'Gelaatsscherm', 'Veiligheidsbril'],
   },
   conveyor_system: {
-    en: ['Safety shoes', 'Fitted clothing', 'Safety glasses', 'Gloves'],
-    de: ['Sicherheitsschuhe', 'Anliegende Kleidung', 'Schutzbrille', 'Handschuhe'],
-    nl: ['Veiligheidsschoenen', 'Nauwsluitende kleding', 'Veiligheidsbril', 'Handschoenen'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves', 'Fitted clothing'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Sicherheitshandschuhe', 'Anliegende Kleidung'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Veiligheidshandschoenen', 'Nauwsluitende kleding'],
   },
   packaging_station: {
-    en: ['Cut-resistant gloves', 'Back support belt', 'Anti-fatigue mat'],
-    de: ['Schnittschutzhandschuhe', 'Rückenstütze', 'Anti-Ermüdungsmatte'],
-    nl: ['Snijbestendige handschoenen', 'Rugsteun', 'Anti-vermoeidheidsmat'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves', 'Anti-fatigue mat'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Sicherheitshandschuhe', 'Anti-Ermüdungsmatte'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Veiligheidshandschoenen', 'Anti-vermoeidheidsmat'],
   },
   hazmat_storage: {
-    en: ['Chemical suit', 'Respirator', 'Chemical gloves', 'Face shield'],
-    de: ['Chemikalienschutzanzug', 'Atemschutz', 'Chemikalienhandschuhe', 'Gesichtsschutz'],
-    nl: ['Chemisch pak', 'Ademhalingsapparaat', 'Chemische handschoenen', 'Gelaatsscherm'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Chemical gloves', 'Respirator', 'Face shield'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Chemikalienhandschuhe', 'Atemschutz', 'Gesichtsschutz'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Chemische handschoenen', 'Ademhalingsapparaat', 'Gelaatsscherm'],
   },
   first_aid: {
-    en: ['Disposable gloves', 'First aid training certificate'],
-    de: ['Einweghandschuhe', 'Erste-Hilfe-Ausbildung'],
-    nl: ['Wegwerphandschoenen', 'EHBO-certificaat'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Disposable gloves'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Einweghandschuhe'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Wegwerphandschoenen'],
   },
   emergency_exit: {
-    en: ['Emergency lighting knowledge', 'Evacuation training'],
-    de: ['Kenntnis der Notbeleuchtung', 'Evakuierungsschulung'],
-    nl: ['Kennis noodverlichting', 'Evacuatietraining'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Evacuation training'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Evakuierungsschulung'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Evacuatietraining'],
   },
   fire_equipment: {
-    en: ['Fire extinguisher training', 'Smoke hood (optional)'],
-    de: ['Feuerlöscherschulung', 'Rauchschutzhaube (optional)'],
-    nl: ['Brandblussertraining', 'Rookkap (optioneel)'],
+    en: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Fire extinguisher training'],
+    de: ['Sicherheitsschuhe S3P', 'Sicherheitsweste (Warnweste)', 'Feuerlöscherschulung'],
+    nl: ['Veiligheidsschoenen S3P', 'Veiligheidsvest (Reflecterend)', 'Brandblussertraining'],
   },
 }
 
@@ -203,7 +203,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'Arbobesluit Art. 7.4', title: 'Working at Height Provisions', country: 'NL' },
     ],
     hazards: ['Vehicle collision', 'Falls from height', 'Crushing injuries', 'Manual handling'],
-    ppe: ['Safety shoes', 'High-vis vest', 'Gloves', 'Hard hat'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves', 'Yard Access Badge'],
   },
   forklift_area: {
     id: 'forklift_area',
@@ -219,7 +219,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'Arbobesluit Art. 7.18', title: 'Self-propelled Work Equipment', country: 'NL' },
     ],
     hazards: ['Vehicle collision', 'Pedestrian strikes', 'Tip-over', 'Load falls'],
-    ppe: ['Safety shoes', 'High-vis vest', 'Seat belt (forklift)'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves', 'Seat belt (forklift)'],
   },
   racking_storage: {
     id: 'racking_storage',
@@ -235,7 +235,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'Arbobesluit Art. 7.4', title: 'Working at Height', country: 'NL' },
     ],
     hazards: ['Falling objects', 'Racking collapse', 'Overloading', 'Climbing falls'],
-    ppe: ['Hard hat', 'Safety shoes', 'Gloves'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves'],
   },
   battery_charging: {
     id: 'battery_charging',
@@ -252,7 +252,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'PGS 37', title: 'Lithium Battery Storage', country: 'NL' },
     ],
     hazards: ['Hydrogen gas explosion', 'Acid burns', 'Electrical shock', 'Fire'],
-    ppe: ['Face shield', 'Chemical gloves', 'Safety glasses', 'Acid-resistant apron'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Chemical gloves', 'Face shield', 'Safety glasses'],
   },
   conveyor_system: {
     id: 'conveyor_system',
@@ -266,7 +266,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'Arbobesluit Art. 7.7', title: 'Machine Safety', country: 'NL' },
     ],
     hazards: ['Entanglement', 'Crushing', 'Shearing', 'Falling packages'],
-    ppe: ['Safety shoes', 'Fitted clothing', 'Safety glasses', 'Gloves'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves', 'Fitted clothing'],
   },
   packaging_station: {
     id: 'packaging_station',
@@ -280,7 +280,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'TNO Fysieke Belasting', title: 'Physical Workload', country: 'NL' },
     ],
     hazards: ['Repetitive strain', 'Back injuries', 'Cuts from tape/knives', 'Fatigue'],
-    ppe: ['Cut-resistant gloves', 'Back support belt', 'Anti-fatigue mat'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Safety Gloves', 'Anti-fatigue mat'],
   },
   hazmat_storage: {
     id: 'hazmat_storage',
@@ -296,7 +296,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'PGS 15', title: 'Hazardous Storage Guidelines', country: 'NL' },
     ],
     hazards: ['Chemical exposure', 'Fire/explosion', 'Environmental spill', 'Toxic fumes'],
-    ppe: ['Chemical suit', 'Respirator', 'Chemical gloves', 'Face shield'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Chemical gloves', 'Respirator', 'Face shield'],
   },
   first_aid: {
     id: 'first_aid',
@@ -310,7 +310,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'Arbowet Art. 15', title: 'First Aid Provisions', country: 'NL' },
     ],
     hazards: ['Delayed treatment', 'Infection', 'Improper care'],
-    ppe: ['Disposable gloves', 'First aid training certificate'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Disposable gloves'],
   },
   emergency_exit: {
     id: 'emergency_exit',
@@ -324,7 +324,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'Arbobesluit Art. 3.7', title: 'Escape Routes', country: 'NL' },
     ],
     hazards: ['Blocked exit', 'Panic', 'Inadequate signage'],
-    ppe: ['Emergency lighting knowledge', 'Evacuation training'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Evacuation training'],
   },
   fire_equipment: {
     id: 'fire_equipment',
@@ -338,7 +338,7 @@ const WAREHOUSE_ZONES = {
       { abbr: 'Arbobesluit Art. 3.4', title: 'Fire Prevention', country: 'NL' },
     ],
     hazards: ['Fire spread', 'Smoke inhalation', 'Wrong extinguisher type'],
-    ppe: ['Fire extinguisher training', 'Smoke hood (optional)'],
+    ppe: ['Safety Shoes S3P', 'Safety Vest (High-Vis)', 'Fire extinguisher training'],
   },
 }
 
