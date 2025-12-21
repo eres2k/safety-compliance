@@ -2,8 +2,9 @@ import { useState, useEffect, useCallback } from 'react'
 import { fetchSafetyAlerts, clearSafetyAlertsCache } from '../../services/safetyRssService'
 
 /**
- * LessonsLearnedFeed - Workplace safety news and lessons learned
- * Fetches safety news from agency RSS feeds (OSHA, EU-OSHA, BAuA, etc.)
+ * LessonsLearnedFeed - Workplace Safety News
+ * Fetches workplace safety news from agency RSS feeds (DGUV, AUVA, EU-OSHA, etc.)
+ * Supports filtering by country (DE, AT, NL, EU), category, and severity
  * Falls back to sample data when feeds are unavailable
  */
 
@@ -230,7 +231,7 @@ function formatRelativeDate(dateStr) {
 export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
   const [alerts, setAlerts] = useState(SAMPLE_ALERTS)
   const [selectedCategory, setSelectedCategory] = useState(null)
-  const [selectedSeverity, setSelectedSeverity] = useState(null)
+  const [selectedCountry, setSelectedCountry] = useState(null) // Country filter: 'DE', 'AT', 'NL', 'EU', or null for all
   const [expandedAlert, setExpandedAlert] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [dataSource, setDataSource] = useState('sample') // 'live', 'cached', or 'sample'
@@ -265,7 +266,11 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
   // Filter alerts
   const filteredAlerts = alerts.filter(alert => {
     if (selectedCategory && alert.category !== selectedCategory) return false
-    if (selectedSeverity && alert.severity !== selectedSeverity) return false
+    // Country filter - match source's country
+    if (selectedCountry) {
+      const sourceConfig = SAFETY_SOURCES[alert.source]
+      if (!sourceConfig || sourceConfig.country !== selectedCountry) return false
+    }
     return true
   })
 
@@ -355,68 +360,40 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
               {alert.summary}
             </p>
 
-            {/* Key Lessons */}
-            <div className="mb-4">
-              <h5 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
-                <span>💡</span> Key Lessons Learned
-              </h5>
-              <ul className="space-y-1">
-                {alert.lessons.map((lesson, idx) => (
-                  <li key={idx} className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2">
-                    <span className="text-green-500 mt-0.5">✓</span>
-                    {lesson}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Related Regulations */}
-            <div>
-              <h5 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
-                <span>📋</span> Related Regulations
-              </h5>
-              <div className="flex flex-wrap gap-2">
-                {alert.relatedRegulations.map((reg, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => onSelectRegulation && onSelectRegulation({ abbr: reg })}
-                    className="px-3 py-1.5 bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-whs-orange-500 hover:text-whs-orange-600 dark:hover:text-whs-orange-400 transition-colors"
-                  >
-                    {reg}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Logistics Relevance */}
-            {alert.logistics_relevance && (
-              <div className="mt-4 px-3 py-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg flex items-center gap-2">
-                <span>🚜</span>
-                <span className="text-sm text-amber-700 dark:text-amber-300">
-                  <strong>Logistics Relevance:</strong> {alert.logistics_relevance.toUpperCase()}
-                </span>
+            {alert.relatedRegulations && alert.relatedRegulations.length > 0 && (
+              <div className="mb-4">
+                <h5 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
+                  <span>📋</span> Related Regulations
+                </h5>
+                <div className="flex flex-wrap gap-2">
+                  {alert.relatedRegulations.map((reg, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => onSelectRegulation && onSelectRegulation({ abbr: reg })}
+                      className="px-3 py-1.5 bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-whs-orange-500 hover:text-whs-orange-600 dark:hover:text-whs-orange-400 transition-colors"
+                    >
+                      {reg}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
-            {/* Source Link for news items */}
-            {alert.sourceUrl && alert.isRealIncident && (
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
-                  <span>✓</span> Official source: {source?.name || alert.source}
-                </span>
-                <a
-                  href={alert.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-whs-orange-600 dark:text-whs-orange-400 hover:underline flex items-center gap-1"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  View Source
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
+            {/* Read Full Article Button */}
+            {alert.sourceUrl && (
+              <a
+                href={alert.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-whs-orange-500 hover:bg-whs-orange-600 text-white rounded-lg text-sm font-medium transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Read Full Article
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             )}
           </div>
         )}
@@ -430,10 +407,10 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
       <div className="px-6 py-4 border-b border-gray-200 dark:border-whs-dark-700 bg-gradient-to-r from-red-500 to-orange-500">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-3xl">⚠️</span>
+            <span className="text-3xl">📰</span>
             <div>
-              <h3 className="text-lg font-bold text-white">Safety Lessons Learned</h3>
-              <p className="text-sm text-red-100">Workplace safety news from official agencies</p>
+              <h3 className="text-lg font-bold text-white">Workplace Safety News</h3>
+              <p className="text-sm text-red-100">Latest safety alerts from official agencies</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -456,15 +433,34 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
         </div>
       </div>
 
-      {/* Sources Row */}
+      {/* Country Filter Row */}
       <div className="px-4 py-3 border-b border-gray-200 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-900">
-        <div className="flex items-center gap-4 overflow-x-auto pb-1">
-          <span className="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">Sources:</span>
-          {Object.values(SAFETY_SOURCES).map((source) => (
-            <div key={source.name} className="flex items-center gap-1.5 flex-shrink-0">
-              <span className="text-sm">{source.flag}</span>
-              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{source.name}</span>
-            </div>
+        <div className="flex items-center gap-2 overflow-x-auto pb-1">
+          <span className="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">Filter by country:</span>
+          <button
+            onClick={() => setSelectedCountry(null)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 flex-shrink-0 ${
+              !selectedCountry
+                ? 'bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300 ring-2 ring-whs-orange-500'
+                : 'bg-gray-100 dark:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-whs-dark-600'
+            }`}
+          >
+            🌍 All
+          </button>
+          {Object.entries(SAFETY_SOURCES).map(([key, source]) => (
+            <button
+              key={key}
+              onClick={() => setSelectedCountry(selectedCountry === source.country ? null : source.country)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 flex-shrink-0 ${
+                selectedCountry === source.country
+                  ? 'bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300 ring-2 ring-whs-orange-500'
+                  : 'bg-gray-100 dark:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-whs-dark-600'
+              }`}
+              title={source.fullName}
+            >
+              <span className="text-base">{source.flag}</span>
+              <span>{source.country}</span>
+            </button>
           ))}
         </div>
       </div>
@@ -499,23 +495,6 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
               </button>
             ))}
           </div>
-
-          {/* Severity filters */}
-          <div className="flex items-center gap-1 ml-auto">
-            {Object.entries(SEVERITY_LEVELS).map(([key, sev]) => (
-              <button
-                key={key}
-                onClick={() => setSelectedSeverity(selectedSeverity === key ? null : key)}
-                className={`px-2 py-1 rounded-lg text-xs transition-colors ${
-                  selectedSeverity === key
-                    ? sev.color
-                    : 'bg-gray-100 dark:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-whs-dark-600'
-                }`}
-              >
-                {sev.icon}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -537,7 +516,7 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
             <button
               onClick={() => {
                 setSelectedCategory(null)
-                setSelectedSeverity(null)
+                setSelectedCountry(null)
               }}
               className="text-whs-orange-600 dark:text-whs-orange-400 text-sm mt-2 hover:underline"
             >
