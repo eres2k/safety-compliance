@@ -360,68 +360,40 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
               {alert.summary}
             </p>
 
-            {/* Key Lessons */}
-            <div className="mb-4">
-              <h5 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
-                <span>💡</span> Key Lessons Learned
-              </h5>
-              <ul className="space-y-1">
-                {alert.lessons.map((lesson, idx) => (
-                  <li key={idx} className="text-sm text-gray-600 dark:text-gray-400 flex items-start gap-2">
-                    <span className="text-green-500 mt-0.5">✓</span>
-                    {lesson}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Related Regulations */}
-            <div>
-              <h5 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
-                <span>📋</span> Related Regulations
-              </h5>
-              <div className="flex flex-wrap gap-2">
-                {alert.relatedRegulations.map((reg, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => onSelectRegulation && onSelectRegulation({ abbr: reg })}
-                    className="px-3 py-1.5 bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-whs-orange-500 hover:text-whs-orange-600 dark:hover:text-whs-orange-400 transition-colors"
-                  >
-                    {reg}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Logistics Relevance */}
-            {alert.logistics_relevance && (
-              <div className="mt-4 px-3 py-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg flex items-center gap-2">
-                <span>🚜</span>
-                <span className="text-sm text-amber-700 dark:text-amber-300">
-                  <strong>Logistics Relevance:</strong> {alert.logistics_relevance.toUpperCase()}
-                </span>
+            {alert.relatedRegulations && alert.relatedRegulations.length > 0 && (
+              <div className="mb-4">
+                <h5 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
+                  <span>📋</span> Related Regulations
+                </h5>
+                <div className="flex flex-wrap gap-2">
+                  {alert.relatedRegulations.map((reg, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => onSelectRegulation && onSelectRegulation({ abbr: reg })}
+                      className="px-3 py-1.5 bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-whs-orange-500 hover:text-whs-orange-600 dark:hover:text-whs-orange-400 transition-colors"
+                    >
+                      {reg}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
-            {/* Source Link for news items */}
-            {alert.sourceUrl && alert.isRealIncident && (
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
-                  <span>✓</span> Official source: {source?.name || alert.source}
-                </span>
-                <a
-                  href={alert.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-whs-orange-600 dark:text-whs-orange-400 hover:underline flex items-center gap-1"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  View Source
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
+            {/* Read Full Article Button */}
+            {alert.sourceUrl && (
+              <a
+                href={alert.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-whs-orange-500 hover:bg-whs-orange-600 text-white rounded-lg text-sm font-medium transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Read Full Article
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             )}
           </div>
         )}
