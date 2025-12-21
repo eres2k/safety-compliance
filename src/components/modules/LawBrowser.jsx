@@ -1209,6 +1209,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
   const [wikiLoading, setWikiLoading] = useState(false)
   const [crosslinkPopup, setCrosslinkPopup] = useState({ open: false, term: null, data: null, x: 0, y: 0 })
 
+  // Copy link feedback popup state
+  const [copyFeedback, setCopyFeedback] = useState({ show: false, x: 0, y: 0 })
+
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
 
@@ -1320,10 +1323,37 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
 
         // Scroll to specific section if provided
         if (initialSection) {
+          // Find the section in the law data to get section.id and chapter info
+          const normalizedInitialSection = initialSection.replace(/[§\s]/g, '')
+          let foundSection = null
+          let foundChapter = null
+
+          if (targetLaw.chapters) {
+            for (const chapter of targetLaw.chapters) {
+              if (chapter.sections) {
+                for (const section of chapter.sections) {
+                  const sectionNum = section.number?.replace(/[§\s]/g, '')
+                  if (sectionNum === normalizedInitialSection || section.id === initialSection) {
+                    foundSection = section
+                    foundChapter = chapter.abschnitt?.number || 'ungrouped'
+                    break
+                  }
+                }
+              }
+              if (foundSection) break
+            }
+          }
+
+          if (foundSection) {
+            // Close all other sections and chapters, open only the linked one
+            setExpandedSections({ [foundSection.id]: true })
+            setExpandedChapters({ [foundChapter]: true })
+          }
+
           // Wait for the law content to render, then scroll to section
           setTimeout(() => {
             const sectionElement = document.querySelector(`[data-section-id="${initialSection}"]`) ||
-                                   document.querySelector(`[data-section-number="${initialSection.replace(/[§\s]/g, '')}"]`)
+                                   document.querySelector(`[data-section-number="${normalizedInitialSection}"]`)
             if (sectionElement) {
               sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
               // Highlight briefly
@@ -3148,11 +3178,10 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                           e.stopPropagation()
                                           const url = `${window.location.origin}${window.location.pathname}?law=${selectedLaw.id}&country=${selectedLaw.jurisdiction || framework}&section=${encodeURIComponent(section.number)}`
                                           navigator.clipboard.writeText(url).then(() => {
-                                            // Show brief feedback
-                                            e.target.closest('button').classList.add('text-green-500')
-                                            setTimeout(() => {
-                                              e.target.closest('button')?.classList.remove('text-green-500')
-                                            }, 1500)
+                                            // Show popup feedback near the button
+                                            const rect = e.target.closest('button').getBoundingClientRect()
+                                            setCopyFeedback({ show: true, x: rect.left, y: rect.top - 40 })
+                                            setTimeout(() => setCopyFeedback({ show: false, x: 0, y: 0 }), 2000)
                                           })
                                         }}
                                         className="flex-shrink-0 p-1 text-gray-400 hover:text-whs-orange-500 transition-colors"
@@ -3645,6 +3674,21 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
           isModal={true}
           onClose={closePdfModal}
         />
+      )}
+
+      {/* Copy Link Feedback Popup */}
+      {copyFeedback.show && (
+        <div
+          className="fixed z-50 px-3 py-2 bg-green-600 text-white text-sm rounded-lg shadow-lg animate-fade-in"
+          style={{ left: copyFeedback.x, top: copyFeedback.y }}
+        >
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+            </svg>
+            {t.lawBrowser?.linkCopied || 'Link copied!'}
+          </div>
+        </div>
       )}
     </div>
   )
