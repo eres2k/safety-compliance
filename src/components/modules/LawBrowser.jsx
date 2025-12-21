@@ -664,6 +664,19 @@ function formatLawText(text) {
       continue
     }
 
+    // Dutch lid numbers: bare number followed by space and text starting with capital letter
+    // e.g., "1 Bij of krachtens algemene maatregel..." or "2 De in het eerste lid..."
+    // Must not match numbered lists like "1. Item" or "1 a. Item"
+    const dutchLidMatch = line.match(/^(\d+)\s+([A-ZÄÖÜÀ-ÿ].*)/)
+    if (dutchLidMatch && !line.match(/^\d+\s+[a-z][\.\)]/)) {
+      flushAbsatz()
+      flushList()
+      flushParagraph()
+      currentAbsatz = { type: 'absatz', number: dutchLidMatch[1], content: dutchLidMatch[2] || '', subItems: [] }
+      elements.push(currentAbsatz)
+      continue
+    }
+
     // Dutch definition with colon: "term: definition;" - treat as a definition item
     const definitionMatch = line.match(/^([a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ\s\-]+):\s*(.+)/)
     if (definitionMatch && !line.startsWith('http') && line.length < 500) {
