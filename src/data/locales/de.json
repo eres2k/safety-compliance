@@ -442,14 +442,22 @@
       "Arbowet": { "nl": "Arbeidsomstandighedenwet", "en": "Working Conditions Act" },
       "Arbobesluit": { "nl": "Arbeidsomstandighedenbesluit", "en": "Working Conditions Decree" },
       "Arboregeling": { "nl": "Arbeidsomstandighedenregeling", "en": "Working Conditions Regulation" },
-      "BRZO": { "nl": "Besluit risico's zware ongevallen", "en": "Major Accidents Decree" },
-      "STL Arbocatalogus Onderhoudswerkplaats": { "nl": "STL Arbocatalogus Onderhoudswerkplaats", "en": "STL Maintenance Workshop Safety Catalog" },
-      "STL Arbocatalogus Transport Logistiek": { "nl": "STL Arbocatalogus Transport en Logistiek", "en": "STL Transport & Logistics Safety Catalog" },
-      "STL Arbocatalogus Verticaal Transport": { "nl": "STL Arbocatalogus Verticaal Transport", "en": "STL Vertical Transport Safety Catalog" },
-      "STL Arbocatalogus Warehouse": { "nl": "STL Arbocatalogus Warehouse/Distributiecentrum", "en": "STL Warehouse/Distribution Center Safety Catalog" },
-      "TNO Factsheet Fysieke Belasting 2023": { "nl": "TNO Factsheet Fysieke Arbeidsbelasting 2023", "en": "TNO Physical Workload Factsheet 2023" },
-      "TNO Preventie Beroepsziekten": { "nl": "TNO Preventie Beroepsziekten Fysieke Belasting", "en": "TNO Occupational Disease Prevention - Physical Load" },
-      "TNO Wegwijzer Fysieke Belasting": { "nl": "TNO Wegwijzer Fysieke Belasting", "en": "TNO Physical Workload Guide" }
+      "BRZO": { "nl": "Besluit risico's zware ongevallen", "en": "Major Accidents Decree" }
+    }
+  },
+  "guidanceTitles": {
+    "NL": {
+      "_arbocatalogi": {
+        "STL Arbocatalogus Onderhoudswerkplaats": { "nl": "STL Arbocatalogus Onderhoudswerkplaats", "en": "STL Maintenance Workshop Safety Catalog" },
+        "STL Arbocatalogus Transport Logistiek": { "nl": "STL Arbocatalogus Transport en Logistiek", "en": "STL Transport & Logistics Safety Catalog" },
+        "STL Arbocatalogus Verticaal Transport": { "nl": "STL Arbocatalogus Verticaal Transport", "en": "STL Vertical Transport Safety Catalog" },
+        "STL Arbocatalogus Warehouse": { "nl": "STL Arbocatalogus Warehouse/Distributiecentrum", "en": "STL Warehouse/Distribution Center Safety Catalog" }
+      },
+      "_tnoResearch": {
+        "TNO Factsheet Fysieke Belasting 2023": { "nl": "TNO Factsheet Fysieke Arbeidsbelasting 2023", "en": "TNO Physical Workload Factsheet 2023" },
+        "TNO Preventie Beroepsziekten": { "nl": "TNO Preventie Beroepsziekten Fysieke Belasting", "en": "TNO Occupational Disease Prevention - Physical Load" },
+        "TNO Wegwijzer Fysieke Belasting": { "nl": "TNO Wegwijzer Fysieke Belasting", "en": "TNO Physical Workload Guide" }
+      }
     }
   }
 }
