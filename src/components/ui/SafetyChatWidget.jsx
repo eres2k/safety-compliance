@@ -299,7 +299,7 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
       >
         {/* Placeholder for Erwin's photo - replace src with your image */}
         <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30">
-          {/* TODO: Replace with actual photo: <img src="/path/to/erwin.jpg" alt="Erwin" className="w-full h-full object-cover" /> */}
+     <img src="/erwin.png" alt="Erwin" className="w-full h-full object-cover" /> 
           <span className="text-2xl">👷</span>
         </div>
         <div className="text-left">
