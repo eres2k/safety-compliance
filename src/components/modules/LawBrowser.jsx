@@ -1455,6 +1455,42 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
       results = results.filter(law => law.type === selectedCategory)
     }
 
+    // Apply relevance filter to law list
+    // Check if the law has sections matching the required relevance level
+    if (relevanceFilter !== 'all') {
+      results = results.filter(law => {
+        // Check law-level WHS summary for relevance distribution
+        const dist = law.whs_summary?.logistics_relevance_distribution
+        if (dist) {
+          if (relevanceFilter === 'critical') {
+            return (dist.critical || 0) > 0
+          }
+          if (relevanceFilter === 'high') {
+            return (dist.critical || 0) > 0 || (dist.high || 0) > 0
+          }
+          if (relevanceFilter === 'medium') {
+            return (dist.critical || 0) > 0 || (dist.high || 0) > 0 || (dist.medium || 0) > 0
+          }
+        }
+
+        // Also check individual sections for relevance
+        if (law.chapters && Array.isArray(law.chapters)) {
+          for (const chapter of law.chapters) {
+            if (chapter.sections && Array.isArray(chapter.sections)) {
+              for (const section of chapter.sections) {
+                const level = section.amazon_logistics_relevance?.level
+                if (relevanceFilter === 'critical' && level === 'critical') return true
+                if (relevanceFilter === 'high' && (level === 'critical' || level === 'high')) return true
+                if (relevanceFilter === 'medium' && (level === 'critical' || level === 'high' || level === 'medium')) return true
+              }
+            }
+          }
+        }
+
+        return false
+      })
+    }
+
     // Apply full text search - similar approach to right column search
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase()
@@ -1488,7 +1524,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
     }
 
     return results
-  }, [allLaws, searchTerm, selectedCategory])
+  }, [allLaws, searchTerm, selectedCategory, relevanceFilter])
 
   // Separate laws into categories for display:
   // 1. Regular laws (text-based)
@@ -2278,6 +2314,37 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                     </svg>
                   </button>
                 )}
+              </div>
+              {/* Relevance Filter Pills for Law List */}
+              <div className="mt-2 flex flex-wrap gap-1">
+                {['all', 'critical', 'high', 'medium'].map(level => {
+                  const levelColors = {
+                    all: 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 ring-gray-200 dark:ring-gray-700',
+                    critical: 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 ring-red-200 dark:ring-red-800',
+                    high: 'bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 ring-orange-200 dark:ring-orange-800',
+                    medium: 'bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 ring-yellow-200 dark:ring-yellow-800'
+                  }
+                  const levelLabels = {
+                    all: t.common?.all || 'All',
+                    critical: '🔴',
+                    high: '🟠',
+                    medium: '🟡'
+                  }
+                  return (
+                    <button
+                      key={level}
+                      onClick={() => setRelevanceFilter(level)}
+                      className={`px-2 py-0.5 text-[10px] font-semibold rounded-lg transition-all ${
+                        relevanceFilter === level
+                          ? 'bg-gradient-to-r from-whs-orange-500 to-amber-500 text-white shadow-sm ring-1 ring-whs-orange-300 dark:ring-whs-orange-700'
+                          : `${levelColors[level]} hover:ring-1 ring-1`
+                      }`}
+                      title={RELEVANCE_LEVELS[level]?.label || level}
+                    >
+                      {levelLabels[level]}
+                    </button>
+                  )
+                })}
               </div>
             </div>
             <div className="overflow-y-auto flex-1 p-2">

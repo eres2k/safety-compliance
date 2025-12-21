@@ -357,43 +357,59 @@ export async function deepSearch(query, laws, options = {}) {
   }
 
   const results = []
+  const queryLower = query.toLowerCase()
 
   for (const law of laws) {
     const { score, matchDetails } = calculateRelevanceScore(law, query, { boostLogistics })
+    let finalScore = score
+    let finalMatchDetails = { ...matchDetails }
 
-    if (score > 0) {
-      results.push({
-        ...law,
-        searchScore: score,
-        matchDetails,
-      })
-    }
-  }
+    // Always search PDF content when searchPdfs is enabled
+    // Include PDF text search for ALL laws, not just as fallback
+    if (searchPdfs) {
+      const isPdfLaw = law.source?.local_pdf_path || law.source?.source_type === 'pdf' || law.source?.pdf_url
 
-  // For PDF laws, also search through their indexed content deeply
-  if (searchPdfs && results.length < 20) {
-    const pdfLaws = laws.filter(law => law.source?.local_pdf_path || law.source?.source_type === 'pdf')
-
-    for (const law of pdfLaws.slice(0, 10)) {
-      if (results.find(r => r.id === law.id)) continue
-
-      // Use the full searchable text from the law document
+      // Get full searchable text including chapters, sections, and content
       const fullText = getSearchableText(law)
 
-      if (fullText) {
-        const matches = searchInText(fullText, query)
-        if (matches.length > 0) {
-          results.push({
-            ...law,
-            searchScore: matches.length * 10,
-            matchDetails: {
-              pdfMatch: true,
-              matchCount: matches.length,
-              pdfContext: matches[0]?.context || '',
-            },
-          })
+      if (fullText && fullText.length > 0) {
+        const textMatches = searchInText(fullText, query)
+
+        if (textMatches.length > 0) {
+          // Boost score based on text matches
+          const textBoost = Math.min(textMatches.length * 8, 60)
+          finalScore += textBoost
+          finalMatchDetails.contentMatch = true
+          finalMatchDetails.matchCount = (finalMatchDetails.matchCount || 0) + textMatches.length
+
+          if (isPdfLaw) {
+            finalMatchDetails.pdfMatch = true
+            finalMatchDetails.pdfContext = textMatches[0]?.context || ''
+          }
         }
       }
+
+      // Also search in summary, description, and other metadata
+      const searchableFields = [
+        law.summary,
+        law.description,
+        law.metadata?.description,
+        law.metadata?.summary,
+        law.whs_summary?.top_whs_topics?.join(' '),
+      ].filter(Boolean).join(' ').toLowerCase()
+
+      if (searchableFields.includes(queryLower)) {
+        finalScore += 15
+        finalMatchDetails.contentMatch = true
+      }
+    }
+
+    if (finalScore > 0) {
+      results.push({
+        ...law,
+        searchScore: finalScore,
+        matchDetails: finalMatchDetails,
+      })
     }
   }
 
