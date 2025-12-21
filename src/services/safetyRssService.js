@@ -24,9 +24,9 @@ const CORS_PROXIES = [
   { prefix: 'https://corsproxy.io/?', isJson: false }
 ]
 
-// RSS Feed sources - Official EU safety agency feeds
+// RSS Feed sources - tested and working EU safety feeds
 const RSS_FEEDS = {
-  // Germany - DGUV (German Social Accident Insurance)
+  // Germany - DGUV (German Social Accident Insurance) - TESTED OK
   DGUV: {
     url: 'https://www.dguv.de/de/index.xml.jsp',
     source: 'DGUV',
@@ -34,7 +34,7 @@ const RSS_FEEDS = {
     country: 'DE',
     flag: '🇩🇪'
   },
-  // Austria - AUVA (Austrian Workers Compensation Board)
+  // Austria - AUVA (Austrian Workers Compensation Board) - TESTED OK
   AUVA: {
     url: 'https://auva.at/rss',
     source: 'AUVA',
@@ -42,23 +42,15 @@ const RSS_FEEDS = {
     country: 'AT',
     flag: '🇦🇹'
   },
-  // Netherlands - Labour Inspectorate
-  NL_ARBEIDSINSPECTIE: {
-    url: 'https://www.nlarbeidsinspectie.nl/rss/nieuws',
+  // Netherlands - Google News (official NL feed blocks CORS) - TESTED OK
+  NL_SAFETY: {
+    url: 'https://news.google.com/rss/search?q=arbeidsveiligheid+arbeidsongeval&hl=nl&gl=NL&ceid=NL:nl',
     source: 'ARBEIDSINSPECTIE',
-    name: 'Arbeidsinspectie NL',
+    name: 'NL Safety News',
     country: 'NL',
     flag: '🇳🇱'
   },
-  // EU-OSHA - Publications
-  EUOSHA_PUBLICATIONS: {
-    url: 'https://osha.europa.eu/rss-feeds/latest/publications.xml',
-    source: 'EUOSHA',
-    name: 'EU-OSHA Publications',
-    country: 'EU',
-    flag: '🇪🇺'
-  },
-  // EU-OSHA - News
+  // EU-OSHA - News - TESTED OK
   EUOSHA_NEWS: {
     url: 'https://osha.europa.eu/rss-feeds/latest/news.xml',
     source: 'EUOSHA',
@@ -67,8 +59,6 @@ const RSS_FEEDS = {
     flag: '🇪🇺'
   }
 }
-
-// Note: These are official RSS feeds from EU safety agencies.
 
 // Category detection keywords for classification (multilingual: EN, DE, NL)
 const CATEGORY_KEYWORDS = {
