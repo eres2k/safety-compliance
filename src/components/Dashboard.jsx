@@ -107,10 +107,10 @@ export function Dashboard({ onModuleSelect }) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: 'Präventionszeit-Rechner',
-      description: 'Calculate required prevention time for safety specialists and occupational physicians',
+      title: t.help?.features?.preventionTimeCalculator?.title || (t.appSubtitle?.includes('Letzte') ? 'Präventionszeit-Rechner' : t.appSubtitle?.includes('Laatste') ? 'Preventietijd Calculator' : 'Prevention Time Calculator'),
+      description: t.help?.features?.preventionTimeCalculator?.description || (t.appSubtitle?.includes('Letzte') ? 'Berechnung der Präventionszeit für Sicherheitsfachkräfte und Betriebsärzte' : t.appSubtitle?.includes('Laatste') ? 'Berekening van preventietijd voor veiligheidsdeskundigen en bedrijfsartsen' : 'Calculate required prevention time for safety specialists and occupational physicians'),
       gradient: 'from-emerald-500 to-emerald-600',
-      badge: 'Calculator'
+      badge: t.appSubtitle?.includes('Letzte') ? 'Rechner' : t.appSubtitle?.includes('Laatste') ? 'Calculator' : 'Calculator'
     }
   ]
 
