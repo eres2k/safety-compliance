@@ -468,22 +468,23 @@
       "_category_vorschriften": {
         "_folder": true,
         "_name": "DGUV Vorschriften (Regulations)",
-        "_description": "Accident prevention regulations - legally binding"
+        "_description": "Accident prevention regulations - legally binding. Complete collection of all DGUV Vorschriften."
       },
       "DGUV Vorschrift 1": {
         "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2909",
         "name": "DGUV Vorschrift 1 - Grundsätze der Prävention",
         "name_en": "Prevention Principles",
-        "description": "Fundamental principles of prevention for occupational safety.",
+        "description": "Fundamental principles of prevention for occupational safety. Core regulation for all employers.",
         "enabled": true,
         "category": "vorschriften",
-        "source_type": "pdf"
+        "source_type": "pdf",
+        "amazon_relevance": ["all operations", "safety management", "employer obligations"]
       },
       "DGUV Vorschrift 2": {
         "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5054",
         "name": "DGUV Vorschrift 2 - Betriebsärzte und Fachkräfte für Arbeitssicherheit",
         "name_en": "Occupational Physicians and Safety Specialists",
-        "description": "Requirements for occupational physicians and safety specialists.",
+        "description": "Requirements for occupational physicians and safety specialists in companies.",
         "enabled": true,
         "category": "vorschriften",
         "source_type": "pdf"
@@ -492,16 +493,165 @@
         "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1052",
         "name": "DGUV Vorschrift 3 - Elektrische Anlagen und Betriebsmittel",
         "name_en": "Electrical Installations and Equipment",
-        "description": "Safety requirements for electrical installations and equipment.",
+        "description": "Safety requirements for electrical installations and equipment. Mandatory inspections.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf",
+        "amazon_relevance": ["electrical safety", "equipment inspection"]
+      },
+      "DGUV Vorschrift 3 DA": {
+        "url": "https://publikationen.dguv.de/dguv/xparts/documents/vorschrift3da.pdf",
+        "name": "DGUV Vorschrift 3 DA - Elektrische Anlagen (Durchführungsanweisungen)",
+        "name_en": "Electrical Installations (Implementation Instructions)",
+        "description": "Detailed implementation instructions for electrical safety regulation.",
         "enabled": true,
         "category": "vorschriften",
         "source_type": "pdf"
+      },
+      "DGUV Vorschrift 4": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1457",
+        "name": "DGUV Vorschrift 4 - Elektrische Anlagen und Betriebsmittel (öffentlicher Dienst)",
+        "name_en": "Electrical Installations (Public Sector)",
+        "description": "Electrical safety for public sector organizations. Also covers non-electrical work near electrical systems.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 6 DA": {
+        "url": "https://publikationen.dguv.de/dguv/xparts/documents/vorschrift6da.pdf",
+        "name": "DGUV Vorschrift 6 DA - Arbeitsmedizinische Vorsorge (Durchführungsanweisungen)",
+        "name_en": "Occupational Medical Care (Implementation Instructions)",
+        "description": "Implementation instructions for occupational medical examinations (G1.2, G4, G8, G15, G16, G32, G33, G36, G38, G40, G44).",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 9": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1497",
+        "name": "DGUV Vorschrift 9 - Sicherheits- und Gesundheitsschutzkennzeichnung am Arbeitsplatz",
+        "name_en": "Safety and Health Signs at Work",
+        "description": "Requirements for safety signage and health protection markings in the workplace.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf",
+        "amazon_relevance": ["safety signage", "visual management", "floor markings"]
+      },
+      "DGUV Vorschrift 15": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1502",
+        "name": "DGUV Vorschrift 15 - Elektromagnetische Felder",
+        "name_en": "Electromagnetic Fields",
+        "description": "Protection from electromagnetic fields in the workplace.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 17": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1504",
+        "name": "DGUV Vorschrift 17 - Veranstaltungs- und Produktionsstätten",
+        "name_en": "Event and Production Venues",
+        "description": "Safety requirements for event venues and production facilities.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 21": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1507",
+        "name": "DGUV Vorschrift 21 - Abwassertechnische Anlagen",
+        "name_en": "Wastewater Treatment Facilities",
+        "description": "Safety for wastewater treatment and technical facilities.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 21 DA": {
+        "url": "https://publikationen.dguv.de/dguv/xparts/documents/vorschrift21da.pdf",
+        "name": "DGUV Vorschrift 21 DA - Abwassertechnische Anlagen (Durchführungsanweisungen)",
+        "name_en": "Wastewater Facilities (Implementation Instructions)",
+        "description": "Implementation instructions for wastewater facility safety.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 23": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1509",
+        "name": "DGUV Vorschrift 23 - Wach- und Sicherungsdienste",
+        "name_en": "Security and Guard Services",
+        "description": "Safety requirements for security personnel and guard services.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf",
+        "amazon_relevance": ["security", "guard services", "site protection"]
+      },
+      "DGUV Vorschrift 24": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1511",
+        "name": "DGUV Vorschrift 24 - Wach- und Sicherungsdienste (GUV-V C7)",
+        "name_en": "Security Services (Alternative Version)",
+        "description": "Alternative version of security services regulation with specific focus areas.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 29": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1513",
+        "name": "DGUV Vorschrift 29 - Steinbrüche, Gräbereien und Halden",
+        "name_en": "Quarries, Excavations and Dumps",
+        "description": "Safety for quarry, excavation and dump operations.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 36": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1515",
+        "name": "DGUV Vorschrift 36 - Hafenarbeit",
+        "name_en": "Port Work",
+        "description": "Safety requirements for port and dock operations.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf",
+        "amazon_relevance": ["dock operations", "loading/unloading"]
+      },
+      "DGUV Vorschrift 38": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3794",
+        "name": "DGUV Vorschrift 38 - Bauarbeiten",
+        "name_en": "Construction Work",
+        "description": "Accident prevention regulation for construction work.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 40": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1517",
+        "name": "DGUV Vorschrift 40 - Taucherarbeiten",
+        "name_en": "Diving Work",
+        "description": "Safety requirements for professional diving operations.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 49": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1148",
+        "name": "DGUV Vorschrift 49 - Feuerwehren",
+        "name_en": "Fire Brigades",
+        "description": "Safety regulations for fire brigade operations and firefighters.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf",
+        "amazon_relevance": ["fire safety", "emergency response"]
       },
       "DGUV Vorschrift 52": {
         "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1157",
         "name": "DGUV Vorschrift 52 - Krane",
         "name_en": "Cranes",
-        "description": "Accident prevention regulation for cranes.",
+        "description": "Accident prevention regulation for cranes. Formerly BGV D6.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 52 DA": {
+        "url": "https://publikationen.dguv.de/dguv/xparts/documents/vorschrift52da.pdf",
+        "name": "DGUV Vorschrift 52 DA - Krane (Durchführungsanweisungen)",
+        "name_en": "Cranes (Implementation Instructions)",
+        "description": "Detailed implementation instructions for crane safety regulation.",
         "enabled": true,
         "category": "vorschriften",
         "source_type": "pdf"
@@ -515,20 +665,39 @@
         "category": "vorschriften",
         "source_type": "pdf"
       },
+      "DGUV Vorschrift 56": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1161",
+        "name": "DGUV Vorschrift 56 - Arbeiten mit Schussapparaten",
+        "name_en": "Work with Cartridge-Operated Tools",
+        "description": "Safety for work with cartridge-operated fastening tools.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 64": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1165",
+        "name": "DGUV Vorschrift 64 - Schwimmende Geräte",
+        "name_en": "Floating Equipment",
+        "description": "Safety requirements for floating work equipment and vessels.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
       "DGUV Vorschrift 68": {
         "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1518",
         "name": "DGUV Vorschrift 68 - Flurförderzeuge",
         "name_en": "Industrial Trucks",
-        "description": "Industrial trucks safety regulation.",
+        "description": "Industrial trucks (forklifts) safety regulation. Formerly BGV D27.",
         "enabled": true,
         "category": "vorschriften",
-        "source_type": "pdf"
+        "source_type": "pdf",
+        "amazon_relevance": ["forklift", "pallet jack", "industrial truck"]
       },
       "DGUV Vorschrift 68 DA": {
         "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1519",
         "name": "DGUV Vorschrift 68 DA - Flurförderzeuge (Durchführungsanweisungen)",
         "name_en": "Industrial Trucks (Implementation Instructions)",
-        "description": "Accident prevention regulation for industrial trucks with detailed implementation guidance.",
+        "description": "Detailed implementation guidance for industrial truck safety.",
         "enabled": true,
         "category": "vorschriften",
         "source_type": "pdf",
@@ -538,7 +707,54 @@
         "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1125",
         "name": "DGUV Vorschrift 70 - Fahrzeuge",
         "name_en": "Vehicles",
-        "description": "Vehicle safety regulation including loading/unloading.",
+        "description": "Vehicle safety regulation including loading/unloading. Formerly BGV D29.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf",
+        "amazon_relevance": ["vehicle safety", "loading", "transport"]
+      },
+      "DGUV Vorschrift 70 DA": {
+        "url": "https://publikationen.dguv.de/dguv/xparts/documents/vorschrift70da.pdf",
+        "name": "DGUV Vorschrift 70 DA - Fahrzeuge (Durchführungsanweisungen)",
+        "name_en": "Vehicles (Implementation Instructions)",
+        "description": "Implementation instructions for vehicle safety regulation.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 73": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1171",
+        "name": "DGUV Vorschrift 73 - Schienenbahnen",
+        "name_en": "Railways",
+        "description": "Safety regulations for railway operations.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 77": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1175",
+        "name": "DGUV Vorschrift 77 - Arbeiten im Bereich von Gleisen",
+        "name_en": "Work Near Railway Tracks",
+        "description": "Safety for work in the vicinity of railway tracks.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf"
+      },
+      "DGUV Vorschrift 79": {
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1177",
+        "name": "DGUV Vorschrift 79 - Verwendung von Flüssiggas",
+        "name_en": "Use of Liquefied Petroleum Gas",
+        "description": "Safety requirements for the use of LPG in workplaces.",
+        "enabled": true,
+        "category": "vorschriften",
+        "source_type": "pdf",
+        "amazon_relevance": ["forklift fuel", "LPG safety"]
+      },
+      "DGUV Vorschrift 79 DA": {
+        "url": "https://publikationen.dguv.de/dguv/xparts/documents/Vorschrift79da.pdf",
+        "name": "DGUV Vorschrift 79 DA - Verwendung von Flüssiggas (Durchführungsanweisungen)",
+        "name_en": "LPG Use (Implementation Instructions)",
+        "description": "Implementation instructions for LPG safety regulation.",
         "enabled": true,
         "category": "vorschriften",
         "source_type": "pdf"
@@ -1035,6 +1251,332 @@
         "source_type": "pdf",
         "amazon_relevance": ["warehouse", "distribution center", "fulfillment"]
       },
+      "_category_abladen": {
+        "_folder": true,
+        "_name": "A-Bladen (Volandis Construction Safety Sheets)",
+        "_description": "Volandis A-Bladen - supplementary safety information sheets for construction and related activities"
+      },
+      "A-Blad Bestratingsmateriaal": {
+        "url": "https://www.volandis.nl/media/ooil24sg/a-blad-bestratingsmateriaal_2.pdf",
+        "name": "A-Blad Bestratingsmateriaal",
+        "name_en": "A-Sheet Paving Materials",
+        "description": "Safety sheet for working with paving materials.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Betonstaal verwerken": {
+        "url": "https://www.volandis.nl/media/3881/a-blad-betonstaal-verwerken.pdf",
+        "name": "A-Blad Betonstaal verwerken",
+        "name_en": "A-Sheet Processing Reinforcing Steel",
+        "description": "Safety sheet for processing reinforcing steel bars.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines algemeen": {
+        "url": "https://www.volandis.nl/media/3917/a-blad-cabines-algemeen.pdf",
+        "name": "A-Blad Cabines algemeen (in revisie)",
+        "name_en": "A-Sheet Cabins General",
+        "description": "General safety sheet for equipment cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines bulldozers": {
+        "url": "https://www.volandis.nl/media/3919/a-blad-cabines-bulldozers.pdf",
+        "name": "A-Blad Cabines bulldozers (in revisie)",
+        "name_en": "A-Sheet Bulldozer Cabins",
+        "description": "Safety sheet for bulldozer cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines dumpers": {
+        "url": "https://www.volandis.nl/media/3921/a-blad-cabines-dumpers.pdf",
+        "name": "A-Blad Cabines dumpers (in revisie)",
+        "name_en": "A-Sheet Dumper Cabins",
+        "description": "Safety sheet for dumper cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines funderingsmachines": {
+        "url": "https://www.volandis.nl/media/3923/a-blad-cabines-funderingsmachines.pdf",
+        "name": "A-Blad Cabines funderingsmachines (in revisie)",
+        "name_en": "A-Sheet Foundation Machine Cabins",
+        "description": "Safety sheet for foundation machine cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines graafmachines": {
+        "url": "https://www.volandis.nl/media/3925/a-blad-cabines-graafmachines.pdf",
+        "name": "A-Blad Cabines graafmachines (in revisie)",
+        "name_en": "A-Sheet Excavator Cabins",
+        "description": "Safety sheet for excavator cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines kranen": {
+        "url": "https://www.volandis.nl/media/3927/a-blad-cabines-mobiele-kranen.pdf",
+        "name": "A-Blad Cabines kranen (in revisie)",
+        "name_en": "A-Sheet Mobile Crane Cabins",
+        "description": "Safety sheet for mobile crane cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines torenkranen": {
+        "url": "https://www.volandis.nl/media/3929/a-blad-cabines-mobiele-torenkranen.pdf",
+        "name": "A-Blad Cabines torenkranen (in revisie)",
+        "name_en": "A-Sheet Tower Crane Cabins",
+        "description": "Safety sheet for tower crane cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines verreikers": {
+        "url": "https://www.volandis.nl/media/3931/a-blad-cabines-verreikers.pdf",
+        "name": "A-Blad Cabines verreikers (in revisie)",
+        "name_en": "A-Sheet Telehandler Cabins",
+        "description": "Safety sheet for telehandler cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines walsen": {
+        "url": "https://www.volandis.nl/media/3935/a-blad-cabines-walsen.pdf",
+        "name": "A-Blad Cabines walsen (in revisie)",
+        "name_en": "A-Sheet Roller Cabins",
+        "description": "Safety sheet for roller cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Cabines wielladers": {
+        "url": "https://www.volandis.nl/media/3933/a-blad-cabines-wielladers.pdf",
+        "name": "A-Blad Cabines wielladers (in revisie)",
+        "name_en": "A-Sheet Wheel Loader Cabins",
+        "description": "Safety sheet for wheel loader cabins. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Dakkappen en kozijnen": {
+        "url": "https://www.volandis.nl/media/3883/a-blad-dakkappen-en-kozijnen-plaatsen-en-monteren.pdf",
+        "name": "A-Blad Dakkappen en kozijnen plaatsen",
+        "name_en": "A-Sheet Installing Dormers and Frames",
+        "description": "Safety sheet for installing dormers and window frames.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Dieselmotoremissie": {
+        "url": "https://www.volandis.nl/media/3885/a-blad-dieselmotormissie.pdf",
+        "name": "A-Blad Dieselmotoremissie",
+        "name_en": "A-Sheet Diesel Engine Emissions",
+        "description": "Safety sheet for diesel engine emissions exposure.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf",
+        "amazon_relevance": ["diesel emissions", "dock", "vehicle exhaust"]
+      },
+      "A-Blad Epoxy": {
+        "url": "https://www.volandis.nl/media/fpzjzpxp/a-blad-epoxy.pdf",
+        "name": "A-Blad Epoxy",
+        "name_en": "A-Sheet Epoxy",
+        "description": "Safety sheet for working with epoxy resins and compounds.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf",
+        "amazon_relevance": ["chemicals", "hazmat"]
+      },
+      "A-Blad Geluid en trillingen funderingswerken": {
+        "url": "https://www.volandis.nl/media/g1yiksdl/a-blad_geluid-trillingen.pdf",
+        "name": "A-Blad Geluid en trillingen bij funderingswerken",
+        "name_en": "A-Sheet Noise and Vibration in Foundation Work",
+        "description": "Safety sheet for noise and vibration exposure during foundation work.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Glaszetten en montage": {
+        "url": "https://www.volandis.nl/media/3891/a-blad-glaszetten-en-montage.pdf",
+        "name": "A-Blad Glaszetten en montage",
+        "name_en": "A-Sheet Glass Installation and Assembly",
+        "description": "Safety sheet for glass installation and assembly work.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Hangbruginstallaties": {
+        "url": "https://www.volandis.nl/media/3893/a-blad-hangbruginstallaties.pdf",
+        "name": "A-Blad Hangbruginstallaties",
+        "name_en": "A-Sheet Suspended Platform Installations",
+        "description": "Safety sheet for suspended platform/scaffold installations.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Hellende daken": {
+        "url": "https://www.volandis.nl/media/3895/a-blad-hellende-daken.pdf",
+        "name": "A-Blad Hellende daken",
+        "name_en": "A-Sheet Sloped Roofs",
+        "description": "Safety sheet for working on sloped roofs.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Houtstof": {
+        "url": "https://www.volandis.nl/media/0lhoyj40/a-blad-houtstof.pdf",
+        "name": "A-Blad Houtstof op de bouwplaats",
+        "name_en": "A-Sheet Wood Dust on Construction Sites",
+        "description": "Safety sheet for wood dust exposure on construction sites.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Kabels buizen leidingen": {
+        "url": "https://www.volandis.nl/media/i2lmb3v5/a-blad_kabels-buizen-leidingen.pdf",
+        "name": "A-Blad Kabels, buizen en leidingen leggen",
+        "name_en": "A-Sheet Laying Cables, Pipes and Conduits",
+        "description": "Safety sheet for laying cables, pipes and conduits.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Kitverwerkende bedrijven": {
+        "url": "https://www.volandis.nl/media/3949/a-blad-kitverwerkende-bedrijven.pdf",
+        "name": "A-Blad Kitverwerkende bedrijven (in revisie)",
+        "name_en": "A-Sheet Sealant Processing Companies",
+        "description": "Safety sheet for sealant processing operations. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Ladders en trappen": {
+        "url": "https://www.volandis.nl/media/3901/a-blad-ladders-en-trappen.pdf",
+        "name": "A-Blad Ladders en trappen",
+        "name_en": "A-Sheet Ladders and Stairs",
+        "description": "Safety sheet for using ladders and stairs.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf",
+        "amazon_relevance": ["ladder safety", "fall protection"]
+      },
+      "A-Blad Lichamelijke belasting": {
+        "url": "https://www.volandis.nl/media/btqfnqmk/a-blad_lichamelijke-belasting.pdf",
+        "name": "A-Blad Lichamelijke belasting",
+        "name_en": "A-Sheet Physical Workload",
+        "description": "Safety sheet for physical workload and ergonomics.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf",
+        "amazon_relevance": ["manual handling", "ergonomics", "lifting"]
+      },
+      "A-Blad Metselen en lijmen": {
+        "url": "https://www.volandis.nl/media/gt2otukr/25004566-a-blad-metselen-en-lijmen_update-2025.pdf",
+        "name": "A-Blad Metselen en lijmen",
+        "name_en": "A-Sheet Masonry and Gluing",
+        "description": "Safety sheet for masonry and gluing work. Updated 2025.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Natuursteen": {
+        "url": "https://www.volandis.nl/media/3941/a-blad-natuursteen.pdf",
+        "name": "A-Blad Natuursteen (in revisie)",
+        "name_en": "A-Sheet Natural Stone",
+        "description": "Safety sheet for working with natural stone. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Ontkistingsmiddelen": {
+        "url": "https://www.volandis.nl/media/3943/a-blad-ontkistingsmiddelen.pdf",
+        "name": "A-Blad Ontkistingsmiddelen in de bouw (in revisie)",
+        "name_en": "A-Sheet Release Agents in Construction",
+        "description": "Safety sheet for release agents in construction. Under revision.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Reinigen met zuren en logen": {
+        "url": "https://www.volandis.nl/media/4112/a-blad-reinigen-met-zuren-en-logen.pdf",
+        "name": "A-Blad Reinigen met zuren en logen",
+        "name_en": "A-Sheet Cleaning with Acids and Alkalis",
+        "description": "Safety sheet for cleaning with acids and alkalis.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf",
+        "amazon_relevance": ["chemicals", "hazmat", "cleaning"]
+      },
+      "A-Blad Rolsteigers": {
+        "url": "https://www.volandis.nl/media/z1zp3iaa/21003218_a-blad_rolsteigers_v2.pdf",
+        "name": "A-Blad Rolsteigers",
+        "name_en": "A-Sheet Mobile Scaffolding",
+        "description": "Safety sheet for mobile scaffolding towers.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Steigerbouwen": {
+        "url": "https://www.volandis.nl/media/3907/a-blad-steigerbouwen.pdf",
+        "name": "A-Blad Steigerbouwen",
+        "name_en": "A-Sheet Scaffolding Construction",
+        "description": "Safety sheet for scaffolding construction.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Tegelzetten": {
+        "url": "https://www.volandis.nl/media/3909/a-blad-tegelszetten.pdf",
+        "name": "A-Blad Tegelzetten",
+        "name_en": "A-Sheet Tile Setting",
+        "description": "Safety sheet for tile setting work.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Tweecomponenten PUR": {
+        "url": "https://www.volandis.nl/media/3991/20002138-a-blad-purschuim.pdf",
+        "name": "A-Blad Tweecomponenten PUR",
+        "name_en": "A-Sheet Two-Component PUR Foam",
+        "description": "Safety sheet for two-component polyurethane foam.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf",
+        "amazon_relevance": ["chemicals", "hazmat"]
+      },
+      "A-Blad Voegen": {
+        "url": "https://www.volandis.nl/media/3911/a-blad-voegen.pdf",
+        "name": "A-Blad Voegen",
+        "name_en": "A-Sheet Jointing",
+        "description": "Safety sheet for jointing work.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Wegafzettingen": {
+        "url": "https://www.volandis.nl/media/3913/a-blad-wegafzettingen-plaatsen-onderhouden-en-verwijderen.pdf",
+        "name": "A-Blad Wegafzettingen",
+        "name_en": "A-Sheet Road Barriers",
+        "description": "Safety sheet for placing, maintaining and removing road barriers.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
+      "A-Blad Wegmarkeren": {
+        "url": "https://www.volandis.nl/media/3915/a-blad-wegmarkeren.pdf",
+        "name": "A-Blad Wegmarkeren",
+        "name_en": "A-Sheet Road Marking",
+        "description": "Safety sheet for road marking work.",
+        "enabled": true,
+        "category": "abladen",
+        "source_type": "pdf"
+      },
       "_category_physical_load": {
         "_folder": true,
         "_name": "Physical Workload (TNO)",
@@ -1218,8 +1760,13 @@
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-21T12:00:00.000000",
+  "updated_at": "2025-12-21T18:00:00.000000",
   "_changelog": [
+    "2025-12-21: Comprehensive DGUV, AUVA, and A-Bladen expansion",
+    "- DE: Added complete DGUV Vorschriften collection (27 regulations with DA versions)",
+    "- DE: New Vorschriften: 3 DA, 4, 6 DA, 9, 15, 17, 21, 21 DA, 23, 24, 29, 36, 38, 40, 49, 52 DA, 56, 64, 70 DA, 73, 77, 79, 79 DA",
+    "- NL: Added complete Volandis A-Bladen collection (35 safety sheets)",
+    "- NL: New category 'A-Bladen' with construction and equipment safety guides",
     "2025-12-21: Major update - Added new PDFs and alphabetical sorting",
     "- DE: Added DGUV Vorschrift 2, 3, 52, 54 (regulations)",
     "- DE: Added DGUV Grundsatz 309-003, 309-005 (crane operators)",
