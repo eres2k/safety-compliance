@@ -1131,7 +1131,7 @@ function getShortenedLawName(law) {
   return title.substring(0, 15) + (title.length > 15 ? '...' : '')
 }
 
-export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearchQuery, onNavigationConsumed }) {
+export function LawBrowser({ onBack, initialLawId, initialCountry, initialSection, initialSearchQuery, onNavigationConsumed, onLawChange }) {
   const { t, framework, setFramework, language, isBookmarked, toggleBookmark, addRecentSearch } = useApp()
   const { generateFlowchart, simplifyForBothLevels, findEquivalentLaw, compareMultipleCountries, translateLawText, isLoading: aiLoading } = useAI()
 
@@ -1317,6 +1317,23 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
         setSelectedCategory('all') // Reset category filter
         // Add to audit trail
         addRecentSearch(targetLaw.abbreviation || targetLaw.title)
+
+        // Scroll to specific section if provided
+        if (initialSection) {
+          // Wait for the law content to render, then scroll to section
+          setTimeout(() => {
+            const sectionElement = document.querySelector(`[data-section-id="${initialSection}"]`) ||
+                                   document.querySelector(`[data-section-number="${initialSection.replace(/[§\s]/g, '')}"]`)
+            if (sectionElement) {
+              sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              // Highlight briefly
+              sectionElement.classList.add('ring-2', 'ring-whs-orange-500', 'ring-offset-2', 'transition-all')
+              setTimeout(() => {
+                sectionElement.classList.remove('ring-2', 'ring-whs-orange-500', 'ring-offset-2')
+              }, 2000)
+            }
+          }, 300)
+        }
       }
 
       // Clear the navigation request
@@ -1324,7 +1341,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
     }
 
     navigateToInitialLaw()
-  }, [initialLawId, initialCountry, framework, setFramework, onNavigationConsumed, addRecentSearch])
+  }, [initialLawId, initialCountry, initialSection, framework, setFramework, onNavigationConsumed, addRecentSearch])
 
   // Handle initial search query from other modules (e.g., Warehouse Visualization)
   useEffect(() => {
@@ -3099,6 +3116,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                                     id={section.id}
                                     ref={(el) => (sectionRefs.current[section.id] = el)}
                                     className="scroll-mt-4"
+                                    data-section-id={section.id}
+                                    data-section-number={section.number?.replace(/[§\s]/g, '')}
                                   >
                                     {/* Section Header with WHS Relevance - Clickable to expand/collapse */}
                                     <div className="flex items-start gap-2 mb-2 pb-2 border-b border-whs-orange-200 dark:border-whs-orange-800">
@@ -3122,6 +3141,26 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                                             {highlightText(section.title, contentSearchTerm)}
                                           </h3>
                                         )}
+                                      </button>
+                                      {/* Copy link button for direct linking */}
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation()
+                                          const url = `${window.location.origin}${window.location.pathname}?law=${selectedLaw.id}&country=${selectedLaw.jurisdiction || framework}&section=${encodeURIComponent(section.number)}`
+                                          navigator.clipboard.writeText(url).then(() => {
+                                            // Show brief feedback
+                                            e.target.closest('button').classList.add('text-green-500')
+                                            setTimeout(() => {
+                                              e.target.closest('button')?.classList.remove('text-green-500')
+                                            }, 1500)
+                                          })
+                                        }}
+                                        className="flex-shrink-0 p-1 text-gray-400 hover:text-whs-orange-500 transition-colors"
+                                        title={t.lawBrowser?.copyLink || 'Copy link to this section'}
+                                      >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                        </svg>
                                       </button>
                                       {/* Wiki link button */}
                                       {wikiIndex[selectedLaw?.abbreviation] && (

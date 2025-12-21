@@ -48,11 +48,33 @@ const createLawReferencePattern = () => {
 
 const LAW_REFERENCE_PATTERN = createLawReferencePattern()
 
+// Extract section number from a reference (e.g., "§ 5", "Artikel 3.2")
+function extractSectionFromReference(referenceText) {
+  if (!referenceText) return null
+
+  // Match § X or § Xa patterns
+  const paragraphMatch = referenceText.match(/§\s*(\d+[a-z]?)/)
+  if (paragraphMatch) {
+    return `§ ${paragraphMatch[1]}`
+  }
+
+  // Match Artikel X or Artikel X.Y patterns
+  const artikelMatch = referenceText.match(/Artikel\s+(\d+(?:\.\d+)?)/i)
+  if (artikelMatch) {
+    return `Artikel ${artikelMatch[1]}`
+  }
+
+  return null
+}
+
 // Find law ID from reference text
 function findLawIdFromReference(referenceText, allLaws) {
   if (!allLaws || allLaws.length === 0) return null
 
   const normalizedRef = referenceText.toLowerCase().trim()
+
+  // Extract section for deep linking
+  const section = extractSectionFromReference(referenceText)
 
   // Try to find a matching law
   for (const law of allLaws) {
@@ -61,7 +83,7 @@ function findLawIdFromReference(referenceText, allLaws) {
 
     // Check if reference contains the abbreviation
     if (abbr && normalizedRef.includes(abbr)) {
-      return { id: law.id, country: law.jurisdiction || law.country }
+      return { id: law.id, country: law.jurisdiction || law.country, section }
     }
 
     // Check for DGUV pattern matching
@@ -70,7 +92,7 @@ function findLawIdFromReference(referenceText, allLaws) {
       const dguNumberMatch = normalizedRef.match(/dguv\s*(?:vorschrift|regel|information)?\s*(\d+)/i)
       const lawNumberMatch = abbr.match(/dguv\s*(?:vorschrift|regel|information)?\s*(\d+)/i)
       if (dguNumberMatch && lawNumberMatch && dguNumberMatch[1] === lawNumberMatch[1]) {
-        return { id: law.id, country: law.jurisdiction || law.country }
+        return { id: law.id, country: law.jurisdiction || law.country, section }
       }
     }
   }
@@ -79,7 +101,7 @@ function findLawIdFromReference(referenceText, allLaws) {
 }
 
 // Find law ID from abbreviation (for bracketed references)
-function findLawIdFromAbbreviation(abbreviation, allLaws) {
+function findLawIdFromAbbreviation(abbreviation, allLaws, section = null) {
   if (!allLaws || allLaws.length === 0) return null
 
   const normalizedAbbr = abbreviation.toLowerCase().trim()
@@ -87,7 +109,7 @@ function findLawIdFromAbbreviation(abbreviation, allLaws) {
   for (const law of allLaws) {
     const lawAbbr = (law.abbreviation || law.abbr || '').toLowerCase()
     if (lawAbbr === normalizedAbbr) {
-      return { id: law.id, country: law.jurisdiction || law.country }
+      return { id: law.id, country: law.jurisdiction || law.country, section }
     }
   }
 
@@ -418,7 +440,9 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
       const absatz = match[4]
       const ziffer = match[5]
 
-      const lawInfo = findLawIdFromAbbreviation(abbreviation, allLaws)
+      // Build section identifier for deep linking
+      const sectionId = `§ ${paragraph}`
+      const lawInfo = findLawIdFromAbbreviation(abbreviation, allLaws, sectionId)
 
       // Create display text
       let displayText = `§ ${paragraph}`
@@ -433,10 +457,10 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              onLawClick(lawInfo.id, lawInfo.country)
+              onLawClick(lawInfo.id, lawInfo.country, sectionId)
             }}
             className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 rounded text-xs font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-800/50 transition-colors cursor-pointer"
-            title={`View ${abbreviation} in Law Browser`}
+            title={`View ${displayText} in Law Browser`}
           >
             <span>{lawInfo.country === 'AT' ? '🇦🇹' : lawInfo.country === 'DE' ? '🇩🇪' : '🇳🇱'}</span>
             {displayText}
@@ -495,14 +519,14 @@ function processRegularLawReferences(text, onLawClick, allLaws, keyPrefix) {
     const lawInfo = findLawIdFromReference(matchedText, allLaws)
 
     if (lawInfo) {
-      // Render as clickable link
+      // Render as clickable link with section deep linking
       result.push(
         <button
           key={`${keyPrefix}-law-${match.index}`}
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
-            onLawClick(lawInfo.id, lawInfo.country)
+            onLawClick(lawInfo.id, lawInfo.country, lawInfo.section)
           }}
           className="inline-flex items-center gap-1 text-whs-orange-600 dark:text-whs-orange-400 hover:text-whs-orange-700 dark:hover:text-whs-orange-300 hover:underline font-medium transition-colors cursor-pointer"
           title={`View ${matchedText} in Law Browser`}

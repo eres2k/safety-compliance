@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { AppProvider, useApp } from './context/AppContext'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
@@ -17,6 +17,9 @@ import { RateLimitIndicator, SafetyChatWidget } from './components/ui'
 
 // Initialize EU laws database on app load
 import { initializeLawsDatabase } from './services/euLawsDatabase'
+
+// URL utilities for deep linking
+import { parseLawUrl, updateLawUrl, clearLawUrl } from './utils/lawUrl'
 
 function AppContent() {
   const [activeModule, setActiveModule] = useState(null)
@@ -50,18 +53,59 @@ function AppContent() {
   }, [])
 
   // Navigate to a specific law in the LawBrowser
-  const navigateToLaw = (lawId, country) => {
-    setPendingLawNavigation({ lawId, country })
+  const navigateToLaw = useCallback((lawId, country, section = null) => {
+    setPendingLawNavigation({ lawId, country, section })
     setActiveModule('lawBrowser')
-  }
+    // Update URL for shareable deep links
+    updateLawUrl(lawId, country, section)
+  }, [])
 
   // Clear pending navigation after LawBrowser has consumed it
-  const clearPendingLawNavigation = () => {
+  const clearPendingLawNavigation = useCallback(() => {
     setPendingLawNavigation(null)
-  }
+  }, [])
+
+  // Handle browser back/forward navigation
+  useEffect(() => {
+    const handlePopState = (event) => {
+      const urlParams = parseLawUrl()
+      if (urlParams.lawId && urlParams.country) {
+        setPendingLawNavigation({
+          lawId: urlParams.lawId,
+          country: urlParams.country,
+          section: urlParams.section
+        })
+        setActiveModule('lawBrowser')
+      } else {
+        setActiveModule(null)
+        setPendingLawNavigation(null)
+      }
+    }
+
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  // Parse URL on initial load to support deep linking
+  useEffect(() => {
+    if (!isLoading) {
+      const urlParams = parseLawUrl()
+      if (urlParams.lawId && urlParams.country) {
+        setPendingLawNavigation({
+          lawId: urlParams.lawId,
+          country: urlParams.country,
+          section: urlParams.section
+        })
+        setActiveModule('lawBrowser')
+      }
+    }
+  }, [isLoading])
 
   const renderModule = () => {
-    const onBack = () => setActiveModule(null)
+    const onBack = () => {
+      setActiveModule(null)
+      clearLawUrl() // Clear URL params when going back to dashboard
+    }
 
     switch (activeModule) {
       case 'lawBrowser':
@@ -70,8 +114,10 @@ function AppContent() {
             onBack={onBack}
             initialLawId={pendingLawNavigation?.lawId}
             initialCountry={pendingLawNavigation?.country}
+            initialSection={pendingLawNavigation?.section}
             initialSearchQuery={pendingLawNavigation?.searchQuery}
             onNavigationConsumed={clearPendingLawNavigation}
+            onLawChange={(lawId, country, section) => updateLawUrl(lawId, country, section)}
           />
         )
       case 'complianceChecker':

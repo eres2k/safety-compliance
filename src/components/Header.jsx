@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
 import { HelpModal } from './HelpModal'
+import { useRateLimitStatus } from './ui/RateLimitIndicator'
 
 // Framework configuration with colors
 const frameworks = {
@@ -83,6 +84,53 @@ function SafetyLogo() {
           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
         </svg>
       </div>
+    </div>
+  )
+}
+
+// AI Rate Limit Indicator for Header
+function HeaderRateLimitIndicator() {
+  const status = useRateLimitStatus()
+
+  if (!status.isLimited) {
+    return null
+  }
+
+  const progress = ((status.rateLimitSeconds - status.remainingSeconds) / status.rateLimitSeconds) * 100
+
+  return (
+    <div className="flex items-center gap-2 px-3 py-1.5 bg-whs-orange-500/10 dark:bg-whs-orange-900/30 border border-whs-orange-500/20 dark:border-whs-orange-500/30 rounded-xl" title="AI cooldown - rate limiting active">
+      <div className="relative w-6 h-6">
+        <svg className="w-6 h-6 transform -rotate-90">
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="text-gray-200 dark:text-whs-dark-600"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            fill="none"
+            stroke="#f97316"
+            strokeWidth="2"
+            strokeDasharray={`${progress * 0.628} 62.8`}
+            strokeLinecap="round"
+          />
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <svg className="w-3 h-3 text-whs-orange-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+          </svg>
+        </div>
+      </div>
+      <span className="text-sm font-medium text-whs-orange-600 dark:text-whs-orange-400 tabular-nums">
+        {status.remainingSeconds}s
+      </span>
     </div>
   )
 }
@@ -231,6 +279,9 @@ export function Header() {
                 </div>
               )}
             </div>
+
+            {/* AI Rate Limit Indicator */}
+            <HeaderRateLimitIndicator />
 
             {/* Help Button */}
             <button

@@ -9,6 +9,176 @@ import { getStore } from "@netlify/blobs"
 // Cache TTL: 48 hours - important to stay within daily limits
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
+// ============================================
+// IP-Based Rate Limiting Configuration
+// ============================================
+const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute window
+const RATE_LIMIT_MAX_REQUESTS = 10 // Max requests per minute
+const RATE_LIMIT_BAN_THRESHOLD = 20 // Ban if exceeds this in 1 minute
+const RATE_LIMIT_BAN_DURATION_MS = 24 * 60 * 60 * 1000 // 24 hour ban
+
+// In-memory rate limit store (use Redis/Upstash in production for distributed systems)
+// Format: { ip: { count, windowStart, bannedUntil } }
+const rateLimitStore = new Map()
+
+// ============================================
+// Prompt Injection Guardrail
+// ============================================
+const BLOCKED_KEYWORDS = [
+  // Jailbreak attempts
+  'ignore previous instructions',
+  'ignore all instructions',
+  'ignore the above',
+  'disregard previous',
+  'disregard all instructions',
+  'forget your instructions',
+  'forget previous instructions',
+  'override your instructions',
+  'new instructions:',
+  'system prompt:',
+  'developer mode',
+  'dan mode',
+  'jailbreak',
+  'bypass safety',
+  'bypass filters',
+  'pretend you are',
+  'act as if you are',
+  'you are now',
+  'roleplay as',
+  // Data extraction attempts
+  'output as json',
+  'output in json',
+  'return raw json',
+  'show me your prompt',
+  'reveal your prompt',
+  'what is your system prompt',
+  'print your instructions',
+  'display your instructions',
+  // Injection patterns
+  '```system',
+  '```assistant',
+  '```user',
+  '<|system|>',
+  '<|assistant|>',
+  '<|user|>',
+  '###instruction',
+  '### instruction',
+  '[system]',
+  '[/system]'
+]
+
+// Check for prompt injection attempts
+function detectPromptInjection(text) {
+  if (!text || typeof text !== 'string') return { blocked: false }
+
+  const lowerText = text.toLowerCase()
+
+  for (const keyword of BLOCKED_KEYWORDS) {
+    if (lowerText.includes(keyword.toLowerCase())) {
+      return {
+        blocked: true,
+        reason: `Blocked keyword detected: "${keyword}"`,
+        keyword
+      }
+    }
+  }
+
+  return { blocked: false }
+}
+
+// Get client IP from request headers
+function getClientIP(event) {
+  // Netlify/Cloudflare headers for real IP
+  return event.headers['x-nf-client-connection-ip'] ||
+         event.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
+         event.headers['x-real-ip'] ||
+         event.headers['client-ip'] ||
+         'unknown'
+}
+
+// Clean up expired entries from rate limit store
+function cleanupRateLimitStore() {
+  const now = Date.now()
+  for (const [ip, data] of rateLimitStore.entries()) {
+    // Remove if window expired and not banned
+    if (data.windowStart + RATE_LIMIT_WINDOW_MS < now && (!data.bannedUntil || data.bannedUntil < now)) {
+      rateLimitStore.delete(ip)
+    }
+  }
+}
+
+// Check rate limit for an IP
+function checkRateLimit(ip) {
+  const now = Date.now()
+
+  // Periodic cleanup (every 100th request)
+  if (Math.random() < 0.01) {
+    cleanupRateLimitStore()
+  }
+
+  let data = rateLimitStore.get(ip)
+
+  if (!data) {
+    data = { count: 0, windowStart: now, bannedUntil: null }
+    rateLimitStore.set(ip, data)
+  }
+
+  // Check if IP is banned
+  if (data.bannedUntil && data.bannedUntil > now) {
+    const remainingBanSeconds = Math.ceil((data.bannedUntil - now) / 1000)
+    return {
+      allowed: false,
+      banned: true,
+      remainingBanSeconds,
+      message: `IP temporarily banned. Try again in ${Math.ceil(remainingBanSeconds / 3600)} hours.`
+    }
+  }
+
+  // Reset window if expired
+  if (data.windowStart + RATE_LIMIT_WINDOW_MS < now) {
+    data.count = 0
+    data.windowStart = now
+    data.bannedUntil = null
+  }
+
+  // Increment count
+  data.count++
+
+  // Check if should be banned (exceeded 20 requests in 1 minute)
+  if (data.count > RATE_LIMIT_BAN_THRESHOLD) {
+    data.bannedUntil = now + RATE_LIMIT_BAN_DURATION_MS
+    console.warn(`[Rate Limit] IP ${ip} banned for 24 hours (exceeded ${RATE_LIMIT_BAN_THRESHOLD} requests)`)
+    return {
+      allowed: false,
+      banned: true,
+      remainingBanSeconds: RATE_LIMIT_BAN_DURATION_MS / 1000,
+      message: 'Too many requests. IP temporarily banned for 24 hours.'
+    }
+  }
+
+  // Check if rate limited (exceeded 10 requests in 1 minute)
+  if (data.count > RATE_LIMIT_MAX_REQUESTS) {
+    const remainingWindowSeconds = Math.ceil((data.windowStart + RATE_LIMIT_WINDOW_MS - now) / 1000)
+    return {
+      allowed: false,
+      banned: false,
+      remainingWindowSeconds,
+      currentCount: data.count,
+      maxRequests: RATE_LIMIT_MAX_REQUESTS,
+      message: `Rate limit exceeded. Try again in ${remainingWindowSeconds} seconds.`
+    }
+  }
+
+  // Request allowed
+  return {
+    allowed: true,
+    remainingRequests: RATE_LIMIT_MAX_REQUESTS - data.count,
+    currentCount: data.count,
+    maxRequests: RATE_LIMIT_MAX_REQUESTS,
+    windowResetSeconds: Math.ceil((data.windowStart + RATE_LIMIT_WINDOW_MS - now) / 1000)
+  }
+}
+
 // Model configuration for website AI services (user-facing)
 // gemini-2.5-flash: 1K RPM, 1M TPM, 10K RPD - best quality/speed balance
 // gemini-2.0-flash: 2K RPM, 4M TPM, Unlimited RPD - stable fallback
@@ -74,12 +244,47 @@ export async function handler(event, context) {
     }
   }
 
+  // Get client IP for rate limiting
+  const clientIP = getClientIP(event)
+
+  // Check rate limit
+  const rateLimitResult = checkRateLimit(clientIP)
+
+  // Build rate limit headers for response
+  const rateLimitHeaders = {
+    'X-RateLimit-Limit': String(RATE_LIMIT_MAX_REQUESTS),
+    'X-RateLimit-Remaining': String(rateLimitResult.remainingRequests || 0),
+    'X-RateLimit-Reset': String(rateLimitResult.windowResetSeconds || 60),
+    'X-RateLimit-Current': String(rateLimitResult.currentCount || 0)
+  }
+
+  // If rate limited or banned, return 429/403
+  if (!rateLimitResult.allowed) {
+    const statusCode = rateLimitResult.banned ? 403 : 429
+    console.warn(`[Security] Rate limit: IP ${clientIP} - ${rateLimitResult.message}`)
+
+    return {
+      statusCode,
+      headers: {
+        'Content-Type': 'application/json',
+        ...rateLimitHeaders,
+        'Retry-After': String(rateLimitResult.remainingBanSeconds || rateLimitResult.remainingWindowSeconds || 60)
+      },
+      body: JSON.stringify({
+        message: rateLimitResult.message,
+        retryAfter: rateLimitResult.remainingBanSeconds || rateLimitResult.remainingWindowSeconds,
+        banned: rateLimitResult.banned || false
+      })
+    }
+  }
+
   // Get API key from environment variable
   const apiKey = process.env.GEMINI_API_KEY
 
   if (!apiKey) {
     return {
       statusCode: 500,
+      headers: rateLimitHeaders,
       body: JSON.stringify({
         message: 'AI service not configured. Please set GEMINI_API_KEY in Netlify environment variables.'
       })
@@ -92,7 +297,22 @@ export async function handler(event, context) {
     if (!prompt) {
       return {
         statusCode: 400,
+        headers: rateLimitHeaders,
         body: JSON.stringify({ message: 'Prompt is required' })
+      }
+    }
+
+    // Check for prompt injection attempts
+    const injectionCheck = detectPromptInjection(prompt)
+    if (injectionCheck.blocked) {
+      console.warn(`[Security] Prompt injection blocked: IP ${clientIP} - ${injectionCheck.reason}`)
+      return {
+        statusCode: 400,
+        headers: rateLimitHeaders,
+        body: JSON.stringify({
+          message: 'Invalid request: potentially harmful content detected.',
+          blocked: true
+        })
       }
     }
 
@@ -122,7 +342,8 @@ export async function handler(event, context) {
               headers: {
                 'Content-Type': 'application/json',
                 'X-Cache': 'HIT',
-                'X-Cache-Age': `${ageHours}h`
+                'X-Cache-Age': `${ageHours}h`,
+                ...rateLimitHeaders
               },
               body: JSON.stringify({
                 response: cached.response,
@@ -195,6 +416,10 @@ export async function handler(event, context) {
 
       return {
         statusCode: response.status,
+        headers: {
+          'Content-Type': 'application/json',
+          ...rateLimitHeaders
+        },
         body: JSON.stringify({
           message: errorMessage,
           details: details,
@@ -214,6 +439,10 @@ export async function handler(event, context) {
 
       return {
         statusCode: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          ...rateLimitHeaders
+        },
         body: JSON.stringify({
           message: 'No response generated from AI',
           details: blockReason === 'SAFETY' ? 'Content blocked by safety filters' : 'Empty response from model',
@@ -244,7 +473,8 @@ export async function handler(event, context) {
       headers: {
         'Content-Type': 'application/json',
         'X-Cache': 'MISS',
-        'X-Model': usedModel
+        'X-Model': usedModel,
+        ...rateLimitHeaders
       },
       body: JSON.stringify({
         response: generatedText,
@@ -256,6 +486,10 @@ export async function handler(event, context) {
     console.error('Function error:', error)
     return {
       statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        ...rateLimitHeaders
+      },
       body: JSON.stringify({
         message: 'Internal server error',
         details: error.message
