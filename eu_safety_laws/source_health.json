@@ -104,500 +104,713 @@
     "AT:AUVA Jetzt lesen": {
       "url": "https://auva.at/media/2mgdgxus/auva-qualitaetsbericht-2024.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:33.562503",
+      "last_success": "2025-12-21T17:07:14.186237",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 012": {
       "url": "https://auva.at/media/n4kpeyhq/mplus_012_sommerliche_hitze_praeventionsmassnahmen_2023-07_.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:34.330025",
+      "last_success": "2025-12-21T17:07:14.928158",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 019": {
       "url": "https://auva.at/media/v5sbtwcv/mplus_019_gesetzliche_bestimmungen_fuer_laermbetriebe_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:35.106362",
+      "last_success": "2025-12-21T17:07:15.816374",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 022": {
       "url": "https://auva.at/media/iswlvmmn/mplus-022_telearbeitsplaetze_bf_2504.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:35.895401",
+      "last_success": "2025-12-21T17:07:16.581504",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 040": {
       "url": "https://auva.at/media/zzcjdtxk/mplus_040_arbeitsplatzevaluierung_bf_06-2022.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:36.592139",
+      "last_success": "2025-12-21T17:07:17.275997",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 040.E1": {
       "url": "https://auva.at/media/mcnkpcmc/mplus_040e1_evaluierung_von_mechanischen_gefaehrdungen_202.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:37.467678",
+      "last_success": "2025-12-21T17:07:18.179108",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 040.E2": {
       "url": "https://auva.at/media/jvuf53wp/mplus_040e2_evaluierung_sturz-und_absturzgefahren_personen.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:38.253636",
+      "last_success": "2025-12-21T17:07:18.939334",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 040.E4": {
       "url": "https://auva.at/media/ry0gy2cs/mplus-040e4-chemische-arbeitsstoffe-bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:39.021733",
+      "last_success": "2025-12-21T17:07:19.643966",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 040.E8": {
       "url": "https://auva.at/media/vs0j2fpc/mplus_040e8_evaluierung_von_laermbelastung_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:39.844682",
+      "last_success": "2025-12-21T17:07:20.363760",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 040.E17": {
       "url": "https://auva.at/media/ghlabert/mplus_040e17_evaluierung_buero_bildschirmarbeitsplaetze_20.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:40.626146",
+      "last_success": "2025-12-21T17:07:21.035113",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 070": {
       "url": "https://auva.at/media/jyvn53st/mplus_070_unterweisung_0725_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:41.475053",
+      "last_success": "2025-12-21T17:07:21.764237",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 302": {
       "url": "https://auva.at/media/cxskvf0b/mplus_302_gefaehrliche_arbeitsstoffe_information_und_unterw.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:42.574812",
+      "last_success": "2025-12-21T17:07:22.728386",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 327": {
       "url": "https://auva.at/media/4jdoprhy/mplus_327_einsteigen_in_enge_raeume_und_behaelter_bf.pdf",
-      "consecutive_failures": 2,
+      "consecutive_failures": 3,
       "total_successes": 0,
-      "total_failures": 2,
+      "total_failures": 3,
       "last_success": null,
-      "last_failure": "2025-12-21T16:50:43.176279",
+      "last_failure": "2025-12-21T17:07:23.360007",
       "last_error": "404 Client Error: Not Found for url: https://auva.at/media/4jdoprhy/mplus_327_einsteigen_in_enge_raeume_und_behaelter_bf.pdf",
       "last_http_status": null,
-      "auto_disabled": false
+      "auto_disabled": true
     },
     "AT:AUVA M.plus 330": {
       "url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:43.900152",
+      "last_success": "2025-12-21T17:07:24.185775",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 340.2": {
       "url": "https://auva.at/media/nodjy2jp/mplus_3402_krebserzeugende_arbeitsstoffe_kunststoffspritzg.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:44.630490",
+      "last_success": "2025-12-21T17:07:24.906671",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 340.7": {
       "url": "https://auva.at/media/siqp5rqv/mplus_3407_gesundheitsgefaehrdende_stoffe_in_oeffentlichen.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:45.568366",
+      "last_success": "2025-12-21T17:07:25.822288",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 301": {
       "url": "https://auva.at/media/zhxfgjcu/mplus_301_explosionsschutz_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:46.385829",
+      "last_success": "2025-12-21T17:07:26.559482",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 361": {
       "url": "https://auva.at/media/a2km3njh/mplus_361_ergaenzung_4_musterbetriebsanweisung_2023_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:47.088728",
+      "last_success": "2025-12-21T17:07:27.198006",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 369": {
       "url": "https://auva.at/media/fkmeiimb/mplus-369-kuehlschmierstoffe-bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:47.806630",
+      "last_success": "2025-12-21T17:07:27.910080",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 521": {
       "url": "https://auva.at/media/p0ybmq2g/mplus_521_forstliche_arbeiten_mit_der_motorsaege_bf.pdf",
-      "consecutive_failures": 2,
+      "consecutive_failures": 3,
       "total_successes": 0,
-      "total_failures": 2,
+      "total_failures": 3,
       "last_success": null,
-      "last_failure": "2025-12-21T16:50:48.485523",
+      "last_failure": "2025-12-21T17:07:28.596298",
       "last_error": "404 Client Error: Not Found for url: https://auva.at/media/p0ybmq2g/mplus_521_forstliche_arbeiten_mit_der_motorsaege_bf.pdf",
       "last_http_status": null,
-      "auto_disabled": false
+      "auto_disabled": true
     },
     "AT:AUVA M.plus 523": {
       "url": "https://auva.at/media/lrgf0pdk/mplus_523_forstliche_seilbringung_bf.pdf",
-      "consecutive_failures": 2,
+      "consecutive_failures": 3,
       "total_successes": 0,
-      "total_failures": 2,
+      "total_failures": 3,
       "last_success": null,
-      "last_failure": "2025-12-21T16:50:49.080859",
+      "last_failure": "2025-12-21T17:07:29.204272",
       "last_error": "404 Client Error: Not Found for url: https://auva.at/media/lrgf0pdk/mplus_523_forstliche_seilbringung_bf.pdf",
       "last_http_status": null,
-      "auto_disabled": false
+      "auto_disabled": true
     },
     "AT:AUVA M.plus 700": {
       "url": "https://auva.at/media/cjwjl21s/mplus-700-gehoerschutz-bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:49.857746",
+      "last_success": "2025-12-21T17:07:30.038684",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 800": {
       "url": "https://auva.at/media/nh1bq3eh/mplus_800_sicher_unterwegs_bf.pdf",
-      "consecutive_failures": 2,
+      "consecutive_failures": 3,
       "total_successes": 0,
-      "total_failures": 2,
+      "total_failures": 3,
       "last_success": null,
-      "last_failure": "2025-12-21T16:50:50.517618",
+      "last_failure": "2025-12-21T17:07:30.672616",
       "last_error": "404 Client Error: Not Found for url: https://auva.at/media/nh1bq3eh/mplus_800_sicher_unterwegs_bf.pdf",
       "last_http_status": null,
-      "auto_disabled": false
+      "auto_disabled": true
     },
     "AT:AUVA M.plus 801": {
       "url": "https://auva.at/media/nrljnr11/mplus_801_fahrradbotendienste_2023-02_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:51.388074",
+      "last_success": "2025-12-21T17:07:31.491188",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA E 14": {
       "url": "https://auva.at/media/1klpjgis/e_14_evaluierung_psychischer_belastungen_abs_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:52.080770",
+      "last_success": "2025-12-21T17:07:32.203076",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA E 24 EVALOG": {
       "url": "https://auva.at/media/gybkl0hm/e_24_evalog_evaluierung_psychischer_belastung_im_dialog_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:53.167394",
+      "last_success": "2025-12-21T17:07:33.339562",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA E 13": {
       "url": "https://auva.at/media/qvnajezk/e_13_physische_belastungen.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:53.879794",
+      "last_success": "2025-12-21T17:07:34.036465",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M.plus 931": {
       "url": "https://auva.at/media/jvcpfyhg/mplus_931_xr_technologien_bf.pdf",
-      "consecutive_failures": 2,
+      "consecutive_failures": 3,
       "total_successes": 0,
-      "total_failures": 2,
+      "total_failures": 3,
       "last_success": null,
-      "last_failure": "2025-12-21T16:50:54.566316",
+      "last_failure": "2025-12-21T17:07:34.696834",
       "last_error": "404 Client Error: Not Found for url: https://auva.at/media/jvcpfyhg/mplus_931_xr_technologien_bf.pdf",
       "last_http_status": null,
-      "auto_disabled": false
+      "auto_disabled": true
     },
     "AT:AUVA M.plus 942": {
       "url": "https://auva.at/media/3scjz5tv/mplus_942_fahrerlose_transportsysteme_und_mobile_roboter_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:55.387137",
+      "last_success": "2025-12-21T17:07:35.481683",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M 030": {
       "url": "https://auva.at/media/kwjputxz/m_030_arbeitnehmerinnenschutzgesetz_bf_2505.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:56.160346",
+      "last_success": "2025-12-21T17:07:36.225936",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M 041": {
       "url": "https://auva.at/media/gf3drt5e/m_041_verordnung_ueber_sicherheits-_und_gesundheitsschutzdok.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:56.860597",
+      "last_success": "2025-12-21T17:07:36.940768",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M 080": {
       "url": "https://auva.at/media/ahopxkb3/m_080_grundlagen_der_lasersicherheit_2023-07_bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:57.588122",
+      "last_success": "2025-12-21T17:07:37.678591",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M 364": {
       "url": "https://auva.at/media/tytfmukw/m_364_umgang_mit_aetzenden_stoffen.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:58.250717",
+      "last_success": "2025-12-21T17:07:38.390573",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M 391": {
       "url": "https://auva.at/media/ds1jpe1o/m_391_sicherer_umgang_mit_gefaehrlichen_arbeitsstoffen.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:58.975932",
+      "last_success": "2025-12-21T17:07:39.107378",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M 705": {
       "url": "https://auva.at/media/efdj33nn/m705-schutzhandschuhe-bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:50:59.667727",
+      "last_success": "2025-12-21T17:07:39.791492",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA M 719": {
       "url": "https://auva.at/media/nwwlrfpq/m_719_atemschutzfilter_gegen_schwebstoffe_gase_daempfe_bf_20.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:00.417249",
+      "last_success": "2025-12-21T17:07:40.520340",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVA Basiswissen 2025": {
       "url": "https://auva.at/media/peujs3al/basiswissen-arbeitnehmerschutz-bf.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:01.398157",
+      "last_success": "2025-12-21T17:07:46.165977",
       "last_failure": null,
       "auto_disabled": false
     },
     "AT:AUVAsicher 2024-2025": {
       "url": "https://auva.at/media/0cpp1f4l/auvasicher_informationsbroschuere_2024.pdf",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:02.140546",
+      "last_success": "2025-12-21T17:07:46.953454",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-201-056": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2952",
       "consecutive_failures": 0,
-      "total_successes": 2,
+      "total_successes": 3,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:22.341871",
+      "last_success": "2025-12-21T17:08:04.495010",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-212-016": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/841",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:06.648043",
+      "last_success": "2025-12-21T17:07:50.175806",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-207-034": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5013",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:08.228053",
+      "last_success": "2025-12-21T17:07:51.696385",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-207-019": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/885",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:09.709873",
+      "last_success": "2025-12-21T17:07:53.095992",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-209-030": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/477",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:11.329159",
+      "last_success": "2025-12-21T17:07:54.620902",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-207-026": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3430",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:13.179455",
+      "last_success": "2025-12-21T17:07:56.337351",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-208-062": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5103",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:15.080808",
+      "last_success": "2025-12-21T17:07:58.280650",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-114-018": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1019",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:16.802669",
+      "last_success": "2025-12-21T17:07:59.935059",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-250-012": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5125",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:18.504867",
+      "last_success": "2025-12-21T17:08:01.572359",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-201-067": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5143",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:24.695164",
+      "last_success": "2025-12-21T17:08:06.297017",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-209-036": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/484",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:29.652542",
+      "last_success": "2025-12-21T17:08:12.094523",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-206-006": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/803",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:31.132376",
+      "last_success": "2025-12-21T17:08:13.573579",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-212-009": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5035",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:33.695080",
+      "last_success": "2025-12-21T17:08:16.200090",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-110-011": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5051",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:36.070808",
+      "last_success": "2025-12-21T17:08:18.688600",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-206-016": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/901",
       "consecutive_failures": 0,
-      "total_successes": 1,
+      "total_successes": 2,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:37.614856",
+      "last_success": "2025-12-21T17:08:20.228526",
       "last_failure": null,
       "auto_disabled": false
     },
     "DE:DGUV-202-048": {
       "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1410",
       "consecutive_failures": 0,
+      "total_successes": 2,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:08:21.702148",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "AT:AUVA M 830": {
+      "url": "https://auva.at/media/oq0jfcsx/m_830_gefahrguttransport-auf-der-strasse_0625_bf.pdf",
+      "consecutive_failures": 0,
       "total_successes": 1,
       "total_failures": 0,
-      "last_success": "2025-12-21T16:51:39.170315",
+      "last_success": "2025-12-21T17:07:41.276640",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "AT:AUVA M 845": {
+      "url": "https://auva.at/media/tvjnoy4t/m_845_4f-regel-ladungssicherung-bf.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:07:42.000534",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "AT:AUVA M 105": {
+      "url": "https://auva.at/media/4jsltvw2/m_105_ergonomie-in-unterstuetzenden-berufen_bf.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:07:42.790225",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "AT:AUVA M 480": {
+      "url": "https://auva.at/media/pcajpwjk/m_480_sicherer_umgang_mit-lithium-batterien_2021_bf.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:07:43.558981",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "AT:AUVA M.plus 040.E7": {
+      "url": "https://auva.at/media/jn5d2axt/mplus_040e7_evaluierung_von_heiszen_oder_kalten_stoffen_20.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:07:44.429562",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "AT:AUVA IVSS Lastenhandhabung": {
+      "url": "https://auva.at/media/i0andidy/ivss_lastenhandhabung.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:07:45.105624",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Arbocatalogus Hoveniers": {
+      "url": "https://www.landschapnoordholland.nl/files/2018-07/arbo%20catalogus%20hoveniers%20en%20groenvoorziening.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:08:22.529530",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Arbocatalogus Kantoor": {
+      "url": "https://dearbocatalogus.nl/sites/default/files/stvda/handreikingen/handreiking_kantooromgeving.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:08:23.287053",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Arbocatalogus Linnen": {
+      "url": "https://www.raltex.nl/cms/files/2017-01/2012-arbocatalogus-linnen-en-wasserijbedrijven-lr.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:11.005464",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Arbocatalogus Retail Mode": {
+      "url": "https://www.werkindewinkel.nl/uploads/arbocatalogus-retail-mode-schoenen-sport-2020.cd5ead.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:11.864972",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Arbocatalogus Bloemen": {
+      "url": "https://www.vgb.nl/files/arbocatalogus.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:12.602247",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Arbocatalogus Uitzendbranche": {
+      "url": "https://www.abu.nl/app/uploads/2019/09/Arbocatalogus-Algemeen-onderdeel-Arbobeleid-voor-vaste-medewerkers-in-de-uitzendbranche.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:13.673969",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Arbocatalogus Transport Warehouse": {
+      "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:14.417379",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Bestratingsmateriaal": {
+      "url": "https://www.volandis.nl/media/ooil24sg/a-blad-bestratingsmateriaal_2.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:15.229920",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Lichamelijke Belasting": {
+      "url": "https://www.volandis.nl/media/btqfnqmk/a-blad_lichamelijke-belasting.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:15.992950",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Geluid Trillingen": {
+      "url": "https://www.volandis.nl/media/g1yiksdl/a-blad_geluid-trillingen.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:16.936175",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Ladders Trappen": {
+      "url": "https://www.volandis.nl/media/3901/a-blad-ladders-en-trappen.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:17.742128",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Houtstof": {
+      "url": "https://www.volandis.nl/media/0lhoyj40/a-blad-houtstof.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:18.544738",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Dieselmotoremissie": {
+      "url": "https://www.volandis.nl/media/3885/a-blad-dieselmotormissie.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:19.361390",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Rolsteigers": {
+      "url": "https://www.volandis.nl/media/z1zp3iaa/21003218_a-blad_rolsteigers_v2.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:20.302096",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Hellende Daken": {
+      "url": "https://www.volandis.nl/media/3895/a-blad-hellende-daken.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:21.121786",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Epoxy": {
+      "url": "https://www.volandis.nl/media/fpzjzpxp/a-blad-epoxy.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:21.900730",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:Volandis A-blad Metselen Lijmen": {
+      "url": "https://www.volandis.nl/media/gt2otukr/25004566-a-blad-metselen-en-lijmen_update-2025.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T17:09:22.689927",
       "last_failure": null,
       "auto_disabled": false
     }
   },
-  "last_updated": "2025-12-21T16:51:39.170322",
-  "auto_disabled": []
+  "last_updated": "2025-12-21T17:09:22.689934",
+  "auto_disabled": [
+    "AT:AUVA M.plus 327",
+    "AT:AUVA M.plus 521",
+    "AT:AUVA M.plus 523",
+    "AT:AUVA M.plus 800",
+    "AT:AUVA M.plus 931"
+  ]
 }
