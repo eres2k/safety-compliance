@@ -10,6 +10,9 @@ import {
 import {
   WHS_TOPIC_LABELS,
   RELEVANCE_LEVELS,
+  isSupplementarySource,
+  hasLocalPdf,
+  isPdfVariant,
 } from '../../services/euLawsDatabase'
 
 /**
@@ -95,11 +98,23 @@ export function InteractiveSearch({
       setIsSearching(true)
 
       try {
-        const searchResults = await deepSearch(searchTerm, laws, {
+        let searchResults = await deepSearch(searchTerm, laws, {
           searchPdfs: searchMode === 'pdf' || searchMode === 'all',
           boostLogistics: true,
           limit: 50,
         })
+
+        // When in PDF mode, filter to only show PDF documents
+        // (merkblätter, documents with local PDFs, or PDF variants)
+        if (searchMode === 'pdf') {
+          searchResults = searchResults.filter(law =>
+            isSupplementarySource(law) ||
+            hasLocalPdf(law) ||
+            isPdfVariant(law) ||
+            law.type === 'merkblatt' ||
+            law.source?.source_type === 'pdf'
+          )
+        }
 
         setResults(searchResults)
 
