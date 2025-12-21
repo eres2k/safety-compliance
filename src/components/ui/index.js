@@ -14,6 +14,7 @@ export { PdfViewer, PdfSourceBadge, SupplementaryBadge } from './PdfViewer'
 export { TypewriterText, TypewriterParagraph, TransitionText, OverwriteText } from './TypewriterText'
 export { SmartSearch } from './SmartSearch'
 export { InteractiveSearch } from './InteractiveSearch'
+export { SafetyChatWidget } from './SafetyChatWidget'
 
 // Re-export default components
 export { default as ButtonDefault } from './Button'

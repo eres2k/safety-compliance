@@ -11,10 +11,9 @@ import {
   PreventionTimeCalculator,
   PenaltyLookup,
   Glossary,
-  WarehouseVisualization,
-  SafetyChatbot
+  WarehouseVisualization
 } from './components/modules'
-import { RateLimitIndicator } from './components/ui'
+import { RateLimitIndicator, SafetyChatWidget } from './components/ui'
 
 // Initialize EU laws database on app load
 import { initializeLawsDatabase } from './services/euLawsDatabase'
@@ -87,8 +86,6 @@ function AppContent() {
         return <PenaltyLookup onBack={onBack} />
       case 'glossary':
         return <Glossary onBack={onBack} />
-      case 'safetyChatbot':
-        return <SafetyChatbot onBack={onBack} onNavigateToLaw={navigateToLaw} />
       case 'warehouseVisualization':
         return (
           <div className="space-y-6 animate-fade-in">
@@ -167,6 +164,9 @@ function AppContent() {
 
       {/* Floating Rate Limit Indicator */}
       <RateLimitIndicator variant="floating" />
+
+      {/* Erwin Safety Chat Widget */}
+      <SafetyChatWidget onNavigateToLaw={navigateToLaw} />
     </div>
   )
 }
