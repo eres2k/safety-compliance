@@ -3370,56 +3370,6 @@
       ]
     },
     {
-      "id": "0e832a8c9c470024",
-      "version": "1.0.0",
-      "type": "merkblatt",
-      "jurisdiction": "NL",
-      "abbreviation": "PGS",
-      "title": "Publicatiereeks Gevaarlijke Stoffen",
-      "title_en": "Publicatiereeks Gevaarlijke Stoffen",
-      "category": "Supplementary",
-      "implements_eu_directive": "89/391/EEG",
-      "source": {
-        "url": "https://www.publicatiereeksgevaarlijkestoffen.nl/",
-        "title": "Publicatiereeks Gevaarlijke Stoffen",
-        "authority": "wetten.overheid.nl",
-        "robots_txt_compliant": true
-      },
-      "scraping": {
-        "scraped_at": "2025-12-19T18:14:59.760049",
-        "scraper_version": "8.0.0"
-      },
-      "whs_summary": {
-        "total_sections": 0,
-        "logistics_relevance_distribution": {
-          "critical": 0,
-          "high": 0,
-          "medium": 0,
-          "low": 0
-        },
-        "top_whs_topics": [],
-        "critical_sections_count": 0,
-        "description": "PGS (Publicatiereeks Gevaarlijke Stoffen) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
-      },
-      "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
-      "keywords": [
-        "PGS",
-        "publicatiereeks",
-        "gevaarlijke",
-        "stoffen",
-        "core safety",
-        "Netherlands",
-        "Dutch law",
-        "Arbowet"
-      ],
-      "subcategory": "PGS",
-      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)",
-      "metadata": {
-        "is_supplementary": true
-      }
-    },
-    {
       "id": "47ad0a0dd8f029ca",
       "version": "1.0.0",
       "type": "law",
@@ -9482,57 +9432,6 @@
       ]
     },
     {
-      "id": "9014d2edb333d632",
-      "version": "1.0.0",
-      "type": "merkblatt",
-      "jurisdiction": "NL",
-      "abbreviation": "PGS 15",
-      "title": "15Opslag van verpakte gevaarlijke stoffen",
-      "title_en": "15Opslag van verpakte gevaarlijke stoffen",
-      "category": "Supplementary",
-      "implements_eu_directive": "89/391/EEG",
-      "source": {
-        "url": "https://publicatiereeksgevaarlijkestoffen.nl/publicaties/online/pgs-15/",
-        "title": "15Opslag van verpakte gevaarlijke stoffen",
-        "authority": "wetten.overheid.nl",
-        "robots_txt_compliant": true
-      },
-      "scraping": {
-        "scraped_at": "2025-12-19T18:15:19.088192",
-        "scraper_version": "8.0.0"
-      },
-      "whs_summary": {
-        "total_sections": 0,
-        "logistics_relevance_distribution": {
-          "critical": 0,
-          "high": 0,
-          "medium": 0,
-          "low": 0
-        },
-        "top_whs_topics": [],
-        "critical_sections_count": 0,
-        "description": "PGS 15 (15Opslag van verpakte gevaarlijke stoffen) is Dutch Primary legislation establishing legal requirements covering workplace safety. Contains multiple sections with comprehensive requirements for employers and employees."
-      },
-      "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
-      "keywords": [
-        "PGS 15",
-        "15opslag",
-        "verpakte",
-        "gevaarlijke",
-        "stoffen",
-        "core safety",
-        "Netherlands",
-        "Dutch law",
-        "Arbowet"
-      ],
-      "subcategory": "PGS",
-      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)",
-      "metadata": {
-        "is_supplementary": true
-      }
-    },
-    {
       "id": "8c6ee77b75c3ba1e",
       "version": "1.0.0",
       "type": "law",
@@ -9792,46 +9691,6 @@
       },
       "chapters": [],
       "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
-    },
-    {
-      "id": "25332a9b64ae7509",
-      "version": "1.0.0",
-      "type": "merkblatt",
-      "jurisdiction": "NL",
-      "abbreviation": "PGS Overview",
-      "title": "Publicatiereeks Gevaarlijke Stoffen",
-      "title_en": "Publicatiereeks Gevaarlijke Stoffen",
-      "category": "Supplementary",
-      "implements_eu_directive": "89/391/EEG",
-      "source": {
-        "url": "https://www.publicatiereeksgevaarlijkestoffen.nl/",
-        "title": "Publicatiereeks Gevaarlijke Stoffen",
-        "authority": "wetten.overheid.nl",
-        "robots_txt_compliant": true
-      },
-      "scraping": {
-        "scraped_at": "2025-12-21T07:38:24.695096",
-        "scraper_version": "8.0.0"
-      },
-      "whs_summary": {
-        "total_sections": 0,
-        "logistics_relevance_distribution": {
-          "critical": 0,
-          "high": 0,
-          "medium": 0,
-          "low": 0
-        },
-        "top_whs_topics": [],
-        "critical_sections_count": 0
-      },
-      "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
-      "doc_type": "merkblatt",
-      "subcategory": "PGS",
-      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)",
-      "metadata": {
-        "is_supplementary": true
-      }
     },
     {
       "id": "1dab0e0fd39a5b98",
