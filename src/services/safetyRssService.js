@@ -1,5 +1,5 @@
 /**
- * Safety RSS Service - Fetches real workplace incident data from safety agency feeds
+ * Safety RSS Service - Fetches workplace safety news from safety agency feeds
  *
  * Sources:
  * - Germany: BAuA, BMAS (Federal safety authorities)
@@ -17,9 +17,9 @@ const CACHE_TTL_MS = 4 * 60 * 60 * 1000 // 4 hours
 
 // CORS proxy options (multiple fallbacks)
 const CORS_PROXIES = [
-  'https://api.allorigins.win/raw?url=',
-  'https://corsproxy.io/?',
-  'https://api.codetabs.com/v1/proxy?quest='
+  { prefix: 'https://api.allorigins.win/get?url=', isJson: true },
+  { prefix: 'https://corsproxy.io/?', isJson: false },
+  { prefix: 'https://api.codetabs.com/v1/proxy?quest=', isJson: false }
 ]
 
 // RSS Feed sources - EU-focused safety agencies
@@ -320,26 +320,59 @@ function parseRssXml(xmlText, feedConfig) {
 }
 
 /**
+ * Check if content looks like valid XML/RSS
+ */
+function isValidXml(content) {
+  if (!content || typeof content !== 'string') return false
+  const trimmed = content.trim()
+  // Check for XML declaration or common RSS/Atom root elements
+  return trimmed.startsWith('<?xml') ||
+         trimmed.startsWith('<rss') ||
+         trimmed.startsWith('<feed') ||
+         trimmed.startsWith('<RDF')
+}
+
+/**
  * Fetch RSS feed with CORS proxy fallbacks
  */
 async function fetchWithProxy(url) {
+  const errors = []
+
   for (const proxy of CORS_PROXIES) {
     try {
-      const response = await fetch(proxy + encodeURIComponent(url), {
+      const response = await fetch(proxy.prefix + encodeURIComponent(url), {
         headers: {
           'Accept': 'application/rss+xml, application/xml, text/xml, */*'
         }
       })
 
-      if (response.ok) {
-        return await response.text()
+      if (!response.ok) {
+        errors.push(`${proxy.prefix}: HTTP ${response.status}`)
+        continue
       }
+
+      let content
+      if (proxy.isJson) {
+        // allorigins returns JSON with 'contents' field
+        const json = await response.json()
+        content = json.contents
+      } else {
+        content = await response.text()
+      }
+
+      // Validate that we got XML, not an HTML error page
+      if (!isValidXml(content)) {
+        errors.push(`${proxy.prefix}: Received HTML instead of XML`)
+        continue
+      }
+
+      return content
     } catch (error) {
-      console.warn(`Proxy ${proxy} failed:`, error.message)
+      errors.push(`${proxy.prefix}: ${error.message}`)
     }
   }
 
-  throw new Error('All CORS proxies failed')
+  throw new Error(`All CORS proxies failed: ${errors.join('; ')}`)
 }
 
 /**
