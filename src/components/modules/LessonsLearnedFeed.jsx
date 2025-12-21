@@ -9,6 +9,31 @@ import { fetchSafetyAlerts, clearSafetyAlertsCache } from '../../services/safety
 
 // Safety alert sources configuration
 const SAFETY_SOURCES = {
+  HSE: {
+    name: 'HSE',
+    fullName: 'Health and Safety Executive UK',
+    country: 'UK',
+    flag: '🇬🇧',
+    color: 'from-blue-500 to-blue-600',
+    baseUrl: 'https://www.hse.gov.uk',
+  },
+  SAFEWORK: {
+    name: 'SafeWork',
+    fullName: 'SafeWork Australia',
+    country: 'AU',
+    flag: '🇦🇺',
+    color: 'from-green-500 to-green-600',
+    baseUrl: 'https://www.safeworkaustralia.gov.au',
+  },
+  CCOHS: {
+    name: 'CCOHS',
+    fullName: 'Canadian Centre for OHS',
+    country: 'CA',
+    flag: '🇨🇦',
+    color: 'from-red-500 to-red-600',
+    baseUrl: 'https://www.ccohs.ca',
+  },
+  // Keep these for sample data display
   AUVA: {
     name: 'AUVA',
     fullName: 'Austrian Accident Insurance',
@@ -40,14 +65,6 @@ const SAFETY_SOURCES = {
     flag: '🇪🇺',
     color: 'from-blue-500 to-blue-600',
     baseUrl: 'https://osha.europa.eu',
-  },
-  OSHA: {
-    name: 'OSHA',
-    fullName: 'US Occupational Safety and Health Administration',
-    country: 'US',
-    flag: '🇺🇸',
-    color: 'from-indigo-500 to-indigo-600',
-    baseUrl: 'https://www.osha.gov',
   },
 }
 

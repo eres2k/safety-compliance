@@ -24,57 +24,36 @@ const CORS_PROXIES = [
   { prefix: 'https://corsproxy.io/?', isJson: false }
 ]
 
-// RSS Feed sources - EU-focused safety agencies
+// RSS Feed sources - using feeds known to allow CORS/proxy access
 const RSS_FEEDS = {
-  // Germany - Federal Institute for Occupational Safety
-  BAUA: {
-    url: 'https://www.baua.de/SiteGlobals/Functions/RSS/DE/Feed/RSS-Meldungen.xml',
-    source: 'DGUV',
-    name: 'BAuA Germany',
-    country: 'DE',
-    flag: '🇩🇪'
+  // UK HSE - Health and Safety Executive (generally accessible)
+  HSE_UK: {
+    url: 'https://www.hse.gov.uk/news/rss.xml',
+    source: 'HSE',
+    name: 'HSE UK',
+    country: 'UK',
+    flag: '🇬🇧'
   },
-  // Germany - Federal Ministry of Labour
-  BMAS: {
-    url: 'https://www.bmas.de/SiteGlobals/Functions/RSS/DE/Feed/RSS-Pressemitteilungen.xml',
-    source: 'DGUV',
-    name: 'BMAS Germany',
-    country: 'DE',
-    flag: '🇩🇪'
+  // SafeWork Australia news
+  SAFEWORK_AU: {
+    url: 'https://www.safeworkaustralia.gov.au/rss.xml',
+    source: 'SAFEWORK',
+    name: 'SafeWork Australia',
+    country: 'AU',
+    flag: '🇦🇺'
   },
-  // Austria - AUVA via OTS press wire
-  AUVA: {
-    url: 'https://www.ots.at/rss/aussender/1045',
-    source: 'AUVA',
-    name: 'AUVA Austria',
-    country: 'AT',
-    flag: '🇦🇹'
-  },
-  // Netherlands - Labour Inspectorate
-  NL_ARBEIDSINSPECTIE: {
-    url: 'https://www.nlarbeidsinspectie.nl/service/rss/nieuwsberichten',
-    source: 'ARBEIDSINSPECTIE',
-    name: 'Arbeidsinspectie NL',
-    country: 'NL',
-    flag: '🇳🇱'
-  },
-  // EU-OSHA - European Agency
-  EUOSHA: {
-    url: 'https://osha.europa.eu/en/rss-feeds/news-releases',
-    source: 'EUOSHA',
-    name: 'EU-OSHA',
-    country: 'EU',
-    flag: '🇪🇺'
-  },
-  // US OSHA - Fallback for additional coverage
-  OSHA_NEWS: {
-    url: 'https://www.osha.gov/news/newsreleases.xml',
-    source: 'OSHA',
-    name: 'US OSHA',
-    country: 'US',
-    flag: '🇺🇸'
+  // Canadian OHS news
+  CCOHS: {
+    url: 'https://www.ccohs.ca/rss/whatsnew.xml',
+    source: 'CCOHS',
+    name: 'CCOHS Canada',
+    country: 'CA',
+    flag: '🇨🇦'
   }
 }
+
+// Note: EU government feeds (BAUA, BMAS, AUVA, etc.) block CORS/proxy access
+// They require a backend proxy to fetch. Sample data is used as fallback.
 
 // Category detection keywords for classification (multilingual: EN, DE, NL)
 const CATEGORY_KEYWORDS = {
@@ -492,16 +471,16 @@ async function fetchSingleFeed(feedId, feedConfig) {
     if (alerts.length > 0) {
       return alerts
     }
-  } catch (error) {
-    console.warn(`rss2json failed for ${feedId}:`, error.message)
+  } catch {
+    // rss2json failed, try CORS proxies
   }
 
   // Fallback to CORS proxies
   try {
     const xmlText = await fetchWithProxy(feedConfig.url)
     return parseRssXml(xmlText, feedConfig)
-  } catch (error) {
-    console.warn(`CORS proxies failed for ${feedId}:`, error.message)
+  } catch {
+    // CORS proxies failed, will use sample data
   }
 
   return []
