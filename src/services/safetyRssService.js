@@ -15,11 +15,13 @@
 const CACHE_KEY = 'safety_rss_cache_v2'
 const CACHE_TTL_MS = 4 * 60 * 60 * 1000 // 4 hours
 
-// CORS proxy options (multiple fallbacks)
+// RSS to JSON API (more reliable than CORS proxies)
+const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url='
+
+// CORS proxy fallbacks (less reliable, used if rss2json fails)
 const CORS_PROXIES = [
   { prefix: 'https://api.allorigins.win/get?url=', isJson: true },
-  { prefix: 'https://corsproxy.io/?', isJson: false },
-  { prefix: 'https://api.codetabs.com/v1/proxy?quest=', isJson: false }
+  { prefix: 'https://corsproxy.io/?', isJson: false }
 ]
 
 // RSS Feed sources - EU-focused safety agencies
@@ -320,12 +322,87 @@ function parseRssXml(xmlText, feedConfig) {
 }
 
 /**
+ * Parse rss2json.com API response into alerts
+ */
+function parseRss2JsonResponse(data, feedConfig) {
+  if (data.status !== 'ok' || !data.items || !Array.isArray(data.items)) {
+    return []
+  }
+
+  const alerts = []
+
+  data.items.forEach((item, index) => {
+    const title = item.title || ''
+    const description = item.description || item.content || ''
+
+    // Clean HTML from description
+    const cleanDescription = description
+      .replace(/<[^>]*>/g, '')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .trim()
+
+    // Parse date
+    let date = new Date().toISOString().split('T')[0]
+    if (item.pubDate) {
+      try {
+        date = new Date(item.pubDate).toISOString().split('T')[0]
+      } catch {
+        // Keep default date
+      }
+    }
+
+    const fullText = `${title} ${cleanDescription}`
+    const category = detectCategory(fullText)
+    const severity = detectSeverity(fullText)
+
+    alerts.push({
+      id: `rss-${feedConfig.source}-${index}-${Date.now()}`,
+      title: title.trim(),
+      summary: cleanDescription.slice(0, 300) + (cleanDescription.length > 300 ? '...' : ''),
+      source: feedConfig.source,
+      sourceUrl: item.link || '',
+      date,
+      severity,
+      category,
+      lessons: extractLessons(fullText, feedConfig),
+      relatedRegulations: [],
+      logistics_relevance: severity === 'critical' ? 'critical' : 'high',
+      isRealIncident: true
+    })
+  })
+
+  return alerts
+}
+
+/**
+ * Fetch RSS feed using rss2json.com API (primary method)
+ */
+async function fetchWithRss2Json(url, feedConfig) {
+  const response = await fetch(RSS2JSON_API + encodeURIComponent(url))
+
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`)
+  }
+
+  const data = await response.json()
+
+  if (data.status !== 'ok') {
+    throw new Error(data.message || 'API returned error status')
+  }
+
+  return parseRss2JsonResponse(data, feedConfig)
+}
+
+/**
  * Check if content looks like valid XML/RSS
  */
 function isValidXml(content) {
   if (!content || typeof content !== 'string') return false
   const trimmed = content.trim()
-  // Check for XML declaration or common RSS/Atom root elements
   return trimmed.startsWith('<?xml') ||
          trimmed.startsWith('<rss') ||
          trimmed.startsWith('<feed') ||
@@ -333,7 +410,7 @@ function isValidXml(content) {
 }
 
 /**
- * Fetch RSS feed with CORS proxy fallbacks
+ * Fetch RSS feed with CORS proxy fallbacks (secondary method)
  */
 async function fetchWithProxy(url) {
   const errors = []
@@ -353,14 +430,12 @@ async function fetchWithProxy(url) {
 
       let content
       if (proxy.isJson) {
-        // allorigins returns JSON with 'contents' field
         const json = await response.json()
         content = json.contents
       } else {
         content = await response.text()
       }
 
-      // Validate that we got XML, not an HTML error page
       if (!isValidXml(content)) {
         errors.push(`${proxy.prefix}: Received HTML instead of XML`)
         continue
@@ -408,7 +483,32 @@ function cacheAlerts(alerts) {
 }
 
 /**
- * Fetch real safety incident alerts from RSS feeds
+ * Fetch a single feed using rss2json first, then CORS proxies as fallback
+ */
+async function fetchSingleFeed(feedId, feedConfig) {
+  // Try rss2json.com first (most reliable)
+  try {
+    const alerts = await fetchWithRss2Json(feedConfig.url, feedConfig)
+    if (alerts.length > 0) {
+      return alerts
+    }
+  } catch (error) {
+    console.warn(`rss2json failed for ${feedId}:`, error.message)
+  }
+
+  // Fallback to CORS proxies
+  try {
+    const xmlText = await fetchWithProxy(feedConfig.url)
+    return parseRssXml(xmlText, feedConfig)
+  } catch (error) {
+    console.warn(`CORS proxies failed for ${feedId}:`, error.message)
+  }
+
+  return []
+}
+
+/**
+ * Fetch safety alerts from RSS feeds
  * Falls back to sample data if feeds are unavailable
  */
 export async function fetchSafetyAlerts() {
@@ -420,16 +520,18 @@ export async function fetchSafetyAlerts() {
 
   const allAlerts = []
 
-  // Fetch from each feed
-  for (const [feedId, feedConfig] of Object.entries(RSS_FEEDS)) {
-    try {
-      const xmlText = await fetchWithProxy(feedConfig.url)
-      const alerts = parseRssXml(xmlText, feedConfig)
-      allAlerts.push(...alerts)
-    } catch (error) {
-      console.warn(`Failed to fetch ${feedId}:`, error.message)
+  // Fetch from each feed (in parallel for speed)
+  const feedPromises = Object.entries(RSS_FEEDS).map(([feedId, feedConfig]) =>
+    fetchSingleFeed(feedId, feedConfig)
+  )
+
+  const results = await Promise.allSettled(feedPromises)
+
+  results.forEach((result) => {
+    if (result.status === 'fulfilled' && result.value.length > 0) {
+      allAlerts.push(...result.value)
     }
-  }
+  })
 
   // Sort by date (newest first)
   allAlerts.sort((a, b) => new Date(b.date) - new Date(a.date))
