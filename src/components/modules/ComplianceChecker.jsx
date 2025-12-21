@@ -7,6 +7,56 @@ import { searchLaws, getAllLawsSync } from '../../services/euLawsDatabase'
 
 const COMPANY_SIZES = ['1-10', '11-50', '51-100', '101-250', '250+']
 
+// Amazon Delivery Station Types
+const STATION_TYPES = {
+  DS: { id: 'DS', icon: '🏢', key: 'deliveryStation' },
+  SC: { id: 'SC', icon: '📦', key: 'sortCenter' },
+  FLEX: { id: 'FLEX', icon: '🚗', key: 'flexStation' },
+  SSD: { id: 'SSD', icon: '⚡', key: 'subSameDay' },
+  RURAL: { id: 'RURAL', icon: '🌾', key: 'ruralStation' }
+}
+
+// Quick Compliance Templates for common scenarios
+const QUICK_TEMPLATES = [
+  { id: 'newLaunch', icon: '🚀', key: 'newStationLaunch', topics: ['riskAssessment', 'safetyTraining', 'firstAid', 'emergencyExits', 'ppeGeneral'] },
+  { id: 'peakSeason', icon: '📈', key: 'peakSeasonReadiness', topics: ['workingHours', 'temporaryWorkers', 'ergonomics', 'workPace', 'firstAid'] },
+  { id: 'pitAudit', icon: '🚜', key: 'pitSafetyAudit', topics: ['forkliftSafety', 'palletJacks', 'pitTraining', 'pedestrianSafety', 'batteryCharging'] },
+  { id: 'driverSafety', icon: '🚚', key: 'driverSafetyCheck', topics: ['vanSafety', 'loadSecuring', 'drivingHours', 'routePlanning', 'customerDelivery'] },
+  { id: 'newHire', icon: '👋', key: 'newHireOnboarding', topics: ['safetyInduction', 'newEmployees', 'ppeGeneral', 'emergencyExits', 'accidentReporting'] },
+  { id: 'winterPrep', icon: '❄️', key: 'winterPreparation', topics: ['floorSafety', 'vanSafety', 'ppeGeneral', 'emergencyExits', 'firstAid'] }
+]
+
+// Seasonal alerts based on current month
+const getSeasonalAlerts = (month) => {
+  const alerts = []
+  // Winter (Nov-Feb)
+  if (month >= 10 || month <= 1) {
+    alerts.push({ id: 'winter', icon: '❄️', key: 'winterHazards', priority: 'high', topics: ['floorSafety', 'vanSafety'] })
+  }
+  // Summer (Jun-Aug)
+  if (month >= 5 && month <= 7) {
+    alerts.push({ id: 'summer', icon: '☀️', key: 'summerHeat', priority: 'high', topics: ['workPace', 'restAreas'] })
+  }
+  // Peak Season (Oct-Dec)
+  if (month >= 9 && month <= 11) {
+    alerts.push({ id: 'peak', icon: '📈', key: 'peakSeasonAlert', priority: 'high', topics: ['workingHours', 'temporaryWorkers', 'ergonomics'] })
+  }
+  // Spring/Fall (transition periods)
+  if ((month >= 2 && month <= 4) || (month >= 8 && month <= 9)) {
+    alerts.push({ id: 'transition', icon: '🍂', key: 'seasonTransition', priority: 'medium', topics: ['floorSafety', 'vanSafety'] })
+  }
+  return alerts
+}
+
+// Smart topic suggestions based on station type
+const STATION_TOPIC_SUGGESTIONS = {
+  DS: ['vanSafety', 'loadSecuring', 'sortationSystems', 'ergonomics', 'workingHours'],
+  SC: ['conveyorSafety', 'sortationSystems', 'forkliftSafety', 'rackingSafety', 'ergonomics'],
+  FLEX: ['vanSafety', 'loadSecuring', 'routePlanning', 'customerDelivery', 'ppeGeneral'],
+  SSD: ['workPace', 'ergonomics', 'vanSafety', 'loadSecuring', 'workingHours'],
+  RURAL: ['vanSafety', 'routePlanning', 'drivingHours', 'customerDelivery', 'firstAid']
+}
+
 // Topic category icons for visual grouping
 const CATEGORY_ICONS = {
   '_category_manual_handling': '📦',
@@ -18,7 +68,23 @@ const CATEGORY_ICONS = {
   '_category_emergency': '🚨',
   '_category_work_org': '⏰',
   '_category_special': '👥',
-  '_category_compliance': '✅'
+  '_category_compliance': '✅',
+  '_category_amazon': '📦'
+}
+
+// Priority badge component
+const PriorityBadge = ({ priority, t }) => {
+  const config = {
+    high: { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', label: t?.complianceChecker?.priorityHigh || 'High' },
+    medium: { bg: 'bg-yellow-100 dark:bg-yellow-900/30', text: 'text-yellow-700 dark:text-yellow-400', label: t?.complianceChecker?.priorityMedium || 'Medium' },
+    low: { bg: 'bg-green-100 dark:bg-green-900/30', text: 'text-green-700 dark:text-green-400', label: t?.complianceChecker?.priorityLow || 'Low' }
+  }
+  const c = config[priority] || config.medium
+  return (
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${c.bg} ${c.text}`}>
+      {c.label}
+    </span>
+  )
 }
 
 // Compliance status indicators
@@ -63,11 +129,41 @@ const ComplianceIndicator = ({ status }) => {
   )
 }
 
+// Compliance History Manager
+const HISTORY_KEY = 'compliance_check_history'
+const MAX_HISTORY = 10
+
+const getComplianceHistory = () => {
+  try {
+    const history = localStorage.getItem(HISTORY_KEY)
+    return history ? JSON.parse(history) : []
+  } catch {
+    return []
+  }
+}
+
+const saveToHistory = (entry) => {
+  try {
+    const history = getComplianceHistory()
+    const newEntry = {
+      ...entry,
+      id: Date.now(),
+      timestamp: new Date().toISOString()
+    }
+    const updated = [newEntry, ...history].slice(0, MAX_HISTORY)
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(updated))
+    return updated
+  } catch {
+    return []
+  }
+}
+
 export function ComplianceChecker({ onBack, onNavigateToLaw }) {
   const { t, framework, currentFrameworkColor } = useApp()
   const { checkCompliance, isLoading } = useAI()
 
   const [companySize, setCompanySize] = useState('')
+  const [stationType, setStationType] = useState('DS')
   const industry = 'Delivery Last Mile Logistics' // Fixed for Amazon MEU WHS
   const [topic, setTopic] = useState('')
   const [result, setResult] = useState('')
@@ -75,6 +171,19 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
   const [copied, setCopied] = useState(false)
   const [activeTab, setActiveTab] = useState('result')
   const [allLaws, setAllLaws] = useState([])
+  const [showTemplates, setShowTemplates] = useState(true)
+  const [showHistory, setShowHistory] = useState(false)
+  const [history, setHistory] = useState([])
+  const [showSuggestions, setShowSuggestions] = useState(true)
+
+  // Get current month for seasonal alerts
+  const currentMonth = new Date().getMonth()
+  const seasonalAlerts = useMemo(() => getSeasonalAlerts(currentMonth), [currentMonth])
+
+  // Get smart suggestions based on station type
+  const smartSuggestions = useMemo(() => {
+    return STATION_TOPIC_SUGGESTIONS[stationType] || STATION_TOPIC_SUGGESTIONS.DS
+  }, [stationType])
 
   // Load all laws for law reference detection
   useEffect(() => {
@@ -82,21 +191,74 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
     setAllLaws(laws)
   }, [framework])
 
+  // Load compliance history
+  useEffect(() => {
+    setHistory(getComplianceHistory())
+  }, [])
+
   const handleCheck = async () => {
     if (!companySize || !topic) {
       return
     }
 
     try {
-      const response = await checkCompliance(companySize, industry, topic)
+      const stationInfo = STATION_TYPES[stationType]
+      const stationLabel = t.complianceChecker?.stationTypes?.[stationInfo.key] || stationType
+      const response = await checkCompliance(companySize, industry, topic, stationType, stationLabel)
       setResult(response)
+
+      // Save to history
+      const newHistory = saveToHistory({
+        companySize,
+        stationType,
+        topic,
+        framework
+      })
+      setHistory(newHistory)
 
       // Find related laws from our database (async)
       const searchResult = await searchLaws(topic, { country: framework, limit: 5 })
       setRelatedLaws(searchResult.results || [])
+
+      // Hide templates after first check
+      setShowTemplates(false)
     } catch (error) {
       setResult(t.api?.error || 'Failed to check compliance')
     }
+  }
+
+  const handleTemplateClick = (template) => {
+    // Set first topic from template
+    if (template.topics.length > 0 && t.topics) {
+      const firstTopicKey = template.topics[0]
+      const topicValue = t.topics[firstTopicKey]
+      if (topicValue) {
+        setTopic(topicValue)
+      }
+    }
+    setShowTemplates(false)
+  }
+
+  const handleSuggestionClick = (suggestionKey) => {
+    if (t.topics && t.topics[suggestionKey]) {
+      setTopic(t.topics[suggestionKey])
+      setShowSuggestions(false)
+    }
+  }
+
+  const handleHistoryClick = (entry) => {
+    setCompanySize(entry.companySize)
+    setStationType(entry.stationType)
+    if (t.topics) {
+      // Find the topic in current translations
+      const topicEntry = Object.entries(t.topics).find(([key, value]) =>
+        value === entry.topic || key === entry.topic
+      )
+      if (topicEntry) {
+        setTopic(topicEntry[1])
+      }
+    }
+    setShowHistory(false)
   }
 
   const handleCopy = () => {
@@ -105,7 +267,7 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  // Build topic options with category grouping
+  // Build topic options with category grouping (including Amazon-specific topics)
   const topicOptions = useMemo(() => {
     const options = []
     let currentCategory = null
@@ -139,6 +301,11 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
     label: `${size} ${t.common.employees}`
   }))
 
+  const stationTypeOptions = Object.entries(STATION_TYPES).map(([key, config]) => ({
+    value: key,
+    label: `${config.icon} ${t.complianceChecker?.stationTypes?.[config.key] || key}`
+  }))
+
   return (
     <div className="animate-fade-in">
       {/* Header */}
@@ -153,9 +320,24 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
           {t.common.back}
         </button>
 
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-whs-success-500/10 dark:bg-whs-success-500/20 rounded-full border border-whs-success-500/20">
-          <div className="w-2 h-2 bg-whs-success-500 rounded-full animate-pulse" />
-          <span className="text-sm font-medium text-whs-success-600 dark:text-whs-success-400">Compliance Tool</span>
+        <div className="flex items-center gap-3">
+          {/* History Button */}
+          <button
+            onClick={() => setShowHistory(!showHistory)}
+            className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-whs-dark-700 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-whs-dark-600 transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {t.complianceChecker?.history || 'History'}
+          </button>
+
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-whs-success-500/10 dark:bg-whs-success-500/20 rounded-full border border-whs-success-500/20">
+            <div className="w-2 h-2 bg-whs-success-500 rounded-full animate-pulse" />
+            <span className="text-sm font-medium text-whs-success-600 dark:text-whs-success-400">
+              {t.complianceChecker?.smartMode || 'Smart Mode'}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -172,16 +354,148 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
               {t.modules.complianceChecker.title}
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
-              Check your workplace safety compliance against {currentFrameworkColor?.lawName || framework} regulations
+              {t.complianceChecker?.smartDescription || `Smart compliance checking for Amazon Delivery Stations - ${currentFrameworkColor?.lawName || framework}`}
             </p>
           </div>
         </div>
       </div>
 
+      {/* Seasonal Alerts */}
+      {seasonalAlerts.length > 0 && (
+        <div className="mb-6 space-y-2">
+          {seasonalAlerts.map(alert => (
+            <div
+              key={alert.id}
+              className={`flex items-center gap-3 p-4 rounded-xl border ${
+                alert.priority === 'high'
+                  ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+                  : 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800'
+              }`}
+            >
+              <span className="text-2xl">{alert.icon}</span>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {t.complianceChecker?.seasonalAlerts?.[alert.key] || alert.key}
+                  </span>
+                  <PriorityBadge priority={alert.priority} t={t} />
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                  {t.complianceChecker?.seasonalAlertDesc?.[alert.key] || 'Review seasonal safety requirements'}
+                </p>
+              </div>
+              <button
+                onClick={() => handleSuggestionClick(alert.topics[0])}
+                className="px-3 py-1.5 bg-white dark:bg-whs-dark-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-whs-dark-600 transition-colors"
+              >
+                {t.complianceChecker?.checkNow || 'Check Now'}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Quick Templates */}
+      {showTemplates && !result && (
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              {t.complianceChecker?.quickTemplates || 'Quick Compliance Templates'}
+            </h3>
+            <button
+              onClick={() => setShowTemplates(false)}
+              className="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              {t.common.close}
+            </button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {QUICK_TEMPLATES.map(template => (
+              <button
+                key={template.id}
+                onClick={() => handleTemplateClick(template)}
+                className="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-600 hover:border-whs-orange-500 dark:hover:border-whs-orange-500 hover:shadow-md transition-all text-left group"
+              >
+                <span className="text-2xl group-hover:scale-110 transition-transform">{template.icon}</span>
+                <div>
+                  <span className="font-medium text-gray-900 dark:text-white block">
+                    {t.complianceChecker?.templates?.[template.key] || template.key}
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {template.topics.length} {t.complianceChecker?.topicsIncluded || 'topics'}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* History Panel */}
+      {showHistory && history.length > 0 && (
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              {t.complianceChecker?.recentChecks || 'Recent Compliance Checks'}
+            </h3>
+            <button
+              onClick={() => setShowHistory(false)}
+              className="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              {t.common.close}
+            </button>
+          </div>
+          <div className="space-y-2">
+            {history.slice(0, 5).map(entry => (
+              <button
+                key={entry.id}
+                onClick={() => handleHistoryClick(entry)}
+                className="w-full flex items-center gap-4 p-3 rounded-xl bg-white dark:bg-whs-dark-800 border border-gray-200 dark:border-whs-dark-600 hover:border-whs-orange-500 dark:hover:border-whs-orange-500 transition-all text-left"
+              >
+                <span className="text-xl">{STATION_TYPES[entry.stationType]?.icon || '🏢'}</span>
+                <div className="flex-1 min-w-0">
+                  <span className="font-medium text-gray-900 dark:text-white block truncate">
+                    {entry.topic}
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {entry.companySize} {t.common.employees} • {entry.stationType} • {new Date(entry.timestamp).toLocaleDateString()}
+                  </span>
+                </div>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Input Form */}
       <Card variant="glass" className="mb-6 animate-fade-in-up">
         <CardContent className="p-6">
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <div className="grid md:grid-cols-3 gap-6 mb-6">
+            {/* Station Type */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                {t.complianceChecker?.stationType || 'Station Type'}
+              </label>
+              <select
+                value={stationType}
+                onChange={(e) => {
+                  setStationType(e.target.value)
+                  setShowSuggestions(true)
+                }}
+                className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-whs-dark-600 bg-white/50 dark:bg-whs-dark-800/50 backdrop-blur-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-whs-orange-500/50 focus:border-whs-orange-500 transition-all"
+              >
+                {stationTypeOptions.map(opt => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Station Size */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 {t.common.stationSize}
@@ -195,6 +509,7 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
               />
             </div>
 
+            {/* Topic */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 {t.common.topic}
@@ -239,6 +554,26 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
             </div>
           </div>
 
+          {/* Smart Suggestions */}
+          {showSuggestions && !topic && (
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t.complianceChecker?.suggestedFor || 'Suggested for'} {STATION_TYPES[stationType]?.icon} {t.complianceChecker?.stationTypes?.[STATION_TYPES[stationType]?.key] || stationType}:
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {smartSuggestions.map(suggestionKey => (
+                  <button
+                    key={suggestionKey}
+                    onClick={() => handleSuggestionClick(suggestionKey)}
+                    className="px-3 py-1.5 rounded-lg bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-400 text-sm font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-900/50 transition-colors"
+                  >
+                    {t.topics?.[suggestionKey] || suggestionKey}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           <Button
             onClick={handleCheck}
             loading={isLoading}
@@ -250,14 +585,14 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
             {isLoading ? (
               <span className="flex items-center gap-2">
                 <LoadingSpinner size="sm" color="white" />
-                Analyzing Compliance...
+                {t.complianceChecker?.analyzing || 'Analyzing Compliance...'}
               </span>
             ) : (
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                Check Compliance
+                {t.complianceChecker?.checkButton || 'Check Compliance'}
               </span>
             )}
           </Button>
@@ -274,7 +609,9 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
                   <LoadingSpinner size="lg" color="orange" />
                 </div>
               </div>
-              <p className="text-gray-600 dark:text-gray-400 font-medium mb-2">Analyzing compliance requirements...</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium mb-2">
+                {t.complianceChecker?.analyzingFor || 'Analyzing compliance for'} {STATION_TYPES[stationType]?.icon} {t.complianceChecker?.stationTypes?.[STATION_TYPES[stationType]?.key] || stationType}...
+              </p>
               <DotsLoading />
             </div>
           </CardContent>
@@ -294,7 +631,7 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
                   : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
               }`}
             >
-              Compliance Report
+              {t.complianceChecker?.complianceReport || 'Compliance Report'}
             </button>
             {relatedLaws.length > 0 && (
               <button
@@ -305,7 +642,7 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
                     : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
               >
-                Related Laws ({relatedLaws.length})
+                {t.common.relatedLaws} ({relatedLaws.length})
               </button>
             )}
           </div>
@@ -316,13 +653,13 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <span className="text-xl">{STATION_TYPES[stationType]?.icon || '🏢'}</span>
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-white">{t.compliance.requirements}</h3>
-                      <p className="text-white/70 text-sm">{industry} • {companySize} employees</p>
+                      <p className="text-white/70 text-sm">
+                        {t.complianceChecker?.stationTypes?.[STATION_TYPES[stationType]?.key] || stationType} • {companySize} {t.common.employees} • {topic}
+                      </p>
                     </div>
                   </div>
                   <Button
@@ -364,7 +701,7 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
           {activeTab === 'laws' && relatedLaws.length > 0 && (
             <div className="space-y-4">
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                Click on any law to view it in the Law Browser
+                {t.complianceChecker?.clickLawToView || 'Click on any law to view it in the Law Browser'}
               </p>
               {relatedLaws.map((law, index) => (
                 <Card
@@ -425,10 +762,10 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-              Ready to Check Compliance
+              {t.complianceChecker?.readyToCheck || 'Ready to Check Compliance'}
             </h3>
             <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto">
-              Select your delivery station size and safety topic above to get compliance guidance based on {currentFrameworkColor?.lawName || framework} regulations.
+              {t.complianceChecker?.emptyStateDesc || `Select your delivery station type, size and safety topic to get smart compliance guidance based on ${currentFrameworkColor?.lawName || framework} regulations.`}
             </p>
           </CardContent>
         </Card>

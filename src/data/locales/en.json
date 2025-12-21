@@ -202,7 +202,19 @@
     "safetyOfficer": "Safety Officer Requirements",
     "inspections": "Workplace Inspections",
     "safetyCommittee": "Safety Committee (ASA)",
-    "regulatoryInspections": "Preparing for Inspections"
+    "regulatoryInspections": "Preparing for Inspections",
+
+    "_category_amazon": "📦 Amazon Delivery Station Operations",
+    "toteHandling": "TOTE Handling & Stacking",
+    "vanLoading": "Van Loading Procedures",
+    "driverBriefing": "Driver Safety Briefings",
+    "otrSafety": "OTR (On-The-Road) Safety",
+    "routeDelivery": "Route Delivery Safety",
+    "packageSortation": "Package Sortation Safety",
+    "inductProcess": "Induct/Stow Process Safety",
+    "pickToBuffer": "Pick to Buffer Operations",
+    "stagingArea": "Staging Area Safety",
+    "returnProcessing": "Returns Processing Safety"
   },
   "documents": {
     "riskAssessment": "Risk Assessment Template",
@@ -247,6 +259,54 @@
     "requirements": "Compliance Requirements",
     "queryPrompt": "What are the requirements for [TOPIC] in a delivery station with [SIZE] employees?",
     "quickTopics": "Quick topics:"
+  },
+  "complianceChecker": {
+    "stationType": "Station Type",
+    "stationTypes": {
+      "deliveryStation": "Delivery Station (DS)",
+      "sortCenter": "Sort Center (SC)",
+      "flexStation": "Flex Station",
+      "subSameDay": "Sub Same Day (SSD)",
+      "ruralStation": "Rural Station"
+    },
+    "smartMode": "Smart Mode",
+    "smartDescription": "Smart compliance checking for Amazon Delivery Stations",
+    "history": "History",
+    "recentChecks": "Recent Compliance Checks",
+    "quickTemplates": "Quick Compliance Templates",
+    "templates": {
+      "newStationLaunch": "New Station Launch",
+      "peakSeasonReadiness": "Peak Season Readiness",
+      "pitSafetyAudit": "PIT Safety Audit",
+      "driverSafetyCheck": "Driver Safety Check",
+      "newHireOnboarding": "New Hire Onboarding",
+      "winterPreparation": "Winter Preparation"
+    },
+    "topicsIncluded": "topics",
+    "seasonalAlerts": {
+      "winterHazards": "Winter Hazards Alert",
+      "summerHeat": "Summer Heat Alert",
+      "peakSeasonAlert": "Peak Season Alert",
+      "seasonTransition": "Seasonal Transition"
+    },
+    "seasonalAlertDesc": {
+      "winterHazards": "Review slip/fall prevention, cold weather PPE, and vehicle safety measures",
+      "summerHeat": "Check heat stress prevention, hydration stations, and rest break compliance",
+      "peakSeasonAlert": "Ensure overtime compliance, temporary worker training, and ergonomic safeguards",
+      "seasonTransition": "Update seasonal risk assessments and weather-related procedures"
+    },
+    "priorityHigh": "High",
+    "priorityMedium": "Medium",
+    "priorityLow": "Low",
+    "checkNow": "Check Now",
+    "suggestedFor": "Suggested for",
+    "analyzing": "Analyzing Compliance...",
+    "analyzingFor": "Analyzing compliance for",
+    "checkButton": "Check Compliance",
+    "complianceReport": "Compliance Report",
+    "clickLawToView": "Click on any law to view it in the Law Browser",
+    "readyToCheck": "Ready to Check Compliance",
+    "emptyStateDesc": "Select your delivery station type, size and safety topic to get smart compliance guidance."
   },
   "complianceCenter": {
     "title": "Compliance Center",

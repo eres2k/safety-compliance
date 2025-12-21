@@ -35,11 +35,11 @@ export function useAI() {
     }
   }, [framework, language])
 
-  const checkCompliance = useCallback(async (companySize, industry, topic) => {
+  const checkCompliance = useCallback(async (companySize, industry, topic, stationType, stationLabel) => {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await aiService.checkCompliance(companySize, industry, topic, framework, language)
+      const response = await aiService.checkCompliance(companySize, industry, topic, framework, language, stationType, stationLabel)
       return response
     } catch (err) {
       setError(err.message)

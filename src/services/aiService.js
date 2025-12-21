@@ -427,31 +427,67 @@ Be concise and use simple language.`
   return normalizeNewlines(response)
 }
 
-export async function checkCompliance(companySize, industry, topic, framework, language) {
-  const prompt = `Provide a compliance checklist for a ${industry} delivery station with ${companySize} employees regarding ${topic}.
+// Station type specific context for enhanced prompts
+const STATION_TYPE_CONTEXT = {
+  DS: 'Delivery Station (DS) - package sortation, driver dispatch, last-mile delivery operations',
+  SC: 'Sort Center (SC) - large-scale package sorting, conveyor systems, high-volume operations',
+  FLEX: 'Flex Station - flexible delivery operations with independent contractors',
+  SSD: 'Sub Same Day (SSD) - ultra-fast delivery operations with high pace requirements',
+  RURAL: 'Rural Delivery Station - remote operations with extended driving routes'
+}
+
+export async function checkCompliance(companySize, industry, topic, framework, language, stationType, stationLabel) {
+  const stationContext = STATION_TYPE_CONTEXT[stationType] || 'Delivery Station'
+
+  const prompt = `You are a workplace health and safety expert specializing in Amazon delivery logistics operations in Europe.
+
+Provide a comprehensive compliance checklist for an Amazon ${stationLabel || stationType} (${stationContext}) with ${companySize} employees regarding "${topic}".
+
+IMPORTANT CONTEXT:
+- This is an Amazon Last Mile Logistics facility
+- Station Type: ${stationLabel || stationType}
+- Focus on practical, actionable requirements specific to delivery station operations
+- Consider common activities: package handling, van loading/unloading, sortation, driver briefings, PIT operations
 
 Format your response as readable text with these sections:
 
 📋 REQUIREMENTS
 - List each requirement with its legal citation (e.g., "§ X.Y")
 - Include brief description of what's required
+- Highlight requirements specific to ${stationLabel || stationType} operations
+
+🏢 STATION-SPECIFIC CONSIDERATIONS
+- List requirements specific to ${stationLabel || stationType} type operations
+- Consider peak season implications if relevant
+- Include driver and associate-specific requirements
 
 📄 REQUIRED DOCUMENTATION
 - List all documents that must be maintained
+- Include inspection logs, training records, risk assessments
 
 👥 PERSONNEL REQUIREMENTS
 - List any required safety roles or certifications
+- Include PIT operator certifications if relevant
+- Safety representatives, first aiders, fire wardens
 
 ⏰ DEADLINES & FREQUENCIES
 - List recurring tasks and their frequencies
+- Training renewals, equipment inspections, audits
+
+⚠️ PRIORITIES & RISK LEVELS
+- HIGH PRIORITY: Immediate safety requirements
+- MEDIUM PRIORITY: Standard compliance items
+- LOW PRIORITY: Best practice recommendations
 
 ⚠️ PENALTIES FOR NON-COMPLIANCE
 - List potential consequences
+- Include fine ranges where applicable
 
 ✅ IMPLEMENTATION STEPS
 - List actionable steps to achieve compliance
+- Prioritize by urgency and impact
 
-Be concise and practical. Use bullet points. Include specific legal citations.`
+Be concise and practical. Use bullet points. Include specific legal citations from ${FRAMEWORK_CONTEXT[framework]}.`
 
   const response = await generateAIResponse(prompt, framework, language)
   return normalizeNewlines(response)
