@@ -3162,6 +3162,15 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                                                       onLawReferenceClick={handleLawReferenceClick}
                                                     />
                                                   )}
+                                                  renderDuring={(text) => (
+                                                    <FormattedText
+                                                      text={text}
+                                                      searchTerm={contentSearchTerm}
+                                                      crosslinks={whsCrosslinks}
+                                                      onCrosslinkClick={handleCrosslinkClick}
+                                                      onLawReferenceClick={handleLawReferenceClick}
+                                                    />
+                                                  )}
                                                 />
                                               ) : (
                                                 /* Original content when no translation */

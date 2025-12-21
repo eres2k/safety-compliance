@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
+import { fetchSafetyAlerts, clearSafetyAlertsCache } from '../../services/safetyRssService'
 
 /**
  * LessonsLearnedFeed - Public safety alerts and accident lessons
- * Integrates with EU safety agencies for real-time updates
+ * Fetches real incident data from safety agency RSS feeds (OSHA, HSE)
+ * Falls back to sample data when feeds are unavailable
  */
 
 // Safety alert sources configuration
@@ -38,6 +40,14 @@ const SAFETY_SOURCES = {
     flag: '🇪🇺',
     color: 'from-blue-500 to-blue-600',
     baseUrl: 'https://osha.europa.eu',
+  },
+  OSHA: {
+    name: 'OSHA',
+    fullName: 'US Occupational Safety and Health Administration',
+    country: 'US',
+    flag: '🇺🇸',
+    color: 'from-indigo-500 to-indigo-600',
+    baseUrl: 'https://www.osha.gov',
   },
 }
 
@@ -231,6 +241,34 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
   const [selectedSeverity, setSelectedSeverity] = useState(null)
   const [expandedAlert, setExpandedAlert] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [dataSource, setDataSource] = useState('sample') // 'live', 'cached', or 'sample'
+  const [lastUpdated, setLastUpdated] = useState(null)
+
+  // Fetch real incidents from RSS feeds on mount
+  useEffect(() => {
+    const loadAlerts = async () => {
+      setIsLoading(true)
+      try {
+        const { alerts: rssAlerts, fromCache } = await fetchSafetyAlerts()
+        if (rssAlerts && rssAlerts.length > 0) {
+          setAlerts(rssAlerts)
+          setDataSource(fromCache ? 'cached' : 'live')
+          setLastUpdated(new Date())
+        } else {
+          // Fall back to sample data
+          setAlerts(SAMPLE_ALERTS)
+          setDataSource('sample')
+        }
+      } catch (error) {
+        console.warn('Failed to fetch RSS alerts, using sample data:', error)
+        setAlerts(SAMPLE_ALERTS)
+        setDataSource('sample')
+      }
+      setIsLoading(false)
+    }
+
+    loadAlerts()
+  }, [])
 
   // Filter alerts
   const filteredAlerts = alerts.filter(alert => {
@@ -239,13 +277,27 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
     return true
   })
 
-  // Refresh alerts (simulated - in production would fetch from APIs)
+  // Refresh alerts from RSS feeds
   const refreshAlerts = useCallback(async () => {
     setIsLoading(true)
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    // In production, this would scrape/fetch from AUVA, DGUV, Arbeidsinspectie, EU-OSHA
-    setAlerts(SAMPLE_ALERTS)
+    try {
+      // Clear cache to force fresh fetch
+      clearSafetyAlertsCache()
+      const { alerts: rssAlerts } = await fetchSafetyAlerts()
+      if (rssAlerts && rssAlerts.length > 0) {
+        setAlerts(rssAlerts)
+        setDataSource('live')
+        setLastUpdated(new Date())
+      } else {
+        // Fall back to sample data
+        setAlerts(SAMPLE_ALERTS)
+        setDataSource('sample')
+      }
+    } catch (error) {
+      console.warn('Failed to refresh alerts:', error)
+      setAlerts(SAMPLE_ALERTS)
+      setDataSource('sample')
+    }
     setIsLoading(false)
   }, [])
 
@@ -349,8 +401,29 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
               <div className="mt-4 px-3 py-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg flex items-center gap-2">
                 <span>🚜</span>
                 <span className="text-sm text-amber-700 dark:text-amber-300">
-                  <strong>Amazon Logistics Relevance:</strong> {alert.logistics_relevance.toUpperCase()}
+                  <strong>Logistics Relevance:</strong> {alert.logistics_relevance.toUpperCase()}
                 </span>
+              </div>
+            )}
+
+            {/* Source Link for real incidents */}
+            {alert.sourceUrl && alert.isRealIncident && (
+              <div className="mt-3 flex items-center justify-between">
+                <span className="text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
+                  <span>✓</span> Real incident from {source?.name || alert.source}
+                </span>
+                <a
+                  href={alert.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-whs-orange-600 dark:text-whs-orange-400 hover:underline flex items-center gap-1"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  View Source
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
               </div>
             )}
           </div>
@@ -368,7 +441,7 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
             <span className="text-3xl">⚠️</span>
             <div>
               <h3 className="text-lg font-bold text-white">Safety Lessons Learned</h3>
-              <p className="text-sm text-red-100">Weekly alerts from EU safety agencies</p>
+              <p className="text-sm text-red-100">Real incident reports from safety agencies worldwide</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -484,11 +557,27 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
 
       {/* Footer */}
       <div className="px-4 py-3 border-t border-gray-200 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-900 flex items-center justify-between">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          Showing {filteredAlerts.length} of {alerts.length} safety alerts
-        </p>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-gray-500 dark:text-gray-400">Updated: {formatRelativeDate(new Date().toISOString().split('T')[0])}</span>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            Showing {filteredAlerts.length} of {alerts.length} alerts
+          </p>
+          {/* Data source indicator */}
+          <span className={`text-xs px-2 py-0.5 rounded-full ${
+            dataSource === 'live'
+              ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300'
+              : dataSource === 'cached'
+              ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+          }`}>
+            {dataSource === 'live' ? '🔴 Live Feed' : dataSource === 'cached' ? '💾 Cached' : '📋 Sample Data'}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          {lastUpdated && (
+            <span className="text-xs text-gray-500 dark:text-gray-400">
+              Updated: {formatRelativeDate(lastUpdated.toISOString().split('T')[0])}
+            </span>
+          )}
         </div>
       </div>
     </div>
