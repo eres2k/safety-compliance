@@ -2815,8 +2815,13 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                         e.stopPropagation()
                                         openComparisonModal('multi', section)
                                       }}
-                                      className="flex-1 flex items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-md hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
-                                      title={t.common?.compareAllCountries || "Compare this section across all 3 countries"}
+                                      disabled={rateLimitInfo.isLimited}
+                                      className={`flex-1 flex items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md transition-colors ${
+                                        rateLimitInfo.isLimited
+                                          ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                                          : 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900/50'
+                                      }`}
+                                      title={rateLimitInfo.isLimited ? `${t.common?.rateLimited || 'Please wait'} (${rateLimitInfo.remainingSeconds}s)` : (t.common?.compareAllCountries || "Compare this section across all 3 countries")}
                                     >
                                       <span>🌍</span>
                                       <span>{t.common?.compareAll || 'All'}</span>
@@ -2827,8 +2832,13 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                         setCrossBorderSection(section)
                                         openComparisonModal('cross', section)
                                       }}
-                                      className="flex-1 flex items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-md hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors"
-                                      title={t.common?.compareTwoCountries || "Compare this section with another country"}
+                                      disabled={rateLimitInfo.isLimited}
+                                      className={`flex-1 flex items-center justify-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md transition-colors ${
+                                        rateLimitInfo.isLimited
+                                          ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'
+                                          : 'bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/50'
+                                      }`}
+                                      title={rateLimitInfo.isLimited ? `${t.common?.rateLimited || 'Please wait'} (${rateLimitInfo.remainingSeconds}s)` : (t.common?.compareTwoCountries || "Compare this section with another country")}
                                     >
                                       <span>↔️</span>
                                       <span>{t.common?.compare || 'Compare'}</span>
@@ -3268,6 +3278,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                             currentLevel={sectionComplexityLevels[section.id] || 'legal'}
                                             onLevelChange={(level) => handleComplexityChange(level, section)}
                                             isLoading={simplifyLoading && activeSimplifySectionId === section.id}
+                                            disabled={rateLimitInfo.isLimited}
                                             t={t}
                                           />
 
@@ -3389,12 +3400,13 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                         <div className="mt-4 flex items-center gap-2">
                                           <button
                                             onClick={() => handleGenerateFlowchart(section)}
-                                            disabled={flowchartLoading && flowchartSectionId === section.id}
+                                            disabled={(flowchartLoading && flowchartSectionId === section.id) || rateLimitInfo.isLimited}
                                             className={`inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
                                               flowchartSectionId === section.id && flowchartData
                                                 ? 'bg-whs-orange-500 text-white'
                                                 : 'bg-whs-orange-50 dark:bg-whs-orange-900/20 text-whs-orange-700 dark:text-whs-orange-300 hover:bg-whs-orange-100 dark:hover:bg-whs-orange-900/30'
                                             } disabled:opacity-50 disabled:cursor-not-allowed`}
+                                            title={rateLimitInfo.isLimited ? `${t.common?.rateLimited || 'Please wait'} (${rateLimitInfo.remainingSeconds}s)` : (flowchartSectionId === section.id && flowchartData ? (t.common?.hideFlowchart || 'Hide Flowchart') : (t.common?.visualize || 'Visualize'))}
                                           >
                                             {flowchartLoading && flowchartSectionId === section.id ? (
                                               <>
