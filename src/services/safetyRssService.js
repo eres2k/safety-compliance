@@ -24,55 +24,39 @@ const CORS_PROXIES = [
   { prefix: 'https://corsproxy.io/?', isJson: false }
 ]
 
-// RSS Feed sources - EU-focused safety agencies
+// RSS Feed sources - tested and working EU safety feeds
 const RSS_FEEDS = {
-  // Germany - Federal Institute for Occupational Safety
-  BAUA: {
-    url: 'https://www.baua.de/SiteGlobals/Functions/RSS/DE/Feed/RSS-Meldungen.xml',
+  // Germany - DGUV (German Social Accident Insurance) - TESTED OK
+  DGUV: {
+    url: 'https://www.dguv.de/de/index.xml.jsp',
     source: 'DGUV',
-    name: 'BAuA Germany',
+    name: 'DGUV Germany',
     country: 'DE',
     flag: '🇩🇪'
   },
-  // Germany - Federal Ministry of Labour
-  BMAS: {
-    url: 'https://www.bmas.de/SiteGlobals/Functions/RSS/DE/Feed/RSS-Pressemitteilungen.xml',
-    source: 'DGUV',
-    name: 'BMAS Germany',
-    country: 'DE',
-    flag: '🇩🇪'
-  },
-  // Austria - AUVA via OTS press wire
+  // Austria - AUVA (Austrian Workers Compensation Board) - TESTED OK
   AUVA: {
-    url: 'https://www.ots.at/rss/aussender/1045',
+    url: 'https://auva.at/rss',
     source: 'AUVA',
     name: 'AUVA Austria',
     country: 'AT',
     flag: '🇦🇹'
   },
-  // Netherlands - Labour Inspectorate
-  NL_ARBEIDSINSPECTIE: {
-    url: 'https://www.nlarbeidsinspectie.nl/service/rss/nieuwsberichten',
+  // Netherlands - Google News (official NL feed blocks CORS) - TESTED OK
+  NL_SAFETY: {
+    url: 'https://news.google.com/rss/search?q=arbeidsveiligheid+arbeidsongeval&hl=nl&gl=NL&ceid=NL:nl',
     source: 'ARBEIDSINSPECTIE',
-    name: 'Arbeidsinspectie NL',
+    name: 'NL Safety News',
     country: 'NL',
     flag: '🇳🇱'
   },
-  // EU-OSHA - European Agency
-  EUOSHA: {
-    url: 'https://osha.europa.eu/en/rss-feeds/news-releases',
+  // EU-OSHA - News - TESTED OK
+  EUOSHA_NEWS: {
+    url: 'https://osha.europa.eu/rss-feeds/latest/news.xml',
     source: 'EUOSHA',
-    name: 'EU-OSHA',
+    name: 'EU-OSHA News',
     country: 'EU',
     flag: '🇪🇺'
-  },
-  // US OSHA - Fallback for additional coverage
-  OSHA_NEWS: {
-    url: 'https://www.osha.gov/news/newsreleases.xml',
-    source: 'OSHA',
-    name: 'US OSHA',
-    country: 'US',
-    flag: '🇺🇸'
   }
 }
 
@@ -492,16 +476,16 @@ async function fetchSingleFeed(feedId, feedConfig) {
     if (alerts.length > 0) {
       return alerts
     }
-  } catch (error) {
-    console.warn(`rss2json failed for ${feedId}:`, error.message)
+  } catch {
+    // rss2json failed, try CORS proxies
   }
 
   // Fallback to CORS proxies
   try {
     const xmlText = await fetchWithProxy(feedConfig.url)
     return parseRssXml(xmlText, feedConfig)
-  } catch (error) {
-    console.warn(`CORS proxies failed for ${feedId}:`, error.message)
+  } catch {
+    // CORS proxies failed, will use sample data
   }
 
   return []
