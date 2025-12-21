@@ -1,0 +1,1902 @@
+{
+  "metadata": {
+    "country": "AT",
+    "type": "merkblaetter",
+    "generated_at": "2025-12-21T16:42:32.547253",
+    "document_count": 33,
+    "scraper_version": "8.0.0"
+  },
+  "documents": [
+    {
+      "id": "a347bbccd9b78e11",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA Jetzt lesen",
+      "title": "Jetzt lesen",
+      "title_en": "Jetzt lesen",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "AUVA publication: Jetzt lesen",
+      "full_text": "AUVA publication: Jetzt lesen",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/2mgdgxus/auva-qualitaetsbericht-2024.pdf",
+        "authority": "AUVA",
+        "title": "Jetzt lesen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_Jetzt_lesen_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/2mgdgxus/auva-qualitaetsbericht-2024.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_Jetzt_lesen_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:01.405551",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M",
+        "description": "AUVA publication: Jetzt lesen",
+        "filename": "at_AUVA_Jetzt_lesen_merkblatt.pdf",
+        "size_bytes": 5807982,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "f40f7e6e49b5bfe46ee00793d1e7b469"
+    },
+    {
+      "id": "0cd6b9d5e09ae6b0",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 012",
+      "title": "M.plus 012 - Sommerliche Hitze - Präventionsmaßnahmen",
+      "title_en": "Summer Heat - Prevention Measures",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Prevention measures for summer heat at the workplace",
+      "full_text": "Prevention measures for summer heat at the workplace",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/n4kpeyhq/mplus_012_sommerliche_hitze_praeventionsmassnahmen_2023-07_.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 012 - Sommerliche Hitze - Präventionsmaßnahmen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_012_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/n4kpeyhq/mplus_012_sommerliche_hitze_praeventionsmassnahmen_2023-07_.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_012_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:02.191741",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Prevention measures for summer heat at the workplace",
+        "filename": "at_AUVA_M_plus_012_merkblatt.pdf",
+        "size_bytes": 667581,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "98f52b9eb32d49930ff134e00a185e00"
+    },
+    {
+      "id": "74476c933dfb6e1a",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 019",
+      "title": "M.plus 019 - Gesetzliche Bestimmungen für Lärmbetriebe",
+      "title_en": "Legal Regulations for Noisy Workplaces",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Legal requirements for noise control in workplaces",
+      "full_text": "Legal requirements for noise control in workplaces",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/v5sbtwcv/mplus_019_gesetzliche_bestimmungen_fuer_laermbetriebe_bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 019 - Gesetzliche Bestimmungen für Lärmbetriebe",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_019_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/v5sbtwcv/mplus_019_gesetzliche_bestimmungen_fuer_laermbetriebe_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_019_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:03.030592",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Legal requirements for noise control in workplaces",
+        "filename": "at_AUVA_M_plus_019_merkblatt.pdf",
+        "size_bytes": 1755196,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "4b1b4906d0d3921ce13623c816e55bfd"
+    },
+    {
+      "id": "dbb55100b05c6725",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 022",
+      "title": "M.plus 022 - Telearbeitsplätze",
+      "title_en": "Telework/Remote Workplaces",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Safety guidelines for remote work and home offices",
+      "full_text": "Safety guidelines for remote work and home offices",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/iswlvmmn/mplus-022_telearbeitsplaetze_bf_2504.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 022 - Telearbeitsplätze",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_022_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/iswlvmmn/mplus-022_telearbeitsplaetze_bf_2504.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_022_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:03.856451",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Safety guidelines for remote work and home offices",
+        "filename": "at_AUVA_M_plus_022_merkblatt.pdf",
+        "size_bytes": 1325929,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "09265b165b061a6a8c47c318ff3ac6b6"
+    },
+    {
+      "id": "c10edf80e5266058",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 040",
+      "title": "M.plus 040 - Arbeitsplatzevaluierung",
+      "title_en": "Workplace Evaluation",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Comprehensive guide for workplace hazard evaluation",
+      "full_text": "Comprehensive guide for workplace hazard evaluation",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/zzcjdtxk/mplus_040_arbeitsplatzevaluierung_bf_06-2022.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 040 - Arbeitsplatzevaluierung",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/zzcjdtxk/mplus_040_arbeitsplatzevaluierung_bf_06-2022.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:04.601526",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "workplace_design",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Comprehensive guide for workplace hazard evaluation",
+        "filename": "at_AUVA_M_plus_040_merkblatt.pdf",
+        "size_bytes": 1476514,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "5c7e73cccb489bf33cce7bad6ed321cd"
+    },
+    {
+      "id": "1bebf036c5904ed5",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 040.E1",
+      "title": "M.plus 040.E1 - Evaluierung von mechanischen Gefährdungen",
+      "title_en": "Evaluation of Mechanical Hazards",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Evaluation of mechanical hazards in the workplace",
+      "full_text": "Evaluation of mechanical hazards in the workplace",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/mcnkpcmc/mplus_040e1_evaluierung_von_mechanischen_gefaehrdungen_202.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 040.E1 - Evaluierung von mechanischen Gefährdungen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E1_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/mcnkpcmc/mplus_040e1_evaluierung_von_mechanischen_gefaehrdungen_202.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E1_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:05.388968",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Evaluation of mechanical hazards in the workplace",
+        "filename": "at_AUVA_M_plus_040_E1_merkblatt.pdf",
+        "size_bytes": 1820051,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "cd8a98f7f72c7985f2af15e6d8d0df81"
+    },
+    {
+      "id": "312d90a1820fbb80",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 040.E2",
+      "title": "M.plus 040.E2 - Evaluierung von Sturz- und Absturzgefahren",
+      "title_en": "Evaluation of Fall Hazards",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Evaluation of fall and trip hazards",
+      "full_text": "Evaluation of fall and trip hazards",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/jvuf53wp/mplus_040e2_evaluierung_sturz-und_absturzgefahren_personen.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 040.E2 - Evaluierung von Sturz- und Absturzgefahren",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E2_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/jvuf53wp/mplus_040e2_evaluierung_sturz-und_absturzgefahren_personen.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E2_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:06.167387",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Evaluation of fall and trip hazards",
+        "filename": "at_AUVA_M_plus_040_E2_merkblatt.pdf",
+        "size_bytes": 1787078,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "6b1460c240d051db7f98ad503297e0ea"
+    },
+    {
+      "id": "68a4cd0445a2207f",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 040.E4",
+      "title": "M.plus 040.E4 - Evaluierung chemischer Arbeitsstoffe",
+      "title_en": "Evaluation of Chemical Substances",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Evaluation of chemical workplace hazards",
+      "full_text": "Evaluation of chemical workplace hazards",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/ry0gy2cs/mplus-040e4-chemische-arbeitsstoffe-bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 040.E4 - Evaluierung chemischer Arbeitsstoffe",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E4_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/ry0gy2cs/mplus-040e4-chemische-arbeitsstoffe-bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E4_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:06.896354",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "high",
+          "match_count": 2
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Evaluation of chemical workplace hazards",
+        "filename": "at_AUVA_M_plus_040_E4_merkblatt.pdf",
+        "size_bytes": 1414953,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "02a353d7714cb8c42ac5a2c693292708"
+    },
+    {
+      "id": "df4c3cffa3bee9d4",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 040.E8",
+      "title": "M.plus 040.E8 - Evaluierung von Lärmbelastungen",
+      "title_en": "Evaluation of Noise Exposure",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Evaluation of noise exposure at work",
+      "full_text": "Evaluation of noise exposure at work",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/vs0j2fpc/mplus_040e8_evaluierung_von_laermbelastung_bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 040.E8 - Evaluierung von Lärmbelastungen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E8_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/vs0j2fpc/mplus_040e8_evaluierung_von_laermbelastung_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E8_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:07.612722",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ergonomics",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Evaluation of noise exposure at work",
+        "filename": "at_AUVA_M_plus_040_E8_merkblatt.pdf",
+        "size_bytes": 1810267,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "b5e71600b8b3c1345bb9567f08ef87df"
+    },
+    {
+      "id": "630e399651c54aad",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 040.E17",
+      "title": "M.plus 040.E17 - Evaluierung von Büro- und Bildschirmarbeitsplätzen",
+      "title_en": "Evaluation of Office and Screen Workplaces",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Evaluation of office and computer workstations",
+      "full_text": "Evaluation of office and computer workstations",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/ghlabert/mplus_040e17_evaluierung_buero_bildschirmarbeitsplaetze_20.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 040.E17 - Evaluierung von Büro- und Bildschirmarbeitsplätzen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E17_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/ghlabert/mplus_040e17_evaluierung_buero_bildschirmarbeitsplaetze_20.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E17_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:08.278407",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ergonomics",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Evaluation of office and computer workstations",
+        "filename": "at_AUVA_M_plus_040_E17_merkblatt.pdf",
+        "size_bytes": 481664,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "a7c54e815b66decd267f97eaaa9d62fe"
+    },
+    {
+      "id": "e765e0489a51f07b",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 070",
+      "title": "M.plus 070 - Unterweisung",
+      "title_en": "Safety Training/Instruction",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Guidelines for workplace safety training and instruction",
+      "full_text": "Guidelines for workplace safety training and instruction",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/jyvn53st/mplus_070_unterweisung_0725_bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 070 - Unterweisung",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_070_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/jyvn53st/mplus_070_unterweisung_0725_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_070_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:09.011632",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "training",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Guidelines for workplace safety training and instruction",
+        "filename": "at_AUVA_M_plus_070_merkblatt.pdf",
+        "size_bytes": 1553688,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "f4966cba20ba807df2850d6bdf6bfd3f"
+    },
+    {
+      "id": "38d3528bc31cc7ad",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 302",
+      "title": "M.plus 302 - Gefährliche Arbeitsstoffe - Information und Unterweisung",
+      "title_en": "Hazardous Substances - Information and Training",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Information and training for handling hazardous substances",
+      "full_text": "Information and training for handling hazardous substances",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/cxskvf0b/mplus_302_gefaehrliche_arbeitsstoffe_information_und_unterw.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 302 - Gefährliche Arbeitsstoffe - Information und Unterweisung",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_302_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/cxskvf0b/mplus_302_gefaehrliche_arbeitsstoffe_information_und_unterw.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_302_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:10.025376",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "high",
+          "match_count": 2
+        },
+        {
+          "id": "training",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Information and training for handling hazardous substances",
+        "filename": "at_AUVA_M_plus_302_merkblatt.pdf",
+        "size_bytes": 5993250,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "dfd2e349c8a2f0763b5075e8f946ebab"
+    },
+    {
+      "id": "50bc68ee958a5ef6",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 330",
+      "title": "M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
+      "title_en": "Storage of Hazardous Substances",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Guidelines for safe storage of hazardous substances",
+      "full_text": "Guidelines for safe storage of hazardous substances",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 330 - Lagerung von gefährlichen Arbeitsstoffen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_330_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/ab1lkldo/mplus_330_lagerung-von-gefaehrlichen-arbeitsstoffen_bf_2511.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_330_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:11.402124",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "high",
+          "match_count": 3
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Guidelines for safe storage of hazardous substances",
+        "filename": "at_AUVA_M_plus_330_merkblatt.pdf",
+        "size_bytes": 2101805,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "6febe14371f35c2d676890fabb9d7983"
+    },
+    {
+      "id": "9c16c3942edeebbb",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 340.2",
+      "title": "M.plus 340.2 - Krebserzeugende Arbeitsstoffe in Kunststoffspritzgießereien",
+      "title_en": "Carcinogenic Substances in Plastic Injection Molding",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Safety for carcinogenic substances in plastic manufacturing",
+      "full_text": "Safety for carcinogenic substances in plastic manufacturing",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/nodjy2jp/mplus_3402_krebserzeugende_arbeitsstoffe_kunststoffspritzg.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 340.2 - Krebserzeugende Arbeitsstoffe in Kunststoffspritzgießereien",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_340_2_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/nodjy2jp/mplus_3402_krebserzeugende_arbeitsstoffe_kunststoffspritzg.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_340_2_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:12.169622",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Safety for carcinogenic substances in plastic manufacturing",
+        "filename": "at_AUVA_M_plus_340_2_merkblatt.pdf",
+        "size_bytes": 2310413,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "8303e43eae2e948abd6ff9dc6b459a49"
+    },
+    {
+      "id": "9a7dd2750047f5f5",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 340.7",
+      "title": "M.plus 340.7 - Gesundheitsgefährdende Stoffe in öffentlichen Apotheken",
+      "title_en": "Hazardous Substances in Public Pharmacies",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Safety for handling hazardous substances in pharmacies",
+      "full_text": "Safety for handling hazardous substances in pharmacies",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/siqp5rqv/mplus_3407_gesundheitsgefaehrdende_stoffe_in_oeffentlichen.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 340.7 - Gesundheitsgefährdende Stoffe in öffentlichen Apotheken",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_340_7_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/siqp5rqv/mplus_3407_gesundheitsgefaehrdende_stoffe_in_oeffentlichen.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_340_7_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:13.062364",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Safety for handling hazardous substances in pharmacies",
+        "filename": "at_AUVA_M_plus_340_7_merkblatt.pdf",
+        "size_bytes": 4162999,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "0876006ab944e4361a379ab31937f117"
+    },
+    {
+      "id": "43643a802603ff47",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 301",
+      "title": "M.plus 301 - Explosionsschutz",
+      "title_en": "Explosion Protection",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Explosion protection in the workplace",
+      "full_text": "Explosion protection in the workplace",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/zhxfgjcu/mplus_301_explosionsschutz_bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 301 - Explosionsschutz",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_301_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/zhxfgjcu/mplus_301_explosionsschutz_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_301_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:13.865571",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ppe",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Explosion protection in the workplace",
+        "filename": "at_AUVA_M_plus_301_merkblatt.pdf",
+        "size_bytes": 1460509,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "bcc34c42ff38a7c55a6187b01e81d78e"
+    },
+    {
+      "id": "a53c69b1701e48be",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 361",
+      "title": "M.plus 361 - Musterbetriebsanweisung Ergänzung",
+      "title_en": "Sample Operating Instructions Supplement",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Sample operating instructions for hazardous substances",
+      "full_text": "Sample operating instructions for hazardous substances",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/a2km3njh/mplus_361_ergaenzung_4_musterbetriebsanweisung_2023_bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 361 - Musterbetriebsanweisung Ergänzung",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_361_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/a2km3njh/mplus_361_ergaenzung_4_musterbetriebsanweisung_2023_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_361_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:14.596945",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Sample operating instructions for hazardous substances",
+        "filename": "at_AUVA_M_plus_361_merkblatt.pdf",
+        "size_bytes": 192547,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "0b842f08bb4a4111f9672ecfa088ac4d"
+    },
+    {
+      "id": "2edf11bc4603d45a",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 369",
+      "title": "M.plus 369 - Kühlschmierstoffe",
+      "title_en": "Cooling Lubricants",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Safe handling of cooling lubricants in machining",
+      "full_text": "Safe handling of cooling lubricants in machining",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/fkmeiimb/mplus-369-kuehlschmierstoffe-bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 369 - Kühlschmierstoffe",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_369_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/fkmeiimb/mplus-369-kuehlschmierstoffe-bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_369_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:15.345851",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Safe handling of cooling lubricants in machining",
+        "filename": "at_AUVA_M_plus_369_merkblatt.pdf",
+        "size_bytes": 1522891,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "211034c6ba867558617372225be07db0"
+    },
+    {
+      "id": "bfd2f10ed6b2f63b",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 700",
+      "title": "M.plus 700 - Gehörschutz",
+      "title_en": "Hearing Protection",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Selection and use of hearing protection",
+      "full_text": "Selection and use of hearing protection",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/cjwjl21s/mplus-700-gehoerschutz-bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 700 - Gehörschutz",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_700_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/cjwjl21s/mplus-700-gehoerschutz-bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_700_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:17.422679",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ppe",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Selection and use of hearing protection",
+        "filename": "at_AUVA_M_plus_700_merkblatt.pdf",
+        "size_bytes": 3329721,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "80d6a7b46b4edee4fcc866df9e7a9d5c"
+    },
+    {
+      "id": "f14630c9f1d0cfd9",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 801",
+      "title": "M.plus 801 - Fahrradbotendienste",
+      "title_en": "Bicycle Courier Services",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Safety for bicycle courier services",
+      "full_text": "Safety for bicycle courier services",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/nrljnr11/mplus_801_fahrradbotendienste_2023-02_bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 801 - Fahrradbotendienste",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_801_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/nrljnr11/mplus_801_fahrradbotendienste_2023-02_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_801_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:18.989582",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Safety for bicycle courier services",
+        "filename": "at_AUVA_M_plus_801_merkblatt.pdf",
+        "size_bytes": 1745532,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "7ff70bae9a1905b4ca69128ed2b5acaa"
+    },
+    {
+      "id": "2de2deea63700a2c",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA E 14",
+      "title": "E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)",
+      "title_en": "Evaluation of Psychological Stress (ABS Group Method)",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Psychological stress evaluation using ABS group method",
+      "full_text": "Psychological stress evaluation using ABS group method",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/1klpjgis/e_14_evaluierung_psychischer_belastungen_abs_bf.pdf",
+        "authority": "AUVA",
+        "title": "E 14 - Evaluierung psychischer Belastungen (ABS Gruppe)",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_14_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/1klpjgis/e_14_evaluierung_psychischer_belastungen_abs_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_14_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:19.717707",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ergonomics",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "E",
+        "description": "Psychological stress evaluation using ABS group method",
+        "filename": "at_AUVA_E_14_merkblatt.pdf",
+        "size_bytes": 1629312,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "f4f6b6f38f3358de769be72e0f4382ba"
+    },
+    {
+      "id": "df20fb2d02979ff1",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA E 24 EVALOG",
+      "title": "E 24 EVALOG - Evaluierung psychischer Belastung im Dialog",
+      "title_en": "EVALOG - Psychological Stress Evaluation through Dialogue",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Comprehensive psychological stress evaluation guide",
+      "full_text": "Comprehensive psychological stress evaluation guide",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/gybkl0hm/e_24_evalog_evaluierung_psychischer_belastung_im_dialog_bf.pdf",
+        "authority": "AUVA",
+        "title": "E 24 EVALOG - Evaluierung psychischer Belastung im Dialog",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_24_EVALOG_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/gybkl0hm/e_24_evalog_evaluierung_psychischer_belastung_im_dialog_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_24_EVALOG_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:21.154677",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ergonomics",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "E",
+        "description": "Comprehensive psychological stress evaluation guide",
+        "filename": "at_AUVA_E_24_EVALOG_merkblatt.pdf",
+        "size_bytes": 9134807,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "620112db9fbfe64b4b6162249ef2f450"
+    },
+    {
+      "id": "ec2143f338fd714e",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA E 13",
+      "title": "E 13 - Evaluierung physischer Belastungen",
+      "title_en": "Evaluation of Physical Stress",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Physical ergonomic stress evaluation",
+      "full_text": "Physical ergonomic stress evaluation",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/qvnajezk/e_13_physische_belastungen.pdf",
+        "authority": "AUVA",
+        "title": "E 13 - Evaluierung physischer Belastungen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_13_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/qvnajezk/e_13_physische_belastungen.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_13_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:22.367118",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ergonomics",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "E",
+        "description": "Physical ergonomic stress evaluation",
+        "filename": "at_AUVA_E_13_merkblatt.pdf",
+        "size_bytes": 1274838,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "e46fc657001fd35019927ca9f0453c0a"
+    },
+    {
+      "id": "762609b342d5b3b3",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M.plus 942",
+      "title": "M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter",
+      "title_en": "Driverless Transport Systems and Mobile Robots",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Safety for autonomous transport systems and mobile robots",
+      "full_text": "Safety for autonomous transport systems and mobile robots",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/3scjz5tv/mplus_942_fahrerlose_transportsysteme_und_mobile_roboter_bf.pdf",
+        "authority": "AUVA",
+        "title": "M.plus 942 - Fahrerlose Transportsysteme und mobile Roboter",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_942_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/3scjz5tv/mplus_942_fahrerlose_transportsysteme_und_mobile_roboter_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_942_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:24.789087",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M.plus",
+        "description": "Safety for autonomous transport systems and mobile robots",
+        "filename": "at_AUVA_M_plus_942_merkblatt.pdf",
+        "size_bytes": 1321970,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "51a44cd17737195445cf878968486445"
+    },
+    {
+      "id": "89c7e4a77adb066e",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M 030",
+      "title": "M 030 - ArbeitnehmerInnenschutzgesetz",
+      "title_en": "Worker Protection Act",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Overview of the Austrian Worker Protection Act (ASchG)",
+      "full_text": "Overview of the Austrian Worker Protection Act (ASchG)",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/kwjputxz/m_030_arbeitnehmerinnenschutzgesetz_bf_2505.pdf",
+        "authority": "AUVA",
+        "title": "M 030 - ArbeitnehmerInnenschutzgesetz",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_030_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/kwjputxz/m_030_arbeitnehmerinnenschutzgesetz_bf_2505.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_030_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:25.653838",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ppe",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M",
+        "description": "Overview of the Austrian Worker Protection Act (ASchG)",
+        "filename": "at_AUVA_M_030_merkblatt.pdf",
+        "size_bytes": 2637357,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "bb024ff50569613676317e0ad5474594"
+    },
+    {
+      "id": "831893249cfdf063",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M 041",
+      "title": "M 041 - Verordnung über Sicherheits- und Gesundheitsschutzdokumente",
+      "title_en": "Regulation on Safety and Health Documents",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Requirements for safety and health documentation",
+      "full_text": "Requirements for safety and health documentation",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/gf3drt5e/m_041_verordnung_ueber_sicherheits-_und_gesundheitsschutzdok.pdf",
+        "authority": "AUVA",
+        "title": "M 041 - Verordnung über Sicherheits- und Gesundheitsschutzdokumente",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_041_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/gf3drt5e/m_041_verordnung_ueber_sicherheits-_und_gesundheitsschutzdok.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_041_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:26.444323",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ppe",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M",
+        "description": "Requirements for safety and health documentation",
+        "filename": "at_AUVA_M_041_merkblatt.pdf",
+        "size_bytes": 955309,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "e650e14e8de161e5070d2ff315217db1"
+    },
+    {
+      "id": "581d235792974163",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M 080",
+      "title": "M 080 - Grundlagen der Lasersicherheit",
+      "title_en": "Fundamentals of Laser Safety",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Basics of laser safety in the workplace",
+      "full_text": "Basics of laser safety in the workplace",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/ahopxkb3/m_080_grundlagen_der_lasersicherheit_2023-07_bf.pdf",
+        "authority": "AUVA",
+        "title": "M 080 - Grundlagen der Lasersicherheit",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_080_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/ahopxkb3/m_080_grundlagen_der_lasersicherheit_2023-07_bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_080_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:27.574423",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M",
+        "description": "Basics of laser safety in the workplace",
+        "filename": "at_AUVA_M_080_merkblatt.pdf",
+        "size_bytes": 1566582,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "53bc099668f96baf3bacd50e34f3de9f"
+    },
+    {
+      "id": "0cde327628f3ae36",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M 364",
+      "title": "M 364 - Umgang mit ätzenden Stoffen",
+      "title_en": "Handling Corrosive Substances",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Safe handling of corrosive acids and alkalis",
+      "full_text": "Safe handling of corrosive acids and alkalis",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/tytfmukw/m_364_umgang_mit_aetzenden_stoffen.pdf",
+        "authority": "AUVA",
+        "title": "M 364 - Umgang mit ätzenden Stoffen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_364_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/tytfmukw/m_364_umgang_mit_aetzenden_stoffen.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_364_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:28.364883",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M",
+        "description": "Safe handling of corrosive acids and alkalis",
+        "filename": "at_AUVA_M_364_merkblatt.pdf",
+        "size_bytes": 1256404,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "d34ef55bd0bd10cc5a1d008863d01a39"
+    },
+    {
+      "id": "8adbdb1e4fd939cf",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M 391",
+      "title": "M 391 - Sicherer Umgang mit gefährlichen Arbeitsstoffen",
+      "title_en": "Safe Handling of Hazardous Substances",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "General guidelines for safe handling of hazardous substances",
+      "full_text": "General guidelines for safe handling of hazardous substances",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/ds1jpe1o/m_391_sicherer_umgang_mit_gefaehrlichen_arbeitsstoffen.pdf",
+        "authority": "AUVA",
+        "title": "M 391 - Sicherer Umgang mit gefährlichen Arbeitsstoffen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_391_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/ds1jpe1o/m_391_sicherer_umgang_mit_gefaehrlichen_arbeitsstoffen.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_391_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:29.195729",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "high",
+          "match_count": 2
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M",
+        "description": "General guidelines for safe handling of hazardous substances",
+        "filename": "at_AUVA_M_391_merkblatt.pdf",
+        "size_bytes": 1938643,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "ec658829201237358484d31db3294a6d"
+    },
+    {
+      "id": "1300694bb0876f21",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M 705",
+      "title": "M 705 - Schutzhandschuhe",
+      "title_en": "Protective Gloves",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Selection and use of protective gloves",
+      "full_text": "Selection and use of protective gloves",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/efdj33nn/m705-schutzhandschuhe-bf.pdf",
+        "authority": "AUVA",
+        "title": "M 705 - Schutzhandschuhe",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_705_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/efdj33nn/m705-schutzhandschuhe-bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_705_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:29.886378",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ppe",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M",
+        "description": "Selection and use of protective gloves",
+        "filename": "at_AUVA_M_705_merkblatt.pdf",
+        "size_bytes": 681400,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "0844027707b7428538564eb81e668948"
+    },
+    {
+      "id": "baec757d70dd2749",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA M 719",
+      "title": "M 719 - Atemschutzfilter gegen Schwebstoffe, Gase und Dämpfe",
+      "title_en": "Respiratory Protection Filters",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Selection of respiratory protection filters",
+      "full_text": "Selection of respiratory protection filters",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/nwwlrfpq/m_719_atemschutzfilter_gegen_schwebstoffe_gase_daempfe_bf_20.pdf",
+        "authority": "AUVA",
+        "title": "M 719 - Atemschutzfilter gegen Schwebstoffe, Gase und Dämpfe",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_719_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/nwwlrfpq/m_719_atemschutzfilter_gegen_schwebstoffe_gase_daempfe_bf_20.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_719_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:30.643349",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "hazardous_substances",
+          "relevance": "medium",
+          "match_count": 1
+        },
+        {
+          "id": "ppe",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "M",
+        "description": "Selection of respiratory protection filters",
+        "filename": "at_AUVA_M_719_merkblatt.pdf",
+        "size_bytes": 2114914,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "b58fc61110e66e35f0cd913d540fef52"
+    },
+    {
+      "id": "2a4a1e866588ad0b",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVA Basiswissen 2025",
+      "title": "Basiswissen Arbeitnehmer:innenschutz 2025",
+      "title_en": "Basic Knowledge Worker Protection 2025",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Comprehensive overview of Austrian worker protection laws 2025",
+      "full_text": "Comprehensive overview of Austrian worker protection laws 2025",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/peujs3al/basiswissen-arbeitnehmerschutz-bf.pdf",
+        "authority": "AUVA",
+        "title": "Basiswissen Arbeitnehmer:innenschutz 2025",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_Basiswissen_2025_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/peujs3al/basiswissen-arbeitnehmerschutz-bf.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_Basiswissen_2025_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:31.705990",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ppe",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "Basiswissen",
+        "description": "Comprehensive overview of Austrian worker protection laws 2025",
+        "filename": "at_AUVA_Basiswissen_2025_merkblatt.pdf",
+        "size_bytes": 7042649,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "36ec6f19cc3ce1eccd34080d41355ebd"
+    },
+    {
+      "id": "d99986fe7499f618",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AUVAsicher 2024-2025",
+      "title": "AUVAsicher Informationsbroschüre 2024-2025",
+      "title_en": "AUVAsicher Information Brochure 2024-2025",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Annual safety information and prevention resources",
+      "full_text": "Annual safety information and prevention resources",
+      "ai_summary": "",
+      "source": {
+        "url": "https://auva.at/media/0cpp1f4l/auvasicher_informationsbroschuere_2024.pdf",
+        "authority": "AUVA",
+        "title": "AUVAsicher Informationsbroschüre 2024-2025",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVAsicher_2024-2025_merkblatt.pdf",
+        "pdf_url": "https://auva.at/media/0cpp1f4l/auvasicher_informationsbroschuere_2024.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVAsicher_2024-2025_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:42:32.446466",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "AUVAsicher",
+        "description": "Annual safety information and prevention resources",
+        "filename": "at_AUVAsicher_2024-2025_merkblatt.pdf",
+        "size_bytes": 2111209,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "9942fc05c39c4d19363580b8a7769ef6"
+    }
+  ]
+}
