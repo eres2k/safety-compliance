@@ -1532,6 +1532,17 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
       }
     }
 
+    // Sort alphabetically by abbreviation/title for better organization
+    const sortByName = (a, b) => {
+      const nameA = (a.abbreviation || a.title || '').toLowerCase()
+      const nameB = (b.abbreviation || b.title || '').toLowerCase()
+      return nameA.localeCompare(nameB)
+    }
+
+    supplements.sort(sortByName)
+    pdfs.sort(sortByName)
+    regular.sort(sortByName)
+
     return { regularLaws: regular, merkblaetter: supplements, lawPdfs: pdfs }
   }, [filteredLaws])
 
@@ -2204,21 +2215,34 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                   : 'bg-gray-100 dark:bg-whs-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
               }`}
             >
-              All ({allLaws.length})
+              {t.lawBrowser?.categoryAll || 'All'} ({allLaws.length})
             </button>
-            {Object.entries(categories).map(([type, count]) => (
-              <button
-                key={type}
-                onClick={() => setSelectedCategory(type)}
-                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  selectedCategory === type
-                    ? 'bg-whs-orange-500 text-white'
-                    : 'bg-gray-100 dark:bg-whs-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
-                }`}
-              >
-                {type} ({count})
-              </button>
-            ))}
+            {Object.entries(categories).map(([type, count]) => {
+              // Translate category type labels
+              const getCategoryLabel = (categoryType) => {
+                switch(categoryType.toLowerCase()) {
+                  case 'law':
+                    return t.lawBrowser?.categoryLaw || 'Laws'
+                  case 'merkblatt':
+                    return t.lawBrowser?.categoryGuidance || 'Guidance'
+                  default:
+                    return categoryType
+                }
+              }
+              return (
+                <button
+                  key={type}
+                  onClick={() => setSelectedCategory(type)}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                    selectedCategory === type
+                      ? 'bg-whs-orange-500 text-white'
+                      : 'bg-gray-100 dark:bg-whs-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                  }`}
+                >
+                  {getCategoryLabel(type)} ({count})
+                </button>
+              )
+            })}
           </div>
         </div>
 
@@ -2391,10 +2415,12 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                         <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
                       </svg>
                       <span className="font-semibold text-blue-700 dark:text-blue-300 text-sm flex-1 text-left">
-                        {framework === 'AT' ? 'AUVA Merkblätter' :
-                         framework === 'DE' ? 'DGUV / Technische Regeln' :
-                         framework === 'NL' ? 'Arbocatalogi' :
-                         'Merkblätter'}
+                        {t.lawBrowser?.supplementaryDocs || (
+                          framework === 'AT' ? 'AUVA Merkblätter' :
+                          framework === 'DE' ? 'DGUV / Technische Regeln' :
+                          framework === 'NL' ? 'Arbocatalogi' :
+                          'Supplementary Documents'
+                        )}
                       </span>
                       <span className="text-xs text-blue-500 dark:text-blue-400">({filteredMerkblaetter.length})</span>
                     </div>
@@ -2407,7 +2433,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                         onChange={(e) => setSelectedSubcategory(e.target.value)}
                         className="w-full px-2 py-1.5 text-xs font-medium rounded-lg border border-blue-200 dark:border-blue-700 bg-white dark:bg-whs-dark-700 text-blue-700 dark:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                       >
-                        <option value="all">Alle Kategorien ({merkblaetter.length})</option>
+                        <option value="all">{t.lawBrowser?.allCategories || 'All Categories'} ({merkblaetter.length})</option>
                         {merkblaetterSubcategories.map(subcat => (
                           <option key={subcat} value={subcat}>
                             {subcat} ({merkblaetter.filter(m => m.subcategory === subcat).length})

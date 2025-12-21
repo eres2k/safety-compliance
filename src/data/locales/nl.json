@@ -84,7 +84,12 @@
     "searchLaws": "Zoek wetten...",
     "auvaMerkblaetter": "AUVA Merkblätter",
     "dguvRules": "DGUV / Technische Regels",
-    "arbocatalogi": "Arbocatalogi"
+    "arbocatalogi": "Arbocatalogi",
+    "categoryAll": "Alle",
+    "categoryLaw": "Wetten",
+    "categoryGuidance": "Richtlijnen",
+    "supplementaryDocs": "Aanvullende Documenten",
+    "allCategories": "Alle Categorieën"
   },
   "translation": {
     "translateTo": "Vertalen naar",

@@ -84,7 +84,12 @@
     "searchLaws": "Search laws...",
     "auvaMerkblaetter": "AUVA Merkblätter",
     "dguvRules": "DGUV / Technical Rules",
-    "arbocatalogi": "Arbocatalogi"
+    "arbocatalogi": "Arbocatalogi",
+    "categoryAll": "All",
+    "categoryLaw": "Laws",
+    "categoryGuidance": "Guidance",
+    "supplementaryDocs": "Supplementary Documents",
+    "allCategories": "All Categories"
   },
   "translation": {
     "translateTo": "Translate to",
