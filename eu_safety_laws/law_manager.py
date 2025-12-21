@@ -698,7 +698,7 @@ class Config:
                         "description": "Tools and checklists for workplace safety"
                     }
                 },
-                "catalog_url": "https://www.arboportaal.nl/onderwerpen/arbocatalogi",
+                "catalog_url": "https://www.arboportaal.nl/externe-bronnen/arbocatalogi",
                 "publications": [
                     # === Dutch Arbocatalogi (Sector Catalogues) ===
                     {
@@ -6836,7 +6836,16 @@ class DGUVScraper(MerkblattScraper):
                 if detail_html:
                     detail_soup = BeautifulSoup(detail_html, 'html.parser')
                     # Look for PDF download link
-                    pdf_link = detail_soup.find('a', href=re.compile(r'\.pdf', re.IGNORECASE))
+                    # First try: DGUV uses /widgets/pdf/download/article/ pattern
+                    pdf_link = detail_soup.find('a', href=re.compile(r'/widgets/pdf/download/article/\d+', re.IGNORECASE))
+                    # Second try: look for direct .pdf links
+                    if not pdf_link:
+                        pdf_link = detail_soup.find('a', href=re.compile(r'\.pdf', re.IGNORECASE))
+                    # Third try: look for links with PDF in title or class
+                    if not pdf_link:
+                        pdf_link = detail_soup.find('a', title=re.compile(r'pdf', re.IGNORECASE))
+                    if not pdf_link:
+                        pdf_link = detail_soup.find('a', class_=re.compile(r'pdf', re.IGNORECASE))
                     if pdf_link:
                         pdf_url = pdf_link.get('href', '')
                         if not pdf_url.startswith('http'):
