@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "country": "NL",
+    "type": "merkblaetter",
+    "generated_at": "2025-12-21T16:51:54.964248",
+    "document_count": 3,
+    "scraper_version": "8.0.0"
+  },
+  "documents": [
+    {
+      "id": "04261ae218d99b0c",
+      "version": "1.0.0",
+      "country": "NL",
+      "jurisdiction": "NL",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "ARBO-ARBOCATALOGI",
+      "title": "dossier Arbocatalogi",
+      "title_en": "dossier Arbocatalogi",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Hoofdstuk",
+        "grouping_2": "Afdeling",
+        "article": "Artikel"
+      },
+      "grouping_1": "Hoofdstuk",
+      "grouping_2": "Afdeling",
+      "article_label": "Artikel",
+      "text_content": "Sector: arbocatalogi",
+      "full_text": "Sector: arbocatalogi",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.arboportaal.nl/onderwerpen/arbowet--en--regelgeving/arbobeleid/arbocatalogi",
+        "authority": "Arboportaal",
+        "title": "dossier Arbocatalogi",
+        "robots_txt_compliant": true,
+        "source_type": "html",
+        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\nl\\nl_ARBO-ARBOCATALOGI_merkblatt.html",
+        "html_url": "https://www.arboportaal.nl/onderwerpen/arbowet--en--regelgeving/arbobeleid/arbocatalogi"
+      },
+      "pdf_path": "",
+      "pdf_available": false,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:51:41.510543",
+        "scraper_version": "8.0.0",
+        "source_type": "html"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "Arbocatalogi",
+        "description": "Sector: arbocatalogi",
+        "filename": "nl_ARBO-ARBOCATALOGI_merkblatt.html",
+        "size_bytes": 199780,
+        "is_supplementary": true,
+        "is_pdf_only": false,
+        "is_html_only": true
+      },
+      "content_hash": "510fe71275a92d68af68019e9d57f481"
+    },
+    {
+      "id": "a8b3089d665e7669",
+      "version": "1.0.0",
+      "country": "NL",
+      "jurisdiction": "NL",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "ARBO-JCI1.3:C:BWBR0042288",
+      "title": "lijst met arbocatalogi in de beleidsregel",
+      "title_en": "lijst met arbocatalogi in de beleidsregel",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Hoofdstuk",
+        "grouping_2": "Afdeling",
+        "article": "Artikel"
+      },
+      "grouping_1": "Hoofdstuk",
+      "grouping_2": "Afdeling",
+      "article_label": "Artikel",
+      "text_content": "Sector: jci1.3:c:BWBR0042288",
+      "full_text": "Sector: jci1.3:c:BWBR0042288",
+      "ai_summary": "",
+      "source": {
+        "url": "http://wetten.overheid.nl/jci1.3:c:BWBR0042288",
+        "authority": "Arboportaal",
+        "title": "lijst met arbocatalogi in de beleidsregel",
+        "robots_txt_compliant": true,
+        "source_type": "html",
+        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\nl\\nl_ARBO-JCI1_3_C_BWBR0042288_merkblatt.html",
+        "html_url": "http://wetten.overheid.nl/jci1.3:c:BWBR0042288"
+      },
+      "pdf_path": "",
+      "pdf_available": false,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:51:53.290825",
+        "scraper_version": "8.0.0",
+        "source_type": "html"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "Arbocatalogi",
+        "description": "Sector: jci1.3:c:BWBR0042288",
+        "filename": "nl_ARBO-JCI1_3_C_BWBR0042288_merkblatt.html",
+        "size_bytes": 1055536,
+        "is_supplementary": true,
+        "is_pdf_only": false,
+        "is_html_only": true
+      },
+      "content_hash": "1e0fa1042f74f7ed4d7a2219a9d5d953"
+    },
+    {
+      "id": "66d4aedfc23c55bf",
+      "version": "1.0.0",
+      "country": "NL",
+      "jurisdiction": "NL",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "ARBO-ARBOCATALOGUS",
+      "title": "instrument",
+      "title_en": "instrument",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Hoofdstuk",
+        "grouping_2": "Afdeling",
+        "article": "Artikel"
+      },
+      "grouping_1": "Hoofdstuk",
+      "grouping_2": "Afdeling",
+      "article_label": "Artikel",
+      "text_content": "Sector: arbocatalogus",
+      "full_text": "Sector: arbocatalogus",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.ser.nl/nl/thema/arbeidsomstandigheden/dossiers/arbocatalogus",
+        "authority": "Arboportaal",
+        "title": "instrument",
+        "robots_txt_compliant": true,
+        "source_type": "html",
+        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\nl\\nl_ARBO-ARBOCATALOGUS_merkblatt.html",
+        "html_url": "https://www.ser.nl/nl/thema/arbeidsomstandigheden/dossiers/arbocatalogus"
+      },
+      "pdf_path": "",
+      "pdf_available": false,
+      "scraping": {
+        "scraped_at": "2025-12-21T16:51:54.863554",
+        "scraper_version": "8.0.0",
+        "source_type": "html"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "Arbocatalogi",
+        "description": "Sector: arbocatalogus",
+        "filename": "nl_ARBO-ARBOCATALOGUS_merkblatt.html",
+        "size_bytes": 36134,
+        "is_supplementary": true,
+        "is_pdf_only": false,
+        "is_html_only": true
+      },
+      "content_hash": "d6d92aa37493e7b27669865651da82e8"
+    }
+  ]
+}

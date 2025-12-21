@@ -2,13 +2,13 @@
   "metadata": {
     "country": "DE",
     "type": "merkblaetter",
-    "generated_at": "2025-12-21T16:42:56.723950",
+    "generated_at": "2025-12-21T16:51:39.273517",
     "document_count": 16,
     "scraper_version": "8.0.0"
   },
   "documents": [
     {
-      "id": "625e2b2de6afa256",
+      "id": "63e0f09ba3f614c3",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -26,24 +26,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 212-016WarnkleidungAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
-      "full_text": "HTML document: DGUV Information 212-016WarnkleidungAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
+      "text_content": "PDF document: DGUV Information 212-016WarnkleidungAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
+      "full_text": "PDF document: DGUV Information 212-016WarnkleidungAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/841/warnkleidung?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/841",
         "authority": "DGUV",
         "title": "DGUV Information 212-016WarnkleidungAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-212-016_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/841/warnkleidung?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-212-016_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/841"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-212-016_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:35.213923",
+        "scraped_at": "2025-12-21T16:51:06.650575",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -52,16 +52,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-212-016_merkblatt.html",
-        "size_bytes": 55078,
+        "filename": "de_DGUV-212-016_merkblatt.pdf",
+        "size_bytes": 10114901,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "f86df360762acf63d5c1c7a7df287303"
+      "content_hash": "2f24ff261645fa60d48b18cae0bd4b68"
     },
     {
-      "id": "a8f92894b8058ad4",
+      "id": "5b7e1c0abf0a60ae",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -79,24 +79,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 207-034Sicheres und gesundes Arbeiten als Integrationsassistenzen in BildungseinrichtungenAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
-      "full_text": "HTML document: DGUV Information 207-034Sicheres und gesundes Arbeiten als Integrationsassistenzen in BildungseinrichtungenAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
+      "text_content": "PDF document: DGUV Information 207-034Sicheres und gesundes Arbeiten als Integrationsassistenzen in BildungseinrichtungenAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
+      "full_text": "PDF document: DGUV Information 207-034Sicheres und gesundes Arbeiten als Integrationsassistenzen in BildungseinrichtungenAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5013/dguv-information-207-034?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5013",
         "authority": "DGUV",
         "title": "DGUV Information 207-034Sicheres und gesundes Arbeiten als Integrationsassistenzen in BildungseinrichtungenAls gedruckte Ausgabe voraussichtlich bestellbar ab Januar 2026.",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-207-034_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5013/dguv-information-207-034?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-034_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/5013"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-034_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:36.552567",
+        "scraped_at": "2025-12-21T16:51:08.229956",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -105,16 +105,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-207-034_merkblatt.html",
-        "size_bytes": 54330,
+        "filename": "de_DGUV-207-034_merkblatt.pdf",
+        "size_bytes": 2550201,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "18b45d14bbd09661ea68d18cfe34106e"
+      "content_hash": "d24722e8a4a01b400df1f8b20630213e"
     },
     {
-      "id": "3512f74940213380",
+      "id": "97d41e35aeb27460",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -132,24 +132,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 207-019Gesundheitsdienstals gedruckte Version voraussichtlich ab Ende Januar 2026 bestellbar.",
-      "full_text": "HTML document: DGUV Information 207-019Gesundheitsdienstals gedruckte Version voraussichtlich ab Ende Januar 2026 bestellbar.",
+      "text_content": "PDF document: DGUV Information 207-019Gesundheitsdienstals gedruckte Version voraussichtlich ab Ende Januar 2026 bestellbar.",
+      "full_text": "PDF document: DGUV Information 207-019Gesundheitsdienstals gedruckte Version voraussichtlich ab Ende Januar 2026 bestellbar.",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/885/gesundheitsdienst?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/885",
         "authority": "DGUV",
         "title": "DGUV Information 207-019Gesundheitsdienstals gedruckte Version voraussichtlich ab Ende Januar 2026 bestellbar.",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-207-019_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/885/gesundheitsdienst?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-019_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/885"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-019_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:37.864123",
+        "scraped_at": "2025-12-21T16:51:09.711791",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -158,16 +158,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-207-019_merkblatt.html",
-        "size_bytes": 55695,
+        "filename": "de_DGUV-207-019_merkblatt.pdf",
+        "size_bytes": 1754040,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "9b1f87f8dfd3ade1a2404e8893532ab9"
+      "content_hash": "b0c0fc77a9bf7be91d7d644a3db059d8"
     },
     {
-      "id": "a6b9a1975604b252",
+      "id": "ece99b54c51576e3",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -185,24 +185,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 209-030Pressenprüfung",
-      "full_text": "HTML document: DGUV Information 209-030Pressenprüfung",
+      "text_content": "PDF document: DGUV Information 209-030Pressenprüfung",
+      "full_text": "PDF document: DGUV Information 209-030Pressenprüfung",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/477/pressenpruefung?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/477",
         "authority": "DGUV",
         "title": "DGUV Information 209-030Pressenprüfung",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-209-030_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/477/pressenpruefung?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-209-030_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/477"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-209-030_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:39.194321",
+        "scraped_at": "2025-12-21T16:51:11.331564",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -211,16 +211,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-209-030_merkblatt.html",
-        "size_bytes": 55803,
+        "filename": "de_DGUV-209-030_merkblatt.pdf",
+        "size_bytes": 2947675,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "b20a24069954bd0801ae51d89d0e8498"
+      "content_hash": "cbf910941b815f98bc0f25e498c8bbcd"
     },
     {
-      "id": "e792c675eb6b13c8",
+      "id": "91943d8c8d9cc028",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -238,24 +238,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 207-026Zu Hause pflegen - so kann es gelingen! - Ein Wegweiser für pflegende Angehörige",
-      "full_text": "HTML document: DGUV Information 207-026Zu Hause pflegen - so kann es gelingen! - Ein Wegweiser für pflegende Angehörige",
+      "text_content": "PDF document: DGUV Information 207-026Zu Hause pflegen - so kann es gelingen! - Ein Wegweiser für pflegende Angehörige",
+      "full_text": "PDF document: DGUV Information 207-026Zu Hause pflegen - so kann es gelingen! - Ein Wegweiser für pflegende Angehörige",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/3430/zu-hause-pflegen-so-kann-es-gelingen-ein-wegweiser-fuer-pflegende-angehoerige?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3430",
         "authority": "DGUV",
         "title": "DGUV Information 207-026Zu Hause pflegen - so kann es gelingen! - Ein Wegweiser für pflegende Angehörige",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-207-026_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/3430/zu-hause-pflegen-so-kann-es-gelingen-ein-wegweiser-fuer-pflegende-angehoerige?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-026_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/3430"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-026_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:40.510288",
+        "scraped_at": "2025-12-21T16:51:13.181690",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -264,16 +264,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-207-026_merkblatt.html",
-        "size_bytes": 56820,
+        "filename": "de_DGUV-207-026_merkblatt.pdf",
+        "size_bytes": 5166842,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "64e4516cc0dc4ef809062c231f09477f"
+      "content_hash": "8af3ca4e9eca285fbc86318fc51f4431"
     },
     {
-      "id": "c246996e0725ce37",
+      "id": "f2ee911d485c4273",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -291,24 +291,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 208-062Mensch und Arbeitsplatz - Auswahl und Einsatz von Exoskeletten",
-      "full_text": "HTML document: DGUV Information 208-062Mensch und Arbeitsplatz - Auswahl und Einsatz von Exoskeletten",
+      "text_content": "PDF document: DGUV Information 208-062Mensch und Arbeitsplatz - Auswahl und Einsatz von Exoskeletten",
+      "full_text": "PDF document: DGUV Information 208-062Mensch und Arbeitsplatz - Auswahl und Einsatz von Exoskeletten",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5103/mensch-und-arbeitsplatz-auswahl-und-einsatz-von-exoskeletten?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5103",
         "authority": "DGUV",
         "title": "DGUV Information 208-062Mensch und Arbeitsplatz - Auswahl und Einsatz von Exoskeletten",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-208-062_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5103/mensch-und-arbeitsplatz-auswahl-und-einsatz-von-exoskeletten?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-208-062_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/5103"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-208-062_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:41.902419",
+        "scraped_at": "2025-12-21T16:51:15.083031",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -323,16 +323,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-208-062_merkblatt.html",
-        "size_bytes": 56156,
+        "filename": "de_DGUV-208-062_merkblatt.pdf",
+        "size_bytes": 6089899,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "944da168ca9a12080c9c36857fd41b81"
+      "content_hash": "4ffe37fe6b47ec761e11f27dc87c6a52"
     },
     {
-      "id": "2f6cb64f600baafb",
+      "id": "87ee48522ae34c69",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -350,24 +350,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Regel 114-018Waldarbeiten",
-      "full_text": "HTML document: DGUV Regel 114-018Waldarbeiten",
+      "text_content": "PDF document: DGUV Regel 114-018Waldarbeiten",
+      "full_text": "PDF document: DGUV Regel 114-018Waldarbeiten",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-regeln/1019/waldarbeiten?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1019",
         "authority": "DGUV",
         "title": "DGUV Regel 114-018Waldarbeiten",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-114-018_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-regeln/1019/waldarbeiten?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-114-018_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/1019"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-114-018_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:43.295030",
+        "scraped_at": "2025-12-21T16:51:16.805126",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -376,16 +376,16 @@
       "metadata": {
         "series": "DGUV Regeln",
         "description": "",
-        "filename": "de_DGUV-114-018_merkblatt.html",
-        "size_bytes": 61636,
+        "filename": "de_DGUV-114-018_merkblatt.pdf",
+        "size_bytes": 3168742,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "8e567f5939c5dfc5c771b1801ee985c2"
+      "content_hash": "cbbc191f50cf8987e7e9bc01001109fe"
     },
     {
-      "id": "06a3d0ed81d20be1",
+      "id": "a4a2c2013213db57",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -403,24 +403,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 250-012Leitfaden für Betriebsärztinnen und Betriebsärzte zur Telemedizin",
-      "full_text": "HTML document: DGUV Information 250-012Leitfaden für Betriebsärztinnen und Betriebsärzte zur Telemedizin",
+      "text_content": "PDF document: DGUV Information 250-012Leitfaden für Betriebsärztinnen und Betriebsärzte zur Telemedizin",
+      "full_text": "PDF document: DGUV Information 250-012Leitfaden für Betriebsärztinnen und Betriebsärzte zur Telemedizin",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5125/leitfaden-fuer-betriebsaerztinnen-und-betriebsaerzte-zur-telemedizin?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5125",
         "authority": "DGUV",
         "title": "DGUV Information 250-012Leitfaden für Betriebsärztinnen und Betriebsärzte zur Telemedizin",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-250-012_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5125/leitfaden-fuer-betriebsaerztinnen-und-betriebsaerzte-zur-telemedizin?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-250-012_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/5125"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-250-012_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:44.744654",
+        "scraped_at": "2025-12-21T16:51:18.506982",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -429,16 +429,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-250-012_merkblatt.html",
-        "size_bytes": 55182,
+        "filename": "de_DGUV-250-012_merkblatt.pdf",
+        "size_bytes": 3331334,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "9f03a8e83132ac83aba22a054eef075b"
+      "content_hash": "93e6d204c7400f2fa1b3233a2c84afec"
     },
     {
-      "id": "c372fd21a2bbf32f",
+      "id": "d325ea385bb2e24f",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -460,18 +460,18 @@
       "full_text": "PDF document: DGUV Information 201-056Schutzmaßnahmen gegen Absturz auf Dächern - Planungsgrundlagen zur Auswahl von Absturzschutzsystemen auf Dächern",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/media/pdf/1d/c2/7b/201-056_Anhang_2.pdf",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2952",
         "authority": "DGUV",
         "title": "DGUV Information 201-056Schutzmaßnahmen gegen Absturz auf Dächern - Planungsgrundlagen zur Auswahl von Absturzschutzsystemen auf Dächern",
         "robots_txt_compliant": true,
         "source_type": "pdf",
         "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-201-056_merkblatt.pdf",
-        "pdf_url": "https://publikationen.dguv.de/media/pdf/1d/c2/7b/201-056_Anhang_2.pdf"
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/2952"
       },
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-201-056_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:45.955053",
+        "scraped_at": "2025-12-21T16:51:22.344557",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -489,7 +489,7 @@
         "series": "DGUV Informationen",
         "description": "",
         "filename": "de_DGUV-201-056_merkblatt.pdf",
-        "size_bytes": 88442,
+        "size_bytes": 11259622,
         "is_supplementary": true,
         "is_pdf_only": true,
         "is_html_only": false
@@ -497,7 +497,7 @@
       "content_hash": "35b1e3e82cd543e88c4f540d46c93d5a"
     },
     {
-      "id": "3160a0afbad54994",
+      "id": "3d78051762c62cbd",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -515,24 +515,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 201-067Schutz vor Gefahren bei Gleisbauarbeiten in Tunneln - Handlungshilfe für Sicherheit und Gesundheit bei Gleisbauarbeiten in BahntunnelnAls gedruckte Ausgabe voraussichtlich bestellbar ab Mitte Dezember 2025",
-      "full_text": "HTML document: DGUV Information 201-067Schutz vor Gefahren bei Gleisbauarbeiten in Tunneln - Handlungshilfe für Sicherheit und Gesundheit bei Gleisbauarbeiten in BahntunnelnAls gedruckte Ausgabe voraussichtlich bestellbar ab Mitte Dezember 2025",
+      "text_content": "PDF document: DGUV Information 201-067Schutz vor Gefahren bei Gleisbauarbeiten in Tunneln - Handlungshilfe für Sicherheit und Gesundheit bei Gleisbauarbeiten in BahntunnelnAls gedruckte Ausgabe voraussichtlich bestellbar ab Mitte Dezember 2025",
+      "full_text": "PDF document: DGUV Information 201-067Schutz vor Gefahren bei Gleisbauarbeiten in Tunneln - Handlungshilfe für Sicherheit und Gesundheit bei Gleisbauarbeiten in BahntunnelnAls gedruckte Ausgabe voraussichtlich bestellbar ab Mitte Dezember 2025",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5143/schutz-vor-gefahren-bei-gleisbauarbeiten-in-tunneln-handlungshilfe-fuer-sicherheit-und-gesundheit-b?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5143",
         "authority": "DGUV",
         "title": "DGUV Information 201-067Schutz vor Gefahren bei Gleisbauarbeiten in Tunneln - Handlungshilfe für Sicherheit und Gesundheit bei Gleisbauarbeiten in BahntunnelnAls gedruckte Ausgabe voraussichtlich bestellbar ab Mitte Dezember 2025",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-201-067_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5143/schutz-vor-gefahren-bei-gleisbauarbeiten-in-tunneln-handlungshilfe-fuer-sicherheit-und-gesundheit-b?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-201-067_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/5143"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-201-067_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:48.071400",
+        "scraped_at": "2025-12-21T16:51:24.697453",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -547,16 +547,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-201-067_merkblatt.html",
-        "size_bytes": 55936,
+        "filename": "de_DGUV-201-067_merkblatt.pdf",
+        "size_bytes": 3421351,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "17ca28c5298d8201afe0b37aea0687b9"
+      "content_hash": "43dbdaa81b9fae2f848e961173fe5a8d"
     },
     {
-      "id": "809ae1ca8b7b9093",
+      "id": "f03dfd25a5e26673",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -574,24 +574,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 209-036Bandsägewerke - Arbeitssicherheit an Maschinen und AnlagenAls gedruckte Ausgabe voraussichtlich bestellbar ab Dezember 2025.",
-      "full_text": "HTML document: DGUV Information 209-036Bandsägewerke - Arbeitssicherheit an Maschinen und AnlagenAls gedruckte Ausgabe voraussichtlich bestellbar ab Dezember 2025.",
+      "text_content": "PDF document: DGUV Information 209-036Bandsägewerke - Arbeitssicherheit an Maschinen und AnlagenAls gedruckte Ausgabe voraussichtlich bestellbar ab Dezember 2025.",
+      "full_text": "PDF document: DGUV Information 209-036Bandsägewerke - Arbeitssicherheit an Maschinen und AnlagenAls gedruckte Ausgabe voraussichtlich bestellbar ab Dezember 2025.",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/484/bandsaegewerke-arbeitssicherheit-an-maschinen-und-anlagen?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/484",
         "authority": "DGUV",
         "title": "DGUV Information 209-036Bandsägewerke - Arbeitssicherheit an Maschinen und AnlagenAls gedruckte Ausgabe voraussichtlich bestellbar ab Dezember 2025.",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-209-036_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/484/bandsaegewerke-arbeitssicherheit-an-maschinen-und-anlagen?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-209-036_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/484"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-209-036_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:49.448931",
+        "scraped_at": "2025-12-21T16:51:29.655766",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -606,16 +606,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-209-036_merkblatt.html",
-        "size_bytes": 55628,
+        "filename": "de_DGUV-209-036_merkblatt.pdf",
+        "size_bytes": 33013182,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "e7f0673bd48fce3136ad2233d59c07dd"
+      "content_hash": "4e9374fb1187c8fa3fad4935e84c4395"
     },
     {
-      "id": "06f969c62accd913",
+      "id": "02b6c3ba5ff83089",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -633,24 +633,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 206-006Arbeiten: entspannt – gemeinsam – besser",
-      "full_text": "HTML document: DGUV Information 206-006Arbeiten: entspannt – gemeinsam – besser",
+      "text_content": "PDF document: DGUV Information 206-006Arbeiten: entspannt – gemeinsam – besser",
+      "full_text": "PDF document: DGUV Information 206-006Arbeiten: entspannt – gemeinsam – besser",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/803/arbeiten-entspannt-gemeinsam-besser?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/803",
         "authority": "DGUV",
         "title": "DGUV Information 206-006Arbeiten: entspannt – gemeinsam – besser",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-206-006_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/803/arbeiten-entspannt-gemeinsam-besser?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-206-006_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/803"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-206-006_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:51.023373",
+        "scraped_at": "2025-12-21T16:51:31.138238",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -659,16 +659,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-206-006_merkblatt.html",
-        "size_bytes": 83843,
+        "filename": "de_DGUV-206-006_merkblatt.pdf",
+        "size_bytes": 1693957,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "1eb5f258da957d8d4af10ad6325d759b"
+      "content_hash": "47c8e9cb181c7663f8a2cc67f97d7afd"
     },
     {
-      "id": "aecfef7ae195684d",
+      "id": "4fd38ac499c475eb",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -686,24 +686,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 212-009Auswahl und Benutzung von Absturzschutzsystemen bei Hang- und FelssicherungsarbeitenAusschließlich als PDF zum Download erhältlich.",
-      "full_text": "HTML document: DGUV Information 212-009Auswahl und Benutzung von Absturzschutzsystemen bei Hang- und FelssicherungsarbeitenAusschließlich als PDF zum Download erhältlich.",
+      "text_content": "PDF document: DGUV Information 212-009Auswahl und Benutzung von Absturzschutzsystemen bei Hang- und FelssicherungsarbeitenAusschließlich als PDF zum Download erhältlich.",
+      "full_text": "PDF document: DGUV Information 212-009Auswahl und Benutzung von Absturzschutzsystemen bei Hang- und FelssicherungsarbeitenAusschließlich als PDF zum Download erhältlich.",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5035/auswahl-und-benutzung-von-absturzschutzsystemen-bei-hang-und-felssicherungsarbeiten?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5035",
         "authority": "DGUV",
         "title": "DGUV Information 212-009Auswahl und Benutzung von Absturzschutzsystemen bei Hang- und FelssicherungsarbeitenAusschließlich als PDF zum Download erhältlich.",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-212-009_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/5035/auswahl-und-benutzung-von-absturzschutzsystemen-bei-hang-und-felssicherungsarbeiten?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-212-009_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/5035"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-212-009_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:52.411194",
+        "scraped_at": "2025-12-21T16:51:33.697604",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -718,16 +718,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-212-009_merkblatt.html",
-        "size_bytes": 56205,
+        "filename": "de_DGUV-212-009_merkblatt.pdf",
+        "size_bytes": 13788850,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "491373fd21f786fc5c031f367ebc6fd4"
+      "content_hash": "0aa308371659cd948cbf7a0a94c8da81"
     },
     {
-      "id": "7d3aca262f9e2df3",
+      "id": "9252843f646950fa",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -745,24 +745,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Regel 110-011Branche Fleischwirtschaft – HandwerkAusschließlich als PDF zum Download erhältlich.",
-      "full_text": "HTML document: DGUV Regel 110-011Branche Fleischwirtschaft – HandwerkAusschließlich als PDF zum Download erhältlich.",
+      "text_content": "PDF document: DGUV Regel 110-011Branche Fleischwirtschaft – HandwerkAusschließlich als PDF zum Download erhältlich.",
+      "full_text": "PDF document: DGUV Regel 110-011Branche Fleischwirtschaft – HandwerkAusschließlich als PDF zum Download erhältlich.",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-regeln/5051/branche-fleischwirtschaft-handwerk?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5051",
         "authority": "DGUV",
         "title": "DGUV Regel 110-011Branche Fleischwirtschaft – HandwerkAusschließlich als PDF zum Download erhältlich.",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-110-011_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-regeln/5051/branche-fleischwirtschaft-handwerk?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-110-011_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/5051"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-110-011_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:53.774468",
+        "scraped_at": "2025-12-21T16:51:36.073594",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -771,16 +771,16 @@
       "metadata": {
         "series": "DGUV Regeln",
         "description": "",
-        "filename": "de_DGUV-110-011_merkblatt.html",
-        "size_bytes": 55083,
+        "filename": "de_DGUV-110-011_merkblatt.pdf",
+        "size_bytes": 11836668,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "df1da58973506a62ef72ee5b1b69d231"
+      "content_hash": "e9607d73b8ecfae923d16827660378fa"
     },
     {
-      "id": "fdb76fc6b14b5286",
+      "id": "6c821253b894f9bb",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -798,24 +798,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 206-016Psychische Belastung im Straßenbetrieb - langfristig sicher und gesund arbeiten",
-      "full_text": "HTML document: DGUV Information 206-016Psychische Belastung im Straßenbetrieb - langfristig sicher und gesund arbeiten",
+      "text_content": "PDF document: DGUV Information 206-016Psychische Belastung im Straßenbetrieb - langfristig sicher und gesund arbeiten",
+      "full_text": "PDF document: DGUV Information 206-016Psychische Belastung im Straßenbetrieb - langfristig sicher und gesund arbeiten",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/901/psychische-belastungen-im-strassenbetrieb-und-strassenunterhalt?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/901",
         "authority": "DGUV",
         "title": "DGUV Information 206-016Psychische Belastung im Straßenbetrieb - langfristig sicher und gesund arbeiten",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-206-016_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/901/psychische-belastungen-im-strassenbetrieb-und-strassenunterhalt?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-206-016_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/901"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-206-016_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:55.211279",
+        "scraped_at": "2025-12-21T16:51:37.617260",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -830,16 +830,16 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-206-016_merkblatt.html",
-        "size_bytes": 59524,
+        "filename": "de_DGUV-206-016_merkblatt.pdf",
+        "size_bytes": 2897201,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "1a1907e4e87d22216c7ec8d59546fbaa"
+      "content_hash": "41904058f6d85b8fb96cea9382948867"
     },
     {
-      "id": "81504dec3fe63980",
+      "id": "653578277f487172",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -857,24 +857,24 @@
       "grouping_1": "Abschnitt",
       "grouping_2": "Titel",
       "article_label": "§",
-      "text_content": "HTML document: DGUV Information 202-048Checklisten zur Sicherheit im Schulsport",
-      "full_text": "HTML document: DGUV Information 202-048Checklisten zur Sicherheit im Schulsport",
+      "text_content": "PDF document: DGUV Information 202-048Checklisten zur Sicherheit im Schulsport",
+      "full_text": "PDF document: DGUV Information 202-048Checklisten zur Sicherheit im Schulsport",
       "ai_summary": "",
       "source": {
-        "url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/1410/checklisten-zur-sicherheit-im-schulsport?c=4",
+        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1410",
         "authority": "DGUV",
         "title": "DGUV Information 202-048Checklisten zur Sicherheit im Schulsport",
         "robots_txt_compliant": true,
-        "source_type": "html",
-        "local_html_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\html\\de\\de_DGUV-202-048_merkblatt.html",
-        "html_url": "https://publikationen.dguv.de/regelwerk/dguv-informationen/1410/checklisten-zur-sicherheit-im-schulsport?c=4"
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-202-048_merkblatt.pdf",
+        "pdf_url": "https://publikationen.dguv.de/widgets/pdf/download/article/1410"
       },
-      "pdf_path": "",
-      "pdf_available": false,
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-202-048_merkblatt.pdf",
+      "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:56.622798",
+        "scraped_at": "2025-12-21T16:51:39.172337",
         "scraper_version": "8.0.0",
-        "source_type": "html"
+        "source_type": "pdf"
       },
       "chapters": [],
       "sections": [],
@@ -883,13 +883,13 @@
       "metadata": {
         "series": "DGUV Informationen",
         "description": "",
-        "filename": "de_DGUV-202-048_merkblatt.html",
-        "size_bytes": 56303,
+        "filename": "de_DGUV-202-048_merkblatt.pdf",
+        "size_bytes": 2844368,
         "is_supplementary": true,
-        "is_pdf_only": false,
-        "is_html_only": true
+        "is_pdf_only": true,
+        "is_html_only": false
       },
-      "content_hash": "bd9c1d5b2ac4c5fda23d90601708aaae"
+      "content_hash": "a717f38c96e98d453b262426cfd700da"
     }
   ]
 }

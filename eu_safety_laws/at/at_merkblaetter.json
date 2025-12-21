@@ -2,13 +2,13 @@
   "metadata": {
     "country": "AT",
     "type": "merkblaetter",
-    "generated_at": "2025-12-21T16:42:32.547253",
+    "generated_at": "2025-12-21T16:51:02.243813",
     "document_count": 33,
     "scraper_version": "8.0.0"
   },
   "documents": [
     {
-      "id": "a347bbccd9b78e11",
+      "id": "2b36957fddac084f",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -41,7 +41,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_Jetzt_lesen_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:01.405551",
+        "scraped_at": "2025-12-21T16:50:33.565201",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -61,7 +61,7 @@
       "content_hash": "f40f7e6e49b5bfe46ee00793d1e7b469"
     },
     {
-      "id": "0cd6b9d5e09ae6b0",
+      "id": "ad99b08517d95716",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -94,7 +94,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_012_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:02.191741",
+        "scraped_at": "2025-12-21T16:50:34.331942",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -114,7 +114,7 @@
       "content_hash": "98f52b9eb32d49930ff134e00a185e00"
     },
     {
-      "id": "74476c933dfb6e1a",
+      "id": "da9f3db6a8de82ca",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -147,7 +147,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_019_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:03.030592",
+        "scraped_at": "2025-12-21T16:50:35.108185",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -167,7 +167,7 @@
       "content_hash": "4b1b4906d0d3921ce13623c816e55bfd"
     },
     {
-      "id": "dbb55100b05c6725",
+      "id": "555f90c60ceaebbf",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -200,7 +200,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_022_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:03.856451",
+        "scraped_at": "2025-12-21T16:50:35.897270",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -220,7 +220,7 @@
       "content_hash": "09265b165b061a6a8c47c318ff3ac6b6"
     },
     {
-      "id": "c10edf80e5266058",
+      "id": "4cc660d03fe1f64d",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -253,7 +253,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:04.601526",
+        "scraped_at": "2025-12-21T16:50:36.593938",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -279,7 +279,7 @@
       "content_hash": "5c7e73cccb489bf33cce7bad6ed321cd"
     },
     {
-      "id": "1bebf036c5904ed5",
+      "id": "a68460595cd2e324",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -312,7 +312,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E1_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:05.388968",
+        "scraped_at": "2025-12-21T16:50:37.469497",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -332,7 +332,7 @@
       "content_hash": "cd8a98f7f72c7985f2af15e6d8d0df81"
     },
     {
-      "id": "312d90a1820fbb80",
+      "id": "a2977f2eb92569e9",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -365,7 +365,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E2_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:06.167387",
+        "scraped_at": "2025-12-21T16:50:38.255498",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -385,7 +385,7 @@
       "content_hash": "6b1460c240d051db7f98ad503297e0ea"
     },
     {
-      "id": "68a4cd0445a2207f",
+      "id": "11cc11d5c1ef7eba",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -418,7 +418,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E4_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:06.896354",
+        "scraped_at": "2025-12-21T16:50:39.023496",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -444,7 +444,7 @@
       "content_hash": "02a353d7714cb8c42ac5a2c693292708"
     },
     {
-      "id": "df4c3cffa3bee9d4",
+      "id": "2aad43727c6ad142",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -477,7 +477,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E8_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:07.612722",
+        "scraped_at": "2025-12-21T16:50:39.846509",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -503,7 +503,7 @@
       "content_hash": "b5e71600b8b3c1345bb9567f08ef87df"
     },
     {
-      "id": "630e399651c54aad",
+      "id": "571d42af65496135",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -536,7 +536,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_E17_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:08.278407",
+        "scraped_at": "2025-12-21T16:50:40.627928",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -562,7 +562,7 @@
       "content_hash": "a7c54e815b66decd267f97eaaa9d62fe"
     },
     {
-      "id": "e765e0489a51f07b",
+      "id": "e7c88897de0bb09c",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -595,7 +595,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_070_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:09.011632",
+        "scraped_at": "2025-12-21T16:50:41.476903",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -621,7 +621,7 @@
       "content_hash": "f4966cba20ba807df2850d6bdf6bfd3f"
     },
     {
-      "id": "38d3528bc31cc7ad",
+      "id": "990ed0b6963b6393",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -654,7 +654,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_302_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:10.025376",
+        "scraped_at": "2025-12-21T16:50:42.577667",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -685,7 +685,7 @@
       "content_hash": "dfd2e349c8a2f0763b5075e8f946ebab"
     },
     {
-      "id": "50bc68ee958a5ef6",
+      "id": "10227bd2a1428d18",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -718,7 +718,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_330_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:11.402124",
+        "scraped_at": "2025-12-21T16:50:43.902491",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -744,7 +744,7 @@
       "content_hash": "6febe14371f35c2d676890fabb9d7983"
     },
     {
-      "id": "9c16c3942edeebbb",
+      "id": "d42f634815d00f2c",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -777,7 +777,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_340_2_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:12.169622",
+        "scraped_at": "2025-12-21T16:50:44.633872",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -803,7 +803,7 @@
       "content_hash": "8303e43eae2e948abd6ff9dc6b459a49"
     },
     {
-      "id": "9a7dd2750047f5f5",
+      "id": "4b847e01a8982db7",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -836,7 +836,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_340_7_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:13.062364",
+        "scraped_at": "2025-12-21T16:50:45.571085",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -862,7 +862,7 @@
       "content_hash": "0876006ab944e4361a379ab31937f117"
     },
     {
-      "id": "43643a802603ff47",
+      "id": "9ff23cb9146aa00d",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -895,7 +895,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_301_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:13.865571",
+        "scraped_at": "2025-12-21T16:50:46.388401",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -921,7 +921,7 @@
       "content_hash": "bcc34c42ff38a7c55a6187b01e81d78e"
     },
     {
-      "id": "a53c69b1701e48be",
+      "id": "381a4009b764b9cb",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -954,7 +954,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_361_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:14.596945",
+        "scraped_at": "2025-12-21T16:50:47.090488",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -974,7 +974,7 @@
       "content_hash": "0b842f08bb4a4111f9672ecfa088ac4d"
     },
     {
-      "id": "2edf11bc4603d45a",
+      "id": "32e4f19e979e649d",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1007,7 +1007,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_369_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:15.345851",
+        "scraped_at": "2025-12-21T16:50:47.809012",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1033,7 +1033,7 @@
       "content_hash": "211034c6ba867558617372225be07db0"
     },
     {
-      "id": "bfd2f10ed6b2f63b",
+      "id": "9db64fc654cab97f",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1066,7 +1066,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_700_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:17.422679",
+        "scraped_at": "2025-12-21T16:50:49.860083",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1092,7 +1092,7 @@
       "content_hash": "80d6a7b46b4edee4fcc866df9e7a9d5c"
     },
     {
-      "id": "f14630c9f1d0cfd9",
+      "id": "1e1532c9d4840a71",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1125,7 +1125,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_801_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:18.989582",
+        "scraped_at": "2025-12-21T16:50:51.390256",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1145,7 +1145,7 @@
       "content_hash": "7ff70bae9a1905b4ca69128ed2b5acaa"
     },
     {
-      "id": "2de2deea63700a2c",
+      "id": "55971d6892f82706",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1178,7 +1178,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_14_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:19.717707",
+        "scraped_at": "2025-12-21T16:50:52.082733",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1204,7 +1204,7 @@
       "content_hash": "f4f6b6f38f3358de769be72e0f4382ba"
     },
     {
-      "id": "df20fb2d02979ff1",
+      "id": "fc856e79d3105d93",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1237,7 +1237,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_24_EVALOG_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:21.154677",
+        "scraped_at": "2025-12-21T16:50:53.170208",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1263,7 +1263,7 @@
       "content_hash": "620112db9fbfe64b4b6162249ef2f450"
     },
     {
-      "id": "ec2143f338fd714e",
+      "id": "0920e69bea7317a7",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1296,7 +1296,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_E_13_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:22.367118",
+        "scraped_at": "2025-12-21T16:50:53.881718",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1322,7 +1322,7 @@
       "content_hash": "e46fc657001fd35019927ca9f0453c0a"
     },
     {
-      "id": "762609b342d5b3b3",
+      "id": "a051906d053d7404",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1355,7 +1355,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_942_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:24.789087",
+        "scraped_at": "2025-12-21T16:50:55.389271",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1375,7 +1375,7 @@
       "content_hash": "51a44cd17737195445cf878968486445"
     },
     {
-      "id": "89c7e4a77adb066e",
+      "id": "cf64da9c8a245457",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1408,7 +1408,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_030_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:25.653838",
+        "scraped_at": "2025-12-21T16:50:56.162354",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1434,7 +1434,7 @@
       "content_hash": "bb024ff50569613676317e0ad5474594"
     },
     {
-      "id": "831893249cfdf063",
+      "id": "fd97441cd5c796f7",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1467,7 +1467,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_041_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:26.444323",
+        "scraped_at": "2025-12-21T16:50:56.862612",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1493,7 +1493,7 @@
       "content_hash": "e650e14e8de161e5070d2ff315217db1"
     },
     {
-      "id": "581d235792974163",
+      "id": "67ad802157bc7bef",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1526,7 +1526,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_080_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:27.574423",
+        "scraped_at": "2025-12-21T16:50:57.590449",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1546,7 +1546,7 @@
       "content_hash": "53bc099668f96baf3bacd50e34f3de9f"
     },
     {
-      "id": "0cde327628f3ae36",
+      "id": "f9a038e322f6aeec",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1579,7 +1579,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_364_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:28.364883",
+        "scraped_at": "2025-12-21T16:50:58.252564",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1605,7 +1605,7 @@
       "content_hash": "d34ef55bd0bd10cc5a1d008863d01a39"
     },
     {
-      "id": "8adbdb1e4fd939cf",
+      "id": "c23a0fbf16a855ad",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1638,7 +1638,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_391_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:29.195729",
+        "scraped_at": "2025-12-21T16:50:58.977962",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1664,7 +1664,7 @@
       "content_hash": "ec658829201237358484d31db3294a6d"
     },
     {
-      "id": "1300694bb0876f21",
+      "id": "bb662ad2544ea1ed",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1697,7 +1697,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_705_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:29.886378",
+        "scraped_at": "2025-12-21T16:50:59.669596",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1723,7 +1723,7 @@
       "content_hash": "0844027707b7428538564eb81e668948"
     },
     {
-      "id": "baec757d70dd2749",
+      "id": "fc18c31d76189716",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1756,7 +1756,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_719_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:30.643349",
+        "scraped_at": "2025-12-21T16:51:00.419127",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1787,7 +1787,7 @@
       "content_hash": "b58fc61110e66e35f0cd913d540fef52"
     },
     {
-      "id": "2a4a1e866588ad0b",
+      "id": "0997a33e5a354dae",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1820,7 +1820,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_Basiswissen_2025_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:31.705990",
+        "scraped_at": "2025-12-21T16:51:01.400381",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -1846,7 +1846,7 @@
       "content_hash": "36ec6f19cc3ce1eccd34080d41355ebd"
     },
     {
-      "id": "d99986fe7499f618",
+      "id": "9174de484fc9d96c",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -1879,7 +1879,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVAsicher_2024-2025_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T16:42:32.446466",
+        "scraped_at": "2025-12-21T16:51:02.142608",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
