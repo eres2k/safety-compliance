@@ -1,7 +1,7 @@
 {
   "country": "NL",
   "language": "nl",
-  "scraped_at": "2025-12-20T21:50:17.238649",
+  "scraped_at": "2025-12-21T07:41:14.383298",
   "articles": {
     "Arbowet": {
       "title": "Arbeidsomstandighedenwet",
@@ -32,10 +32,10 @@
   "ai_suggested_articles": [
     {
       "law_abbr": "ASchG",
-      "title": "Arbeidsomstandighedenbesluit",
-      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenbesluit",
-      "summary": "HetArbeidsomstandighedenbesluit(of kortwegArbobesluit) is eenalgemene maatregel van bestuuren maakt deel uit van deNederlandsearbeidsomstandighedenwetgeving. In het Arbobesluit staan concrete regels, ingedeeld naar onderwerp. De voorschriften zijn algemeen geformuleerd. Zij geven aan welk resultaat het arbobeleid moet hebben, maar leggen niet dwingend op hoe dat resultaat bereikt moet worden.",
-      "reason": "The Arbobesluit is the main decree implementing the Arbowet and details many specific obligations for employers, including those relevant to logistics and warehouse operations.",
+      "title": "Arbeidsomstandighedenwet",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenwet",
+      "summary": "DeArbeidsomstandighedenwet(of kortwegArbowet) is eenNederlandse wetdie regels bevat voorwerkgeversenwerknemersom de gezondheid, de veiligheid en het welzijn van werknemers en zelfstandig ondernemers te bevorderen. Het doel is om ongevallen en ziekten, veroorzaakt door het werk, te voorkomen. De arbowet is sinds 2020 vanwege decoronapandemiegrondig aangepast omdat medewerkers nu vaker thuis moeten werken.",
+      "reason": "The Arbowet is the primary Dutch law concerning workplace health and safety, directly analogous to the German ASchG. Understanding its general principles is crucial.",
       "priority": "high"
     },
     {
@@ -43,7 +43,7 @@
       "title": "Risicoanalyse",
       "url": "https://nl.wikipedia.org/wiki/Risicoanalyse",
       "summary": "Eenrisicoanalyseis een methode waarbij nader benoemde risico's worden gekwantificeerd door het bepalen van de kans dat een dreiging zich voordoet en de gevolgen daarvan:Risico=KansxGevolg. De risicoanalyse is de eerste stap binnen het risicomanagementproces.",
-      "reason": "Risk assessment is a fundamental requirement of the Arbowet and Arbobesluit, crucial for identifying and mitigating hazards in a warehouse environment.",
+      "reason": "Risk assessment is a fundamental requirement under workplace safety legislation, including the Arbowet, and is highly relevant for warehouse operations.",
       "priority": "high"
     },
     {
@@ -51,79 +51,223 @@
       "title": "Persoonlijke beschermingsmiddelen",
       "url": "https://nl.wikipedia.org/wiki/Persoonlijke_beschermingsmiddelen",
       "summary": "Persoonlijke beschermingsmiddelen(PBM) worden ingezet zowel in de privésfeer als bij professioneel gebruik. Ze zijn ontwikkeld om de restrisico's af te dekken, met andere woorden de drager van het PBM beschermen tegen risico's wanneer de andere maatregelen (eliminatie van het gevaar, substitutie van het gevaar, gebruik van collectieve beschermingsmiddelen) onvoldoende blijkt te zijn.[1]",
-      "reason": "Personal protective equipment (PPE) is a key component of workplace safety regulations, particularly relevant for tasks in logistics and warehouses.",
+      "reason": "Personal protective equipment (PPE) is a key component of workplace safety and is extensively covered in regulations like the Arbowet, especially in logistics environments.",
       "priority": "medium"
     },
     {
-      "law_abbr": "Arbowet",
+      "law_abbr": "BetrVG",
+      "title": "Ondernemingsraad (Nederland)",
+      "url": "https://nl.wikipedia.org/wiki/Ondernemingsraad_(Nederland)",
+      "summary": "Eenondernemingsraad (or)is een inspraak- enmedezeggenschapsorgaanbinnen een bedrijf. Een OR bestaat uit werknemers die namens het personeel overleg voeren met de werkgever over het ondernemingsbeleid en de personeelsbelangen.",
+      "reason": "The BetrVG establishes works councils. In the Netherlands, the equivalent is the Ondernemingsraad, which plays a similar role in employee representation and consultation on workplace matters, including safety.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "BetrVG",
+      "title": "Arbeidsomstandigheden",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandigheden",
+      "summary": "Arbeidsomstandighedenzijn het fysieke, sociale en psychologische klimaat waarin wordt gewerkt. Deze kunnen worden onderscheiden van de primaire en secundairearbeidsvoorwaarden. Het woord\"arbeidsomstandigheden\" wordt vaak verkort totarbo, onder andere in wetgeving.",
+      "reason": "While BetrVG focuses on employee participation, the underlying concern is always working conditions, which directly relates to 'Arbeidsomstandigheden' (working conditions) in Dutch legislation.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "BetrVG",
+      "title": "Medezeggenschap",
+      "url": "https://nl.wikipedia.org/wiki/Medezeggenschap",
+      "summary": "Medezeggenschapis het uitoefenen van invloed op de besluitvorming in organisaties door in georganiseerde en wettelijk vastgelegde vorm deel te nemen aan beraadslaging met het bestuur (de 'zeggenschap') van de organisatie (of het organisatieonderdeel). Medezeggenschap is onder meer te vinden op scholen, binnen arbeidsorganisaties en binnen de overheid.",
+      "reason": "Medezeggenschap (co-determination/participation) is the core principle of the BetrVG and is a vital concept for understanding how employees can influence health and safety policies in the workplace.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ArbSchG",
       "title": "Arbeidsomstandighedenwet",
       "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenwet",
       "summary": "DeArbeidsomstandighedenwet(of kortwegArbowet) is eenNederlandse wetdie regels bevat voorwerkgeversenwerknemersom de gezondheid, de veiligheid en het welzijn van werknemers en zelfstandig ondernemers te bevorderen. Het doel is om ongevallen en ziekten, veroorzaakt door het werk, te voorkomen. De arbowet is sinds 2020 vanwege decoronapandemiegrondig aangepast omdat medewerkers nu vaker thuis moeten werken.",
-      "reason": "This is the primary law governing workplace health and safety in the Netherlands, providing the overarching framework for all related regulations.",
+      "reason": "The ArbSchG is a German law. The Arbowet is the foundational Dutch legislation for occupational health and safety, covering similar principles of employer responsibility for a safe working environment.",
       "priority": "high"
     },
     {
-      "law_abbr": "Arbowet",
-      "title": "Bedrijfshulpverlening",
-      "url": "https://nl.wikipedia.org/wiki/Bedrijfshulpverlening",
-      "summary": "Bedrijfshulpverlening(BHV) is de hulp die wordt verleend bij ongewenste gebeurtenissen in een organisatie, die de veiligheid en/of gezondheid van de werknemers en andere aanwezigen bedreigen, zoals ongevallen en brand. Bedrijfshulpverlening is verplicht voor werkgevers in Nederland.",
-      "reason": "Company emergency response (BHV) is a mandatory aspect of the Arbowet, essential for handling incidents in any workplace, including logistics centers.",
-      "priority": "medium"
+      "law_abbr": "ArbSchG",
+      "title": "Arbeidsfysiotherapie",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsfysiotherapie",
+      "summary": "In Nederland houdt dearbeidsfysiotherapeutzich bezig met klachten en aandoeningen van het houding en bewegingsapparaat, die mede het gevolg zijn van het werk of die het werken beperken. De arbeidsfysiotherapeut houdt zich vooral bezig met de arbeidsrelevante problemen van de individuele werknemer. Daarmee onderscheidt hij zich van debedrijfsfysiotherapeutdie zich er vooral op richt om het bedrijf zelf van advies te voorzien.",
+      "reason": "Workplace inspections and assessments are critical for identifying and mitigating hazards, a key aspect of occupational safety legislation like the ArbSchG and the Arbowet.",
+      "priority": "high"
     },
     {
-      "law_abbr": "Arbowet",
+      "law_abbr": "ArbSchG",
       "title": "Nederlandse Arbeidsinspectie",
       "url": "https://nl.wikipedia.org/wiki/Nederlandse_Arbeidsinspectie",
       "summary": "DeNederlandse Arbeidsinspectie(NLA) van het NederlandseMinisterie van Sociale Zaken en Werkgelegenheid(SZW) is op 1 januari 2012 ontstaan door samenvoeging van de Arbeidsinspectie, de Inspectie Werk en Inkomen en de Sociale Inlichtingen- en Opsporingsdienst. Van 1 januari 2012 tot en met 31 december 2021 heette de dienstInspectie SZW. De Nederlandse Arbeidsinspectie kent de volgende directies:",
-      "reason": "The Arbeidsinspectie (now part of Inspectie SZW) is the regulatory body responsible for enforcing the Arbowet, providing context on oversight and compliance.",
-      "priority": "low"
-    },
-    {
-      "law_abbr": "Arbobesluit",
-      "title": "Arbeidsomstandighedenbesluit",
-      "url": "https://nl.wikipedia.org/wiki/Arbeidsomstandighedenbesluit",
-      "summary": "HetArbeidsomstandighedenbesluit(of kortwegArbobesluit) is eenalgemene maatregel van bestuuren maakt deel uit van deNederlandsearbeidsomstandighedenwetgeving. In het Arbobesluit staan concrete regels, ingedeeld naar onderwerp. De voorschriften zijn algemeen geformuleerd. Zij geven aan welk resultaat het arbobeleid moet hebben, maar leggen niet dwingend op hoe dat resultaat bereikt moet worden.",
-      "reason": "This decree details specific obligations for employers and employees under the Arbowet, including requirements for safe working conditions, equipment, and procedures relevant to warehouses.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "Arbobesluit",
-      "title": "Ergonomie",
-      "url": "https://nl.wikipedia.org/wiki/Ergonomie",
-      "summary": "Ergonomieis de wetenschappelijke studie van de mens in relatie tot zijn omgeving. Dit kan een product, ruimte ofwerkplekzijn. Ergonomie zit vervat in ons dagelijks leven, maar is vooral bekend in arbeidssituaties. Het is afgeleid van deGrieksewoordenergon, werk, ennomos, wet, en moet ervoor zorgen dat deveiligheidengezondheidvan de werknemers verzekerd wordt. Bij het ontwerpen van consumentengoederen en interieurs speelt vooral comfort en het doeltreffend functioneren een rol. De term \"human fac",
-      "reason": "Ergonomics is a significant focus within the Arbobesluit, addressing physical strain and repetitive tasks common in logistics and warehouse environments.",
+      "reason": "The ArbSchG is enforced by regulatory bodies. In the Netherlands, the Arbeidsinspectie (now part of Inspectie SZW) is the primary enforcement agency for health and safety regulations.",
       "priority": "medium"
     },
     {
-      "law_abbr": "Arbobesluit",
-      "title": "Masculinisme",
-      "url": "https://nl.wikipedia.org/wiki/Masculinisme",
-      "summary": "Masculinismeis een verzameling vanmaatschappelijkeenpolitiekebewegingen die streven naar de opheffing van achterstelling/discriminatie vanmannenen hier (meer) maatschappelijke aandacht voor vragen. De beweging probeert ongelijke verhoudingen tussen mannen en vrouwenkritischte analyseren. Masculinisme wordt veelal beschouwd als de mannelijke tegenhanger van het veel bekenderefeminisme.",
-      "reason": "A general overview of workplace safety, which the Arbobesluit elaborates upon with specific regulations.",
-      "priority": "low"
-    },
-    {
-      "law_abbr": "Arbobeleidsregels",
-      "title": "Beleidsregels arbeidsomstandighedenwetgeving",
-      "url": "https://nl.wikipedia.org/wiki/Beleidsregels_arbeidsomstandighedenwetgeving",
-      "summary": "DeBeleidsregels arbeidsomstandighedenwetgeving(of kortwegArbobeleidsregels) maken deel uit van deNederlandseArbeidsomstandighedenwetgeving. De Arbobeleidsregels bevatten geen bindende voorschriften, maar geven wel suggesties hoe de werkgever de bescherming die de wet verlangt, kan bereiken. Eenwerkgeverkan dus zelf bepalen op welke manier hij dat niveau wil bereiken. Er is één regel die duidelijk afwijkt. Dat is de regel over boeteoplegging. De berekening van deboeteen wanneer de boete verhoogd ",
-      "reason": "These are administrative rules that further clarify and specify the implementation of the Arbowet and Arbobesluit, offering detailed guidance on various safety aspects.",
-      "priority": "high"
-    },
-    {
-      "law_abbr": "Arbobeleidsregels",
+      "law_abbr": "GefStoffV",
       "title": "Gevaarlijke stoffen",
       "url": "https://nl.wikipedia.org/wiki/Gevaarlijke_stoffen",
       "summary": "Dit artikel bevat verouderde informatie en zou bijgewerkt moeten worden. U wordt uitgenodigd om dit artikel bij te werken.",
-      "reason": "If the warehouse handles any chemicals or hazardous materials, these rules provide specific guidance on their safe storage and handling.",
+      "reason": "GefStoffV deals with hazardous substances. 'Gevaarlijke stoffen' (hazardous substances) is the direct Dutch equivalent and a crucial topic for warehouse safety, especially with potential chemical or material handling.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "GefStoffV",
+      "title": "Veiligheidsinformatieblad",
+      "url": "https://nl.wikipedia.org/wiki/Veiligheidsinformatieblad",
+      "summary": "Eenveiligheidsinformatiebladis een gestructureerddocumentmet informatie over de risico's van eengevaarlijke stofof preparaat en met aanbevelingen voor het veilig gebruik ervan op het werk.",
+      "reason": "Safety Data Sheets (SDS) are essential for understanding and managing hazardous substances, a key requirement under regulations like GefStoffV and the Arbowet.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "GefStoffV",
+      "title": "Lijst van H- en P-zinnen",
+      "url": "https://nl.wikipedia.org/wiki/Lijst_van_H-_en_P-zinnen",
+      "summary": "Dit is de lijst vangevarenaanduidingen(H-zinnen, met de H vanhazard) envoorzorgsmaatregelen(P-zinnen, met de P vanprecautionary) volgensGlobally Harmonised System of Classification and Labelling of Chemicals(GHS) die in deEuropese Uniegebruikt wordt.",
+      "reason": "Understanding and controlling exposure to hazardous substances is a core element of this regulation, directly translating to 'Blootstelling aan gevaarlijke stoffen' (exposure to hazardous substances).",
       "priority": "medium"
     },
     {
-      "law_abbr": "Arbobeleidsregels",
+      "law_abbr": "ArbStättV",
+      "title": "Ergonomie",
+      "url": "https://nl.wikipedia.org/wiki/Ergonomie",
+      "summary": "Ergonomieis de wetenschappelijke studie van de mens in relatie tot zijn omgeving. Dit kan een product, ruimte ofwerkplekzijn. Ergonomie zit vervat in ons dagelijks leven, maar is vooral bekend in arbeidssituaties. Het is afgeleid van deGrieksewoordenergon, werk, ennomos, wet, en moet ervoor zorgen dat deveiligheidengezondheidvan de werknemers verzekerd wordt. Bij het ontwerpen van consumentengoederen en interieurs speelt vooral comfort en het doeltreffend functioneren een rol. De term \"human fac",
+      "reason": "ArbStättV concerns workplace design and layout. 'Werkplekinrichting' (workplace design/layout) is directly relevant to ensuring safe and ergonomic workspaces in a logistics environment.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbStättV",
+      "title": "Ergonomie",
+      "url": "https://nl.wikipedia.org/wiki/Ergonomie",
+      "summary": "Ergonomieis de wetenschappelijke studie van de mens in relatie tot zijn omgeving. Dit kan een product, ruimte ofwerkplekzijn. Ergonomie zit vervat in ons dagelijks leven, maar is vooral bekend in arbeidssituaties. Het is afgeleid van deGrieksewoordenergon, werk, ennomos, wet, en moet ervoor zorgen dat deveiligheidengezondheidvan de werknemers verzekerd wordt. Bij het ontwerpen van consumentengoederen en interieurs speelt vooral comfort en het doeltreffend functioneren een rol. De term \"human fac",
+      "reason": "Ergonomics is a key consideration in workplace design to prevent musculoskeletal disorders, a significant aspect of ArbStättV and general workplace safety.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbStättV",
+      "title": "NEN 3140",
+      "url": "https://nl.wikipedia.org/wiki/NEN_3140",
+      "summary": "DeNEN 3140, \"Bedrijfsvoering van elektrische installaties - Laagspanning\", is de Nederlandsenorm(NEN) voorveiligebedrijfsvoering van werkzaamheden nabij, aan of metelektrischeobjecten in hetlaagspanningsgebied. Per juli 2019 is de NEN 3140+A3:2019 van kracht.",
+      "reason": "The overarching goal of ArbStättV is to ensure a safe workplace. 'Veilige werkplek' (safe workplace) captures this fundamental principle.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "BetrSichV",
       "title": "Arbo-informatieblad",
       "url": "https://nl.wikipedia.org/wiki/Arbo-informatieblad",
       "summary": "EenArbo-informatieblad(afgekortAI-blad) is een publicatie, uitgegeven onder toezicht van hetMinisterie van Sociale Zaken en Werkgelegenheid, die voorwerkgeversenwerknemersArbowetgevinginzichtelijk en toegankelijk maakt. AI-bladen worden uitgegeven door deSdu.",
-      "reason": "Relevant for the safe operation of machinery and equipment used in logistics and warehousing.",
+      "reason": "BetrSichV focuses on the safety of technical equipment and machinery. 'Machineveiligheid' (machine safety) is a direct and critical topic for warehouse operations with automated systems and equipment.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "BetrSichV",
+      "title": "Arbeidsmiddel",
+      "url": "https://nl.wikipedia.org/wiki/Arbeidsmiddel",
+      "summary": "Eenarbeidsmiddelvan het arbeidsproces varieert in grootte en in toepassing. Het is immers een verzamelnaam voor alle gereedschappen, apparaten, vast opgestelde en mobiele machines en installaties die op de arbeidsplaats gebruikt worden. Een arbeidsmiddel kan een klein handgereedschap zijn zoals een hamer en een handzaag, een elektrisch klokboormachine, een schroefpistool; klimmateriaal, steigers en stellingen; een duurzame productielijn; een digitale printing machine of een landbouwmachine, enz.",
+      "reason": "Regular inspection and maintenance of work equipment are mandated by BetrSichV. 'Inspectie van arbeidsmiddelen' (inspection of work equipment) is a key practical application.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "BetrSichV",
+      "title": "Risico-inventarisatie en -evaluatie",
+      "url": "https://nl.wikipedia.org/wiki/Risico-inventarisatie_en_-evaluatie",
+      "summary": "Eenrisico-inventarisatie en -evaluatie(RI&E) is een verplicht middel ter bevordering vanveilig en gezond werkenvolgens de NederlandseArbeidsomstandighedenwet. Sinds 1 januari 1994 is deze verplicht voor allewerkgevers, dus niet voorzelfstandigen zonder personeel. De werkgever moet (laten) onderzoeken of erarbeidsrisico's zijn, die bij het werk gevaar kan opleveren of schade kan veroorzaken aan de gezondheid van de werknemers, al dan niet leidend totverzuim. In de RI&E moet het resultaat van dit ",
+      "reason": "Assessing the risks associated with machinery is a core component of BetrSichV, directly translating to 'Risico-evaluatie van machines' (risk assessment of machines).",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "LärmV",
+      "title": "Geluidshinder",
+      "url": "https://nl.wikipedia.org/wiki/Geluidshinder",
+      "summary": "Geluidshinder(ook:geluidhinder) ofgeluid(s)overlastis verstoring veroorzaakt door lawaai of andere hinderlijke klanken.Geluidis een belangrijk element in deleefomgevingvan mensen. Geluid heeft een signaalfunctie, is in veel gevallen sfeerbepalend en heeft invloed op het functioneren en de gezondheid van mens en dier.",
+      "reason": "LärmV addresses noise at work. 'Geluidsbelasting op het werk' (noise exposure at work) is the direct Dutch equivalent and highly relevant for noisy warehouse environments.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "LärmV",
+      "title": "Gehoorbescherming",
+      "url": "https://nl.wikipedia.org/wiki/Gehoorbescherming",
+      "summary": "Ondergehoorbeschermingwordt in het algemeen de fysieke bescherming van hetoortegenlawaaiverstaan.[1]Dit voorkomtlawaaidoofheid. Het valt onder de categorie \"Persoonlijke beschermingsmiddelen\". Gehoorbescherming wordt niet alleen gedragen als bescherming tegen lawaai. Zwemmers dragen bijvoorbeeld ook gehoorbescherming, maar dat is ervoor dat zij tijdens hetzwemmengeenwaterin hun oren krijgen. Er zijn speciale slaapdoppen die tegenomgevingsgeluidhelpen aan een goede nachtrust.",
+      "reason": "Hearing protection is a primary measure to mitigate noise risks, a key aspect of regulations like LärmV and the Arbowet.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "LärmV",
+      "title": "Narita",
+      "url": "https://nl.wikipedia.org/wiki/Narita",
+      "summary": "Narita(Japans: 成田市,Narita-shi) is eenJapansestadin het noorden van deprefectuurChiba, gelegen ten oosten van hetInbameer(印旛沼).",
+      "reason": "Understanding acceptable noise levels is crucial. 'Geluidsnormen' (noise standards) are the regulatory benchmarks for noise exposure.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "PSA-BenV",
+      "title": "Persoonlijke beschermingsmiddelen",
+      "url": "https://nl.wikipedia.org/wiki/Persoonlijke_beschermingsmiddelen",
+      "summary": "Persoonlijke beschermingsmiddelen(PBM) worden ingezet zowel in de privésfeer als bij professioneel gebruik. Ze zijn ontwikkeld om de restrisico's af te dekken, met andere woorden de drager van het PBM beschermen tegen risico's wanneer de andere maatregelen (eliminatie van het gevaar, substitutie van het gevaar, gebruik van collectieve beschermingsmiddelen) onvoldoende blijkt te zijn.[1]",
+      "reason": "PSA-BenV is specifically about personal protective equipment. 'Persoonlijke beschermingsmiddelen' (personal protective equipment) is the direct Dutch term and a fundamental concept for warehouse safety.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "PSA-BenV",
+      "title": "Gasmasker",
+      "url": "https://nl.wikipedia.org/wiki/Gasmasker",
+      "summary": "Eengasmaskeris eenademhalingsbeschermingsmaskerdat strak aansluit op het gezicht om de ogen, neus en mond, en met eenluchtfilterom schadelijkevervuilingengifstoffenuit de lucht te filteren. Gasmaskers worden in vredessituaties gebruikt ombrandweermensentegen giftige stoffen te beschermen of alsPBMvoor werkers in de chemische industrie, en in oorlogssituaties om bevolking en militairen te beschermen tegenstrijdgassen. Tegen rook en verbrandingsgassen zoalskoolmonoxidebieden gasmaskers enkel besch",
+      "reason": "The correct selection of PPE is crucial for its effectiveness. 'Selectie van PBM' (selection of PPE) is a key practical consideration.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "PSA-BenV",
+      "title": "PBM",
+      "url": "https://nl.wikipedia.org/wiki/PBM",
+      "summary": "PBMkan verwijzen naar:",
+      "reason": "Proper use and maintenance of PPE are as important as selection. 'Gebruik van PBM' (use of PPE) is a vital aspect of compliance.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ArbSchG (specific to fire safety)",
+      "title": "John Jones (acteur)",
+      "url": "https://nl.wikipedia.org/wiki/John_Jones_(acteur)",
+      "summary": "John Arthur Jones(Amsterdam,29 september1963) is eenNederlandsacteur. Hij is de zoon van acteur en zangerDonald Jonesen cabaretière, actrice en zangeresAdèle Bloemendaal.",
+      "reason": "While ArbSchG is general, specific sections often cover fire safety. 'Brandveiligheid op het werk' (fire safety at work) is a crucial topic for any workplace, including warehouses.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbSchG (specific to fire safety)",
+      "title": "Brandpreventie",
+      "url": "https://nl.wikipedia.org/wiki/Brandpreventie",
+      "summary": "Onderbrandpreventieverstaat men het nemen van maatregelen ter voorkoming en beperking vanbrand, de gevolgen van brand en het waarborgen van de ontvluchting van personen.",
+      "reason": "Preventing fires is a primary goal of fire safety regulations. 'Brandpreventie' (fire prevention) is a key concept.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbSchG (specific to fire safety)",
+      "title": "Nooduitgang",
+      "url": "https://nl.wikipedia.org/wiki/Nooduitgang",
+      "summary": "Eennooduitgangis een uitgang die wordt gebruikt om in geval van nood, zoalsbrand, buiten te komen.",
+      "reason": "Ensuring clear and accessible emergency exits is a fundamental fire safety requirement, directly relevant to warehouse layouts.",
+      "priority": "medium"
+    },
+    {
+      "law_abbr": "ArbSchG (specific to ergonomics)",
+      "title": "Ergonomie",
+      "url": "https://nl.wikipedia.org/wiki/Ergonomie",
+      "summary": "Ergonomieis de wetenschappelijke studie van de mens in relatie tot zijn omgeving. Dit kan een product, ruimte ofwerkplekzijn. Ergonomie zit vervat in ons dagelijks leven, maar is vooral bekend in arbeidssituaties. Het is afgeleid van deGrieksewoordenergon, werk, ennomos, wet, en moet ervoor zorgen dat deveiligheidengezondheidvan de werknemers verzekerd wordt. Bij het ontwerpen van consumentengoederen en interieurs speelt vooral comfort en het doeltreffend functioneren een rol. De term \"human fac",
+      "reason": "Ergonomic principles are vital for preventing injuries in physically demanding jobs common in logistics. 'Ergonomie op de werkplek' (workplace ergonomics) is directly relevant.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbSchG (specific to ergonomics)",
+      "title": "Katrol",
+      "url": "https://nl.wikipedia.org/wiki/Katrol",
+      "summary": "Eenkatrol(ook welblokofjijngenoemd, vooral in de zeevaart) is een werktuig waarin de trekrichting van eentouwwordt veranderd.",
+      "reason": "Manual handling of goods is a major risk in warehouses. 'Tillen en verplaatsen van lasten' (lifting and moving loads) is a specific ergonomic concern.",
+      "priority": "high"
+    },
+    {
+      "law_abbr": "ArbSchG (specific to ergonomics)",
+      "title": "Schermlezer",
+      "url": "https://nl.wikipedia.org/wiki/Schermlezer",
+      "summary": "Eenschermlezerof (naar hetEngels)screenreaderis eensoftwareprogrammadat de tekst van het computerscherm voorleest.",
+      "reason": "Analyzing workstations for ergonomic risks is a proactive approach to safety, aligning with the spirit of ergonomic regulations.",
       "priority": "medium"
     }
   ]

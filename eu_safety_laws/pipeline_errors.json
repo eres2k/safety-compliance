@@ -1,361 +1,95 @@
 {
-  "generated_at": "2025-12-20T21:50:17.323655",
+  "generated_at": "2025-12-21T07:41:14.478209",
   "pipeline": "full_pipeline",
   "country": "NL",
-  "duration_seconds": 658.517378,
+  "duration_seconds": 189.268201,
   "summary": {
-    "total_errors": 16,
-    "total_warnings": 19,
+    "total_errors": 2,
+    "total_warnings": 1,
     "error_categories": {
-      "general": 16
+      "general": 1,
+      "pdf_download": 1
     },
-    "duration_seconds": 658.517381
+    "duration_seconds": 189.268204
   },
   "errors": [
     {
-      "timestamp": "2025-12-20T21:39:32.350850",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/gxzb0ql4/m_025_heben_und_tragen_schieben_und_ziehen_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/gxzb0ql4/m_025_heben_und_tragen_schieben_und_ziehen_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:32.736074",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/kqxjzqpj/mplus_040e13_evaluierung_von_hebe_und_tragetaetigkeiten_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/kqxjzqpj/mplus_040e13_evaluierung_von_hebe_und_tragetaetigkeiten_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:34.714322",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/2c1p2ukt/m_8411_stapler_mit_fahrersitz_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/2c1p2ukt/m_8411_stapler_mit_fahrersitz_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:34.777646",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/lxhjyj5r/mplus_8413_ausbildung_bei_staplern_kranen_kombinationsgeraeten_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/lxhjyj5r/mplus_8413_ausbildung_bei_staplern_kranen_kombinationsgeraeten_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:34.905008",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/uw0lli55/mplus_842_batterieladeanlagen_fuer_flurfoerderzeuge_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/uw0lli55/mplus_842_batterieladeanlagen_fuer_flurfoerderzeuge_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:34.934263",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/zksfjgql/m_8412_deichselgefuehrte_stapler_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/zksfjgql/m_8412_deichselgefuehrte_stapler_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:35.681140",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf: 404 Client Error: Not Found for url: https://auva.at/media/dqzjxh13/mplus_340_arbeitsmittel_bf_2410.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:35.840117",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/r2qfq5at/mplus_350_arbeitsstaetten_bf_2405.pdf: 404 Client Error: Not Found for url: https://auva.at/media/r2qfq5at/mplus_350_arbeitsstaetten_bf_2405.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:35.962564",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/faqbqzk0/mplus_360_ergonomie_bf_2405.pdf: 404 Client Error: Not Found for url: https://auva.at/media/faqbqzk0/mplus_360_ergonomie_bf_2405.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:36.393005",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/nh1bq3eh/mplus_800_sicher_unterwegs_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/nh1bq3eh/mplus_800_sicher_unterwegs_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:37.293788",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf: 404 Client Error: Not Found for url: https://auva.at/media/oxanitla/mplus_910_evaluierung-psychischer-belastungen_bf_2311.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:38.276136",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/gw3oqohc/m_719_sicherheitsschuhe_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/gw3oqohc/m_719_sicherheitsschuhe_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:39.870230",
-      "category": "general",
-      "message": "Failed to download PDF from https://auva.at/media/xfqnpzwx/m_846_ladungssicherung_im_strassenverkehr_bf.pdf: 404 Client Error: Not Found for url: https://auva.at/media/xfqnpzwx/m_846_ladungssicherung_im_strassenverkehr_bf.pdf",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:44:57.576417",
-      "category": "general",
-      "message": "Failed to download PDF from https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121-1.pdf?__blob=publicationFile: 404 Client Error: Not Found for url: https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121-1.pdf?__blob=publicationFile",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": "full_pipeline",
-      "country": "AT"
-    },
-    {
-      "timestamp": "2025-12-20T21:44:57.687973",
-      "category": "general",
-      "message": "Failed to download PDF from https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121-2.pdf?__blob=publicationFile: 404 Client Error: Not Found for url: https://www.baua.de/DE/Angebote/Regelwerk/TRBS/pdf/TRBS-2121-2.pdf?__blob=publicationFile",
-      "details": {},
-      "file_path": null,
-      "line_number": null,
-      "suggestion": null,
-      "pipeline": "full_pipeline",
-      "country": "AT"
-    },
-    {
-      "timestamp": "2025-12-20T21:47:42.764530",
+      "timestamp": "2025-12-21T07:38:23.288255",
       "category": "general",
       "message": "Failed to download PDF from https://www.nlarbeidsinspectie.nl/binaries/nlarbeidsinspectie/documenten/publicaties/2025/03/17/onderzoek-fysieke-belasting-in-de-pakketdienstensector/rapportage-onderzoek-pakketdienstensector-door-vhp-en-tno.pdf: 404 Client Error: Not Found for url: https://www.nlarbeidsinspectie.nl/binaries/nlarbeidsinspectie/documenten/publicaties/2025/03/17/onderzoek-fysieke-belasting-in-de-pakketdienstensector/rapportage-onderzoek-pakketdienstensector-door-vhp-en-tno.pdf",
       "details": {},
       "file_path": null,
       "line_number": null,
       "suggestion": null,
-      "pipeline": "full_pipeline",
-      "country": "DE"
+      "pipeline": null,
+      "country": null
+    },
+    {
+      "timestamp": "2025-12-21T07:38:23.288264",
+      "category": "pdf_download",
+      "message": "Failed to download PDF from https://www.nlarbeidsinspectie.nl/binaries/nlarbeidsinspectie/documenten/publicaties/2025/03/17/onderzoek-fysieke-belasting-in-de-pakketdienstensector/rapportage-onderzoek-pakketdienstensector-door-vhp-en-tno.pdf: 404 Client Error: Not Found for url: https://www.nlarbeidsinspectie.nl/binaries/nlarbeidsinspectie/documenten/publicaties/2025/03/17/onderzoek-fysieke-belasting-in-de-pakketdienstensector/rapportage-onderzoek-pakketdienstensector-door-vhp-en-tno.pdf",
+      "details": {
+        "source_id": "NL:NL Arbeidsinspectie Pakketdiensten",
+        "country": "NL",
+        "abbrev": "NL Arbeidsinspectie Pakketdiensten",
+        "http_status": null,
+        "urls_tried": [
+          "https://www.nlarbeidsinspectie.nl/binaries/nlarbeidsinspectie/documenten/publicaties/2025/03/17/onderzoek-fysieke-belasting-in-de-pakketdienstensector/rapportage-onderzoek-pakketdienstensector-door-vhp-en-tno.pdf"
+        ],
+        "auto_disabled": false
+      },
+      "file_path": null,
+      "line_number": null,
+      "suggestion": null,
+      "pipeline": null,
+      "country": null
     }
   ],
   "warnings": [
     {
-      "timestamp": "2025-12-20T21:39:32.351804",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M 025",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:32.737018",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M.plus 040.E13",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:34.715293",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M 841.1",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:34.778565",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M.plus 841.3",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:34.905984",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M.plus 842",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:34.935221",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M 841.2",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:35.682082",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M.plus 340",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:35.841189",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M.plus 350",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:35.963564",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M.plus 360",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:36.393941",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M.plus 800",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:37.294680",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M.plus 910",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:38.277139",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M 719",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:39:39.871179",
-      "category": "general",
-      "message": "  Could not download PDF for AUVA M 846",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:43:54.775914",
-      "category": "general",
-      "message": "No Wikipedia article found for: Dokumentationsverordnung Arbeitsschutz",
-      "details": {},
-      "pipeline": null,
-      "country": null
-    },
-    {
-      "timestamp": "2025-12-20T21:44:43.208267",
-      "category": "general",
-      "message": "Found 13 errors and 14 warnings",
-      "details": {},
-      "pipeline": "full_pipeline",
-      "country": "AT"
-    },
-    {
-      "timestamp": "2025-12-20T21:44:57.577390",
-      "category": "general",
-      "message": "  Could not download PDF for TRBS 2121-1",
-      "details": {},
-      "pipeline": "full_pipeline",
-      "country": "AT"
-    },
-    {
-      "timestamp": "2025-12-20T21:44:57.689022",
-      "category": "general",
-      "message": "  Could not download PDF for TRBS 2121-2",
-      "details": {},
-      "pipeline": "full_pipeline",
-      "country": "AT"
-    },
-    {
-      "timestamp": "2025-12-20T21:47:26.529184",
-      "category": "general",
-      "message": "Found 15 errors and 17 warnings",
-      "details": {},
-      "pipeline": "full_pipeline",
-      "country": "DE"
-    },
-    {
-      "timestamp": "2025-12-20T21:47:42.765583",
+      "timestamp": "2025-12-21T07:38:23.288351",
       "category": "general",
       "message": "  Could not download PDF for NL Arbeidsinspectie Pakketdiensten",
       "details": {},
-      "pipeline": "full_pipeline",
-      "country": "DE"
+      "pipeline": null,
+      "country": null
     }
   ],
   "instructions_for_claude": {
     "description": "This file contains errors from the last pipeline run. Please review and fix the issues listed below.",
     "priority_order": [
       "1. Critical errors (data loss, broken functionality)",
-      "2. PDF/source errors (broken links, corrupt files)",
-      "3. AI/parsing errors (failed AI calls, parsing issues)",
-      "4. Validation warnings (missing fields, data quality)"
+      "2. PDF 404 errors (broken links) - update URLs in custom_sources.json",
+      "3. Network errors (timeouts, connection issues) - may be temporary",
+      "4. AI/parsing errors (failed AI calls, parsing issues)",
+      "5. Validation warnings (missing fields, data quality)"
     ],
-    "common_fixes": {
-      "broken_pdf_link": "Verify URL exists, update custom_sources.json if needed",
+    "error_categories": {
+      "pdf_404": "PDF URL returns 404. Find updated URL and update custom_sources.json",
+      "pdf_download": "PDF download failed. Check network or add fallback_urls",
+      "network_timeout": "Request timed out. Server may be slow - retry later",
+      "network_connection": "Connection failed. Check if server is accessible",
+      "source_disabled": "Source auto-disabled after repeated failures. Fix URL and reset health",
       "ai_rate_limit": "Reduce parallel requests or add delays",
-      "parse_error": "Check source HTML structure for changes",
-      "missing_content": "Source may have changed format, update scraper"
+      "html_parse": "HTML structure changed. Update scraper logic"
+    },
+    "automation_commands": {
+      "validate_and_fix": "python law_manager.py validate-urls --auto-fix",
+      "reset_health": "python law_manager.py sources --reset-health",
+      "check_health": "python law_manager.py sources --health-report",
+      "update_single_url": "Edit custom_sources.json directly"
+    },
+    "fallback_url_example": {
+      "description": "Add fallback_urls array to any source in custom_sources.json",
+      "example": {
+        "AUVA M 025": {
+          "url": "https://primary-url.pdf",
+          "fallback_urls": [
+            "https://backup-url-1.pdf",
+            "https://backup-url-2.pdf"
+          ]
+        }
+      }
     }
   }
 }

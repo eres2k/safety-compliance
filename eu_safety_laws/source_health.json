@@ -1,0 +1,107 @@
+{
+  "sources": {
+    "NL:STL Arbocatalogus Warehouse": {
+      "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:19.219217",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:STL Arbocatalogus Onderhoudswerkplaats": {
+      "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Onderhoudswerkplaats.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:19.919746",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:STL Arbocatalogus Transport Logistiek": {
+      "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/220512-Arbocatalogus-Transport-en-Logistiek-Versie-DEF.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:20.066266",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:STL Arbocatalogus Verticaal Transport": {
+      "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/Arbocatalogus-VVT-2022-definitief-getekend-SvL.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:20.998708",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:TNO Factsheet Fysieke Belasting 2023": {
+      "url": "https://publications.tno.nl/publication/34642121/WDOzBl/TNO-2024-fysieke.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:22.366147",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:TNO Wegwijzer Fysieke Belasting": {
+      "url": "https://fysiekebelasting.tno.nl/wp-content/uploads/sites/6/2021/09/Wegwijzer_FysiekeBelasting.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:22.402701",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:TNO Preventie Beroepsziekten": {
+      "url": "https://fysiekebelasting.tno.nl/wp-content/uploads/sites/6/2021/10/TNO-Rapport_Preventie-BeroepsziektenFysiekeBelasting_2020_verkleind.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:22.464828",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:PGS 15 Interim 2021": {
+      "url": "https://publicatiereeksgevaarlijkestoffen.nl/documents/81474/1664357600-interim_pgs_15_v1-0_augustus_2021.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:23.124532",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:PGS 15 Opslag Gevaarlijke Stoffen": {
+      "url": "https://content.publicatiereeksgevaarlijkestoffen.nl/documents/PGS15/PGS_15_2016_versie_1_0_sept_2016_definitief.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:23.279438",
+      "last_failure": null,
+      "auto_disabled": false
+    },
+    "NL:NL Arbeidsinspectie Pakketdiensten": {
+      "url": "https://www.nlarbeidsinspectie.nl/binaries/nlarbeidsinspectie/documenten/publicaties/2025/03/17/onderzoek-fysieke-belasting-in-de-pakketdienstensector/rapportage-onderzoek-pakketdienstensector-door-vhp-en-tno.pdf",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-21T07:38:23.287497",
+      "last_error": "404 Client Error: Not Found for url: https://www.nlarbeidsinspectie.nl/binaries/nlarbeidsinspectie/documenten/publicaties/2025/03/17/onderzoek-fysieke-belasting-in-de-pakketdienstensector/rapportage-onderzoek-pakketdienstensector-door-vhp-en-tno.pdf",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "NL:PGS 30.3 Gevaarlijke Vloeistoffen": {
+      "url": "https://publicatiereeksgevaarlijkestoffen.nl/documents/81474/1664357987-pgs-2031-20versie-202018_1-0_20180416-20definitief.pdf",
+      "consecutive_failures": 0,
+      "total_successes": 1,
+      "total_failures": 0,
+      "last_success": "2025-12-21T07:38:23.540455",
+      "last_failure": null,
+      "auto_disabled": false
+    }
+  },
+  "last_updated": "2025-12-21T07:38:23.540462",
+  "auto_disabled": []
+}
