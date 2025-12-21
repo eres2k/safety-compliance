@@ -231,7 +231,6 @@ function formatRelativeDate(dateStr) {
 export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
   const [alerts, setAlerts] = useState(SAMPLE_ALERTS)
   const [selectedCategory, setSelectedCategory] = useState(null)
-  const [selectedSeverity, setSelectedSeverity] = useState(null)
   const [selectedCountry, setSelectedCountry] = useState(null) // Country filter: 'DE', 'AT', 'NL', 'EU', or null for all
   const [expandedAlert, setExpandedAlert] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -267,7 +266,6 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
   // Filter alerts
   const filteredAlerts = alerts.filter(alert => {
     if (selectedCategory && alert.category !== selectedCategory) return false
-    if (selectedSeverity && alert.severity !== selectedSeverity) return false
     // Country filter - match source's country
     if (selectedCountry) {
       const sourceConfig = SAFETY_SOURCES[alert.source]
@@ -525,23 +523,6 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
               </button>
             ))}
           </div>
-
-          {/* Severity filters */}
-          <div className="flex items-center gap-1 ml-auto">
-            {Object.entries(SEVERITY_LEVELS).map(([key, sev]) => (
-              <button
-                key={key}
-                onClick={() => setSelectedSeverity(selectedSeverity === key ? null : key)}
-                className={`px-2 py-1 rounded-lg text-xs transition-colors ${
-                  selectedSeverity === key
-                    ? sev.color
-                    : 'bg-gray-100 dark:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-whs-dark-600'
-                }`}
-              >
-                {sev.icon}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -563,7 +544,6 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
             <button
               onClick={() => {
                 setSelectedCategory(null)
-                setSelectedSeverity(null)
                 setSelectedCountry(null)
               }}
               className="text-whs-orange-600 dark:text-whs-orange-400 text-sm mt-2 hover:underline"
