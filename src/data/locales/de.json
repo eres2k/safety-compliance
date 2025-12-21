@@ -202,7 +202,19 @@
     "safetyOfficer": "Fachkraft für Arbeitssicherheit",
     "inspections": "Arbeitsplatzbegehungen",
     "safetyCommittee": "Arbeitsschutzausschuss (ASA)",
-    "regulatoryInspections": "Vorbereitung auf Behördenkontrollen"
+    "regulatoryInspections": "Vorbereitung auf Behördenkontrollen",
+
+    "_category_amazon": "📦 Amazon Verteilerstation Betrieb",
+    "toteHandling": "TOTE-Handhabung & Stapeln",
+    "vanLoading": "Fahrzeugbeladung Verfahren",
+    "driverBriefing": "Fahrer-Sicherheitsbesprechungen",
+    "otrSafety": "OTR (Unterwegs) Sicherheit",
+    "routeDelivery": "Routen-Zustellsicherheit",
+    "packageSortation": "Paketsortierung Sicherheit",
+    "inductProcess": "Einlagern/Stow Prozess Sicherheit",
+    "pickToBuffer": "Pick to Buffer Betrieb",
+    "stagingArea": "Bereitstellungsbereich Sicherheit",
+    "returnProcessing": "Retourenbearbeitung Sicherheit"
   },
   "documents": {
     "riskAssessment": "Gefährdungsbeurteilung",
@@ -247,6 +259,54 @@
     "requirements": "Compliance-Anforderungen",
     "queryPrompt": "Was sind die Anforderungen für [THEMA] in einer Verteilerstation mit [GRÖSSE] Mitarbeitern?",
     "quickTopics": "Schnellthemen:"
+  },
+  "complianceChecker": {
+    "stationType": "Stationstyp",
+    "stationTypes": {
+      "deliveryStation": "Verteilerstation (DS)",
+      "sortCenter": "Sortierzentrum (SC)",
+      "flexStation": "Flex-Station",
+      "subSameDay": "Sub Same Day (SSD)",
+      "ruralStation": "Ländliche Station"
+    },
+    "smartMode": "Smart-Modus",
+    "smartDescription": "Intelligente Compliance-Prüfung für Amazon Verteilerstationen",
+    "history": "Verlauf",
+    "recentChecks": "Letzte Compliance-Prüfungen",
+    "quickTemplates": "Schnell-Compliance-Vorlagen",
+    "templates": {
+      "newStationLaunch": "Neue Station starten",
+      "peakSeasonReadiness": "Peak-Season Bereitschaft",
+      "pitSafetyAudit": "PIT-Sicherheitsaudit",
+      "driverSafetyCheck": "Fahrersicherheitsprüfung",
+      "newHireOnboarding": "Neue Mitarbeiter Einarbeitung",
+      "winterPreparation": "Wintervorbereitung"
+    },
+    "topicsIncluded": "Themen",
+    "seasonalAlerts": {
+      "winterHazards": "Wintergefahren-Warnung",
+      "summerHeat": "Sommerhitze-Warnung",
+      "peakSeasonAlert": "Peak-Season Warnung",
+      "seasonTransition": "Saisonwechsel"
+    },
+    "seasonalAlertDesc": {
+      "winterHazards": "Rutsch-/Sturzprävention, Kälteschutz-PSA und Fahrzeugsicherheit prüfen",
+      "summerHeat": "Hitzestress-Prävention, Trinkstationen und Pausenregelungen prüfen",
+      "peakSeasonAlert": "Überstunden-Compliance, Leiharbeiter-Schulung und Ergonomie sicherstellen",
+      "seasonTransition": "Saisonale Gefährdungsbeurteilungen und Wetterverfahren aktualisieren"
+    },
+    "priorityHigh": "Hoch",
+    "priorityMedium": "Mittel",
+    "priorityLow": "Niedrig",
+    "checkNow": "Jetzt prüfen",
+    "suggestedFor": "Empfohlen für",
+    "analyzing": "Analysiere Compliance...",
+    "analyzingFor": "Analysiere Compliance für",
+    "checkButton": "Compliance prüfen",
+    "complianceReport": "Compliance-Bericht",
+    "clickLawToView": "Klicken Sie auf ein Gesetz, um es im Gesetzes-Browser anzuzeigen",
+    "readyToCheck": "Bereit zur Compliance-Prüfung",
+    "emptyStateDesc": "Wählen Sie Ihren Stationstyp, Größe und Sicherheitsthema für intelligente Compliance-Hinweise."
   },
   "complianceCenter": {
     "title": "Compliance-Center",

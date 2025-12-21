@@ -202,7 +202,19 @@
     "safetyOfficer": "Preventiemedewerker Vereisten",
     "inspections": "Werkplekinspecties",
     "safetyCommittee": "Ondernemingsraad (OR)",
-    "regulatoryInspections": "Voorbereiding Arbeidsinspectie"
+    "regulatoryInspections": "Voorbereiding Arbeidsinspectie",
+
+    "_category_amazon": "📦 Amazon Bezorgstation Operaties",
+    "toteHandling": "TOTE Behandeling & Stapelen",
+    "vanLoading": "Voertuig Laadprocedures",
+    "driverBriefing": "Chauffeur Veiligheidsbriefings",
+    "otrSafety": "OTR (Onderweg) Veiligheid",
+    "routeDelivery": "Route Bezorgveiligheid",
+    "packageSortation": "Pakket Sorteer Veiligheid",
+    "inductProcess": "Induct/Stow Proces Veiligheid",
+    "pickToBuffer": "Pick to Buffer Operaties",
+    "stagingArea": "Staginggebied Veiligheid",
+    "returnProcessing": "Retourverwerking Veiligheid"
   },
   "documents": {
     "riskAssessment": "Risico-inventarisatie Sjabloon",
@@ -247,6 +259,54 @@
     "requirements": "Compliance Vereisten",
     "queryPrompt": "Wat zijn de vereisten voor [ONDERWERP] in een verteilerstation met [GROOTTE] werknemers?",
     "quickTopics": "Snelle onderwerpen:"
+  },
+  "complianceChecker": {
+    "stationType": "Stationtype",
+    "stationTypes": {
+      "deliveryStation": "Bezorgstation (DS)",
+      "sortCenter": "Sorteercentrum (SC)",
+      "flexStation": "Flex Station",
+      "subSameDay": "Sub Same Day (SSD)",
+      "ruralStation": "Landelijk Station"
+    },
+    "smartMode": "Slim Modus",
+    "smartDescription": "Slimme compliance-controle voor Amazon Bezorgstations",
+    "history": "Geschiedenis",
+    "recentChecks": "Recente Compliance-controles",
+    "quickTemplates": "Snelle Compliance Sjablonen",
+    "templates": {
+      "newStationLaunch": "Nieuw Station Lancering",
+      "peakSeasonReadiness": "Piekseizoen Gereedheid",
+      "pitSafetyAudit": "PIT Veiligheidsaudit",
+      "driverSafetyCheck": "Chauffeur Veiligheidscontrole",
+      "newHireOnboarding": "Nieuwe Medewerker Introductie",
+      "winterPreparation": "Wintervoorbereiding"
+    },
+    "topicsIncluded": "onderwerpen",
+    "seasonalAlerts": {
+      "winterHazards": "Wintergevaren Waarschuwing",
+      "summerHeat": "Zomerhitte Waarschuwing",
+      "peakSeasonAlert": "Piekseizoen Waarschuwing",
+      "seasonTransition": "Seizoensovergang"
+    },
+    "seasonalAlertDesc": {
+      "winterHazards": "Controleer uitglijdpreventie, koude weer PBM en voertuigveiligheid",
+      "summerHeat": "Controleer hittestress preventie, hydratiestations en pauzeregels",
+      "peakSeasonAlert": "Zorg voor overwerk compliance, uitzendkracht training en ergonomie",
+      "seasonTransition": "Update seizoensgebonden RI&E en weergerelateerde procedures"
+    },
+    "priorityHigh": "Hoog",
+    "priorityMedium": "Gemiddeld",
+    "priorityLow": "Laag",
+    "checkNow": "Nu Controleren",
+    "suggestedFor": "Aanbevolen voor",
+    "analyzing": "Compliance Analyseren...",
+    "analyzingFor": "Compliance analyseren voor",
+    "checkButton": "Compliance Controleren",
+    "complianceReport": "Compliance Rapport",
+    "clickLawToView": "Klik op een wet om deze in de Wetgeving Browser te bekijken",
+    "readyToCheck": "Klaar voor Compliance-controle",
+    "emptyStateDesc": "Selecteer uw stationtype, grootte en veiligheidsonderwerp voor slimme compliance-begeleiding."
   },
   "complianceCenter": {
     "title": "Compliance Center",
