@@ -239,9 +239,9 @@ function formatJSONForDisplay(data) {
 
 // ============================================
 // Rate Limiter for Content Generation
-// Using 30 second delay between requests
+// Using 120 second delay between requests
 // ============================================
-const RATE_LIMIT_MS = 30 * 1000 // 30 seconds
+const RATE_LIMIT_MS = 120 * 1000 // 120 seconds
 const MAX_CONCURRENT_REQUESTS = 5 // Allow up to 5 concurrent requests
 let lastRequestTime = 0
 let activeRequests = 0
