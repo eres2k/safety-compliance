@@ -683,17 +683,25 @@ function formatLawText(text) {
       const isLetteredList = /^[a-z]\./.test(numberedMatch[1])
 
       if ((isNumericList || isLetteredList) && !currentAbsatz) {
-        // This is a numbered or lettered paragraph - treat as absatz
-        // This ensures NL (a. b. c.) gets same styling as AT/DE (1. 2. 3.)
-        flushAbsatz()
-        flushList()
-        flushParagraph()
-        const num = numberedMatch[1].replace(/\s*\.\s*$/, '')
-        currentAbsatz = { type: 'absatz', number: num, content: numberedMatch[2] || '', subItems: [] }
-        elements.push(currentAbsatz)
-        continue
+        // Check if the previous element is an absatz ending with ":" - these introduce lists
+        // e.g., "(2) Beschäftigte im Sinne dieses Gesetzes sind:" followed by "1. ..., 2. ..."
+        const lastElement = elements[elements.length - 1]
+        if (lastElement?.type === 'absatz' && lastElement.content?.trim().endsWith(':')) {
+          // Restore absatz context - numbered items belong to the previous absatz as subItems
+          currentAbsatz = lastElement
+        } else {
+          // This is a numbered or lettered paragraph - treat as absatz
+          // This ensures NL (a. b. c.) gets same styling as AT/DE (1. 2. 3.)
+          flushAbsatz()
+          flushList()
+          flushParagraph()
+          const num = numberedMatch[1].replace(/\s*\.\s*$/, '')
+          currentAbsatz = { type: 'absatz', number: num, content: numberedMatch[2] || '', subItems: [] }
+          elements.push(currentAbsatz)
+          continue
+        }
       }
-      // Otherwise treat as list item (when inside an existing absatz)
+      // Treat as list item (when inside an existing absatz)
       flushParagraph()
       inList = true
       listItems.push({ marker: numberedMatch[1].trim(), content: numberedMatch[2] })
