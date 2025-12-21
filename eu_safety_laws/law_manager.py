@@ -511,6 +511,67 @@ class Config:
                         "series": "M",
                         "description": "Selection of respiratory protection filters"
                     },
+                    # M 8xx - Transport & Vehicles (Additional)
+                    {
+                        "abbrev": "AUVA M 830",
+                        "title": "M 830 - Gefahrguttransport auf der Straße",
+                        "title_en": "Hazardous Goods Transport by Road",
+                        "url": "https://auva.at/media/oq0jfcsx/m_830_gefahrguttransport-auf-der-strasse_0625_bf.pdf",
+                        "series": "M",
+                        "description": "ADR 2025 regulations for hazardous goods transport"
+                    },
+                    {
+                        "abbrev": "AUVA M 845",
+                        "title": "M 845 - Die 4F-Regel für Ladungssicherung",
+                        "title_en": "The 4F Rule for Cargo Securing",
+                        "url": "https://auva.at/media/tvjnoy4t/m_845_4f-regel-ladungssicherung-bf.pdf",
+                        "series": "M",
+                        "description": "Practical guide for cargo securing using the 4F method"
+                    },
+                    # M 1xx - Ergonomics and First Aid
+                    {
+                        "abbrev": "AUVA M 105",
+                        "title": "M 105 - Ergonomie in unterstützenden Berufen",
+                        "title_en": "Ergonomics in Support Professions",
+                        "url": "https://auva.at/media/4jsltvw2/m_105_ergonomie-in-unterstuetzenden-berufen_bf.pdf",
+                        "series": "M",
+                        "description": "Ergonomic principles for physically demanding work"
+                    },
+                    # M 4xx - Hazardous Materials (Additional)
+                    {
+                        "abbrev": "AUVA M 480",
+                        "title": "M 480 - Sicherer Umgang mit Lithium-Batterien",
+                        "title_en": "Safe Handling of Lithium Batteries",
+                        "url": "https://auva.at/media/pcajpwjk/m_480_sicherer_umgang_mit-lithium-batterien_2021_bf.pdf",
+                        "series": "M",
+                        "description": "Safety for lithium battery handling - relevant for forklifts"
+                    },
+                    # M.plus 040 Evaluation Series (Additional)
+                    {
+                        "abbrev": "AUVA M.plus 040.E7",
+                        "title": "M.plus 040.E7 - Evaluierung von heißen oder kalten Stoffen",
+                        "title_en": "Evaluation of Hot or Cold Substances",
+                        "url": "https://auva.at/media/jn5d2axt/mplus_040e7_evaluierung_von_heiszen_oder_kalten_stoffen_20.pdf",
+                        "series": "M.plus",
+                        "description": "Evaluation of hazards from hot or cold substances"
+                    },
+                    {
+                        "abbrev": "AUVA M.plus 040.E13",
+                        "title": "E 13 - Evaluierung von Hebe- und Tragetätigkeiten",
+                        "title_en": "Evaluation of Lifting and Carrying Activities",
+                        "url": "https://auva.at/media/qvnajezk/e_13_physische_belastungen.pdf",
+                        "series": "E",
+                        "description": "Risk assessment for lifting/carrying - key indicator method"
+                    },
+                    # IVSS International Publications
+                    {
+                        "abbrev": "AUVA IVSS Lastenhandhabung",
+                        "title": "IVSS Leitfaden Lastenhandhabung",
+                        "title_en": "ISSA Manual Load Handling Guide",
+                        "url": "https://auva.at/media/i0andidy/ivss_lastenhandhabung.pdf",
+                        "series": "IVSS",
+                        "description": "International guide for manual load handling in SMEs"
+                    },
                     # === General Resources ===
                     {
                         "abbrev": "AUVA Basiswissen 2025",
@@ -678,6 +739,189 @@ class Config:
                         "url": "https://www.bgbau-medien.de/handlungshilfen_gb/daten/dguv/101_003/ladungssicherung.pdf",
                         "series": "regeln",
                         "description": "Load securing for construction industry vehicles"
+                    },
+                    # === DGUV Vorschriften (Additional) ===
+                    {
+                        "abbrev": "DGUV Vorschrift 2",
+                        "title": "DGUV Vorschrift 2 - Betriebsärzte und Fachkräfte für Arbeitssicherheit",
+                        "title_en": "Occupational Physicians and Safety Specialists",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/5054",
+                        "series": "vorschriften",
+                        "description": "Requirements for occupational physicians and safety specialists"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 52",
+                        "title": "DGUV Vorschrift 52 - Krane",
+                        "title_en": "Cranes",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1157",
+                        "series": "vorschriften",
+                        "description": "Accident prevention regulation for cranes"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 68",
+                        "title": "DGUV Vorschrift 68 - Flurförderzeuge",
+                        "title_en": "Industrial Trucks",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1518",
+                        "series": "vorschriften",
+                        "description": "Industrial trucks safety regulation"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 68 DA",
+                        "title": "DGUV Vorschrift 68 DA - Flurförderzeuge (Durchführungsanweisungen)",
+                        "title_en": "Industrial Trucks (Implementation Instructions)",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1519",
+                        "series": "vorschriften",
+                        "description": "Implementation guidance for industrial trucks regulation"
+                    },
+                    {
+                        "abbrev": "DGUV Vorschrift 70",
+                        "title": "DGUV Vorschrift 70 - Fahrzeuge",
+                        "title_en": "Vehicles",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1125",
+                        "series": "vorschriften",
+                        "description": "Vehicle safety regulation including loading/unloading"
+                    },
+                    # === DGUV Grundsätze (Training Principles) ===
+                    {
+                        "abbrev": "DGUV Grundsatz 308-001",
+                        "title": "DGUV Grundsatz 308-001 - Qualifizierung Flurförderzeugfahrer",
+                        "title_en": "Forklift Operator Qualification",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/48",
+                        "series": "grundsaetze",
+                        "description": "Training requirements for forklift operators"
+                    },
+                    {
+                        "abbrev": "DGUV Grundsatz 309-003",
+                        "title": "DGUV Grundsatz 309-003 - Kranführer Befähigungsnachweis",
+                        "title_en": "Crane Operator Selection and Qualification",
+                        "url": "https://www.bghm.de/fileadmin/user_upload/Arbeitsschuetzer/Gesetze_Vorschriften/Grundsaetze/309-003.pdf",
+                        "series": "grundsaetze",
+                        "description": "Qualification requirements for crane operators"
+                    },
+                    # === DGUV Informationen - Forklifts & Material Handling ===
+                    {
+                        "abbrev": "DGUV Information 208-004",
+                        "title": "DGUV Information 208-004 - Gabelstapler",
+                        "title_en": "Forklifts",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/310",
+                        "series": "information",
+                        "description": "Comprehensive forklift safety guide"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-019",
+                        "title": "DGUV Information 208-019 - Sicherer Umgang mit Hubarbeitsbühnen",
+                        "title_en": "Safe Use of Mobile Elevating Work Platforms",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/472",
+                        "series": "information",
+                        "description": "Safety for mobile elevating work platforms"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-030",
+                        "title": "DGUV Information 208-030 - Personenschutz in Schmalgängen",
+                        "title_en": "Personnel Protection in Narrow Aisles",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/782",
+                        "series": "information",
+                        "description": "Safety for narrow aisle warehouse operations"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-032",
+                        "title": "DGUV Information 208-032 - Handverzug von Flurförderzeugen",
+                        "title_en": "Manual Moving of Industrial Trucks",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/1293",
+                        "series": "information",
+                        "description": "Physical strain when manually pushing/pulling industrial trucks"
+                    },
+                    # === DGUV Informationen - Warehouse Safety ===
+                    {
+                        "abbrev": "DGUV Information 208-043",
+                        "title": "DGUV Information 208-043 - Sicherheit von Regalen",
+                        "title_en": "Shelving Safety",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/785",
+                        "series": "information",
+                        "description": "Safety requirements for shelving and racking systems"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-045",
+                        "title": "DGUV Information 208-045 - Fördertechnik in Hochregallägern",
+                        "title_en": "Conveyor Technology in High-Bay Warehouses",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/2939",
+                        "series": "information",
+                        "description": "Fault clearance in high-bay warehouse racking systems"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-048",
+                        "title": "DGUV Information 208-048 - Sicherung palettierter Ladeeinheiten",
+                        "title_en": "Securing Palletized Load Units",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3106",
+                        "series": "information",
+                        "description": "Load securing for palletized goods"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-050",
+                        "title": "DGUV Information 208-050 - Notfallmanagement Gefahrgut",
+                        "title_en": "Emergency Management for Hazardous Goods",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3124",
+                        "series": "information",
+                        "description": "Emergency management for hazardous goods transport"
+                    },
+                    {
+                        "abbrev": "DGUV Information 208-061",
+                        "title": "DGUV Information 208-061 - Lagereinrichtungen und Ladungsträger",
+                        "title_en": "Storage Facilities and Load Carriers",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/4719",
+                        "series": "information",
+                        "description": "Comprehensive guide on storage equipment safety"
+                    },
+                    # === DGUV Informationen - Delivery & Transport ===
+                    {
+                        "abbrev": "DGUV Information 208-035",
+                        "title": "DGUV Information 208-035 - Zustellen von Sendungen",
+                        "title_en": "Delivering Parcels",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/856",
+                        "series": "information",
+                        "description": "Safety for courier, express, and parcel delivery"
+                    },
+                    {
+                        "abbrev": "DGUV Information 214-082",
+                        "title": "DGUV Information 214-082 - Dieselemissionen in KEP-Hallen",
+                        "title_en": "Diesel Emissions in Courier/Parcel Halls",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3696",
+                        "series": "information",
+                        "description": "Diesel emissions in loading/sorting halls"
+                    },
+                    {
+                        "abbrev": "DGUV Information 214-090",
+                        "title": "DGUV Information 214-090 - Gefährdungsbeurteilung Straßenverkehr",
+                        "title_en": "Risk Assessment for Road Traffic",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3622",
+                        "series": "information",
+                        "description": "Risk assessment guidelines for work-related road traffic"
+                    },
+                    # === DGUV Informationen - Training ===
+                    {
+                        "abbrev": "DGUV Information 211-005",
+                        "title": "DGUV Information 211-005 - Unterweisung",
+                        "title_en": "Safety Instruction",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/292",
+                        "series": "information",
+                        "description": "Comprehensive guide for conducting safety instructions"
+                    },
+                    {
+                        "abbrev": "DGUV Information 206-024",
+                        "title": "DGUV Information 206-024 - Leben mit Schichtarbeit",
+                        "title_en": "Living with Shift Work",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3551",
+                        "series": "information",
+                        "description": "Tips for employees working shifts"
+                    },
+                    # === DGUV Informationen - Crane Operations ===
+                    {
+                        "abbrev": "DGUV Information 209-091",
+                        "title": "DGUV Information 209-091 - Führen von Kranen",
+                        "title_en": "Operating Cranes",
+                        "url": "https://publikationen.dguv.de/widgets/pdf/download/article/3477",
+                        "series": "information",
+                        "description": "Guide for crane operation"
                     }
                 ]
             }
@@ -757,6 +1001,87 @@ class Config:
                         "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf",
                         "series": "arbocatalogi",
                         "description": "Safety standards for warehouse and distribution operations (2018)"
+                    },
+                    # === Volandis A-bladen (Construction Safety Sheets) ===
+                    {
+                        "abbrev": "Volandis A-blad Bestratingsmateriaal",
+                        "title": "A-blad Bestratingsmateriaal",
+                        "title_en": "Safety Sheet - Paving Materials",
+                        "url": "https://www.volandis.nl/media/ooil24sg/a-blad-bestratingsmateriaal_2.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for paving materials handling"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Lichamelijke Belasting",
+                        "title": "A-blad Lichamelijke Belasting",
+                        "title_en": "Safety Sheet - Physical Workload",
+                        "url": "https://www.volandis.nl/media/btqfnqmk/a-blad_lichamelijke-belasting.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for physical workload and ergonomics"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Geluid Trillingen",
+                        "title": "A-blad Geluid en Trillingen",
+                        "title_en": "Safety Sheet - Noise and Vibration",
+                        "url": "https://www.volandis.nl/media/g1yiksdl/a-blad_geluid-trillingen.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for noise and vibration exposure"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Ladders Trappen",
+                        "title": "A-blad Ladders en Trappen",
+                        "title_en": "Safety Sheet - Ladders and Stairs",
+                        "url": "https://www.volandis.nl/media/3901/a-blad-ladders-en-trappen.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for ladder and stair safety"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Houtstof",
+                        "title": "A-blad Houtstof",
+                        "title_en": "Safety Sheet - Wood Dust",
+                        "url": "https://www.volandis.nl/media/0lhoyj40/a-blad-houtstof.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for wood dust exposure"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Dieselmotoremissie",
+                        "title": "A-blad Dieselmotoremissie",
+                        "title_en": "Safety Sheet - Diesel Engine Emissions",
+                        "url": "https://www.volandis.nl/media/3885/a-blad-dieselmotormissie.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for diesel engine emissions exposure"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Rolsteigers",
+                        "title": "A-blad Rolsteigers",
+                        "title_en": "Safety Sheet - Rolling Scaffolds",
+                        "url": "https://www.volandis.nl/media/z1zp3iaa/21003218_a-blad_rolsteigers_v2.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for rolling scaffolds"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Hellende Daken",
+                        "title": "A-blad Hellende Daken",
+                        "title_en": "Safety Sheet - Sloped Roofs",
+                        "url": "https://www.volandis.nl/media/3895/a-blad-hellende-daken.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for working on sloped roofs"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Epoxy",
+                        "title": "A-blad Epoxy",
+                        "title_en": "Safety Sheet - Epoxy",
+                        "url": "https://www.volandis.nl/media/fpzjzpxp/a-blad-epoxy.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for epoxy handling"
+                    },
+                    {
+                        "abbrev": "Volandis A-blad Metselen Lijmen",
+                        "title": "A-blad Metselen en Lijmen",
+                        "title_en": "Safety Sheet - Bricklaying and Gluing",
+                        "url": "https://www.volandis.nl/media/gt2otukr/25004566-a-blad-metselen-en-lijmen_update-2025.pdf",
+                        "series": "Volandis A-bladen",
+                        "description": "Safety information sheet for bricklaying and gluing operations (2025 update)"
                     }
                 ]
             }
@@ -6892,103 +7217,144 @@ class ArboportaalScraper(MerkblattScraper):
         self.arboportaal_config = self.merkblaetter_config.get("arboportaal", {})
 
     def scrape(self) -> List[Dict[str, Any]]:
-        """Scrape Arbocatalogi from the Arboportaal website."""
+        """Scrape Arbocatalogi from the Arboportaal website and static publications."""
         if not HAS_BS4:
             log_error("BeautifulSoup required for scraping. Install with: pip install beautifulsoup4")
             return []
 
         documents = []
+
+        # STEP 1: Get static publications from config (direct PDF links)
+        static_publications = self.arboportaal_config.get("publications", [])
+        seen_abbrevs = set()
+
+        # Process static publications first (more reliable)
+        if static_publications:
+            log_info(f"Processing {len(static_publications)} static NL publications...")
+            for pub in static_publications:
+                abbrev = pub.get("abbrev", "")
+                if abbrev in seen_abbrevs:
+                    continue
+                seen_abbrevs.add(abbrev)
+
+                source_url = pub.get("url", "")
+                title = pub.get("title", abbrev)
+                series = pub.get("series", "")
+                description = pub.get("description", "")
+
+                log_info(f"  Processing {abbrev}: {title[:50]}...")
+
+                doc = self._create_merkblatt_document(
+                    abbrev=abbrev,
+                    title=title,
+                    source_url=source_url,
+                    series=series,
+                    description=description,
+                    authority="Arboportaal",
+                    source_type="auto"  # Auto-detect PDF vs HTML from URL
+                )
+                if doc:
+                    documents.append(doc)
+
+                time.sleep(CONFIG.rate_limit_delay)
+
+        # STEP 2: Scrape dynamic catalog (Arboportaal catalog page)
         catalog_url = self.arboportaal_config.get("catalog_url", "")
+        if catalog_url:
+            log_info("Fetching Arboportaal Arbocatalogi catalog...")
 
-        if not catalog_url:
-            log_warning("No Arboportaal catalog URL configured")
-            return documents
+            # Fetch catalog page
+            html = self.fetch_url(catalog_url)
+            if html:
+                # Parse catalog to find arbocatalogi links
+                soup = BeautifulSoup(html, 'html.parser')
+                catalogi_links = []
 
-        log_info("Fetching Arboportaal Arbocatalogi catalog...")
+                # Find links to sector catalogues
+                for link in soup.find_all('a', href=True):
+                    href = link.get('href', '')
+                    text = link.get_text(strip=True)
 
-        # Fetch catalog page
-        html = self.fetch_url(catalog_url)
-        if not html:
-            log_error("Failed to fetch Arboportaal catalog")
-            return documents
+                    if 'arbocatalo' in href.lower() or 'arbocatalo' in text.lower():
+                        # Extract sector name
+                        sector_match = re.search(r'/([^/]+)/?$', href)
+                        sector = sector_match.group(1) if sector_match else text[:30]
+                        abbrev = f"ARBO-{sector.upper().replace(' ', '-')[:20]}"
 
-        # Parse catalog to find arbocatalogi links
-        soup = BeautifulSoup(html, 'html.parser')
-        catalogi_links = []
+                        # Skip if already processed from static publications
+                        if abbrev in seen_abbrevs:
+                            continue
 
-        # Find links to sector catalogues
-        for link in soup.find_all('a', href=True):
-            href = link.get('href', '')
-            text = link.get_text(strip=True)
+                        full_url = href if href.startswith('http') else urljoin(self.arboportaal_config.get("base_url", ""), href)
 
-            if 'arbocatalo' in href.lower() or 'arbocatalo' in text.lower():
-                # Extract sector name
-                sector_match = re.search(r'/([^/]+)/?$', href)
-                sector = sector_match.group(1) if sector_match else text[:30]
-                abbrev = f"ARBO-{sector.upper().replace(' ', '-')[:20]}"
+                        # Skip duplicates
+                        if not any(c['abbrev'] == abbrev for c in catalogi_links):
+                            catalogi_links.append({
+                                "abbrev": abbrev,
+                                "title": text or f"Arbocatalogus {sector}",
+                                "url": full_url,
+                                "sector": sector
+                            })
 
-                full_url = href if href.startswith('http') else urljoin(self.arboportaal_config.get("base_url", ""), href)
+                log_info(f"Found {len(catalogi_links)} Arbocatalogi from catalog to process")
 
-                # Skip duplicates
-                if not any(c['abbrev'] == abbrev for c in catalogi_links):
-                    catalogi_links.append({
-                        "abbrev": abbrev,
-                        "title": text or f"Arbocatalogus {sector}",
-                        "url": full_url,
-                        "sector": sector
-                    })
+                # Process each catalogue (may be HTML-based, not PDF)
+                for link_info in catalogi_links:
+                    log_info(f"Processing {link_info['abbrev']}: {link_info['title'][:50]}...")
 
-        # Apply limit
-        if self.law_limit:
-            catalogi_links = catalogi_links[:self.law_limit]
+                    # Fetch the catalogue page
+                    catalogue_html = self.fetch_url(link_info['url'])
+                    if catalogue_html:
+                        catalogue_soup = BeautifulSoup(catalogue_html, 'html.parser')
 
-        log_info(f"Found {len(catalogi_links)} Arbocatalogi to process")
+                        # Check for PDF download - look for ALL PDF links and prefer direct ones
+                        pdf_links = catalogue_soup.find_all('a', href=re.compile(r'\.pdf', re.IGNORECASE))
+                        pdf_url = None
 
-        # Process each catalogue (may be HTML-based, not PDF)
-        for link_info in catalogi_links:
-            log_info(f"Processing {link_info['abbrev']}: {link_info['title'][:50]}...")
+                        for pdf_link in pdf_links:
+                            href = pdf_link.get('href', '')
+                            if href:
+                                if not href.startswith('http'):
+                                    href = urljoin(link_info['url'], href)
+                                pdf_url = href
+                                break  # Use first PDF found
 
-            # Fetch the catalogue page
-            catalogue_html = self.fetch_url(link_info['url'])
-            if catalogue_html:
-                catalogue_soup = BeautifulSoup(catalogue_html, 'html.parser')
+                        if pdf_url:
+                            doc = self._create_merkblatt_document(
+                                abbrev=link_info['abbrev'],
+                                title=link_info['title'],
+                                source_url=pdf_url,
+                                series="Arbocatalogi",
+                                description=f"Sector: {link_info['sector']}",
+                                authority="Arboportaal",
+                                source_type="pdf"
+                            )
+                            if doc:
+                                documents.append(doc)
+                        else:
+                            # HTML-based catalogue - store HTML directly for modal display
+                            log_info(f"  No PDF found for {link_info['abbrev']}, using HTML fallback...")
+                            doc = self._create_merkblatt_document(
+                                abbrev=link_info['abbrev'],
+                                title=link_info['title'],
+                                source_url=link_info['url'],
+                                series="Arbocatalogi",
+                                description=f"Sector: {link_info['sector']}",
+                                authority="Arboportaal",
+                                source_type="html"
+                            )
+                            if doc:
+                                documents.append(doc)
 
-                # Check for PDF download
-                pdf_link = catalogue_soup.find('a', href=re.compile(r'\.pdf', re.IGNORECASE))
-                if pdf_link:
-                    pdf_url = pdf_link.get('href', '')
-                    if not pdf_url.startswith('http'):
-                        pdf_url = urljoin(link_info['url'], pdf_url)
+                    time.sleep(CONFIG.rate_limit_delay)
+            else:
+                log_warning("Failed to fetch Arboportaal catalog")
 
-                    doc = self._create_merkblatt_document(
-                        abbrev=link_info['abbrev'],
-                        title=link_info['title'],
-                        source_url=pdf_url,
-                        series="Arbocatalogi",
-                        description=f"Sector: {link_info['sector']}",
-                        authority="Arboportaal",
-                        source_type="pdf"
-                    )
-                    if doc:
-                        documents.append(doc)
-                else:
-                    # HTML-based catalogue - store HTML directly for modal display
-                    log_info(f"  No PDF found for {link_info['abbrev']}, using HTML fallback...")
-                    doc = self._create_merkblatt_document(
-                        abbrev=link_info['abbrev'],
-                        title=link_info['title'],
-                        source_url=link_info['url'],
-                        series="Arbocatalogi",
-                        description=f"Sector: {link_info['sector']}",
-                        authority="Arboportaal",
-                        source_type="html"
-                    )
-                    if doc:
-                        documents.append(doc)
+        # Apply limit if specified
+        if self.law_limit and len(documents) > self.law_limit:
+            documents = documents[:self.law_limit]
 
-            time.sleep(CONFIG.rate_limit_delay)
-
-        log_success(f"Scraped {len(documents)} Arbocatalogi")
+        log_success(f"Scraped {len(documents)} NL Merkblätter (Arbocatalogi + publications)")
         return documents
 
 
