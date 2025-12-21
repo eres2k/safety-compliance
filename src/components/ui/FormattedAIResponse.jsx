@@ -78,6 +78,22 @@ function findLawIdFromReference(referenceText, allLaws) {
   return null
 }
 
+// Find law ID from abbreviation (for bracketed references)
+function findLawIdFromAbbreviation(abbreviation, allLaws) {
+  if (!allLaws || allLaws.length === 0) return null
+
+  const normalizedAbbr = abbreviation.toLowerCase().trim()
+
+  for (const law of allLaws) {
+    const lawAbbr = (law.abbreviation || law.abbr || '').toLowerCase()
+    if (lawAbbr === normalizedAbbr) {
+      return { id: law.id, country: law.jurisdiction || law.country }
+    }
+  }
+
+  return null
+}
+
 export function FormattedAIResponse({ content, className = '', onLawClick, allLaws = [] }) {
   if (!content) return null
 
@@ -343,6 +359,121 @@ function formatText(text, onLawClick, allLaws) {
 function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
   if (!text || !onLawClick) return text
 
+  // Combined pattern for all special law references:
+  // 1. [LAW_ID:xxx] - direct law ID from AI
+  // 2. [ASchG: § 26 Abs. 2 Z 1] - bracketed law with section reference
+  const combinedPattern = /\[LAW_ID:([^\]]+)\]|\[([A-Za-zÄÖÜäöü-]+):\s*§\s*(\d+[a-z]?)(?:\s+(?:Abs\.?|Absatz)\s*(\d+))?(?:\s+(?:Z|Ziffer)\s*(\d+))?\]/g
+
+  const result = []
+  let lastIndex = 0
+  let match
+
+  while ((match = combinedPattern.exec(text)) !== null) {
+    // Add text before the match (process for regular law references)
+    if (match.index > lastIndex) {
+      const beforeText = text.slice(lastIndex, match.index)
+      result.push(...processRegularLawReferences(beforeText, onLawClick, allLaws, `${keyPrefix}-pre-${lastIndex}`))
+    }
+
+    const fullMatch = match[0]
+
+    // Check which pattern matched
+    if (match[1]) {
+      // [LAW_ID:xxx] pattern
+      const lawId = match[1]
+      const law = allLaws.find(l => l.id === lawId)
+
+      if (law) {
+        const country = law.jurisdiction || law.country
+        result.push(
+          <button
+            key={`${keyPrefix}-lawid-${match.index}`}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onLawClick(law.id, country)
+            }}
+            className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 rounded text-xs font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-800/50 transition-colors cursor-pointer"
+            title={`View ${law.abbreviation || law.title} in Law Browser`}
+          >
+            <span>{country === 'AT' ? '🇦🇹' : country === 'DE' ? '🇩🇪' : '🇳🇱'}</span>
+            {law.abbreviation || law.title?.split(' ')[0]}
+            <svg className="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </button>
+        )
+      } else {
+        // Law ID not found, show as plain text
+        result.push(
+          <span key={`${keyPrefix}-lawid-${match.index}`} className="text-whs-orange-600 dark:text-whs-orange-400 font-medium">
+            {lawId}
+          </span>
+        )
+      }
+    } else if (match[2]) {
+      // [ASchG: § 26 Abs. 2 Z 1] pattern
+      const abbreviation = match[2]
+      const paragraph = match[3]
+      const absatz = match[4]
+      const ziffer = match[5]
+
+      const lawInfo = findLawIdFromAbbreviation(abbreviation, allLaws)
+
+      // Create display text
+      let displayText = `§ ${paragraph}`
+      if (absatz) displayText += ` Abs. ${absatz}`
+      if (ziffer) displayText += ` Z ${ziffer}`
+      displayText += ` ${abbreviation}`
+
+      if (lawInfo) {
+        result.push(
+          <button
+            key={`${keyPrefix}-bracket-${match.index}`}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onLawClick(lawInfo.id, lawInfo.country)
+            }}
+            className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 rounded text-xs font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-800/50 transition-colors cursor-pointer"
+            title={`View ${abbreviation} in Law Browser`}
+          >
+            <span>{lawInfo.country === 'AT' ? '🇦🇹' : lawInfo.country === 'DE' ? '🇩🇪' : '🇳🇱'}</span>
+            {displayText}
+            <svg className="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </button>
+        )
+      } else {
+        // No matching law found, render as highlighted text
+        result.push(
+          <span
+            key={`${keyPrefix}-bracketref-${match.index}`}
+            className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs font-medium"
+          >
+            {displayText}
+          </span>
+        )
+      }
+    }
+
+    lastIndex = match.index + fullMatch.length
+  }
+
+  // Add remaining text (process for regular law references)
+  if (lastIndex < text.length) {
+    const remainingText = text.slice(lastIndex)
+    result.push(...processRegularLawReferences(remainingText, onLawClick, allLaws, `${keyPrefix}-end`))
+  }
+
+  return result.length > 0 ? result : text
+}
+
+// Process regular law references (like "§ 26 ASchG")
+function processRegularLawReferences(text, onLawClick, allLaws, keyPrefix) {
+  if (!text) return [text]
+
   // Reset the regex lastIndex for fresh matching
   LAW_REFERENCE_PATTERN.lastIndex = 0
 
@@ -406,7 +537,7 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
     )
   }
 
-  return result.length > 0 ? result : text
+  return result.length > 0 ? result : [text]
 }
 
 export default FormattedAIResponse

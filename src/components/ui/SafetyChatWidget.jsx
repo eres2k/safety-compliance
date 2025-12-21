@@ -1,7 +1,16 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import { useApp } from '../../context/AppContext'
-import { searchLaws } from '../../services/euLawsDatabase'
+import { searchLaws, getAllLawsSync } from '../../services/euLawsDatabase'
 import { generateAIResponse, getRateLimitStatus } from '../../services/aiService'
+import { FormattedAIResponse } from './FormattedAIResponse'
+
+// Helper to get all laws from all countries
+const getAllLawsFromAllCountries = () => [
+  ...getAllLawsSync('AT'),
+  ...getAllLawsSync('DE'),
+  ...getAllLawsSync('NL')
+]
 
 // Erwin's personality - Lead WHS Manager Austria, professional with dry Austrian wit
 const ERWIN_SYSTEM_PROMPT = {
@@ -135,6 +144,81 @@ const UI_TEXT = {
 // Maximum context length to keep costs down
 const MAX_CONTEXT_LENGTH = 1500
 
+// Response Modal Component for expanded view
+function ResponseModal({ isOpen, onClose, message, onNavigateToLaw, language }) {
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') onClose()
+    }
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'hidden'
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = ''
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen || !message) return null
+
+  const allLaws = getAllLawsFromAllCountries()
+  const modalTitle = {
+    en: 'Full Response',
+    de: 'Vollständige Antwort',
+    nl: 'Volledige Antwoord'
+  }
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[9999] bg-black/60 flex items-center justify-center p-4 backdrop-blur-sm"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+    >
+      <div className="bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden animate-scale-in">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-5 py-4 flex items-center justify-between flex-shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30">
+              <img src="/erwin.png" alt="Erwin" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-white">{modalTitle[language] || modalTitle.en}</h2>
+              <p className="text-white/70 text-xs">Erwin - WHS Safety Expert</p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-5">
+          <FormattedAIResponse
+            content={message.content}
+            onLawClick={onNavigateToLaw}
+            allLaws={allLaws}
+            className="text-gray-800 dark:text-gray-200"
+          />
+        </div>
+        {/* Footer */}
+        <div className="px-5 py-3 border-t border-gray-200 dark:border-whs-dark-700 bg-gray-50 dark:bg-whs-dark-900/50 flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+          >
+            {language === 'de' ? 'Schließen' : language === 'nl' ? 'Sluiten' : 'Close'}
+          </button>
+        </div>
+      </div>
+    </div>,
+    document.body
+  )
+}
+
 export function SafetyChatWidget({ onNavigateToLaw }) {
   const { framework, language } = useApp()
   const [isOpen, setIsOpen] = useState(false)
@@ -143,6 +227,7 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [rateLimitInfo, setRateLimitInfo] = useState({ isLimited: false, remainingSeconds: 0 })
+  const [expandedMessage, setExpandedMessage] = useState(null)
   const messagesEndRef = useRef(null)
   const inputRef = useRef(null)
 
@@ -212,33 +297,6 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
       console.error('Search error:', error)
       return { context: '', foundLaws: [] }
     }
-  }
-
-  // Parse law references from response
-  const parseAndRenderMessage = (content, laws = []) => {
-    // Replace [LAW_ID:xxx] patterns with clickable links
-    const parts = content.split(/\[LAW_ID:([^\]]+)\]/g)
-
-    return parts.map((part, idx) => {
-      if (idx % 2 === 1) {
-        // This is a law ID
-        const law = laws.find(l => l.id === part)
-        if (law) {
-          return (
-            <button
-              key={idx}
-              onClick={() => onNavigateToLaw?.(law.id, law.country)}
-              className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 rounded text-xs font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-800/50 transition-colors mx-0.5"
-            >
-              <span>{law.country === 'AT' ? '🇦🇹' : law.country === 'DE' ? '🇩🇪' : '🇳🇱'}</span>
-              {law.abbreviation}
-            </button>
-          )
-        }
-        return <span key={idx} className="text-whs-orange-600 font-medium">{part}</span>
-      }
-      return <span key={idx}>{part}</span>
-    })
   }
 
   // Send message
@@ -385,8 +443,25 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
               }`}
             >
               {message.role === 'assistant' && !message.isError ? (
-                <div className="whitespace-pre-wrap leading-relaxed">
-                  {parseAndRenderMessage(message.content, message.laws)}
+                <div className="space-y-2">
+                  <FormattedAIResponse
+                    content={message.content}
+                    onLawClick={onNavigateToLaw}
+                    allLaws={getAllLawsFromAllCountries()}
+                    className="text-sm leading-relaxed"
+                  />
+                  {/* Expand button for long responses */}
+                  {message.content && message.content.length > 150 && (
+                    <button
+                      onClick={() => setExpandedMessage(message)}
+                      className="flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mt-2 transition-colors"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                      </svg>
+                      {lang === 'de' ? 'Erweitern' : lang === 'nl' ? 'Uitvouwen' : 'Expand'}
+                    </button>
+                  )}
                 </div>
               ) : (
                 <div className="whitespace-pre-wrap">{message.content}</div>
@@ -466,6 +541,15 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
           {ui.powered}
         </p>
       </div>
+
+      {/* Expanded Response Modal */}
+      <ResponseModal
+        isOpen={!!expandedMessage}
+        onClose={() => setExpandedMessage(null)}
+        message={expandedMessage}
+        onNavigateToLaw={onNavigateToLaw}
+        language={lang}
+      />
     </div>
   )
 }
