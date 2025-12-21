@@ -24,44 +24,51 @@ const CORS_PROXIES = [
   { prefix: 'https://corsproxy.io/?', isJson: false }
 ]
 
-// RSS Feed sources - Google News RSS for EU workplace safety (works with CORS proxies)
+// RSS Feed sources - Official EU safety agency feeds
 const RSS_FEEDS = {
-  // Germany - Workplace safety news (Arbeitsschutz/Arbeitssicherheit)
-  DE_SAFETY: {
-    url: 'https://news.google.com/rss/search?q=Arbeitsschutz+Arbeitssicherheit+Unfall&hl=de&gl=DE&ceid=DE:de',
+  // Germany - DGUV (German Social Accident Insurance)
+  DGUV: {
+    url: 'https://www.dguv.de/de/index.xml.jsp',
     source: 'DGUV',
-    name: 'Germany Safety News',
+    name: 'DGUV Germany',
     country: 'DE',
     flag: '🇩🇪'
   },
-  // Austria - Workplace safety news
-  AT_SAFETY: {
-    url: 'https://news.google.com/rss/search?q=Arbeitssicherheit+Arbeitsunfall+%C3%96sterreich&hl=de&gl=AT&ceid=AT:de',
+  // Austria - AUVA (Austrian Workers Compensation Board)
+  AUVA: {
+    url: 'https://auva.at/rss',
     source: 'AUVA',
-    name: 'Austria Safety News',
+    name: 'AUVA Austria',
     country: 'AT',
     flag: '🇦🇹'
   },
-  // Netherlands - Workplace safety news (Arbeidsveiligheid)
-  NL_SAFETY: {
-    url: 'https://news.google.com/rss/search?q=arbeidsveiligheid+arbeidsongeval&hl=nl&gl=NL&ceid=NL:nl',
+  // Netherlands - Labour Inspectorate
+  NL_ARBEIDSINSPECTIE: {
+    url: 'https://www.nlarbeidsinspectie.nl/rss/nieuws',
     source: 'ARBEIDSINSPECTIE',
-    name: 'Netherlands Safety News',
+    name: 'Arbeidsinspectie NL',
     country: 'NL',
     flag: '🇳🇱'
   },
-  // EU-wide - European workplace safety news
-  EU_SAFETY: {
-    url: 'https://news.google.com/rss/search?q=workplace+safety+Europe+EU&hl=en&gl=EU&ceid=EU:en',
+  // EU-OSHA - Publications
+  EUOSHA_PUBLICATIONS: {
+    url: 'https://osha.europa.eu/rss-feeds/latest/publications.xml',
     source: 'EUOSHA',
-    name: 'EU Safety News',
+    name: 'EU-OSHA Publications',
+    country: 'EU',
+    flag: '🇪🇺'
+  },
+  // EU-OSHA - News
+  EUOSHA_NEWS: {
+    url: 'https://osha.europa.eu/rss-feeds/latest/news.xml',
+    source: 'EUOSHA',
+    name: 'EU-OSHA News',
     country: 'EU',
     flag: '🇪🇺'
   }
 }
 
-// Note: Uses Google News RSS which aggregates workplace safety news
-// from multiple sources in each region.
+// Note: These are official RSS feeds from EU safety agencies.
 
 // Category detection keywords for classification (multilingual: EN, DE, NL)
 const CATEGORY_KEYWORDS = {
