@@ -314,87 +314,48 @@ export function Dashboard({ onModuleSelect }) {
         </div>
       )}
 
-      {/* Main Features - Law Database & Ask Erwin */}
-      <div className="grid md:grid-cols-2 gap-4">
-        {/* Law Database */}
-        <button
-          onClick={() => onModuleSelect('lawBrowser')}
-          className="w-full group relative overflow-hidden rounded-2xl bg-gradient-to-br from-whs-orange-500 to-whs-orange-600 p-6 text-left transition-all duration-300 hover:shadow-2xl hover:shadow-whs-orange-500/25 hover:-translate-y-1"
-        >
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-grid-pattern" />
-          </div>
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
+      {/* Law Database - Main Feature */}
+      <button
+        onClick={() => onModuleSelect('lawBrowser')}
+        className="w-full group relative overflow-hidden rounded-2xl bg-gradient-to-br from-whs-orange-500 to-whs-orange-600 p-6 md:p-8 text-left transition-all duration-300 hover:shadow-2xl hover:shadow-whs-orange-500/25 hover:-translate-y-1"
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-grid-pattern" />
+        </div>
+        <div className="absolute -top-12 -right-12 w-64 h-64 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
 
-          <div className="relative z-10">
-            <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform text-white">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-xl font-bold text-white">
-                    {t.modules.lawBrowser.title}
-                  </h3>
-                  <span className="px-2 py-0.5 bg-white/20 rounded-full text-xs font-medium text-white">
-                    {stats.totalLaws || '86'}+
-                  </span>
-                </div>
-                <p className="text-white/80 text-sm">
-                  {t.modules.lawBrowser.description}
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-white font-medium mt-4 text-sm">
-              <span>Browse Laws</span>
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform text-white">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </div>
-          </div>
-        </button>
-
-        {/* Ask Erwin - Safety Chatbot */}
-        <button
-          onClick={() => onModuleSelect('safetyChatbot')}
-          className="w-full group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-left transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:-translate-y-1"
-        >
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-grid-pattern" />
-          </div>
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
-
-          <div className="relative z-10">
-            <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
-                <span className="text-3xl">👷</span>
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="text-2xl md:text-3xl font-bold text-white">
+                  {t.modules.lawBrowser.title}
+                </h3>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-sm font-medium text-white">
+                  {stats.totalLaws || '86'}+ Laws
+                </span>
               </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-xl font-bold text-white">
-                    Ask Erwin
-                  </h3>
-                  <span className="px-2 py-0.5 bg-white/20 rounded-full text-xs font-medium text-white flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
-                    AI
-                  </span>
-                </div>
-                <p className="text-white/80 text-sm">
-                  Chat with Erwin, your WHS safety expert. Ask questions about workplace safety laws.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-white font-medium mt-4 text-sm">
-              <span>Start Chat</span>
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
+              <p className="text-white/80 max-w-xl">
+                {t.modules.lawBrowser.description}. Browse full-text laws with section navigation
+                and search across all regulations.
+              </p>
             </div>
           </div>
-        </button>
-      </div>
+
+          <div className="flex items-center gap-2 text-white font-medium">
+            <span>Browse Laws</span>
+            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </div>
+      </button>
 
       {/* Additional Tools */}
       <div>
