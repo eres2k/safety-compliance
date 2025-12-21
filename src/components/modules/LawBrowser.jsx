@@ -860,16 +860,12 @@ function parseLawReference(ref) {
 function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClick = null, onLawReferenceClick = null }) {
   const elements = formatLawText(text)
 
-  // DEBUG: Log parsed elements to help diagnose display issues
-  if (text?.includes('Beschäftigte im Sinne dieses Gesetzes sind')) {
-    console.log('[DEBUG] FormattedText for Beschäftigte section:')
-    console.log('[DEBUG] Input text length:', text?.length)
-    console.log('[DEBUG] Parsed elements:', JSON.stringify(elements, null, 2))
-    const absatz2 = elements?.find(el => el.type === 'absatz' && el.number === '2')
-    console.log('[DEBUG] Absatz 2 subItems count:', absatz2?.subItems?.length || 0)
-    if (absatz2?.subItems) {
-      absatz2.subItems.forEach((item, i) => console.log(`[DEBUG] SubItem ${i+1}:`, item.marker, item.content?.substring(0, 50)))
-    }
+  // DEBUG: Show visible indicator for Beschäftigte section parsing
+  const debugAbsatz2 = text?.includes('Beschäftigte im Sinne dieses Gesetzes sind')
+    ? elements?.find(el => el.type === 'absatz' && el.number === '2')
+    : null
+  if (debugAbsatz2) {
+    console.log('[DEBUG] Absatz 2 parsed with', debugAbsatz2.subItems?.length || 0, 'subItems')
   }
 
   // Create crosslink highlighter if crosslinks are available
