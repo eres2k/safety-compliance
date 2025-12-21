@@ -240,6 +240,7 @@ function formatJSONForDisplay(data) {
 // ============================================
 // Rate Limiter for Content Generation
 // Using 120 second delay between requests
+// Can be bypassed with password unlock
 // ============================================
 const RATE_LIMIT_MS = 120 * 1000 // 120 seconds
 const MAX_CONCURRENT_REQUESTS = 5 // Allow up to 5 concurrent requests
@@ -247,14 +248,94 @@ let lastRequestTime = 0
 let activeRequests = 0
 let requestQueue = Promise.resolve()
 
+// ============================================
+// Unlock State Management
+// Allows bypassing the 120s rate limit
+// ============================================
+const UNLOCK_STORAGE_KEY = 'ai_rate_limit_unlocked'
+
+/**
+ * Check if the rate limit is currently unlocked
+ * @returns {boolean}
+ */
+export function isRateLimitUnlocked() {
+  try {
+    return sessionStorage.getItem(UNLOCK_STORAGE_KEY) === 'true'
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Set the unlock state
+ * @param {boolean} unlocked
+ */
+function setUnlockState(unlocked) {
+  try {
+    if (unlocked) {
+      sessionStorage.setItem(UNLOCK_STORAGE_KEY, 'true')
+    } else {
+      sessionStorage.removeItem(UNLOCK_STORAGE_KEY)
+    }
+  } catch {
+    // sessionStorage not available
+  }
+}
+
+/**
+ * Verify password with the server and unlock rate limit if valid
+ * @param {string} password
+ * @returns {Promise<{success: boolean, message: string}>}
+ */
+export async function verifyUnlockPassword(password) {
+  try {
+    const response = await fetch('/.netlify/functions/verify-unlock', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    })
+
+    const data = await response.json()
+
+    if (data.success) {
+      setUnlockState(true)
+      // Reset the last request time so user doesn't have to wait
+      lastRequestTime = 0
+    }
+
+    return data
+  } catch (error) {
+    return {
+      success: false,
+      message: 'Failed to verify password'
+    }
+  }
+}
+
+/**
+ * Lock the rate limit again (re-enable 120s delay)
+ */
+export function lockRateLimit() {
+  setUnlockState(false)
+}
+
 /**
  * Enforces a global rate limit on API requests.
  * Returns a promise that resolves when it's safe to make the next request.
+ * Skips the 120s delay if rate limit is unlocked.
  */
 async function waitForRateLimit() {
   // Wait if we've hit max concurrent requests
   while (activeRequests >= MAX_CONCURRENT_REQUESTS) {
     await new Promise(resolve => setTimeout(resolve, 100))
+  }
+
+  // Skip the 120s delay if unlocked
+  if (isRateLimitUnlocked()) {
+    console.log('[Rate Limit] Unlocked - skipping delay')
+    lastRequestTime = Date.now()
+    activeRequests++
+    return
   }
 
   const now = Date.now()
@@ -310,16 +391,23 @@ export async function executeParallel(requestFns) {
 
 /**
  * Get the current rate limit status
- * @returns {object} { isLimited: boolean, remainingSeconds: number, activeRequests: number }
+ * @returns {object} { isLimited: boolean, remainingSeconds: number, activeRequests: number, isUnlocked: boolean }
  */
 export function getRateLimitStatus() {
+  const unlocked = isRateLimitUnlocked()
   const now = Date.now()
   const timeSinceLastRequest = now - lastRequestTime
   const remainingMs = Math.max(0, RATE_LIMIT_MS - timeSinceLastRequest)
 
+  // When unlocked, only concurrent request limit applies (no 120s timer)
+  const isLimited = unlocked
+    ? activeRequests >= MAX_CONCURRENT_REQUESTS
+    : remainingMs > 0 || activeRequests >= MAX_CONCURRENT_REQUESTS
+
   return {
-    isLimited: remainingMs > 0 || activeRequests >= MAX_CONCURRENT_REQUESTS,
-    remainingSeconds: Math.ceil(remainingMs / 1000),
+    isLimited,
+    isUnlocked: unlocked,
+    remainingSeconds: unlocked ? 0 : Math.ceil(remainingMs / 1000),
     rateLimitSeconds: RATE_LIMIT_MS / 1000,
     activeRequests,
     maxConcurrent: MAX_CONCURRENT_REQUESTS
