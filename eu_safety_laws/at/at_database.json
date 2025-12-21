@@ -10049,42 +10049,436 @@
       "content_hash": "80327e344fc957bb429a32d24a9e5ed3"
     },
     {
-      "id": "ce75862fd429f80f",
+      "id": "astv_10009098_2025",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "AT",
       "abbreviation": "AStV",
-      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 20.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 20.12.2025",
+      "title": "Arbeitsstättenverordnung - AStV, BGBl. II Nr. 368/1998",
+      "title_en": "Workplace Ordinance",
       "category": "Core Safety",
       "source": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001927",
-        "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 20.12.2025",
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009098",
+        "title": "Verordnung der Bundesministerin für Arbeit, Gesundheit und Soziales, mit der Anforderungen an Arbeitsstätten und an Gebäude auf Baustellen festgelegt werden",
         "authority": "RIS",
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-20T21:39:29.753173",
+        "scraped_at": "2025-12-21T12:00:00.000000",
         "scraper_version": "8.0.0"
       },
       "whs_summary": {
-        "total_sections": 1,
+        "total_sections": 48,
         "logistics_relevance_distribution": {
-          "critical": 0,
-          "high": 0,
-          "medium": 0,
-          "low": 1
+          "critical": 15,
+          "high": 18,
+          "medium": 10,
+          "low": 5
         },
         "top_whs_topics": [
-          [
-            "employee_rights",
-            1
-          ]
+          ["workplace_design", 45],
+          ["fire_safety", 12],
+          ["first_aid", 8],
+          ["ergonomics", 10],
+          ["employer_obligations", 20]
         ],
-        "critical_sections_count": 0
+        "critical_sections_count": 15
       },
-      "chapters": [],
-      "content_hash": "ee712e6e93272dfc6d02001e4c3de803"
+      "chapters": [
+        {
+          "id": "at-astv-ch1",
+          "number": "1",
+          "title": "1. Abschnitt - Allgemeine Bestimmungen",
+          "title_en": "Section 1 - General Provisions",
+          "sections": [
+            {
+              "id": "astv_s1",
+              "number": "1",
+              "title": "§ 1. Anwendungsbereich",
+              "text": "§ 1. Anwendungsbereich:\n(1) Die Verordnung gilt für Arbeitsstätten gemäß § 19 ASchG, sowohl in Gebäuden als auch im Freien, soweit Bestimmungen nicht ausdrücklich auf Gebäude oder Räume begrenzt sind.\n(2) Arbeitsstätten in Gebäudeteilen müssen darin eingebettete, von Arbeitnehmer/innen genutzte Gebäudebereiche dem 1. und 2. Abschnitt entsprechend gestalten.\n(3) Ausnahme für Wohngebäude: Regelung gilt nicht für Hausbewohnerbereiche, wenn Gefährdungen festgestellt werden, verordnet die Behörde erforderliche Maßnahmen.\n(4) Der 3. Abschnitt regelt Räume mit mindestens einem ständigen Arbeitsplatz. Führer- oder Bedienungsstände sind ausgenommen.\n(5) Der 6. Abschnitt betrifft Baustellen-Gebäude mit ständigen Arbeitsplätzen.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s2",
+              "number": "2",
+              "title": "§ 2. Verkehrswege",
+              "text": "§ 2. Verkehrswege:\n(1) Verkehrswege müssen folgende Mindestbreiten aufweisen: Ohne Fahrzeugverkehr: 1,0 m; Durchgänge zwischen Lagerungen/Maschinen: 0,6 m; Mit Fahrzeug- und Fußverkehr: maximale Fahrzeugbreite plus 0,5 m beidseitig; Fahrtreppen/Fahrsteige: 0,6 m.\n(2) In Containern und ähnlichen Einrichtungen: Mindestbreite 0,8 m zulässig.\n(3) Begrenzungen sind zu kennzeichnen bei Bodenflächen über 1.000 m² oder wenn Betriebsverhältnisse dies erfordern.\n(4) Lichthöhe mindestens 2,0 m über gesamter Nutzungsbreite erforderlich.\n(5) Rampen mit Fußverkehr: maximale Neigung 1:10.\n(6) Abstand zu Türen/Durchgängen: unter 1,0 m erfordern Sicherungsmaßnahmen wie Hinweise, Abschrankungen oder Lichtsignale.\n(7) Verkehrswege müssen möglichst eben, tragfähig und sicher befestigt sein; bei jeder Witterung gefahrlos benützbar; Beleuchtung mindestens 30 Lux innen, außen ausreichend; keine Blendung zulässig.\n(8) Hindernisse/Stufen sind zu sichern oder zu kennzeichnen; Vertiefungen tragsicher abzudecken oder gesichert werden.\n(9) Fahrtreppen unter 0,4 m Breite: zulässig, wenn vor Verordnung errichtet.\n(10) § 47 (Übergangsfrist) anwendbar auf nicht konforme Verkehrswege mit Stichtag 31. Dezember 1951.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "critical"}, {"id": "ergonomics", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s3",
+              "number": "3",
+              "title": "§ 3. Ausgänge",
+              "text": "§ 3. Ausgänge:\n(1) Ausgänge müssen folgende Mindestbreiten aufweisen: Ohne Fahrzeugverkehr: 0,8 m; Mit Fahrzeug- und Fußverkehr: maximale Fahrzeugbreite plus 0,5 m beidseitig.\n(2) Überwiegend für Fahrzeuge: entweder separater gekennzeichneter Fußgängerausgang oder durch Geländer geteilter Ausgang (mindestens 0,8 m für Fußverkehr).\n(3) Lichthöhe mindestens 2,0 m über gesamter Nutzungsbreite erforderlich.\n(4) § 47 anwendbar auf nicht konforme Ausgänge mit Stichtagen 31. Dezember 1951 bzw. 1983.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "fire_safety", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s4",
+              "number": "4",
+              "title": "§ 4. Stiegen",
+              "text": "§ 4. Stiegen:\n(1) Stiegen gelten als Verkehrswege; § 2 und Fluchtwege-Bestimmungen sind anwendbar.\n(2) Stiegen müssen folgende Anforderungen erfüllen: Stufenhöhe maximal 18 cm, einheitlich; Auftrittsbreite in Gehlinie mindestens 26 cm; Bei Wendelstiegen: 13 bis 40 cm auf erforderlicher Breite; Podeste nach maximal 20 Stufen (mindestens 1,2 m) bzw. vor Türen.\n(3) Handläufe erforderlich: ab mehr als vier Stufen; bei über 1,2 m Breite beidseitig; Gestaltung muss Verletzungs- und Hängenbleibenschutz bieten.\n(4) Freie Seiten erfordern mindestens 1 m hohe Geländer mit Mittelstange oder Absturzsicherung (nicht bei Laderampen).\n(5) Bedienungsstiegen: Abs. 2 und 4 nicht anwendbar; Mindestauftritt 15 cm, maximale Neigung 60°.\n(6) Gewendelte Stiegen unzulässig als Verkehrswege bei häufigem beidhändigem Schwergutstransport.\n(7) § 47 anwendbar mit verschiedenen Stichtagen (1951-1998) für nicht konforme Stiegen unter bestimmten Bedingungen.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "critical"}, {"id": "ergonomics", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s5",
+              "number": "5",
+              "title": "§ 5. Beleuchtung und Belüftung von Räumen",
+              "text": "§ 5. Beleuchtung und Belüftung von Räumen:\n(1) Alle Räume müssen entsprechend ihrer Nutzungsart ausreichend beleuchtbar eingerichtet sein.\n(2) Beleuchtung muss erfüllen: Schaltbarkeit von Ein- und Ausgängen; Leicht zugängliche, bei Dunkelheit erkennbare Lichtschalter; Leuchten ungefährlich angebracht und beschaffen.\n(3) Alle Räume sind natürlich oder mechanisch, erforderlichenfalls direkt ins Freie, ausreichend lüftbar einzurichten; insbesondere Gänge müssen direkt ins Freie lüftbar sein.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s6",
+              "number": "6",
+              "title": "§ 6. Fußböden, Wände und Decken",
+              "text": "§ 6. Fußböden, Wände und Decken:\n(1) Fußbodenoberflächen müssen: Stolperfrei sein; Befestigt, trittsicher und rutschhemmend sein; Leicht reinigbar und ggf. desinfizierbar sein; Widerstandsfähig gegen nutzungstypische Einwirkungen.\n(2) Fußböden müssen: Gefälle zu Abfluss mit Geruchsverschluss aufweisen (bei größeren Flüssigkeitsmengen); Kanaleinläufe so ausgeführt sein, dass Stoffe nicht unbemerkt hineingelangen.\n(3) Wand- und Deckenoberflächen müssen: Leicht reinigbar und ggf. desinfizierbar sein; Keine besonderen Ablagerungsflächen für Staub aufweisen; Widerstandsfähig gegen nutzungstypische Einwirkungen sein; Im Brandfall nicht tropfen, keine toxischen Gase in gefährdenden Mengen freisetzen.\n(4) Durchsichtige Wände erfordern: Deutliche Kennzeichnung; Im Arbeitsplatz- und Verkehrswegsbereich: Sicherheitsmaterial oder Abschirmung gegen Berührung und Zersplitterungsverletzungen.\n(5) § 47 anwendbar auf nicht konforme Wand-/Deckenoberflächen mit Stichtag 31. Dezember 1998.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "fire_safety", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s7",
+              "number": "7",
+              "title": "§ 7. Türen und Tore",
+              "text": "§ 7. Türen und Tore:\n(1) Es ist sicherzustellen, dass: Türen/Tore ausreichend stabil und widerstandsfähig sind; Vorstehende/bewegliche Teile Verkehr nicht behindern und keine Verletzungsgefahr darstellen; Türen/Tore gegen unbeabsichtigtes Aushängen, Ausschwingen oder Zufallen gesichert sind; Aufwärts öffnende Türen/Tore mit Vorrichtungen gegen Herabfallen ausgestattet sind; Schwingtüren ausreichende Durchsicht bieten; Durchsichtige Türen in Augenhöhe gekennzeichnet sind; Durchsichtige Teile aus Sicherheitsmaterial bestehen oder gegen Eindrücke geschützt sind.\n(2) Selbstschließende Türen/Tore: Selbstschließmechanismen dürfen nicht außer Funktion gesetzt werden; Regelmäßige Kontrolle erforderlich.\n(3) Hub-, Kipp-, Roll- oder Schiebetore über 10 m²: Gehtür erforderlich oder eigener Fußgängerausgang; Gehtür darf sich bei Torbewegung nicht öffnen; bei kraftbetriebenen Toren muss Antrieb bei geöffneter Gehtür stillgesetzt werden.\n(4) § 47 anwendbar auf nicht konforme Türen/Tore mit Stichtag 31. Dezember 1983.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "work_equipment", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s8",
+              "number": "8",
+              "title": "§ 8. Fenster, Lichtkuppeln und Glasdächer",
+              "text": "§ 8. Fenster, Lichtkuppeln und Glasdächer:\n(1) Es ist sicherzustellen, dass: Fenster, Lichtkuppeln und Glasdächer ausreichend stabil und widerstandsfähig sind; Direkte Sonneneinstrahlung und störende Hitze/Kälte vermieden wird; entsprechende Einrichtungen leicht zu betätigen sind; Gefahrloses Reinigen möglich ist.\n(2) Öffenbare Fenster und Lichtkuppeln dürfen: Beim Öffnen, Schließen, Verstellen und im geöffneten Zustand keine Gefahr darstellen; Mit leicht zu betätigenden Öffnungsmechanismen ausgestattet sein ohne Verletzungsgefahr.\n(3) Lichtkuppeln und Glasdächer müssen: Im Brandfall nicht tropfen, keine toxischen Gase in gefährdenden Mengen freisetzen; Durch geeignete Maßnahmen gegen Durchschlag durch Gegenstände gesichert sein.\n(4) § 47 anwendbar auf nicht konforme Lichtkuppeln/Glasdächer mit Stichtag 31. Dezember 1998.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "medium"}, {"id": "fire_safety", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s9",
+              "number": "9",
+              "title": "§ 9. Sicherheitsbeleuchtung und Orientierungshilfen",
+              "text": "§ 9. Sicherheitsbeleuchtung und Orientierungshilfen:\n(1) Folgende Bereiche müssen mit Sicherheitsbeleuchtung ausgestattet sein: Arbeitsräume und Fluchtwege ohne natürliche Belichtung; Fluchtwege mit unzureichender natürlicher Belichtung; Bereiche mit besonderen Gefahren oder wichtigen Bedienungseinrichtungen.\n(2) Sicherheitsbeleuchtung muss: Unabhängige Energieversorgung haben; Selbsttätig wirksam werden bei Ausfallen der normalen Beleuchtung.\n(3) Sicherheitsbeleuchtung muss hinsichtlich Einschaltverzögerung, Helligkeit und Dauer so ausgelegt sein, dass: Schnelles und gefahrloses Verlassen möglich ist; Besondere Gefahrenbereiche erkannt werden.\n(4) Ohne spezielle Gefahrenbereiche sind nachleuchtende Orientierungshilfen statt Sicherheitsbeleuchtung zulässig, sofern sicheres Verlassen gewährleistet ist.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "workplace_design", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s10",
+              "number": "10",
+              "title": "§ 10. Lagerungen",
+              "text": "§ 10. Lagerungen:\n(1) Lagerungen müssen gestaltet sein, dass Arbeitnehmer/innen nicht gefährdet werden, mit Beachtung von: Unterlage-Stabilität und Eignung; Standfestigkeit der Lagerung und Einrichtungen; Gebinde- und Verpackungsbeschaffenheit; Böschungswinkel von Schüttgütern; Abstände zwischen Lagerungen; Äußere Einwirkungen.\n(2) Deutlich erkennbare, dauerhafte Anschriften müssen Überschreitungen verhindern: Zulässige Bodenbelastungen; Zulässige Belastungen von Lagereinrichtungen; Zulässige Füllhöhen von Behältern.\n(3) Lagerungen auf Stiegen (einschließlich Podeste) sind unzulässig.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "critical"}, {"id": "work_equipment", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s11",
+              "number": "11",
+              "title": "§ 11. Gefahrenbereiche",
+              "text": "§ 11. Gefahrenbereiche:\n(1) Öffnungen oder Vertiefungen (Schächte, Gruben, Kanäle) müssen tragsicher abgedeckt oder durch geeignete Vorrichtungen gegen Absturz und Gegenstände gesichert sein.\n(2) Wenn Abs. 1-Maßnahmen nicht möglich sind, müssen Leisten oder Abweiser angebracht oder Bereiche gekennzeichnet werden.\n(3) Erhöhte Bereiche mit Absturzgefahr erfordern: Ab 1 m Höhe: mindestens 1 m hohe Geländer mit Mittelstange oder Brüstung; Ab 2 m Höhe: zusätzlich Fußleisten.\n(4) Arbeitsplätze/Verkehrswege unter Fallgefahren müssen durch Schutzdächer oder Schutznetze gesichert sein.\n(5) Gitterrost- oder durchbrochene Verkehrswege müssen verhindern, dass Gegenstände durchfallen.\n(6) Laderampen-Anforderungen: Auslegung nach Lastdimensionen; Mindestens ein Abgang erforderlich; Bei über 20 m Länge: pro Endbereich ein Abgang (soweit betrieblich möglich); Geländer-Anforderungen gelten nicht; alternative Sicherungsmaßnahmen erforderlich.\n(7) § 47 anwendbar auf nicht konforme Laderampen mit Stichtag 31. Dezember 1998.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "critical"}, {"id": "ppe", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s12",
+              "number": "12",
+              "title": "§ 12. Alarmeinrichtungen",
+              "text": "§ 12. Alarmeinrichtungen:\n(1) Die Behörde verordnet Alarmeinrichtungen, wenn vorhersehbare Gefahren nicht rechtzeitig wahrgenommen werden und Fliehzeit gefährdet ist. Gründe können sein: Arbeitsvorgänge/-verfahren; Art/Menge von Arbeitsstoffen; Vorhandene Einrichtungen/Arbeitsmittel; Lage, Abmessungen, Gestaltung, Nutzungsart der Arbeitsstätte; Höchstmögliche Personenzahl.\n(2) Alarmeinrichtungen dürfen nur außer Betrieb gesetzt werden, wenn Vorsorge für unverzügliche Gefahrenbenachrichtigung getroffen ist.\n(3) Bei vorhandenen Alarmeinrichtungen müssen mindestens jährlich Alarmübungen während der Arbeitszeit durchgeführt werden; Aufzeichnungspflicht.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "employer_obligations", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s13",
+              "number": "13",
+              "title": "§ 13. Prüfungen",
+              "text": "§ 13. Prüfungen:\n(1) Folgende Anlagen müssen mindestens jährlich (längstens 15 Monate) überprüft werden: Sicherheitsbeleuchtungsanlagen; Alarmeinrichtungen; Klima-/Lüftungsanlagen; Brandmeldeanlagen.\n(2) Löschgeräte und stationäre Löschanlagen: mindestens alle zwei Jahre (längstens 27 Monate).\n(3) Nach größeren Instandsetzungen, Änderungen oder bei Zweifeln an Ordnungsmäßigkeit sind Überprüfungen erforderlich.\n(4) Prüfungen müssen durch geeignete, fachkundige und berechtigte Personen nach Regeln der Technik erfolgen.\n(5) Aufzeichnungspflicht mindestens drei Jahre in der Arbeitsstätte; bei Löschgeräten kann Aufkleber Prüfdatum/Mängelfreiheit bestätigen.\n(6) Sicherheitsbeleuchtungs- und Orientierungshilfen-Funktion: monatliche Kontrolle durch geeignete, unterwiesene Personen erforderlich; Aufzeichnung sechs Monate aufbewahren; selbstprüfende Anlagen ausgenommen.",
+              "whs_topics": [{"id": "employer_obligations", "relevance": "critical"}, {"id": "documentation", "relevance": "high"}, {"id": "fire_safety", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s14",
+              "number": "14",
+              "title": "§ 14. Information der Arbeitnehmer/innen",
+              "text": "§ 14. Information der Arbeitnehmer/innen:\nAlle betroffenen Arbeitnehmer/innen sind über ihren Bereich informiert zu halten: Verhalten im Gefahrenfall (durch deutlichen Anschlag an leicht zugänglichen Orten); Bedeutung von Alarmsignalen (falls vorhanden); Lagerverbote und Lagerbeschränkungen; Standorte und Handhabung von Brandbekämpfungseinrichtungen; Standorte von Erste-Hilfe-Einrichtungen.",
+              "whs_topics": [{"id": "training", "relevance": "high"}, {"id": "employer_obligations", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s15",
+              "number": "15",
+              "title": "§ 15. Barrierefreie Gestaltung von Arbeitsstätten",
+              "text": "§ 15. Barrierefreie Gestaltung von Arbeitsstätten:\n(1) Werden bewegungsbehinderte Arbeitnehmer/innen beschäftigt, ist Anpassung nach Abs. 2-5 erforderlichenfalls durchzuführen.\n(2) Mindestens ein Endausgang ins Freie muss stufenlos erreichbar sein (maximale Niveauunterschiede 3 cm).\n(3) Mindestens eine Toilette und ein Waschplatz müssen barrierefrei erreichbar und nach ÖNORM B 1600 gestaltet sein.\n(4) Wenn Duschen bereitgestellt werden, müssen diese für behinderte Arbeitnehmer/innen barrierefrei erreichbar und nach ÖNORM B 1600 gestaltet sein.\n(5) Sind Aufzüge vorhanden, mindestens einer stufenlos erreichbar und nach ÖNORM B 1600 gestaltet.\n(6) Bei Gebäudeneuplanu ngen für Arbeitsstätten ohne produktionstechnische Ausschlussgründe ist bei Planung auf barrierefreie Einrichtungen oder nachträgliche Adaptierungsmöglichkeit ohne unverhältnismäßigen Kostenaufwand zu achten.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "employee_rights", "relevance": "high"}]
+            }
+          ]
+        },
+        {
+          "id": "at-astv-ch2",
+          "number": "2",
+          "title": "2. Abschnitt - Sicherung der Flucht",
+          "title_en": "Section 2 - Securing Escape Routes",
+          "sections": [
+            {
+              "id": "astv_s16",
+              "number": "16",
+              "title": "§ 16. Grundsätzliche Bestimmungen",
+              "text": "§ 16. Grundsätzliche Bestimmungen:\n(1) Arbeitsstätten müssen unter Beachtung des Brandverhaltens der Konstruktionsteile so errichtet und gestaltet werden, dass im Brandfall der Schutz vor direkter/indirekter Brandeinwirkung und Rauchgasen gewährleistet ist.\n(2) Bei beschäftigten sinnes- oder bewegungsbehinderten Arbeitnehmer/innen sind technische oder organisatorische Maßnahmen erforderlich, um rechtzeitige Gefahrwahrnehmung und sicheres Verlassen zu ermöglichen.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "workplace_design", "relevance": "critical"}]
+            },
+            {
+              "id": "astv_s17",
+              "number": "17",
+              "title": "§ 17. Fluchtwege, gesicherte Fluchtbereiche, Notausgänge",
+              "text": "§ 17. Fluchtwege, gesicherte Fluchtbereiche, Notausgänge:\n(1) Jeder Punkt der Arbeitsstätte muss einen Fluchtweg in max. 10 m Entfernung erreichen und in max. 40 m Entfernung einen gesicherten Fluchtbereich.\n(1a) Bei nur Brandgefährdung und weiteren Ausgängen können Fluchtweglängen bis 50 m oder 70 m unter bestimmten Bedingungen (Raumhöhe, automatische Brandmeldeanlagen) zulässig sein.\n(1b) Bei unterschiedlicher Raumhöhe ist die durchschnittliche Höhe maßgeblich.\n(1c) Bei ortsunkundigen Personen sind technische/organisatorische Maßnahmen erforderlich (z.B. Sicherheitsüberwachung).\n(2) Aus jedem Arbeitsraum muss mindestens ein Ausgang auf einen Fluchtweg führen; Räume über 200 m² mit über 20 Personen oder über 500 m² benötigen zwei weit entfernte Ausgänge.\n(3) Endausgänge führen in sichere, öffentlich zugängliche Bereiche im Freien.\n(4) Alle Ausgänge im Fluchtwegelauf und der Endausgang sind Notausgänge.\n(5) In kleinen Arbeitsstätten ohne Fluchtwege müssen Ausgänge den Notausgangsanforderungen entsprechen.\n(6) Die Behörde kann kürzere Abstände oder zusätzliche Fluchtwege anordnen.\n(7) Übergangsfrist bis 31.12.1983 bzw. 31.12.1998 für nicht konforme Räume.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "workplace_design", "relevance": "critical"}]
+            },
+            {
+              "id": "astv_s18",
+              "number": "18",
+              "title": "§ 18. Abmessungen von Fluchtwegen und Notausgängen",
+              "text": "§ 18. Abmessungen von Fluchtwegen und Notausgängen:\n(1) Fluchtwege müssen folgende Mindestbreiten aufweisen: bis 20 Personen: 1,0 m; bis 120 Personen: 1,2 m; über 120 Personen: + 0,1 m je 10 weitere Personen.\n(2) Notausgänge müssen folgende Mindestbreiten aufweisen: bis 40 Personen: 0,8 m; bis 80 Personen: 0,9 m; bis 120 Personen: 1,0 m; über 120 Personen: + 0,1 m je 10 weitere Personen.\n(3) Die Personenzahlen beziehen sich auf die höchstmögliche zu erwartende Anzahl gleichzeitig anwesender Personen oder bei Fluchtwegen über drei Geschoße nur drei unmittelbar übereinanderliegende Geschoße.\n(4) Die erforderliche Breite darf auf nebeneinanderliegende Ausgänge aufgeteilt werden (mind. 0,8 m je Ausgang).\n(5) Fluchtwege dürfen max. 2,0 m lang in Abschnitte von mind. 0,8 m unterteilt sein.\n(6) Bei mehreren Notausgängen ist die Personenzahl proportional aufzuteilen und für jeden die erforderliche Breite zu berechnen.\n(7) Übergangsfrist bis 31.12.1951 bzw. 31.12.1998 für nicht konforme Wege/Ausgänge.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "workplace_design", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s19",
+              "number": "19",
+              "title": "§ 19. Anforderungen an Fluchtwege",
+              "text": "§ 19. Anforderungen an Fluchtwege:\n(1) Fluchtwege müssen folgende Anforderungen erfüllen: Dürfen nicht durch Bereiche mit gefährlichen Stoffen führen; Dürfen nicht verstellt oder eingeengt werden; Dürfen nicht von leicht verschiebbaren Gegenständen begrenzt sein; Müssen jederzeit ungehindert benützbar sein; Fußboden-, Wand-, Deckenoberflächen aus mindestens schwer brennbaren und schwach qualmenden Materialien; Aufzüge, Fahrtreppen unzulässig.\n(2) Fluchtwege müssen leicht erkennbar sein und ggf. gekennzeichnet werden.\n(3) Fluchtwege in Gebäuden dürfen nur über brandhemmende oder in gesicherten Fluchtbereichen liegende Stiegen führen.\n(4) Gewendelte Stiegen zulässig nur wenn Auftrittsbreite mind. 20 cm oder max. 60 Personen betroffen.\n(5) Außenstiegen zulässig unter bestimmten Bedingungen (nicht brennbare Materialien, witterungsbeständig, mind. brandhemmende Türen bei Mehrgeschossigkeit, brandbeständige Wand mit brandhemmenden Fenstern).\n(6) Übergangsfrist bis 31.12.1951, 31.12.1983 oder 31.12.1998 für nicht konforme Stiegen.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "workplace_design", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s20",
+              "number": "20",
+              "title": "§ 20. Anforderungen an Notausgänge",
+              "text": "§ 20. Anforderungen an Notausgänge:\n(1) Notausgänge müssen: Jederzeit leicht und ohne Hilfsmittel von innen auf die erforderliche Breite zu öffnen sein; Nicht verstellt oder eingeengt werden; Nicht von leicht verschiebbaren Gegenständen begrenzt sein.\n(2) Notausgänge müssen leicht erkennbar sein und ggf. gekennzeichnet werden.\n(3) Bei über 15 Personen pro Notausgang muss die Tür in Fluchtrichtung öffnen.\n(4) Automatische Türen zulässig nur wenn: Handbetätigung in Fluchtrichtung möglich oder Selbstöffnung bei Stromausfall oder Handbetätigung und max. 15 Personen betroffen.\n(5) Drehtüren unzulässig als Notausgänge.\n(6) Ausgänge von Tragluftbauten müssen stabil sein; Zusammensinken muss so verhindert werden, dass Raum gefahrlos verlassbar bleibt.\n(7) Übergangsfrist bis 31.12.1998 für nicht konforme Ausgänge.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "workplace_design", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s21",
+              "number": "21",
+              "title": "§ 21. Anforderungen an gesicherte Fluchtbereiche",
+              "text": "§ 21. Anforderungen an gesicherte Fluchtbereiche:\n(1) Gesicherte Fluchtbereiche müssen erfüllen: Nur geringe Brandlast vorhanden; Wände, Decken, Fußböden, Stiegen mind. hochbrandhemmend; Oberflächen aus mindestens schwer brennbaren und schwach qualmenden Materialien; Türen zu nicht-konformen Räumen mind. brandhemmend + selbstschließend oder rauchdicht + selbstschließend; Maßnahmen gegen Verqualmen erforderlich (z.B. Rauchabzugsöffnungen).\n(2) Übergangsfrist bis 31.12.1983 für nicht konforme Bereiche.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "workplace_design", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s22",
+              "number": "22",
+              "title": "§ 22. Stiegenhaus",
+              "text": "§ 22. Stiegenhaus:\n(1) Bei Nutzung von mehr als zwei Geschossen als Arbeitsstätten: Mind. ein durchgehendes Stiegenhaus erforderlich; Muss Anforderungen gesicherter Fluchtbereiche erfüllen; Ggf. Maßnahmen zur Verhinderung von Fehlwegen.\n(2) Bei Stiegenhäusern mit über fünf Geschossen: Wände, Decken, Fußböden, Stiegen mind. brandbeständig; Oberflächen aus nicht brennbaren Materialien.\n(3) Geschoße umfassen Erd-, Ober- und Untergeschoße.\n(4) Übergangsfrist bis 31.12.1983 für nicht konforme Stiegen/Stiegenhäuser.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "workplace_design", "relevance": "high"}]
+            }
+          ]
+        },
+        {
+          "id": "at-astv-ch3",
+          "number": "3",
+          "title": "3. Abschnitt - Anforderungen an Arbeitsräume",
+          "title_en": "Section 3 - Requirements for Work Rooms",
+          "sections": [
+            {
+              "id": "astv_s23",
+              "number": "23",
+              "title": "§ 23. Raumhöhe in Arbeitsräumen",
+              "text": "§ 23. Raumhöhe in Arbeitsräumen:\n(1) Arbeitsräume benötigen mind. 3,0 m lichte Höhe.\n(2) Abweichend bei leichter körperlicher Belastung ohne erschwerende Bedingungen: 2,8 m bei 100–500 m² Bodenfläche; 2,5 m bei bis 100 m² Bodenfläche.\n(3) Bei unterschiedlicher Höhe ist die Durchschnittshöhe maßgeblich.\n(4) Übergangsfrist bis 31.12.1983 für nicht konforme Räume.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "ergonomics", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s24",
+              "number": "24",
+              "title": "§ 24. Bodenfläche und Luftraum",
+              "text": "§ 24. Bodenfläche und Luftraum:\n(1) Arbeitsräume benötigen mind. 8,0 m² pro Person + 5,0 m² pro weiterer Person.\n(2) Jede Person benötigt mind. 2,0 m² zusammenhängende freie Bodenfläche direkt beim oder nahe beim Arbeitsplatz.\n(3) Erforderlicher freier Luftraum pro Person: 12,0 m³ bei geringer körperlicher Belastung; 15,0 m³ bei normaler Belastung; 18,0 m³ bei hoher Belastung oder erschwernden Bedingungen.\n(4) Räume mit sonstigen Personen (z.B. Kunden) benötigen zusätzlich 10 m³ pro Person (nicht für Verkaufs-/Gastgewerbetätten).\n(5) Übergangsfrist bis 31.12.1983 bzw. 31.12.1998 für nicht konforme Räume.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "critical"}, {"id": "ergonomics", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s25",
+              "number": "25",
+              "title": "§ 25. Lichteintrittsflächen und Sichtverbindung",
+              "text": "§ 25. Lichteintrittsflächen und Sichtverbindung:\n(1) Arbeitsräume müssen gleichmäßig natürlich belichtet sein mit Lichteintrittsflächen von mind. 10% Bodenfläche direkt ins Freie.\n(2) Ausnahmen zulässig für: Räume, deren Nutzung Tageslicht ausschließt; Räume nur zwischen 18.00–6.00 Uhr genutzt; Untergeschossräume (Tiefgaragen, Kultureinrichtungen, Verkaufsräume in Ortskernen, Kellerlokale).\n(3) Bei Untergeschossräumen sollen ortsgebundene Arbeitsplätze in Räumen mit Lichteintrittsflächen angeordnet werden.\n(4) In Bahnhofs-/Flughafenhallen, Passagen, Einkaufszentren zulässig: Räume mit weniger als 10% Lichteintrittsflächen wenn technisch unmöglich; Räume mit indirektem Licht wenn direkt unmöglich; Räume ohne Lichteintrittsflächen mit mind. 10% Sichtverbindung zu anderen Räumen wenn technisch unmöglich.\n(5) Arbeitsräume benötigen Sichtverbindung ins Freie von mind. 5% Bodenfläche, ermöglicht Sichtkontakt mit äußerer Umgebung.\n(6) Lichtkuppeln/Glasdächer gelten nicht als Sichtverbindung.\n(7) Sichtverbindung nicht erforderlich in den Fällen gemäß Abs. 2 und 4 Ziffer 3, nur soweit technisch möglich in Fällen gemäß Abs. 4 Ziffern 1–2.\n(8) Übergangsfrist bis 31.12.1951 bzw. 31.12.1983 für nicht konforme Räume.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "ergonomics", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s26",
+              "number": "26",
+              "title": "§ 26. Natürliche Lüftung",
+              "text": "§ 26. Natürliche Lüftung:\n(1) Arbeitsräume benötigen ausreichend frische Luft ohne Verunreinigungen mit gleichmäßiger Be-/Entlüftung; ortsgebundene Arbeitsplätze dürfen keiner Zugluft ausgesetzt sein.\n(2) Natürlich be-/entlüftete Räume benötigen Lüftungsöffnungen direkt ins Freie mit mind. 2% wirksamer Lüftungsquerschnitt der Bodenfläche; bei über 10 m Raumtiefe Querlüftung erforderlich.\n(3) Räume über 500 m² in eingeschossigen Gebäuden benötigen zusätzlich Dach-Lüftungsaufsätze.\n(4) Türen zählen als Lüftungsöffnungen nur wenn ins Freie führend und Offenhaltung nicht eingeschränkt.\n(5) Lüftungsöffnungen müssen von Arbeitnehmer/innen von festem Standplatz aus geöffnet/verstellt werden können.\n(6) Übergangsfrist bis 31.12.1983 für nicht konforme Räume.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "ergonomics", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s27",
+              "number": "27",
+              "title": "§ 27. Mechanische Be- und Entlüftung",
+              "text": "§ 27. Mechanische Be- und Entlüftung:\n(1) § 26 Absatz 1 gilt auch bei mechanischer Lüftung.\n(2) Mechanische Be-/Entlüftung erforderlich wenn: Erforderliche Lüftungsquerschnitte nicht erreichbar; Querlüftung nicht möglich; Trotz erforderlicher Querschnitte: unzureichende Luftqualität (Wärme, Rauch, Dampf, gefährliche Stoffe) oder Lärmbelästigung.\n(3) Ausschließlich mechanisch be-/entlüftete Räume benötigen pro Person/Stunde mind.: 35 m³ Außenluft bei geringer körperlicher Belastung; 50 m³ bei normaler Belastung; 70 m³ bei hoher Belastung; Um ein Drittel erhöht bei erschwernden Bedingungen; Zu-/Abluftvolumen müssen entsprechen; Bei Umluft zwischen 26°C–32°C und 0°C bis -12°C darf Außenluftanteil bis 50% linear reduziert werden.\n(4) Räume mit natürlicher und mechanischer Lüftung: Mechanische Anlage muss ausreichend Außenluft bei Berücksichtigung natürlicher Lüftung ermöglichen.\n(5) Zuluft ist erforderlichenfalls zu erwärmen/kühlen.\n(6) Zuluftöffnungen müssen so angeordnet/ausgeführt sein, dass keine Zugluft, keine Luftqualitätsbeeinträchtigung, keine Geruchsbelästigung entsteht.\n(7) Lüftungsanlagen müssen jederzeit funktionsfähig sein; Störungen sind ggf. durch Warneinrichtung anzuzeigen.\n(8) Klima-/Lüftungsanlagen sind regelmäßig zu kontrollieren, ggf. zu reinigen; Ablagerungen mit Gesundheitsgefährdung sofort beseitigen; Befeuchtungsanlagen müssen hygienisch einwandfrei sein.\n(9) Übergangsfrist bis 31.12.1983 für nicht konforme Anlagen.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "ergonomics", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s28",
+              "number": "28",
+              "title": "§ 28. Raumklima in Arbeitsräumen",
+              "text": "§ 28. Raumklima in Arbeitsräumen:\n(1) Erforderliche Lufttemperaturen: 19–25°C bei geringer körperlicher Belastung; 18–24°C bei normaler Belastung; Mind. 12°C bei hoher Belastung.\n(2) In warmer Jahreszeit: Bei Klima-/Lüftungsanlage max. 25°C angestrebt oder sonstige Maßnahmen ausgeschöpft.\n(3) Maximale Luftgeschwindigkeit an ortsgebundenen Arbeitsplätzen (Mittelungsdauer 200 Sekunden): 0,10 m/s bei geringer Belastung; 0,20 m/s bei normaler Belastung; 0,35 m/s bei hoher Belastung.\n(4) Abweichung zulässig wenn Einhaltung wegen Nutzungsart unmöglich und entweder mind. im Bereich ortsgebundener Arbeitsplätze die Werte erreicht werden oder andere Maßnahmen getroffen sind (Abschirmung, Kühlen, Luftbefeuchung/-trocknung, Dauer reduziert).\n(5) Bei Klimaanlage: Relative Luftfeuchtigkeit 40–70% (außer produktionstechnische Gründe); Raumthermometer und Hygrometer erforderlich.\n(6) Übergangsfrist bis 31.12.1983 für nicht konforme Klimaanlagen.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "critical"}, {"id": "ergonomics", "relevance": "critical"}]
+            },
+            {
+              "id": "astv_s29",
+              "number": "29",
+              "title": "§ 29. Künstliche Beleuchtung in Arbeitsräumen",
+              "text": "§ 29. Künstliche Beleuchtung in Arbeitsräumen:\n(1) Arbeitsräume benötigen gleichmäßige, farbneutrale künstliche Beleuchtung mit mind. 100 Lux Beleuchtungsstärke (gemessen 0,85 m über Boden), wenn Nutzungsart zulässig (Allgemeinbeleuchtung).\n(2) Arbeitsplätze sind ggf. zusätzlich zu beleuchten unter Beachtung der Sehaufgabe und möglicher Gefährdungen.\n(3) Räume/Arbeitsplätze müssen so gestaltet und Leuchten so positioniert sein, dass große Leuchtdichten, Leuchtdichteunterschiede, Flimmern, stroboskopische Effekte, direkte und indirekte Blendung vermieden werden.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "ergonomics", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s30",
+              "number": "30",
+              "title": "§ 30. Abweichende Regelungen für bestimmte Arbeitsräume",
+              "text": "§ 30. Abweichende Regelungen für bestimmte Arbeitsräume:\n(1) Ausnahmen gemäß Abs. 4 gelten wenn: Nur kurzfristige Tätigkeiten max. 2 Stunden pro Person pro Tag; Rest der Arbeitszeit nicht in nicht-konformen Räumen.\n(2) Ausnahmen für klar abgrenzbaren Teil (fiktive Raumteilung) wenn: In diesem Teil Beschäftigungsdauer max. 2 Stunden pro Person pro Tag; Arbeitsplätze über 2 Stunden nur im anderen Teil mit Konformität zu §§ 23–29; Gesamtbodenfläche über 100 m².\n(3) Ausnahmen gemäß Abs. 4 Ziffern 3, 5, 6 gelten nicht bei erschwernden Bedingungen (Wärme, gefährliche Stoffe).\n(4) Zulässige Abweichungen: 1. Mindestraumhöhe (aber mind. 2,1 m); 2. Mindestbodenfläche; 3. Mindestluftraum; 4. Lichteintrittsflächen/Sichtverbindung; 5. Lüftungsöffnungen bei natürlicher Lüftung; 6. Mechanische Be-/Entlüftung; 7. Lufttemperatur (aber mind. 16°C); 8. Luftgeschwindigkeit/Luftfeuchtigkeit (alle technischen Möglichkeiten ausgeschöpft).\n(5) Meisterkojen, Portierslogen, Kassenschalter: Lichteintrittsflächen/Sichtverbindung/Lüftungsöffnungen dürfen in umgebenden Raum führen (wenn dieser konform); § 9 Abs. 1 Ziffer 1 nicht anzuwenden; Meisterkojen/Portierslogen: Ausnahme gemäß Abs. 4 Ziffer 2; Kassenschalter: Ausnahmen gemäß Abs. 4 Ziffern 1–3.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "medium"}, {"id": "employer_obligations", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s31",
+              "number": "31",
+              "title": "§ 31. Abweichende Regelungen für Container und ähnliche Einrichtungen",
+              "text": "§ 31. Abweichende Regelungen für Container und ähnliche Einrichtungen:\n(1) Ausnahmen gemäß Abs. 2 gelten für Container, Wohnwagen, ähnliche Einrichtungen wenn: Provisorische, zeitlich begrenzte Behelfslösung (z.B. Umbau); Arbeit erfordert häufigen (mind. jährlichen) Standortwechsel (z.B. mobile Verkaufs-/Sammeleinrichtungen).\n(2) Für diese Arbeitsräume zulässig: § 23: Lichte Höhe mind. 2,3 m (Wohnwagen) oder 2,5 m (stationäre Container); § 24 Abs. 1: Mind. 4,0 m² Bodenfläche pro Person; § 24 Abs. 3–4: Mind. 10 m³ freier Luftraum pro Person; § 27 Abs. 3–4: Nicht anzuwenden.\n(3) Container/Wohnwagen/ähnliche Einrichtungen benötigen ausreichende Wärmeisolation von Decken, Wänden, Böden.\n(4) Container etc., die am 31.12.1998 bereits als Arbeitsräume genutzt wurden, gelten gemäß § 30 Abs. 4 (Ausnahmen); dies gilt auch für Witterungsschutzräume (Verkaufsstände, Kassenschalter) am 31.12.1998 bereits als Arbeitsräume genutzt.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "medium"}, {"id": "ergonomics", "relevance": "medium"}]
+            }
+          ]
+        },
+        {
+          "id": "at-astv-ch4",
+          "number": "4",
+          "title": "4. Abschnitt - Sanitäre Vorkehrungen und Sozialeinrichtungen",
+          "title_en": "Section 4 - Sanitary Provisions and Social Facilities",
+          "sections": [
+            {
+              "id": "astv_s32",
+              "number": "32",
+              "title": "§ 32. Trink- und Waschwasser",
+              "text": "§ 32. Trink- und Waschwasser:\n(1) Trinkwasserentnahmestellen und allenfalls zur Verfügung gestellte Trinkgefäße sind in hygienischem Zustand zu halten.\n(2) Nicht zum Trinken geeignetes Wasser muss gekennzeichnet sein.\n(3) Waschwasser mit hohem hygienischem Standard bereitstellen.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "health_surveillance", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s33",
+              "number": "33",
+              "title": "§ 33. Toiletten",
+              "text": "§ 33. Toiletten:\n(1) Mindestens eine verschließbare Toilettenzelle pro 15 Arbeitnehmer/innen.\n(2) Nach Geschlechtern getrennte Toiletten sind einzurichten, wenn mindestens fünf männliche und fünf weibliche Arbeitnehmer/innen darauf angewiesen sind.\n(3) Betriebsfremde Personen haben keinen Zugang zu Arbeitnehmer/innen-Toiletten.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "employee_rights", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s34",
+              "number": "34",
+              "title": "§ 34. Waschplätze, Waschräume, Duschen",
+              "text": "§ 34. Waschplätze, Waschräume, Duschen:\n(1) Waschplätze mit Warm- und Kaltwasser erforderlich.\n(2) Duschen bei speziellen Arbeitsbedingungen notwendig.\n(3) Separate Räume für Frauen und Männer bei Bedarf.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "employee_rights", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s35",
+              "number": "35",
+              "title": "§ 35. Kleiderkästen und Umkleideräume",
+              "text": "§ 35. Kleiderkästen und Umkleideräume:\n(1) Sichere Aufbewahrung von Arbeitskleidung und Schutzausrüstung.\n(2) Umkleideräume sind nach Geschlechtern getrennt einzurichten.\n(3) Ausreichende Größe und Ausstattung erforderlich.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "ppe", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s36",
+              "number": "36",
+              "title": "§ 36. Aufenthalts- und Bereitschaftsräume",
+              "text": "§ 36. Aufenthalts- und Bereitschaftsräume:\n(1) Angemessene Räume für Pausen und Erholung.\n(2) Mindestausstattung: Sitzgelegenheiten, Tische.\n(3) Heiz- und Lüftungsanforderungen.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "employee_rights", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s37",
+              "number": "37",
+              "title": "§ 37. Wohnräume",
+              "text": "§ 37. Wohnräume:\n(1) Für Arbeitnehmer/innen mit Unterkunftspflicht erforderlich.\n(2) Entsprechende Hygiene- und Komfortstandards.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "medium"}, {"id": "employee_rights", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s38",
+              "number": "38",
+              "title": "§ 38. Benutzbarkeit von sanitären Vorkehrungen",
+              "text": "§ 38. Benutzbarkeit von sanitären Vorkehrungen:\nAlle sanitären Vorkehrungen müssen leicht erreichbar und jederzeit während der Arbeitszeit zugänglich sein.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "employee_rights", "relevance": "high"}]
+            }
+          ]
+        },
+        {
+          "id": "at-astv-ch5",
+          "number": "5",
+          "title": "5. Abschnitt - Erste Hilfe und Brandschutz",
+          "title_en": "Section 5 - First Aid and Fire Protection",
+          "sections": [
+            {
+              "id": "astv_s39",
+              "number": "39",
+              "title": "§ 39. Mittel für die Erste Hilfe",
+              "text": "§ 39. Mittel für die Erste Hilfe:\n(1) Verbandsmaterialien und Erste-Hilfe-Ausrüstung bereitstellen.\n(2) Die Mittel sind in leicht zugänglichen und gekennzeichneten Behältnissen aufzubewahren.",
+              "whs_topics": [{"id": "first_aid", "relevance": "critical"}, {"id": "employer_obligations", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s40",
+              "number": "40",
+              "title": "§ 40. Erst-Helfer/innen",
+              "text": "§ 40. Erst-Helfer/innen:\n(1) Ausreichende Anzahl ausgebildeter Erst-Helfer/innen.\n(2) Je 50 Arbeitnehmer/innen ist mindestens eine/r auszubilden.\n(3) Regelmäßige Auffrischungskurse erforderlich.",
+              "whs_topics": [{"id": "first_aid", "relevance": "critical"}, {"id": "training", "relevance": "high"}, {"id": "employer_obligations", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s41",
+              "number": "41",
+              "title": "§ 41. Sanitätsräume",
+              "text": "§ 41. Sanitätsräume:\n(1) Eigene Sanitätsräume bei Großbetrieben erforderlich.\n(2) Notwendige Ausstattung und Erreichbarkeit.",
+              "whs_topics": [{"id": "first_aid", "relevance": "high"}, {"id": "workplace_design", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s42",
+              "number": "42",
+              "title": "§ 42. Löschhilfen",
+              "text": "§ 42. Löschhilfen:\n(1) Feuerlöscher und Löschanlagen bereitstellen.\n(2) Die Anzahl und Art richten sich nach Brandgefährdung und Größe des Betriebs.\n(3) Regelmäßige Wartung und Kennzeichnung.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "employer_obligations", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s43",
+              "number": "43",
+              "title": "§ 43. Brandschutzbeauftragte und Brandschutzwarte",
+              "text": "§ 43. Brandschutzbeauftragte und Brandschutzwarte:\n(1) Bestellung bei Erfordernis.\n(2) Aufgaben: Überwachung, Unterweisungen, Notfallplanung.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "employer_obligations", "relevance": "high"}, {"id": "training", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s44",
+              "number": "44",
+              "title": "§ 44. Brandschutzordnung",
+              "text": "§ 44. Brandschutzordnung:\n(1) Erstellung einer Brandschutzordnung bei erhöhter Brandgefahr.\n(2) Bekanntmachung an alle Arbeitnehmer/innen.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "documentation", "relevance": "high"}]
+            },
+            {
+              "id": "astv_s45",
+              "number": "45",
+              "title": "§ 45. Maßnahmen bei erhöhtem Brandschutz",
+              "text": "§ 45. Maßnahmen bei erhöhtem Brandschutz:\n(1) Zusätzliche Vorsichtsmaßnahmen bei erhöhter Brandgefahr.\n(2) Automatische Brandmeldeanlagen erforderlich.",
+              "whs_topics": [{"id": "fire_safety", "relevance": "critical"}, {"id": "employer_obligations", "relevance": "high"}]
+            }
+          ]
+        },
+        {
+          "id": "at-astv-ch6",
+          "number": "6",
+          "title": "6. Abschnitt - Gebäude auf Baustellen",
+          "title_en": "Section 6 - Buildings on Construction Sites",
+          "sections": [
+            {
+              "id": "astv_s46",
+              "number": "46",
+              "title": "§ 46. Gebäude und Arbeitsräume auf Baustellen",
+              "text": "§ 46. Gebäude und Arbeitsräume auf Baustellen:\n(1) Entsprechend den Anforderungen für reguläre Arbeitsstätten.\n(2) Beachtung der besonderen Baustellen-Gegebenheiten.\n(3) Provisorische Strukturen müssen sichere Bedingungen gewährleisten.",
+              "whs_topics": [{"id": "workplace_design", "relevance": "high"}, {"id": "employer_obligations", "relevance": "high"}]
+            }
+          ]
+        },
+        {
+          "id": "at-astv-ch7",
+          "number": "7",
+          "title": "7. Abschnitt - Übergangs- und Schlussbestimmungen",
+          "title_en": "Section 7 - Transitional and Final Provisions",
+          "sections": [
+            {
+              "id": "astv_s47",
+              "number": "47",
+              "title": "§ 47. Übergangsbestimmungen",
+              "text": "§ 47. Übergangsbestimmungen:\n(1) Übergangsregelungen für vor Verordnungserlass errichtete Arbeitsstätten.\n(2) Unterschiedliche Stichtage je nach Anforderungsbereich.\n(3) Bestandsschutz unter bestimmten Bedingungen.",
+              "whs_topics": [{"id": "employer_obligations", "relevance": "medium"}]
+            },
+            {
+              "id": "astv_s48",
+              "number": "48",
+              "title": "§ 48. Schlussbestimmungen",
+              "text": "§ 48. Schlussbestimmungen:\n(1) Inkrafttreten der Verordnung.\n(2) Aufhebung früherer Regelungen.",
+              "whs_topics": [{"id": "employer_obligations", "relevance": "low"}]
+            }
+          ]
+        }
+      ],
+      "content_hash": "astv_10009098_v2025_12_21"
     },
     {
       "id": "646ac29328700738",
