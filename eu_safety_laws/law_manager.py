@@ -6118,23 +6118,46 @@ class NLScraper(Scraper):
                     if 'artikel_leden' in class_str or 'list--law' in class_str:
                         content_uls.append(ul)
 
-            # Extract content from these ULs
+            # Extract content preserving lid structure
+            # Dutch law structure: lid (numbered 1, 2, 3) with optional sub-items (a., b., c.)
+            def extract_li_content(li_elem, indent_level=0):
+                """Extract content from an li element, preserving structure."""
+                parts = []
+                indent = '    ' * indent_level
+
+                # Get direct text/p content (not from nested lists)
+                for child in li_elem.children:
+                    if child.name == 'p':
+                        p_classes = child.get('class', [])
+                        class_str = ' '.join(p_classes) if isinstance(p_classes, list) else (p_classes or '')
+                        if 'action' in class_str.lower():
+                            continue
+                        p_text = child.get_text(separator=' ', strip=True)
+                        if p_text and len(p_text) > 3:
+                            p_text = re.sub(r'\s+', ' ', p_text)
+                            # Add space after lid number if missing (e.g., "1Bij" -> "1 Bij")
+                            p_text = re.sub(r'^(\d+)([A-Z])', r'\1 \2', p_text)
+                            # Add space after sub-item marker if missing (e.g., "a.text" -> "a. text")
+                            p_text = re.sub(r'^([a-z])\.([A-Za-z])', r'\1. \2', p_text)
+                            parts.append(indent + p_text)
+                    elif child.name == 'ul':
+                        # Nested list - sub-items (a., b., c.)
+                        for nested_li in child.find_all('li', recursive=False):
+                            parts.extend(extract_li_content(nested_li, indent_level + 1))
+                    elif hasattr(child, 'name') and child.name is None:
+                        # Text node
+                        text = str(child).strip()
+                        if text and len(text) > 3:
+                            text = re.sub(r'\s+', ' ', text)
+                            parts.append(indent + text)
+
+                return parts
+
             for ul in content_uls:
-                # Get ALL paragraphs within these content ULs
-                for p in ul.find_all('p', recursive=True):
-                    p_classes = p.get('class', [])
-                    class_str = ' '.join(p_classes) if isinstance(p_classes, list) else (p_classes or '')
-
-                    # Skip action-related paragraphs
-                    if 'action' in class_str.lower():
-                        continue
-
-                    p_text = p.get_text(separator=' ', strip=True)
-                    if p_text and len(p_text) > 5:
-                        # Remove lid number prefixes like "1 " at start
-                        p_text = re.sub(r'^\d+[a-z]?\s+', '', p_text)
-                        p_text = re.sub(r'\s+', ' ', p_text)
-                        content_parts.append(p_text)
+                # Process only direct li children to avoid duplication
+                for li in ul.find_all('li', recursive=False):
+                    li_parts = extract_li_content(li, 0)
+                    content_parts.extend(li_parts)
 
             # If no content found via ULs, try direct paragraph extraction
             if not content_parts:
@@ -6150,6 +6173,10 @@ class NLScraper(Scraper):
                     p_text = p.get_text(separator=' ', strip=True)
                     if p_text and len(p_text) > 10:
                         p_text = re.sub(r'\s+', ' ', p_text)
+                        # Add space after lid number if missing (e.g., "1Bij" -> "1 Bij")
+                        p_text = re.sub(r'^(\d+)([A-Z])', r'\1 \2', p_text)
+                        # Add space after sub-item marker if missing (e.g., "a.text" -> "a. text")
+                        p_text = re.sub(r'^([a-z])\.([A-Za-z])', r'\1. \2', p_text)
                         content_parts.append(p_text)
 
             # NOTE: Removed li extraction - <li> contains <p>, so extracting from both causes duplication
