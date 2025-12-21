@@ -1657,6 +1657,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
               displayNumber = framework === 'NL' ? `Artikel ${section.number}` : `§ ${section.number}`
             }
 
+            // DEBUG: Check raw section.text before processing
+            if (section.text?.includes('Beschäftigte im Sinne dieses Gesetzes sind')) {
+              console.log('[DEBUG RAW] section.text length:', section.text?.length)
+              console.log('[DEBUG RAW] section.text has item 1:', section.text?.includes('1. Arbeitnehmerinnen'))
+              console.log('[DEBUG RAW] section.text has item 5:', section.text?.includes('5. Richterinnen'))
+              console.log('[DEBUG RAW] section.text preview:', section.text?.substring(0, 500))
+            }
+
             sections.push({
               id: section.id,
               number: displayNumber,
