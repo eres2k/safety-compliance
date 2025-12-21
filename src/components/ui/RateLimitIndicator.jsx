@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { getRateLimitStatus } from '../../services/aiService'
+import { UnlockButton } from './UnlockButton'
 
 /**
  * RateLimitIndicator - Shows countdown when API is rate limited
  * Can be used inline or as a floating indicator
+ * Includes unlock button to bypass the 120s timer with password
  */
-export function RateLimitIndicator({ variant = 'inline', onReady }) {
-  const [status, setStatus] = useState({ isLimited: false, remainingSeconds: 0 })
+export function RateLimitIndicator({ variant = 'inline', onReady, showUnlock = true }) {
+  const [status, setStatus] = useState({ isLimited: false, remainingSeconds: 0, isUnlocked: false })
 
   useEffect(() => {
     // Update status every second
@@ -25,6 +27,25 @@ export function RateLimitIndicator({ variant = 'inline', onReady }) {
 
     return () => clearInterval(interval)
   }, [onReady])
+
+  // When unlocked, show a subtle unlocked indicator
+  if (status.isUnlocked) {
+    if (variant === 'floating') {
+      return (
+        <div className="fixed bottom-4 right-4 z-50 bg-whs-dark-800 border border-green-500/30 rounded-xl p-3 shadow-lg animate-fade-in">
+          <div className="flex items-center gap-2">
+            <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+            </svg>
+            <span className="text-sm font-medium text-green-400">Unlocked</span>
+            {showUnlock && <UnlockButton variant="compact" onUnlock={onReady} />}
+          </div>
+        </div>
+      )
+    }
+    // For other variants, don't show anything when unlocked and not limited
+    if (!status.isLimited) return null
+  }
 
   if (!status.isLimited) {
     return null
@@ -61,10 +82,11 @@ export function RateLimitIndicator({ variant = 'inline', onReady }) {
               {status.remainingSeconds}
             </div>
           </div>
-          <div>
+          <div className="flex-1">
             <p className="text-sm font-medium text-white">Processing Cooldown</p>
             <p className="text-xs text-gray-400">{status.remainingSeconds}s remaining</p>
           </div>
+          {showUnlock && <UnlockButton variant="compact" onUnlock={onReady} />}
         </div>
       </div>
     )
@@ -72,9 +94,12 @@ export function RateLimitIndicator({ variant = 'inline', onReady }) {
 
   if (variant === 'compact') {
     return (
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-whs-orange-500/10 border border-whs-orange-500/20 rounded-full">
-        <div className="w-4 h-4 border-2 border-whs-orange-500 border-t-transparent rounded-full animate-spin" />
-        <span className="text-sm text-whs-orange-400 font-medium">{status.remainingSeconds}s</span>
+      <div className="inline-flex items-center gap-2">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-whs-orange-500/10 border border-whs-orange-500/20 rounded-full">
+          <div className="w-4 h-4 border-2 border-whs-orange-500 border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-whs-orange-400 font-medium">{status.remainingSeconds}s</span>
+        </div>
+        {showUnlock && <UnlockButton variant="compact" onUnlock={onReady} />}
       </div>
     )
   }
@@ -114,15 +139,17 @@ export function RateLimitIndicator({ variant = 'inline', onReady }) {
           style={{ width: `${progress}%` }}
         />
       </div>
+      {showUnlock && <UnlockButton variant="compact" onUnlock={onReady} />}
     </div>
   )
 }
 
 /**
  * useRateLimitStatus - Hook to get current rate limit status
+ * @returns {{ isLimited: boolean, remainingSeconds: number, rateLimitSeconds: number, isUnlocked: boolean }}
  */
 export function useRateLimitStatus() {
-  const [status, setStatus] = useState({ isLimited: false, remainingSeconds: 0, rateLimitSeconds: 60 })
+  const [status, setStatus] = useState({ isLimited: false, remainingSeconds: 0, rateLimitSeconds: 60, isUnlocked: false })
 
   useEffect(() => {
     const updateStatus = () => {
