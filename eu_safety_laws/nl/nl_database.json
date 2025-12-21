@@ -3377,7 +3377,7 @@
       "abbreviation": "PGS",
       "title": "Publicatiereeks Gevaarlijke Stoffen",
       "title_en": "Publicatiereeks Gevaarlijke Stoffen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "implements_eu_directive": "89/391/EEG",
       "source": {
         "url": "https://www.publicatiereeksgevaarlijkestoffen.nl/",
@@ -3412,7 +3412,12 @@
         "Netherlands",
         "Dutch law",
         "Arbowet"
-      ]
+      ],
+      "subcategory": "PGS",
+      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)",
+      "metadata": {
+        "is_supplementary": true
+      }
     },
     {
       "id": "47ad0a0dd8f029ca",
@@ -9484,7 +9489,7 @@
       "abbreviation": "PGS 15",
       "title": "15Opslag van verpakte gevaarlijke stoffen",
       "title_en": "15Opslag van verpakte gevaarlijke stoffen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "implements_eu_directive": "89/391/EEG",
       "source": {
         "url": "https://publicatiereeksgevaarlijkestoffen.nl/publicaties/online/pgs-15/",
@@ -9520,7 +9525,12 @@
         "Netherlands",
         "Dutch law",
         "Arbowet"
-      ]
+      ],
+      "subcategory": "PGS",
+      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)",
+      "metadata": {
+        "is_supplementary": true
+      }
     },
     {
       "id": "8c6ee77b75c3ba1e",
@@ -9561,12 +9571,12 @@
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "STL Arbocatalogus Warehouse",
       "title": "Arbocatalogus Warehouse/Distributiecentrum/Magazijn",
       "title_en": "Arbocatalogus Warehouse/Distributiecentrum/Magazijn",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -9584,10 +9594,10 @@
         "title": "Arbocatalogus Warehouse/Distributiecentrum/Magazijn",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Warehouse_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Warehouse_merkblatt.pdf",
         "pdf_url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Warehouse_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Warehouse_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:19.221476",
@@ -9602,21 +9612,24 @@
         "description": "Comprehensive safety guide for warehouse and distribution center operations.",
         "pdf_filename": "nl_STL_Arbocatalogus_Warehouse_law.pdf",
         "pdf_size_bytes": 259793,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "6ebe667ef09fe7e5e284df04cbd530fd"
+      "content_hash": "6ebe667ef09fe7e5e284df04cbd530fd",
+      "subcategory": "Arbocatalogus",
+      "subcategory_name": "Arbocatalogi"
     },
     {
       "id": "d007146a352dc81f",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "STL Arbocatalogus Onderhoudswerkplaats",
       "title": "Arbocatalogus Onderhoudswerkplaats",
       "title_en": "Arbocatalogus Onderhoudswerkplaats",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -9634,10 +9647,10 @@
         "title": "Arbocatalogus Onderhoudswerkplaats",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Onderhoudswerkplaats_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Onderhoudswerkplaats_merkblatt.pdf",
         "pdf_url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Onderhoudswerkplaats.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Onderhoudswerkplaats_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Onderhoudswerkplaats_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:19.921051",
@@ -9652,21 +9665,24 @@
         "description": "Safety guide for vehicle maintenance workshops.",
         "pdf_filename": "nl_STL_Arbocatalogus_Onderhoudswerkplaats_law.pdf",
         "pdf_size_bytes": 273202,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "2aa688f52ebafc2d4a56a534e1a49034"
+      "content_hash": "2aa688f52ebafc2d4a56a534e1a49034",
+      "subcategory": "Arbocatalogus",
+      "subcategory_name": "Arbocatalogi"
     },
     {
       "id": "e45109f68fc217cb",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "STL Arbocatalogus Transport Logistiek",
       "title": "Arbocatalogus Transport en Logistiek (volledig)",
       "title_en": "Arbocatalogus Transport en Logistiek (volledig)",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -9684,10 +9700,10 @@
         "title": "Arbocatalogus Transport en Logistiek (volledig)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Transport_Logistiek_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Transport_Logistiek_merkblatt.pdf",
         "pdf_url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/220512-Arbocatalogus-Transport-en-Logistiek-Versie-DEF.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Transport_Logistiek_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Transport_Logistiek_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:20.067720",
@@ -9702,9 +9718,12 @@
         "description": "Complete arbocatalogus for the transport and logistics sector.",
         "pdf_filename": "nl_STL_Arbocatalogus_Transport_Logistiek_law.pdf",
         "pdf_size_bytes": 1702932,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "364d09e4a471f198f5c34c0e98cde727"
+      "content_hash": "364d09e4a471f198f5c34c0e98cde727",
+      "subcategory": "Arbocatalogus",
+      "subcategory_name": "Arbocatalogi"
     },
     {
       "id": "8a0d6e09f347f88f",
@@ -9777,12 +9796,12 @@
     {
       "id": "25332a9b64ae7509",
       "version": "1.0.0",
-      "type": "law",
+      "type": "merkblatt",
       "jurisdiction": "NL",
       "abbreviation": "PGS Overview",
       "title": "Publicatiereeks Gevaarlijke Stoffen",
       "title_en": "Publicatiereeks Gevaarlijke Stoffen",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "implements_eu_directive": "89/391/EEG",
       "source": {
         "url": "https://www.publicatiereeksgevaarlijkestoffen.nl/",
@@ -9806,7 +9825,13 @@
         "critical_sections_count": 0
       },
       "chapters": [],
-      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924"
+      "content_hash": "e3b0c44298fc1c149afbf4c8996fb924",
+      "doc_type": "merkblatt",
+      "subcategory": "PGS",
+      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)",
+      "metadata": {
+        "is_supplementary": true
+      }
     },
     {
       "id": "1dab0e0fd39a5b98",
@@ -9996,12 +10021,12 @@
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "STL Arbocatalogus Verticaal Transport",
       "title": "Arbocatalogus Verticaal Transport (VVT 2022)",
       "title_en": "Arbocatalogus Verticaal Transport (VVT 2022)",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -10019,10 +10044,10 @@
         "title": "Arbocatalogus Verticaal Transport (VVT 2022)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Verticaal_Transport_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Verticaal_Transport_merkblatt.pdf",
         "pdf_url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/Arbocatalogus-VVT-2022-definitief-getekend-SvL.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Verticaal_Transport_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_STL_Arbocatalogus_Verticaal_Transport_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:20.999946",
@@ -10037,9 +10062,12 @@
         "description": "Safety guide for vertical transport operations - cranes, hoisting. Valid until 2028.",
         "pdf_filename": "nl_STL_Arbocatalogus_Verticaal_Transport_law.pdf",
         "pdf_size_bytes": 1323272,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "89b20d3aa16c846638426045fac9a08d"
+      "content_hash": "89b20d3aa16c846638426045fac9a08d",
+      "subcategory": "Arbocatalogus",
+      "subcategory_name": "Arbocatalogi"
     },
     {
       "id": "81ef18661db15917",
@@ -10080,12 +10108,12 @@
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "TNO Factsheet Fysieke Belasting 2023",
       "title": "TNO Factsheet Fysieke Arbeidsbelasting 2023",
       "title_en": "TNO Factsheet Fysieke Arbeidsbelasting 2023",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -10103,10 +10131,10 @@
         "title": "TNO Factsheet Fysieke Arbeidsbelasting 2023",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Factsheet_Fysieke_Belasting_2023_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Factsheet_Fysieke_Belasting_2023_merkblatt.pdf",
         "pdf_url": "https://publications.tno.nl/publication/34642121/WDOzBl/TNO-2024-fysieke.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Factsheet_Fysieke_Belasting_2023_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Factsheet_Fysieke_Belasting_2023_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:22.367710",
@@ -10121,9 +10149,12 @@
         "description": "Latest TNO research on physical workload in the Netherlands - statistics and trends.",
         "pdf_filename": "nl_TNO_Factsheet_Fysieke_Belasting_2023_law.pdf",
         "pdf_size_bytes": 552550,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "e7126b5f2b3d82888c80aa1a51bcd186"
+      "content_hash": "e7126b5f2b3d82888c80aa1a51bcd186",
+      "subcategory": "TNO",
+      "subcategory_name": "TNO Publications"
     },
     {
       "id": "284a9927d18c2baa",
@@ -10164,12 +10195,12 @@
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "PGS 15 Opslag Gevaarlijke Stoffen",
       "title": "PGS 15 - Opslag van verpakte gevaarlijke stoffen (2016)",
       "title_en": "PGS 15 - Opslag van verpakte gevaarlijke stoffen (2016)",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -10187,10 +10218,10 @@
         "title": "PGS 15 - Opslag van verpakte gevaarlijke stoffen (2016)",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_15_Opslag_Gevaarlijke_Stoffen_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_15_Opslag_Gevaarlijke_Stoffen_merkblatt.pdf",
         "pdf_url": "https://content.publicatiereeksgevaarlijkestoffen.nl/documents/PGS15/PGS_15_2016_versie_1_0_sept_2016_definitief.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_15_Opslag_Gevaarlijke_Stoffen_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_15_Opslag_Gevaarlijke_Stoffen_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:23.281030",
@@ -10205,21 +10236,24 @@
         "description": "Guidelines for safe storage of packaged hazardous substances in warehouses.",
         "pdf_filename": "nl_PGS_15_Opslag_Gevaarlijke_Stoffen_law.pdf",
         "pdf_size_bytes": 2439913,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "e6cf7bb8ecf6f7aa5f77408ac684ea9e"
+      "content_hash": "e6cf7bb8ecf6f7aa5f77408ac684ea9e",
+      "subcategory": "PGS",
+      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)"
     },
     {
       "id": "d7b71b79782ce648",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "TNO Wegwijzer Fysieke Belasting",
       "title": "TNO Wegwijzer Fysieke Belasting",
       "title_en": "TNO Wegwijzer Fysieke Belasting",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -10237,10 +10271,10 @@
         "title": "TNO Wegwijzer Fysieke Belasting",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Wegwijzer_Fysieke_Belasting_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Wegwijzer_Fysieke_Belasting_merkblatt.pdf",
         "pdf_url": "https://fysiekebelasting.tno.nl/wp-content/uploads/sites/6/2021/09/Wegwijzer_FysiekeBelasting.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Wegwijzer_Fysieke_Belasting_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Wegwijzer_Fysieke_Belasting_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:22.404431",
@@ -10255,21 +10289,24 @@
         "description": "Comprehensive guide on physical workload - lifting, carrying, pushing, pulling.",
         "pdf_filename": "nl_TNO_Wegwijzer_Fysieke_Belasting_law.pdf",
         "pdf_size_bytes": 1331228,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "0a93aa909fa9f9e60b0a9ced2a94cfb6"
+      "content_hash": "0a93aa909fa9f9e60b0a9ced2a94cfb6",
+      "subcategory": "TNO",
+      "subcategory_name": "TNO Publications"
     },
     {
       "id": "fb67112bed7df133",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "PGS 30.3 Gevaarlijke Vloeistoffen",
       "title": "PGS 30.3 - Overige gevaarlijke vloeistoffen opslag",
       "title_en": "PGS 30.3 - Overige gevaarlijke vloeistoffen opslag",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -10287,10 +10324,10 @@
         "title": "PGS 30.3 - Overige gevaarlijke vloeistoffen opslag",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_30_3_Gevaarlijke_Vloeistoffen_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_30_3_Gevaarlijke_Vloeistoffen_merkblatt.pdf",
         "pdf_url": "https://publicatiereeksgevaarlijkestoffen.nl/documents/81474/1664357987-pgs-2031-20versie-202018_1-0_20180416-20definitief.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_30_3_Gevaarlijke_Vloeistoffen_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_30_3_Gevaarlijke_Vloeistoffen_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:23.541883",
@@ -10305,21 +10342,24 @@
         "description": "Guidelines for storage of other hazardous liquids not covered by PGS 15.",
         "pdf_filename": "nl_PGS_30_3_Gevaarlijke_Vloeistoffen_law.pdf",
         "pdf_size_bytes": 1303698,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "c76993558b833c2941c009fadc9e3054"
+      "content_hash": "c76993558b833c2941c009fadc9e3054",
+      "subcategory": "PGS",
+      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)"
     },
     {
       "id": "69d2347ff6c84358",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "PGS 15 Interim 2021",
       "title": "PGS 15 Interim versie 2021",
       "title_en": "PGS 15 Interim versie 2021",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -10337,10 +10377,10 @@
         "title": "PGS 15 Interim versie 2021",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_15_Interim_2021_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_15_Interim_2021_merkblatt.pdf",
         "pdf_url": "https://publicatiereeksgevaarlijkestoffen.nl/documents/81474/1664357600-interim_pgs_15_v1-0_augustus_2021.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_15_Interim_2021_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_PGS_15_Interim_2021_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:23.125900",
@@ -10355,21 +10395,24 @@
         "description": "Interim version of PGS 15 with updated hazardous substance storage requirements.",
         "pdf_filename": "nl_PGS_15_Interim_2021_law.pdf",
         "pdf_size_bytes": 2273812,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "4e600e1fb612c511680d8e4dc83bb4a2"
+      "content_hash": "4e600e1fb612c511680d8e4dc83bb4a2",
+      "subcategory": "PGS",
+      "subcategory_name": "PGS (Publicatiereeks Gevaarlijke Stoffen)"
     },
     {
       "id": "b7d6dac2592fd50e",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
-      "doc_type": "law",
-      "type": "law",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
       "abbreviation": "TNO Preventie Beroepsziekten",
       "title": "TNO Preventie Beroepsziekten Fysieke Belasting",
       "title_en": "TNO Preventie Beroepsziekten Fysieke Belasting",
-      "category": "Core Safety",
+      "category": "Supplementary",
       "structure_labels": {
         "grouping_1": "Hoofdstuk",
         "grouping_2": "Afdeling",
@@ -10387,10 +10430,10 @@
         "title": "TNO Preventie Beroepsziekten Fysieke Belasting",
         "robots_txt_compliant": true,
         "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Preventie_Beroepsziekten_law.pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Preventie_Beroepsziekten_merkblatt.pdf",
         "pdf_url": "https://fysiekebelasting.tno.nl/wp-content/uploads/sites/6/2021/10/TNO-Rapport_Preventie-BeroepsziektenFysiekeBelasting_2020_verkleind.pdf"
       },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Preventie_Beroepsziekten_law.pdf",
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_TNO_Preventie_Beroepsziekten_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
         "scraped_at": "2025-12-21T07:38:22.466215",
@@ -10405,9 +10448,12 @@
         "description": "TNO research on prevention of occupational diseases from physical workload.",
         "pdf_filename": "nl_TNO_Preventie_Beroepsziekten_law.pdf",
         "pdf_size_bytes": 2008217,
-        "is_pdf_only": true
+        "is_pdf_only": true,
+        "is_supplementary": true
       },
-      "content_hash": "157235ea3faf9f7206b1313aba7b9e99"
+      "content_hash": "157235ea3faf9f7206b1313aba7b9e99",
+      "subcategory": "TNO",
+      "subcategory_name": "TNO Publications"
     }
   ]
 }
