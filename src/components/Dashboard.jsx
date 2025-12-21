@@ -122,7 +122,7 @@ export function Dashboard({ onModuleSelect }) {
         sectionSubtitle: 'Track, assess, and manage your safety compliance',
         warehouseFloor: { title: 'Warehouse Floor', description: 'Interactive warehouse floor plan with safety zones' },
         complianceChecklist: { title: 'Compliance Checklist', description: 'Pre-built checklists for audits and inspections' },
-        training: { title: 'Training', description: 'Safety training materials and resources' },
+        quiz: { title: 'Safety Quiz', description: 'Test your knowledge of safety regulations' },
         bussgeld: { title: 'Penalties', description: 'Lookup fines for safety violations' },
         glossary: { title: 'Glossary', description: 'Safety terms and abbreviations' }
       },
@@ -131,7 +131,7 @@ export function Dashboard({ onModuleSelect }) {
         sectionSubtitle: 'Verfolgen, bewerten und verwalten Sie Ihre Sicherheits-Compliance',
         warehouseFloor: { title: 'Lagerhalle', description: 'Interaktiver Lagerhallenplan mit Sicherheitszonen' },
         complianceChecklist: { title: 'Checklisten', description: 'Vorgefertigte Checklisten für Audits und Inspektionen' },
-        training: { title: 'Schulung', description: 'Schulungsmaterialien für Arbeitssicherheit' },
+        quiz: { title: 'Wissensquiz', description: 'Testen Sie Ihr Wissen zu Arbeitsschutzvorschriften' },
         bussgeld: { title: 'Bußgeld', description: 'Bußgelder für Arbeitsschutzverstöße' },
         glossary: { title: 'Glossar', description: 'Fachbegriffe und Abkürzungen' }
       },
@@ -140,7 +140,7 @@ export function Dashboard({ onModuleSelect }) {
         sectionSubtitle: 'Volg, beoordeel en beheer uw veiligheidscompliance',
         warehouseFloor: { title: 'Magazijnvloer', description: 'Interactieve magazijnplattegrond met veiligheidszones' },
         complianceChecklist: { title: 'Checklists', description: 'Kant-en-klare checklists voor audits en inspecties' },
-        training: { title: 'Training', description: 'Veiligheidstrainingen en materialen' },
+        quiz: { title: 'Kennisquiz', description: 'Test uw kennis van arbowetgeving' },
         bussgeld: { title: 'Boetes', description: 'Boetes voor overtredingen arbowetgeving' },
         glossary: { title: 'Woordenlijst', description: 'Vakbegrippen en afkortingen' }
       }
@@ -170,12 +170,12 @@ export function Dashboard({ onModuleSelect }) {
       badge: 'Checklists'
     },
     {
-      id: 'trainingResources',
-      icon: '🎓',
-      title: complianceLabels.training.title,
-      description: complianceLabels.training.description,
+      id: 'safetyQuiz',
+      icon: '🎯',
+      title: complianceLabels.quiz.title,
+      description: complianceLabels.quiz.description,
       gradient: 'from-purple-500 to-purple-600',
-      badge: 'Training'
+      badge: 'Quiz'
     },
     {
       id: 'penaltyLookup',

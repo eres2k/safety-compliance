@@ -74,8 +74,28 @@ const severityLabels = {
   low: { en: 'Low', de: 'Niedrig', nl: 'Laag' }
 }
 
-export function PenaltyLookup({ onBack, embedded = false }) {
+export function PenaltyLookup({ onBack, onNavigateToLaw, embedded = false }) {
   const { t, framework, currentFrameworkColor, language } = useApp()
+
+  // Smart linking - extract law abbreviation from reference and navigate
+  const handleLawClick = (reference) => {
+    if (!onNavigateToLaw) return
+    // Extract abbreviation from reference (e.g., "§ 5 ArbSchG" -> "ArbSchG")
+    const patterns = [
+      /([A-Z][A-Za-z]+G)/, // German law pattern (e.g., ArbSchG, ASiG)
+      /([A-Z]+V)/, // Verordnung pattern (e.g., BetrSichV)
+      /([A-Z]+-[A-Z]+)/, // Hyphenated (e.g., AM-VO)
+      /(DGUV\s*V\d+)/, // DGUV pattern
+      /(Art\.\s*\d+\s*Arbo\w+)/, // Dutch pattern
+    ]
+    for (const pattern of patterns) {
+      const match = reference.match(pattern)
+      if (match) {
+        onNavigateToLaw(null, framework, null)
+        return
+      }
+    }
+  }
   const [searchQuery, setSearchQuery] = useState('')
   const [severityFilter, setSeverityFilter] = useState('all')
   const lang = language || 'en'
@@ -205,8 +225,17 @@ export function PenaltyLookup({ onBack, embedded = false }) {
                       {severityLabels[item.severity][lang]}
                     </span>
                   </td>
-                  <td className="p-4 text-gray-500 dark:text-gray-400 text-sm font-mono">
-                    {item.reference}
+                  <td className="p-4">
+                    <button
+                      onClick={() => handleLawClick(item.reference)}
+                      className="text-whs-orange-600 dark:text-whs-orange-400 text-sm font-mono hover:underline hover:text-whs-orange-700 dark:hover:text-whs-orange-300 transition-colors flex items-center gap-1"
+                      title={lang === 'de' ? 'Im Gesetzesbrowser öffnen' : lang === 'nl' ? 'Openen in wetbrowser' : 'Open in law browser'}
+                    >
+                      {item.reference}
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </button>
                   </td>
                 </tr>
               ))}

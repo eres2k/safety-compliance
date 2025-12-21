@@ -1,6 +1,7 @@
 export { LawBrowser } from './LawBrowser'
 export { ComplianceChecker } from './ComplianceChecker'
 export { TrainingResources } from './TrainingResources'
+export { SafetyQuiz } from './SafetyQuiz'
 export { ChecklistTemplates } from './ChecklistTemplates'
 export { PreventionTimeCalculator } from './PreventionTimeCalculator'
 export { PenaltyLookup } from './PenaltyLookup'

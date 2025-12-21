@@ -7,6 +7,7 @@ import {
   LawBrowser,
   ComplianceChecker,
   TrainingResources,
+  SafetyQuiz,
   ChecklistTemplates,
   PreventionTimeCalculator,
   PenaltyLookup,
@@ -124,14 +125,16 @@ function AppContent() {
         return <ComplianceChecker onBack={onBack} onNavigateToLaw={navigateToLaw} />
       case 'trainingResources':
         return <TrainingResources onBack={onBack} />
+      case 'safetyQuiz':
+        return <SafetyQuiz onBack={onBack} onSelectLaw={(lawRef) => navigateToLaw(null, null, null, lawRef.abbreviation)} />
       case 'checklistTemplates':
         return <ChecklistTemplates onBack={onBack} />
       case 'preventionTimeCalculator':
         return <PreventionTimeCalculator onBack={onBack} />
       case 'penaltyLookup':
-        return <PenaltyLookup onBack={onBack} />
+        return <PenaltyLookup onBack={onBack} onNavigateToLaw={navigateToLaw} />
       case 'glossary':
-        return <Glossary onBack={onBack} />
+        return <Glossary onBack={onBack} onNavigateToLaw={navigateToLaw} />
       case 'warehouseVisualization':
         return (
           <div className="space-y-6 animate-fade-in">

@@ -102,11 +102,17 @@ const categoryLabels = {
   document: { en: 'Document', de: 'Dokument', nl: 'Document' }
 }
 
-export function Glossary({ onBack, embedded = false }) {
+export function Glossary({ onBack, onNavigateToLaw, embedded = false }) {
   const { t, framework, currentFrameworkColor, language } = useApp()
   const [searchQuery, setSearchQuery] = useState('')
   const [categoryFilter, setCategoryFilter] = useState('all')
   const lang = language || 'en'
+
+  // Smart linking - navigate to law when clicking a law abbreviation
+  const handleLawClick = (abbr, category) => {
+    if (!onNavigateToLaw || (category !== 'law' && category !== 'standard')) return
+    onNavigateToLaw(null, framework, null)
+  }
 
   const glossary = GLOSSARY_DATA[framework] || []
 
@@ -209,9 +215,22 @@ export function Glossary({ onBack, embedded = false }) {
             style={{ animationDelay: `${i * 0.03}s` }}
           >
             <div className="flex items-start gap-4">
-              <span className="font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-500/20 px-3 py-1 rounded-lg min-w-[70px] text-center shrink-0">
-                {item.abbr}
-              </span>
+              {(item.category === 'law' || item.category === 'standard') && onNavigateToLaw ? (
+                <button
+                  onClick={() => handleLawClick(item.abbr, item.category)}
+                  className="font-bold text-whs-orange-600 dark:text-whs-orange-400 bg-whs-orange-100 dark:bg-whs-orange-500/20 px-3 py-1 rounded-lg min-w-[70px] text-center shrink-0 hover:bg-whs-orange-200 dark:hover:bg-whs-orange-500/30 transition-colors cursor-pointer flex items-center gap-1"
+                  title={lang === 'de' ? 'Im Gesetzesbrowser öffnen' : 'Open in law browser'}
+                >
+                  {item.abbr}
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </button>
+              ) : (
+                <span className="font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-500/20 px-3 py-1 rounded-lg min-w-[70px] text-center shrink-0">
+                  {item.abbr}
+                </span>
+              )}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-1">
                   <span className="font-medium text-gray-900 dark:text-white">{item.full}</span>
