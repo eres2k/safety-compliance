@@ -91,14 +91,93 @@ export function Dashboard({ onModuleSelect }) {
     }
   }, [stats.lastUpdated])
 
+  // Get UI section labels based on translations
+  const getUILabels = () => {
+    const labels = {
+      en: {
+        // Additional Tools section
+        additionalToolsTitle: 'Additional Tools',
+        additionalToolsSubtitle: 'Compliance checking and reference tools',
+        // Badges
+        badgeGuidance: 'Guidance',
+        badgeCalculator: 'Calculator',
+        badgeInteractive: 'Interactive',
+        badgeChecklists: 'Checklists',
+        badgeQuiz: 'Quiz',
+        badgeReference: 'Reference',
+        // Compliance Management section
+        sectionTitle: 'Compliance Management',
+        sectionSubtitle: 'Track, assess, and manage your safety compliance',
+        warehouseFloor: { title: 'Warehouse Floor', description: 'Interactive warehouse floor plan with safety zones' },
+        complianceChecklist: { title: 'Compliance Checklist', description: 'Pre-built checklists for audits and inspections' },
+        quiz: { title: 'Safety Quiz', description: 'Test your knowledge of safety regulations' },
+        bussgeld: { title: 'Penalties', description: 'Lookup fines for safety violations' },
+        glossary: { title: 'Glossary', description: 'Safety terms and abbreviations' },
+        // Safety Lessons Learned section
+        lessonsLearnedTitle: 'Safety Lessons Learned',
+        lessonsLearnedSubtitle: 'Weekly alerts and incident reports from EU safety agencies'
+      },
+      de: {
+        // Additional Tools section
+        additionalToolsTitle: 'Weitere Werkzeuge',
+        additionalToolsSubtitle: 'Compliance-Prüfung und Nachschlagewerke',
+        // Badges
+        badgeGuidance: 'Leitfaden',
+        badgeCalculator: 'Rechner',
+        badgeInteractive: 'Interaktiv',
+        badgeChecklists: 'Checklisten',
+        badgeQuiz: 'Quiz',
+        badgeReference: 'Nachschlagewerk',
+        // Compliance Management section
+        sectionTitle: 'Compliance-Management',
+        sectionSubtitle: 'Verfolgen, bewerten und verwalten Sie Ihre Sicherheits-Compliance',
+        warehouseFloor: { title: 'Lagerhalle', description: 'Interaktiver Lagerhallenplan mit Sicherheitszonen' },
+        complianceChecklist: { title: 'Checklisten', description: 'Vorgefertigte Checklisten für Audits und Inspektionen' },
+        quiz: { title: 'Wissensquiz', description: 'Testen Sie Ihr Wissen zu Arbeitsschutzvorschriften' },
+        bussgeld: { title: 'Bußgeld', description: 'Bußgelder für Arbeitsschutzverstöße' },
+        glossary: { title: 'Glossar', description: 'Fachbegriffe und Abkürzungen' },
+        // Safety Lessons Learned section
+        lessonsLearnedTitle: 'Sicherheitslektionen',
+        lessonsLearnedSubtitle: 'Wöchentliche Warnungen und Unfallberichte von EU-Sicherheitsbehörden'
+      },
+      nl: {
+        // Additional Tools section
+        additionalToolsTitle: 'Extra Hulpmiddelen',
+        additionalToolsSubtitle: 'Compliance-controle en naslagwerken',
+        // Badges
+        badgeGuidance: 'Richtlijn',
+        badgeCalculator: 'Calculator',
+        badgeInteractive: 'Interactief',
+        badgeChecklists: 'Checklists',
+        badgeQuiz: 'Quiz',
+        badgeReference: 'Naslagwerk',
+        // Compliance Management section
+        sectionTitle: 'Compliancebeheer',
+        sectionSubtitle: 'Volg, beoordeel en beheer uw veiligheidscompliance',
+        warehouseFloor: { title: 'Magazijnvloer', description: 'Interactieve magazijnplattegrond met veiligheidszones' },
+        complianceChecklist: { title: 'Checklists', description: 'Kant-en-klare checklists voor audits en inspecties' },
+        quiz: { title: 'Kennisquiz', description: 'Test uw kennis van arbowetgeving' },
+        bussgeld: { title: 'Boetes', description: 'Boetes voor overtredingen arbowetgeving' },
+        glossary: { title: 'Woordenlijst', description: 'Vakbegrippen en afkortingen' },
+        // Safety Lessons Learned section
+        lessonsLearnedTitle: 'Veiligheidslessen',
+        lessonsLearnedSubtitle: 'Wekelijkse waarschuwingen en incidentrapporten van EU-veiligheidsinstanties'
+      }
+    }
+    const lang = t.appTitle?.includes('MEU') ? 'en' : (t.appSubtitle?.includes('Letzte') ? 'de' : (t.appSubtitle?.includes('Laatste') ? 'nl' : 'en'))
+    return labels[lang] || labels.en
+  }
+
+  const uiLabels = getUILabels()
+
   const modules = [
     {
       id: 'complianceChecker',
       icon: moduleIcons.complianceChecker,
       title: t.modules.complianceChecker.title,
-      description: t.modules.complianceChecker.description,
+      description: t.help?.features?.complianceChecker?.description || t.modules.complianceChecker.description,
       gradient: moduleColors.complianceChecker,
-      badge: 'Guidance'
+      badge: uiLabels.badgeGuidance
     },
     {
       id: 'preventionTimeCalculator',
@@ -110,88 +189,51 @@ export function Dashboard({ onModuleSelect }) {
       title: t.help?.features?.preventionTimeCalculator?.title || (t.appSubtitle?.includes('Letzte') ? 'Präventionszeit-Rechner' : t.appSubtitle?.includes('Laatste') ? 'Preventietijd Calculator' : 'Prevention Time Calculator'),
       description: t.help?.features?.preventionTimeCalculator?.description || (t.appSubtitle?.includes('Letzte') ? 'Berechnung der Präventionszeit für Sicherheitsfachkräfte und Betriebsärzte' : t.appSubtitle?.includes('Laatste') ? 'Berekening van preventietijd voor veiligheidsdeskundigen en bedrijfsartsen' : 'Calculate required prevention time for safety specialists and occupational physicians'),
       gradient: 'from-emerald-500 to-emerald-600',
-      badge: t.appSubtitle?.includes('Letzte') ? 'Rechner' : t.appSubtitle?.includes('Laatste') ? 'Calculator' : 'Calculator'
+      badge: uiLabels.badgeCalculator
     }
   ]
-
-  // Get compliance section labels based on translations
-  const getComplianceLabels = () => {
-    const labels = {
-      en: {
-        sectionTitle: 'Compliance Management',
-        sectionSubtitle: 'Track, assess, and manage your safety compliance',
-        warehouseFloor: { title: 'Warehouse Floor', description: 'Interactive warehouse floor plan with safety zones' },
-        complianceChecklist: { title: 'Compliance Checklist', description: 'Pre-built checklists for audits and inspections' },
-        quiz: { title: 'Safety Quiz', description: 'Test your knowledge of safety regulations' },
-        bussgeld: { title: 'Penalties', description: 'Lookup fines for safety violations' },
-        glossary: { title: 'Glossary', description: 'Safety terms and abbreviations' }
-      },
-      de: {
-        sectionTitle: 'Compliance-Management',
-        sectionSubtitle: 'Verfolgen, bewerten und verwalten Sie Ihre Sicherheits-Compliance',
-        warehouseFloor: { title: 'Lagerhalle', description: 'Interaktiver Lagerhallenplan mit Sicherheitszonen' },
-        complianceChecklist: { title: 'Checklisten', description: 'Vorgefertigte Checklisten für Audits und Inspektionen' },
-        quiz: { title: 'Wissensquiz', description: 'Testen Sie Ihr Wissen zu Arbeitsschutzvorschriften' },
-        bussgeld: { title: 'Bußgeld', description: 'Bußgelder für Arbeitsschutzverstöße' },
-        glossary: { title: 'Glossar', description: 'Fachbegriffe und Abkürzungen' }
-      },
-      nl: {
-        sectionTitle: 'Compliancebeheer',
-        sectionSubtitle: 'Volg, beoordeel en beheer uw veiligheidscompliance',
-        warehouseFloor: { title: 'Magazijnvloer', description: 'Interactieve magazijnplattegrond met veiligheidszones' },
-        complianceChecklist: { title: 'Checklists', description: 'Kant-en-klare checklists voor audits en inspecties' },
-        quiz: { title: 'Kennisquiz', description: 'Test uw kennis van arbowetgeving' },
-        bussgeld: { title: 'Boetes', description: 'Boetes voor overtredingen arbowetgeving' },
-        glossary: { title: 'Woordenlijst', description: 'Vakbegrippen en afkortingen' }
-      }
-    }
-    const lang = t.appTitle?.includes('MEU') ? 'en' : (t.appSubtitle?.includes('Letzte') ? 'de' : (t.appSubtitle?.includes('Laatste') ? 'nl' : 'en'))
-    return labels[lang] || labels.en
-  }
-
-  const complianceLabels = getComplianceLabels()
 
   // Compliance modules - 5 separate buttons
   const complianceModules = [
     {
       id: 'warehouseVisualization',
       icon: '🏭',
-      title: complianceLabels.warehouseFloor.title,
-      description: complianceLabels.warehouseFloor.description,
+      title: uiLabels.warehouseFloor.title,
+      description: uiLabels.warehouseFloor.description,
       gradient: 'from-indigo-500 to-purple-600',
-      badge: 'Interactive'
+      badge: uiLabels.badgeInteractive
     },
     {
       id: 'checklistTemplates',
       icon: '📋',
-      title: complianceLabels.complianceChecklist.title,
-      description: complianceLabels.complianceChecklist.description,
+      title: uiLabels.complianceChecklist.title,
+      description: uiLabels.complianceChecklist.description,
       gradient: 'from-teal-500 to-teal-600',
-      badge: 'Checklists'
+      badge: uiLabels.badgeChecklists
     },
     {
       id: 'safetyQuiz',
       icon: '🎯',
-      title: complianceLabels.quiz.title,
-      description: complianceLabels.quiz.description,
+      title: uiLabels.quiz.title,
+      description: uiLabels.quiz.description,
       gradient: 'from-purple-500 to-purple-600',
-      badge: 'Quiz'
+      badge: uiLabels.badgeQuiz
     },
     {
       id: 'penaltyLookup',
       icon: '⚖️',
-      title: complianceLabels.bussgeld.title,
-      description: complianceLabels.bussgeld.description,
+      title: uiLabels.bussgeld.title,
+      description: uiLabels.bussgeld.description,
       gradient: 'from-red-500 to-red-600',
-      badge: 'Reference'
+      badge: uiLabels.badgeReference
     },
     {
       id: 'glossary',
       icon: '📖',
-      title: complianceLabels.glossary.title,
-      description: complianceLabels.glossary.description,
+      title: uiLabels.glossary.title,
+      description: uiLabels.glossary.description,
       gradient: 'from-violet-500 to-violet-600',
-      badge: 'Reference'
+      badge: uiLabels.badgeReference
     }
   ]
 
@@ -362,10 +404,10 @@ export function Dashboard({ onModuleSelect }) {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Additional Tools
+              {uiLabels.additionalToolsTitle}
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Compliance checking and reference tools
+              {uiLabels.additionalToolsSubtitle}
             </p>
           </div>
         </div>
@@ -391,10 +433,10 @@ export function Dashboard({ onModuleSelect }) {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              {complianceLabels.sectionTitle}
+              {uiLabels.sectionTitle}
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              {complianceLabels.sectionSubtitle}
+              {uiLabels.sectionSubtitle}
             </p>
           </div>
         </div>
@@ -428,10 +470,10 @@ export function Dashboard({ onModuleSelect }) {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Safety Lessons Learned
+              {uiLabels.lessonsLearnedTitle}
             </h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Weekly alerts and incident reports from EU safety agencies
+              {uiLabels.lessonsLearnedSubtitle}
             </p>
           </div>
         </div>

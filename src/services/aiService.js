@@ -241,10 +241,31 @@ function formatJSONForDisplay(data) {
 // Rate Limiter for Content Generation
 // Using 120 second delay between requests
 // Can be bypassed with password unlock
+// Persists across page reloads via localStorage
 // ============================================
 const RATE_LIMIT_MS = 120 * 1000 // 120 seconds
 const MAX_CONCURRENT_REQUESTS = 5 // Allow up to 5 concurrent requests
-let lastRequestTime = 0
+const LAST_REQUEST_STORAGE_KEY = 'ai_last_request_time'
+
+// Load lastRequestTime from localStorage to persist across page reloads
+function getLastRequestTime() {
+  try {
+    const stored = localStorage.getItem(LAST_REQUEST_STORAGE_KEY)
+    return stored ? parseInt(stored, 10) : 0
+  } catch {
+    return 0
+  }
+}
+
+function setLastRequestTime(time) {
+  try {
+    localStorage.setItem(LAST_REQUEST_STORAGE_KEY, time.toString())
+  } catch {
+    // localStorage not available
+  }
+}
+
+let lastRequestTime = getLastRequestTime()
 let activeRequests = 0
 let requestQueue = Promise.resolve()
 
@@ -301,6 +322,7 @@ export async function verifyUnlockPassword(password) {
       setUnlockState(true)
       // Reset the last request time so user doesn't have to wait
       lastRequestTime = 0
+      setLastRequestTime(0)
     }
 
     return data
@@ -333,7 +355,9 @@ async function waitForRateLimit() {
   // Skip the 120s delay if unlocked
   if (isRateLimitUnlocked()) {
     console.log('[Rate Limit] Unlocked - skipping delay')
-    lastRequestTime = Date.now()
+    const now = Date.now()
+    lastRequestTime = now
+    setLastRequestTime(now)
     activeRequests++
     return
   }
@@ -347,7 +371,9 @@ async function waitForRateLimit() {
     await new Promise(resolve => setTimeout(resolve, waitTime))
   }
 
-  lastRequestTime = Date.now()
+  const requestTime = Date.now()
+  lastRequestTime = requestTime
+  setLastRequestTime(requestTime)
   activeRequests++
 }
 
