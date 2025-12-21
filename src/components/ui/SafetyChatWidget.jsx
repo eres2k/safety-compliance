@@ -105,7 +105,7 @@ const UI_TEXT = {
     greeting: "Servus! I'm Erwin, your WHS guy. What safety question can I help with?",
     errorMessage: "Oops, something went wrong. Try again?",
     minimize: 'Minimize',
-    powered: 'Uses internal law database only'
+    powered: 'Created by Erwin in Vienna'
   },
   de: {
     title: 'Frag Erwin',
@@ -116,7 +116,7 @@ const UI_TEXT = {
     greeting: "Servus! Ich bin der Erwin, dein WHS-Mensch. Was kann ich für dich tun?",
     errorMessage: "Hoppla, da ist was schiefgelaufen. Nochmal?",
     minimize: 'Minimieren',
-    powered: 'Nur interne Gesetzesdatenbank'
+    powered: 'Erschaffen von Erwin in Wien'
   },
   nl: {
     title: 'Vraag Erwin',
@@ -127,7 +127,7 @@ const UI_TEXT = {
     greeting: "Servus! Ik ben Erwin, je WHS-man. Waarmee kan ik helpen?",
     errorMessage: "Oeps, er ging iets mis. Opnieuw?",
     minimize: 'Minimaliseren',
-    powered: 'Alleen interne wettendatabase'
+    powered: 'Gemaakt door Erwin in Wenen'
   }
 }
 
