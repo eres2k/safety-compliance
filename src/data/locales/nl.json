@@ -19,6 +19,10 @@
     "documentGenerator": {
       "title": "Document Generator",
       "description": "Maak veiligheidsdocumenten van sjablonen"
+    },
+    "safetyChatbot": {
+      "title": "Vraag Erwin",
+      "description": "Chat met je WHS veiligheidsexpert over arbowetgeving"
     }
   },
   "common": {

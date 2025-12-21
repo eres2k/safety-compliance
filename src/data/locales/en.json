@@ -19,6 +19,10 @@
     "documentGenerator": {
       "title": "Document Generator",
       "description": "Create safety documents from templates"
+    },
+    "safetyChatbot": {
+      "title": "Ask Erwin",
+      "description": "Chat with your WHS safety expert about workplace safety laws"
     }
   },
   "common": {

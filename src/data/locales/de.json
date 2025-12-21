@@ -19,6 +19,10 @@
     "documentGenerator": {
       "title": "Dokumenten-Generator",
       "description": "Sicherheitsdokumente aus Vorlagen erstellen"
+    },
+    "safetyChatbot": {
+      "title": "Frag Erwin",
+      "description": "Chatte mit deinem WHS Sicherheitsexperten über Arbeitsschutzgesetze"
     }
   },
   "common": {
