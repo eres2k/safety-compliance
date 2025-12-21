@@ -7,64 +7,39 @@ import { fetchSafetyAlerts, clearSafetyAlertsCache } from '../../services/safety
  * Falls back to sample data when feeds are unavailable
  */
 
-// Safety alert sources configuration
+// Safety alert sources configuration (EU-focused)
 const SAFETY_SOURCES = {
-  HSE: {
-    name: 'HSE',
-    fullName: 'Health and Safety Executive UK',
-    country: 'UK',
-    flag: '🇬🇧',
-    color: 'from-blue-500 to-blue-600',
-    baseUrl: 'https://www.hse.gov.uk',
-  },
-  SAFEWORK: {
-    name: 'SafeWork',
-    fullName: 'SafeWork Australia',
-    country: 'AU',
-    flag: '🇦🇺',
-    color: 'from-green-500 to-green-600',
-    baseUrl: 'https://www.safeworkaustralia.gov.au',
-  },
-  CCOHS: {
-    name: 'CCOHS',
-    fullName: 'Canadian Centre for OHS',
-    country: 'CA',
-    flag: '🇨🇦',
-    color: 'from-red-500 to-red-600',
-    baseUrl: 'https://www.ccohs.ca',
-  },
-  // Keep these for sample data display
-  AUVA: {
-    name: 'AUVA',
-    fullName: 'Austrian Accident Insurance',
-    country: 'AT',
-    flag: '🇦🇹',
-    color: 'from-red-500 to-red-600',
-    baseUrl: 'https://www.auva.at',
-  },
   DGUV: {
-    name: 'DGUV',
-    fullName: 'German Accident Insurance',
+    name: 'DE News',
+    fullName: 'German Workplace Safety News',
     country: 'DE',
     flag: '🇩🇪',
     color: 'from-amber-500 to-amber-600',
-    baseUrl: 'https://www.dguv.de',
+    baseUrl: 'https://news.google.com',
+  },
+  AUVA: {
+    name: 'AT News',
+    fullName: 'Austrian Workplace Safety News',
+    country: 'AT',
+    flag: '🇦🇹',
+    color: 'from-red-500 to-red-600',
+    baseUrl: 'https://news.google.com',
   },
   ARBEIDSINSPECTIE: {
-    name: 'SZW',
-    fullName: 'Dutch Labour Inspectorate',
+    name: 'NL News',
+    fullName: 'Dutch Workplace Safety News',
     country: 'NL',
     flag: '🇳🇱',
     color: 'from-orange-500 to-orange-600',
-    baseUrl: 'https://www.arbeidsinspectie.nl',
+    baseUrl: 'https://news.google.com',
   },
   EUOSHA: {
-    name: 'EU-OSHA',
-    fullName: 'European Agency for Safety and Health',
+    name: 'EU News',
+    fullName: 'European Workplace Safety News',
     country: 'EU',
     flag: '🇪🇺',
     color: 'from-blue-500 to-blue-600',
-    baseUrl: 'https://osha.europa.eu',
+    baseUrl: 'https://news.google.com',
   },
 }
 

@@ -24,36 +24,44 @@ const CORS_PROXIES = [
   { prefix: 'https://corsproxy.io/?', isJson: false }
 ]
 
-// RSS Feed sources - using feeds known to allow CORS/proxy access
+// RSS Feed sources - Google News RSS for EU workplace safety (works with CORS proxies)
 const RSS_FEEDS = {
-  // UK HSE - Health and Safety Executive (generally accessible)
-  HSE_UK: {
-    url: 'https://www.hse.gov.uk/news/rss.xml',
-    source: 'HSE',
-    name: 'HSE UK',
-    country: 'UK',
-    flag: '🇬🇧'
+  // Germany - Workplace safety news (Arbeitsschutz/Arbeitssicherheit)
+  DE_SAFETY: {
+    url: 'https://news.google.com/rss/search?q=Arbeitsschutz+Arbeitssicherheit+Unfall&hl=de&gl=DE&ceid=DE:de',
+    source: 'DGUV',
+    name: 'Germany Safety News',
+    country: 'DE',
+    flag: '🇩🇪'
   },
-  // SafeWork Australia news
-  SAFEWORK_AU: {
-    url: 'https://www.safeworkaustralia.gov.au/rss.xml',
-    source: 'SAFEWORK',
-    name: 'SafeWork Australia',
-    country: 'AU',
-    flag: '🇦🇺'
+  // Austria - Workplace safety news
+  AT_SAFETY: {
+    url: 'https://news.google.com/rss/search?q=Arbeitssicherheit+Arbeitsunfall+%C3%96sterreich&hl=de&gl=AT&ceid=AT:de',
+    source: 'AUVA',
+    name: 'Austria Safety News',
+    country: 'AT',
+    flag: '🇦🇹'
   },
-  // Canadian OHS news
-  CCOHS: {
-    url: 'https://www.ccohs.ca/rss/whatsnew.xml',
-    source: 'CCOHS',
-    name: 'CCOHS Canada',
-    country: 'CA',
-    flag: '🇨🇦'
+  // Netherlands - Workplace safety news (Arbeidsveiligheid)
+  NL_SAFETY: {
+    url: 'https://news.google.com/rss/search?q=arbeidsveiligheid+arbeidsongeval&hl=nl&gl=NL&ceid=NL:nl',
+    source: 'ARBEIDSINSPECTIE',
+    name: 'Netherlands Safety News',
+    country: 'NL',
+    flag: '🇳🇱'
+  },
+  // EU-wide - European workplace safety news
+  EU_SAFETY: {
+    url: 'https://news.google.com/rss/search?q=workplace+safety+Europe+EU&hl=en&gl=EU&ceid=EU:en',
+    source: 'EUOSHA',
+    name: 'EU Safety News',
+    country: 'EU',
+    flag: '🇪🇺'
   }
 }
 
-// Note: EU government feeds (BAUA, BMAS, AUVA, etc.) block CORS/proxy access
-// They require a backend proxy to fetch. Sample data is used as fallback.
+// Note: Uses Google News RSS which aggregates workplace safety news
+// from multiple sources in each region.
 
 // Category detection keywords for classification (multilingual: EN, DE, NL)
 const CATEGORY_KEYWORDS = {
