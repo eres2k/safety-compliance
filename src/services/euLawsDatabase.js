@@ -864,10 +864,28 @@ export async function getCrossReferences(country, lawId) {
 
 /**
  * Get law categories for a country (async)
+ * Returns counts of documents by type (e.g., { law: 20, merkblatt: 15 })
  */
 export async function getLawCategories(country = 'DE') {
   const db = await getLawsDatabase(country)
-  return db.categories || {}
+
+  // If categories exist in database, use them
+  if (db.categories && Object.keys(db.categories).length > 0) {
+    return db.categories
+  }
+
+  // Otherwise, compute from itemsByType
+  if (db.itemsByType) {
+    const categories = {}
+    for (const [type, items] of Object.entries(db.itemsByType)) {
+      if (items && items.length > 0) {
+        categories[type] = items.length
+      }
+    }
+    return categories
+  }
+
+  return {}
 }
 
 /**
