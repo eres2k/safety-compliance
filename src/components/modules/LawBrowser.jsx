@@ -1433,6 +1433,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
     lawPdfs: true
   })
 
+  // Subcategory filter for DE merkblaetter (ASR, DGUV, TRBS, TRGS)
+  const [selectedSubcategory, setSelectedSubcategory] = useState('all')
+
   // Per-section translation state
   const [translatedContent, setTranslatedContent] = useState({}) // { sectionId: { translatedText, isTyping } }
   const [translationLoading, setTranslationLoading] = useState(false)
@@ -1531,6 +1534,26 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
 
     return { regularLaws: regular, merkblaetter: supplements, lawPdfs: pdfs }
   }, [filteredLaws])
+
+  // Get unique subcategories from merkblaetter (for DE)
+  const merkblaetterSubcategories = useMemo(() => {
+    if (framework !== 'DE') return []
+    const subcats = new Set()
+    for (const law of merkblaetter) {
+      if (law.subcategory) {
+        subcats.add(law.subcategory)
+      }
+    }
+    return Array.from(subcats).sort()
+  }, [merkblaetter, framework])
+
+  // Filter merkblaetter by subcategory (for DE)
+  const filteredMerkblaetter = useMemo(() => {
+    if (framework !== 'DE' || selectedSubcategory === 'all') {
+      return merkblaetter
+    }
+    return merkblaetter.filter(law => law.subcategory === selectedSubcategory)
+  }, [merkblaetter, selectedSubcategory, framework])
 
   // Helper function to extract section title from text content when database title is incomplete
   const extractTitleFromText = (text, sectionNumber) => {
@@ -2373,10 +2396,27 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                          framework === 'NL' ? 'Arbocatalogi' :
                          'Merkblätter'}
                       </span>
-                      <span className="text-xs text-blue-500 dark:text-blue-400">({merkblaetter.length})</span>
+                      <span className="text-xs text-blue-500 dark:text-blue-400">({filteredMerkblaetter.length})</span>
                     </div>
                   </button>
-                  {!collapsedLeftSections.merkblaetter && merkblaetter.map((law) => (
+                  {/* Subcategory filter dropdown for DE */}
+                  {!collapsedLeftSections.merkblaetter && framework === 'DE' && merkblaetterSubcategories.length > 0 && (
+                    <div className="px-3 py-2 bg-blue-50/50 dark:bg-blue-900/10 border-b border-blue-100 dark:border-blue-800">
+                      <select
+                        value={selectedSubcategory}
+                        onChange={(e) => setSelectedSubcategory(e.target.value)}
+                        className="w-full px-2 py-1.5 text-xs font-medium rounded-lg border border-blue-200 dark:border-blue-700 bg-white dark:bg-whs-dark-700 text-blue-700 dark:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      >
+                        <option value="all">Alle Kategorien ({merkblaetter.length})</option>
+                        {merkblaetterSubcategories.map(subcat => (
+                          <option key={subcat} value={subcat}>
+                            {subcat} ({merkblaetter.filter(m => m.subcategory === subcat).length})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                  {!collapsedLeftSections.merkblaetter && filteredMerkblaetter.map((law) => (
                     <button
                       key={law.id}
                       onClick={() => {

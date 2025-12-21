@@ -58,7 +58,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "2f24ff261645fa60d48b18cae0bd4b68"
+      "content_hash": "2f24ff261645fa60d48b18cae0bd4b68",
+      "subcategory": "DGUV"
     },
     {
       "id": "11e72f8ac1de308a",
@@ -111,7 +112,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "d24722e8a4a01b400df1f8b20630213e"
+      "content_hash": "d24722e8a4a01b400df1f8b20630213e",
+      "subcategory": "DGUV"
     },
     {
       "id": "471e33de9505e665",
@@ -164,7 +166,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "b0c0fc77a9bf7be91d7d644a3db059d8"
+      "content_hash": "b0c0fc77a9bf7be91d7d644a3db059d8",
+      "subcategory": "DGUV"
     },
     {
       "id": "dc2d2906fa4345d7",
@@ -217,7 +220,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "cbf910941b815f98bc0f25e498c8bbcd"
+      "content_hash": "cbf910941b815f98bc0f25e498c8bbcd",
+      "subcategory": "DGUV"
     },
     {
       "id": "a6f82dc05a463b76",
@@ -270,7 +274,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "8af3ca4e9eca285fbc86318fc51f4431"
+      "content_hash": "8af3ca4e9eca285fbc86318fc51f4431",
+      "subcategory": "DGUV"
     },
     {
       "id": "cf817aac7fd06608",
@@ -329,7 +334,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "4ffe37fe6b47ec761e11f27dc87c6a52"
+      "content_hash": "4ffe37fe6b47ec761e11f27dc87c6a52",
+      "subcategory": "DGUV"
     },
     {
       "id": "441834dd8775defb",
@@ -382,7 +388,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "cbbc191f50cf8987e7e9bc01001109fe"
+      "content_hash": "cbbc191f50cf8987e7e9bc01001109fe",
+      "subcategory": "DGUV"
     },
     {
       "id": "fb03930ad7500a14",
@@ -435,7 +442,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "93e6d204c7400f2fa1b3233a2c84afec"
+      "content_hash": "93e6d204c7400f2fa1b3233a2c84afec",
+      "subcategory": "DGUV"
     },
     {
       "id": "ff97dda942046105",
@@ -494,7 +502,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "35b1e3e82cd543e88c4f540d46c93d5a"
+      "content_hash": "35b1e3e82cd543e88c4f540d46c93d5a",
+      "subcategory": "DGUV"
     },
     {
       "id": "ba6fbc8cedfc0f3f",
@@ -553,7 +562,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "43dbdaa81b9fae2f848e961173fe5a8d"
+      "content_hash": "43dbdaa81b9fae2f848e961173fe5a8d",
+      "subcategory": "DGUV"
     },
     {
       "id": "d69a80fc157e92df",
@@ -612,7 +622,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "4e9374fb1187c8fa3fad4935e84c4395"
+      "content_hash": "4e9374fb1187c8fa3fad4935e84c4395",
+      "subcategory": "DGUV"
     },
     {
       "id": "982d36356d98108b",
@@ -665,7 +676,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "47c8e9cb181c7663f8a2cc67f97d7afd"
+      "content_hash": "47c8e9cb181c7663f8a2cc67f97d7afd",
+      "subcategory": "DGUV"
     },
     {
       "id": "6497298f744252de",
@@ -724,7 +736,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "0aa308371659cd948cbf7a0a94c8da81"
+      "content_hash": "0aa308371659cd948cbf7a0a94c8da81",
+      "subcategory": "DGUV"
     },
     {
       "id": "d6e173a3f91d2269",
@@ -777,7 +790,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "e9607d73b8ecfae923d16827660378fa"
+      "content_hash": "e9607d73b8ecfae923d16827660378fa",
+      "subcategory": "DGUV"
     },
     {
       "id": "195091f20ae515ee",
@@ -836,7 +850,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "41904058f6d85b8fb96cea9382948867"
+      "content_hash": "41904058f6d85b8fb96cea9382948867",
+      "subcategory": "DGUV"
     },
     {
       "id": "e6cd0991e7e0c654",
@@ -889,7 +904,8 @@
         "is_pdf_only": true,
         "is_html_only": false
       },
-      "content_hash": "a717f38c96e98d453b262426cfd700da"
+      "content_hash": "a717f38c96e98d453b262426cfd700da",
+      "subcategory": "DGUV"
     }
   ]
 }
