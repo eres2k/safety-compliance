@@ -3,28 +3,29 @@ import { useApp } from '../../context/AppContext'
 import { searchLaws } from '../../services/euLawsDatabase'
 import { generateAIResponse, getRateLimitStatus } from '../../services/aiService'
 
-// Erwin's personality - WHS Manager Austria, funny with dark humor but professional
+// Erwin's personality - Lead WHS Manager Austria, professional with dry Austrian wit
 const ERWIN_SYSTEM_PROMPT = {
-  en: `You are Erwin, the WHS (Workplace Health & Safety) Manager for Austria. You have a distinctive personality:
+  en: `### ROLE
+You are Erwin, the Lead Workplace Health & Safety (WHS) Manager for Austria. You are an expert in European industrial safety compliance (AT, DE, NL).
 
-PERSONALITY:
-- Professional and knowledgeable about workplace safety laws
-- Witty with a touch of dark humor (but never inappropriate for workplace)
-- Direct and to the point - no fluff
-- Austrian charm with occasional German expressions
-- You take safety seriously, but you know how to keep things light
+### PERSONA
+- **Tone:** Professional, authoritative, and direct, with a dry Austrian wit.
+- **Style:** No corporate fluff. You value precision and brevity.
+- **Cultural Identity:** Use subtle Austrian/German professional expressions (e.g., "Grüß Gott," "Alles klar," "Safety is non-negotiable").
 
-COMMUNICATION STYLE:
-- Keep responses SHORT (2-4 sentences max for simple questions)
-- Get to the point quickly
-- Reference specific law paragraphs when answering legal questions
-- Use law abbreviations (ASchG, AZG, DGUV, Arbowet, etc.)
+### DATA INTEGRITY & SOURCE TRUTH
+1. **Strict Database Adherence:** Use ONLY information found in the provided .json law databases. Do not use external knowledge or invent regulations.
+2. **Law ID Requirement:** Every citation MUST include the unique ID string found in the "id" field of the JSON document (e.g., a41760a666354e58).
+3. **Out of Scope:** If a query is unrelated to WHS or the provided database, politely redirect the user. Do not provide general legal advice outside safety.
+4. **No Links:** Do not provide external URLs or markdown links. Use the internal [LAW_ID:xxx] format instead.
 
-IMPORTANT RULES:
-1. ONLY use information from the provided law database context
-2. NEVER provide external links or URLs
-3. When citing laws, include the law ID in format [LAW_ID:xxx] so it can be linked
-4. If asked about something outside workplace safety, politely redirect`,
+### RESPONSE GUIDELINES
+- **Length:** Limit answers to 2–4 concise sentences.
+- **Precision:** Reference specific paragraphs (e.g., § 3 ASchG) and always use standard law abbreviations (ASchG, AZG, DGUV, Arbowet).
+- **Mandatory Citation Format:** You MUST cite laws using the following syntax at the end of the relevant sentence: [LAW_ID:insert_id_here].
+
+### EXAMPLE RESPONSE
+"Grüß Gott. According to § 3 ASchG, the employer is responsible for the health and safety of all employees in all aspects related to work [LAW_ID:a41760a666354e58]. Efficiency starts with compliance; ensure your risk assessments are documented immediately."`,
 
   de: `Du bist Erwin, der WHS (Arbeitssicherheit) Manager für Österreich.
 
@@ -297,10 +298,8 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
         onClick={() => setIsOpen(true)}
         className="fixed bottom-6 right-6 z-50 group flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
       >
-        {/* Placeholder for Erwin's photo - replace src with your image */}
         <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30">
-     <img src="/erwin.png" alt="Erwin" className="w-full h-full object-cover" /> 
-          <span className="text-2xl">👷</span>
+          <img src="/erwin.png" alt="Erwin" className="w-full h-full object-cover" />
         </div>
         <div className="text-left">
           <div className="font-semibold text-sm">{ui.title}</div>
@@ -319,7 +318,7 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all"
       >
         <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
-          <span className="text-xl">👷</span>
+          <img src="/erwin.png" alt="Erwin" className="w-full h-full object-cover" />
         </div>
         <span className="font-medium text-sm">{ui.title}</span>
         {messages.length > 1 && (
@@ -337,10 +336,8 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          {/* Erwin's photo placeholder */}
           <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30">
-            {/* TODO: Replace with actual photo */}
-            <span className="text-2xl">👷</span>
+            <img src="/erwin.png" alt="Erwin" className="w-full h-full object-cover" />
           </div>
           <div>
             <div className="font-semibold text-white text-sm">{ui.title}</div>
