@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { fetchSafetyAlerts, clearSafetyAlertsCache } from '../../services/safetyRssService'
 
 /**
- * LessonsLearnedFeed - Public safety alerts and accident lessons
- * Fetches real incident data from safety agency RSS feeds (OSHA, HSE)
+ * LessonsLearnedFeed - Workplace safety news and lessons learned
+ * Fetches safety news from agency RSS feeds (OSHA, EU-OSHA, BAuA, etc.)
  * Falls back to sample data when feeds are unavailable
  */
 
@@ -406,11 +406,11 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
               </div>
             )}
 
-            {/* Source Link for real incidents */}
+            {/* Source Link for news items */}
             {alert.sourceUrl && alert.isRealIncident && (
               <div className="mt-3 flex items-center justify-between">
                 <span className="text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
-                  <span>✓</span> Real incident from {source?.name || alert.source}
+                  <span>✓</span> Official source: {source?.name || alert.source}
                 </span>
                 <a
                   href={alert.sourceUrl}
@@ -441,7 +441,7 @@ export function LessonsLearnedFeed({ onSelectRegulation, onViewAll }) {
             <span className="text-3xl">⚠️</span>
             <div>
               <h3 className="text-lg font-bold text-white">Safety Lessons Learned</h3>
-              <p className="text-sm text-red-100">Real incident reports from safety agencies worldwide</p>
+              <p className="text-sm text-red-100">Workplace safety news from official agencies</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
