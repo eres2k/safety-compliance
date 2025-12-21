@@ -19,9 +19,7 @@ const UI_LABELS = {
     selectZoneDesc: 'Click or hover over any zone in the warehouse to see applicable safety regulations',
     quickAccess: 'Quick access',
     clickToView: 'Click on any zone to view safety regulations',
-    countryFilter: 'Country',
-    allCountries: 'All',
-    noRegsForCountry: 'No regulations for this country in this zone',
+    noRegsForFramework: 'No regulations for this legal framework in this zone',
   },
   de: {
     title: 'Interaktiver Lagerhallenplan',
@@ -34,9 +32,7 @@ const UI_LABELS = {
     selectZoneDesc: 'Klicken oder fahren Sie über eine Zone, um die geltenden Sicherheitsvorschriften anzuzeigen',
     quickAccess: 'Schnellzugriff',
     clickToView: 'Klicken Sie auf eine Zone, um Sicherheitsvorschriften anzuzeigen',
-    countryFilter: 'Land',
-    allCountries: 'Alle',
-    noRegsForCountry: 'Keine Vorschriften für dieses Land in dieser Zone',
+    noRegsForFramework: 'Keine Vorschriften für diese Rechtsvorlage in dieser Zone',
   },
   nl: {
     title: 'Interactieve Magazijnplattegrond',
@@ -49,19 +45,16 @@ const UI_LABELS = {
     selectZoneDesc: 'Klik of beweeg over een zone om de geldende veiligheidsvoorschriften te bekijken',
     quickAccess: 'Snelle toegang',
     clickToView: 'Klik op een zone om veiligheidsvoorschriften te bekijken',
-    countryFilter: 'Land',
-    allCountries: 'Alle',
-    noRegsForCountry: 'Geen voorschriften voor dit land in deze zone',
+    noRegsForFramework: 'Geen voorschriften voor dit rechtskader in deze zone',
   },
 }
 
-// Country options for filtering
-const COUNTRY_OPTIONS = [
-  { code: 'all', label: 'All', flag: '🌍' },
-  { code: 'DE', label: 'Germany', flag: '🇩🇪' },
-  { code: 'AT', label: 'Austria', flag: '🇦🇹' },
-  { code: 'NL', label: 'Netherlands', flag: '🇳🇱' },
-]
+// Framework options (used for flag display)
+const FRAMEWORK_OPTIONS = {
+  DE: { label: 'Germany', flag: '🇩🇪' },
+  AT: { label: 'Austria', flag: '🇦🇹' },
+  NL: { label: 'Netherlands', flag: '🇳🇱' },
+}
 
 // Localized zone data
 const ZONE_LABELS = {
@@ -222,6 +215,8 @@ const WAREHOUSE_ZONES = {
       { abbr: 'DGUV Information 208-033', title: 'Forklift Traffic', country: 'DE' },
       { abbr: 'AM-VO §32', title: 'Work Equipment Use', country: 'AT' },
       { abbr: 'AUVA M.plus 700', title: 'Forklift Safety Guidelines', country: 'AT' },
+      { abbr: 'Arbobesluit Art. 7.17', title: 'Mobile Equipment', country: 'NL' },
+      { abbr: 'Arbobesluit Art. 7.18', title: 'Self-propelled Work Equipment', country: 'NL' },
     ],
     hazards: ['Vehicle collision', 'Pedestrian strikes', 'Tip-over', 'Load falls'],
     ppe: ['Safety shoes', 'High-vis vest', 'Seat belt (forklift)'],
@@ -236,6 +231,8 @@ const WAREHOUSE_ZONES = {
       { abbr: 'ASR A2.1', title: 'Protection against falls', country: 'DE' },
       { abbr: 'AM-VO §18', title: 'Storage and Stacking', country: 'AT' },
       { abbr: 'AUVA M.plus 801', title: 'Pallet Racking Safety', country: 'AT' },
+      { abbr: 'Arbobesluit Art. 3.16', title: 'Storage Facilities', country: 'NL' },
+      { abbr: 'Arbobesluit Art. 7.4', title: 'Working at Height', country: 'NL' },
     ],
     hazards: ['Falling objects', 'Racking collapse', 'Overloading', 'Climbing falls'],
     ppe: ['Hard hat', 'Safety shoes', 'Gloves'],
@@ -250,6 +247,9 @@ const WAREHOUSE_ZONES = {
       { abbr: 'VDE 0510', title: 'Battery Room Requirements', country: 'DE' },
       { abbr: 'TRGS 510', title: 'Hazardous Substance Storage', country: 'DE' },
       { abbr: 'ASchG §41', title: 'Fire Prevention', country: 'AT' },
+      { abbr: 'AM-VO §35', title: 'Electrical Equipment', country: 'AT' },
+      { abbr: 'Arbobesluit Art. 3.5', title: 'Explosion Safety', country: 'NL' },
+      { abbr: 'PGS 37', title: 'Lithium Battery Storage', country: 'NL' },
     ],
     hazards: ['Hydrogen gas explosion', 'Acid burns', 'Electrical shock', 'Fire'],
     ppe: ['Face shield', 'Chemical gloves', 'Safety glasses', 'Acid-resistant apron'],
@@ -291,6 +291,8 @@ const WAREHOUSE_ZONES = {
       { abbr: 'TRGS 510', title: 'Storage of Hazardous Substances', country: 'DE' },
       { abbr: 'TRGS 400', title: 'Risk Assessment Hazardous Substances', country: 'DE' },
       { abbr: 'GefStoffV', title: 'Hazardous Substances Ordinance', country: 'DE' },
+      { abbr: 'ASchG §42', title: 'Hazardous Substances', country: 'AT' },
+      { abbr: 'GKV', title: 'Grenzwerteverordnung', country: 'AT' },
       { abbr: 'PGS 15', title: 'Hazardous Storage Guidelines', country: 'NL' },
     ],
     hazards: ['Chemical exposure', 'Fire/explosion', 'Environmental spill', 'Toxic fumes'],
@@ -527,13 +529,12 @@ const WarehouseSVG = ({ selectedZone, onZoneClick, onZoneHover }) => {
 }
 
 export function WarehouseVisualization({ onSelectRegulation }) {
-  const { language } = useApp()
+  const { language, framework } = useApp()
   const lang = language || 'en'
   const l = UI_LABELS[lang] || UI_LABELS.en
 
   const [selectedZone, setSelectedZone] = useState(null)
   const [hoveredZone, setHoveredZone] = useState(null)
-  const [selectedCountry, setSelectedCountry] = useState('all') // Country filter: 'all', 'DE', 'AT', 'NL'
 
   // Get localized zone data
   const getZoneLabel = useCallback((zoneId) => ZONE_LABELS[zoneId]?.[lang] || ZONE_LABELS[zoneId]?.en || zoneId, [lang])
@@ -546,12 +547,11 @@ export function WarehouseVisualization({ onSelectRegulation }) {
     return zoneId ? WAREHOUSE_ZONES[zoneId] : null
   }, [selectedZone, hoveredZone])
 
-  // Filter regulations by selected country
+  // Filter regulations by selected framework (country)
   const filteredRegulations = useMemo(() => {
     if (!activeZone) return []
-    if (selectedCountry === 'all') return activeZone.regulations
-    return activeZone.regulations.filter(reg => reg.country === selectedCountry)
-  }, [activeZone, selectedCountry])
+    return activeZone.regulations.filter(reg => reg.country === framework)
+  }, [activeZone, framework])
 
   const handleZoneClick = useCallback((zoneId) => {
     setSelectedZone(zoneId === selectedZone ? null : zoneId)
@@ -576,23 +576,10 @@ export function WarehouseVisualization({ onSelectRegulation }) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            {/* Country Filter */}
-            <div className="flex items-center gap-1 bg-white/10 rounded-lg p-1">
-              <span className="text-xs text-indigo-200 px-2">{l.countryFilter}:</span>
-              {COUNTRY_OPTIONS.map(country => (
-                <button
-                  key={country.code}
-                  onClick={() => setSelectedCountry(country.code)}
-                  className={`px-2 py-1 rounded-md text-sm font-medium transition-colors ${
-                    selectedCountry === country.code
-                      ? 'bg-white text-indigo-600'
-                      : 'text-white hover:bg-white/20'
-                  }`}
-                  title={country.label}
-                >
-                  {country.flag}
-                </button>
-              ))}
+            {/* Current Framework indicator */}
+            <div className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-1.5">
+              <span className="text-lg">{FRAMEWORK_OPTIONS[framework]?.flag || '🌍'}</span>
+              <span className="text-sm text-white font-medium">{FRAMEWORK_OPTIONS[framework]?.label || framework}</span>
             </div>
             <span className="hidden md:inline-block px-3 py-1 bg-white/20 rounded-lg text-sm text-white">
               {Object.keys(WAREHOUSE_ZONES).length} {l.safetyZones}
@@ -624,15 +611,13 @@ export function WarehouseVisualization({ onSelectRegulation }) {
                 </div>
               </div>
 
-              {/* Regulations - filtered by selected country */}
+              {/* Regulations - filtered by selected framework */}
               <div>
                 <h5 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
                   <span>📋</span> {l.applicableRegs}
-                  {selectedCountry !== 'all' && (
-                    <span className="text-xs px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
-                      {COUNTRY_OPTIONS.find(c => c.code === selectedCountry)?.flag}
-                    </span>
-                  )}
+                  <span className="text-xs px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
+                    {FRAMEWORK_OPTIONS[framework]?.flag}
+                  </span>
                 </h5>
                 <div className="space-y-2">
                   {filteredRegulations.length > 0 ? (
@@ -655,7 +640,7 @@ export function WarehouseVisualization({ onSelectRegulation }) {
                     ))
                   ) : (
                     <p className="text-sm text-gray-500 dark:text-gray-400 italic py-2">
-                      {l.noRegsForCountry}
+                      {l.noRegsForFramework}
                     </p>
                   )}
                 </div>
