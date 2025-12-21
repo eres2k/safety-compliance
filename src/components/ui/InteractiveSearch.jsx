@@ -39,7 +39,7 @@ export function InteractiveSearch({
   const [groupedResults, setGroupedResults] = useState([])
   const [suggestions, setSuggestions] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(-1)
-  const [searchMode, setSearchMode] = useState('all') // all, laws, content, pdf, topics
+  const [searchMode, setSearchMode] = useState('all') // all, laws, guidelines
   const [showLogisticsHint, setShowLogisticsHint] = useState(false)
   const [logisticsInfo, setLogisticsInfo] = useState(null)
 
@@ -50,14 +50,37 @@ export function InteractiveSearch({
 
   const { askQuestion, isLoading: aiLoading } = useAI()
 
-  // Search modes with icons and descriptions
-  const searchModes = [
-    { id: 'all', label: 'All', icon: '🔍', desc: 'Search everywhere' },
-    { id: 'laws', label: 'Laws', icon: '⚖️', desc: 'Law titles & abbreviations' },
-    { id: 'content', label: 'Content', icon: '📄', desc: 'Full text content' },
-    { id: 'pdf', label: 'PDFs', icon: '📑', desc: 'Search in PDF documents' },
-    { id: 'topics', label: 'Topics', icon: '📋', desc: 'WHS safety topics' },
-  ]
+  // Categorize documents into laws and guidelines
+  const categorizedDocs = useMemo(() => {
+    const lawTypes = ['law', 'ordinance', 'regulation', 'verordnung', 'gesetz']
+    const guidelineTypes = ['merkblatt', 'guideline', 'handbook', 'supplement', 'technical_rule', 'information', 'regel', 'richtlinie', 'vorschrift']
+
+    const lawDocs = laws.filter(doc => {
+      const type = (doc.type || '').toLowerCase()
+      const abbr = (doc.abbreviation || '').toLowerCase()
+      if (lawTypes.some(lt => type.includes(lt))) return true
+      if (abbr.includes('aschg') || abbr.includes('arbschg') || abbr.includes('arbowet')) return true
+      return !guidelineTypes.some(gt => type.includes(gt) || abbr.includes(gt))
+    })
+
+    const guidelineDocs = laws.filter(doc => {
+      const type = (doc.type || '').toLowerCase()
+      const abbr = (doc.abbreviation || '').toLowerCase()
+      if (guidelineTypes.some(gt => type.includes(gt))) return true
+      if (abbr.includes('trbs') || abbr.includes('trgs') || abbr.includes('asr') ||
+          abbr.includes('dguv') || abbr.includes('merkblatt') || abbr.includes('m.plus')) return true
+      return false
+    })
+
+    return { laws: lawDocs, guidelines: guidelineDocs }
+  }, [laws])
+
+  // Search modes with icons and descriptions - Updated to 3 categories
+  const searchModes = useMemo(() => [
+    { id: 'all', label: t.search?.all || 'Alles', icon: '🔍', desc: t.search?.allDesc || 'Suche in allem' },
+    { id: 'laws', label: t.search?.laws || 'Gesetze', icon: '⚖️', desc: t.search?.lawsDesc || 'Nur Gesetze & Verordnungen' },
+    { id: 'guidelines', label: t.search?.guidelines || 'Richtlinien', icon: '📋', desc: t.search?.guidelinesDesc || 'Merkblätter & technische Regeln' },
+  ], [t])
 
   // Handle click outside
   useEffect(() => {
@@ -98,22 +121,23 @@ export function InteractiveSearch({
       setIsSearching(true)
 
       try {
-        let searchResults = await deepSearch(searchTerm, laws, {
-          searchPdfs: searchMode === 'pdf' || searchMode === 'all',
+        // Determine which documents to search based on mode
+        let docsToSearch = laws
+        if (searchMode === 'laws') {
+          docsToSearch = categorizedDocs.laws
+        } else if (searchMode === 'guidelines') {
+          docsToSearch = categorizedDocs.guidelines
+        }
+
+        let searchResults = await deepSearch(searchTerm, docsToSearch, {
+          searchPdfs: true,
           boostLogistics: true,
           limit: 50,
         })
 
-        // When in PDF mode, filter to only show PDF documents
-        // (merkblätter, documents with local PDFs, or PDF variants)
-        if (searchMode === 'pdf') {
-          searchResults = searchResults.filter(law =>
-            isSupplementarySource(law) ||
-            hasLocalPdf(law) ||
-            isPdfVariant(law) ||
-            law.type === 'merkblatt' ||
-            law.source?.source_type === 'pdf'
-          )
+        // When in "all" mode, group results by type for better display
+        if (searchMode === 'all') {
+          // Results are already mixed, groupResultsByCategory will handle it
         }
 
         setResults(searchResults)
@@ -133,7 +157,7 @@ export function InteractiveSearch({
         clearTimeout(debounceRef.current)
       }
     }
-  }, [searchTerm, searchMode, laws])
+  }, [searchTerm, searchMode, laws, categorizedDocs])
 
   // Keyboard navigation
   const handleKeyDown = useCallback((e) => {
