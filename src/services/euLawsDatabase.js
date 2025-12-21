@@ -38,21 +38,50 @@ async function loadCountryDatabase(countryCode) {
   loadingPromises[countryCode] = (async () => {
     try {
       let data
+      let merkblaetterData = null
       switch (countryCode) {
         case 'AT':
           data = (await import('../../eu_safety_laws/at/at_database.json')).default
+          try {
+            merkblaetterData = (await import('../../eu_safety_laws/at/at_merkblaetter.json')).default
+          } catch (e) {
+            console.warn('AT merkblaetter not found')
+          }
           break
         case 'DE':
           data = (await import('../../eu_safety_laws/de/de_database.json')).default
+          try {
+            merkblaetterData = (await import('../../eu_safety_laws/de/de_merkblaetter.json')).default
+          } catch (e) {
+            console.warn('DE merkblaetter not found')
+          }
           break
         case 'NL':
           data = (await import('../../eu_safety_laws/nl/nl_database.json')).default
+          try {
+            merkblaetterData = (await import('../../eu_safety_laws/nl/nl_merkblaetter.json')).default
+          } catch (e) {
+            console.warn('NL merkblaetter not found')
+          }
           break
         case 'WIKI':
           data = (await import('../../eu_safety_laws/wiki_all/wiki_all_database.json')).default
           break
         default:
           throw new Error(`Unknown country code: ${countryCode}`)
+      }
+
+      // Merge merkblaetter documents into main database
+      if (merkblaetterData?.documents?.length > 0) {
+        if (data.laws) {
+          data.laws = [...data.laws, ...merkblaetterData.documents]
+        } else if (data.documents) {
+          data.documents = [...data.documents, ...merkblaetterData.documents]
+        } else {
+          // Fallback: create laws array with merkblaetter
+          data.laws = merkblaetterData.documents
+        }
+        console.log(`Loaded ${merkblaetterData.documents.length} merkblaetter for ${countryCode}`)
       }
 
       lawsDatabase[countryCode] = processLawsData(data, countryCode)
