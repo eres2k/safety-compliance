@@ -1521,15 +1521,37 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     // Apply full text search - similar approach to right column search
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase()
+
+      // Normalize technical rule abbreviations for fuzzy matching
+      // "ASR 3.5" -> "asr a3.5", "TRBS 1111" -> "trbs 1111"
+      const normalizeTechnicalAbbrev = (text) => {
+        if (!text) return ''
+        let normalized = text.toLowerCase().trim()
+        normalized = normalized.replace(/[-_.]/g, ' ').replace(/\s+/g, ' ')
+        normalized = normalized.replace(/asr\s*a?(\d)/g, 'asr a$1')
+        normalized = normalized.replace(/(trbs|trgs)\s*(\d)/g, '$1 $2')
+        normalized = normalized.replace(/dguv\s*(\d)/g, 'dguv $1')
+        return normalized
+      }
+
+      const normalizedTerm = normalizeTechnicalAbbrev(term)
+
       results = results.filter(law => {
         // Search in law title
         if (law.title?.toLowerCase().includes(term)) return true
         // Search in English title
         if (law.title_en?.toLowerCase().includes(term)) return true
-        // Search in abbreviation
-        if (law.abbreviation?.toLowerCase().includes(term)) return true
+        // Search in abbreviation (with fuzzy matching for technical rules)
+        const abbrevLower = (law.abbreviation || '').toLowerCase()
+        if (abbrevLower.includes(term)) return true
+        // Fuzzy match for technical abbreviations like ASR, TRBS, TRGS, DGUV
+        const normalizedAbbrev = normalizeTechnicalAbbrev(law.abbreviation)
+        if (normalizedAbbrev.includes(normalizedTerm) || normalizedTerm.includes(normalizedAbbrev)) return true
         // Search in description
         if (law.description?.toLowerCase().includes(term)) return true
+        // Search in subcategory (for technical rules like ASR, TRBS)
+        if (law.subcategory?.toLowerCase().includes(term)) return true
+        if (law.subcategory_name?.toLowerCase().includes(term)) return true
         // Search in full text content
         if (law.content?.full_text?.toLowerCase().includes(term)) return true
         if (law.content?.text?.toLowerCase().includes(term)) return true
@@ -1783,12 +1805,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
       })
     }
 
-    // Filter by section number/title (section sidebar filter)
+    // Filter by section number/title/content (section sidebar filter)
+    // Now also searches in section content for collapsed sections
     if (searchInLaw.trim()) {
       const term = searchInLaw.toLowerCase()
       filtered = filtered.filter(s =>
-        s.number.toLowerCase().includes(term) ||
-        s.title.toLowerCase().includes(term)
+        s.number?.toLowerCase().includes(term) ||
+        s.title?.toLowerCase().includes(term) ||
+        s.content?.toLowerCase().includes(term)
       )
     }
 
@@ -1862,8 +1886,21 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     setActiveSection(null)
     setSearchInLaw('')
     setContentSearchTerm('')
-    // Clear inline document view
-    setInlineDocView(null)
+
+    // For PDF-only documents (like ASR, DGUV, etc.), automatically show the PDF viewer
+    const isPdfOnly = law?.metadata?.is_pdf_only || law?.source?.source_type === 'pdf'
+    if (isPdfOnly) {
+      const pdfUrl = getPdfSourceUrl(law)
+      if (pdfUrl) {
+        setInlineDocView({ type: 'pdf', url: pdfUrl, title: law.abbreviation || law.title, law })
+      } else {
+        setInlineDocView(null)
+      }
+    } else {
+      // Clear inline document view for regular laws
+      setInlineDocView(null)
+    }
+
     // Reset flowchart state
     setFlowchartData(null)
     setFlowchartSectionId(null)
@@ -2299,10 +2336,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
             laws={allLaws}
             t={t}
             onSelectResult={(result) => {
-              // Directly select the law when clicking a search result
-              setSelectedLaw(result)
+              // Select the law using the selectLaw function which handles PDF-only documents
+              selectLaw(result)
               setSearchTerm('')
-              setContentSearchTerm('')
             }}
             onSearch={(term, mode) => {
               // Support all search modes from SmartSearch and InteractiveSearch
