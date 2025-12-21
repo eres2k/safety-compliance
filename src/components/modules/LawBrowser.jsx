@@ -1881,11 +1881,17 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
   }, [filteredSections])
 
   // Select a law - defined early as useCallback so it can be used in handleLawReferenceClick
-  const selectLaw = useCallback((law) => {
+  const selectLaw = useCallback((law, section = null) => {
     setSelectedLaw(law)
     setActiveSection(null)
     setSearchInLaw('')
     setContentSearchTerm('')
+
+    // Update URL for direct linking
+    if (onLawChange && law) {
+      const country = law.jurisdiction || law.country || framework
+      onLawChange(law.id, country, section)
+    }
 
     // For PDF-only documents (like ASR, DGUV, etc.), automatically show the PDF viewer
     const isPdfOnly = law?.metadata?.is_pdf_only || law?.source?.source_type === 'pdf'
@@ -1932,7 +1938,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     if (contentRef.current) {
       contentRef.current.scrollTop = 0
     }
-  }, [])
+  }, [onLawChange, framework])
 
   // Handle search
   const handleSearch = useCallback((term) => {
@@ -2142,8 +2148,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     }
 
     if (targetLaw) {
-      // Select the law
-      selectLaw(targetLaw)
+      // Select the law with section for deep linking
+      selectLaw(targetLaw, lawInfo.section ? `§ ${lawInfo.section}` : null)
 
       // If we have a section reference, try to find and select it
       if (lawInfo.section && targetLaw.chapters) {
@@ -2533,6 +2539,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                           const pdfUrl = getPdfSourceUrl(law)
                           setInlineDocView({ type: 'pdf', url: pdfUrl, title: law.abbreviation || law.title, law })
                           setSelectedLaw(null)
+                          // Update URL for direct linking even for PDF views
+                          if (onLawChange && law) {
+                            const country = law.jurisdiction || law.country || framework
+                            onLawChange(law.id, country, null)
+                          }
                         } else {
                           selectLaw(law)
                           setInlineDocView(null)
@@ -2608,6 +2619,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                         const pdfUrl = getPdfSourceUrl(law)
                         setInlineDocView({ type: 'pdf', url: pdfUrl, title: law.abbreviation || law.title, law })
                         setSelectedLaw(null)
+                        // Update URL for direct linking
+                        if (onLawChange && law) {
+                          const country = law.jurisdiction || law.country || framework
+                          onLawChange(law.id, country, null)
+                        }
                       }}
                       className={`w-full text-left p-3 border-b border-gray-50 dark:border-whs-dark-800 transition-colors ${
                         inlineDocView?.law?.id === law.id
