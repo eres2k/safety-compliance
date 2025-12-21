@@ -202,6 +202,69 @@ export function searchInText(text, query) {
 }
 
 /**
+ * Normalize technical rule abbreviations for matching
+ * Handles variations like "ASR 3.5" -> "ASR A3.5", "TRBS 1111" -> "TRBS-1111"
+ * @param {string} text - Text to normalize
+ * @returns {string} - Normalized text
+ */
+function normalizeTechnicalAbbrev(text) {
+  if (!text) return ''
+  let normalized = text.toLowerCase().trim()
+
+  // Remove common separators and normalize spacing
+  normalized = normalized.replace(/[-_.]/g, ' ').replace(/\s+/g, ' ')
+
+  // ASR pattern: "ASR 3.5" or "ASR3.5" -> normalize to match "ASR A3.5"
+  // Extract the number part and allow matching with or without the "A" prefix
+  normalized = normalized.replace(/asr\s*a?(\d)/g, 'asr a$1')
+
+  // TRBS/TRGS pattern: normalize number formats
+  normalized = normalized.replace(/(trbs|trgs)\s*(\d)/g, '$1 $2')
+
+  // DGUV pattern: normalize "DGUV 212-016" variations
+  normalized = normalized.replace(/dguv\s*(\d)/g, 'dguv $1')
+
+  return normalized
+}
+
+/**
+ * Check if two abbreviations match (with fuzzy matching for technical rules)
+ * @param {string} abbrev - Document abbreviation
+ * @param {string} query - Search query
+ * @returns {Object} - { isExact, isPartial, isFuzzy }
+ */
+function matchAbbreviation(abbrev, query) {
+  if (!abbrev || !query) return { isExact: false, isPartial: false, isFuzzy: false }
+
+  const abbrevLower = abbrev.toLowerCase()
+  const queryLower = query.toLowerCase()
+
+  // Exact match
+  if (abbrevLower === queryLower) {
+    return { isExact: true, isPartial: false, isFuzzy: false }
+  }
+
+  // Partial match (abbrev contains query or vice versa)
+  if (abbrevLower.includes(queryLower) || queryLower.includes(abbrevLower)) {
+    return { isExact: false, isPartial: true, isFuzzy: false }
+  }
+
+  // Fuzzy match for technical rules (ASR, TRBS, TRGS, DGUV, PGS)
+  const normalizedAbbrev = normalizeTechnicalAbbrev(abbrev)
+  const normalizedQuery = normalizeTechnicalAbbrev(query)
+
+  if (normalizedAbbrev === normalizedQuery) {
+    return { isExact: false, isPartial: false, isFuzzy: true }
+  }
+
+  if (normalizedAbbrev.includes(normalizedQuery) || normalizedQuery.includes(normalizedAbbrev)) {
+    return { isExact: false, isPartial: true, isFuzzy: true }
+  }
+
+  return { isExact: false, isPartial: false, isFuzzy: false }
+}
+
+/**
  * Calculate relevance score for a document based on search query
  * Enhanced for WHS Amazon logistics relevance
  * @param {Object} doc - Document to score
@@ -225,13 +288,19 @@ export function calculateRelevanceScore(doc, query, options = {}) {
     matchCount: 0,
   }
 
-  // Abbreviation match (highest priority)
-  const abbrev = (doc.abbreviation || '').toLowerCase()
-  if (abbrev === queryLower) {
+  // Abbreviation match (highest priority) - with fuzzy matching for technical rules
+  const abbrev = doc.abbreviation || ''
+  const abbrevMatch = matchAbbreviation(abbrev, queryLower)
+
+  if (abbrevMatch.isExact) {
     score += 100
     matchDetails.abbreviationMatch = true
-  } else if (abbrev.includes(queryLower)) {
+  } else if (abbrevMatch.isPartial && !abbrevMatch.isFuzzy) {
     score += 60
+    matchDetails.abbreviationMatch = true
+  } else if (abbrevMatch.isFuzzy) {
+    // Fuzzy match for technical rules like "ASR 3.5" matching "ASR A3.5"
+    score += abbrevMatch.isPartial ? 55 : 80
     matchDetails.abbreviationMatch = true
   }
 
@@ -251,8 +320,23 @@ export function calculateRelevanceScore(doc, query, options = {}) {
     }
   }
 
-  // Full content search
-  const fullText = (doc.searchText || doc.content?.full_text || '').toLowerCase()
+  // Search in subcategory (for technical rules like ASR, TRBS, etc.)
+  const subcategory = (doc.subcategory || '').toLowerCase()
+  const subcategoryName = (doc.subcategory_name || '').toLowerCase()
+  if (subcategory.includes(queryLower) || subcategoryName.includes(queryLower)) {
+    score += 40
+    matchDetails.contentMatch = true
+  }
+
+  // Search in description and metadata
+  const description = (doc.description || doc.metadata?.description || '').toLowerCase()
+  if (description.includes(queryLower)) {
+    score += 30
+    matchDetails.contentMatch = true
+  }
+
+  // Full content search (includes text_content for PDFs)
+  const fullText = (doc.searchText || doc.content?.full_text || doc.text_content || '').toLowerCase()
 
   if (fullText) {
     // Count occurrences in full text
@@ -269,6 +353,13 @@ export function calculateRelevanceScore(doc, query, options = {}) {
       if (fullText.includes(word)) {
         score += 10
       }
+    }
+  }
+
+  // Mark as PDF match if this is a PDF-only document
+  if (doc.metadata?.is_pdf_only || doc.source?.source_type === 'pdf') {
+    if (score > 0) {
+      matchDetails.pdfMatch = true
     }
   }
 
