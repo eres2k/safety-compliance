@@ -26,6 +26,7 @@ import {
   isHtmlOnly,
   isRecentlyUpdatedLaw
 } from '../../services/euLawsDatabase'
+import { getSearchableText } from '../../services/pdfSearchService'
 
 // Remove duplicate expanded notation text from Austrian legal documents
 // The source data contains both abbreviated (§ 1, Abs. 1, Z 1) and expanded (Paragraph eins, Absatz eins, Ziffer eins) versions
@@ -1442,7 +1443,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
   }, [framework, databaseReady])
 
   // Filter and search laws (no pagination - use scrolling)
-  // Uses direct text search similar to right column content search
+  // Uses direct text search including PDF content via getSearchableText
   const filteredLaws = useMemo(() => {
     let results = allLaws
 
@@ -1455,7 +1456,30 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
       results = results.filter(law => law.type === selectedCategory)
     }
 
-    // Apply full text search - similar approach to right column search
+    // Filter by relevance level (critical, high, medium, low)
+    if (relevanceFilter !== 'all') {
+      results = results.filter(law => {
+        // Check whs_summary for logistics relevance distribution
+        const distribution = law.whs_summary?.logistics_relevance_distribution
+        // Also check amazon_logistics_relevance.level as fallback
+        const lawLevel = law.amazon_logistics_relevance?.level
+
+        if (relevanceFilter === 'critical') {
+          return distribution?.critical > 0 || lawLevel === 'critical'
+        }
+        if (relevanceFilter === 'high') {
+          return distribution?.critical > 0 || distribution?.high > 0 ||
+                 lawLevel === 'critical' || lawLevel === 'high'
+        }
+        if (relevanceFilter === 'medium') {
+          return distribution?.critical > 0 || distribution?.high > 0 || distribution?.medium > 0 ||
+                 lawLevel === 'critical' || lawLevel === 'high' || lawLevel === 'medium'
+        }
+        return true
+      })
+    }
+
+    // Apply full text search - including PDF content via getSearchableText
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase()
       results = results.filter(law => {
@@ -1483,12 +1507,18 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
             }
           }
         }
+        // Search in PDF content using getSearchableText for PDF-sourced laws
+        // This catches content from PDFs that may not be in structured chapters/sections
+        if (law.source?.local_pdf_path || law.source?.source_type === 'pdf' || isPdfVariant(law)) {
+          const pdfText = getSearchableText(law)
+          if (pdfText && pdfText.toLowerCase().includes(term)) return true
+        }
         return false
       })
     }
 
     return results
-  }, [allLaws, searchTerm, selectedCategory])
+  }, [allLaws, searchTerm, selectedCategory, relevanceFilter])
 
   // Separate laws into categories for display:
   // 1. Regular laws (text-based)
@@ -2183,6 +2213,34 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSearch
                 {type} ({count})
               </button>
             ))}
+
+            {/* Relevance filter separator */}
+            <div className="w-px h-6 bg-gray-300 dark:bg-whs-dark-600 mx-1 self-center" />
+
+            {/* Relevance filter buttons - filter laws by WHS logistics relevance */}
+            {['all', 'critical', 'high', 'medium'].map(level => {
+              const levelConfig = {
+                all: { bg: 'bg-gray-100 dark:bg-gray-800', text: 'text-gray-600 dark:text-gray-300', label: 'All Relevance' },
+                critical: { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', label: 'Critical' },
+                high: { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300', label: 'High+' },
+                medium: { bg: 'bg-yellow-100 dark:bg-yellow-900/40', text: 'text-yellow-700 dark:text-yellow-300', label: 'Medium+' }
+              }
+              const config = levelConfig[level]
+              return (
+                <button
+                  key={`relevance-${level}`}
+                  onClick={() => setRelevanceFilter(level)}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                    relevanceFilter === level
+                      ? 'bg-gradient-to-r from-whs-orange-500 to-amber-500 text-white shadow-sm'
+                      : `${config.bg} ${config.text} hover:ring-1 ring-gray-300 dark:ring-whs-dark-500`
+                  }`}
+                  title={`Filter by ${level === 'all' ? 'all relevance levels' : level + ' relevance and above'}`}
+                >
+                  {level === 'all' ? '🎯 All' : level === 'critical' ? '🔴 Critical' : level === 'high' ? '🟠 High+' : '🟡 Medium+'}
+                </button>
+              )
+            })}
           </div>
         </div>
 
