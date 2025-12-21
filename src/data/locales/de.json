@@ -84,7 +84,12 @@
     "searchLaws": "Gesetze durchsuchen...",
     "auvaMerkblaetter": "AUVA Merkblätter",
     "dguvRules": "DGUV / Technische Regeln",
-    "arbocatalogi": "Arbocatalogi"
+    "arbocatalogi": "Arbocatalogi",
+    "categoryAll": "Alle",
+    "categoryLaw": "Gesetze",
+    "categoryGuidance": "Richtlinien",
+    "supplementaryDocs": "Ergänzende Dokumente",
+    "allCategories": "Alle Kategorien"
   },
   "translation": {
     "translateTo": "Übersetzen nach",
