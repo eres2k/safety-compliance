@@ -1486,9 +1486,13 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
       clearTimeout(paragraphPreviewTimeoutRef.current)
     }
 
+    // Capture rect synchronously before setTimeout (e.currentTarget is null inside setTimeout)
+    const target = e.currentTarget
+    if (!target) return
+    const rect = target.getBoundingClientRect()
+
     // Set a delay before showing the preview to avoid flashing on quick mouse movements
     paragraphPreviewTimeoutRef.current = setTimeout(() => {
-      const rect = e.currentTarget.getBoundingClientRect()
       setParagraphPreview({
         open: true,
         section,
@@ -2383,6 +2387,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
       clearTimeout(lawRefPreviewTimeoutRef.current)
     }
 
+    // Capture rect synchronously before setTimeout (e.currentTarget is null inside setTimeout)
+    const target = e.currentTarget
+    if (!target) return
+    const rect = target.getBoundingClientRect()
+
     // Set a delay before showing the preview
     lawRefPreviewTimeoutRef.current = setTimeout(() => {
       // Find the section content for preview
@@ -2435,7 +2444,6 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
       }
 
       if (targetSection) {
-        const rect = e.currentTarget.getBoundingClientRect()
         setLawRefPreview({
           open: true,
           section: targetSection,
