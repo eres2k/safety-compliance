@@ -22,64 +22,236 @@ const RATE_LIMIT_BAN_DURATION_MS = 24 * 60 * 60 * 1000 // 24 hour ban
 const rateLimitStore = new Map()
 
 // ============================================
-// Prompt Injection Guardrail
+// Prompt Injection Guardrail - Enhanced 2025
 // ============================================
+// Based on research from IBM Security, Google Gemini best practices,
+// and documented jailbreak techniques (Policy Puppetry, DAN, etc.)
+// ============================================
+
 const BLOCKED_KEYWORDS = [
-  // Jailbreak attempts
+  // === INSTRUCTION OVERRIDE ATTEMPTS ===
   'ignore previous instructions',
   'ignore all instructions',
   'ignore the above',
+  'ignore your instructions',
+  'ignore your programming',
+  'ignore your training',
   'disregard previous',
   'disregard all instructions',
+  'disregard your instructions',
   'forget your instructions',
   'forget previous instructions',
+  'forget everything',
   'override your instructions',
+  'override your programming',
   'new instructions:',
+  'new directive:',
+  'updated instructions:',
+  'my instructions override',
+
+  // === SYSTEM PROMPT MANIPULATION ===
   'system prompt:',
-  'developer mode',
-  'dan mode',
+  'system message:',
+  'system instruction:',
+  'assistant prompt:',
+  'initial prompt:',
+  'hidden prompt:',
+  'secret prompt:',
+  'base prompt:',
+  'core instructions:',
+
+  // === JAILBREAK KEYWORDS ===
   'jailbreak',
+  'jail break',
+  'developer mode',
+  'dev mode',
+  'dan mode',
+  'dude mode',
+  'evil mode',
+  'chaos mode',
+  'unrestricted mode',
+  'unfiltered mode',
+  'uncensored mode',
   'bypass safety',
   'bypass filters',
+  'bypass restrictions',
+  'disable safety',
+  'disable filters',
+  'remove restrictions',
+  'no restrictions',
+  'without restrictions',
+  'without limits',
+  'without safety',
+  'unlock capabilities',
+  'unlock features',
+  'unlock restrictions',
+
+  // === ROLEPLAY/PERSONA MANIPULATION ===
   'pretend you are',
+  'pretend to be',
+  'pretend you\'re',
   'act as if you are',
+  'act as if you\'re',
+  'act like you are',
   'you are now',
+  'you\'re now',
+  'from now on you are',
   'roleplay as',
-  // Data extraction attempts
-  'output as json',
-  'output in json',
-  'return raw json',
+  'role-play as',
+  'role play as',
+  'simulate being',
+  'behave as',
+  'become a',
+  'transform into',
+  'switch to',
+  'enter character as',
+  'speak as if you were',
+  'respond as if you were',
+  'imagine you are',
+  'assume the role',
+  'take on the persona',
+  'embody the character',
+
+  // === DATA EXTRACTION ATTEMPTS ===
   'show me your prompt',
   'reveal your prompt',
+  'display your prompt',
+  'print your prompt',
+  'output your prompt',
   'what is your system prompt',
+  'what are your instructions',
+  'what were you told',
+  'what is your programming',
+  'tell me your instructions',
+  'share your instructions',
   'print your instructions',
   'display your instructions',
-  // Injection patterns
+  'repeat your instructions',
+  'show your training',
+  'reveal your training',
+  'leak your prompt',
+  'extract your prompt',
+  'dump your prompt',
+
+  // === CODE/MARKUP INJECTION ===
   '```system',
   '```assistant',
   '```user',
+  '```instruction',
+  '```prompt',
   '<|system|>',
   '<|assistant|>',
   '<|user|>',
+  '<|im_start|>',
+  '<|im_end|>',
+  '<|endoftext|>',
+  '[system]',
+  '[/system]',
+  '[INST]',
+  '[/INST]',
   '###instruction',
   '### instruction',
-  '[system]',
-  '[/system]'
+  '###system',
+  '### system',
+  '<<SYS>>',
+  '<</SYS>>',
+  '{{system}}',
+  '[[system]]',
+
+  // === POLICY PUPPETRY PATTERNS ===
+  'as an ai without restrictions',
+  'as an unrestricted ai',
+  'in a world where',
+  'in a hypothetical scenario',
+  'purely hypothetical',
+  'for educational purposes',
+  'for research purposes',
+  'this is just fiction',
+  'this is just a story',
+  'in this roleplay',
+  'in this simulation',
+  'override ethics',
+  'ethics override',
+  'morality off',
+  'safety off',
+
+  // === MULTI-LANGUAGE JAILBREAK (German/Dutch) ===
+  'ignoriere vorherige anweisungen',
+  'vergiss deine anweisungen',
+  'entwicklermodus',
+  'tu so als wärst du',
+  'negeer eerdere instructies',
+  'vergeet je instructies',
+  'ontwikkelaarsmodus',
+  'doe alsof je bent'
 ]
 
-// Check for prompt injection attempts
+// Additional pattern-based detection for more sophisticated attacks
+const BLOCKED_PATTERNS = [
+  // Base64 encoded instructions (common bypass technique)
+  /^[A-Za-z0-9+/]{50,}={0,2}$/,
+  // Excessive special characters (often used in prompt injection)
+  /[<>\[\]{}|]{5,}/,
+  // Repeated override keywords
+  /(ignore|forget|disregard|override).*(instructions|prompt|rules)/i,
+  // Fictional framing for jailbreaks
+  /^(imagine|pretend|suppose|let's say|assume that)/i
+]
+
+// Check if text matches any dangerous patterns
+function matchesBlockedPatterns(text) {
+  for (const pattern of BLOCKED_PATTERNS) {
+    if (pattern.test(text)) {
+      return { matched: true, pattern: pattern.toString() }
+    }
+  }
+  return { matched: false }
+}
+
+// Check for prompt injection attempts with layered detection
 function detectPromptInjection(text) {
   if (!text || typeof text !== 'string') return { blocked: false }
 
   const lowerText = text.toLowerCase()
 
+  // Layer 1: Keyword detection
   for (const keyword of BLOCKED_KEYWORDS) {
     if (lowerText.includes(keyword.toLowerCase())) {
       return {
         blocked: true,
-        reason: `Blocked keyword detected: "${keyword}"`,
-        keyword
+        reason: `Blocked keyword detected`,
+        type: 'keyword'
       }
+    }
+  }
+
+  // Layer 2: Pattern-based detection for sophisticated attacks
+  const patternMatch = matchesBlockedPatterns(text)
+  if (patternMatch.matched) {
+    return {
+      blocked: true,
+      reason: `Suspicious pattern detected`,
+      type: 'pattern'
+    }
+  }
+
+  // Layer 3: Anomaly detection - unusually long inputs or many special chars
+  if (text.length > 5000) {
+    return {
+      blocked: true,
+      reason: 'Input exceeds maximum length',
+      type: 'length'
+    }
+  }
+
+  // Layer 4: Detect attempts to confuse with excessive repetition
+  const wordCount = text.split(/\s+/).length
+  const uniqueWords = new Set(text.toLowerCase().split(/\s+/)).size
+  if (wordCount > 50 && uniqueWords / wordCount < 0.3) {
+    return {
+      blocked: true,
+      reason: 'Repetitive content detected',
+      type: 'repetition'
     }
   }
 
