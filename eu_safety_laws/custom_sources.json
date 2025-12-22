@@ -251,6 +251,66 @@
         "category": "warehouse",
         "source_type": "pdf"
       },
+      "AUVA M.plus 340-2": {
+        "url": "https://auva.at/media/pjwpojel/mplus_340_2_durchfuehrung_gefaehrdungsbeurteilung_lagereinrichtungen_bf.pdf",
+        "name": "M.plus 340.2 - Durchführung Gefährdungsbeurteilung Lagereinrichtungen",
+        "name_en": "Risk Assessment for Storage Facilities",
+        "description": "Risk assessment guidelines for warehouse storage systems and racking.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["racking", "storage", "warehouse layout"]
+      },
+      "AUVA M.plus 341": {
+        "url": "https://auva.at/media/4kcpkfdv/mplus_341_betriebsanweisungen_lagereinrichtungen_bf.pdf",
+        "name": "M.plus 341 - Betriebsanweisungen Lagereinrichtungen",
+        "name_en": "Operating Instructions for Storage Facilities",
+        "description": "Operating instructions and safety rules for warehouse storage equipment.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["racking", "storage", "SOP"]
+      },
+      "AUVA M.plus 022": {
+        "url": "https://auva.at/media/0pwpgobx/mplus_022_sicherheits-und-gesundheitsschutzkennzeichnung_0120_bf.pdf",
+        "name": "M.plus 022 - Sicherheits- und Gesundheitsschutzkennzeichnung",
+        "name_en": "Safety and Health Protection Signage",
+        "description": "Requirements for safety signage and health protection labels.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["signage", "safety signs", "floor marking"]
+      },
+      "AUVA M.plus 012": {
+        "url": "https://auva.at/media/0ndhbr2h/mplus_012_fluchtwege_und_notausgaenge_0918_bf.pdf",
+        "name": "M.plus 012 - Fluchtwege und Notausgänge",
+        "name_en": "Escape Routes and Emergency Exits",
+        "description": "Requirements for escape routes and emergency exits in workplaces.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["emergency exit", "evacuation", "fire safety"]
+      },
+      "AUVA M.plus 019": {
+        "url": "https://auva.at/media/3qxnofzy/mplus_019_brandschutz_0923_bf.pdf",
+        "name": "M.plus 019 - Brandschutz",
+        "name_en": "Fire Protection",
+        "description": "Fire protection requirements and fire safety measures.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["fire safety", "fire extinguisher", "fire alarm"]
+      },
+      "AUVA M 105": {
+        "url": "https://auva.at/media/0kvki0wz/m_105_unfallmeldung_bf_0825.pdf",
+        "name": "M 105 - Unfallmeldung",
+        "name_en": "Accident Reporting",
+        "description": "Guidelines for accident reporting and documentation requirements.",
+        "enabled": true,
+        "category": "warehouse",
+        "source_type": "pdf",
+        "amazon_relevance": ["incident reporting", "accident", "documentation"]
+      },
       "_category_transport": {
         "_folder": true,
         "_name": "Delivery & Transport",
@@ -877,6 +937,84 @@
         "category": "technical_asr",
         "source_type": "pdf",
         "amazon_relevance": ["warehouse temperature", "heat stress", "cold work"]
+      },
+      "ASR A3.6": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-6.pdf?__blob=publicationFile",
+        "name": "ASR A3.6 - Lüftung",
+        "name_en": "Ventilation",
+        "description": "Workplace ventilation requirements.",
+        "enabled": true,
+        "category": "technical_asr",
+        "source_type": "pdf",
+        "amazon_relevance": ["warehouse ventilation", "air quality"]
+      },
+      "ASR A4.1": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A4-1.pdf?__blob=publicationFile",
+        "name": "ASR A4.1 - Sanitärräume",
+        "name_en": "Sanitary Rooms",
+        "description": "Requirements for sanitary facilities in workplaces.",
+        "enabled": true,
+        "category": "technical_asr",
+        "source_type": "pdf",
+        "amazon_relevance": ["restrooms", "sanitary facilities", "welfare facilities"]
+      },
+      "ASR A4.2": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A4-2.pdf?__blob=publicationFile",
+        "name": "ASR A4.2 - Pausen- und Bereitschaftsräume",
+        "name_en": "Break and Ready Rooms",
+        "description": "Requirements for break rooms and rest areas.",
+        "enabled": true,
+        "category": "technical_asr",
+        "source_type": "pdf",
+        "amazon_relevance": ["break room", "rest area", "welfare facilities"]
+      },
+      "ASR A4.3": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A4-3.pdf?__blob=publicationFile",
+        "name": "ASR A4.3 - Erste-Hilfe-Räume, Mittel und Einrichtungen zur Ersten Hilfe",
+        "name_en": "First Aid Rooms and Equipment",
+        "description": "First aid room requirements and equipment.",
+        "enabled": true,
+        "category": "technical_asr",
+        "source_type": "pdf",
+        "amazon_relevance": ["first aid", "emergency response", "AED"]
+      },
+      "ASR A4.4": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A4-4.pdf?__blob=publicationFile",
+        "name": "ASR A4.4 - Unterkünfte",
+        "name_en": "Accommodations",
+        "description": "Requirements for employee accommodations.",
+        "enabled": true,
+        "category": "technical_asr",
+        "source_type": "pdf"
+      },
+      "ASR A5.2": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A5-2.pdf?__blob=publicationFile",
+        "name": "ASR A5.2 - Anforderungen an Arbeitsplätze und Verkehrswege auf Baustellen",
+        "name_en": "Construction Site Workplaces and Traffic Routes",
+        "description": "Requirements for workplaces and traffic routes on construction sites.",
+        "enabled": true,
+        "category": "technical_asr",
+        "source_type": "pdf"
+      },
+      "ASR V3": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-V3.pdf?__blob=publicationFile",
+        "name": "ASR V3 - Gefährdungsbeurteilung",
+        "name_en": "Risk Assessment",
+        "description": "Risk assessment requirements for workplace design.",
+        "enabled": true,
+        "category": "technical_asr",
+        "source_type": "pdf",
+        "amazon_relevance": ["risk assessment", "hazard identification"]
+      },
+      "ASR V3a.2": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-V3a-2.pdf?__blob=publicationFile",
+        "name": "ASR V3a.2 - Barrierefreie Gestaltung von Arbeitsstätten",
+        "name_en": "Barrier-Free Workplace Design",
+        "description": "Requirements for accessible and barrier-free workplace design.",
+        "enabled": true,
+        "category": "technical_asr",
+        "source_type": "pdf",
+        "amazon_relevance": ["accessibility", "barrier-free", "inclusive workplace"]
       },
       "_category_technical_trbs": {
         "_folder": true,

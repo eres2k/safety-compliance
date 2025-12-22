@@ -111,7 +111,7 @@ export function Glossary({ onBack, onNavigateToLaw, embedded = false }) {
   // Smart linking - navigate to law when clicking a law abbreviation
   const handleLawClick = (abbr, category) => {
     if (!onNavigateToLaw || (category !== 'law' && category !== 'standard')) return
-    onNavigateToLaw(null, framework, null)
+    onNavigateToLaw(abbr, framework, null)
   }
 
   const glossary = GLOSSARY_DATA[framework] || []

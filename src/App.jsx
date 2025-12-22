@@ -26,7 +26,7 @@ function AppContent() {
   const [activeModule, setActiveModule] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [pendingLawNavigation, setPendingLawNavigation] = useState(null) // { lawId, country, searchQuery } for cross-module navigation
-  const { isDark } = useApp()
+  const { isDark, framework } = useApp()
 
   // Handle module selection with optional navigation params
   const handleModuleSelect = (moduleId, options = {}) => {
@@ -126,7 +126,7 @@ function AppContent() {
       case 'trainingResources':
         return <TrainingResources onBack={onBack} />
       case 'safetyQuiz':
-        return <SafetyQuiz onBack={onBack} onSelectLaw={(lawRef) => navigateToLaw(null, null, null, lawRef.abbreviation)} />
+        return <SafetyQuiz onBack={onBack} onSelectLaw={(lawRef) => navigateToLaw(lawRef.abbreviation, framework, lawRef.section)} />
       case 'checklistTemplates':
         return <ChecklistTemplates onBack={onBack} />
       case 'preventionTimeCalculator':

@@ -196,7 +196,7 @@ export function HelpModal({ isOpen, onClose }) {
             </div>
           </div>
 
-          {/* Supported Countries */}
+          {/* Supported Countries with Direct Links */}
           <div className="bg-gray-50 dark:bg-whs-dark-700/50 rounded-xl p-5">
             <div className="flex items-start gap-4">
               <FeatureIcon type="countries" />
@@ -204,29 +204,161 @@ export function HelpModal({ isOpen, onClose }) {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                   {help.countriesTitle || 'Supported Countries'}
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="flex items-center gap-2 bg-white dark:bg-whs-dark-800 p-3 rounded-lg border border-gray-200 dark:border-whs-dark-600">
-                    <span className="text-2xl">🇦🇹</span>
-                    <div>
-                      <p className="font-medium text-gray-900 dark:text-white text-sm">{help.countryAT || 'Austria'}</p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">ASchG</p>
+                <div className="grid grid-cols-1 gap-4">
+                  {/* Austria */}
+                  <div className="bg-white dark:bg-whs-dark-800 p-4 rounded-lg border border-gray-200 dark:border-whs-dark-600">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-2xl">🇦🇹</span>
+                      <div>
+                        <p className="font-medium text-gray-900 dark:text-white text-sm">{help.countryAT || 'Austria'}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">ASchG, AZG, AUVA Merkblätter</p>
+                      </div>
+                    </div>
+                    <div className="space-y-2 text-xs">
+                      <p className="font-medium text-gray-700 dark:text-gray-300">{help.officialSourcesLabel || 'Official Sources'}:</p>
+                      <div className="flex flex-wrap gap-2">
+                        <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                          ASchG (RIS)
+                        </a>
+                        <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008238" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                          AZG (RIS)
+                        </a>
+                        <a href="https://www.auva.at/praevention/medien-und-publikationen/publikationen/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                          AUVA Merkblätter
+                        </a>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 bg-white dark:bg-whs-dark-800 p-3 rounded-lg border border-gray-200 dark:border-whs-dark-600">
-                    <span className="text-2xl">🇩🇪</span>
-                    <div>
-                      <p className="font-medium text-gray-900 dark:text-white text-sm">{help.countryDE || 'Germany'}</p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">DGUV / ArbSchG</p>
+
+                  {/* Germany */}
+                  <div className="bg-white dark:bg-whs-dark-800 p-4 rounded-lg border border-gray-200 dark:border-whs-dark-600">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-2xl">🇩🇪</span>
+                      <div>
+                        <p className="font-medium text-gray-900 dark:text-white text-sm">{help.countryDE || 'Germany'}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">ArbSchG, DGUV, ASR, TRBS, TRGS</p>
+                      </div>
+                    </div>
+                    <div className="space-y-2 text-xs">
+                      <p className="font-medium text-gray-700 dark:text-gray-300">{help.officialSourcesLabel || 'Official Sources'}:</p>
+                      <div className="flex flex-wrap gap-2">
+                        <a href="https://www.gesetze-im-internet.de/arbschg/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded hover:bg-yellow-200 dark:hover:bg-yellow-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                          ArbSchG
+                        </a>
+                        <a href="https://publikationen.dguv.de/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                          DGUV Publikationen
+                        </a>
+                        <a href="https://www.baua.de/DE/Angebote/Regelwerk/ASR/ASR.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded hover:bg-cyan-200 dark:hover:bg-cyan-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                          ASR (BAuA)
+                        </a>
+                        <a href="https://www.baua.de/DE/Angebote/Regelwerk/TRBS/TRBS.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                          TRBS (BAuA)
+                        </a>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 bg-white dark:bg-whs-dark-800 p-3 rounded-lg border border-gray-200 dark:border-whs-dark-600">
-                    <span className="text-2xl">🇳🇱</span>
-                    <div>
-                      <p className="font-medium text-gray-900 dark:text-white text-sm">{help.countryNL || 'Netherlands'}</p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">Arbowet</p>
+
+                  {/* Netherlands */}
+                  <div className="bg-white dark:bg-whs-dark-800 p-4 rounded-lg border border-gray-200 dark:border-whs-dark-600">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-2xl">🇳🇱</span>
+                      <div>
+                        <p className="font-medium text-gray-900 dark:text-white text-sm">{help.countryNL || 'Netherlands'}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Arbowet, Arbobesluit, PGS, STL</p>
+                      </div>
+                    </div>
+                    <div className="space-y-2 text-xs">
+                      <p className="font-medium text-gray-700 dark:text-gray-300">{help.officialSourcesLabel || 'Official Sources'}:</p>
+                      <div className="flex flex-wrap gap-2">
+                        <a href="https://wetten.overheid.nl/BWBR0010346/2024-01-01" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                          Arbowet
+                        </a>
+                        <a href="https://wetten.overheid.nl/BWBR0008498/2024-01-01" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                          Arbobesluit
+                        </a>
+                        <a href="https://publicatiereeksgevaarlijkestoffen.nl/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                          PGS Richtlijnen
+                        </a>
+                        <a href="https://www.stl.nl/veilig-en-vitaal/arbo/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded hover:bg-teal-200 dark:hover:bg-teal-900/50 transition-colors">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                          STL Arbocatalogi
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links to Key Documents */}
+          <div className="bg-gradient-to-br from-slate-50 to-gray-50 dark:from-slate-900/20 dark:to-gray-900/20 rounded-xl p-5 border border-slate-200 dark:border-slate-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4 flex items-center gap-2">
+              <svg className="w-5 h-5 text-slate-600 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+              </svg>
+              {help.quickLinksTitle || 'Quick Links to Key Documents'}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* AUVA Merkblätter */}
+              <div className="bg-white dark:bg-whs-dark-800 p-3 rounded-lg border border-gray-200 dark:border-whs-dark-600">
+                <h4 className="font-medium text-blue-700 dark:text-blue-300 text-sm mb-2 flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                  AUVA Merkblätter (AT)
+                </h4>
+                <ul className="space-y-1 text-xs">
+                  <li><a href="https://auva.at/media/peujs3al/basiswissen-arbeitnehmerschutz-bf.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Basiswissen Arbeitnehmer:innenschutz 2025</a></li>
+                  <li><a href="https://auva.at/media/zzcjdtxk/mplus_040_arbeitsplatzevaluierung_bf_06-2022.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">M.plus 040 - Arbeitsplatzevaluierung</a></li>
+                  <li><a href="https://auva.at/media/jyvn53st/mplus_070_unterweisung_0725_bf.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">M.plus 070 - Unterweisung</a></li>
+                  <li><a href="https://auva.at/media/qvnajezk/e_13_physische_belastungen.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">E 13 - Physische Belastungen</a></li>
+                </ul>
+              </div>
+
+              {/* ASR/DGUV */}
+              <div className="bg-white dark:bg-whs-dark-800 p-3 rounded-lg border border-gray-200 dark:border-whs-dark-600">
+                <h4 className="font-medium text-cyan-700 dark:text-cyan-300 text-sm mb-2 flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                  ASR & DGUV (DE)
+                </h4>
+                <ul className="space-y-1 text-xs">
+                  <li><a href="https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400">ASR A1.3 - Sicherheitskennzeichnung</a></li>
+                  <li><a href="https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400">ASR A2.2 - Brandschutz</a></li>
+                  <li><a href="https://publikationen.dguv.de/widgets/pdf/download/article/310" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400">DGUV Information 208-004 - Gabelstapler</a></li>
+                  <li><a href="https://publikationen.dguv.de/widgets/pdf/download/article/292" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400">DGUV Information 211-005 - Unterweisung</a></li>
+                </ul>
+              </div>
+
+              {/* STL Arbocatalogi */}
+              <div className="bg-white dark:bg-whs-dark-800 p-3 rounded-lg border border-gray-200 dark:border-whs-dark-600">
+                <h4 className="font-medium text-teal-700 dark:text-teal-300 text-sm mb-2 flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                  STL Arbocatalogi (NL)
+                </h4>
+                <ul className="space-y-1 text-xs">
+                  <li><a href="https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/220512-Arbocatalogus-Transport-en-Logistiek-Versie-DEF.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400">Arbocatalogus Transport en Logistiek</a></li>
+                  <li><a href="https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400">Arbocatalogus Warehouse</a></li>
+                </ul>
+              </div>
+
+              {/* PGS */}
+              <div className="bg-white dark:bg-whs-dark-800 p-3 rounded-lg border border-gray-200 dark:border-whs-dark-600">
+                <h4 className="font-medium text-indigo-700 dark:text-indigo-300 text-sm mb-2 flex items-center gap-1">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                  PGS Richtlijnen (NL)
+                </h4>
+                <ul className="space-y-1 text-xs">
+                  <li><a href="https://content.publicatiereeksgevaarlijkestoffen.nl/documents/PGS15/PGS_15_2016_versie_1_0_sept_2016_definitief.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">PGS 15 - Opslag gevaarlijke stoffen</a></li>
+                </ul>
               </div>
             </div>
           </div>

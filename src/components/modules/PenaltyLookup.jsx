@@ -91,7 +91,7 @@ export function PenaltyLookup({ onBack, onNavigateToLaw, embedded = false }) {
     for (const pattern of patterns) {
       const match = reference.match(pattern)
       if (match) {
-        onNavigateToLaw(null, framework, null)
+        onNavigateToLaw(match[1], framework, null)
         return
       }
     }

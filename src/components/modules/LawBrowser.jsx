@@ -1310,9 +1310,10 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         }
       }
 
-      // Find and select the law
+      // Find and select the law (search by ID first, then by abbreviation)
       const laws = getAllLawsSync(targetCountry)
-      const targetLaw = laws.find(law => law.id === initialLawId)
+      const targetLaw = laws.find(law => law.id === initialLawId) ||
+                        laws.find(law => law.abbreviation?.toLowerCase() === initialLawId?.toLowerCase())
 
       if (targetLaw) {
         setSelectedLaw(targetLaw)

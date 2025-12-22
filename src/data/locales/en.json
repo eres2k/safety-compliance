@@ -355,6 +355,8 @@
     "officialSourcesText": "All legal texts displayed in this application are sourced directly from official government publications and regulatory authorities. This includes the Austrian ASchG (ArbeitnehmerInnenschutzgesetz), German DGUV regulations and ArbSchG (Arbeitsschutzgesetz), and Dutch Arbowet (Arbeidsomstandighedenwet). We ensure accuracy by referencing only authoritative sources.",
     "updateFrequencyTitle": "Regular Updates - Every 14 Days",
     "updateFrequencyText": "Our legal database is updated every 14 days to ensure you always have access to the latest regulatory requirements, amendments, and legal changes. This regular update cycle ensures compliance with current legislation and keeps you informed of new developments in workplace safety law.",
+    "officialSourcesLabel": "Official Sources",
+    "quickLinksTitle": "Quick Links to Key Documents",
     "countriesTitle": "Supported Countries & Legal Frameworks",
     "countryAT": "Austria",
     "countryDE": "Germany",
