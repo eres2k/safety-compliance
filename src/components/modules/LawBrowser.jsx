@@ -772,7 +772,13 @@ const LAW_REFERENCE_PATTERNS = [
 ]
 
 // Create law reference highlighter for deep-linking to laws
-function createLawReferenceHighlighter(onLawClick) {
+// Accepts callbacks: { onClick, onHover, onLeave } for click and hover functionality
+function createLawReferenceHighlighter(callbacks) {
+  // Support both old (single function) and new (object with callbacks) API
+  const onLawClick = typeof callbacks === 'function' ? callbacks : callbacks?.onClick
+  const onLawHover = typeof callbacks === 'object' ? callbacks?.onHover : null
+  const onLawLeave = typeof callbacks === 'object' ? callbacks?.onLeave : null
+
   return function applyLawLinks(text) {
     if (!text || typeof text !== 'string') return text
 
@@ -802,6 +808,8 @@ function createLawReferenceHighlighter(onLawClick) {
               e.stopPropagation()
               onLawClick(lawInfo)
             }}
+            onMouseEnter={onLawHover ? (e) => onLawHover(e, lawInfo) : undefined}
+            onMouseLeave={onLawLeave || undefined}
             className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer font-medium inline bg-blue-50 dark:bg-blue-900/20 px-1 rounded"
             title={`Navigate to ${ref}`}
           >
@@ -871,7 +879,7 @@ function parseLawReference(ref) {
 }
 
 // Render formatted elements with optional search term highlighting and WHS crosslinks
-function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClick = null, onLawReferenceClick = null }) {
+function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClick = null, onLawReferenceClick = null, onLawReferenceHover = null, onLawReferenceLeave = null }) {
   const elements = formatLawText(text)
 
   // Create crosslink highlighter if crosslinks are available
@@ -882,11 +890,15 @@ function FormattedText({ text, searchTerm = '', crosslinks = {}, onCrosslinkClic
     return createCrosslinkHighlighter(crosslinks, onCrosslinkClick)
   }, [crosslinks, onCrosslinkClick])
 
-  // Create law reference highlighter
+  // Create law reference highlighter with click and hover handlers
   const applyLawLinks = useMemo(() => {
     if (!onLawReferenceClick) return (t) => t
-    return createLawReferenceHighlighter(onLawReferenceClick)
-  }, [onLawReferenceClick])
+    return createLawReferenceHighlighter({
+      onClick: onLawReferenceClick,
+      onHover: onLawReferenceHover,
+      onLeave: onLawReferenceLeave
+    })
+  }, [onLawReferenceClick, onLawReferenceHover, onLawReferenceLeave])
 
   // Combined function that applies law links, crosslinks, and search highlighting
   const processText = useCallback((t) => {
@@ -1213,6 +1225,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
   const [wikiLoading, setWikiLoading] = useState(false)
   const [crosslinkPopup, setCrosslinkPopup] = useState({ open: false, term: null, data: null, x: 0, y: 0 })
 
+  // Paragraph hover preview state
+  const [paragraphPreview, setParagraphPreview] = useState({ open: false, section: null, x: 0, y: 0 })
+  const paragraphPreviewTimeoutRef = useRef(null)
+
+  // Law reference hover preview state (for hovering over §4, Artikel 5, etc. in text)
+  const [lawRefPreview, setLawRefPreview] = useState({ open: false, section: null, lawInfo: null, x: 0, y: 0 })
+  const lawRefPreviewTimeoutRef = useRef(null)
+
   // Copy link feedback popup state
   const [copyFeedback, setCopyFeedback] = useState({ show: false, x: 0, y: 0 })
 
@@ -1438,6 +1458,83 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     document.addEventListener('click', handleClickOutside)
     return () => document.removeEventListener('click', handleClickOutside)
   }, [crosslinkPopup.open])
+
+  // Close paragraph preview when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (paragraphPreview.open && !e.target.closest('.paragraph-preview-popup')) {
+        setParagraphPreview({ open: false, section: null, x: 0, y: 0 })
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [paragraphPreview.open])
+
+  // Cleanup paragraph preview timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (paragraphPreviewTimeoutRef.current) {
+        clearTimeout(paragraphPreviewTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  // Handlers for paragraph hover preview
+  const handleParagraphMouseEnter = useCallback((e, section) => {
+    // Clear any pending timeout
+    if (paragraphPreviewTimeoutRef.current) {
+      clearTimeout(paragraphPreviewTimeoutRef.current)
+    }
+
+    // Set a delay before showing the preview to avoid flashing on quick mouse movements
+    paragraphPreviewTimeoutRef.current = setTimeout(() => {
+      const rect = e.currentTarget.getBoundingClientRect()
+      setParagraphPreview({
+        open: true,
+        section,
+        x: rect.left + rect.width / 2,
+        y: rect.bottom + 8
+      })
+    }, 400) // 400ms delay before showing
+  }, [])
+
+  const handleParagraphMouseLeave = useCallback(() => {
+    // Clear the timeout if mouse leaves before preview shows
+    if (paragraphPreviewTimeoutRef.current) {
+      clearTimeout(paragraphPreviewTimeoutRef.current)
+      paragraphPreviewTimeoutRef.current = null
+    }
+    // Don't close immediately - allow moving to the popup
+  }, [])
+
+  const closeParagraphPreview = useCallback(() => {
+    setParagraphPreview({ open: false, section: null, x: 0, y: 0 })
+  }, [])
+
+  // Close law reference preview when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (lawRefPreview.open && !e.target.closest('.law-ref-preview-popup')) {
+        setLawRefPreview({ open: false, section: null, lawInfo: null, x: 0, y: 0 })
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [lawRefPreview.open])
+
+  // Cleanup law reference preview timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (lawRefPreviewTimeoutRef.current) {
+        clearTimeout(lawRefPreviewTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  // Close law reference preview
+  const closeLawRefPreview = useCallback(() => {
+    setLawRefPreview({ open: false, section: null, lawInfo: null, x: 0, y: 0 })
+  }, [])
 
   // Function to open Wikipedia modal
   const openWikiModal = async (lawAbbr) => {
@@ -2276,6 +2373,87 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
       selectLaw(targetLaw, null)
     }
   }, [allLaws, selectedLaw, framework, selectLaw, setExpandedSections, setActiveSection, lawSections, scrollToSection])
+
+  // Handle hover on law reference - show preview popup
+  const handleLawReferenceHover = useCallback((e, lawInfo) => {
+    if (!lawInfo) return
+
+    // Clear any pending timeout
+    if (lawRefPreviewTimeoutRef.current) {
+      clearTimeout(lawRefPreviewTimeoutRef.current)
+    }
+
+    // Set a delay before showing the preview
+    lawRefPreviewTimeoutRef.current = setTimeout(() => {
+      // Find the section content for preview
+      let targetSection = null
+      let targetLaw = null
+
+      if (lawInfo.law) {
+        // Specific law mentioned - search for it
+        targetLaw = allLaws.find(law =>
+          law.abbreviation?.toLowerCase() === lawInfo.law.toLowerCase() ||
+          law.abbr?.toLowerCase() === lawInfo.law.toLowerCase()
+        )
+      }
+
+      // If no specific law found but we have a section, it's a reference within the current law
+      if (!targetLaw && selectedLaw && lawInfo.section) {
+        targetLaw = selectedLaw
+      }
+
+      if (targetLaw && lawInfo.section) {
+        // Check if it's the current law - use lawSections for faster lookup
+        if (targetLaw.id === selectedLaw?.id) {
+          targetSection = lawSections.find(s => {
+            const sectionNum = s.number?.replace(/[§\s]/g, '')
+            return sectionNum === lawInfo.section
+          })
+        } else if (targetLaw.chapters) {
+          // Different law - search through chapters
+          for (const chapter of targetLaw.chapters) {
+            if (chapter.sections) {
+              for (const section of chapter.sections) {
+                const sectionNum = section.number?.replace(/[§\s]/g, '')
+                if (sectionNum === lawInfo.section) {
+                  // Build a section object similar to lawSections format
+                  targetSection = {
+                    id: section.id,
+                    number: section.number?.startsWith('§') ? section.number : `§ ${section.number}`,
+                    title: section.title,
+                    content: section.text || section.content,
+                    whs_topics: section.whs_topics,
+                    amazon_logistics_relevance: section.amazon_logistics_relevance
+                  }
+                  break
+                }
+              }
+              if (targetSection) break
+            }
+          }
+        }
+      }
+
+      if (targetSection) {
+        const rect = e.currentTarget.getBoundingClientRect()
+        setLawRefPreview({
+          open: true,
+          section: targetSection,
+          lawInfo,
+          x: rect.left + rect.width / 2,
+          y: rect.bottom + 8
+        })
+      }
+    }, 300) // 300ms delay
+  }, [allLaws, selectedLaw, lawSections])
+
+  // Handle mouse leave on law reference
+  const handleLawReferenceLeave = useCallback(() => {
+    if (lawRefPreviewTimeoutRef.current) {
+      clearTimeout(lawRefPreviewTimeoutRef.current)
+      lawRefPreviewTimeoutRef.current = null
+    }
+  }, [])
 
   // Get source language for current framework
   const getSourceLanguage = () => {
@@ -3411,7 +3589,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                     data-section-number={section.number?.replace(/[§\s]/g, '')}
                                   >
                                     {/* Section Header with WHS Relevance - Clickable to expand/collapse */}
-                                    <div className="flex items-start gap-2 mb-2 pb-2 border-b border-whs-orange-200 dark:border-whs-orange-800">
+                                    <div
+                                      className="flex items-start gap-2 mb-2 pb-2 border-b border-whs-orange-200 dark:border-whs-orange-800"
+                                      onMouseEnter={(e) => !expandedSections[section.id] && handleParagraphMouseEnter(e, section)}
+                                      onMouseLeave={handleParagraphMouseLeave}
+                                    >
                                       <button
                                         onClick={() => toggleSection(section.id)}
                                         className="flex-1 flex items-start gap-2 hover:bg-gray-50 dark:hover:bg-whs-dark-800 transition-colors rounded-lg px-2 py-1 -ml-2 text-left"
@@ -3546,7 +3728,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                                 /* Loading state while translation is being fetched */
                                                 <div className="relative">
                                                   <div className="text-gray-300 dark:text-gray-600 select-none">
-                                                    <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} />
+                                                    <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} onLawReferenceHover={handleLawReferenceHover} onLawReferenceLeave={handleLawReferenceLeave} />
                                                   </div>
                                                   <div className="absolute inset-0 flex items-start">
                                                     <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 bg-white dark:bg-whs-dark-800 pr-2">
@@ -3569,6 +3751,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                                       crosslinks={whsCrosslinks}
                                                       onCrosslinkClick={handleCrosslinkClick}
                                                       onLawReferenceClick={handleLawReferenceClick}
+                                                      onLawReferenceHover={handleLawReferenceHover}
+                                                      onLawReferenceLeave={handleLawReferenceLeave}
                                                     />
                                                   )}
                                                   renderDuring={(text) => (
@@ -3578,12 +3762,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                                       crosslinks={whsCrosslinks}
                                                       onCrosslinkClick={handleCrosslinkClick}
                                                       onLawReferenceClick={handleLawReferenceClick}
+                                                      onLawReferenceHover={handleLawReferenceHover}
+                                                      onLawReferenceLeave={handleLawReferenceLeave}
                                                     />
                                                   )}
                                                 />
                                               ) : (
                                                 /* Original content when no translation */
-                                                <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} />
+                                                <FormattedText text={section.content} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} onLawReferenceHover={handleLawReferenceHover} onLawReferenceLeave={handleLawReferenceLeave} />
                                               )}
                                             </>
                                           ) : (
@@ -3659,7 +3845,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                         </div>
                       ) : (
                         /* Raw text fallback */
-                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} />
+                        <FormattedText text={getCleanLawText(selectedLaw.content?.full_text || selectedLaw.content?.text)} searchTerm={contentSearchTerm} crosslinks={whsCrosslinks} onCrosslinkClick={handleCrosslinkClick} onLawReferenceClick={handleLawReferenceClick} onLawReferenceHover={handleLawReferenceHover} onLawReferenceLeave={handleLawReferenceLeave} />
                       )}
 
                     </div>
@@ -3925,6 +4111,170 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Paragraph Hover Preview Popup */}
+      {paragraphPreview.open && paragraphPreview.section && (
+        <div
+          className="paragraph-preview-popup fixed z-50 bg-white dark:bg-whs-dark-800 rounded-lg shadow-2xl border border-gray-200 dark:border-whs-dark-600 max-w-md max-h-80 overflow-hidden"
+          style={{
+            left: Math.min(Math.max(paragraphPreview.x, 220), window.innerWidth - 220),
+            top: Math.min(paragraphPreview.y, window.innerHeight - 340),
+            transform: 'translateX(-50%)'
+          }}
+          onMouseEnter={() => {
+            // Keep popup open when mouse enters the popup itself
+            if (paragraphPreviewTimeoutRef.current) {
+              clearTimeout(paragraphPreviewTimeoutRef.current)
+              paragraphPreviewTimeoutRef.current = null
+            }
+          }}
+          onMouseLeave={closeParagraphPreview}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between gap-2 p-3 bg-gradient-to-r from-whs-orange-500 to-whs-orange-600 text-white">
+            <div className="flex items-center gap-2 min-w-0">
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span className="font-bold text-sm">{paragraphPreview.section.number}</span>
+              {paragraphPreview.section.title && (
+                <span className="text-sm opacity-90 truncate">{paragraphPreview.section.title}</span>
+              )}
+            </div>
+            <button
+              onClick={closeParagraphPreview}
+              className="flex-shrink-0 p-1 hover:bg-white/20 rounded transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Content Preview */}
+          <div className="p-4 overflow-y-auto max-h-56">
+            {/* WHS Topics */}
+            {paragraphPreview.section.whs_topics && paragraphPreview.section.whs_topics.length > 0 && (
+              <div className="flex flex-wrap gap-1 mb-3">
+                {paragraphPreview.section.whs_topics.slice(0, 3).map(topic => (
+                  <span
+                    key={topic.id}
+                    className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-whs-orange-100 dark:bg-whs-orange-900/30 text-whs-orange-700 dark:text-whs-orange-300"
+                  >
+                    {WHS_TOPIC_LABELS[topic.id] || topic.id}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Content excerpt */}
+            <div className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              {paragraphPreview.section.content ? (
+                <p className="line-clamp-6">
+                  {paragraphPreview.section.content.substring(0, 500)}
+                  {paragraphPreview.section.content.length > 500 && '...'}
+                </p>
+              ) : (
+                <p className="text-gray-400 dark:text-gray-500 italic">
+                  {t.lawBrowser?.noContentPreview || 'No content available'}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Footer - Click to expand hint */}
+          <div className="px-4 py-2 bg-gray-50 dark:bg-whs-dark-700 border-t border-gray-100 dark:border-whs-dark-600">
+            <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+              </svg>
+              {t.lawBrowser?.clickToExpand || 'Click section header to expand full content'}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Law Reference Hover Preview Popup (for §4, Artikel 5, etc. in text) */}
+      {lawRefPreview.open && lawRefPreview.section && (
+        <div
+          className="law-ref-preview-popup fixed z-50 bg-white dark:bg-whs-dark-800 rounded-lg shadow-2xl border border-blue-200 dark:border-blue-800 max-w-md max-h-80 overflow-hidden"
+          style={{
+            left: Math.min(Math.max(lawRefPreview.x, 220), window.innerWidth - 220),
+            top: Math.min(lawRefPreview.y, window.innerHeight - 340),
+            transform: 'translateX(-50%)'
+          }}
+          onMouseEnter={() => {
+            // Keep popup open when mouse enters the popup itself
+            if (lawRefPreviewTimeoutRef.current) {
+              clearTimeout(lawRefPreviewTimeoutRef.current)
+              lawRefPreviewTimeoutRef.current = null
+            }
+          }}
+          onMouseLeave={closeLawRefPreview}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between gap-2 p-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+            <div className="flex items-center gap-2 min-w-0">
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+              </svg>
+              <span className="font-bold text-sm">{lawRefPreview.section.number}</span>
+              {lawRefPreview.section.title && (
+                <span className="text-sm opacity-90 truncate">{lawRefPreview.section.title}</span>
+              )}
+            </div>
+            <button
+              onClick={closeLawRefPreview}
+              className="flex-shrink-0 p-1 hover:bg-white/20 rounded transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Content Preview */}
+          <div className="p-4 overflow-y-auto max-h-56">
+            {/* WHS Topics */}
+            {lawRefPreview.section.whs_topics && lawRefPreview.section.whs_topics.length > 0 && (
+              <div className="flex flex-wrap gap-1 mb-3">
+                {lawRefPreview.section.whs_topics.slice(0, 3).map(topic => (
+                  <span
+                    key={topic.id}
+                    className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
+                  >
+                    {WHS_TOPIC_LABELS[topic.id] || topic.id}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Content excerpt */}
+            <div className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              {lawRefPreview.section.content ? (
+                <p className="line-clamp-6">
+                  {lawRefPreview.section.content.substring(0, 500)}
+                  {lawRefPreview.section.content.length > 500 && '...'}
+                </p>
+              ) : (
+                <p className="text-gray-400 dark:text-gray-500 italic">
+                  {t.lawBrowser?.noContentPreview || 'No content available'}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Footer - Click to navigate hint */}
+          <div className="px-4 py-2 bg-gray-50 dark:bg-whs-dark-700 border-t border-gray-100 dark:border-whs-dark-600">
+            <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+              </svg>
+              {t.lawBrowser?.clickToNavigate || 'Click to navigate to this section'}
+            </p>
           </div>
         </div>
       )}
