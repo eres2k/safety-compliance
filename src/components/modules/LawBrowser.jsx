@@ -2274,7 +2274,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         // Find the section by number in lawSections (which are already parsed for current law)
         const targetSectionNum = lawInfo.section
         const section = lawSections.find(s => {
-          const sectionNum = s.number?.replace(/[§\s]/g, '')
+          // Handle both German (§) and Dutch (Artikel) formats
+          const sectionNum = s.number?.replace(/[§\s]/g, '').replace(/^Artikel/i, '')
           return sectionNum === targetSectionNum
         })
 
@@ -2294,7 +2295,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         for (const chapter of targetLaw.chapters) {
           if (chapter.sections) {
             for (const section of chapter.sections) {
-              const sectionNum = section.number?.replace(/[§\s]/g, '')
+              // Handle both German (§) and Dutch (Artikel) formats
+              const sectionNum = section.number?.replace(/[§\s]/g, '').replace(/^Artikel/i, '')
               if (sectionNum === lawInfo.section) {
                 // Found the section - expand it and scroll to it
                 setTimeout(() => {
@@ -2355,20 +2357,27 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         // Check if it's the current law - use lawSections for faster lookup
         if (targetLaw.id === selectedLaw?.id) {
           targetSection = lawSections.find(s => {
-            const sectionNum = s.number?.replace(/[§\s]/g, '')
+            // Handle both German (§) and Dutch (Artikel) formats
+            const sectionNum = s.number?.replace(/[§\s]/g, '').replace(/^Artikel/i, '')
             return sectionNum === lawInfo.section
           })
         } else if (targetLaw.chapters) {
           // Different law - search through chapters
+          const isNLLaw = targetLaw.jurisdiction === 'NL'
           for (const chapter of targetLaw.chapters) {
             if (chapter.sections) {
               for (const section of chapter.sections) {
-                const sectionNum = section.number?.replace(/[§\s]/g, '')
+                // Handle both German (§) and Dutch (Artikel) formats
+                const sectionNum = section.number?.replace(/[§\s]/g, '').replace(/^Artikel/i, '')
                 if (sectionNum === lawInfo.section) {
                   // Build a section object similar to lawSections format
+                  // Use appropriate prefix based on jurisdiction
+                  const displayNumber = section.number?.startsWith('§') || section.number?.startsWith('Artikel')
+                    ? section.number
+                    : isNLLaw ? `Artikel ${section.number}` : `§ ${section.number}`
                   targetSection = {
                     id: section.id,
-                    number: section.number?.startsWith('§') ? section.number : `§ ${section.number}`,
+                    number: displayNumber,
                     title: section.title,
                     content: section.text || section.content,
                     whs_topics: section.whs_topics,
@@ -3616,7 +3625,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                                         )}
 
                                         {/* Feature 2: Complexity Slider + Translate Button - per-section reading level */}
-                                        <div className="mb-3 flex flex-wrap items-center gap-3">
+                                        <div className="mb-3 flex items-center gap-3 flex-nowrap overflow-x-auto">
                                           <ComplexitySlider
                                             currentLevel={sectionComplexityLevels[section.id] || 'legal'}
                                             onLevelChange={(level) => handleComplexityChange(level, section)}
