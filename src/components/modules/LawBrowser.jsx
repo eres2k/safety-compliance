@@ -176,6 +176,7 @@ function getSimilarity(str1, str2) {
 }
 
 // Highlight search term in text - returns JSX with highlighted matches
+// Adds data-search-match attribute for navigation between matches
 function highlightText(text, searchTerm) {
   if (!text || !searchTerm || searchTerm.trim().length === 0) {
     return text
@@ -196,7 +197,8 @@ function highlightText(text, searchTerm) {
       return (
         <mark
           key={index}
-          className="bg-yellow-300 dark:bg-yellow-500/50 text-gray-900 dark:text-white px-0.5 rounded"
+          data-search-match="true"
+          className="bg-yellow-300 dark:bg-yellow-500/50 text-gray-900 dark:text-white px-0.5 rounded transition-all"
         >
           {part}
         </mark>
@@ -1159,6 +1161,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
   const [activeSection, setActiveSection] = useState(null)
   const [searchInLaw, setSearchInLaw] = useState('') // Section number/title filter
   const [contentSearchTerm, setContentSearchTerm] = useState('') // Full text content search
+  const [currentMatchIndex, setCurrentMatchIndex] = useState(0) // Current match navigation index
+  const [totalMatchCount, setTotalMatchCount] = useState(0) // Total matches found
   const [relevanceFilter, setRelevanceFilter] = useState('all') // all, critical, high, medium, low
   const [isLoading, setIsLoading] = useState(false)
   const [prevFramework, setPrevFramework] = useState(framework)
@@ -1842,6 +1846,72 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
 
     return filtered
   }, [lawSections, searchInLaw, contentSearchTerm, relevanceFilter])
+
+  // Calculate total match count across all filtered sections
+  useEffect(() => {
+    if (!contentSearchTerm.trim()) {
+      setTotalMatchCount(0)
+      setCurrentMatchIndex(0)
+      return
+    }
+
+    const term = contentSearchTerm.trim().toLowerCase()
+    const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const regex = new RegExp(escapedTerm, 'gi')
+
+    let count = 0
+    filteredSections.forEach(section => {
+      // Count matches in content
+      if (section.content) {
+        const contentMatches = section.content.match(regex)
+        count += contentMatches ? contentMatches.length : 0
+      }
+      // Count matches in title
+      if (section.title) {
+        const titleMatches = section.title.match(regex)
+        count += titleMatches ? titleMatches.length : 0
+      }
+    })
+
+    setTotalMatchCount(count)
+    setCurrentMatchIndex(count > 0 ? 1 : 0)
+  }, [filteredSections, contentSearchTerm])
+
+  // Navigate to specific match by index
+  const navigateToMatch = useCallback((index) => {
+    if (totalMatchCount === 0 || !contentSearchTerm.trim()) return
+
+    // Normalize index (1-based, wrapping)
+    let targetIndex = index
+    if (targetIndex < 1) targetIndex = totalMatchCount
+    if (targetIndex > totalMatchCount) targetIndex = 1
+
+    setCurrentMatchIndex(targetIndex)
+
+    // Find all highlight marks in order
+    const marks = document.querySelectorAll('[data-search-match="true"]')
+    if (marks.length > 0 && targetIndex <= marks.length) {
+      const targetMark = marks[targetIndex - 1]
+
+      // Remove active class from all marks
+      marks.forEach(m => m.classList.remove('ring-2', 'ring-whs-orange-500'))
+
+      // Add active class to target mark
+      targetMark.classList.add('ring-2', 'ring-whs-orange-500')
+
+      // Scroll to the mark
+      targetMark.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [totalMatchCount, contentSearchTerm])
+
+  // Navigate to next/previous match
+  const goToNextMatch = useCallback(() => {
+    navigateToMatch(currentMatchIndex + 1)
+  }, [navigateToMatch, currentMatchIndex])
+
+  const goToPrevMatch = useCallback(() => {
+    navigateToMatch(currentMatchIndex - 1)
+  }, [navigateToMatch, currentMatchIndex])
 
   // Related laws state (loaded async)
   const [relatedLaws, setRelatedLaws] = useState([])
@@ -3054,6 +3124,16 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                         type="text"
                         value={contentSearchTerm}
                         onChange={(e) => setContentSearchTerm(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && totalMatchCount > 0) {
+                            e.preventDefault()
+                            if (e.shiftKey) {
+                              goToPrevMatch()
+                            } else {
+                              goToNextMatch()
+                            }
+                          }
+                        }}
                         placeholder={t.common?.fullTextSearch || "Full text search in this law..."}
                         className="relative w-full pl-10 pr-10 py-2.5 text-sm bg-white dark:bg-whs-dark-700/80 border border-gray-200 dark:border-whs-dark-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-whs-orange-500/50 focus:border-whs-orange-500 transition-all shadow-sm placeholder:text-gray-400"
                       />
@@ -3069,11 +3149,44 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                       )}
                     </div>
                     {contentSearchTerm && (
-                      <div className="flex items-center gap-2 mt-2">
-                        <span className="w-2 h-2 rounded-full bg-whs-orange-500 animate-pulse"></span>
-                        <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
-                          Found <span className="text-whs-orange-600 dark:text-whs-orange-400 font-bold">{filteredSections.length}</span> matching section{filteredSections.length !== 1 ? 's' : ''}
-                        </p>
+                      <div className="flex items-center justify-between mt-2">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-whs-orange-500 animate-pulse"></span>
+                          <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                            {totalMatchCount > 0 ? (
+                              <>
+                                <span className="text-whs-orange-600 dark:text-whs-orange-400 font-bold">{currentMatchIndex}</span>
+                                <span className="mx-0.5">/</span>
+                                <span className="text-whs-orange-600 dark:text-whs-orange-400 font-bold">{totalMatchCount}</span>
+                                {' '}match{totalMatchCount !== 1 ? 'es' : ''} in {filteredSections.length} section{filteredSections.length !== 1 ? 's' : ''}
+                              </>
+                            ) : (
+                              <>No matches found</>
+                            )}
+                          </p>
+                        </div>
+                        {totalMatchCount > 0 && (
+                          <div className="flex items-center gap-1">
+                            <button
+                              onClick={goToPrevMatch}
+                              className="p-1.5 text-gray-500 hover:text-whs-orange-600 dark:text-gray-400 dark:hover:text-whs-orange-400 hover:bg-gray-100 dark:hover:bg-whs-dark-600 rounded-lg transition-all"
+                              title="Previous match (↑)"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={goToNextMatch}
+                              className="p-1.5 text-gray-500 hover:text-whs-orange-600 dark:text-gray-400 dark:hover:text-whs-orange-400 hover:bg-gray-100 dark:hover:bg-whs-dark-600 rounded-lg transition-all"
+                              title="Next match (↓)"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </button>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
