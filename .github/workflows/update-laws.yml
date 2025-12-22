@@ -133,12 +133,11 @@ jobs:
 
           # Generate commit message with update summary
           CHANGES=$(cd eu_safety_laws && python law_manager.py status 2>/dev/null | head -20 || echo "Database updated")
+          UPDATE_DATE=$(date -u +'%Y-%m-%d')
 
-          git commit -m "chore: auto-update safety laws database
-
-Updates from scheduled check on $(date -u +'%Y-%m-%d')
-
-$CHANGES"
+          git commit -m "chore: auto-update safety laws database" \
+            -m "Updates from scheduled check on ${UPDATE_DATE}" \
+            -m "${CHANGES}"
 
           git push
 
