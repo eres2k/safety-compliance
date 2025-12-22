@@ -3,10 +3,20 @@ import { useApp } from '../../context/AppContext'
 import { Card, CardContent } from '../ui'
 import { getAllLawsSync, WHS_TOPIC_LABELS } from '../../services/euLawsDatabase'
 
+// Import quiz questions from separate JSON files
+import quizQuestionsAT from '../../data/quiz_at.json'
+import quizQuestionsDE from '../../data/quiz_de.json'
+import quizQuestionsNL from '../../data/quiz_nl.json'
+
 /**
  * Safety Quiz Game - Interactive quiz for safety coordinators
  * Tests knowledge of workplace safety laws and regulations
  * Integrated with the laws database and PDFs
+ *
+ * Quiz database: 150 questions total (50 per country)
+ * - AT: Austrian safety laws (ASchG, AAV, etc.)
+ * - DE: German safety laws (ArbSchG, GefStoffV, ASR, etc.)
+ * - NL: Dutch safety laws (Arbowet, Arbobesluit, etc.)
  */
 
 // Quiz categories based on WHS topics
@@ -21,258 +31,11 @@ const QUIZ_CATEGORIES = [
   { id: 'ergonomics', label: 'Ergonomie', labelEn: 'Ergonomics', icon: '🧘', color: 'teal' },
 ]
 
-// Quiz questions database - generated from law content
+// Quiz questions database - loaded from separate JSON files per country
 const QUIZ_QUESTIONS = {
-  AT: [
-    {
-      id: 'at-1',
-      category: 'general',
-      type: 'multiple_choice',
-      question: 'Welches Gesetz bildet die Grundlage für den Arbeitnehmerschutz in Österreich?',
-      questionEn: 'Which law forms the basis for employee protection in Austria?',
-      options: ['ASchG', 'BauV', 'AAV', 'GKV'],
-      correctAnswer: 0,
-      explanation: 'Das ArbeitnehmerInnenschutzgesetz (ASchG) ist das zentrale Gesetz für den Arbeitsschutz in Österreich.',
-      explanationEn: 'The Employee Protection Act (ASchG) is the central law for occupational safety in Austria.',
-      lawRef: { abbreviation: 'ASchG', section: '§ 1' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'at-2',
-      category: 'first_aid',
-      type: 'multiple_choice',
-      question: 'Ab wie vielen Arbeitnehmern muss ein Ersthelfer bestellt werden gemäß ASchG?',
-      questionEn: 'From how many employees must a first aider be appointed according to ASchG?',
-      options: ['Ab 5 Arbeitnehmern', 'Ab 10 Arbeitnehmern', 'Ab 15 Arbeitnehmern', 'Ab 20 Arbeitnehmern'],
-      correctAnswer: 0,
-      explanation: 'Nach § 26 ASchG ist ab 5 regelmäßig beschäftigten Arbeitnehmern mindestens ein Ersthelfer zu bestellen.',
-      explanationEn: 'According to § 26 ASchG, at least one first aider must be appointed for 5 or more regularly employed workers.',
-      lawRef: { abbreviation: 'ASchG', section: '§ 26' },
-      difficulty: 'medium',
-      points: 15
-    },
-    {
-      id: 'at-3',
-      category: 'training',
-      type: 'true_false',
-      question: 'Unterweisungen müssen gemäß ASchG mindestens einmal jährlich wiederholt werden.',
-      questionEn: 'Instructions must be repeated at least once a year according to ASchG.',
-      correctAnswer: true,
-      explanation: 'Gemäß § 14 Abs. 2 ASchG sind Unterweisungen in regelmäßigen Abständen, mindestens jedoch einmal jährlich zu wiederholen.',
-      explanationEn: 'According to § 14 para. 2 ASchG, instructions must be repeated at regular intervals, at least once a year.',
-      lawRef: { abbreviation: 'ASchG', section: '§ 14' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'at-4',
-      category: 'risk_assessment',
-      type: 'multiple_choice',
-      question: 'Wer ist für die Durchführung der Gefährdungsbeurteilung verantwortlich?',
-      questionEn: 'Who is responsible for carrying out the risk assessment?',
-      options: ['Der Arbeitgeber', 'Die Sicherheitsfachkraft', 'Der Betriebsrat', 'Das Arbeitsinspektorat'],
-      correctAnswer: 0,
-      explanation: 'Nach § 4 ASchG ist der Arbeitgeber für die Ermittlung und Beurteilung der Gefahren verantwortlich.',
-      explanationEn: 'According to § 4 ASchG, the employer is responsible for identifying and assessing hazards.',
-      lawRef: { abbreviation: 'ASchG', section: '§ 4' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'at-5',
-      category: 'ppe',
-      type: 'multiple_choice',
-      question: 'Wann muss Persönliche Schutzausrüstung (PSA) vom Arbeitgeber zur Verfügung gestellt werden?',
-      questionEn: 'When must Personal Protective Equipment (PPE) be provided by the employer?',
-      options: [
-        'Wenn technische und organisatorische Maßnahmen nicht ausreichen',
-        'Immer und überall',
-        'Nur auf Wunsch der Arbeitnehmer',
-        'Nur bei gefährlichen Arbeiten'
-      ],
-      correctAnswer: 0,
-      explanation: 'PSA ist nach dem TOP-Prinzip die letzte Maßnahme: Technische vor Organisatorischen vor Persönlichen Schutzmaßnahmen.',
-      explanationEn: 'PPE follows the TOP principle: Technical before Organizational before Personal protective measures.',
-      lawRef: { abbreviation: 'ASchG', section: '§ 69-70' },
-      difficulty: 'medium',
-      points: 15
-    },
-    {
-      id: 'at-6',
-      category: 'workplace_design',
-      type: 'fill_blank',
-      question: 'Die Mindesttemperatur in Arbeitsräumen mit überwiegend sitzender Tätigkeit beträgt ___ °C.',
-      questionEn: 'The minimum temperature in work rooms with predominantly sedentary work is ___ °C.',
-      correctAnswer: '19',
-      acceptedAnswers: ['19', '19°', '19 grad', '19°C'],
-      explanation: 'Nach der AAV muss die Raumtemperatur bei vorwiegend sitzender Tätigkeit mindestens 19°C betragen.',
-      explanationEn: 'According to AAV, the room temperature must be at least 19°C for predominantly sedentary work.',
-      lawRef: { abbreviation: 'AAV', section: '§ 28' },
-      difficulty: 'hard',
-      points: 20
-    },
-  ],
-  DE: [
-    {
-      id: 'de-1',
-      category: 'general',
-      type: 'multiple_choice',
-      question: 'Welches Gesetz regelt den Arbeitsschutz in Deutschland grundlegend?',
-      questionEn: 'Which law fundamentally regulates occupational safety in Germany?',
-      options: ['Arbeitsschutzgesetz (ArbSchG)', 'Betriebssicherheitsverordnung', 'Arbeitsstättenverordnung', 'Gefahrstoffverordnung'],
-      correctAnswer: 0,
-      explanation: 'Das Arbeitsschutzgesetz (ArbSchG) ist das zentrale Gesetz für den Arbeitsschutz in Deutschland.',
-      explanationEn: 'The Occupational Safety and Health Act (ArbSchG) is the central law for occupational safety in Germany.',
-      lawRef: { abbreviation: 'ArbSchG', section: '§ 1' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'de-2',
-      category: 'risk_assessment',
-      type: 'multiple_choice',
-      question: 'Wie oft muss die Gefährdungsbeurteilung aktualisiert werden?',
-      questionEn: 'How often must the risk assessment be updated?',
-      options: [
-        'Bei wesentlichen Änderungen der Arbeitsbedingungen',
-        'Einmal jährlich',
-        'Alle 5 Jahre',
-        'Nur bei Unfällen'
-      ],
-      correctAnswer: 0,
-      explanation: 'Nach § 3 ArbSchG muss die Gefährdungsbeurteilung bei wesentlichen Änderungen aktualisiert werden.',
-      explanationEn: 'According to § 3 ArbSchG, the risk assessment must be updated when there are significant changes.',
-      lawRef: { abbreviation: 'ArbSchG', section: '§ 3' },
-      difficulty: 'medium',
-      points: 15
-    },
-    {
-      id: 'de-3',
-      category: 'training',
-      type: 'true_false',
-      question: 'Die Unterweisung muss während der Arbeitszeit erfolgen.',
-      questionEn: 'Instruction must take place during working hours.',
-      correctAnswer: true,
-      explanation: 'Gemäß § 12 Abs. 1 ArbSchG hat die Unterweisung während der Arbeitszeit zu erfolgen.',
-      explanationEn: 'According to § 12 para. 1 ArbSchG, instruction must take place during working hours.',
-      lawRef: { abbreviation: 'ArbSchG', section: '§ 12' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'de-4',
-      category: 'first_aid',
-      type: 'multiple_choice',
-      question: 'Wie viele Ersthelfer sind bei 2-20 anwesenden Versicherten erforderlich (DGUV Vorschrift 1)?',
-      questionEn: 'How many first aiders are required for 2-20 insured persons present (DGUV Regulation 1)?',
-      options: ['1 Ersthelfer', '2 Ersthelfer', '3 Ersthelfer', '5% der Belegschaft'],
-      correctAnswer: 0,
-      explanation: 'Nach DGUV Vorschrift 1 ist bei 2 bis 20 anwesenden Versicherten ein Ersthelfer erforderlich.',
-      explanationEn: 'According to DGUV Regulation 1, one first aider is required for 2 to 20 insured persons present.',
-      lawRef: { abbreviation: 'DGUV Vorschrift 1', section: '§ 26' },
-      difficulty: 'medium',
-      points: 15
-    },
-    {
-      id: 'de-5',
-      category: 'hazardous_substances',
-      type: 'multiple_choice',
-      question: 'Welche Verordnung regelt den Umgang mit Gefahrstoffen am Arbeitsplatz?',
-      questionEn: 'Which regulation governs the handling of hazardous substances in the workplace?',
-      options: ['Gefahrstoffverordnung (GefStoffV)', 'Chemikaliengesetz', 'REACH-Verordnung', 'CLP-Verordnung'],
-      correctAnswer: 0,
-      explanation: 'Die Gefahrstoffverordnung (GefStoffV) regelt den Umgang mit Gefahrstoffen am Arbeitsplatz in Deutschland.',
-      explanationEn: 'The Hazardous Substances Ordinance (GefStoffV) regulates the handling of hazardous substances in the workplace in Germany.',
-      lawRef: { abbreviation: 'GefStoffV', section: '§ 1' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'de-6',
-      category: 'workplace_design',
-      type: 'fill_blank',
-      question: 'Die Mindestgrundfläche je Arbeitsplatz beträgt nach ASR A1.2 mindestens ___ m².',
-      questionEn: 'The minimum floor space per workplace according to ASR A1.2 is at least ___ m².',
-      correctAnswer: '8',
-      acceptedAnswers: ['8', '8 m2', '8m²', 'acht'],
-      explanation: 'Nach ASR A1.2 beträgt die Mindestgrundfläche 8 m² für den ersten Arbeitsplatz.',
-      explanationEn: 'According to ASR A1.2, the minimum floor space is 8 m² for the first workplace.',
-      lawRef: { abbreviation: 'ASR A1.2', section: 'Abschnitt 5' },
-      difficulty: 'hard',
-      points: 20
-    },
-    {
-      id: 'de-7',
-      category: 'ergonomics',
-      type: 'true_false',
-      question: 'Bei Bildschirmarbeit muss der Arbeitgeber eine Untersuchung der Augen anbieten.',
-      questionEn: 'For screen work, the employer must offer an eye examination.',
-      correctAnswer: true,
-      explanation: 'Nach der Arbeitsstättenverordnung Anhang 6 müssen Arbeitgeber bei Bildschirmarbeit Vorsorgeuntersuchungen anbieten.',
-      explanationEn: 'According to the Workplace Ordinance Annex 6, employers must offer preventive examinations for screen work.',
-      lawRef: { abbreviation: 'ArbStättV', section: 'Anhang 6' },
-      difficulty: 'medium',
-      points: 15
-    },
-  ],
-  NL: [
-    {
-      id: 'nl-1',
-      category: 'general',
-      type: 'multiple_choice',
-      question: 'Welke wet vormt de basis voor arbeidsomstandigheden in Nederland?',
-      questionEn: 'Which law forms the basis for working conditions in the Netherlands?',
-      options: ['Arbeidsomstandighedenwet (Arbowet)', 'Arbeidstijdenwet', 'Arbobesluit', 'Wet BIG'],
-      correctAnswer: 0,
-      explanation: 'De Arbeidsomstandighedenwet (Arbowet) is de belangrijkste wet voor arbeidsomstandigheden in Nederland.',
-      explanationEn: 'The Working Conditions Act (Arbowet) is the main law for working conditions in the Netherlands.',
-      lawRef: { abbreviation: 'Arbowet', section: 'Art. 1' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'nl-2',
-      category: 'risk_assessment',
-      type: 'multiple_choice',
-      question: 'Wat is de Nederlandse term voor Gefährdungsbeurteilung?',
-      questionEn: 'What is the Dutch term for risk assessment?',
-      options: ['RI&E (Risico-Inventarisatie en -Evaluatie)', 'Veiligheidsplan', 'Arbobeleid', 'Preventiemedewerker'],
-      correctAnswer: 0,
-      explanation: 'RI&E staat voor Risico-Inventarisatie en -Evaluatie en is verplicht voor alle werkgevers.',
-      explanationEn: 'RI&E stands for Risk Inventory and Evaluation and is mandatory for all employers.',
-      lawRef: { abbreviation: 'Arbowet', section: 'Art. 5' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'nl-3',
-      category: 'first_aid',
-      type: 'multiple_choice',
-      question: 'Wie is verantwoordelijk voor bedrijfshulpverlening (BHV)?',
-      questionEn: 'Who is responsible for company emergency response (BHV)?',
-      options: ['De werkgever', 'De preventiemedewerker', 'De ondernemingsraad', 'De Arbeidsinspectie'],
-      correctAnswer: 0,
-      explanation: 'Volgens Arbowet Art. 15 is de werkgever verantwoordelijk voor het organiseren van BHV.',
-      explanationEn: 'According to Arbowet Art. 15, the employer is responsible for organizing company emergency response.',
-      lawRef: { abbreviation: 'Arbowet', section: 'Art. 15' },
-      difficulty: 'easy',
-      points: 10
-    },
-    {
-      id: 'nl-4',
-      category: 'training',
-      type: 'true_false',
-      question: 'Werknemers moeten voorlichting krijgen over de gevaren op het werk.',
-      questionEn: 'Employees must receive information about hazards at work.',
-      correctAnswer: true,
-      explanation: 'Volgens Arbowet Art. 8 moet de werkgever werknemers voorlichting geven over gevaren en maatregelen.',
-      explanationEn: 'According to Arbowet Art. 8, the employer must inform employees about hazards and measures.',
-      lawRef: { abbreviation: 'Arbowet', section: 'Art. 8' },
-      difficulty: 'easy',
-      points: 10
-    },
-  ]
+  AT: quizQuestionsAT,
+  DE: quizQuestionsDE,
+  NL: quizQuestionsNL
 }
 
 // Difficulty colors
