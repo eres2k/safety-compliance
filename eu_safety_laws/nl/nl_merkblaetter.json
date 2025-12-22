@@ -2,7 +2,7 @@
   "metadata": {
     "country": "NL",
     "type": "merkblaetter",
-    "generated_at": "2025-12-22T22:50:01.804662",
+    "generated_at": "2025-12-22T23:58:06.996590",
     "document_count": 5,
     "scraper_version": "8.0.0",
     "sources": [
@@ -12,7 +12,7 @@
   },
   "documents": [
     {
-      "id": "6d52ce591f9d85b8",
+      "id": "724f9900e5231970",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -45,7 +45,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Hoveniers_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:35.776473",
+        "scraped_at": "2025-12-22T23:57:26.670337",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -65,7 +65,7 @@
       "content_hash": "f05b355b016c5738f09edc515fdf8e8a"
     },
     {
-      "id": "a88c3edc0e8209c9",
+      "id": "63d1df2d3850be4c",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -98,7 +98,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Kantoor_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:36.500924",
+        "scraped_at": "2025-12-22T23:57:27.400094",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -118,7 +118,7 @@
       "content_hash": "9c367985dd4d1152158ede4ba4f661eb"
     },
     {
-      "id": "55b16ce1f0500fc8",
+      "id": "4cbada891d41fcdd",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -151,7 +151,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Linnen_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:49:19.701273",
+        "scraped_at": "2025-12-22T23:57:35.739684",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -171,7 +171,7 @@
       "content_hash": "f526beaf6a3226336a8e465ea7cc00b8"
     },
     {
-      "id": "ee204467ca0d2e68",
+      "id": "92e857e9aca2a96e",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -204,7 +204,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Retail_Mode_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:49:20.540617",
+        "scraped_at": "2025-12-22T23:57:36.553351",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -224,7 +224,7 @@
       "content_hash": "3bc28e5db7adad72a7411cd28ced2cd7"
     },
     {
-      "id": "9138a70d8e5175c2",
+      "id": "c33df2f9c88f15b0",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -257,7 +257,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Bloemen_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:49:21.219236",
+        "scraped_at": "2025-12-22T23:57:37.257679",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },

@@ -2,7 +2,7 @@
   "metadata": {
     "country": "DE",
     "type": "merkblaetter",
-    "generated_at": "2025-12-22T22:48:35.064545",
+    "generated_at": "2025-12-22T23:57:25.989746",
     "document_count": 9,
     "scraper_version": "8.0.0",
     "sources": [
@@ -12,7 +12,7 @@
   },
   "documents": [
     {
-      "id": "c573645edbea7a39",
+      "id": "a898b3c21d6990ff",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -45,7 +45,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-212-016_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:17.538717",
+        "scraped_at": "2025-12-22T23:57:15.033709",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -65,7 +65,7 @@
       "content_hash": "2f24ff261645fa60d48b18cae0bd4b68"
     },
     {
-      "id": "835048e1d0c39692",
+      "id": "457996dc1e7162d4",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -98,7 +98,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-034_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:19.095744",
+        "scraped_at": "2025-12-22T23:57:17.234063",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -118,7 +118,7 @@
       "content_hash": "d24722e8a4a01b400df1f8b20630213e"
     },
     {
-      "id": "13b604559fffd5ad",
+      "id": "e6490841b352ac99",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -151,7 +151,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-019_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:20.503858",
+        "scraped_at": "2025-12-22T23:57:18.657197",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -171,7 +171,7 @@
       "content_hash": "b0c0fc77a9bf7be91d7d644a3db059d8"
     },
     {
-      "id": "62f2eeef7f632bb8",
+      "id": "1ba38c65cf6ab13d",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -204,7 +204,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-209-030_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:22.124395",
+        "scraped_at": "2025-12-22T23:57:20.138826",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -224,7 +224,7 @@
       "content_hash": "cbf910941b815f98bc0f25e498c8bbcd"
     },
     {
-      "id": "38e8bc843b3bfb12",
+      "id": "c13e0a0ba83f3597",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -257,7 +257,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_DGUV-207-026_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:30.263376",
+        "scraped_at": "2025-12-22T23:57:21.845024",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -277,7 +277,7 @@
       "content_hash": "8af3ca4e9eca285fbc86318fc51f4431"
     },
     {
-      "id": "1854b1a45723dae5",
+      "id": "bc08db862eb25859",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -310,7 +310,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_V3_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:31.363403",
+        "scraped_at": "2025-12-22T23:57:22.507275",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -330,7 +330,7 @@
       "content_hash": "ce769f5878cdaf2557388aceed2b7287"
     },
     {
-      "id": "35aecd53e2ac7a90",
+      "id": "37301b62a06cf82a",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -363,7 +363,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_V3a_2_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:32.187926",
+        "scraped_at": "2025-12-22T23:57:23.355077",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -389,7 +389,7 @@
       "content_hash": "c63f38811a14e3d58b8bc413f8df8779"
     },
     {
-      "id": "d518391a8ca0141b",
+      "id": "7e8a09df9c3c3bdd",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -422,7 +422,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_2_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:33.100046",
+        "scraped_at": "2025-12-22T23:57:24.249697",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -442,7 +442,7 @@
       "content_hash": "005db43b20c9dff046d1f8909e16ee0a"
     },
     {
-      "id": "c380efdc92403629",
+      "id": "4220a326a7b03727",
       "version": "1.0.0",
       "country": "DE",
       "jurisdiction": "DE",
@@ -475,7 +475,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\de\\de_ASR_A1_3_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:34.263801",
+        "scraped_at": "2025-12-22T23:57:25.334715",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },

@@ -2,8 +2,8 @@
   "metadata": {
     "country": "AT",
     "type": "merkblaetter",
-    "generated_at": "2025-12-22T22:48:14.307298",
-    "document_count": 5,
+    "generated_at": "2025-12-22T23:57:11.641529",
+    "document_count": 10,
     "scraper_version": "8.0.0",
     "sources": [
       "AUVAScraper",
@@ -12,7 +12,7 @@
   },
   "documents": [
     {
-      "id": "b62b89d92d1ef125",
+      "id": "31245ecd87178e2a",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -45,7 +45,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_Jetzt_lesen_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:00.364372",
+        "scraped_at": "2025-12-22T23:57:05.684419",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -65,7 +65,7 @@
       "content_hash": "f40f7e6e49b5bfe46ee00793d1e7b469"
     },
     {
-      "id": "cdfcd70f16426402",
+      "id": "883c503bc14efacc",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -98,7 +98,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_012_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:01.560269",
+        "scraped_at": "2025-12-22T23:57:06.525154",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -118,7 +118,7 @@
       "content_hash": "98f52b9eb32d49930ff134e00a185e00"
     },
     {
-      "id": "f1405cd3d54330f7",
+      "id": "0b2ab69f6e4ab70b",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -151,7 +151,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_019_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:05.174775",
+        "scraped_at": "2025-12-22T23:57:07.320088",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -171,7 +171,7 @@
       "content_hash": "4b1b4906d0d3921ce13623c816e55bfd"
     },
     {
-      "id": "3269a880b44c4418",
+      "id": "7fad29b22334cb39",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -204,7 +204,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_022_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:05.977220",
+        "scraped_at": "2025-12-22T23:57:08.028381",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -224,7 +224,7 @@
       "content_hash": "09265b165b061a6a8c47c318ff3ac6b6"
     },
     {
-      "id": "ab3152da84992fe1",
+      "id": "b4a23b325f37165c",
       "version": "1.0.0",
       "country": "AT",
       "jurisdiction": "AT",
@@ -257,7 +257,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AUVA_M_plus_040_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-22T22:48:06.858206",
+        "scraped_at": "2025-12-22T23:57:08.792446",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -281,6 +281,295 @@
         "is_html_only": false
       },
       "content_hash": "5c7e73cccb489bf33cce7bad6ed321cd"
+    },
+    {
+      "id": "bb8fd19fd5967c6f",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AI Arbeitsstätten",
+      "title": "Gestaltung von Arbeitsstätten",
+      "title_en": "Workplace Design Guide",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Comprehensive guide to workplace facility requirements including lighting, room climate, escape routes, and first aid under AStV",
+      "full_text": "Comprehensive guide to workplace facility requirements including lighting, room climate, escape routes, and first aid under AStV",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsstaetten/Gestaltung_von_Arbeitsstaetten.pdf",
+        "authority": "Arbeitsinspektorat",
+        "title": "Gestaltung von Arbeitsstätten",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Arbeitsstätten_merkblatt.pdf",
+        "pdf_url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsstaetten/Gestaltung_von_Arbeitsstaetten.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Arbeitsstätten_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:57:09.352330",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "workplace_design",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "leitfaden",
+        "description": "Comprehensive guide to workplace facility requirements including lighting, room climate, escape routes, and first aid under AStV",
+        "filename": "at_AI_Arbeitsstätten_merkblatt.pdf",
+        "size_bytes": 377027,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "a9c88fb604f7d6da9f549b95be27171a"
+    },
+    {
+      "id": "a23d5a5e8f239968",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AI Telearbeit Ergonomie",
+      "title": "Leitfaden Ergonomisches Arbeiten in Telearbeit",
+      "title_en": "Ergonomic Telework Guide",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Ergonomic requirements for remote and home office work",
+      "full_text": "Ergonomic requirements for remote and home office work",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.arbeitsinspektion.gv.at/Arbeitsstaetten-_Arbeitsplaetze/Arbeitsplaetze/2025_Leitfaden_Ergonomisches-Arbeiten-in-Telearbeit_db_ua.pdf",
+        "authority": "Arbeitsinspektorat",
+        "title": "Leitfaden Ergonomisches Arbeiten in Telearbeit",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Telearbeit_Ergonomie_merkblatt.pdf",
+        "pdf_url": "https://www.arbeitsinspektion.gv.at/Arbeitsstaetten-_Arbeitsplaetze/Arbeitsplaetze/2025_Leitfaden_Ergonomisches-Arbeiten-in-Telearbeit_db_ua.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Telearbeit_Ergonomie_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:57:09.900781",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "leitfaden",
+        "description": "Ergonomic requirements for remote and home office work",
+        "filename": "at_AI_Telearbeit_Ergonomie_merkblatt.pdf",
+        "size_bytes": 355106,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "1b20a33e2dd565a6207b15b822dd16b1"
+    },
+    {
+      "id": "a1711076abdca2d7",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AI Telearbeit",
+      "title": "Leitfaden zum Arbeitnehmerinnen- und Arbeitnehmerschutz bei Telearbeit",
+      "title_en": "Telework Employee Protection Guide",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Employee protection requirements for telework arrangements",
+      "full_text": "Employee protection requirements for telework arrangements",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.arbeitsinspektion.gv.at/Arbeitsstaetten-_Arbeitsplaetze/Arbeitsplaetze/Telearbeit_Leitfaden-zum-Arbeitnehmerinnen-und-Arbeitnehmers.pdf",
+        "authority": "Arbeitsinspektorat",
+        "title": "Leitfaden zum Arbeitnehmerinnen- und Arbeitnehmerschutz bei Telearbeit",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Telearbeit_merkblatt.pdf",
+        "pdf_url": "https://www.arbeitsinspektion.gv.at/Arbeitsstaetten-_Arbeitsplaetze/Arbeitsplaetze/Telearbeit_Leitfaden-zum-Arbeitnehmerinnen-und-Arbeitnehmers.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Telearbeit_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:57:10.469326",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "ppe",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "leitfaden",
+        "description": "Employee protection requirements for telework arrangements",
+        "filename": "at_AI_Telearbeit_merkblatt.pdf",
+        "size_bytes": 342565,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "6175dfb335da9b40d3e1b84e87cf09bd"
+    },
+    {
+      "id": "736fa231b33c9899",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AI Brandalarm",
+      "title": "Erlass Brandalarm und Räumungsübungen",
+      "title_en": "Fire Alarm and Evacuation Drill Decree",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Fire alarm testing and evacuation drill requirements",
+      "full_text": "Fire alarm testing and evacuation drill requirements",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Gesundheit_im_Betrieb/Erlaesse/202006050401A__Erlass_Brandalarm_und_Raeumungsuebungen_gemae.pdf",
+        "authority": "Arbeitsinspektorat",
+        "title": "Erlass Brandalarm und Räumungsübungen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Brandalarm_merkblatt.pdf",
+        "pdf_url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Gesundheit_im_Betrieb/Erlaesse/202006050401A__Erlass_Brandalarm_und_Raeumungsuebungen_gemae.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Brandalarm_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:57:11.001803",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "fire_safety",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "erlass",
+        "description": "Fire alarm testing and evacuation drill requirements",
+        "filename": "at_AI_Brandalarm_merkblatt.pdf",
+        "size_bytes": 87903,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "eaa16bd246b0d4115eb5be5c8eefc503"
+    },
+    {
+      "id": "de1b6f73978bf88d",
+      "version": "1.0.0",
+      "country": "AT",
+      "jurisdiction": "AT",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "AI Lärm",
+      "title": "Gefährdungen durch Lärm am Arbeitsplatz",
+      "title_en": "Workplace Noise Hazards",
+      "category": "Supplementary",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Unterabschnitt",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Unterabschnitt",
+      "article_label": "§",
+      "text_content": "Noise exposure limits and hearing protection under VOLV",
+      "full_text": "Noise exposure limits and hearing protection under VOLV",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsplaetze/laerm_2010_folder.pdf",
+        "authority": "Arbeitsinspektorat",
+        "title": "Gefährdungen durch Lärm am Arbeitsplatz",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Lärm_merkblatt.pdf",
+        "pdf_url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsplaetze/laerm_2010_folder.pdf"
+      },
+      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\at\\at_AI_Lärm_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:57:11.540283",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [
+        {
+          "id": "workplace_design",
+          "relevance": "medium",
+          "match_count": 1
+        }
+      ],
+      "whs_summary": {},
+      "metadata": {
+        "series": "merkblatt",
+        "description": "Noise exposure limits and hearing protection under VOLV",
+        "filename": "at_AI_Lärm_merkblatt.pdf",
+        "size_bytes": 472620,
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "3301d6e30c61c7691bf95dc7bd71f598"
     }
   ]
 }
