@@ -440,22 +440,30 @@ export function getRateLimitStatus() {
   }
 }
 
-// Retry helper for transient failures
-async function fetchWithRetry(url, options, maxRetries = 2) {
+// Retry helper for transient failures with exponential backoff
+async function fetchWithRetry(url, options, maxRetries = 3) {
   for (let i = 0; i <= maxRetries; i++) {
     try {
       const response = await fetch(url, options)
 
-      // Retry on 503 (Service Unavailable) or 429 (Rate Limited)
-      if ((response.status === 503 || response.status === 429) && i < maxRetries) {
-        await new Promise(r => setTimeout(r, 1000 * (i + 1)))
+      // Retry on transient server errors:
+      // - 429: Rate Limited
+      // - 503: Service Unavailable
+      // - 504: Gateway Timeout (upstream server didn't respond in time)
+      const isRetryableStatus = response.status === 429 || response.status === 503 || response.status === 504
+      if (isRetryableStatus && i < maxRetries) {
+        const delay = Math.pow(2, i) * 1000 // Exponential backoff: 1s, 2s, 4s
+        console.log(`[AI Service] Retrying after ${response.status} error (attempt ${i + 1}/${maxRetries}, waiting ${delay}ms)`)
+        await new Promise(r => setTimeout(r, delay))
         continue
       }
 
       return response
     } catch (error) {
       if (i < maxRetries) {
-        await new Promise(r => setTimeout(r, 1000 * (i + 1)))
+        const delay = Math.pow(2, i) * 1000 // Exponential backoff: 1s, 2s, 4s
+        console.log(`[AI Service] Retrying after network error (attempt ${i + 1}/${maxRetries}, waiting ${delay}ms)`)
+        await new Promise(r => setTimeout(r, delay))
         continue
       }
       throw error
