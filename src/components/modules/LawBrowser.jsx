@@ -1661,9 +1661,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     return { regularLaws: regular, merkblaetter: supplements, lawPdfs: pdfs }
   }, [filteredLaws])
 
-  // Get unique subcategories from merkblaetter (for DE)
+  // Get unique subcategories from merkblaetter (for DE, AT, NL)
   const merkblaetterSubcategories = useMemo(() => {
-    if (framework !== 'DE') return []
+    if (!['DE', 'AT', 'NL'].includes(framework)) return []
     const subcats = new Set()
     for (const law of merkblaetter) {
       if (law.subcategory) {
@@ -1673,9 +1673,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     return Array.from(subcats).sort()
   }, [merkblaetter, framework])
 
-  // Filter merkblaetter by subcategory (for DE)
+  // Filter merkblaetter by subcategory (for DE, AT, NL)
   const filteredMerkblaetter = useMemo(() => {
-    if (framework !== 'DE' || selectedSubcategory === 'all') {
+    if (!['DE', 'AT', 'NL'].includes(framework) || selectedSubcategory === 'all') {
       return merkblaetter
     }
     return merkblaetter.filter(law => law.subcategory === selectedSubcategory)
@@ -2805,8 +2805,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                       <span className="text-xs text-blue-500 dark:text-blue-400">({filteredMerkblaetter.length})</span>
                     </div>
                   </button>
-                  {/* Subcategory filter dropdown for DE */}
-                  {!collapsedLeftSections.merkblaetter && framework === 'DE' && merkblaetterSubcategories.length > 0 && (
+                  {/* Subcategory filter dropdown for DE, AT, NL */}
+                  {!collapsedLeftSections.merkblaetter && ['DE', 'AT', 'NL'].includes(framework) && merkblaetterSubcategories.length > 0 && (
                     <div className="px-3 py-2 bg-blue-50/50 dark:bg-blue-900/10 border-b border-blue-100 dark:border-blue-800">
                       <select
                         value={selectedSubcategory}

@@ -3,7 +3,7 @@
     "country": "DE",
     "type": "merkblaetter",
     "generated_at": "2025-12-22T23:57:25.989746",
-    "document_count": 9,
+    "document_count": 14,
     "scraper_version": "8.0.0",
     "sources": [
       "DGUVScraper",
@@ -287,6 +287,7 @@
       "title": "ASR V3 - Gefährdungsbeurteilung",
       "title_en": "Risk Assessment",
       "category": "Supplementary",
+      "subcategory": "ASR",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -340,6 +341,7 @@
       "title": "ASR V3a.2 - Barrierefreie Gestaltung von Arbeitsstätten",
       "title_en": "Accessible Workplace Design",
       "category": "Supplementary",
+      "subcategory": "ASR",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -399,6 +401,7 @@
       "title": "ASR A1.2 - Raumabmessungen und Bewegungsflächen",
       "title_en": "Room Dimensions and Maneuvering Space",
       "category": "Supplementary",
+      "subcategory": "ASR",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -452,6 +455,7 @@
       "title": "ASR A1.3 - Sicherheits- und Gesundheitsschutzkennzeichnung",
       "title_en": "Safety and Health Signage",
       "category": "Supplementary",
+      "subcategory": "ASR",
       "structure_labels": {
         "grouping_1": "Abschnitt",
         "grouping_2": "Titel",
@@ -499,6 +503,271 @@
         "is_html_only": false
       },
       "content_hash": "2323e6a1529c5a85aa7b8b9e95c0480e"
+    },
+    {
+      "id": "asr_a1_8_merkblatt",
+      "version": "1.0.0",
+      "country": "DE",
+      "jurisdiction": "DE",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "ASR A1.8",
+      "title": "ASR A1.8 - Verkehrswege",
+      "title_en": "Traffic Routes",
+      "category": "Supplementary",
+      "subcategory": "ASR",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Titel",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Titel",
+      "article_label": "§",
+      "text_content": "Requirements for traffic routes in workplaces",
+      "full_text": "Requirements for traffic routes in workplaces",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-8.pdf?__blob=publicationFile",
+        "authority": "BAUA",
+        "title": "ASR A1.8 - Verkehrswege",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A1_8_merkblatt.pdf",
+        "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-8.pdf?__blob=publicationFile"
+      },
+      "pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A1_8_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:58:00.000000",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "asr",
+        "description": "Requirements for traffic routes in workplaces",
+        "filename": "de_ASR_A1_8_merkblatt.pdf",
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "asr_a1_8_auto_added"
+    },
+    {
+      "id": "asr_a2_1_merkblatt",
+      "version": "1.0.0",
+      "country": "DE",
+      "jurisdiction": "DE",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "ASR A2.1",
+      "title": "ASR A2.1 - Schutz vor Absturz und herabfallenden Gegenständen",
+      "title_en": "Protection Against Falls and Falling Objects",
+      "category": "Supplementary",
+      "subcategory": "ASR",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Titel",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Titel",
+      "article_label": "§",
+      "text_content": "Protection against falls from height and falling objects",
+      "full_text": "Protection against falls from height and falling objects",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-1.pdf?__blob=publicationFile",
+        "authority": "BAUA",
+        "title": "ASR A2.1 - Schutz vor Absturz und herabfallenden Gegenständen",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A2_1_merkblatt.pdf",
+        "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-1.pdf?__blob=publicationFile"
+      },
+      "pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A2_1_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:58:00.000000",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "asr",
+        "description": "Protection against falls from height and falling objects",
+        "filename": "de_ASR_A2_1_merkblatt.pdf",
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "asr_a2_1_auto_added"
+    },
+    {
+      "id": "asr_a2_2_merkblatt",
+      "version": "1.0.0",
+      "country": "DE",
+      "jurisdiction": "DE",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "ASR A2.2",
+      "title": "ASR A2.2 - Maßnahmen gegen Brände",
+      "title_en": "Fire Prevention Measures",
+      "category": "Supplementary",
+      "subcategory": "ASR",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Titel",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Titel",
+      "article_label": "§",
+      "text_content": "Fire prevention and fire extinguisher requirements",
+      "full_text": "Fire prevention and fire extinguisher requirements",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile",
+        "authority": "BAUA",
+        "title": "ASR A2.2 - Maßnahmen gegen Brände",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A2_2_merkblatt.pdf",
+        "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile"
+      },
+      "pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A2_2_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:58:00.000000",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "asr",
+        "description": "Fire prevention and fire extinguisher requirements",
+        "filename": "de_ASR_A2_2_merkblatt.pdf",
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "asr_a2_2_auto_added"
+    },
+    {
+      "id": "asr_a3_4_merkblatt",
+      "version": "1.0.0",
+      "country": "DE",
+      "jurisdiction": "DE",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "ASR A3.4",
+      "title": "ASR A3.4 - Beleuchtung",
+      "title_en": "Lighting",
+      "category": "Supplementary",
+      "subcategory": "ASR",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Titel",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Titel",
+      "article_label": "§",
+      "text_content": "Workplace lighting requirements",
+      "full_text": "Workplace lighting requirements",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-4.pdf?__blob=publicationFile",
+        "authority": "BAUA",
+        "title": "ASR A3.4 - Beleuchtung",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A3_4_merkblatt.pdf",
+        "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-4.pdf?__blob=publicationFile"
+      },
+      "pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A3_4_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:58:00.000000",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "asr",
+        "description": "Workplace lighting requirements",
+        "filename": "de_ASR_A3_4_merkblatt.pdf",
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "asr_a3_4_auto_added"
+    },
+    {
+      "id": "asr_a3_5_merkblatt",
+      "version": "1.0.0",
+      "country": "DE",
+      "jurisdiction": "DE",
+      "doc_type": "merkblatt",
+      "type": "merkblatt",
+      "abbreviation": "ASR A3.5",
+      "title": "ASR A3.5 - Raumtemperatur",
+      "title_en": "Room Temperature",
+      "category": "Supplementary",
+      "subcategory": "ASR",
+      "structure_labels": {
+        "grouping_1": "Abschnitt",
+        "grouping_2": "Titel",
+        "article": "§"
+      },
+      "grouping_1": "Abschnitt",
+      "grouping_2": "Titel",
+      "article_label": "§",
+      "text_content": "Workplace temperature requirements",
+      "full_text": "Workplace temperature requirements",
+      "ai_summary": "",
+      "source": {
+        "url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-5.pdf?__blob=publicationFile",
+        "authority": "BAUA",
+        "title": "ASR A3.5 - Raumtemperatur",
+        "robots_txt_compliant": true,
+        "source_type": "pdf",
+        "local_pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A3_5_merkblatt.pdf",
+        "pdf_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A3-5.pdf?__blob=publicationFile"
+      },
+      "pdf_path": "eu_safety_laws/pdfs/de/de_ASR_A3_5_merkblatt.pdf",
+      "pdf_available": true,
+      "scraping": {
+        "scraped_at": "2025-12-22T23:58:00.000000",
+        "scraper_version": "8.0.0",
+        "source_type": "pdf"
+      },
+      "chapters": [],
+      "sections": [],
+      "whs_topics": [],
+      "whs_summary": {},
+      "metadata": {
+        "series": "asr",
+        "description": "Workplace temperature requirements",
+        "filename": "de_ASR_A3_5_merkblatt.pdf",
+        "is_supplementary": true,
+        "is_pdf_only": true,
+        "is_html_only": false
+      },
+      "content_hash": "asr_a3_5_auto_added"
     }
   ]
 }
