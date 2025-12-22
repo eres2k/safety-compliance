@@ -2188,7 +2188,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
 
     // Find the matching law
     let targetLaw = null
-    let targetSection = null
+    let isCurrentLaw = false
 
     if (lawInfo.law) {
       // Specific law mentioned - search for it
@@ -2196,6 +2196,10 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         law.abbreviation?.toLowerCase() === lawInfo.law.toLowerCase() ||
         law.abbr?.toLowerCase() === lawInfo.law.toLowerCase()
       )
+      // Check if the found law is the same as the current law
+      if (targetLaw && selectedLaw && targetLaw.id === selectedLaw.id) {
+        isCurrentLaw = true
+      }
     } else if (lawInfo.type === 'technical') {
       // DGUV/TRBS etc - search by combination
       const searchTerm = `${lawInfo.lawType} ${lawInfo.number}`
@@ -2203,11 +2207,16 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         law.abbreviation?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         law.title?.toLowerCase().includes(searchTerm.toLowerCase())
       )
+      // Check if the found law is the same as the current law
+      if (targetLaw && selectedLaw && targetLaw.id === selectedLaw.id) {
+        isCurrentLaw = true
+      }
     }
 
-    // If no specific law found but we have a section, try to find it in the current law
+    // If no specific law found but we have a section, it's a reference within the current law
     if (!targetLaw && selectedLaw && lawInfo.section) {
       targetLaw = selectedLaw
+      isCurrentLaw = true
     }
 
     // If still no law and we have country info, might need to switch framework
@@ -2218,12 +2227,28 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
       return
     }
 
-    if (targetLaw) {
-      // Select the law with section for deep linking
+    if (targetLaw && lawInfo.section) {
+      // If it's a reference within the current law, scroll to the section without resetting
+      if (isCurrentLaw) {
+        // Find the section by number in lawSections (which are already parsed for current law)
+        const targetSectionNum = lawInfo.section
+        const section = lawSections.find(s => {
+          const sectionNum = s.number?.replace(/[§\s]/g, '')
+          return sectionNum === targetSectionNum
+        })
+
+        if (section) {
+          // Use scrollToSection which properly handles chapter/section expansion
+          scrollToSection(section.id)
+          return
+        }
+      }
+
+      // Different law - select it and try to scroll to section
       selectLaw(targetLaw, lawInfo.section ? `§ ${lawInfo.section}` : null)
 
-      // If we have a section reference, try to find and select it
-      if (lawInfo.section && targetLaw.chapters) {
+      // If we have a section reference, try to find and select it after the law loads
+      if (targetLaw.chapters) {
         // Search through chapters and sections for matching section number
         for (const chapter of targetLaw.chapters) {
           if (chapter.sections) {
@@ -2234,8 +2259,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                 setTimeout(() => {
                   setExpandedSections(prev => ({ ...prev, [section.id]: true }))
                   setActiveSection(section)
-                  // Scroll to the section element
-                  const element = document.getElementById(`section-${section.id}`)
+                  // Scroll to the section element by its id
+                  const element = document.getElementById(section.id)
                   if (element) {
                     element.scrollIntoView({ behavior: 'smooth', block: 'start' })
                   }
@@ -2246,8 +2271,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
           }
         }
       }
+    } else if (targetLaw) {
+      // No section reference, just select the law
+      selectLaw(targetLaw, null)
     }
-  }, [allLaws, selectedLaw, framework, selectLaw, setExpandedSections, setActiveSection])
+  }, [allLaws, selectedLaw, framework, selectLaw, setExpandedSections, setActiveSection, lawSections, scrollToSection])
 
   // Get source language for current framework
   const getSourceLanguage = () => {
