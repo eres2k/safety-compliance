@@ -309,9 +309,12 @@ export function SmartSearch({
 
   // Handle result click
   const handleResultClick = (doc) => {
+    // Capture search term before closing for highlighting
+    const currentSearchTerm = searchTerm
     setIsExpanded(false)
     if (onSelectLaw) {
-      onSelectLaw(doc)
+      // Pass the search term along with the doc for highlighting
+      onSelectLaw(doc, currentSearchTerm)
     }
   }
 

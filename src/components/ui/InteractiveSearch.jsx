@@ -192,12 +192,15 @@ export function InteractiveSearch({
 
   // Handle result selection
   const handleResultClick = useCallback((result) => {
+    // Capture search term before clearing it
+    const currentSearchTerm = searchTerm
     setIsOpen(false)
     setSearchTerm('')
     if (onSelectResult) {
-      onSelectResult(result)
+      // Pass the search term along with the result for highlighting
+      onSelectResult(result, currentSearchTerm)
     }
-  }, [onSelectResult])
+  }, [onSelectResult, searchTerm])
 
   // Handle suggestion click
   const handleSuggestionClick = useCallback((suggestion) => {
