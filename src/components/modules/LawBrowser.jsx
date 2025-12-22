@@ -2412,10 +2412,67 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
           <InteractiveSearch
             laws={allLaws}
             t={t}
-            onSelectResult={(result) => {
+            onSelectResult={(result, searchTermFromSearch) => {
               // Select the law using the selectLaw function which handles PDF-only documents
               selectLaw(result)
               setSearchTerm('')
+
+              // If a search term was provided, use it to highlight content and expand matching sections
+              if (searchTermFromSearch && searchTermFromSearch.trim()) {
+                // Set contentSearchTerm for highlighting
+                const term = searchTermFromSearch.trim()
+                setContentSearchTerm(term)
+
+                const termLower = term.toLowerCase()
+                const sectionsToExpand = {}
+                const chaptersToExpand = {}
+
+                // Check if we have pre-parsed chapters from the database
+                if (result.chapters && result.chapters.length > 0) {
+                  // Use section IDs from the database
+                  for (const chapter of result.chapters) {
+                    if (chapter.sections) {
+                      for (const section of chapter.sections) {
+                        const contentLower = (section.text || '').toLowerCase()
+                        const titleLower = (section.title || '').toLowerCase()
+
+                        if (contentLower.includes(termLower) || titleLower.includes(termLower)) {
+                          sectionsToExpand[section.id] = true
+                          // Also expand the chapter/abschnitt
+                          if (chapter.number) {
+                            chaptersToExpand[chapter.number] = true
+                          }
+                        }
+                      }
+                    }
+                  }
+                } else {
+                  // Fallback to parsing from text
+                  const lawContent = result.content?.full_text || result.content?.text || ''
+                  if (lawContent) {
+                    const sections = parseLawSections(lawContent, result.jurisdiction || framework)
+
+                    sections.forEach(section => {
+                      const contentLower = (section.content || '').toLowerCase()
+                      const titleLower = (section.title || '').toLowerCase()
+
+                      if (contentLower.includes(termLower) || titleLower.includes(termLower)) {
+                        sectionsToExpand[section.id] = true
+                        // Also expand the chapter/abschnitt if present
+                        if (section.abschnitt) {
+                          chaptersToExpand[section.abschnitt.number] = true
+                        }
+                      }
+                    })
+                  }
+                }
+
+                // Expand all matching sections and chapters
+                if (Object.keys(sectionsToExpand).length > 0) {
+                  setExpandedSections(sectionsToExpand)
+                  setExpandedChapters(chaptersToExpand)
+                }
+              }
             }}
             onSearch={(term, mode) => {
               // Support all search modes from SmartSearch and InteractiveSearch
