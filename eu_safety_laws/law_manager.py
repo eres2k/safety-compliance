@@ -590,6 +590,176 @@ class Config:
                         "description": "Annual safety information and prevention resources"
                     }
                 ]
+            },
+            "arbeitsinspektorat": {
+                "name": "Arbeitsinspektorat Leitfäden",
+                "base_url": "https://www.arbeitsinspektion.gv.at",
+                "authority": "Arbeitsinspektorat",
+                "description": "Austrian Labour Inspectorate - Technical guidelines and information sheets",
+                "series": {
+                    "leitfaden": {
+                        "name": "Leitfäden",
+                        "description": "Technical guidelines for workplace safety implementation"
+                    },
+                    "merkblatt": {
+                        "name": "Merkblätter",
+                        "description": "Information sheets on specific safety topics"
+                    }
+                },
+                "catalog_url": "https://www.arbeitsinspektion.gv.at/Oeffentlichkeitsarbeit/Publikationen/Publikationen.html",
+                "publications": [
+                    # === Workplace Design and Facilities ===
+                    {
+                        "abbrev": "AI Arbeitsstätten",
+                        "title": "Leitfaden Arbeitsstätten",
+                        "title_en": "Workplace Facilities Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Arbeitsstaetten.pdf",
+                        "series": "leitfaden",
+                        "description": "Comprehensive guide to workplace facility requirements under AStV"
+                    },
+                    {
+                        "abbrev": "AI Arbeitsplatz Büro",
+                        "title": "Leitfaden Arbeitsplatz Büro und Bildschirmarbeit",
+                        "title_en": "Office and Display Screen Work Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Arbeitsplatz_Buero.pdf",
+                        "series": "leitfaden",
+                        "description": "Ergonomic requirements for office and VDU work"
+                    },
+                    {
+                        "abbrev": "AI Raumklima",
+                        "title": "Leitfaden Raumklima in Arbeitsstätten",
+                        "title_en": "Indoor Climate in Workplaces Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Raumklima.pdf",
+                        "series": "leitfaden",
+                        "description": "Temperature, ventilation and air quality requirements"
+                    },
+                    {
+                        "abbrev": "AI Beleuchtung",
+                        "title": "Leitfaden Beleuchtung von Arbeitsstätten",
+                        "title_en": "Workplace Lighting Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Beleuchtung.pdf",
+                        "series": "leitfaden",
+                        "description": "Lighting requirements for different work areas"
+                    },
+                    # === Safety and Emergency ===
+                    {
+                        "abbrev": "AI Brandschutz",
+                        "title": "Leitfaden Brandschutz",
+                        "title_en": "Fire Protection Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Brandschutz.pdf",
+                        "series": "leitfaden",
+                        "description": "Fire prevention and emergency measures"
+                    },
+                    {
+                        "abbrev": "AI Erste Hilfe",
+                        "title": "Leitfaden Erste Hilfe im Betrieb",
+                        "title_en": "First Aid at Work Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Erste_Hilfe.pdf",
+                        "series": "leitfaden",
+                        "description": "First aid facilities and personnel requirements"
+                    },
+                    {
+                        "abbrev": "AI Flucht- und Rettungswege",
+                        "title": "Leitfaden Flucht- und Rettungswege",
+                        "title_en": "Escape and Rescue Routes Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Fluchtwege.pdf",
+                        "series": "leitfaden",
+                        "description": "Emergency escape route requirements"
+                    },
+                    # === Physical Hazards ===
+                    {
+                        "abbrev": "AI Lärm",
+                        "title": "Leitfaden Lärm am Arbeitsplatz",
+                        "title_en": "Workplace Noise Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Laerm.pdf",
+                        "series": "leitfaden",
+                        "description": "Noise exposure limits and hearing protection"
+                    },
+                    {
+                        "abbrev": "AI Vibrationen",
+                        "title": "Leitfaden Vibrationen am Arbeitsplatz",
+                        "title_en": "Workplace Vibration Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Vibrationen.pdf",
+                        "series": "leitfaden",
+                        "description": "Vibration exposure limits and controls"
+                    },
+                    {
+                        "abbrev": "AI Optische Strahlung",
+                        "title": "Leitfaden Optische Strahlung",
+                        "title_en": "Optical Radiation Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Optische_Strahlung.pdf",
+                        "series": "leitfaden",
+                        "description": "UV, visible light and IR exposure protection"
+                    },
+                    # === Manual Handling and Ergonomics ===
+                    {
+                        "abbrev": "AI Heben und Tragen",
+                        "title": "Merkblatt Heben und Tragen",
+                        "title_en": "Manual Handling Information Sheet",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Merkblatt_Heben_Tragen.pdf",
+                        "series": "merkblatt",
+                        "description": "Manual handling weight limits and techniques"
+                    },
+                    {
+                        "abbrev": "AI Ergonomie",
+                        "title": "Leitfaden Ergonomie am Arbeitsplatz",
+                        "title_en": "Workplace Ergonomics Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Ergonomie.pdf",
+                        "series": "leitfaden",
+                        "description": "Ergonomic workplace design principles"
+                    },
+                    # === Work Equipment ===
+                    {
+                        "abbrev": "AI Arbeitsmittel",
+                        "title": "Leitfaden Arbeitsmittel",
+                        "title_en": "Work Equipment Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Arbeitsmittel.pdf",
+                        "series": "leitfaden",
+                        "description": "Safe use of machinery and work equipment"
+                    },
+                    {
+                        "abbrev": "AI Flurförderzeuge",
+                        "title": "Leitfaden Flurförderzeuge",
+                        "title_en": "Industrial Trucks Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Flurfoerderzeuge.pdf",
+                        "series": "leitfaden",
+                        "description": "Forklift and pallet truck safety"
+                    },
+                    {
+                        "abbrev": "AI Ladungssicherung",
+                        "title": "Leitfaden Ladungssicherung",
+                        "title_en": "Load Securing Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Ladungssicherung.pdf",
+                        "series": "leitfaden",
+                        "description": "Load securing requirements for transport"
+                    },
+                    # === Hazardous Substances ===
+                    {
+                        "abbrev": "AI Gefahrstoffe",
+                        "title": "Leitfaden Gefährliche Arbeitsstoffe",
+                        "title_en": "Hazardous Substances Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Gefahrstoffe.pdf",
+                        "series": "leitfaden",
+                        "description": "Hazardous substance handling and storage"
+                    },
+                    # === Risk Assessment ===
+                    {
+                        "abbrev": "AI Evaluierung",
+                        "title": "Leitfaden Evaluierung psychischer Belastungen",
+                        "title_en": "Psychosocial Risk Assessment Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Evaluierung_Psyche.pdf",
+                        "series": "leitfaden",
+                        "description": "Psychosocial hazard evaluation methodology"
+                    },
+                    {
+                        "abbrev": "AI Arbeitsplatzevaluierung",
+                        "title": "Leitfaden Arbeitsplatzevaluierung",
+                        "title_en": "Workplace Risk Assessment Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Arbeitsplatzevaluierung.pdf",
+                        "series": "leitfaden",
+                        "description": "Comprehensive workplace risk assessment guidance"
+                    }
+                ]
             }
         },
         "DE": {
@@ -924,6 +1094,203 @@ class Config:
                         "description": "Guide for crane operation"
                     }
                 ]
+            },
+            "baua": {
+                "name": "BAUA ASR (Arbeitsstättenregeln)",
+                "base_url": "https://www.baua.de",
+                "authority": "BAUA",
+                "description": "Bundesanstalt für Arbeitsschutz und Arbeitsmedizin - Technical Rules for Workplaces",
+                "series": {
+                    "asr": {
+                        "name": "Arbeitsstättenregeln (ASR)",
+                        "description": "Technical rules implementing the Workplace Ordinance (ArbStättV)"
+                    }
+                },
+                "catalog_url": "https://www.baua.de/DE/Angebote/Regelwerk/ASR/ASR.html",
+                "publications": [
+                    # === General and Cross-Sectional Rules ===
+                    {
+                        "abbrev": "ASR V3",
+                        "title": "ASR V3 - Gefährdungsbeurteilung",
+                        "title_en": "Risk Assessment",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-V3.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "General risk assessment requirements for workplaces"
+                    },
+                    {
+                        "abbrev": "ASR V3a.2",
+                        "title": "ASR V3a.2 - Barrierefreie Gestaltung von Arbeitsstätten",
+                        "title_en": "Accessible Workplace Design",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-V3a-2.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Accessibility requirements for workplaces"
+                    },
+                    # === Room Layout and Design (A1.x) ===
+                    {
+                        "abbrev": "ASR A1.2",
+                        "title": "ASR A1.2 - Raumabmessungen und Bewegungsflächen",
+                        "title_en": "Room Dimensions and Maneuvering Space",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-2.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Minimum room dimensions and floor space requirements"
+                    },
+                    {
+                        "abbrev": "ASR A1.3",
+                        "title": "ASR A1.3 - Sicherheits- und Gesundheitsschutzkennzeichnung",
+                        "title_en": "Safety and Health Signage",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Safety signs and health protection marking"
+                    },
+                    {
+                        "abbrev": "ASR A1.5/1,2",
+                        "title": "ASR A1.5/1,2 - Fußböden",
+                        "title_en": "Floors",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-5-1-2.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Floor safety requirements and slip resistance"
+                    },
+                    {
+                        "abbrev": "ASR A1.6",
+                        "title": "ASR A1.6 - Fenster, Oberlichter, lichtdurchlässige Wände",
+                        "title_en": "Windows, Skylights, Translucent Walls",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-6.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Requirements for windows and translucent surfaces"
+                    },
+                    {
+                        "abbrev": "ASR A1.7",
+                        "title": "ASR A1.7 - Türen und Tore",
+                        "title_en": "Doors and Gates",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-7.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Safety requirements for doors and gates"
+                    },
+                    {
+                        "abbrev": "ASR A1.8",
+                        "title": "ASR A1.8 - Verkehrswege",
+                        "title_en": "Traffic Routes",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-8.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Requirements for walkways and traffic routes"
+                    },
+                    # === Safety and Emergency (A2.x) ===
+                    {
+                        "abbrev": "ASR A2.1",
+                        "title": "ASR A2.1 - Schutz vor Absturz und herabfallenden Gegenständen",
+                        "title_en": "Protection against Falls and Falling Objects",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-1.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Fall protection and falling object prevention"
+                    },
+                    {
+                        "abbrev": "ASR A2.2",
+                        "title": "ASR A2.2 - Maßnahmen gegen Brände",
+                        "title_en": "Fire Protection Measures",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Fire prevention and firefighting measures"
+                    },
+                    {
+                        "abbrev": "ASR A2.3",
+                        "title": "ASR A2.3 - Fluchtwege und Notausgänge",
+                        "title_en": "Escape Routes and Emergency Exits",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-3.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Emergency escape routes and exit requirements"
+                    },
+                    # === Workplace Environment (A3.x) ===
+                    {
+                        "abbrev": "ASR A3.4",
+                        "title": "ASR A3.4 - Beleuchtung",
+                        "title_en": "Lighting",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-4.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Workplace lighting requirements"
+                    },
+                    {
+                        "abbrev": "ASR A3.5",
+                        "title": "ASR A3.5 - Raumtemperatur",
+                        "title_en": "Room Temperature",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-5.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Temperature requirements for workplaces"
+                    },
+                    {
+                        "abbrev": "ASR A3.6",
+                        "title": "ASR A3.6 - Lüftung",
+                        "title_en": "Ventilation",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-6.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Ventilation and air quality requirements"
+                    },
+                    {
+                        "abbrev": "ASR A3.7",
+                        "title": "ASR A3.7 - Lärm",
+                        "title_en": "Noise",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-7.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Noise protection at the workplace"
+                    },
+                    # === Sanitary and Social Rooms (A4.x) ===
+                    {
+                        "abbrev": "ASR A4.1",
+                        "title": "ASR A4.1 - Sanitärräume",
+                        "title_en": "Sanitary Rooms",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-1.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Requirements for restrooms and washing facilities"
+                    },
+                    {
+                        "abbrev": "ASR A4.2",
+                        "title": "ASR A4.2 - Pausen- und Bereitschaftsräume",
+                        "title_en": "Break and On-call Rooms",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-2.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Break room and rest area requirements"
+                    },
+                    {
+                        "abbrev": "ASR A4.3",
+                        "title": "ASR A4.3 - Erste-Hilfe-Räume, Mittel und Einrichtungen",
+                        "title_en": "First Aid Rooms and Equipment",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-3.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "First aid facilities and equipment requirements"
+                    },
+                    {
+                        "abbrev": "ASR A4.4",
+                        "title": "ASR A4.4 - Unterkünfte",
+                        "title_en": "Accommodation",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-4.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Requirements for worker accommodation"
+                    },
+                    # === Special Workplaces (A5.x and A6) ===
+                    {
+                        "abbrev": "ASR A5.1",
+                        "title": "ASR A5.1 - Nicht umschlossene Arbeitsstätten und Arbeitsplätze im Freien",
+                        "title_en": "Outdoor Workplaces",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A5-1.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Requirements for outdoor and open-air workplaces"
+                    },
+                    {
+                        "abbrev": "ASR A5.2",
+                        "title": "ASR A5.2 - Anforderungen an Arbeitsplätze auf Baustellen im Grenzbereich zum Straßenverkehr",
+                        "title_en": "Construction Sites near Road Traffic",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A5-2.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "Construction site safety near traffic"
+                    },
+                    {
+                        "abbrev": "ASR A6",
+                        "title": "ASR A6 - Bildschirmarbeit",
+                        "title_en": "Display Screen Work",
+                        "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A6.pdf?__blob=publicationFile",
+                        "series": "asr",
+                        "description": "VDU/monitor work requirements and ergonomics"
+                    }
+                ]
             }
         },
         "NL": {
@@ -1082,6 +1449,173 @@ class Config:
                         "url": "https://www.volandis.nl/media/gt2otukr/25004566-a-blad-metselen-en-lijmen_update-2025.pdf",
                         "series": "Volandis A-bladen",
                         "description": "Safety information sheet for bricklaying and gluing operations (2025 update)"
+                    }
+                ]
+            },
+            "szw": {
+                "name": "SZW Arbo-informatiebladen",
+                "base_url": "https://www.arboportaal.nl",
+                "authority": "SZW",
+                "description": "Ministry of Social Affairs - Technical guidance sheets (AI-bladen)",
+                "series": {
+                    "ai_blad": {
+                        "name": "Arbo-informatiebladen (AI-bladen)",
+                        "description": "Technical guidance implementing Arbobesluit requirements"
+                    }
+                },
+                "catalog_url": "https://www.arboportaal.nl/onderwerpen/arbo-informatiebladen",
+                "publications": [
+                    # === Workplace Environment ===
+                    {
+                        "abbrev": "AI-1 Klimaatbeheersing",
+                        "title": "AI-1 Klimaatbeheersing op de werkplek",
+                        "title_en": "Climate Control at the Workplace",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-1-klimaatbeheersing-op-de-werkplek",
+                        "series": "ai_blad",
+                        "description": "Temperature, humidity and ventilation requirements"
+                    },
+                    {
+                        "abbrev": "AI-2 Verlichting",
+                        "title": "AI-2 Verlichting",
+                        "title_en": "Lighting",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-2-verlichting",
+                        "series": "ai_blad",
+                        "description": "Workplace lighting requirements and lux levels"
+                    },
+                    {
+                        "abbrev": "AI-3 Geluid",
+                        "title": "AI-3 Geluid op de arbeidsplaats",
+                        "title_en": "Noise at the Workplace",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-3-geluid-op-de-arbeidsplaats",
+                        "series": "ai_blad",
+                        "description": "Noise exposure limits and hearing conservation"
+                    },
+                    {
+                        "abbrev": "AI-4 Trillingen",
+                        "title": "AI-4 Trillingen",
+                        "title_en": "Vibration",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-4-trillingen",
+                        "series": "ai_blad",
+                        "description": "Hand-arm and whole-body vibration limits"
+                    },
+                    # === Manual Handling ===
+                    {
+                        "abbrev": "AI-14 Tillen",
+                        "title": "AI-14 Fysieke belasting - Tillen",
+                        "title_en": "Physical Strain - Lifting",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-14-fysieke-belasting-tillen",
+                        "series": "ai_blad",
+                        "description": "NIOSH lifting equation and manual handling limits"
+                    },
+                    {
+                        "abbrev": "AI-15 Duwen Trekken",
+                        "title": "AI-15 Fysieke belasting - Duwen en Trekken",
+                        "title_en": "Physical Strain - Pushing and Pulling",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-15-fysieke-belasting-duwen-en-trekken",
+                        "series": "ai_blad",
+                        "description": "Push/pull force limits and ergonomic guidance"
+                    },
+                    {
+                        "abbrev": "AI-16 Dragen",
+                        "title": "AI-16 Fysieke belasting - Dragen",
+                        "title_en": "Physical Strain - Carrying",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-16-fysieke-belasting-dragen",
+                        "series": "ai_blad",
+                        "description": "Carrying load limits and techniques"
+                    },
+                    # === Display Screen Work ===
+                    {
+                        "abbrev": "AI-6 Beeldschermwerk",
+                        "title": "AI-6 Beeldschermwerk",
+                        "title_en": "Display Screen Work",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-6-beeldschermwerk",
+                        "series": "ai_blad",
+                        "description": "VDU work requirements and ergonomics"
+                    },
+                    # === Safety and Emergency ===
+                    {
+                        "abbrev": "AI-10 Brandveiligheid",
+                        "title": "AI-10 Brandveiligheid",
+                        "title_en": "Fire Safety",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-10-brandveiligheid",
+                        "series": "ai_blad",
+                        "description": "Fire prevention and emergency procedures"
+                    },
+                    {
+                        "abbrev": "AI-11 Vluchtwegen",
+                        "title": "AI-11 Vluchtwegen en nooduitgangen",
+                        "title_en": "Escape Routes and Emergency Exits",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-11-vluchtwegen-en-nooduitgangen",
+                        "series": "ai_blad",
+                        "description": "Emergency exit and escape route requirements"
+                    },
+                    {
+                        "abbrev": "AI-12 EHBO",
+                        "title": "AI-12 Eerste hulp bij ongelukken (EHBO)",
+                        "title_en": "First Aid",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-12-eerste-hulp-bij-ongelukken",
+                        "series": "ai_blad",
+                        "description": "First aid facilities and BHV requirements"
+                    },
+                    # === Work Equipment and Transport ===
+                    {
+                        "abbrev": "AI-17 Heftrucks",
+                        "title": "AI-17 Heftrucks",
+                        "title_en": "Forklifts",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-17-heftrucks",
+                        "series": "ai_blad",
+                        "description": "Forklift safety and operator training"
+                    },
+                    {
+                        "abbrev": "AI-18 Intern Transport",
+                        "title": "AI-18 Intern transport",
+                        "title_en": "Internal Transport",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-18-intern-transport",
+                        "series": "ai_blad",
+                        "description": "Internal transport safety in warehouses"
+                    },
+                    {
+                        "abbrev": "AI-19 Ladingzekering",
+                        "title": "AI-19 Ladingzekering",
+                        "title_en": "Load Securing",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-19-ladingzekering",
+                        "series": "ai_blad",
+                        "description": "Load securing requirements for transport"
+                    },
+                    # === Hazardous Substances ===
+                    {
+                        "abbrev": "AI-20 Gevaarlijke stoffen",
+                        "title": "AI-20 Gevaarlijke stoffen",
+                        "title_en": "Hazardous Substances",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-20-gevaarlijke-stoffen",
+                        "series": "ai_blad",
+                        "description": "Hazardous substance handling and storage"
+                    },
+                    # === Working Hours ===
+                    {
+                        "abbrev": "AI-30 Nachtarbeid",
+                        "title": "AI-30 Nachtarbeid",
+                        "title_en": "Night Work",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-30-nachtarbeid",
+                        "series": "ai_blad",
+                        "description": "Night shift health effects and controls"
+                    },
+                    {
+                        "abbrev": "AI-31 Ploegendienst",
+                        "title": "AI-31 Ploegendienst",
+                        "title_en": "Shift Work",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-31-ploegendienst",
+                        "series": "ai_blad",
+                        "description": "Shift work scheduling and health management"
+                    },
+                    # === Risk Assessment ===
+                    {
+                        "abbrev": "AI-32 RI&E",
+                        "title": "AI-32 Risico-inventarisatie en -evaluatie (RI&E)",
+                        "title_en": "Risk Assessment (RI&E)",
+                        "url": "https://www.arboportaal.nl/documenten/publicatie/2015/09/30/ai-blad-32-risico-inventarisatie-en-evaluatie",
+                        "series": "ai_blad",
+                        "description": "Risk assessment methodology and requirements"
                     }
                 ]
             }
@@ -7358,6 +7892,190 @@ class ArboportaalScraper(MerkblattScraper):
         return documents
 
 
+class ArbeitsinspektoratScraper(MerkblattScraper):
+    """
+    Scraper for Austrian Arbeitsinspektorat (Labour Inspectorate) technical guidelines.
+    Downloads Leitfäden and Merkblätter from the Austrian Labour Inspectorate.
+    """
+
+    def __init__(self, law_limit: int = None):
+        super().__init__('AT', law_limit)
+        self.ai_config = self.merkblaetter_config.get("arbeitsinspektorat", {})
+
+    def scrape(self) -> List[Dict[str, Any]]:
+        """Download Arbeitsinspektorat technical guidelines."""
+        documents = []
+
+        # Get publications from config
+        publications = self.ai_config.get("publications", [])
+
+        if not publications:
+            log_warning("No Arbeitsinspektorat publications configured")
+            return documents
+
+        log_info(f"Processing {len(publications)} Arbeitsinspektorat Leitfäden...")
+
+        # Apply limit
+        if self.law_limit:
+            publications = publications[:self.law_limit]
+
+        # Process each publication
+        for pub in publications:
+            abbrev = pub.get("abbrev", "")
+            title = pub.get("title", "")
+            source_url = pub.get("url", "")
+            series = pub.get("series", "leitfaden")
+            description = pub.get("description", "")
+
+            if not source_url:
+                log_warning(f"No URL for {abbrev}")
+                continue
+
+            log_info(f"Downloading {abbrev}: {title[:50]}...")
+            doc = self._create_merkblatt_document(
+                abbrev=abbrev,
+                title=title,
+                source_url=source_url,
+                series=series,
+                description=description,
+                authority="Arbeitsinspektorat",
+                source_type="pdf"
+            )
+
+            if doc:
+                if pub.get("title_en"):
+                    doc["title_en"] = pub["title_en"]
+                documents.append(doc)
+
+            time.sleep(CONFIG.rate_limit_delay)
+
+        log_success(f"Downloaded {len(documents)} Arbeitsinspektorat Leitfäden")
+        return documents
+
+
+class BAUAScraper(MerkblattScraper):
+    """
+    Scraper for German BAUA ASR (Arbeitsstättenregeln) technical rules.
+    Downloads ASR PDFs from the Federal Institute for Occupational Safety and Health.
+    """
+
+    def __init__(self, law_limit: int = None):
+        super().__init__('DE', law_limit)
+        self.baua_config = self.merkblaetter_config.get("baua", {})
+
+    def scrape(self) -> List[Dict[str, Any]]:
+        """Download BAUA ASR technical rules."""
+        documents = []
+
+        # Get publications from config
+        publications = self.baua_config.get("publications", [])
+
+        if not publications:
+            log_warning("No BAUA ASR publications configured")
+            return documents
+
+        log_info(f"Processing {len(publications)} BAUA ASR documents...")
+
+        # Apply limit
+        if self.law_limit:
+            publications = publications[:self.law_limit]
+
+        # Process each publication
+        for pub in publications:
+            abbrev = pub.get("abbrev", "")
+            title = pub.get("title", "")
+            source_url = pub.get("url", "")
+            series = pub.get("series", "asr")
+            description = pub.get("description", "")
+
+            if not source_url:
+                log_warning(f"No URL for {abbrev}")
+                continue
+
+            log_info(f"Downloading {abbrev}: {title[:50]}...")
+            doc = self._create_merkblatt_document(
+                abbrev=abbrev,
+                title=title,
+                source_url=source_url,
+                series=series,
+                description=description,
+                authority="BAUA",
+                source_type="pdf"
+            )
+
+            if doc:
+                if pub.get("title_en"):
+                    doc["title_en"] = pub["title_en"]
+                documents.append(doc)
+
+            time.sleep(CONFIG.rate_limit_delay)
+
+        log_success(f"Downloaded {len(documents)} BAUA ASR documents")
+        return documents
+
+
+class SZWScraper(MerkblattScraper):
+    """
+    Scraper for Dutch SZW Arbo-informatiebladen (AI-bladen) technical guidance.
+    Downloads AI-bladen from the Ministry of Social Affairs.
+    """
+
+    def __init__(self, law_limit: int = None):
+        super().__init__('NL', law_limit)
+        self.szw_config = self.merkblaetter_config.get("szw", {})
+
+    def scrape(self) -> List[Dict[str, Any]]:
+        """Download SZW AI-bladen technical guidance."""
+        documents = []
+
+        # Get publications from config
+        publications = self.szw_config.get("publications", [])
+
+        if not publications:
+            log_warning("No SZW AI-bladen configured")
+            return documents
+
+        log_info(f"Processing {len(publications)} SZW AI-bladen...")
+
+        # Apply limit
+        if self.law_limit:
+            publications = publications[:self.law_limit]
+
+        # Process each publication
+        for pub in publications:
+            abbrev = pub.get("abbrev", "")
+            title = pub.get("title", "")
+            source_url = pub.get("url", "")
+            series = pub.get("series", "ai_blad")
+            description = pub.get("description", "")
+
+            if not source_url:
+                log_warning(f"No URL for {abbrev}")
+                continue
+
+            log_info(f"Downloading {abbrev}: {title[:50]}...")
+            # AI-bladen are typically HTML pages, not PDFs
+            doc = self._create_merkblatt_document(
+                abbrev=abbrev,
+                title=title,
+                source_url=source_url,
+                series=series,
+                description=description,
+                authority="SZW",
+                source_type="html"
+            )
+
+            if doc:
+                if pub.get("title_en"):
+                    doc["title_en"] = pub["title_en"]
+                documents.append(doc)
+
+            time.sleep(CONFIG.rate_limit_delay)
+
+        log_success(f"Downloaded {len(documents)} SZW AI-bladen")
+        return documents
+
+
 # Main law scrapers
 SCRAPERS = {
     'AT': ATScraper,
@@ -7365,11 +8083,11 @@ SCRAPERS = {
     'NL': NLScraper,
 }
 
-# Merkblätter scrapers
+# Merkblätter scrapers - each country can have multiple sources
 MERKBLATT_SCRAPERS = {
-    'AT': AUVAScraper,
-    'DE': DGUVScraper,
-    'NL': ArboportaalScraper,
+    'AT': [AUVAScraper, ArbeitsinspektoratScraper],
+    'DE': [DGUVScraper, BAUAScraper],
+    'NL': [ArboportaalScraper, SZWScraper],
 }
 
 
@@ -10151,15 +10869,29 @@ def main():
         for country in countries:
             log_header(f"Scraping Merkblätter for {country}")
 
-            scraper_class = MERKBLATT_SCRAPERS.get(country)
-            if not scraper_class:
-                log_error(f"No Merkblätter scraper available for {country}")
+            scraper_classes = MERKBLATT_SCRAPERS.get(country)
+            if not scraper_classes:
+                log_error(f"No Merkblätter scrapers available for {country}")
                 continue
 
-            scraper = scraper_class(law_limit=limit)
-            documents = scraper.scrape()
+            # Handle both list and single scraper for backwards compatibility
+            if not isinstance(scraper_classes, list):
+                scraper_classes = [scraper_classes]
 
-            if documents:
+            # Collect documents from all scrapers for this country
+            all_documents = []
+            for scraper_class in scraper_classes:
+                scraper_name = scraper_class.__name__
+                log_info(f"Running {scraper_name}...")
+                scraper = scraper_class(law_limit=limit)
+                documents = scraper.scrape()
+                if documents:
+                    all_documents.extend(documents)
+                    log_success(f"{scraper_name}: {len(documents)} documents")
+                else:
+                    log_warning(f"{scraper_name}: No documents scraped")
+
+            if all_documents:
                 # Save to database
                 db_path = CONFIG.base_path / country.lower() / f"{country.lower()}_merkblaetter.json"
                 db_path.parent.mkdir(parents=True, exist_ok=True)
@@ -10169,16 +10901,17 @@ def main():
                         "country": country,
                         "type": "merkblaetter",
                         "generated_at": datetime.now().isoformat(),
-                        "document_count": len(documents),
-                        "scraper_version": CONFIG.scraper_version
+                        "document_count": len(all_documents),
+                        "scraper_version": CONFIG.scraper_version,
+                        "sources": [sc.__name__ for sc in scraper_classes]
                     },
-                    "documents": documents
+                    "documents": all_documents
                 }
 
                 with open(db_path, 'w', encoding='utf-8') as f:
                     json.dump(db_data, f, indent=2, ensure_ascii=False)
 
-                log_success(f"Saved {len(documents)} Merkblätter to {db_path}")
+                log_success(f"Saved {len(all_documents)} Merkblätter to {db_path}")
             else:
                 log_warning(f"No Merkblätter scraped for {country}")
 
