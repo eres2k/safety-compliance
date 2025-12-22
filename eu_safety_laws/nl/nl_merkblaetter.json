@@ -2,13 +2,17 @@
   "metadata": {
     "country": "NL",
     "type": "merkblaetter",
-    "generated_at": "2025-12-21T17:09:33.664421",
-    "document_count": 17,
-    "scraper_version": "8.0.0"
+    "generated_at": "2025-12-22T22:50:01.804662",
+    "document_count": 5,
+    "scraper_version": "8.0.0",
+    "sources": [
+      "ArboportaalScraper",
+      "SZWScraper"
+    ]
   },
   "documents": [
     {
-      "id": "13ac0cb781603781",
+      "id": "6d52ce591f9d85b8",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -41,7 +45,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Hoveniers_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T17:08:22.532922",
+        "scraped_at": "2025-12-22T22:48:35.776473",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -61,7 +65,7 @@
       "content_hash": "f05b355b016c5738f09edc515fdf8e8a"
     },
     {
-      "id": "38dedf2ddd99fb6a",
+      "id": "a88c3edc0e8209c9",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -94,7 +98,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Kantoor_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T17:08:23.289161",
+        "scraped_at": "2025-12-22T22:48:36.500924",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -114,7 +118,7 @@
       "content_hash": "9c367985dd4d1152158ede4ba4f661eb"
     },
     {
-      "id": "a099404571dfc1a8",
+      "id": "55b16ce1f0500fc8",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -147,7 +151,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Linnen_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T17:09:11.007781",
+        "scraped_at": "2025-12-22T22:49:19.701273",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -167,7 +171,7 @@
       "content_hash": "f526beaf6a3226336a8e465ea7cc00b8"
     },
     {
-      "id": "adf0d41c95a5e9de",
+      "id": "ee204467ca0d2e68",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -200,7 +204,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Retail_Mode_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T17:09:11.867513",
+        "scraped_at": "2025-12-22T22:49:20.540617",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -220,7 +224,7 @@
       "content_hash": "3bc28e5db7adad72a7411cd28ced2cd7"
     },
     {
-      "id": "9875578540f9de3b",
+      "id": "9138a70d8e5175c2",
       "version": "1.0.0",
       "country": "NL",
       "jurisdiction": "NL",
@@ -253,7 +257,7 @@
       "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Bloemen_merkblatt.pdf",
       "pdf_available": true,
       "scraping": {
-        "scraped_at": "2025-12-21T17:09:12.604444",
+        "scraped_at": "2025-12-22T22:49:21.219236",
         "scraper_version": "8.0.0",
         "source_type": "pdf"
       },
@@ -271,642 +275,6 @@
         "is_html_only": false
       },
       "content_hash": "5c4bc1b490bf6fc428b2a4a2af085e77"
-    },
-    {
-      "id": "f6866603546a3bc8",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Arbocatalogus Uitzendbranche",
-      "title": "Arbocatalogus Arbobeleid Uitzendbranche",
-      "title_en": "Arbocatalogus Arbobeleid Uitzendbranche",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety standards for temporary employment agencies",
-      "full_text": "Safety standards for temporary employment agencies",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.abu.nl/app/uploads/2019/09/Arbocatalogus-Algemeen-onderdeel-Arbobeleid-voor-vaste-medewerkers-in-de-uitzendbranche.pdf",
-        "authority": "Arboportaal",
-        "title": "Arbocatalogus Arbobeleid Uitzendbranche",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Uitzendbranche_merkblatt.pdf",
-        "pdf_url": "https://www.abu.nl/app/uploads/2019/09/Arbocatalogus-Algemeen-onderdeel-Arbobeleid-voor-vaste-medewerkers-in-de-uitzendbranche.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Uitzendbranche_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:13.676364",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "arbocatalogi",
-        "description": "Safety standards for temporary employment agencies",
-        "filename": "nl_Arbocatalogus_Uitzendbranche_merkblatt.pdf",
-        "size_bytes": 856907,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "5161ef609efd68550f46c4b9619bbe24"
-    },
-    {
-      "id": "ced3db68d50add37",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Arbocatalogus Transport Warehouse",
-      "title": "Arbocatalogus Transport en Logistiek - Warehouse/Distributiecentrum",
-      "title_en": "Arbocatalogus Transport en Logistiek - Warehouse/Distributiecentrum",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety standards for warehouse and distribution operations (2018)",
-      "full_text": "Safety standards for warehouse and distribution operations (2018)",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf",
-        "authority": "Arboportaal",
-        "title": "Arbocatalogus Transport en Logistiek - Warehouse/Distributiecentrum",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Transport_Warehouse_merkblatt.pdf",
-        "pdf_url": "https://www.stl.nl/STL/media/STLMedia/Veilig%20en%20vitaal/Arbo/AC-2018-Warehouse-distributiecentrum-magazijn.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Arbocatalogus_Transport_Warehouse_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:14.419627",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "arbocatalogi",
-        "description": "Safety standards for warehouse and distribution operations (2018)",
-        "filename": "nl_Arbocatalogus_Transport_Warehouse_merkblatt.pdf",
-        "size_bytes": 259793,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "50977e44a288169fea1398d3e3885105"
-    },
-    {
-      "id": "37733137485fcec4",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Bestratingsmateriaal",
-      "title": "A-blad Bestratingsmateriaal",
-      "title_en": "A-blad Bestratingsmateriaal",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for paving materials handling",
-      "full_text": "Safety information sheet for paving materials handling",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/ooil24sg/a-blad-bestratingsmateriaal_2.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Bestratingsmateriaal",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Bestratingsmateriaal_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/ooil24sg/a-blad-bestratingsmateriaal_2.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Bestratingsmateriaal_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:15.232187",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for paving materials handling",
-        "filename": "nl_Volandis_A-blad_Bestratingsmateriaal_merkblatt.pdf",
-        "size_bytes": 1721357,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "15cb8a246d85ed1a09497cd210ee44cb"
-    },
-    {
-      "id": "1c9f8f4c0b6dc563",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Lichamelijke Belasting",
-      "title": "A-blad Lichamelijke Belasting",
-      "title_en": "A-blad Lichamelijke Belasting",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for physical workload and ergonomics",
-      "full_text": "Safety information sheet for physical workload and ergonomics",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/btqfnqmk/a-blad_lichamelijke-belasting.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Lichamelijke Belasting",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Lichamelijke_Belasting_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/btqfnqmk/a-blad_lichamelijke-belasting.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Lichamelijke_Belasting_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:15.995081",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for physical workload and ergonomics",
-        "filename": "nl_Volandis_A-blad_Lichamelijke_Belasting_merkblatt.pdf",
-        "size_bytes": 936659,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "1c4954fcaf97b7245d33ebc8cc3cf838"
-    },
-    {
-      "id": "3aa7e6855f4097e6",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Geluid Trillingen",
-      "title": "A-blad Geluid en Trillingen",
-      "title_en": "A-blad Geluid en Trillingen",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for noise and vibration exposure",
-      "full_text": "Safety information sheet for noise and vibration exposure",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/g1yiksdl/a-blad_geluid-trillingen.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Geluid en Trillingen",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Geluid_Trillingen_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/g1yiksdl/a-blad_geluid-trillingen.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Geluid_Trillingen_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:16.938422",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for noise and vibration exposure",
-        "filename": "nl_Volandis_A-blad_Geluid_Trillingen_merkblatt.pdf",
-        "size_bytes": 3225114,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "0ba6aef9bd26dc893a6082d855d04e2e"
-    },
-    {
-      "id": "b8ed2f9cdc76fdc3",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Ladders Trappen",
-      "title": "A-blad Ladders en Trappen",
-      "title_en": "A-blad Ladders en Trappen",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for ladder and stair safety",
-      "full_text": "Safety information sheet for ladder and stair safety",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/3901/a-blad-ladders-en-trappen.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Ladders en Trappen",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Ladders_Trappen_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/3901/a-blad-ladders-en-trappen.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Ladders_Trappen_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:17.744202",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for ladder and stair safety",
-        "filename": "nl_Volandis_A-blad_Ladders_Trappen_merkblatt.pdf",
-        "size_bytes": 1169576,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "8df6fbecf03e7ef5952c9a0549e4d7ca"
-    },
-    {
-      "id": "b09a519623a15b78",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Houtstof",
-      "title": "A-blad Houtstof",
-      "title_en": "A-blad Houtstof",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for wood dust exposure",
-      "full_text": "Safety information sheet for wood dust exposure",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/0lhoyj40/a-blad-houtstof.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Houtstof",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Houtstof_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/0lhoyj40/a-blad-houtstof.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Houtstof_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:18.547056",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for wood dust exposure",
-        "filename": "nl_Volandis_A-blad_Houtstof_merkblatt.pdf",
-        "size_bytes": 1058697,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "53aae8cf4ef60f3d5de2919779c663a1"
-    },
-    {
-      "id": "a0c6eca1c7c1b1f9",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Dieselmotoremissie",
-      "title": "A-blad Dieselmotoremissie",
-      "title_en": "A-blad Dieselmotoremissie",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for diesel engine emissions exposure",
-      "full_text": "Safety information sheet for diesel engine emissions exposure",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/3885/a-blad-dieselmotormissie.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Dieselmotoremissie",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Dieselmotoremissie_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/3885/a-blad-dieselmotormissie.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Dieselmotoremissie_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:19.364374",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for diesel engine emissions exposure",
-        "filename": "nl_Volandis_A-blad_Dieselmotoremissie_merkblatt.pdf",
-        "size_bytes": 2459603,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "53c07d3ed5fadaf476f88511db6618ca"
-    },
-    {
-      "id": "0c606c54e0825042",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Rolsteigers",
-      "title": "A-blad Rolsteigers",
-      "title_en": "A-blad Rolsteigers",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for rolling scaffolds",
-      "full_text": "Safety information sheet for rolling scaffolds",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/z1zp3iaa/21003218_a-blad_rolsteigers_v2.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Rolsteigers",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Rolsteigers_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/z1zp3iaa/21003218_a-blad_rolsteigers_v2.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Rolsteigers_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:20.304362",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for rolling scaffolds",
-        "filename": "nl_Volandis_A-blad_Rolsteigers_merkblatt.pdf",
-        "size_bytes": 2052864,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "6e6e1987f81d1fc1e8ea898caf169b09"
-    },
-    {
-      "id": "f8ebf18c821034f4",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Hellende Daken",
-      "title": "A-blad Hellende Daken",
-      "title_en": "A-blad Hellende Daken",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for working on sloped roofs",
-      "full_text": "Safety information sheet for working on sloped roofs",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/3895/a-blad-hellende-daken.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Hellende Daken",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Hellende_Daken_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/3895/a-blad-hellende-daken.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Hellende_Daken_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:21.124144",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for working on sloped roofs",
-        "filename": "nl_Volandis_A-blad_Hellende_Daken_merkblatt.pdf",
-        "size_bytes": 880544,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "13ae36e3415fa730067253e81ee074f0"
-    },
-    {
-      "id": "9622d262b2aa289a",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Epoxy",
-      "title": "A-blad Epoxy",
-      "title_en": "A-blad Epoxy",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for epoxy handling",
-      "full_text": "Safety information sheet for epoxy handling",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/fpzjzpxp/a-blad-epoxy.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Epoxy",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Epoxy_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/fpzjzpxp/a-blad-epoxy.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Epoxy_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:21.902918",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for epoxy handling",
-        "filename": "nl_Volandis_A-blad_Epoxy_merkblatt.pdf",
-        "size_bytes": 662194,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "153fa1f0e02bd1f5af588efd83e1adcf"
-    },
-    {
-      "id": "84c074655ca8b0ee",
-      "version": "1.0.0",
-      "country": "NL",
-      "jurisdiction": "NL",
-      "doc_type": "merkblatt",
-      "type": "merkblatt",
-      "abbreviation": "Volandis A-blad Metselen Lijmen",
-      "title": "A-blad Metselen en Lijmen",
-      "title_en": "A-blad Metselen en Lijmen",
-      "category": "Supplementary",
-      "structure_labels": {
-        "grouping_1": "Hoofdstuk",
-        "grouping_2": "Afdeling",
-        "article": "Artikel"
-      },
-      "grouping_1": "Hoofdstuk",
-      "grouping_2": "Afdeling",
-      "article_label": "Artikel",
-      "text_content": "Safety information sheet for bricklaying and gluing operations (2025 update)",
-      "full_text": "Safety information sheet for bricklaying and gluing operations (2025 update)",
-      "ai_summary": "",
-      "source": {
-        "url": "https://www.volandis.nl/media/gt2otukr/25004566-a-blad-metselen-en-lijmen_update-2025.pdf",
-        "authority": "Arboportaal",
-        "title": "A-blad Metselen en Lijmen",
-        "robots_txt_compliant": true,
-        "source_type": "pdf",
-        "local_pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Metselen_Lijmen_merkblatt.pdf",
-        "pdf_url": "https://www.volandis.nl/media/gt2otukr/25004566-a-blad-metselen-en-lijmen_update-2025.pdf"
-      },
-      "pdf_path": "C:\\Users\\erwin\\OneDrive\\Documents\\GitHub\\safety-compliance\\eu_safety_laws\\pdfs\\nl\\nl_Volandis_A-blad_Metselen_Lijmen_merkblatt.pdf",
-      "pdf_available": true,
-      "scraping": {
-        "scraped_at": "2025-12-21T17:09:22.692376",
-        "scraper_version": "8.0.0",
-        "source_type": "pdf"
-      },
-      "chapters": [],
-      "sections": [],
-      "whs_topics": [],
-      "whs_summary": {},
-      "metadata": {
-        "series": "Volandis A-bladen",
-        "description": "Safety information sheet for bricklaying and gluing operations (2025 update)",
-        "filename": "nl_Volandis_A-blad_Metselen_Lijmen_merkblatt.pdf",
-        "size_bytes": 1349639,
-        "is_supplementary": true,
-        "is_pdf_only": true,
-        "is_html_only": false
-      },
-      "content_hash": "1253a135f9fd4941284c9c1e2788592b"
     }
   ]
 }
