@@ -1697,7 +1697,7 @@ export function PreventionTimeCalculator({ onBack, onNavigateToLaw }) {
             {RELATED_LAWS[framework].map((law) => (
               <button
                 key={law.id}
-                onClick={() => onNavigateToLaw(null, framework, null, law.abbreviation)}
+                onClick={() => onNavigateToLaw(law.abbreviation, framework, null)}
                 className="flex items-start gap-3 p-4 bg-white dark:bg-whs-dark-700/50 rounded-xl border border-gray-200 dark:border-whs-dark-600 hover:border-whs-orange-300 dark:hover:border-whs-orange-600 hover:shadow-md transition-all text-left group"
               >
                 <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-whs-orange-500 to-whs-orange-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">
