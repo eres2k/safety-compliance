@@ -609,155 +609,198 @@ class Config:
                 "catalog_url": "https://www.arbeitsinspektion.gv.at/Oeffentlichkeitsarbeit/Publikationen/Publikationen.html",
                 "publications": [
                     # === Workplace Design and Facilities ===
+                    # Note: The Arbeitsinspektorat website was restructured. Many individual Leitfaden
+                    # documents have been consolidated into comprehensive guides with new URL structure.
                     {
                         "abbrev": "AI Arbeitsstätten",
-                        "title": "Leitfaden Arbeitsstätten",
-                        "title_en": "Workplace Facilities Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Arbeitsstaetten.pdf",
+                        "title": "Gestaltung von Arbeitsstätten",
+                        "title_en": "Workplace Design Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsstaetten/Gestaltung_von_Arbeitsstaetten.pdf",
                         "series": "leitfaden",
-                        "description": "Comprehensive guide to workplace facility requirements under AStV"
+                        "description": "Comprehensive guide to workplace facility requirements including lighting, room climate, escape routes, and first aid under AStV"
                     },
                     {
-                        "abbrev": "AI Arbeitsplatz Büro",
-                        "title": "Leitfaden Arbeitsplatz Büro und Bildschirmarbeit",
-                        "title_en": "Office and Display Screen Work Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Arbeitsplatz_Buero.pdf",
+                        "abbrev": "AI Telearbeit Ergonomie",
+                        "title": "Leitfaden Ergonomisches Arbeiten in Telearbeit",
+                        "title_en": "Ergonomic Telework Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/Arbeitsstaetten-_Arbeitsplaetze/Arbeitsplaetze/2025_Leitfaden_Ergonomisches-Arbeiten-in-Telearbeit_db_ua.pdf",
                         "series": "leitfaden",
-                        "description": "Ergonomic requirements for office and VDU work"
+                        "description": "Ergonomic requirements for remote and home office work"
                     },
                     {
-                        "abbrev": "AI Raumklima",
-                        "title": "Leitfaden Raumklima in Arbeitsstätten",
-                        "title_en": "Indoor Climate in Workplaces Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Raumklima.pdf",
+                        "abbrev": "AI Telearbeit",
+                        "title": "Leitfaden zum Arbeitnehmerinnen- und Arbeitnehmerschutz bei Telearbeit",
+                        "title_en": "Telework Employee Protection Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/Arbeitsstaetten-_Arbeitsplaetze/Arbeitsplaetze/Telearbeit_Leitfaden-zum-Arbeitnehmerinnen-und-Arbeitnehmers.pdf",
                         "series": "leitfaden",
-                        "description": "Temperature, ventilation and air quality requirements"
-                    },
-                    {
-                        "abbrev": "AI Beleuchtung",
-                        "title": "Leitfaden Beleuchtung von Arbeitsstätten",
-                        "title_en": "Workplace Lighting Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Beleuchtung.pdf",
-                        "series": "leitfaden",
-                        "description": "Lighting requirements for different work areas"
+                        "description": "Employee protection requirements for telework arrangements"
                     },
                     # === Safety and Emergency ===
                     {
-                        "abbrev": "AI Brandschutz",
-                        "title": "Leitfaden Brandschutz",
-                        "title_en": "Fire Protection Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Brandschutz.pdf",
-                        "series": "leitfaden",
-                        "description": "Fire prevention and emergency measures"
-                    },
-                    {
-                        "abbrev": "AI Erste Hilfe",
-                        "title": "Leitfaden Erste Hilfe im Betrieb",
-                        "title_en": "First Aid at Work Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Erste_Hilfe.pdf",
-                        "series": "leitfaden",
-                        "description": "First aid facilities and personnel requirements"
-                    },
-                    {
-                        "abbrev": "AI Flucht- und Rettungswege",
-                        "title": "Leitfaden Flucht- und Rettungswege",
-                        "title_en": "Escape and Rescue Routes Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Fluchtwege.pdf",
-                        "series": "leitfaden",
-                        "description": "Emergency escape route requirements"
+                        "abbrev": "AI Brandalarm",
+                        "title": "Erlass Brandalarm und Räumungsübungen",
+                        "title_en": "Fire Alarm and Evacuation Drill Decree",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Gesundheit_im_Betrieb/Erlaesse/202006050401A__Erlass_Brandalarm_und_Raeumungsuebungen_gemae.pdf",
+                        "series": "erlass",
+                        "description": "Fire alarm testing and evacuation drill requirements"
                     },
                     # === Physical Hazards ===
                     {
                         "abbrev": "AI Lärm",
-                        "title": "Leitfaden Lärm am Arbeitsplatz",
-                        "title_en": "Workplace Noise Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Laerm.pdf",
-                        "series": "leitfaden",
-                        "description": "Noise exposure limits and hearing protection"
+                        "title": "Gefährdungen durch Lärm am Arbeitsplatz",
+                        "title_en": "Workplace Noise Hazards",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsplaetze/laerm_2010_folder.pdf",
+                        "series": "merkblatt",
+                        "description": "Noise exposure limits and hearing protection under VOLV"
                     },
                     {
                         "abbrev": "AI Vibrationen",
-                        "title": "Leitfaden Vibrationen am Arbeitsplatz",
-                        "title_en": "Workplace Vibration Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Vibrationen.pdf",
-                        "series": "leitfaden",
-                        "description": "Vibration exposure limits and controls"
+                        "title": "Gefährdungen durch Vibrationen",
+                        "title_en": "Vibration Hazards",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsplaetze/vibrationen_2010_folder.pdf",
+                        "series": "merkblatt",
+                        "description": "Vibration exposure limits and controls under VOLV"
                     },
                     {
-                        "abbrev": "AI Optische Strahlung",
-                        "title": "Leitfaden Optische Strahlung",
-                        "title_en": "Optical Radiation Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Optische_Strahlung.pdf",
+                        "abbrev": "AI UV-Strahlung",
+                        "title": "Leitfaden natürliche optische Strahlung - UV-Strahlung im Freien",
+                        "title_en": "Natural Optical Radiation - Outdoor UV Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsplaetze/leitfadengefahrenevaluierungf_rnat_rlicheoptischestrahlung.pdf",
                         "series": "leitfaden",
-                        "description": "UV, visible light and IR exposure protection"
+                        "description": "UV radiation exposure protection for outdoor work"
+                    },
+                    {
+                        "abbrev": "AI Lampen Laser",
+                        "title": "Leitfaden vereinfachte Ermittlung und Beurteilung für Lampen und Laser",
+                        "title_en": "Simplified Assessment Guide for Lamps and Lasers",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Gesundheit_im_Betrieb/evaluierung_von_biologischen_gefahren_durch_lampen_und_laser.pdf",
+                        "series": "leitfaden",
+                        "description": "Assessment of biological hazards from lamps and lasers"
                     },
                     # === Manual Handling and Ergonomics ===
                     {
-                        "abbrev": "AI Heben und Tragen",
-                        "title": "Merkblatt Heben und Tragen",
-                        "title_en": "Manual Handling Information Sheet",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Merkblatt_Heben_Tragen.pdf",
-                        "series": "merkblatt",
-                        "description": "Manual handling weight limits and techniques"
-                    },
-                    {
-                        "abbrev": "AI Ergonomie",
-                        "title": "Leitfaden Ergonomie am Arbeitsplatz",
-                        "title_en": "Workplace Ergonomics Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Ergonomie.pdf",
+                        "abbrev": "AI Heben Tragen",
+                        "title": "Leitfaden Kurzbeurteilung von Heben, Halten und Tragen",
+                        "title_en": "Quick Assessment Guide for Lifting, Holding and Carrying",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Gesundheit_im_Betrieb/leitfaden_kurz_beurteilunghebenhaltentragen_2013.pdf",
                         "series": "leitfaden",
-                        "description": "Ergonomic workplace design principles"
+                        "description": "Manual handling assessment methodology and weight limits"
                     },
                     # === Work Equipment ===
                     {
                         "abbrev": "AI Arbeitsmittel",
-                        "title": "Leitfaden Arbeitsmittel",
-                        "title_en": "Work Equipment Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Arbeitsmittel.pdf",
+                        "title": "Leitlinie und Beispielsammlung Nachrüstung Arbeitsmittel",
+                        "title_en": "Work Equipment Retrofitting Guidelines",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Maschinen-_Werkzeuge/Leitlinie_Beispielsammlung_Nachruestung_Arbeitsmittel_2023.pdf",
                         "series": "leitfaden",
-                        "description": "Safe use of machinery and work equipment"
+                        "description": "Guidelines for retrofitting and safe use of work equipment"
                     },
                     {
                         "abbrev": "AI Flurförderzeuge",
-                        "title": "Leitfaden Flurförderzeuge",
-                        "title_en": "Industrial Trucks Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Flurfoerderzeuge.pdf",
-                        "series": "leitfaden",
-                        "description": "Forklift and pallet truck safety"
+                        "title": "Infoblatt Flurförderzeuge in Räumen",
+                        "title_en": "Industrial Trucks in Indoor Spaces",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Maschinen-_Werkzeuge/Erlaesse/erl_flurfoerderzeuge_in_raeumen_info.pdf",
+                        "series": "merkblatt",
+                        "description": "Forklift safety requirements for indoor use"
                     },
                     {
-                        "abbrev": "AI Ladungssicherung",
-                        "title": "Leitfaden Ladungssicherung",
-                        "title_en": "Load Securing Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Ladungssicherung.pdf",
+                        "abbrev": "AI Innerbetrieblicher Verkehr",
+                        "title": "Innerbetrieblicher Verkehr",
+                        "title_en": "Internal Workplace Traffic",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Agenda/Innerbetrieblicher_Verkehr.pdf",
                         "series": "leitfaden",
-                        "description": "Load securing requirements for transport"
+                        "description": "Internal traffic and load securing requirements"
                     },
                     # === Hazardous Substances ===
                     {
                         "abbrev": "AI Gefahrstoffe",
                         "title": "Leitfaden Gefährliche Arbeitsstoffe",
                         "title_en": "Hazardous Substances Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Gefahrstoffe.pdf",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstoffe/clp_leitfaden_b.pdf",
                         "series": "leitfaden",
-                        "description": "Hazardous substance handling and storage"
+                        "description": "Hazardous substance handling and CLP labelling"
+                    },
+                    {
+                        "abbrev": "AI Holzstaub",
+                        "title": "Leitfaden Holzstaub",
+                        "title_en": "Wood Dust Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstoffe/Leitfaden_Holzstaub.pdf",
+                        "series": "leitfaden",
+                        "description": "Wood dust exposure limits and controls"
+                    },
+                    {
+                        "abbrev": "AI Antriebsbatterien",
+                        "title": "Leitfaden Antriebsbatterien",
+                        "title_en": "Traction Battery Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstoffe/Brand-_Explo/antriebsbatterien.pdf",
+                        "series": "leitfaden",
+                        "description": "Safety requirements for charging traction batteries"
                     },
                     # === Risk Assessment ===
                     {
-                        "abbrev": "AI Evaluierung",
-                        "title": "Leitfaden Evaluierung psychischer Belastungen",
-                        "title_en": "Psychosocial Risk Assessment Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Evaluierung_Psyche.pdf",
+                        "abbrev": "AI Evaluierung Grundlagen",
+                        "title": "Das kleine Einmaleins der Arbeitsplatzevaluierung",
+                        "title_en": "Workplace Evaluation Basics",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Uebergreifende_Themen/das_kleine_einmaleins_der_arbeitsplatzevaluierung.pdf",
                         "series": "leitfaden",
-                        "description": "Psychosocial hazard evaluation methodology"
+                        "description": "Basic guide to workplace risk assessment methodology"
                     },
                     {
-                        "abbrev": "AI Arbeitsplatzevaluierung",
-                        "title": "Leitfaden Arbeitsplatzevaluierung",
-                        "title_en": "Workplace Risk Assessment Guide",
-                        "url": "https://www.arbeitsinspektion.gv.at/inspektorat/Oeffentlichkeitsarbeit/Publikationen/Leitfaden_Arbeitsplatzevaluierung.pdf",
+                        "abbrev": "AI ASchG",
+                        "title": "Sicherheit und Gesundheitsschutz am Arbeitsplatz",
+                        "title_en": "Occupational Safety and Health Overview",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Uebergreifende_Themen/aschg_b.pdf",
                         "series": "leitfaden",
-                        "description": "Comprehensive workplace risk assessment guidance"
+                        "description": "Comprehensive overview of ASchG requirements"
+                    },
+                    {
+                        "abbrev": "AI Präventivdienste",
+                        "title": "Sicherheitstechnische und arbeitsmedizinische Betreuung",
+                        "title_en": "Safety and Occupational Health Services",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Uebergreifende_Themen/sicherheitstechnische_und_arbeitsmedizinische_betreuung_prae.pdf",
+                        "series": "leitfaden",
+                        "description": "Prevention services and occupational health requirements"
+                    },
+                    # === Sector-specific Guides ===
+                    {
+                        "abbrev": "AI KFZ-Werkstätten",
+                        "title": "Arbeitsschutz in Kfz-Werkstätten",
+                        "title_en": "Occupational Safety in Vehicle Workshops",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Uebergreifende_Themen/Leitfaden_Arbeitsschutz_in_KfZ_Werkstaetten.pdf",
+                        "series": "leitfaden",
+                        "description": "Workplace evaluation guide for automotive workshops"
+                    },
+                    {
+                        "abbrev": "AI Lebensmittelhandel",
+                        "title": "Leitfaden Arbeitsplatzevaluierung im Lebensmittelhandel",
+                        "title_en": "Workplace Evaluation in Food Retail",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Uebergreifende_Themen/2018_10_11_leitfaden-lebensmittelhandel.pdf",
+                        "series": "leitfaden",
+                        "description": "Workplace evaluation guide for food retail"
+                    },
+                    {
+                        "abbrev": "AI Bäckereien",
+                        "title": "Leitfaden Arbeitsplatzevaluierung in Bäckereien",
+                        "title_en": "Workplace Evaluation in Bakeries",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsplaetze/23_4_baecker_2015.pdf",
+                        "series": "leitfaden",
+                        "description": "Workplace evaluation guide for bakeries"
+                    },
+                    {
+                        "abbrev": "AI Mobile Pflege",
+                        "title": "Leitfaden Mobile Pflege und Betreuung",
+                        "title_en": "Mobile Care and Support Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Gesundheit_im_Betrieb/psychische_Belastungen/mobile_pflege_endvers_neues_logo.pdf",
+                        "series": "leitfaden",
+                        "description": "Safe and healthy mobile care work"
+                    },
+                    {
+                        "abbrev": "AI Reinigung",
+                        "title": "Leitfaden für Reinigungskräfte",
+                        "title_en": "Cleaning Staff Guide",
+                        "url": "https://www.arbeitsinspektion.gv.at/Zentrale_Dokumente/Arbeitsstaetten-_-plaetze/Arbeitsplaetze/leitfaden_reinigungsgewerbe_2011(1).pdf",
+                        "series": "leitfaden",
+                        "description": "Guide for cleaning staff and facility managers"
                     }
                 ]
             }
