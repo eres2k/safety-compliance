@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext'
 import { HelpModal } from './HelpModal'
 import { useRateLimitStatus } from './ui/RateLimitIndicator'
 import { UnlockButton } from './ui/UnlockButton'
+import { clearLawUrl } from '../utils/lawUrl'
 
 // Framework configuration with colors
 const frameworks = {
@@ -180,6 +181,8 @@ export function Header() {
     // Save directly to localStorage before reload
     localStorage.setItem('whs_framework', newFramework)
     setShowFrameworkMenu(false)
+    // Clear URL law params to prevent old country from being restored after reload
+    clearLawUrl()
     // Reload to ensure all data is refreshed with new framework
     window.location.reload()
   }

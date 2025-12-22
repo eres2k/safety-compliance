@@ -4110,7 +4110,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                     key={topic.id}
                     className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
                   >
-                    {WHS_TOPIC_LABELS[topic.id] || topic.id}
+                    {WHS_TOPIC_LABELS[topic.id]?.label || topic.id}
                   </span>
                 ))}
               </div>
