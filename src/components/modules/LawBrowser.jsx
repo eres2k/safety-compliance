@@ -4101,7 +4101,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
           </div>
 
           {/* Content Preview */}
-          <div className="p-4 overflow-y-auto max-h-56">
+          <div className="p-4 overflow-y-auto max-h-96">
             {/* WHS Topics */}
             {lawRefPreview.section.whs_topics && lawRefPreview.section.whs_topics.length > 0 && (
               <div className="flex flex-wrap gap-1 mb-3">
@@ -4116,12 +4116,11 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
               </div>
             )}
 
-            {/* Content excerpt */}
+            {/* Full paragraph content */}
             <div className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
               {lawRefPreview.section.content ? (
-                <p className="line-clamp-6">
-                  {lawRefPreview.section.content.substring(0, 500)}
-                  {lawRefPreview.section.content.length > 500 && '...'}
+                <p className="whitespace-pre-wrap">
+                  {lawRefPreview.section.content}
                 </p>
               ) : (
                 <p className="text-gray-400 dark:text-gray-500 italic">
