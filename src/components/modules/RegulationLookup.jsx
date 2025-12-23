@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useApp } from '../../context/AppContext'
+import { useLawPreview } from '../../context/LawPreviewContext'
 import { useAI } from '../../hooks/useAI'
 import { Button, Input, Select, Card, CardContent, FormattedAIResponse } from '../ui'
 import { LoadingSpinner, DotsLoading } from '../ui/LoadingSpinner'
@@ -22,6 +23,7 @@ const RecentSearchItem = ({ search, onClick }) => (
 
 export function RegulationLookup({ onBack, onNavigateToLaw }) {
   const { t, framework, currentFrameworkColor, recentSearches, addRecentSearch } = useApp()
+  const { showPreview, hidePreview } = useLawPreview()
   const { lookupRegulation, isLoading } = useAI()
 
   const [topic, setTopic] = useState('')
@@ -300,6 +302,8 @@ export function RegulationLookup({ onBack, onNavigateToLaw }) {
                   <FormattedAIResponse
                     content={result}
                     onLawClick={onNavigateToLaw}
+                    onLawHover={showPreview}
+                    onLawLeave={hidePreview}
                     allLaws={allLaws}
                   />
                 </div>

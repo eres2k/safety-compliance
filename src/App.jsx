@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { AppProvider, useApp } from './context/AppContext'
+import { LawPreviewProvider } from './context/LawPreviewContext'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Dashboard } from './components/Dashboard'
@@ -14,7 +15,7 @@ import {
   Glossary,
   WarehouseVisualization
 } from './components/modules'
-import { SafetyChatWidget } from './components/ui'
+import { SafetyChatWidget, LawPreviewModal } from './components/ui'
 
 // Initialize EU laws database on app load
 import { initializeLawsDatabase } from './services/euLawsDatabase'
@@ -213,6 +214,9 @@ function AppContent() {
 
       {/* Erwin Safety Chat Widget */}
       <SafetyChatWidget onNavigateToLaw={navigateToLaw} />
+
+      {/* Global Law Preview Modal - shows on hover anywhere on the site */}
+      <LawPreviewModal />
     </div>
   )
 }
@@ -220,7 +224,9 @@ function AppContent() {
 export function App() {
   return (
     <AppProvider>
-      <AppContent />
+      <LawPreviewProvider>
+        <AppContent />
+      </LawPreviewProvider>
     </AppProvider>
   )
 }

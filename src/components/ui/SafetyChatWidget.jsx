@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { useApp } from '../../context/AppContext'
+import { useLawPreview } from '../../context/LawPreviewContext'
 import { searchLaws, getAllLawsSync } from '../../services/euLawsDatabase'
 import { generateAIResponse, getRateLimitStatus } from '../../services/aiService'
 import { FormattedAIResponse } from './FormattedAIResponse'
@@ -239,7 +240,7 @@ const UI_TEXT = {
 const MAX_CONTEXT_LENGTH = 1500
 
 // Response Modal Component for expanded view
-function ResponseModal({ isOpen, onClose, message, onNavigateToLaw, language }) {
+function ResponseModal({ isOpen, onClose, message, onNavigateToLaw, onLawHover, onLawLeave, language }) {
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') onClose()
@@ -294,6 +295,8 @@ function ResponseModal({ isOpen, onClose, message, onNavigateToLaw, language }) 
           <FormattedAIResponse
             content={message.content}
             onLawClick={onNavigateToLaw}
+            onLawHover={onLawHover}
+            onLawLeave={onLawLeave}
             allLaws={allLaws}
             className="text-gray-800 dark:text-gray-200"
           />
@@ -315,6 +318,7 @@ function ResponseModal({ isOpen, onClose, message, onNavigateToLaw, language }) 
 
 export function SafetyChatWidget({ onNavigateToLaw }) {
   const { framework, language } = useApp()
+  const { showPreview, hidePreview } = useLawPreview()
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
   const [messages, setMessages] = useState([])
@@ -541,6 +545,8 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
                   <FormattedAIResponse
                     content={message.content}
                     onLawClick={onNavigateToLaw}
+                    onLawHover={showPreview}
+                    onLawLeave={hidePreview}
                     allLaws={getAllLawsFromAllCountries()}
                     className="text-sm leading-relaxed"
                   />
@@ -642,6 +648,8 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
         onClose={() => setExpandedMessage(null)}
         message={expandedMessage}
         onNavigateToLaw={onNavigateToLaw}
+        onLawHover={showPreview}
+        onLawLeave={hidePreview}
         language={lang}
       />
     </div>
