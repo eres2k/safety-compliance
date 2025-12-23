@@ -354,10 +354,10 @@ function checkRateLimit(ip) {
 // Model configuration for website AI services (user-facing)
 // gemini-2.5-flash: 1K RPM, 1M TPM, 10K RPD - best quality/speed balance
 // gemini-2.0-flash: 2K RPM, 4M TPM, Unlimited RPD - stable fallback
-const GEMINI_MODEL = 'gemini-3.0-flash-preview'
+const GEMINI_MODEL = 'gemini-3.0-flash'
 const FALLBACK_MODEL = 'gemini-2.5-flash'  // Fallback if primary fails
 const MAX_OUTPUT_TOKENS = 8192
-const TEMPERATURE = 0.2  // Lower temperature for more consistent legal analysis
+const TEMPERATURE = 0.3  // Lower temperature for more consistent legal analysis
 
 // Simple hash function (djb2) for cache keys - same as client-side
 function simpleHash(str) {
