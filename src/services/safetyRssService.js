@@ -42,11 +42,11 @@ const RSS_FEEDS = {
     country: 'AT',
     flag: '🇦🇹'
   },
-  // Netherlands - Google News (official NL feed blocks CORS) - TESTED OK
+  // Netherlands - Safety Podcast feed
   NL_SAFETY: {
-    url: 'https://news.google.com/rss/search?q=arbeidsveiligheid+arbeidsongeval&hl=nl&gl=NL&ceid=NL:nl',
-    source: 'ARBEIDSINSPECTIE',
-    name: 'NL Safety News',
+    url: 'https://anchor.fm/s/2c638298/podcast/rss',
+    source: 'NL_PODCAST',
+    name: 'NL Safety Podcast',
     country: 'NL',
     flag: '🇳🇱'
   },
