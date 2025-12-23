@@ -1330,13 +1330,40 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         }
       }
 
-      // Find and select the law (search by ID first, then by abbreviation)
+      // Find and select the law (search by ID first, then by abbreviation, then fuzzy match for technical rules)
       const laws = getAllLawsSync(targetCountry)
-      const targetLaw = laws.find(law => law.id === initialLawId) ||
+      let targetLaw = laws.find(law => law.id === initialLawId) ||
                         laws.find(law => law.abbreviation?.toLowerCase() === initialLawId?.toLowerCase())
 
+      // If no exact match, try fuzzy matching for technical rules (ASR, DGUV, TRBS, TRGS)
+      if (!targetLaw && initialLawId) {
+        const normalizedSearch = initialLawId.toLowerCase().replace(/[-_\s]+/g, ' ').trim()
+        if (normalizedSearch.includes('asr') || normalizedSearch.includes('dguv') ||
+            normalizedSearch.includes('trbs') || normalizedSearch.includes('trgs')) {
+          targetLaw = laws.find(law => {
+            const abbr = (law.abbreviation || law.abbr || '').toLowerCase().replace(/[-_\s]+/g, ' ')
+            return abbr.includes(normalizedSearch) || normalizedSearch.includes(abbr)
+          })
+        }
+      }
+
       if (targetLaw) {
-        setSelectedLaw(targetLaw)
+        // Check if this is a PDF-only supplementary document (ASR, DGUV, TRBS, TRGS, etc.)
+        const isPdfSupplementary = isTrueSupplementarySource(targetLaw) && (hasLocalPdf(targetLaw) || hasPdfSource(targetLaw))
+
+        if (isPdfSupplementary) {
+          // Open the PDF viewer for supplementary documents
+          const pdfUrl = getPdfSourceUrl(targetLaw)
+          if (pdfUrl) {
+            setInlineDocView({ type: 'pdf', url: pdfUrl, title: targetLaw.abbreviation || targetLaw.title, law: targetLaw })
+            setSelectedLaw(null)
+          } else {
+            setSelectedLaw(targetLaw)
+          }
+        } else {
+          setSelectedLaw(targetLaw)
+        }
+
         setSearchTerm('') // Clear any existing search
         setSelectedCategory('all') // Reset category filter
         // Add to audit trail
@@ -2223,6 +2250,19 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     setMultiCountryError(null)
   }
 
+  // Helper function to normalize technical rule references for matching
+  const normalizeTechnicalRef = (ref) => {
+    if (!ref) return ''
+    let normalized = ref.toLowerCase().trim()
+    // Normalize ASR: "3.4" -> "a3.4", remove spaces/dashes
+    normalized = normalized.replace(/asr\s*a?(\d)/gi, 'asr a$1')
+    // Normalize DGUV: remove dashes in numbers
+    normalized = normalized.replace(/dguv[-\s]*(\d+)[-\s]*(\d*)/gi, (m, p1, p2) => `dguv ${p1}${p2 ? '-' + p2 : ''}`)
+    // Normalize TRBS/TRGS: standardize spacing
+    normalized = normalized.replace(/(trbs|trgs)\s*(\d+)/gi, '$1 $2')
+    return normalized
+  }
+
   // Handle click on law reference - deep link to the specific law/section
   const handleLawReferenceClick = useCallback((lawInfo) => {
     if (!lawInfo) return
@@ -2233,10 +2273,26 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
 
     if (lawInfo.law) {
       // Specific law mentioned - search for it
+      // First try exact match
       targetLaw = allLaws.find(law =>
         law.abbreviation?.toLowerCase() === lawInfo.law.toLowerCase() ||
         law.abbr?.toLowerCase() === lawInfo.law.toLowerCase()
       )
+
+      // If no exact match, try fuzzy matching for technical rules (ASR, DGUV, TRBS, TRGS)
+      if (!targetLaw) {
+        const normalizedRef = normalizeTechnicalRef(lawInfo.law)
+        if (normalizedRef.includes('asr') || normalizedRef.includes('dguv') ||
+            normalizedRef.includes('trbs') || normalizedRef.includes('trgs')) {
+          targetLaw = allLaws.find(law => {
+            const normalizedAbbr = normalizeTechnicalRef(law.abbreviation || law.abbr || '')
+            return normalizedAbbr === normalizedRef ||
+                   normalizedAbbr.includes(normalizedRef) ||
+                   normalizedRef.includes(normalizedAbbr)
+          })
+        }
+      }
+
       // Check if the found law is the same as the current law
       if (targetLaw && selectedLaw && targetLaw.id === selectedLaw.id) {
         isCurrentLaw = true
@@ -2244,10 +2300,12 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     } else if (lawInfo.type === 'technical') {
       // DGUV/TRBS etc - search by combination
       const searchTerm = `${lawInfo.lawType} ${lawInfo.number}`
-      targetLaw = allLaws.find(law =>
-        law.abbreviation?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        law.title?.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      const normalizedSearchTerm = normalizeTechnicalRef(searchTerm)
+      targetLaw = allLaws.find(law => {
+        const normalizedAbbr = normalizeTechnicalRef(law.abbreviation || law.abbr || '')
+        return normalizedAbbr.includes(normalizedSearchTerm) ||
+               law.title?.toLowerCase().includes(searchTerm.toLowerCase())
+      })
       // Check if the found law is the same as the current law
       if (targetLaw && selectedLaw && targetLaw.id === selectedLaw.id) {
         isCurrentLaw = true
@@ -2315,10 +2373,28 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         }
       }
     } else if (targetLaw) {
+      // Check if this is a PDF-only supplementary document (ASR, DGUV, TRBS, TRGS, etc.)
+      const isPdfSupplementary = isTrueSupplementarySource(targetLaw) && (hasLocalPdf(targetLaw) || hasPdfSource(targetLaw))
+
+      if (isPdfSupplementary) {
+        // Open the PDF viewer for supplementary documents
+        const pdfUrl = getPdfSourceUrl(targetLaw)
+        if (pdfUrl) {
+          setInlineDocView({ type: 'pdf', url: pdfUrl, title: targetLaw.abbreviation || targetLaw.title, law: targetLaw })
+          setSelectedLaw(null)
+          // Update URL for direct linking
+          if (onLawChange) {
+            const country = targetLaw.jurisdiction || targetLaw.country || framework
+            onLawChange(targetLaw.id, country, null)
+          }
+          return
+        }
+      }
+
       // No section reference, just select the law
       selectLaw(targetLaw, null)
     }
-  }, [allLaws, selectedLaw, framework, selectLaw, setExpandedSections, setActiveSection, lawSections, scrollToSection])
+  }, [allLaws, selectedLaw, framework, selectLaw, setExpandedSections, setActiveSection, lawSections, scrollToSection, onLawChange, setInlineDocView])
 
   // Handle hover on law reference - show preview popup
   const handleLawReferenceHover = useCallback((e, lawInfo) => {

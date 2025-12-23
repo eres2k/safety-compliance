@@ -37,11 +37,12 @@ const createLawReferencePattern = () => {
   // Pattern matches:
   // 1. "§ X AbbName" or "§§ X-Y AbbName" (German/Austrian section references)
   // 2. "Artikel X AbbName" or "Art. X" (Dutch/EU article references)
-  // 3. Standalone abbreviations with optional numbers (e.g., "DGUV Vorschrift 1")
+  // 3. Standalone abbreviations with optional numbers/identifiers (e.g., "DGUV Vorschrift 1", "ASR A3.4", "DGUV 212-016")
   return new RegExp(
     `(§§?\\s*\\d+[a-z]?(?:\\s*(?:bis|[-–])\\s*\\d+[a-z]?)?(?:\\s+(?:Abs\\.?|Absatz)\\s*\\d+)?(?:\\s+(?:${escapedAbbrs})))|` +
     `((?:Artikel|Art\\.)\\s*\\d+(?:\\.\\d+)?(?:\\s+(?:${escapedAbbrs})))|` +
-    `(\\b(?:${escapedAbbrs})(?:\\s+(?:Vorschrift|Regel|Information|Nr\\.|Nummer))?\\s*\\d*\\b)`,
+    `(\\b(?:${escapedAbbrs})(?:\\s+(?:Vorschrift|Regel|Information|Nr\\.|Nummer))?\\s*[AV]?\\d+(?:[-._]\\d+)*\\b)|` +
+    `(\\b(?:${escapedAbbrs})\\b)`,
     'gi'
   )
 }
@@ -89,10 +90,52 @@ function findLawIdFromReference(referenceText, allLaws) {
     // Check for DGUV pattern matching
     if (normalizedRef.includes('dguv') && abbr.includes('dguv')) {
       // Try to match specific DGUV Vorschrift/Regel/Information number
-      const dguNumberMatch = normalizedRef.match(/dguv\s*(?:vorschrift|regel|information)?\s*(\d+)/i)
-      const lawNumberMatch = abbr.match(/dguv\s*(?:vorschrift|regel|information)?\s*(\d+)/i)
-      if (dguNumberMatch && lawNumberMatch && dguNumberMatch[1] === lawNumberMatch[1]) {
-        return { id: law.id, country: law.jurisdiction || law.country, section }
+      const dguNumberMatch = normalizedRef.match(/dguv\s*(?:vorschrift|regel|information)?[-\s]*(\d+[-\d]*)/i)
+      const lawNumberMatch = abbr.match(/dguv[-\s]*(\d+[-\d]*)/i)
+      if (dguNumberMatch && lawNumberMatch) {
+        // Normalize numbers (remove dashes for comparison)
+        const refNum = dguNumberMatch[1].replace(/-/g, '')
+        const lawNum = lawNumberMatch[1].replace(/-/g, '')
+        if (refNum === lawNum) {
+          return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+        }
+      }
+    }
+
+    // Check for ASR pattern matching (e.g., "ASR 3.4", "ASR A3.4", "ASR V3")
+    if (normalizedRef.includes('asr') && abbr.includes('asr')) {
+      // Extract ASR number pattern - handles "ASR 3.4", "ASR A3.4", "ASR V3", "ASR A1.2"
+      const asrRefMatch = normalizedRef.match(/asr\s*([av]?\d+(?:[._]\d+)?)/i)
+      const asrAbbrMatch = abbr.match(/asr\s*([av]?\d+(?:[._]\d+)?)/i)
+      if (asrRefMatch && asrAbbrMatch) {
+        // Normalize: "3.4" -> "a3.4", "a3.4" -> "a3.4", dots/underscores are equivalent
+        const normalizeAsrNum = (num) => {
+          let n = num.toLowerCase().replace(/[_]/g, '.')
+          // If it starts with a digit, assume "A" prefix (e.g., "3.4" -> "a3.4")
+          if (/^\d/.test(n)) n = 'a' + n
+          return n
+        }
+        if (normalizeAsrNum(asrRefMatch[1]) === normalizeAsrNum(asrAbbrMatch[1])) {
+          return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+        }
+      }
+    }
+
+    // Check for TRBS pattern matching (e.g., "TRBS 1111", "TRBS 2111")
+    if (normalizedRef.includes('trbs') && abbr.includes('trbs')) {
+      const trbsRefMatch = normalizedRef.match(/trbs\s*(\d+)/i)
+      const trbsAbbrMatch = abbr.match(/trbs\s*(\d+)/i)
+      if (trbsRefMatch && trbsAbbrMatch && trbsRefMatch[1] === trbsAbbrMatch[1]) {
+        return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+      }
+    }
+
+    // Check for TRGS pattern matching (e.g., "TRGS 400", "TRGS 510")
+    if (normalizedRef.includes('trgs') && abbr.includes('trgs')) {
+      const trgsRefMatch = normalizedRef.match(/trgs\s*(\d+)/i)
+      const trgsAbbrMatch = abbr.match(/trgs\s*(\d+)/i)
+      if (trgsRefMatch && trgsAbbrMatch && trgsRefMatch[1] === trgsAbbrMatch[1]) {
+        return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
       }
     }
   }
