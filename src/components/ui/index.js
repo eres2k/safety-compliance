@@ -15,6 +15,7 @@ export { TypewriterText, TypewriterParagraph, TransitionText, OverwriteText } fr
 export { SmartSearch } from './SmartSearch'
 export { InteractiveSearch } from './InteractiveSearch'
 export { SafetyChatWidget } from './SafetyChatWidget'
+export { LawPreviewModal } from './LawPreviewModal'
 
 // Re-export default components
 export { default as ButtonDefault } from './Button'

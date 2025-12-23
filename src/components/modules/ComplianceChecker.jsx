@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useApp } from '../../context/AppContext'
+import { useLawPreview } from '../../context/LawPreviewContext'
 import { useAI } from '../../hooks/useAI'
 import { Button, Select, Card, CardContent, FormattedAIResponse } from '../ui'
 import { LoadingSpinner, DotsLoading } from '../ui/LoadingSpinner'
@@ -160,6 +161,7 @@ const saveToHistory = (entry) => {
 
 export function ComplianceChecker({ onBack, onNavigateToLaw }) {
   const { t, framework, currentFrameworkColor } = useApp()
+  const { showPreview, hidePreview } = useLawPreview()
   const { checkCompliance, isLoading } = useAI()
 
   const [companySize, setCompanySize] = useState('')
@@ -691,6 +693,8 @@ export function ComplianceChecker({ onBack, onNavigateToLaw }) {
                   <FormattedAIResponse
                     content={result}
                     onLawClick={onNavigateToLaw}
+                    onLawHover={showPreview}
+                    onLawLeave={hidePreview}
                     allLaws={allLaws}
                   />
                 </div>

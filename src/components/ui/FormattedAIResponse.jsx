@@ -116,7 +116,7 @@ function findLawIdFromAbbreviation(abbreviation, allLaws, section = null) {
   return null
 }
 
-export function FormattedAIResponse({ content, className = '', onLawClick, allLaws = [] }) {
+export function FormattedAIResponse({ content, className = '', onLawClick, onLawHover, onLawLeave, allLaws = [] }) {
   if (!content) return null
 
   // Try to parse JSON if it looks like JSON
@@ -138,7 +138,7 @@ export function FormattedAIResponse({ content, className = '', onLawClick, allLa
   return (
     <div className={`space-y-4 ${className}`}>
       {sections.map((section, index) => (
-        <Section key={index} section={section} onLawClick={onLawClick} allLaws={allLaws} />
+        <Section key={index} section={section} onLawClick={onLawClick} onLawHover={onLawHover} onLawLeave={onLawLeave} allLaws={allLaws} />
       ))}
     </div>
   )
@@ -290,12 +290,12 @@ function parseContent(text) {
 }
 
 // Render a section
-function Section({ section, onLawClick, allLaws }) {
+function Section({ section, onLawClick, onLawHover, onLawLeave, allLaws }) {
   if (section.type === 'paragraph') {
     return (
       <div className="space-y-2">
         {section.content.map((item, index) => (
-          <ContentItem key={index} item={item} onLawClick={onLawClick} allLaws={allLaws} />
+          <ContentItem key={index} item={item} onLawClick={onLawClick} onLawHover={onLawHover} onLawLeave={onLawLeave} allLaws={allLaws} />
         ))}
       </div>
     )
@@ -304,16 +304,18 @@ function Section({ section, onLawClick, allLaws }) {
   return (
     <div className="space-y-2">
       {section.header && (
-        <h3 className="flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+        <div className="flex items-center gap-2 pb-1 border-b border-gray-100 dark:border-whs-dark-600 mb-2">
           {section.emoji && (
-            <span className="text-xl">{section.emoji}</span>
+            <span className="text-lg">{section.emoji}</span>
           )}
-          <span>{section.header}</span>
-        </h3>
+          <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm">
+            {section.header}
+          </h3>
+        </div>
       )}
-      <div className="space-y-1 pl-1">
+      <div className="space-y-1.5 pl-0.5">
         {section.content.map((item, index) => (
-          <ContentItem key={index} item={item} onLawClick={onLawClick} allLaws={allLaws} />
+          <ContentItem key={index} item={item} onLawClick={onLawClick} onLawHover={onLawHover} onLawLeave={onLawLeave} allLaws={allLaws} />
         ))}
       </div>
     </div>
@@ -321,36 +323,42 @@ function Section({ section, onLawClick, allLaws }) {
 }
 
 // Render a content item (bullet, numbered, or text)
-function ContentItem({ item, onLawClick, allLaws }) {
-  const formattedText = formatText(item.text, onLawClick, allLaws)
+function ContentItem({ item, onLawClick, onLawHover, onLawLeave, allLaws }) {
+  const formattedText = formatText(item.text, onLawClick, onLawHover, onLawLeave, allLaws)
 
   if (item.type === 'bullet') {
     return (
-      <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
-        <span className="text-whs-orange-500 mt-1">•</span>
-        <span>{formattedText}</span>
+      <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300 py-0.5">
+        <span className="text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0">
+          <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+          </svg>
+        </span>
+        <span className="leading-relaxed">{formattedText}</span>
       </div>
     )
   }
 
   if (item.type === 'numbered') {
     return (
-      <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
-        <span className="text-whs-orange-500 font-medium min-w-[1.5rem]">{item.number}.</span>
-        <span>{formattedText}</span>
+      <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300 py-0.5">
+        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-semibold">
+          {item.number}
+        </span>
+        <span className="leading-relaxed pt-0.5">{formattedText}</span>
       </div>
     )
   }
 
   return (
-    <p className="text-sm text-gray-700 dark:text-gray-300">
+    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
       {formattedText}
     </p>
   )
 }
 
 // Format inline text (bold, law references, etc.)
-function formatText(text, onLawClick, allLaws) {
+function formatText(text, onLawClick, onLawHover, onLawLeave, allLaws) {
   if (!text) return null
 
   // First, split by bold markers
@@ -363,7 +371,7 @@ function formatText(text, onLawClick, allLaws) {
       // Process law references inside bold text too
       return (
         <strong key={partIndex} className="font-semibold text-gray-900 dark:text-white">
-          {processLawReferences(boldMatch[1], onLawClick, allLaws, `${partIndex}-bold`)}
+          {processLawReferences(boldMatch[1], onLawClick, onLawHover, onLawLeave, allLaws, `${partIndex}-bold`)}
         </strong>
       )
     }
@@ -371,14 +379,14 @@ function formatText(text, onLawClick, allLaws) {
     // Process law references in regular text
     return (
       <React.Fragment key={partIndex}>
-        {processLawReferences(part, onLawClick, allLaws, partIndex)}
+        {processLawReferences(part, onLawClick, onLawHover, onLawLeave, allLaws, partIndex)}
       </React.Fragment>
     )
   })
 }
 
 // Process text to find and linkify law references
-function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
+function processLawReferences(text, onLawClick, onLawHover, onLawLeave, allLaws, keyPrefix) {
   if (!text || !onLawClick) return text
 
   // Combined pattern for all special law references:
@@ -395,7 +403,7 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
     // Add text before the match (process for regular law references)
     if (match.index > lastIndex) {
       const beforeText = text.slice(lastIndex, match.index)
-      result.push(...processRegularLawReferences(beforeText, onLawClick, allLaws, `${keyPrefix}-pre-${lastIndex}`))
+      result.push(...processRegularLawReferences(beforeText, onLawClick, onLawHover, onLawLeave, allLaws, `${keyPrefix}-pre-${lastIndex}`))
     }
 
     const fullMatch = match[0]
@@ -408,6 +416,7 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
 
       if (law) {
         const country = law.jurisdiction || law.country
+        const hoverInfo = { law: law.abbreviation || law.abbr, section: null, country }
         result.push(
           <button
             key={`${keyPrefix}-lawid-${match.index}`}
@@ -416,6 +425,8 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
               e.stopPropagation()
               onLawClick(law.id, country)
             }}
+            onMouseEnter={onLawHover ? (e) => onLawHover(e, hoverInfo) : undefined}
+            onMouseLeave={onLawLeave}
             className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 rounded text-xs font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-800/50 transition-colors cursor-pointer"
             title={`View ${law.abbreviation || law.title} in Law Browser`}
           >
@@ -452,6 +463,7 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
       displayText += ` ${abbreviation}`
 
       if (lawInfo) {
+        const hoverInfo = { law: abbreviation, section: paragraph, country: lawInfo.country }
         result.push(
           <button
             key={`${keyPrefix}-bracket-${match.index}`}
@@ -460,6 +472,8 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
               e.stopPropagation()
               onLawClick(lawInfo.id, lawInfo.country, sectionId)
             }}
+            onMouseEnter={onLawHover ? (e) => onLawHover(e, hoverInfo) : undefined}
+            onMouseLeave={onLawLeave}
             className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 rounded text-xs font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-800/50 transition-colors cursor-pointer"
             title={`View ${displayText} in Law Browser`}
           >
@@ -498,6 +512,7 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
       displayText += ` ${abbreviation}`
 
       if (lawInfo) {
+        const hoverInfo = { law: abbreviation, section: article, country: 'NL' }
         result.push(
           <button
             key={`${keyPrefix}-nlbracket-${match.index}`}
@@ -506,6 +521,8 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
               e.stopPropagation()
               onLawClick(lawInfo.id, lawInfo.country, sectionId)
             }}
+            onMouseEnter={onLawHover ? (e) => onLawHover(e, hoverInfo) : undefined}
+            onMouseLeave={onLawLeave}
             className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 rounded text-xs font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-800/50 transition-colors cursor-pointer"
             title={`View ${displayText} in Law Browser`}
           >
@@ -535,14 +552,14 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
   // Add remaining text (process for regular law references)
   if (lastIndex < text.length) {
     const remainingText = text.slice(lastIndex)
-    result.push(...processRegularLawReferences(remainingText, onLawClick, allLaws, `${keyPrefix}-end`))
+    result.push(...processRegularLawReferences(remainingText, onLawClick, onLawHover, onLawLeave, allLaws, `${keyPrefix}-end`))
   }
 
   return result.length > 0 ? result : text
 }
 
 // Process regular law references (like "§ 26 ASchG")
-function processRegularLawReferences(text, onLawClick, allLaws, keyPrefix) {
+function processRegularLawReferences(text, onLawClick, onLawHover, onLawLeave, allLaws, keyPrefix) {
   if (!text) return [text]
 
   // Reset the regex lastIndex for fresh matching
@@ -566,6 +583,12 @@ function processRegularLawReferences(text, onLawClick, allLaws, keyPrefix) {
     const lawInfo = findLawIdFromReference(matchedText, allLaws)
 
     if (lawInfo) {
+      // Extract law abbreviation and section for hover info
+      const lawMatch = matchedText.match(/(?:§\s*(\d+[a-z]?)|Artikel\s+(\d+(?:\.\d+)?))\s*(?:.*?)\s*(\w+)?$/i)
+      const sectionNum = lawMatch ? (lawMatch[1] || lawMatch[2]) : null
+      const lawAbbr = lawMatch ? lawMatch[3] : null
+      const hoverInfo = { law: lawAbbr, section: sectionNum, country: lawInfo.country }
+
       // Render as clickable link with section deep linking
       result.push(
         <button
@@ -575,6 +598,8 @@ function processRegularLawReferences(text, onLawClick, allLaws, keyPrefix) {
             e.stopPropagation()
             onLawClick(lawInfo.id, lawInfo.country, lawInfo.section)
           }}
+          onMouseEnter={onLawHover ? (e) => onLawHover(e, hoverInfo) : undefined}
+          onMouseLeave={onLawLeave}
           className="inline-flex items-center gap-1 text-whs-orange-600 dark:text-whs-orange-400 hover:text-whs-orange-700 dark:hover:text-whs-orange-300 hover:underline font-medium transition-colors cursor-pointer"
           title={`View ${matchedText} in Law Browser`}
         >
