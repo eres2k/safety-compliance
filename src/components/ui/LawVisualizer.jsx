@@ -54,8 +54,11 @@ function cleanMermaidSyntax(rawSyntax) {
 
     // Fix parentheses in labels that aren't part of node syntax
     // Replace "text (note)" with "text - note" inside node labels
+    // BUT preserve valid Mermaid double-paren syntax like A((Start)) for stadium/circle nodes
     line = line.replace(/\[([^\]]*)\(([^)]+)\)([^\]]*)\]/g, '[$1- $2$3]')
-    line = line.replace(/\(([^)]*)\(([^)]+)\)([^)]*)\)/g, '($1- $2$3)')
+    // Only fix nested parens inside rounded nodes if there's text before the inner paren
+    // This preserves ((text)) stadium nodes but fixes "A(text (note))" patterns
+    line = line.replace(/\(([^()]+)\(([^)]+)\)([^)]*)\)/g, '($1- $2$3)')
     line = line.replace(/\{([^}]*)\(([^)]+)\)([^}]*)\}/g, '{$1- $2$3}')
 
     return line
