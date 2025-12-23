@@ -54,6 +54,12 @@ const SUPPLEMENTARY_DOCS_CONTEXT = {
     description: 'German technical rules (ASR, DGUV Vorschrift, DGUV Information, TRBS, TRGS)',
     documents: [
       { abbr: 'DGUV Vorschrift 1', topic: 'prevention principles/fundamentals', keywords: ['prevention', 'prävention', 'grundsätze', 'unterweisung', 'training', 'gefährdungsbeurteilung', 'risk assessment', 'pflichten', 'duties', 'employer', 'employee'] },
+      { abbr: 'DGUV Vorschrift 2', topic: 'occupational physicians and safety specialists', keywords: ['betriebsarzt', 'physician', 'fachkraft', 'sifa', 'arbeitssicherheit', 'occupational health', 'arbeitsmedizin'] },
+      { abbr: 'DGUV Vorschrift 3', topic: 'electrical installations and equipment', keywords: ['electrical', 'elektrisch', 'strom', 'voltage', 'installation', 'betriebsmittel', 'prüfung'] },
+      { abbr: 'DGUV Vorschrift 52', topic: 'cranes', keywords: ['crane', 'kran', 'hoist', 'lifting', 'hebezug', 'lastaufnahme'] },
+      { abbr: 'DGUV Vorschrift 54', topic: 'winches, lifting and pulling devices', keywords: ['winch', 'winde', 'hub', 'zug', 'seil', 'pulling', 'lifting device'] },
+      { abbr: 'DGUV Vorschrift 68', topic: 'industrial trucks/forklifts', keywords: ['forklift', 'stapler', 'flurförderzeug', 'gabelstapler', 'pallet jack', 'industrial truck', 'PIT'] },
+      { abbr: 'DGUV Vorschrift 70', topic: 'vehicles', keywords: ['vehicle', 'fahrzeug', 'transport', 'lkw', 'truck', 'loading', 'ladung'] },
       { abbr: 'ASR V3', topic: 'risk assessment', keywords: ['risk', 'gefährdungsbeurteilung', 'assessment'] },
       { abbr: 'ASR V3a.2', topic: 'accessible workplace design', keywords: ['accessibility', 'disability', 'barrier-free'] },
       { abbr: 'ASR A1.2', topic: 'room dimensions and floor space', keywords: ['space', 'dimension', 'room', 'floor'] },
