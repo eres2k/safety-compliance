@@ -51,8 +51,9 @@ const SUPPLEMENTARY_DOCS_CONTEXT = {
     ]
   },
   DE: {
-    description: 'German technical rules (ASR, DGUV Information, TRBS, TRGS)',
+    description: 'German technical rules (ASR, DGUV Vorschrift, DGUV Information, TRBS, TRGS)',
     documents: [
+      { abbr: 'DGUV Vorschrift 1', topic: 'prevention principles/fundamentals', keywords: ['prevention', 'prävention', 'grundsätze', 'unterweisung', 'training', 'gefährdungsbeurteilung', 'risk assessment', 'pflichten', 'duties', 'employer', 'employee'] },
       { abbr: 'ASR V3', topic: 'risk assessment', keywords: ['risk', 'gefährdungsbeurteilung', 'assessment'] },
       { abbr: 'ASR V3a.2', topic: 'accessible workplace design', keywords: ['accessibility', 'disability', 'barrier-free'] },
       { abbr: 'ASR A1.2', topic: 'room dimensions and floor space', keywords: ['space', 'dimension', 'room', 'floor'] },
