@@ -13,16 +13,20 @@ import React from 'react'
 
 // Common law abbreviations for detection
 const LAW_ABBREVIATIONS = [
-  // Austrian
+  // Austrian - Laws
   'ASchG', 'ArbIG', 'AZG', 'KSchG', 'ARG', 'KJBG', 'MSchG', 'GlBG', 'AVRAG', 'BauKG',
   'AM-VO', 'AStV', 'AMVO', 'VGÜ', 'ESV', 'PSA-V', 'BS', 'BauV', 'DOK-VO', 'AAV',
-  'AUVA', 'Merkblatt',
-  // German
+  // Austrian - Supplementary (AUVA Merkblätter, M, M.plus, E series)
+  'AUVA', 'AUVA M', 'AUVA M.plus', 'AUVA E', 'AUVA IVSS', 'AUVAsicher', 'AI',
+  // German - Laws
   'DGUV', 'ArbSchG', 'ArbStättV', 'BetrSichV', 'GefStoffV', 'BioStoffV', 'LärmVibrationsArbSchV',
   'ArbMedVV', 'LasthandhabV', 'PSA-BV', 'ASiG', 'JArbSchG', 'MuSchG', 'ArbZG',
-  'TRBS', 'TRGS', 'ASR', 'PGS', 'DGUV Vorschrift', 'DGUV Regel', 'DGUV Information',
-  // Dutch
+  // German - Technical Rules
+  'TRBS', 'TRGS', 'ASR', 'DGUV Vorschrift', 'DGUV Regel', 'DGUV Information',
+  // Dutch - Laws
   'Arbowet', 'Arbobesluit', 'Arboregeling', 'ATW', 'WAB', 'BW', 'WOR', 'ARBO',
+  // Dutch - Supplementary (PGS, Arbocatalogus, STL, TNO, Volandis)
+  'PGS', 'Arbocatalogus', 'STL', 'TNO', 'Volandis',
   // EU
   'EU-Richtlinie', 'Richtlinie', 'Verordnung'
 ]
@@ -37,11 +41,12 @@ const createLawReferencePattern = () => {
   // Pattern matches:
   // 1. "§ X AbbName" or "§§ X-Y AbbName" (German/Austrian section references)
   // 2. "Artikel X AbbName" or "Art. X" (Dutch/EU article references)
-  // 3. Standalone abbreviations with optional numbers (e.g., "DGUV Vorschrift 1")
+  // 3. Standalone abbreviations with optional numbers/identifiers (e.g., "DGUV Vorschrift 1", "ASR A3.4", "DGUV 212-016")
   return new RegExp(
     `(§§?\\s*\\d+[a-z]?(?:\\s*(?:bis|[-–])\\s*\\d+[a-z]?)?(?:\\s+(?:Abs\\.?|Absatz)\\s*\\d+)?(?:\\s+(?:${escapedAbbrs})))|` +
     `((?:Artikel|Art\\.)\\s*\\d+(?:\\.\\d+)?(?:\\s+(?:${escapedAbbrs})))|` +
-    `(\\b(?:${escapedAbbrs})(?:\\s+(?:Vorschrift|Regel|Information|Nr\\.|Nummer))?\\s*\\d*\\b)`,
+    `(\\b(?:${escapedAbbrs})(?:\\s+(?:Vorschrift|Regel|Information|Nr\\.|Nummer))?\\s*[AV]?\\d+(?:[-._]\\d+)*\\b)|` +
+    `(\\b(?:${escapedAbbrs})\\b)`,
     'gi'
   )
 }
@@ -89,10 +94,122 @@ function findLawIdFromReference(referenceText, allLaws) {
     // Check for DGUV pattern matching
     if (normalizedRef.includes('dguv') && abbr.includes('dguv')) {
       // Try to match specific DGUV Vorschrift/Regel/Information number
-      const dguNumberMatch = normalizedRef.match(/dguv\s*(?:vorschrift|regel|information)?\s*(\d+)/i)
-      const lawNumberMatch = abbr.match(/dguv\s*(?:vorschrift|regel|information)?\s*(\d+)/i)
-      if (dguNumberMatch && lawNumberMatch && dguNumberMatch[1] === lawNumberMatch[1]) {
-        return { id: law.id, country: law.jurisdiction || law.country, section }
+      const dguNumberMatch = normalizedRef.match(/dguv\s*(?:vorschrift|regel|information)?[-\s]*(\d+[-\d]*)/i)
+      const lawNumberMatch = abbr.match(/dguv[-\s]*(\d+[-\d]*)/i)
+      if (dguNumberMatch && lawNumberMatch) {
+        // Normalize numbers (remove dashes for comparison)
+        const refNum = dguNumberMatch[1].replace(/-/g, '')
+        const lawNum = lawNumberMatch[1].replace(/-/g, '')
+        if (refNum === lawNum) {
+          return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+        }
+      }
+    }
+
+    // Check for ASR pattern matching (e.g., "ASR 3.4", "ASR A3.4", "ASR V3")
+    if (normalizedRef.includes('asr') && abbr.includes('asr')) {
+      // Extract ASR number pattern - handles "ASR 3.4", "ASR A3.4", "ASR V3", "ASR A1.2"
+      const asrRefMatch = normalizedRef.match(/asr\s*([av]?\d+(?:[._]\d+)?)/i)
+      const asrAbbrMatch = abbr.match(/asr\s*([av]?\d+(?:[._]\d+)?)/i)
+      if (asrRefMatch && asrAbbrMatch) {
+        // Normalize: "3.4" -> "a3.4", "a3.4" -> "a3.4", dots/underscores are equivalent
+        const normalizeAsrNum = (num) => {
+          let n = num.toLowerCase().replace(/[_]/g, '.')
+          // If it starts with a digit, assume "A" prefix (e.g., "3.4" -> "a3.4")
+          if (/^\d/.test(n)) n = 'a' + n
+          return n
+        }
+        if (normalizeAsrNum(asrRefMatch[1]) === normalizeAsrNum(asrAbbrMatch[1])) {
+          return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+        }
+      }
+    }
+
+    // Check for TRBS pattern matching (e.g., "TRBS 1111", "TRBS 2111")
+    if (normalizedRef.includes('trbs') && abbr.includes('trbs')) {
+      const trbsRefMatch = normalizedRef.match(/trbs\s*(\d+)/i)
+      const trbsAbbrMatch = abbr.match(/trbs\s*(\d+)/i)
+      if (trbsRefMatch && trbsAbbrMatch && trbsRefMatch[1] === trbsAbbrMatch[1]) {
+        return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+      }
+    }
+
+    // Check for TRGS pattern matching (e.g., "TRGS 400", "TRGS 510")
+    if (normalizedRef.includes('trgs') && abbr.includes('trgs')) {
+      const trgsRefMatch = normalizedRef.match(/trgs\s*(\d+)/i)
+      const trgsAbbrMatch = abbr.match(/trgs\s*(\d+)/i)
+      if (trgsRefMatch && trgsAbbrMatch && trgsRefMatch[1] === trgsAbbrMatch[1]) {
+        return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+      }
+    }
+
+    // Check for AUVA pattern matching (e.g., "AUVA M 030", "AUVA M.plus 012", "AUVA E 13")
+    if (normalizedRef.includes('auva') && abbr.includes('auva')) {
+      // Extract AUVA series and number - handles "AUVA M 030", "AUVA M.plus 012", "AUVA E 13", etc.
+      const auvaRefMatch = normalizedRef.match(/auva\s*(m\.?plus|m|e|ivss|basiswissen|sicher)?[-\s]*(\d+(?:[._]\d+)?)?/i)
+      const auvaAbbrMatch = abbr.match(/auva\s*(m\.?plus|m|e|ivss|basiswissen|sicher)?[-\s]*(\d+(?:[._]\d+)?)?/i)
+      if (auvaRefMatch && auvaAbbrMatch) {
+        // Normalize series: "m.plus" -> "mplus", "m" -> "m"
+        const normalizeSeries = (s) => s ? s.toLowerCase().replace(/[.\s]/g, '') : ''
+        const normalizeNum = (n) => n ? n.replace(/[._]/g, '') : ''
+        const refSeries = normalizeSeries(auvaRefMatch[1])
+        const abbrSeries = normalizeSeries(auvaAbbrMatch[1])
+        const refNum = normalizeNum(auvaRefMatch[2])
+        const abbrNum = normalizeNum(auvaAbbrMatch[2])
+        // Match if series matches (or both empty) and number matches
+        if ((refSeries === abbrSeries || (!refSeries && !abbrSeries)) &&
+            (refNum === abbrNum || (!refNum && !abbrNum) || abbrNum.includes(refNum))) {
+          return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+        }
+      }
+    }
+
+    // Check for PGS pattern matching (e.g., "PGS 15", "PGS 30.3")
+    if (normalizedRef.includes('pgs') && abbr.includes('pgs')) {
+      const pgsRefMatch = normalizedRef.match(/pgs\s*(\d+(?:[._]\d+)?)/i)
+      const pgsAbbrMatch = abbr.match(/pgs\s*(\d+(?:[._]\d+)?)/i)
+      if (pgsRefMatch && pgsAbbrMatch) {
+        const normalizeNum = (n) => n.replace(/[._]/g, '.')
+        if (normalizeNum(pgsRefMatch[1]) === normalizeNum(pgsAbbrMatch[1])) {
+          return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+        }
+      }
+    }
+
+    // Check for STL pattern matching (e.g., "STL Transport", "STL Warehouse")
+    if (normalizedRef.includes('stl') && abbr.includes('stl')) {
+      // Check if the abbreviation contains key words from the reference
+      const stlWords = normalizedRef.replace(/stl/i, '').trim().split(/\s+/)
+      const abbrLower = abbr.toLowerCase()
+      if (stlWords.some(word => word.length > 3 && abbrLower.includes(word))) {
+        return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+      }
+    }
+
+    // Check for TNO pattern matching (e.g., "TNO Factsheet", "TNO Wegwijzer")
+    if (normalizedRef.includes('tno') && abbr.includes('tno')) {
+      const tnoWords = normalizedRef.replace(/tno/i, '').trim().split(/\s+/)
+      const abbrLower = abbr.toLowerCase()
+      if (tnoWords.some(word => word.length > 3 && abbrLower.includes(word))) {
+        return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+      }
+    }
+
+    // Check for Volandis pattern matching (e.g., "Volandis Houtstof", "Volandis Ladders")
+    if (normalizedRef.includes('volandis') && abbr.includes('volandis')) {
+      const volandisWords = normalizedRef.replace(/volandis/i, '').trim().split(/\s+/)
+      const abbrLower = abbr.toLowerCase()
+      if (volandisWords.some(word => word.length > 3 && abbrLower.includes(word))) {
+        return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
+      }
+    }
+
+    // Check for Arbocatalogus pattern matching (e.g., "Arbocatalogus Transport", "Arbocatalogus Kantoor")
+    if (normalizedRef.includes('arbocatalogus') && abbr.includes('arbocatalogus')) {
+      const arboWords = normalizedRef.replace(/arbocatalogus/i, '').trim().split(/\s+/)
+      const abbrLower = abbr.toLowerCase()
+      if (arboWords.some(word => word.length > 3 && abbrLower.includes(word))) {
+        return { id: law.id, country: law.jurisdiction || law.country, section, isPdfDocument: true }
       }
     }
   }
