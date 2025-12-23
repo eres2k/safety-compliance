@@ -861,50 +861,58 @@
     },
     "DE:ASR V3": {
       "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-V3.pdf?__blob=publicationFile",
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "total_successes": 2,
-      "total_failures": 0,
+      "total_failures": 1,
       "last_success": "2025-12-22T23:57:22.504861",
-      "last_failure": null,
-      "auto_disabled": false
+      "last_failure": "2025-12-23T23:03:01.678659",
+      "auto_disabled": false,
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-V3.pdf?__blob=publicationFile",
+      "last_http_status": null
     },
     "DE:ASR V3a.2": {
       "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-V3a-2.pdf?__blob=publicationFile",
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "total_successes": 2,
-      "total_failures": 0,
+      "total_failures": 1,
       "last_success": "2025-12-22T23:57:23.352694",
-      "last_failure": null,
-      "auto_disabled": false
+      "last_failure": "2025-12-23T23:03:04.366652",
+      "auto_disabled": false,
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-V3a-2.pdf?__blob=publicationFile",
+      "last_http_status": null
     },
     "DE:ASR A1.2": {
       "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-2.pdf?__blob=publicationFile",
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "total_successes": 2,
-      "total_failures": 0,
+      "total_failures": 1,
       "last_success": "2025-12-22T23:57:24.247398",
-      "last_failure": null,
-      "auto_disabled": false
+      "last_failure": "2025-12-23T23:03:07.030396",
+      "auto_disabled": false,
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-2.pdf?__blob=publicationFile",
+      "last_http_status": null
     },
     "DE:ASR A1.3": {
       "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile",
-      "consecutive_failures": 0,
+      "consecutive_failures": 1,
       "total_successes": 2,
-      "total_failures": 0,
+      "total_failures": 1,
       "last_success": "2025-12-22T23:57:25.332273",
-      "last_failure": null,
-      "auto_disabled": false
+      "last_failure": "2025-12-23T23:03:09.510434",
+      "auto_disabled": false,
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-3.pdf?__blob=publicationFile",
+      "last_http_status": null
     },
     "DE:ASR A1.5/1,2": {
       "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-5-1-2.pdf?__blob=publicationFile",
-      "consecutive_failures": 2,
+      "consecutive_failures": 3,
       "total_successes": 0,
-      "total_failures": 2,
+      "total_failures": 3,
       "last_success": null,
-      "last_failure": "2025-12-22T23:57:25.886644",
-      "last_error": "404 Client Error: Not Found for url: https://www.baua.de/DE/Angebote/Regelwerk/ASR/pdf/ASR-A1-5-1-2.pdf?__blob=publicationFile",
+      "last_failure": "2025-12-23T23:03:12.086504",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-5-1-2.pdf?__blob=publicationFile",
       "last_http_status": null,
-      "auto_disabled": false
+      "auto_disabled": true
     },
     "AT:AI Telearbeit Ergonomie": {
       "url": "https://www.arbeitsinspektion.gv.at/Arbeitsstaetten-_Arbeitsplaetze/Arbeitsplaetze/2025_Leitfaden_Ergonomisches-Arbeiten-in-Telearbeit_db_ua.pdf",
@@ -941,14 +949,180 @@
       "last_success": "2025-12-22T23:57:11.537844",
       "last_failure": null,
       "auto_disabled": false
+    },
+    "DE:ASR A1.6": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-6.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:14.647871",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-6.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A1.7": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-7.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:17.206705",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-7.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A1.8": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-8.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:19.834642",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A1-8.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A2.1": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-1.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:22.250411",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-1.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A2.2": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:24.898697",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-2.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A2.3": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-3.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:27.394754",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A2-3.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A3.4": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-4.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:29.950252",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-4.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A3.5": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-5.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:32.378596",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-5.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A3.6": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-6.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:34.942563",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-6.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A3.7": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-7.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:37.355105",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A3-7.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A4.1": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-1.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:39.986854",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-1.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A4.2": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-2.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:42.542974",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-2.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A4.3": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-3.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:44.962181",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-3.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A4.4": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-4.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:47.539049",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A4-4.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
+    },
+    "DE:ASR A5.1": {
+      "url": "https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A5-1.pdf?__blob=publicationFile",
+      "consecutive_failures": 1,
+      "total_successes": 0,
+      "total_failures": 1,
+      "last_success": null,
+      "last_failure": "2025-12-23T23:03:49.950401",
+      "last_error": "503 Server Error: Service Unavailable for url: https://www.baua.de/DE/Angebote/Rechtstexte-und-Technische-Regeln/Regelwerk/ASR/pdf/ASR-A5-1.pdf?__blob=publicationFile",
+      "last_http_status": null,
+      "auto_disabled": false
     }
   },
-  "last_updated": "2025-12-22T23:57:47.201124",
+  "last_updated": "2025-12-23T23:03:49.950413",
   "auto_disabled": [
     "AT:AUVA M.plus 327",
     "AT:AUVA M.plus 521",
     "AT:AUVA M.plus 523",
     "AT:AUVA M.plus 800",
-    "AT:AUVA M.plus 931"
+    "AT:AUVA M.plus 931",
+    "DE:ASR A1.5/1,2"
   ]
 }
