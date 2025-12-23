@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { useApp } from '../../context/AppContext'
-import { searchLaws, getAllLawsSync } from '../../services/euLawsDatabase'
+import { searchLaws, searchSections, getAllLawsSync } from '../../services/euLawsDatabase'
 import { generateAIResponse, getRateLimitStatus } from '../../services/aiService'
 import { FormattedAIResponse } from './FormattedAIResponse'
 
@@ -355,37 +355,77 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
     }
   }, [isOpen, ui.greeting])
 
-  // Search law database for context
+  // Search law database for context - uses semantic section-level search
   const searchLawContext = async (query) => {
     try {
-      const results = await searchLaws(query, { limit: 3, country: null })
       let context = ''
       let contextLength = 0
       const foundLaws = []
+      const seenLawIds = new Set()
 
-      if (results?.results?.length > 0) {
-        context += 'LAWS:\n'
-        for (const law of results.results.slice(0, 2)) {
-          foundLaws.push({
-            id: law.id,
-            abbreviation: law.abbreviation || law.title?.split(' ')[0],
-            title: law.title,
-            country: law.country || law.framework
-          })
+      // First: Try section-level semantic search for precise context
+      const sectionResults = await searchSections(query, { limit: 4 })
 
-          let entry = `[${law.abbreviation}|${law.country}|ID:${law.id}] ${law.title}\n`
-          if (law.summary) entry += `${law.summary.substring(0, 200)}\n`
-          if (law.content?.full_text && contextLength < MAX_CONTEXT_LENGTH) {
+      if (sectionResults?.length > 0) {
+        context += 'RELEVANT SECTIONS:\n'
+        for (const result of sectionResults) {
+          // Track unique laws
+          if (!seenLawIds.has(result.law.id)) {
+            seenLawIds.add(result.law.id)
+            foundLaws.push({
+              id: result.law.id,
+              abbreviation: result.law.abbreviation,
+              title: result.law.title,
+              country: result.law.country
+            })
+          }
+
+          // Build section context entry
+          let entry = `[${result.law.abbreviation}|${result.law.country}|ID:${result.law.id}] ${result.section.title || result.section.number}\n`
+
+          // Include section text (truncated for context budget)
+          if (result.section.text && contextLength < MAX_CONTEXT_LENGTH) {
             const remaining = MAX_CONTEXT_LENGTH - contextLength - entry.length
             if (remaining > 100) {
-              entry += `${law.content.full_text.substring(0, Math.min(remaining, 500))}...\n`
+              entry += `${result.section.text.substring(0, Math.min(remaining, 400))}\n`
             }
           }
+
           if (contextLength + entry.length > MAX_CONTEXT_LENGTH) break
           context += entry
           contextLength += entry.length
         }
       }
+
+      // Fallback: If no section results, try document-level search
+      if (sectionResults?.length === 0) {
+        const results = await searchLaws(query, { limit: 3, country: null })
+
+        if (results?.results?.length > 0) {
+          context += 'LAWS:\n'
+          for (const law of results.results.slice(0, 2)) {
+            foundLaws.push({
+              id: law.id,
+              abbreviation: law.abbreviation || law.title?.split(' ')[0],
+              title: law.title,
+              country: law.country || law.framework
+            })
+
+            let entry = `[${law.abbreviation}|${law.country}|ID:${law.id}] ${law.title}\n`
+            if (law.summary) entry += `${law.summary.substring(0, 200)}\n`
+            if (law.content?.full_text && contextLength < MAX_CONTEXT_LENGTH) {
+              const remaining = MAX_CONTEXT_LENGTH - contextLength - entry.length
+              if (remaining > 100) {
+                entry += `${law.content.full_text.substring(0, Math.min(remaining, 500))}...\n`
+              }
+            }
+            if (contextLength + entry.length > MAX_CONTEXT_LENGTH) break
+            context += entry
+            contextLength += entry.length
+          }
+        }
+      }
+
       return { context, foundLaws }
     } catch (error) {
       console.error('Search error:', error)

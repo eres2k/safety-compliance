@@ -354,6 +354,165 @@ export const WHS_TOPIC_LABELS = {
 }
 
 /**
+ * WHS Topic synonyms for enhanced semantic search
+ * Maps common search terms (EN/DE/NL) to WHS topic IDs
+ * This allows users to find relevant laws even without exact keyword matches
+ */
+export const WHS_TOPIC_SYNONYMS = {
+  // Risk Assessment
+  risk_assessment: [
+    'risk', 'risiko', 'risico', 'gefährdung', 'gefährdungsbeurteilung', 'gevaar',
+    'assessment', 'beurteilung', 'beoordeling', 'evaluate', 'bewerten', 'evalueren',
+    'hazard identification', 'gefahrenermittlung', 'gevaaridentificatie'
+  ],
+  // Documentation
+  documentation: [
+    'document', 'dokument', 'documentatie', 'record', 'aufzeichnung', 'registratie',
+    'report', 'bericht', 'rapport', 'log', 'protokoll', 'logboek',
+    'certificate', 'zertifikat', 'certificaat', 'nachweis', 'bewijs'
+  ],
+  // PPE - Personal Protective Equipment
+  ppe: [
+    'ppe', 'psa', 'pbm', 'protective equipment', 'schutzausrüstung', 'beschermingsmiddelen',
+    'helmet', 'helm', 'gloves', 'handschuhe', 'handschoenen',
+    'safety shoes', 'sicherheitsschuhe', 'veiligheidsschoenen',
+    'goggles', 'schutzbrille', 'veiligheidsbril', 'eye protection', 'augenschutz',
+    'ear protection', 'gehörschutz', 'gehoorbescherming', 'hearing',
+    'respirator', 'atemschutz', 'ademhalingsbescherming', 'mask', 'maske', 'masker',
+    'high visibility', 'warnweste', 'reflecterend', 'vest', 'weste'
+  ],
+  // First Aid
+  first_aid: [
+    'first aid', 'erste hilfe', 'ehbo', 'eerste hulp',
+    'emergency', 'notfall', 'noodgeval', 'medical', 'medizinisch', 'medisch',
+    'injury', 'verletzung', 'letsel', 'wound', 'wunde', 'wond',
+    'aed', 'defibrillator', 'cpr', 'reanimation', 'reanimatie'
+  ],
+  // Training
+  training: [
+    'training', 'schulung', 'opleiding', 'instruction', 'unterweisung', 'instructie',
+    'education', 'ausbildung', 'educatie', 'course', 'kurs', 'cursus',
+    'certification', 'zertifizierung', 'certificering', 'competence', 'kompetenz',
+    'induction', 'einweisung', 'introductie', 'onboarding'
+  ],
+  // Workplace Design
+  workplace_design: [
+    'workplace', 'arbeitsplatz', 'werkplek', 'workstation', 'arbeitsstation',
+    'office', 'büro', 'kantoor', 'layout', 'gestaltung', 'inrichting',
+    'ventilation', 'lüftung', 'ventilatie', 'lighting', 'beleuchtung', 'verlichting',
+    'temperature', 'temperatur', 'temperatuur', 'noise', 'lärm', 'lawaai',
+    'space', 'raum', 'ruimte', 'floor', 'boden', 'vloer'
+  ],
+  // Work Equipment
+  work_equipment: [
+    'equipment', 'ausrüstung', 'apparatuur', 'machine', 'maschine', 'machinery',
+    'tool', 'werkzeug', 'gereedschap', 'device', 'gerät', 'apparaat',
+    'forklift', 'gabelstapler', 'heftruck', 'lift', 'aufzug', 'conveyor', 'förderband',
+    'ladder', 'leiter', 'scaffold', 'gerüst', 'steiger', 'crane', 'kran', 'kraan',
+    'vehicle', 'fahrzeug', 'voertuig', 'truck', 'lkw', 'vrachtwagen'
+  ],
+  // Hazardous Substances
+  hazardous_substances: [
+    'hazardous', 'gefährlich', 'gevaarlijk', 'chemical', 'chemisch', 'chemicaliën',
+    'toxic', 'giftig', 'poison', 'gift', 'vergif', 'substance', 'stoff', 'stof',
+    'flammable', 'brennbar', 'brandbaar', 'explosive', 'explosiv', 'explosief',
+    'corrosive', 'ätzend', 'bijtend', 'carcinogen', 'krebserregend', 'kankerverwekkend',
+    'asbestos', 'asbest', 'lead', 'blei', 'lood', 'solvent', 'lösungsmittel'
+  ],
+  // Health Surveillance
+  health_surveillance: [
+    'health', 'gesundheit', 'gezondheid', 'medical examination', 'untersuchung',
+    'surveillance', 'überwachung', 'monitoring', 'checkup', 'vorsorge',
+    'occupational health', 'arbeitsmedizin', 'bedrijfsarts', 'doctor', 'arzt', 'arts',
+    'fitness', 'tauglichkeit', 'geschiktheid', 'screening'
+  ],
+  // Ergonomics
+  ergonomics: [
+    'ergonomic', 'ergonomisch', 'posture', 'haltung', 'houding',
+    'lifting', 'heben', 'tillen', 'manual handling', 'lastenhandhabung',
+    'repetitive', 'wiederholt', 'herhaald', 'strain', 'belastung', 'overbelasting',
+    'back', 'rücken', 'rug', 'musculoskeletal', 'msd', 'carpal tunnel'
+  ],
+  // Incident Reporting
+  incident_reporting: [
+    'incident', 'vorfall', 'ongeval', 'accident', 'unfall',
+    'report', 'melden', 'melding', 'near miss', 'beinaheunfall', 'bijna-ongeval',
+    'investigation', 'untersuchung', 'onderzoek', 'root cause', 'ursache'
+  ],
+  // Working Hours
+  working_hours: [
+    'working hours', 'arbeitszeit', 'werktijd', 'overtime', 'überstunden', 'overwerk',
+    'break', 'pause', 'pauze', 'rest', 'ruhezeit', 'rust',
+    'shift', 'schicht', 'ploegendienst', 'night work', 'nachtarbeit', 'nachtwerk',
+    'fatigue', 'ermüdung', 'vermoeidheid'
+  ],
+  // Special Groups
+  special_groups: [
+    'pregnant', 'schwanger', 'zwanger', 'maternity', 'mutterschutz', 'moederschapsbescherming',
+    'young worker', 'jugendlich', 'jongere', 'minor', 'minderjährig', 'minderjarige',
+    'disabled', 'behindert', 'gehandicapt', 'temporary', 'leiharbeit', 'uitzendkracht'
+  ],
+  // Prevention Services
+  prevention_services: [
+    'prevention', 'prävention', 'preventie', 'safety officer', 'sicherheitsfachkraft',
+    'preventiemedewerker', 'occupational physician', 'betriebsarzt', 'bedrijfsarts',
+    'safety committee', 'sicherheitsausschuss', 'arbocommissie',
+    'external service', 'externer dienst', 'arbodienst'
+  ],
+  // Employer Obligations
+  employer_obligations: [
+    'employer', 'arbeitgeber', 'werkgever', 'obligation', 'pflicht', 'verplichting',
+    'responsibility', 'verantwortung', 'verantwoordelijkheid', 'duty', 'sorgfaltspflicht',
+    'liability', 'haftung', 'aansprakelijkheid', 'compliance', 'einhaltung', 'naleving'
+  ],
+  // Employee Rights
+  employee_rights: [
+    'employee', 'arbeitnehmer', 'werknemer', 'worker', 'arbeiter', 'medewerker',
+    'right', 'recht', 'participation', 'mitwirkung', 'medezeggenschap',
+    'refusal', 'verweigerung', 'weigering', 'consultation', 'beratung', 'overleg'
+  ],
+  // Penalties
+  penalties: [
+    'penalty', 'strafe', 'boete', 'fine', 'bußgeld', 'sanction', 'sanktion', 'sanctie',
+    'violation', 'verstoß', 'overtreding', 'enforcement', 'durchsetzung', 'handhaving',
+    'inspection', 'inspektion', 'inspectie', 'audit', 'prüfung', 'controle'
+  ]
+}
+
+/**
+ * Match query terms to WHS topics
+ * Returns array of matching topic IDs with relevance scores
+ */
+function matchQueryToWhsTopics(query) {
+  const queryLower = query.toLowerCase()
+  const queryTerms = queryLower.split(/\s+/)
+  const matches = []
+
+  for (const [topicId, synonyms] of Object.entries(WHS_TOPIC_SYNONYMS)) {
+    let score = 0
+
+    for (const synonym of synonyms) {
+      // Exact phrase match (highest score)
+      if (queryLower.includes(synonym)) {
+        score += synonym.split(/\s+/).length * 15 // Multi-word phrases score higher
+      }
+      // Individual term matches
+      for (const term of queryTerms) {
+        if (term.length >= 3 && synonym.includes(term)) {
+          score += 5
+        }
+      }
+    }
+
+    if (score > 0) {
+      matches.push({ topicId, score })
+    }
+  }
+
+  return matches.sort((a, b) => b.score - a.score)
+}
+
+/**
  * Relevance level colors and labels
  */
 export const RELEVANCE_LEVELS = {
@@ -807,7 +966,123 @@ export function searchLawsSync(query, options = {}) {
 }
 
 /**
+ * Search for relevant sections across all laws
+ * Returns section-level results with parent law context
+ * Optimized for chatbot context retrieval
+ *
+ * @param {string} query - Search query
+ * @param {Object} options - Search options
+ * @param {string|null} options.country - Filter by country (AT, DE, NL) or null for all
+ * @param {number} options.limit - Max sections to return (default 5)
+ * @returns {Promise<Array>} Array of section results with law context
+ */
+export async function searchSections(query, options = {}) {
+  const {
+    country = null,
+    limit = 5
+  } = options
+
+  const countries = country ? [country] : ['AT', 'DE', 'NL']
+  await Promise.all(countries.map(c => loadCountryDatabase(c)))
+
+  const queryLower = query?.toLowerCase().trim() || ''
+  if (!queryLower) return []
+
+  const matchedTopics = matchQueryToWhsTopics(query)
+  const sectionResults = []
+
+  for (const c of countries) {
+    const db = lawsDatabase[c]
+    if (!db) continue
+
+    for (const item of db.items) {
+      if (!item.chapters) continue
+
+      for (const chapter of item.chapters) {
+        if (!chapter.sections) continue
+
+        for (const section of chapter.sections) {
+          let score = 0
+
+          // Text content matching
+          const sectionText = (section.text || '').toLowerCase()
+          const sectionTitle = (section.title || '').toLowerCase()
+
+          if (sectionTitle.includes(queryLower)) {
+            score += 40
+          }
+          if (sectionText.includes(queryLower)) {
+            score += 20
+            // Bonus for multiple occurrences
+            const occurrences = (sectionText.match(new RegExp(queryLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length
+            score += Math.min(occurrences * 3, 15)
+          }
+
+          // WHS topic matching - key improvement
+          if (matchedTopics.length > 0 && section.whs_topics) {
+            for (const match of matchedTopics) {
+              const topicData = section.whs_topics.find(t => t.id === match.topicId)
+              if (topicData) {
+                // Boost based on relevance level and match strength
+                const relevanceBoost = {
+                  'critical': 50,
+                  'high': 35,
+                  'medium': 20,
+                  'low': 10
+                }[topicData.relevance] || 15
+
+                score += relevanceBoost + (match.score / 3)
+
+                // Extra boost for high match counts
+                if (topicData.match_count > 2) {
+                  score += Math.min(topicData.match_count * 2, 10)
+                }
+              }
+            }
+          }
+
+          // Amazon logistics relevance boost (if present)
+          if (section.amazon_logistics_relevance?.level === 'critical') {
+            score += 15
+          } else if (section.amazon_logistics_relevance?.level === 'high') {
+            score += 8
+          }
+
+          if (score > 0) {
+            sectionResults.push({
+              score,
+              section: {
+                id: section.id,
+                number: section.number,
+                title: section.title,
+                text: section.text?.substring(0, 800), // Limit text for context
+                whs_topics: section.whs_topics
+              },
+              chapter: {
+                id: chapter.id,
+                title: chapter.title
+              },
+              law: {
+                id: item.id,
+                abbreviation: item.abbreviation,
+                title: item.title,
+                country: c
+              }
+            })
+          }
+        }
+      }
+    }
+  }
+
+  // Sort by score and limit results
+  sectionResults.sort((a, b) => b.score - a.score)
+  return sectionResults.slice(0, limit)
+}
+
+/**
  * Calculate search relevance score
+ * Enhanced with WHS topic semantic matching
  */
 function calculateSearchScore(item, query) {
   let score = 0
@@ -853,6 +1128,54 @@ function calculateSearchScore(item, query) {
   // Keyword match
   if (item.keywords?.some(k => k.includes(query))) {
     score += 15
+  }
+
+  // WHS Topic semantic matching - boost score if query matches WHS topics
+  const matchedTopics = matchQueryToWhsTopics(query)
+  if (matchedTopics.length > 0 && item.whs_summary?.top_whs_topics) {
+    // Get topic IDs from whs_summary (format: [[topicId, count], ...])
+    const documentTopicIds = item.whs_summary.top_whs_topics.map(t => t[0])
+
+    for (const match of matchedTopics) {
+      if (documentTopicIds.includes(match.topicId)) {
+        // Find the topic's position and count in the document
+        const topicEntry = item.whs_summary.top_whs_topics.find(t => t[0] === match.topicId)
+        const topicCount = topicEntry ? topicEntry[1] : 0
+        const topicRank = documentTopicIds.indexOf(match.topicId)
+
+        // Higher boost for top-ranked topics with high counts
+        const rankBoost = Math.max(0, 10 - topicRank) * 3 // Up to 30 for #1 topic
+        const countBoost = Math.min(topicCount / 5, 10) // Up to 10 for high-count topics
+
+        score += rankBoost + countBoost + (match.score / 2)
+      }
+    }
+  }
+
+  // Also check section-level WHS topics for more precise matching
+  if (matchedTopics.length > 0 && item.chapters) {
+    for (const chapter of item.chapters) {
+      if (chapter.sections) {
+        for (const section of chapter.sections) {
+          if (section.whs_topics) {
+            for (const match of matchedTopics.slice(0, 3)) { // Check top 3 matched topics
+              const sectionHasTopic = section.whs_topics.some(t => t.id === match.topicId)
+              if (sectionHasTopic) {
+                const topicData = section.whs_topics.find(t => t.id === match.topicId)
+                // Boost based on relevance level
+                const relevanceBoost = {
+                  'critical': 15,
+                  'high': 10,
+                  'medium': 5,
+                  'low': 2
+                }[topicData?.relevance] || 3
+                score += relevanceBoost
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   return score
@@ -1752,6 +2075,7 @@ export default {
   getLawsByType,
   searchLaws,
   searchLawsSync,
+  searchSections,
   getRelatedLaws,
   getCrossReferences,
   getLawCategories,
