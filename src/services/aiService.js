@@ -18,6 +18,140 @@ const LANGUAGE_CONTEXT = {
   nl: 'Antwoord in het Nederlands. Alle output moet in het Nederlands zijn.'
 }
 
+// Supplementary document context for AI recommendations
+// These are PDF-only technical rules and guidelines that complement the main laws
+const SUPPLEMENTARY_DOCS_CONTEXT = {
+  AT: {
+    description: 'Austrian supplementary documents (AUVA Merkblätter, Arbeitsinspektorat guides)',
+    documents: [
+      { abbr: 'AUVA M.plus 012', topic: 'summer heat prevention', keywords: ['heat', 'temperature', 'climate'] },
+      { abbr: 'AUVA M.plus 019', topic: 'noise regulations', keywords: ['noise', 'hearing', 'dB', 'decibel'] },
+      { abbr: 'AUVA M.plus 022', topic: 'telework/remote work', keywords: ['telework', 'home office', 'remote'] },
+      { abbr: 'AUVA M.plus 040', topic: 'workplace evaluation', keywords: ['evaluation', 'risk assessment', 'hazard'] },
+      { abbr: 'AUVA M.plus 070', topic: 'display screen workstations', keywords: ['screen', 'VDU', 'computer', 'ergonomics'] },
+      { abbr: 'AUVA M.plus 301', topic: 'safety representatives', keywords: ['SVP', 'safety rep', 'representative'] },
+      { abbr: 'AUVA M.plus 302', topic: 'safety organization', keywords: ['organization', 'management', 'structure'] },
+      { abbr: 'AUVA M.plus 330', topic: 'employee instruction/training', keywords: ['training', 'instruction', 'unterweisung'] },
+      { abbr: 'AUVA M.plus 361', topic: 'fire protection', keywords: ['fire', 'brand', 'extinguisher'] },
+      { abbr: 'AUVA M.plus 369', topic: 'explosion protection', keywords: ['explosion', 'ATEX', 'flammable'] },
+      { abbr: 'AUVA M.plus 700', topic: 'hazardous substances', keywords: ['chemical', 'substance', 'hazardous'] },
+      { abbr: 'AUVA M 030', topic: 'maintenance safety', keywords: ['maintenance', 'repair', 'lockout'] },
+      { abbr: 'AUVA M 041', topic: 'first aid', keywords: ['first aid', 'emergency', 'erste hilfe'] },
+      { abbr: 'AUVA M 080', topic: 'PPE/personal protective equipment', keywords: ['PPE', 'protective', 'equipment', 'PSA'] },
+      { abbr: 'AUVA M 105', topic: 'machine safety', keywords: ['machine', 'equipment', 'guard'] },
+      { abbr: 'AUVA M 364', topic: 'electrical safety', keywords: ['electrical', 'electric', 'voltage'] },
+      { abbr: 'AUVA M 391', topic: 'ladders and steps', keywords: ['ladder', 'step', 'leiter'] },
+      { abbr: 'AUVA M 480', topic: 'forklift safety', keywords: ['forklift', 'hubstapler', 'PIT', 'truck'] },
+      { abbr: 'AUVA M 705', topic: 'hazardous substances', keywords: ['chemical', 'toxic', 'gefahrstoff'] },
+      { abbr: 'AUVA M 830', topic: 'fall protection', keywords: ['fall', 'absturz', 'height', 'harness'] },
+      { abbr: 'AUVA E 13', topic: 'psychological stress evaluation', keywords: ['stress', 'mental', 'psychological', 'psychisch'] },
+      { abbr: 'AI Arbeitsstätten', topic: 'workplace facility design', keywords: ['facility', 'workplace', 'design', 'layout'] },
+      { abbr: 'AI Brandalarm', topic: 'fire alarm and evacuation drills', keywords: ['fire alarm', 'evacuation', 'drill', 'räumung'] },
+      { abbr: 'AI Lärm', topic: 'workplace noise hazards', keywords: ['noise', 'lärm', 'hearing'] }
+    ]
+  },
+  DE: {
+    description: 'German technical rules (ASR, DGUV Information, TRBS, TRGS)',
+    documents: [
+      { abbr: 'ASR V3', topic: 'risk assessment', keywords: ['risk', 'gefährdungsbeurteilung', 'assessment'] },
+      { abbr: 'ASR V3a.2', topic: 'accessible workplace design', keywords: ['accessibility', 'disability', 'barrier-free'] },
+      { abbr: 'ASR A1.2', topic: 'room dimensions and floor space', keywords: ['space', 'dimension', 'room', 'floor'] },
+      { abbr: 'ASR A1.3', topic: 'safety signage', keywords: ['sign', 'signage', 'marking', 'kennzeichnung'] },
+      { abbr: 'ASR A1.8', topic: 'traffic routes', keywords: ['traffic', 'route', 'walkway', 'verkehrsweg'] },
+      { abbr: 'ASR A2.1', topic: 'fall protection', keywords: ['fall', 'absturz', 'height', 'railing'] },
+      { abbr: 'ASR A2.2', topic: 'fire prevention', keywords: ['fire', 'brand', 'extinguisher', 'prevention'] },
+      { abbr: 'ASR A3.4', topic: 'workplace lighting', keywords: ['light', 'lighting', 'beleuchtung', 'lux'] },
+      { abbr: 'ASR A3.5', topic: 'room temperature', keywords: ['temperature', 'heat', 'cold', 'climate'] },
+      { abbr: 'DGUV 212-016', topic: 'warning clothing/high-vis', keywords: ['high-vis', 'visibility', 'warnkleidung', 'reflective'] },
+      { abbr: 'DGUV 207-019', topic: 'health service safety', keywords: ['health', 'medical', 'gesundheitsdienst'] },
+      { abbr: 'DGUV 209-030', topic: 'press inspection', keywords: ['press', 'machine', 'inspection', 'prüfung'] }
+    ]
+  },
+  NL: {
+    description: 'Dutch arbocatalogi, PGS guidelines, STL transport/warehouse guides, TNO research',
+    documents: [
+      { abbr: 'STL Warehouse', topic: 'warehouse/distribution center safety', keywords: ['warehouse', 'magazijn', 'distribution', 'storage'] },
+      { abbr: 'STL Transport Logistiek', topic: 'transport and logistics safety', keywords: ['transport', 'logistics', 'delivery', 'driver'] },
+      { abbr: 'STL Verticaal Transport', topic: 'vertical transport/cranes', keywords: ['crane', 'hoist', 'lifting', 'verticaal'] },
+      { abbr: 'STL Onderhoudswerkplaats', topic: 'maintenance workshop safety', keywords: ['maintenance', 'workshop', 'onderhoud', 'repair'] },
+      { abbr: 'PGS 15', topic: 'hazardous substance storage', keywords: ['hazardous', 'storage', 'chemical', 'gevaarlijke stoffen'] },
+      { abbr: 'PGS 30.3', topic: 'hazardous liquid storage', keywords: ['liquid', 'flammable', 'vloeistof'] },
+      { abbr: 'TNO Wegwijzer', topic: 'physical workload guide', keywords: ['lifting', 'carrying', 'pushing', 'pulling', 'ergonomics'] },
+      { abbr: 'TNO Factsheet 2023', topic: 'physical workload statistics', keywords: ['workload', 'statistics', 'research'] },
+      { abbr: 'Arbocatalogus Transport Warehouse', topic: 'transport and warehouse standards', keywords: ['transport', 'warehouse', 'logistics'] },
+      { abbr: 'Arbocatalogus Kantoor', topic: 'office environment safety', keywords: ['office', 'kantoor', 'desk', 'VDU'] },
+      { abbr: 'Volandis Ladders Trappen', topic: 'ladder and stair safety', keywords: ['ladder', 'stair', 'trap', 'leider'] },
+      { abbr: 'Volandis Lichamelijke Belasting', topic: 'physical workload in construction', keywords: ['physical', 'lifting', 'ergonomics'] },
+      { abbr: 'Volandis Geluid Trillingen', topic: 'noise and vibration', keywords: ['noise', 'vibration', 'geluid', 'trilling'] },
+      { abbr: 'Volandis Rolsteigers', topic: 'mobile scaffolding', keywords: ['scaffolding', 'steiger', 'mobile'] }
+    ]
+  }
+}
+
+/**
+ * Get relevant supplementary document recommendations based on topic keywords
+ * @param {string} framework - The jurisdiction (AT, DE, NL)
+ * @param {string} topic - The topic being discussed
+ * @returns {string[]} - Array of relevant document abbreviations
+ */
+function getRelevantSupplementaryDocs(framework, topic) {
+  const docs = SUPPLEMENTARY_DOCS_CONTEXT[framework]?.documents || []
+  if (!topic || docs.length === 0) return []
+
+  const topicLower = topic.toLowerCase()
+  const matches = []
+
+  for (const doc of docs) {
+    // Check if any keyword matches the topic
+    const keywordMatch = doc.keywords.some(kw => topicLower.includes(kw.toLowerCase()))
+    const topicMatch = topicLower.includes(doc.topic.toLowerCase())
+
+    if (keywordMatch || topicMatch) {
+      matches.push(doc.abbr)
+    }
+  }
+
+  return matches.slice(0, 5) // Return top 5 matches
+}
+
+/**
+ * Build supplementary document context for AI prompts
+ * @param {string} framework - The jurisdiction (AT, DE, NL)
+ * @param {string} topic - Optional topic to filter recommendations
+ * @returns {string} - Formatted string for AI prompt
+ */
+function buildSupplementaryDocContext(framework, topic = null) {
+  const context = SUPPLEMENTARY_DOCS_CONTEXT[framework]
+  if (!context) return ''
+
+  let docList = context.documents.map(d => `- ${d.abbr}: ${d.topic}`).join('\n')
+
+  // If topic provided, highlight relevant docs
+  if (topic) {
+    const relevant = getRelevantSupplementaryDocs(framework, topic)
+    if (relevant.length > 0) {
+      return `
+SUPPLEMENTARY DOCUMENTS AVAILABLE (${context.description}):
+Most relevant for this topic:
+${relevant.map(abbr => {
+  const doc = context.documents.find(d => d.abbr === abbr)
+  return `★ ${abbr}: ${doc?.topic || ''}`
+}).join('\n')}
+
+Other available documents:
+${context.documents.filter(d => !relevant.includes(d.abbr)).slice(0, 10).map(d => `- ${d.abbr}: ${d.topic}`).join('\n')}
+
+IMPORTANT: When relevant, recommend specific supplementary documents by their abbreviation (e.g., "For detailed guidance, refer to ${relevant[0] || 'AUVA M.plus 040'}").`
+    }
+  }
+
+  return `
+SUPPLEMENTARY DOCUMENTS AVAILABLE (${context.description}):
+${docList}
+
+IMPORTANT: When relevant to the topic, recommend specific supplementary documents by their abbreviation for additional practical guidance.`
+}
+
 /**
  * Get the appropriate output language for law-related content.
  * For law summaries, use the law's native language (based on framework/jurisdiction).
@@ -184,10 +318,12 @@ export function clearAllAICache() {
   }
 }
 
-function buildSystemPrompt(framework, language) {
+function buildSystemPrompt(framework, language, topic = null) {
+  const supplementaryContext = buildSupplementaryDocContext(framework, topic)
   return `You are a WHS legal expert for ${FRAMEWORK_CONTEXT[framework]}.
 Cite specific paragraphs. Be practical and concise.
-${LANGUAGE_CONTEXT[language]}`
+${LANGUAGE_CONTEXT[language]}
+${supplementaryContext}`
 }
 
 // Helper function to normalize escaped newlines in AI responses
@@ -471,7 +607,7 @@ async function fetchWithRetry(url, options, maxRetries = 3) {
   }
 }
 
-export async function generateAIResponse(prompt, framework, language) {
+export async function generateAIResponse(prompt, framework, language, topic = null) {
   // Use rate-limited queue for all AI requests
   return queueRequest(async () => {
     const response = await fetchWithRetry('/.netlify/functions/ai-generate', {
@@ -481,7 +617,7 @@ export async function generateAIResponse(prompt, framework, language) {
       },
       body: JSON.stringify({
         prompt,
-        systemPrompt: buildSystemPrompt(framework, language)
+        systemPrompt: buildSystemPrompt(framework, language, topic)
       })
     })
 
@@ -521,9 +657,10 @@ export async function generateAIResponse(prompt, framework, language) {
 }
 
 export async function explainSection(section, framework, language) {
+  const sectionTitle = section.paragraph || section.title || ''
   const prompt = `Explain this legal provision in simple terms.
 
-${section.paragraph || section.title}
+${sectionTitle}
 ${section.content}
 
 Format your response as readable text with these sections:
@@ -543,9 +680,12 @@ A brief plain language summary of what this provision means.
 💡 PRACTICAL TIPS
 - Actionable advice for implementation
 
+📚 RELATED RESOURCES
+- If relevant, recommend a supplementary document (AUVA/DGUV/ASR/STL/PGS) for additional practical guidance on this topic
+
 Be concise and use simple language.`
 
-  const response = await generateAIResponse(prompt, framework, language)
+  const response = await generateAIResponse(prompt, framework, language, sectionTitle)
   return normalizeNewlines(response)
 }
 
@@ -609,9 +749,14 @@ Format your response as readable text with these sections:
 - List actionable steps to achieve compliance
 - Prioritize by urgency and impact
 
+📚 RECOMMENDED SUPPLEMENTARY DOCUMENTS
+- List 2-3 relevant supplementary documents (AUVA/DGUV/ASR/STL/PGS docs) that provide detailed practical guidance
+- Format: "For [specific topic], refer to [Document Abbreviation]"
+- Example: "For detailed forklift safety guidelines, refer to AUVA M 480"
+
 Be concise and practical. Use bullet points. Include specific legal citations from ${FRAMEWORK_CONTEXT[framework]}.`
 
-  const response = await generateAIResponse(prompt, framework, language)
+  const response = await generateAIResponse(prompt, framework, language, topic)
   return normalizeNewlines(response)
 }
 
@@ -671,9 +816,13 @@ Format your response as readable text with these sections:
 ☑️ COMPLIANCE CHECKLIST
 - Quick checklist items to verify compliance
 
+📚 SUPPLEMENTARY GUIDANCE
+- Recommend 1-2 relevant supplementary documents (AUVA/DGUV/ASR/STL/PGS) for detailed practical guidance
+- Format: "For more details on [topic], see [Document Abbreviation]"
+
 Be concise and practical. Use bullet points. Include specific legal citations.`
 
-  const response = await generateAIResponse(prompt, framework, language)
+  const response = await generateAIResponse(prompt, framework, language, topic)
   return normalizeNewlines(response)
 }
 
@@ -960,7 +1109,12 @@ FORMAT:
 ⚠️ [Key differences, one per line]
 
 ---RECOMMENDATION---
-[One sentence]`
+[One sentence]
+
+---SUPPLEMENTARY_DOCS---
+📚 For practical guidance on this topic, consider:
+- ${sourceFramework}: [Relevant supplementary document]
+- ${targetFramework}: [Relevant supplementary document]`
 
   const response = await generateAIResponse(prompt, sourceFramework, language)
   const normalizedResponse = normalizeNewlines(response)
@@ -1010,6 +1164,11 @@ IMPORTANT: You MUST use these EXACT section markers in your response:
 ✅ First practical tip for cross-border compliance
 ✅ Second practical tip for cross-border compliance
 ✅ Third practical tip for cross-border compliance
+
+---SUPPLEMENTARY_DOCS---
+📚 AT: [Recommend relevant AUVA/AI document for this topic]
+📚 DE: [Recommend relevant ASR/DGUV document for this topic]
+📚 NL: [Recommend relevant STL/PGS/Arbocatalogus document for this topic]
 
 Use the exact markers above. Be specific with legal citations.`
 
@@ -1117,3 +1276,6 @@ ${lawText}
   setCachedResponse(cacheKey, normalizedResponse)
   return normalizedResponse
 }
+
+// Export supplementary document helpers for use in chatbot and other components
+export { getRelevantSupplementaryDocs, buildSupplementaryDocContext, SUPPLEMENTARY_DOCS_CONTEXT }
