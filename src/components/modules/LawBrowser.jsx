@@ -1335,11 +1335,15 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
       let targetLaw = laws.find(law => law.id === initialLawId) ||
                         laws.find(law => law.abbreviation?.toLowerCase() === initialLawId?.toLowerCase())
 
-      // If no exact match, try fuzzy matching for technical rules (ASR, DGUV, TRBS, TRGS)
+      // If no exact match, try fuzzy matching for technical rules and supplementary docs
       if (!targetLaw && initialLawId) {
         const normalizedSearch = initialLawId.toLowerCase().replace(/[-_\s]+/g, ' ').trim()
+        // Check for German technical rules, Austrian AUVA docs, or Dutch supplementary docs
         if (normalizedSearch.includes('asr') || normalizedSearch.includes('dguv') ||
-            normalizedSearch.includes('trbs') || normalizedSearch.includes('trgs')) {
+            normalizedSearch.includes('trbs') || normalizedSearch.includes('trgs') ||
+            normalizedSearch.includes('auva') || normalizedSearch.includes('pgs') ||
+            normalizedSearch.includes('stl') || normalizedSearch.includes('tno') ||
+            normalizedSearch.includes('volandis') || normalizedSearch.includes('arbocatalogus')) {
           targetLaw = laws.find(law => {
             const abbr = (law.abbreviation || law.abbr || '').toLowerCase().replace(/[-_\s]+/g, ' ')
             return abbr.includes(normalizedSearch) || normalizedSearch.includes(abbr)
@@ -2260,6 +2264,13 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     normalized = normalized.replace(/dguv[-\s]*(\d+)[-\s]*(\d*)/gi, (m, p1, p2) => `dguv ${p1}${p2 ? '-' + p2 : ''}`)
     // Normalize TRBS/TRGS: standardize spacing
     normalized = normalized.replace(/(trbs|trgs)\s*(\d+)/gi, '$1 $2')
+    // Normalize AUVA: standardize series and numbers
+    normalized = normalized.replace(/auva\s*(m\.?plus|m|e|ivss)?[-\s]*(\d+)?/gi, (m, series, num) => {
+      const s = series ? series.toLowerCase().replace('.', '') : ''
+      return `auva ${s} ${num || ''}`.trim()
+    })
+    // Normalize PGS: standardize spacing
+    normalized = normalized.replace(/pgs\s*(\d+(?:\.\d+)?)/gi, 'pgs $1')
     return normalized
   }
 
@@ -2279,16 +2290,27 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         law.abbr?.toLowerCase() === lawInfo.law.toLowerCase()
       )
 
-      // If no exact match, try fuzzy matching for technical rules (ASR, DGUV, TRBS, TRGS)
+      // If no exact match, try fuzzy matching for technical rules and supplementary docs
       if (!targetLaw) {
         const normalizedRef = normalizeTechnicalRef(lawInfo.law)
+        const refLower = lawInfo.law.toLowerCase()
+        // Check for German technical rules, Austrian AUVA docs, or Dutch supplementary docs
         if (normalizedRef.includes('asr') || normalizedRef.includes('dguv') ||
-            normalizedRef.includes('trbs') || normalizedRef.includes('trgs')) {
+            normalizedRef.includes('trbs') || normalizedRef.includes('trgs') ||
+            normalizedRef.includes('auva') || normalizedRef.includes('pgs') ||
+            refLower.includes('stl') || refLower.includes('tno') ||
+            refLower.includes('volandis') || refLower.includes('arbocatalogus')) {
           targetLaw = allLaws.find(law => {
             const normalizedAbbr = normalizeTechnicalRef(law.abbreviation || law.abbr || '')
+            const abbrLower = (law.abbreviation || law.abbr || '').toLowerCase()
             return normalizedAbbr === normalizedRef ||
                    normalizedAbbr.includes(normalizedRef) ||
-                   normalizedRef.includes(normalizedAbbr)
+                   normalizedRef.includes(normalizedAbbr) ||
+                   // Check for word-based matching for STL, TNO, Volandis, Arbocatalogus
+                   (refLower.includes('stl') && abbrLower.includes('stl')) ||
+                   (refLower.includes('tno') && abbrLower.includes('tno')) ||
+                   (refLower.includes('volandis') && abbrLower.includes('volandis')) ||
+                   (refLower.includes('arbocatalogus') && abbrLower.includes('arbocatalogus'))
           })
         }
       }
