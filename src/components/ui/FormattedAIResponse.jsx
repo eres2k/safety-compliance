@@ -383,8 +383,9 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
 
   // Combined pattern for all special law references:
   // 1. [LAW_ID:xxx] - direct law ID from AI
-  // 2. [ASchG: § 26 Abs. 2 Z 1] - bracketed law with section reference
-  const combinedPattern = /\[LAW_ID:([^\]]+)\]|\[([A-Za-zÄÖÜäöü-]+):\s*§\s*(\d+[a-z]?)(?:\s+(?:Abs\.?|Absatz)\s*(\d+))?(?:\s+(?:Z|Ziffer)\s*(\d+))?\]/g
+  // 2. [ASchG: § 26 Abs. 2 Z 1] - bracketed law with section reference (AT/DE)
+  // 3. [ATB:4:5] or [ATB:4:5 lid 1] - Dutch law reference format (NL)
+  const combinedPattern = /\[LAW_ID:([^\]]+)\]|\[([A-Za-zÄÖÜäöü-]+):\s*§\s*(\d+[a-z]?)(?:\s+(?:Abs\.?|Absatz)\s*(\d+))?(?:\s+(?:Z|Ziffer)\s*(\d+))?\]|\[([A-Za-z-]+):(\d+):(\d+)(?:\s+lid\s+(\d+))?\]/g
 
   const result = []
   let lastIndex = 0
@@ -474,6 +475,52 @@ function processLawReferences(text, onLawClick, allLaws, keyPrefix) {
         result.push(
           <span
             key={`${keyPrefix}-bracketref-${match.index}`}
+            className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs font-medium"
+          >
+            {displayText}
+          </span>
+        )
+      }
+    } else if (match[6]) {
+      // [ATB:4:5] or [ATB:4:5 lid 1] - Dutch law reference pattern
+      const abbreviation = match[6]
+      const article = match[7]
+      const paragraph = match[8]
+      const lid = match[9]
+
+      // Build section identifier for deep linking (Dutch uses Artikel format)
+      const sectionId = `Artikel ${article}`
+      const lawInfo = findLawIdFromAbbreviation(abbreviation, allLaws, sectionId)
+
+      // Create display text
+      let displayText = `Art. ${article}:${paragraph}`
+      if (lid) displayText += ` lid ${lid}`
+      displayText += ` ${abbreviation}`
+
+      if (lawInfo) {
+        result.push(
+          <button
+            key={`${keyPrefix}-nlbracket-${match.index}`}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              onLawClick(lawInfo.id, lawInfo.country, sectionId)
+            }}
+            className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-whs-orange-100 dark:bg-whs-orange-900/40 text-whs-orange-700 dark:text-whs-orange-300 rounded text-xs font-medium hover:bg-whs-orange-200 dark:hover:bg-whs-orange-800/50 transition-colors cursor-pointer"
+            title={`View ${displayText} in Law Browser`}
+          >
+            <span>🇳🇱</span>
+            {displayText}
+            <svg className="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </button>
+        )
+      } else {
+        // No matching law found, render as highlighted text
+        result.push(
+          <span
+            key={`${keyPrefix}-nlbracketref-${match.index}`}
             className="inline-flex items-center gap-1 px-1.5 py-0.5 mx-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs font-medium"
           >
             {displayText}
