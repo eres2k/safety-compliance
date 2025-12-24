@@ -91,6 +91,22 @@
     "supplementaryDocs": "Supplementary Documents",
     "allCategories": "All Categories"
   },
+  "search": {
+    "all": "All",
+    "allDesc": "Search in everything",
+    "laws": "Laws",
+    "lawsDesc": "Laws & Ordinances only",
+    "guidelines": "Guidelines",
+    "guidelinesDesc": "Guidelines & Technical Rules",
+    "lawsFound": "Laws",
+    "guidelinesFound": "Guidelines",
+    "contentMatches": "Full Text Matches",
+    "noResults": "No results found for",
+    "tryDifferent": "Try a different search term",
+    "hint": "Enter at least 2 characters to search",
+    "toSearch": "search",
+    "toClose": "close"
+  },
   "translation": {
     "translateTo": "Translate to",
     "translating": "Translating...",

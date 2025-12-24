@@ -91,6 +91,22 @@
     "supplementaryDocs": "Ergänzende Dokumente",
     "allCategories": "Alle Kategorien"
   },
+  "search": {
+    "all": "Alles",
+    "allDesc": "Suche in allem",
+    "laws": "Gesetze",
+    "lawsDesc": "Nur Gesetze & Verordnungen",
+    "guidelines": "Richtlinien",
+    "guidelinesDesc": "Merkblätter & technische Regeln",
+    "lawsFound": "Gesetze",
+    "guidelinesFound": "Richtlinien",
+    "contentMatches": "Volltexttreffer",
+    "noResults": "Keine Ergebnisse gefunden für",
+    "tryDifferent": "Versuchen Sie einen anderen Suchbegriff",
+    "hint": "Geben Sie mindestens 2 Zeichen ein um zu suchen",
+    "toSearch": "suchen",
+    "toClose": "schließen"
+  },
   "translation": {
     "translateTo": "Übersetzen nach",
     "translating": "Übersetze...",

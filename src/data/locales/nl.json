@@ -91,6 +91,22 @@
     "supplementaryDocs": "Aanvullende Documenten",
     "allCategories": "Alle Categorieën"
   },
+  "search": {
+    "all": "Alles",
+    "allDesc": "Zoeken in alles",
+    "laws": "Wetten",
+    "lawsDesc": "Alleen wetten & verordeningen",
+    "guidelines": "Richtlijnen",
+    "guidelinesDesc": "Handleidingen & technische regels",
+    "lawsFound": "Wetten",
+    "guidelinesFound": "Richtlijnen",
+    "contentMatches": "Volledige tekstovereenkomsten",
+    "noResults": "Geen resultaten gevonden voor",
+    "tryDifferent": "Probeer andere zoekwoorden",
+    "hint": "Voer minimaal 2 tekens in om te zoeken",
+    "toSearch": "zoeken",
+    "toClose": "sluiten"
+  },
   "translation": {
     "translateTo": "Vertalen naar",
     "translating": "Vertalen...",
