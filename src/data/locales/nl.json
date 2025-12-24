@@ -1,11 +1,23 @@
 {
   "appTitle": "MEU Safety Compliance",
   "appSubtitle": "Bezorging Laatste Mijl Logistiek Veiligheid",
+  "appTitleShort": "WHS Navigator",
   "selectFramework": "Selecteer Rechtskader",
   "frameworks": {
     "AT": "Oostenrijk (ASchG)",
     "DE": "Duitsland (DGUV)",
     "NL": "Nederland (Arbowet)"
+  },
+  "countries": {
+    "AT": "Oostenrijk",
+    "DE": "Duitsland",
+    "NL": "Nederland"
+  },
+  "header": {
+    "switchToLight": "Overschakelen naar lichte modus",
+    "switchToDark": "Overschakelen naar donkere modus",
+    "selectLanguage": "Selecteer taal",
+    "selectFramework": "Selecteer rechtskader"
   },
   "modules": {
     "lawBrowser": {
@@ -24,6 +36,10 @@
       "title": "Vraag Erwin",
       "description": "Chat met je WHS veiligheidsexpert over arbowetgeving"
     }
+  },
+  "loading": {
+    "title": "WHS Navigator",
+    "message": "EU Arboveiligheid Wetten Database laden..."
   },
   "common": {
     "search": "Zoeken",
@@ -89,7 +105,13 @@
     "categoryLaw": "Wetten",
     "categoryGuidance": "Richtlijnen",
     "supplementaryDocs": "Aanvullende Documenten",
-    "allCategories": "Alle Categorieën"
+    "allCategories": "Alle Categorieën",
+    "totalSections": "Totaal Artikelen",
+    "highPriority": "Hoge Prioriteit",
+    "criticalForLogistics": "Kritiek voor Logistiek",
+    "highRelevance": "Hoge Relevantie",
+    "topWhsTopics": "Top WHS-onderwerpen",
+    "relatedLaws": "Gerelateerde Wetten"
   },
   "search": {
     "all": "Alles",
@@ -351,7 +373,17 @@
   },
   "footer": {
     "disclaimer": "Alleen voor informatieve doeleinden",
-    "advice": "Raadpleeg altijd officiële bronnen en juridische professionals voor bindend advies"
+    "advice": "Raadpleeg altijd officiële bronnen en juridische professionals voor bindend advies",
+    "brandName": "WHS Navigator",
+    "brandTagline": "EU Arboveiligheid Compliance",
+    "description": "Arboveiligheid compliance navigator voor Oostenrijk, Duitsland en Nederland.",
+    "supportedFrameworks": "Ondersteunde Rechtskaders",
+    "legalNotice": "Juridische Kennisgeving",
+    "copyright": "WHS Safety Compliance Navigator",
+    "currentlyViewing": "Huidige weergave",
+    "frameworkAT": "Oostenrijk - ASchG (Arbeidnemersbeschermingswet)",
+    "frameworkDE": "Duitsland - DGUV Voorschriften",
+    "frameworkNL": "Nederland - Arbowet"
   },
   "dashboard": {
     "databaseStatus": "Database Status",
@@ -359,7 +391,18 @@
     "lastUpdated": "Laatst bijgewerkt",
     "nextUpdate": "Volgende update",
     "updateCycle": "14-daagse updatecyclus",
-    "updatedLaws": "Bijgewerkte wetten"
+    "updatedLaws": "Bijgewerkte wetten",
+    "heroTitle": "Safety Compliance",
+    "heroTitleAccent": "Navigator",
+    "heroDescription": "Uitgebreid arboveiligheid compliance platform voor Bezorging Laatste Mijl Logistiek in Oostenrijk, Duitsland en Nederland.",
+    "laws": "Wetten",
+    "countries": "Landen",
+    "fullText": "Volledige",
+    "text": "Tekst",
+    "browseLaws": "Wetten bladeren",
+    "lawsCount": "Wetten",
+    "browseDescription": "Blader door volledige wetteksten met artikelnavigatie en zoek in alle regelgeving.",
+    "moreUpdates": "meer"
   },
   "help": {
     "title": "Hulp & Handleiding",

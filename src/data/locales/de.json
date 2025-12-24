@@ -1,11 +1,23 @@
 {
   "appTitle": "MEU Safety Compliance",
   "appSubtitle": "Zustellung Letzte Meile Logistik Arbeitsschutz",
+  "appTitleShort": "WHS Navigator",
   "selectFramework": "Rechtsrahmen wählen",
   "frameworks": {
     "AT": "Österreich (ASchG)",
     "DE": "Deutschland (DGUV)",
     "NL": "Niederlande (Arbowet)"
+  },
+  "countries": {
+    "AT": "Österreich",
+    "DE": "Deutschland",
+    "NL": "Niederlande"
+  },
+  "header": {
+    "switchToLight": "Zum Hellmodus wechseln",
+    "switchToDark": "Zum Dunkelmodus wechseln",
+    "selectLanguage": "Sprache auswählen",
+    "selectFramework": "Rechtsrahmen auswählen"
   },
   "modules": {
     "lawBrowser": {
@@ -24,6 +36,10 @@
       "title": "Frag Erwin",
       "description": "Chatte mit deinem WHS Sicherheitsexperten über Arbeitsschutzgesetze"
     }
+  },
+  "loading": {
+    "title": "WHS Navigator",
+    "message": "Lade EU-Arbeitsschutzgesetze-Datenbank..."
   },
   "common": {
     "search": "Suchen",
@@ -89,7 +105,13 @@
     "categoryLaw": "Gesetze",
     "categoryGuidance": "Richtlinien",
     "supplementaryDocs": "Ergänzende Dokumente",
-    "allCategories": "Alle Kategorien"
+    "allCategories": "Alle Kategorien",
+    "totalSections": "Abschnitte gesamt",
+    "highPriority": "Hohe Priorität",
+    "criticalForLogistics": "Kritisch für Logistik",
+    "highRelevance": "Hohe Relevanz",
+    "topWhsTopics": "Top WHS-Themen",
+    "relatedLaws": "Verwandte Gesetze"
   },
   "search": {
     "all": "Alles",
@@ -351,7 +373,17 @@
   },
   "footer": {
     "disclaimer": "Nur zu Informationszwecken",
-    "advice": "Konsultieren Sie immer offizielle Quellen und Rechtsexperten für verbindliche Beratung"
+    "advice": "Konsultieren Sie immer offizielle Quellen und Rechtsexperten für verbindliche Beratung",
+    "brandName": "WHS Navigator",
+    "brandTagline": "EU Arbeitsschutz-Compliance",
+    "description": "Arbeitsschutz-Compliance-Navigator für Österreich, Deutschland und Niederlande.",
+    "supportedFrameworks": "Unterstützte Rechtsrahmen",
+    "legalNotice": "Rechtlicher Hinweis",
+    "copyright": "WHS Safety Compliance Navigator",
+    "currentlyViewing": "Aktuelle Ansicht",
+    "frameworkAT": "Österreich - ASchG (ArbeitnehmerInnenschutzgesetz)",
+    "frameworkDE": "Deutschland - DGUV Vorschriften",
+    "frameworkNL": "Niederlande - Arbowet"
   },
   "dashboard": {
     "databaseStatus": "Datenbank-Status",
@@ -359,7 +391,18 @@
     "lastUpdated": "Letzte Aktualisierung",
     "nextUpdate": "Nächste Aktualisierung",
     "updateCycle": "14-Tage Aktualisierungszyklus",
-    "updatedLaws": "Aktualisierte Gesetze"
+    "updatedLaws": "Aktualisierte Gesetze",
+    "heroTitle": "Safety Compliance",
+    "heroTitleAccent": "Navigator",
+    "heroDescription": "Umfassende Arbeitsschutz-Compliance-Plattform für Lieferung Letzte Meile Logistik in Österreich, Deutschland und den Niederlanden.",
+    "laws": "Gesetze",
+    "countries": "Länder",
+    "fullText": "Voll",
+    "text": "Text",
+    "browseLaws": "Gesetze durchsuchen",
+    "lawsCount": "Gesetze",
+    "browseDescription": "Durchsuchen Sie Volltextgesetze mit Abschnittsnavigation und Suche über alle Vorschriften.",
+    "moreUpdates": "weitere"
   },
   "help": {
     "title": "Hilfe & Anleitung",

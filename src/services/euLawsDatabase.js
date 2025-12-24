@@ -134,13 +134,14 @@ export async function initializeLawsDatabase(countryCode = null) {
     return loadCountryDatabase(countryCode)
   }
 
-  // Load all databases in parallel
+  // Load all databases and changelog in parallel
   await Promise.all([
     loadCountryDatabase('AT'),
     loadCountryDatabase('DE'),
     loadCountryDatabase('NL'),
     loadCountryDatabase('WIKI'),
-    loadStatistics()
+    loadStatistics(),
+    loadChangelog() // Load changelog for "recently updated" badge functionality
   ])
 
   return lawsDatabase
@@ -1562,6 +1563,7 @@ export function isHtmlOnly(law) {
 
 /**
  * Check if a law was recently updated (within specified days)
+ * Uses the changelog to check for actual content changes, not just scrape time.
  * @param {Object} law - The law object
  * @param {number} withinDays - Number of days to consider as "recent" (default 14)
  * @returns {boolean} - True if law was updated recently
@@ -1569,27 +1571,35 @@ export function isHtmlOnly(law) {
 export function isRecentlyUpdatedLaw(law, withinDays = 14) {
   if (!law) return false
 
-  // Check scraping.scraped_at timestamp
-  const scrapedAt = law.scraping?.scraped_at
-  if (!scrapedAt) return false
-
-  try {
-    const scrapedDate = new Date(scrapedAt)
-    const now = new Date()
-    const diffDays = (now - scrapedDate) / (1000 * 60 * 60 * 24)
-    return diffDays <= withinDays
-  } catch {
-    return false
+  // Check if changelog cache is stale and needs refresh
+  if (Date.now() > changedLawsCacheExpiry && changelogData) {
+    buildChangedLawsCache(changelogData, withinDays)
   }
+
+  // Check if changelog is loaded and this law is in the changed laws set
+  if (changedLawsCache.size > 0) {
+    const abbrev = law.abbreviation || law.abbr || ''
+    const country = law.country || ''
+    // Check both with and without country prefix (for flexibility)
+    return changedLawsCache.has(`${country}:${abbrev}`) || changedLawsCache.has(`:${abbrev}`)
+  }
+
+  // Fallback: If changelog not loaded yet, return false (don't show badge)
+  // The badge will appear once changelog is loaded
+  return false
 }
 
 /**
  * Get all recently updated laws across all countries
+ * Uses changelog to identify laws with actual content changes.
  * @param {number} withinDays - Number of days to consider as "recent" (default 14)
  * @param {number} limit - Maximum number of results (default 10)
  * @returns {Promise<Array>} - Array of recently updated laws
  */
 export async function getRecentlyUpdatedLaws(withinDays = 14, limit = 10) {
+  // Load changelog first to populate the changed laws cache
+  await loadChangelog()
+
   // Load all databases
   await Promise.all([
     loadCountryDatabase('AT'),
@@ -1604,16 +1614,15 @@ export async function getRecentlyUpdatedLaws(withinDays = 14, limit = 10) {
     if (!db) continue
 
     for (const item of db.items) {
-      if (isRecentlyUpdatedLaw(item, withinDays)) {
-        recentLaws.push({
-          ...item,
-          country
-        })
+      // Pass country to item for changelog lookup
+      const itemWithCountry = { ...item, country }
+      if (isRecentlyUpdatedLaw(itemWithCountry, withinDays)) {
+        recentLaws.push(itemWithCountry)
       }
     }
   }
 
-  // Sort by scraped_at date (most recent first)
+  // Sort by scraped_at date (most recent first) - still useful for ordering
   recentLaws.sort((a, b) => {
     const dateA = new Date(a.scraping?.scraped_at || 0)
     const dateB = new Date(b.scraping?.scraped_at || 0)
@@ -1625,6 +1634,7 @@ export async function getRecentlyUpdatedLaws(withinDays = 14, limit = 10) {
 
 /**
  * Get recently updated laws synchronously (only from loaded databases)
+ * Note: Returns empty if changelog hasn't been loaded yet.
  * @param {number} withinDays - Number of days to consider as "recent" (default 14)
  * @param {number} limit - Maximum number of results (default 10)
  * @returns {Array} - Array of recently updated laws
@@ -1637,16 +1647,15 @@ export function getRecentlyUpdatedLawsSync(withinDays = 14, limit = 10) {
     if (!db) continue
 
     for (const item of db.items) {
-      if (isRecentlyUpdatedLaw(item, withinDays)) {
-        recentLaws.push({
-          ...item,
-          country
-        })
+      // Pass country to item for changelog lookup
+      const itemWithCountry = { ...item, country }
+      if (isRecentlyUpdatedLaw(itemWithCountry, withinDays)) {
+        recentLaws.push(itemWithCountry)
       }
     }
   }
 
-  // Sort by scraped_at date (most recent first)
+  // Sort by scraped_at date (most recent first) - still useful for ordering
   recentLaws.sort((a, b) => {
     const dateA = new Date(a.scraping?.scraped_at || 0)
     const dateB = new Date(b.scraping?.scraped_at || 0)
@@ -1658,6 +1667,9 @@ export function getRecentlyUpdatedLawsSync(withinDays = 14, limit = 10) {
 
 // Changelog cache
 let changelogData = null
+// Cache of law keys that have actual content changes (for sync access)
+let changedLawsCache = new Set()
+let changedLawsCacheExpiry = 0
 
 /**
  * Load the update changelog
@@ -1666,11 +1678,47 @@ async function loadChangelog() {
   if (changelogData) return changelogData
   try {
     changelogData = (await import('../../eu_safety_laws/update_changelog.json')).default
+    // Build the changed laws cache
+    buildChangedLawsCache(changelogData)
   } catch (error) {
     console.warn('Changelog file not found:', error)
     changelogData = { updates: [], last_check: null }
   }
   return changelogData
+}
+
+/**
+ * Build cache of changed law keys from changelog
+ */
+function buildChangedLawsCache(changelog, withinDays = 14) {
+  const cutoff = new Date()
+  cutoff.setDate(cutoff.getDate() - withinDays)
+
+  changedLawsCache = new Set()
+
+  for (const update of changelog.updates || []) {
+    try {
+      const updateTime = new Date(update.timestamp)
+      if (updateTime < cutoff) continue
+
+      const country = update.country || ''
+
+      // Add new laws
+      for (const abbrev of update.new_laws || []) {
+        changedLawsCache.add(`${country}:${abbrev}`)
+      }
+
+      // Add updated laws (content changed)
+      for (const abbrev of update.updated_laws || []) {
+        changedLawsCache.add(`${country}:${abbrev}`)
+      }
+    } catch {
+      continue
+    }
+  }
+
+  // Set cache expiry to 1 hour
+  changedLawsCacheExpiry = Date.now() + 3600000
 }
 
 /**

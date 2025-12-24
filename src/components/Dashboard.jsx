@@ -256,18 +256,17 @@ export function Dashboard({ onModuleSelect }) {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-whs-orange-500/20 rounded-full border border-whs-orange-500/30">
                 <div className="w-2 h-2 bg-whs-orange-500 rounded-full animate-pulse" />
                 <span className="text-sm font-medium text-whs-orange-400">
-                  MEU Safety Compliance - WHS
+                  {t.appTitle || 'MEU Safety Compliance'} - WHS
                 </span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold text-white">
-                Safety Compliance{' '}
-                <span className="text-gradient">Navigator</span>
+                {t.dashboard?.heroTitle || 'Safety Compliance'}{' '}
+                <span className="text-gradient">{t.dashboard?.heroTitleAccent || 'Navigator'}</span>
               </h2>
 
               <p className="text-gray-400 max-w-xl">
-                Comprehensive workplace safety compliance platform for Delivery Last Mile Logistics operations
-                across Austria, Germany, and the Netherlands.
+                {t.dashboard?.heroDescription || 'Comprehensive workplace safety compliance platform for Delivery Last Mile Logistics operations across Austria, Germany, and the Netherlands.'}
               </p>
             </div>
 
@@ -275,20 +274,20 @@ export function Dashboard({ onModuleSelect }) {
             <div className="flex gap-4">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center min-w-[100px]">
                 <p className="text-3xl font-bold text-white">{stats.globalStats?.total_documents || stats.totalLaws || '86'}+</p>
-                <p className="text-xs text-gray-400 mt-1">Laws</p>
+                <p className="text-xs text-gray-400 mt-1">{t.dashboard?.laws || 'Laws'}</p>
               </div>
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center min-w-[100px]">
                 <p className="text-3xl font-bold text-white">3</p>
-                <p className="text-xs text-gray-400 mt-1">Countries</p>
+                <p className="text-xs text-gray-400 mt-1">{t.dashboard?.countries || 'Countries'}</p>
               </div>
               <div className="hidden sm:block bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center min-w-[100px]">
-                <p className="text-3xl font-bold text-whs-success-400">Full</p>
-                <p className="text-xs text-gray-400 mt-1">Text</p>
+                <p className="text-3xl font-bold text-whs-success-400">{t.dashboard?.fullText || 'Full'}</p>
+                <p className="text-xs text-gray-400 mt-1">{t.dashboard?.text || 'Text'}</p>
               </div>
               {lastUpdatedFormatted && (
                 <div className="hidden md:block bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center min-w-[100px]">
                   <p className="text-lg font-bold text-whs-orange-400">{lastUpdatedFormatted}</p>
-                  <p className="text-xs text-gray-400 mt-1">Last Updated</p>
+                  <p className="text-xs text-gray-400 mt-1">{t.dashboard?.lastUpdated || 'Last Updated'}</p>
                 </div>
               )}
             </div>
@@ -317,7 +316,7 @@ export function Dashboard({ onModuleSelect }) {
                 )}
                 {nextUpdateFormatted && (
                   <span className={`text-xs ${recentlyUpdated ? 'text-green-600 dark:text-green-400' : 'text-blue-600 dark:text-blue-400'}`}>
-                    • Next: {nextUpdateFormatted}
+                    • {t.dashboard?.nextUpdate || 'Next'}: {nextUpdateFormatted}
                   </span>
                 )}
               </div>
@@ -347,7 +346,7 @@ export function Dashboard({ onModuleSelect }) {
                 ))}
                 {recentlyUpdatedLaws.length > 4 && (
                   <span className={`text-xs ${recentlyUpdated ? 'text-green-600 dark:text-green-400' : 'text-blue-600 dark:text-blue-400'}`}>
-                    +{recentlyUpdatedLaws.length - 4} more
+                    +{recentlyUpdatedLaws.length - 4} {t.dashboard?.moreUpdates || 'more'}
                   </span>
                 )}
               </div>
@@ -377,21 +376,20 @@ export function Dashboard({ onModuleSelect }) {
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <h3 className="text-2xl md:text-3xl font-bold text-white">
-                  {t.modules.lawBrowser.title}
+                  {t.modules?.lawBrowser?.title || 'Law Browser & Search'}
                 </h3>
                 <span className="px-3 py-1 bg-white/20 rounded-full text-sm font-medium text-white">
-                  {stats.totalLaws || '86'}+ Laws
+                  {stats.totalLaws || '86'}+ {t.dashboard?.lawsCount || 'Laws'}
                 </span>
               </div>
               <p className="text-white/80 max-w-xl">
-                {t.modules.lawBrowser.description}. Browse full-text laws with section navigation
-                and search across all regulations.
+                {t.modules?.lawBrowser?.description || 'Navigate and search safety legislation'}. {t.dashboard?.browseDescription || 'Browse full-text laws with section navigation and search across all regulations.'}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2 text-white font-medium">
-            <span>Browse Laws</span>
+            <span>{t.dashboard?.browseLaws || 'Browse Laws'}</span>
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

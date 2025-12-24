@@ -1073,30 +1073,30 @@ function WHSSummaryPanel({ summary }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
         <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
           <div className="text-2xl font-bold text-gray-900 dark:text-white">{total_sections}</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">Total Sections</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">{t.lawBrowser?.totalSections || 'Total Sections'}</div>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
           <div className="text-2xl font-bold text-red-600 dark:text-red-400">{critical_sections_count}</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">High Priority</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">{t.lawBrowser?.highPriority || 'High Priority'}</div>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
           <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
             {logistics_relevance_distribution?.critical || 0}
           </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">Critical for Logistics</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">{t.lawBrowser?.criticalForLogistics || 'Critical for Logistics'}</div>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
           <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
             {logistics_relevance_distribution?.high || 0}
           </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">High Relevance</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">{t.lawBrowser?.highRelevance || 'High Relevance'}</div>
         </div>
       </div>
 
       {/* Top Topics */}
       {top_whs_topics && top_whs_topics.length > 0 && (
         <div>
-          <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">Top WHS Topics:</div>
+          <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">{t.lawBrowser?.topWhsTopics || 'Top WHS Topics'}:</div>
           <div className="flex flex-wrap gap-2">
             {top_whs_topics.slice(0, 6).map(([topicId, count]) => (
               <span key={topicId} className="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-gray-800 rounded-lg text-sm">
@@ -3618,7 +3618,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                       {/* Related Laws */}
                       {relatedLaws.length > 0 && (
                         <div className="mb-6">
-                          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Related Laws</h4>
+                          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t.lawBrowser?.relatedLaws || t.common?.relatedLaws || 'Related Laws'}</h4>
                           <div className="flex flex-wrap gap-2">
                             {relatedLaws.map(related => (
                               <button

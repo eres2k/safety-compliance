@@ -27,7 +27,7 @@ function AppContent() {
   const [activeModule, setActiveModule] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [pendingLawNavigation, setPendingLawNavigation] = useState(null) // { lawId, country, searchQuery } for cross-module navigation
-  const { isDark, framework } = useApp()
+  const { isDark, framework, t } = useApp()
 
   // Handle module selection with optional navigation params
   const handleModuleSelect = (moduleId, options = {}) => {
@@ -180,8 +180,8 @@ function AppContent() {
           </div>
 
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-white mb-2">WHS Navigator</h1>
-            <p className="text-gray-400">Loading EU Safety Laws Database...</p>
+            <h1 className="text-2xl font-bold text-white mb-2">{t.loading?.title || 'WHS Navigator'}</h1>
+            <p className="text-gray-400">{t.loading?.message || 'Loading EU Safety Laws Database...'}</p>
           </div>
 
           {/* Loading bar */}

@@ -18,40 +18,40 @@ export function Footer() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-white">WHS Navigator</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400">EU Safety Compliance</p>
+                <h3 className="font-bold text-gray-900 dark:text-white">{t.footer?.brandName || 'WHS Navigator'}</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t.footer?.brandTagline || 'EU Safety Compliance'}</p>
               </div>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-xs">
-              Workplace health and safety compliance navigator for Austria, Germany, and Netherlands.
+              {t.footer?.description || 'Workplace health and safety compliance navigator for Austria, Germany, and Netherlands.'}
             </p>
           </div>
 
           {/* Frameworks */}
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Supported Frameworks</h4>
+            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">{t.footer?.supportedFrameworks || 'Supported Frameworks'}</h4>
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <span>🇦🇹</span>
-                <span>Austria - ASchG (Arbeitnehmer:innenschutzgesetz)</span>
+                <span>{t.footer?.frameworkAT || 'Austria - ASchG (Employee Protection Act)'}</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <span>🇩🇪</span>
-                <span>Germany - DGUV Regulations</span>
+                <span>{t.footer?.frameworkDE || 'Germany - DGUV Regulations'}</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <span>🇳🇱</span>
-                <span>Netherlands - Arbowet</span>
+                <span>{t.footer?.frameworkNL || 'Netherlands - Arbowet'}</span>
               </div>
             </div>
           </div>
 
           {/* Disclaimer */}
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Legal Notice</h4>
+            <h4 className="font-semibold text-gray-900 dark:text-white mb-4">{t.footer?.legalNotice || 'Legal Notice'}</h4>
             <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-              <p>{t.footer.disclaimer}</p>
-              <p>{t.footer.advice}</p>
+              <p>{t.footer?.disclaimer || 'For informational purposes only'}</p>
+              <p>{t.footer?.advice || 'Always consult official sources and legal professionals for binding advice'}</p>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                &copy; {currentYear} WHS Safety Compliance Navigator
+                &copy; {currentYear} {t.footer?.copyright || 'WHS Safety Compliance Navigator'}
               </p>
               <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
               <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -79,7 +79,7 @@ export function Footer() {
 
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-500 dark:text-gray-400">
-                Currently viewing:
+                {t.footer?.currentlyViewing || 'Currently viewing'}:
               </span>
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium bg-gray-100 dark:bg-whs-dark-800 text-gray-700 dark:text-gray-300">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: currentFrameworkColor?.primary || '#f97316' }} />

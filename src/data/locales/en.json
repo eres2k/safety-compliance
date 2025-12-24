@@ -1,11 +1,23 @@
 {
   "appTitle": "MEU Safety Compliance",
   "appSubtitle": "Delivery Last Mile Logistics Safety Compliance",
+  "appTitleShort": "WHS Navigator",
   "selectFramework": "Select Legal Framework",
   "frameworks": {
     "AT": "Austria (ASchG)",
     "DE": "Germany (DGUV)",
     "NL": "Netherlands (Arbowet)"
+  },
+  "countries": {
+    "AT": "Austria",
+    "DE": "Germany",
+    "NL": "Netherlands"
+  },
+  "header": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "selectLanguage": "Select language",
+    "selectFramework": "Select legal framework"
   },
   "modules": {
     "lawBrowser": {
@@ -24,6 +36,10 @@
       "title": "Ask Erwin",
       "description": "Chat with your WHS safety expert about workplace safety laws"
     }
+  },
+  "loading": {
+    "title": "WHS Navigator",
+    "message": "Loading EU Safety Laws Database..."
   },
   "common": {
     "search": "Search",
@@ -89,7 +105,13 @@
     "categoryLaw": "Laws",
     "categoryGuidance": "Guidance",
     "supplementaryDocs": "Supplementary Documents",
-    "allCategories": "All Categories"
+    "allCategories": "All Categories",
+    "totalSections": "Total Sections",
+    "highPriority": "High Priority",
+    "criticalForLogistics": "Critical for Logistics",
+    "highRelevance": "High Relevance",
+    "topWhsTopics": "Top WHS Topics",
+    "relatedLaws": "Related Laws"
   },
   "search": {
     "all": "All",
@@ -351,7 +373,17 @@
   },
   "footer": {
     "disclaimer": "For informational purposes only",
-    "advice": "Always consult official sources and legal professionals for binding advice"
+    "advice": "Always consult official sources and legal professionals for binding advice",
+    "brandName": "WHS Navigator",
+    "brandTagline": "EU Safety Compliance",
+    "description": "Workplace health and safety compliance navigator for Austria, Germany, and Netherlands.",
+    "supportedFrameworks": "Supported Frameworks",
+    "legalNotice": "Legal Notice",
+    "copyright": "WHS Safety Compliance Navigator",
+    "currentlyViewing": "Currently viewing",
+    "frameworkAT": "Austria - ASchG (Employee Protection Act)",
+    "frameworkDE": "Germany - DGUV Regulations",
+    "frameworkNL": "Netherlands - Arbowet"
   },
   "dashboard": {
     "databaseStatus": "Database Status",
@@ -359,7 +391,18 @@
     "lastUpdated": "Last updated",
     "nextUpdate": "Next update",
     "updateCycle": "14-day update cycle",
-    "updatedLaws": "Updated Laws"
+    "updatedLaws": "Updated Laws",
+    "heroTitle": "Safety Compliance",
+    "heroTitleAccent": "Navigator",
+    "heroDescription": "Comprehensive workplace safety compliance platform for Delivery Last Mile Logistics operations across Austria, Germany, and the Netherlands.",
+    "laws": "Laws",
+    "countries": "Countries",
+    "fullText": "Full",
+    "text": "Text",
+    "browseLaws": "Browse Laws",
+    "lawsCount": "Laws",
+    "browseDescription": "Browse full-text laws with section navigation and search across all regulations.",
+    "moreUpdates": "more"
   },
   "help": {
     "title": "Help & Guide",
