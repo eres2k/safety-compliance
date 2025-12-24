@@ -199,10 +199,10 @@ export function Header() {
       {/* Accent line */}
       <div className={`h-1 ${currentFramework.colors.bg} transition-colors duration-300`} />
 
-      <div className="max-w-7xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo and Title */}
-          <div className="flex items-center gap-4 group">
+          <div className="flex items-center gap-2 sm:gap-4 group">
             <SafetyLogo />
             <div>
               <h1 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
@@ -258,11 +258,11 @@ export function Header() {
             <div className="relative" ref={frameworkRef}>
               <button
                 onClick={() => setShowFrameworkMenu(!showFrameworkMenu)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-xl ${currentFramework.colors.bg} text-white hover:opacity-90 transition-all shadow-md`}
+                className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-xl ${currentFramework.colors.bg} text-white hover:opacity-90 transition-all shadow-md`}
                 aria-label="Select legal framework"
               >
                 <span className="text-lg">{currentFramework.flag}</span>
-                <span className="text-sm font-semibold">{currentFramework.lawName}</span>
+                <span className="hidden sm:inline text-sm font-semibold">{currentFramework.lawName}</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -296,13 +296,15 @@ export function Header() {
               )}
             </div>
 
-            {/* AI Rate Limit Indicator */}
-            <HeaderRateLimitIndicator />
+            {/* AI Rate Limit Indicator - Hidden on very small screens */}
+            <div className="hidden sm:block">
+              <HeaderRateLimitIndicator />
+            </div>
 
-            {/* Help Button */}
+            {/* Help Button - Icon only on mobile */}
             <button
               onClick={() => setShowHelpModal(true)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gray-100 dark:bg-whs-dark-800 hover:bg-gray-200 dark:hover:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-all"
+              className="flex items-center gap-1.5 p-2 sm:px-3 sm:py-2 rounded-xl bg-gray-100 dark:bg-whs-dark-800 hover:bg-gray-200 dark:hover:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-all"
               aria-label={t.help?.buttonLabel || 'Help'}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -314,7 +316,7 @@ export function Header() {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-gray-100 dark:bg-whs-dark-800 hover:bg-gray-200 dark:hover:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-all"
+              className="p-2 sm:p-2.5 rounded-xl bg-gray-100 dark:bg-whs-dark-800 hover:bg-gray-200 dark:hover:bg-whs-dark-700 text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 dark:hover:text-whs-orange-400 transition-all"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               <ThemeIcon isDark={isDark} />
