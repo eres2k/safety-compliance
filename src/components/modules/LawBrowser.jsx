@@ -1232,6 +1232,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
   // Copy link feedback popup state
   const [copyFeedback, setCopyFeedback] = useState({ show: false, x: 0, y: 0 })
 
+  // Mobile view state - tab-based navigation for small screens
+  const [mobileActiveTab, setMobileActiveTab] = useState('laws') // 'laws', 'sections', 'content'
+
   const contentRef = useRef(null)
   const sectionRefs = useRef({})
 
@@ -2029,6 +2032,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
     setActiveSection(null)
     setSearchInLaw('')
     setContentSearchTerm('')
+    // Switch to content tab on mobile when a law is selected
+    setMobileActiveTab('content')
 
     // Update URL for direct linking
     if (onLawChange && law) {
@@ -2604,9 +2609,9 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
   const isHtmlOnlyDoc = isHtmlOnly(selectedLaw)
 
   return (
-    <div className="animate-fade-in h-[calc(100vh-12rem)]">
-      {/* Header */}
-      <div className="mb-4">
+    <div className="animate-fade-in h-[calc(100vh-10rem)] md:h-[calc(100vh-12rem)]">
+      {/* Header - More compact on mobile */}
+      <div className="mb-2 md:mb-4">
         <button
           onClick={onBack}
           className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-whs-orange-500 transition-colors mb-3 group"
@@ -2617,21 +2622,21 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
           <span className="font-medium">{t.common?.back || 'Back'}</span>
         </button>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-3">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
               {t.modules?.lawBrowser?.title || 'Law Browser'}
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              {filteredLaws.length} laws and regulations
+            <p className="text-gray-600 dark:text-gray-400 text-xs md:text-sm">
+              {filteredLaws.length} {t.lawBrowser?.lawsAndRegs || 'laws and regulations'}
             </p>
           </div>
 
-          {/* Category filters */}
-          <div className="flex flex-wrap gap-2">
+          {/* Category filters - Scrollable on mobile */}
+          <div className="flex flex-nowrap md:flex-wrap gap-2 overflow-x-auto pb-1 md:pb-0 hide-scrollbar-mobile">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+              className={`flex-shrink-0 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all ${
                 selectedCategory === 'all'
                   ? 'bg-whs-orange-500 text-white'
                   : 'bg-gray-100 dark:bg-whs-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
@@ -2655,7 +2660,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
                 <button
                   key={type}
                   onClick={() => setSelectedCategory(type)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                  className={`flex-shrink-0 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all ${
                     selectedCategory === type
                       ? 'bg-whs-orange-500 text-white'
                       : 'bg-gray-100 dark:bg-whs-dark-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
@@ -2669,7 +2674,7 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         </div>
 
         {/* Interactive Search Bar - Real-time search with category grouping */}
-        <div className="mt-4">
+        <div className="mt-2 md:mt-4">
           <InteractiveSearch
             laws={allLaws}
             t={t}
@@ -2760,8 +2765,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         </div>
       </div>
 
-      {/* Main Content - 3 Column Layout */}
-      <div className="flex gap-4 h-[calc(100%-180px)] relative">
+      {/* Main Content - Responsive Layout: 3 columns on desktop, tab-based on mobile */}
+      <div className="flex flex-col md:flex-row md:gap-4 h-[calc(100%-180px)] md:h-[calc(100%-180px)] pb-16 md:pb-0 relative">
         {/* Loading Overlay */}
         {isLoading && (
           <div className="absolute inset-0 bg-white/80 dark:bg-whs-dark-900/80 z-10 flex items-center justify-center rounded-lg">
@@ -2775,8 +2780,13 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         )}
 
         {/* Left: Law List - Modern Card Design */}
-        <div className="w-72 flex-shrink-0">
-          <Card className="h-full overflow-hidden flex flex-col bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
+        {/* On mobile: only show when mobileActiveTab === 'laws', full width */}
+        {/* On desktop (md+): always visible, fixed width */}
+        <div className={`
+          ${mobileActiveTab === 'laws' ? 'flex' : 'hidden'} md:flex
+          w-full md:w-72 flex-shrink-0 h-full
+        `}>
+          <Card className="h-full w-full overflow-hidden flex flex-col bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
             {/* Header with gradient accent */}
             <div className="p-4 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-br from-gray-50 via-white to-gray-50/50 dark:from-whs-dark-800 dark:via-whs-dark-800 dark:to-whs-dark-900 flex-shrink-0">
               <div className="flex items-center gap-3 mb-2">
@@ -3046,9 +3056,14 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         </div>
 
         {/* Middle: Section Navigation (when law selected) - Modern Design */}
+        {/* On mobile: only show when mobileActiveTab === 'sections', full width */}
+        {/* On desktop (md+): always visible when law selected, fixed width */}
         {selectedLaw && lawSections.length > 0 && (
-          <div className="w-64 flex-shrink-0">
-            <Card className="h-full overflow-hidden bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
+          <div className={`
+            ${mobileActiveTab === 'sections' ? 'flex' : 'hidden'} md:flex
+            w-full md:w-64 flex-shrink-0 h-full
+          `}>
+            <Card className="h-full w-full overflow-hidden bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
               <div className="p-4 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-br from-slate-50 via-white to-slate-50/50 dark:from-whs-dark-800 dark:via-whs-dark-800 dark:to-whs-dark-900">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md shadow-indigo-500/20">
@@ -3264,8 +3279,13 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         )}
 
         {/* Right: Law Content - Modern Design */}
-        <div className="flex-1 min-w-0">
-          <Card className="h-full overflow-hidden bg-white/90 dark:bg-whs-dark-900/90 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
+        {/* On mobile: only show when mobileActiveTab === 'content', full width */}
+        {/* On desktop (md+): always visible, takes remaining space */}
+        <div className={`
+          ${mobileActiveTab === 'content' ? 'flex' : 'hidden'} md:flex
+          w-full md:flex-1 min-w-0 h-full
+        `}>
+          <Card className="h-full w-full overflow-hidden bg-white/90 dark:bg-whs-dark-900/90 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
             {/* Inline PDF/HTML View */}
             {inlineDocView ? (
               <div className="h-full flex flex-col">
@@ -4273,6 +4293,51 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
           </div>
         </div>
       )}
+
+      {/* Mobile Bottom Tab Bar - Only visible on mobile */}
+      <div className="md:hidden mobile-tab-bar">
+        {/* Laws Tab */}
+        <button
+          onClick={() => setMobileActiveTab('laws')}
+          className={`mobile-tab-button ${mobileActiveTab === 'laws' ? 'active' : ''}`}
+        >
+          <svg className="mobile-tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          <span className="mobile-tab-label">{t.lawBrowser?.laws || 'Laws'}</span>
+        </button>
+
+        {/* Sections Tab - Only enabled when a law is selected */}
+        <button
+          onClick={() => selectedLaw && lawSections.length > 0 && setMobileActiveTab('sections')}
+          disabled={!selectedLaw || lawSections.length === 0}
+          className={`mobile-tab-button ${mobileActiveTab === 'sections' ? 'active' : ''} ${!selectedLaw || lawSections.length === 0 ? 'opacity-40' : ''}`}
+        >
+          <svg className="mobile-tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+          </svg>
+          <span className="mobile-tab-label">{t.sections?.title || 'Sections'}</span>
+          {selectedLaw && lawSections.length > 0 && (
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-whs-orange-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center">
+              {lawSections.length > 99 ? '99+' : lawSections.length}
+            </span>
+          )}
+        </button>
+
+        {/* Content Tab */}
+        <button
+          onClick={() => setMobileActiveTab('content')}
+          className={`mobile-tab-button ${mobileActiveTab === 'content' ? 'active' : ''}`}
+        >
+          <svg className="mobile-tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span className="mobile-tab-label">{t.lawBrowser?.content || 'Content'}</span>
+          {selectedLaw && (
+            <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full"></span>
+          )}
+        </button>
+      </div>
     </div>
   )
 }
