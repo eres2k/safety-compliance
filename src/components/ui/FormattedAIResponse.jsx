@@ -39,11 +39,13 @@ const createLawReferencePattern = () => {
   ).join('|')
 
   // Pattern matches:
-  // 1. "§ X AbbName" or "§§ X-Y AbbName" (German/Austrian section references)
-  // 2. "Artikel X AbbName" or "Art. X" (Dutch/EU article references)
-  // 3. Standalone abbreviations with optional numbers/identifiers (e.g., "DGUV Vorschrift 1", "ASR A3.4", "DGUV 212-016")
+  // 1. "§ X AbbName" or "§§ X-Y AbbName" (German/Austrian section references with law after)
+  // 2. "AbbName: § X" or "AbbName § X" (law name before paragraph - common format)
+  // 3. "Artikel X AbbName" or "Art. X" (Dutch/EU article references)
+  // 4. Standalone abbreviations with optional numbers/identifiers (e.g., "DGUV Vorschrift 1", "ASR A3.4", "DGUV 212-016")
   return new RegExp(
     `(§§?\\s*\\d+[a-z]?(?:\\s*(?:bis|[-–])\\s*\\d+[a-z]?)?(?:\\s+(?:Abs\\.?|Absatz)\\s*\\d+)?(?:\\s+(?:${escapedAbbrs})))|` +
+    `((?:${escapedAbbrs})\\s*:?\\s*§\\s*\\d+[a-z]?(?:\\s+(?:Abs\\.?|Absatz)\\s*\\d+)?)|` +
     `((?:Artikel|Art\\.)\\s*\\d+(?:\\.\\d+)?(?:\\s+(?:${escapedAbbrs})))|` +
     `(\\b(?:${escapedAbbrs})(?:\\s+(?:Vorschrift|Regel|Information|Nr\\.|Nummer))?\\s*[AV]?\\d+(?:[-._]\\d+)*\\b)|` +
     `(\\b(?:${escapedAbbrs})\\b)`,
@@ -675,9 +677,49 @@ function processLawReferences(text, onLawClick, onLawHover, onLawLeave, allLaws,
   return result.length > 0 ? result : text
 }
 
+// Pre-process text to expand comma-separated paragraph references
+// Transforms "ArbSchG: § 5, § 15, § 16" into "ArbSchG § 5, ArbSchG § 15, ArbSchG § 16"
+// This ensures each paragraph reference can be independently matched and linked
+function expandParagraphLists(text) {
+  if (!text) return text
+
+  // Build pattern to match law abbreviations
+  const escapedAbbrs = LAW_ABBREVIATIONS.map(abbr =>
+    abbr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  ).join('|')
+
+  // Pattern: LawAbbr followed by : or () and then comma-separated § references
+  // Matches: "ArbSchG: § 5, § 15" or "(ArbSchG): § 5 (desc), § 15"
+  const listPattern = new RegExp(
+    `\\(?(${escapedAbbrs})\\)?\\s*(?:☐\\s*)?:\\s*(§\\s*\\d+[a-z]?(?:\\s*\\([^)]*\\))?(?:\\s*,\\s*§\\s*\\d+[a-z]?(?:\\s*\\([^)]*\\))?)*)`,
+    'gi'
+  )
+
+  return text.replace(listPattern, (fullMatch, lawAbbr, paragraphList) => {
+    // Extract all § references from the list
+    const paragraphMatches = paragraphList.match(/§\s*\d+[a-z]?/gi)
+    if (!paragraphMatches || paragraphMatches.length === 0) return fullMatch
+
+    // Rebuild with each paragraph having the law abbreviation
+    const expanded = paragraphMatches.map((para, idx) => {
+      // For first paragraph, include description if present
+      const paraNum = para.match(/§\s*(\d+[a-z]?)/i)?.[1]
+      // Find description in original text for this paragraph
+      const descMatch = paragraphList.match(new RegExp(`§\\s*${paraNum}\\s*(\\([^)]*\\))`, 'i'))
+      const desc = descMatch ? ` ${descMatch[1]}` : ''
+      return `${lawAbbr} § ${paraNum}${desc}`
+    }).join(', ')
+
+    return expanded
+  })
+}
+
 // Process regular law references (like "§ 26 ASchG")
 function processRegularLawReferences(text, onLawClick, onLawHover, onLawLeave, allLaws, keyPrefix) {
   if (!text) return [text]
+
+  // Pre-process to expand comma-separated paragraph lists
+  const processedText = expandParagraphLists(text)
 
   // Reset the regex lastIndex for fresh matching
   LAW_REFERENCE_PATTERN.lastIndex = 0
@@ -686,12 +728,12 @@ function processRegularLawReferences(text, onLawClick, onLawHover, onLawLeave, a
   let lastIndex = 0
   let match
 
-  while ((match = LAW_REFERENCE_PATTERN.exec(text)) !== null) {
+  while ((match = LAW_REFERENCE_PATTERN.exec(processedText)) !== null) {
     // Add text before the match
     if (match.index > lastIndex) {
       result.push(
         <React.Fragment key={`${keyPrefix}-text-${lastIndex}`}>
-          {text.slice(lastIndex, match.index)}
+          {processedText.slice(lastIndex, match.index)}
         </React.Fragment>
       )
     }
@@ -742,15 +784,15 @@ function processRegularLawReferences(text, onLawClick, onLawHover, onLawLeave, a
   }
 
   // Add remaining text
-  if (lastIndex < text.length) {
+  if (lastIndex < processedText.length) {
     result.push(
       <React.Fragment key={`${keyPrefix}-text-end`}>
-        {text.slice(lastIndex)}
+        {processedText.slice(lastIndex)}
       </React.Fragment>
     )
   }
 
-  return result.length > 0 ? result : [text]
+  return result.length > 0 ? result : [processedText]
 }
 
 export default FormattedAIResponse
