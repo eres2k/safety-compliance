@@ -14,6 +14,78 @@ const getAllLawsFromAllCountries = () => [
 ]
 
 // =============================================================================
+// VOICE RECOGNITION & TEXT-TO-SPEECH UTILITIES
+// =============================================================================
+
+// Check if speech recognition is available
+const isSpeechRecognitionSupported = () => {
+  return 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
+}
+
+// Check if speech synthesis is available
+const isSpeechSynthesisSupported = () => {
+  return 'speechSynthesis' in window
+}
+
+// Get SpeechRecognition constructor
+const getSpeechRecognition = () => {
+  return window.SpeechRecognition || window.webkitSpeechRecognition
+}
+
+// Speak text using browser TTS
+const speakText = (text, language = 'en') => {
+  if (!isSpeechSynthesisSupported()) return Promise.resolve()
+
+  return new Promise((resolve) => {
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel()
+
+    // Clean text - remove markdown, law IDs, and special formatting
+    const cleanText = text
+      .replace(/\[LAW_ID:[^\]]+\]/g, '') // Remove [LAW_ID:xxx]
+      .replace(/\*\*([^*]+)\*\*/g, '$1') // Remove bold markdown
+      .replace(/\*([^*]+)\*/g, '$1') // Remove italic markdown
+      .replace(/§\s*(\d+)/g, 'Paragraph $1') // Make § readable
+      .replace(/Abs\.\s*/gi, 'Absatz ')
+      .replace(/Nr\.\s*/gi, 'Nummer ')
+      .replace(/Art\.\s*/gi, 'Artikel ')
+      .replace(/\n+/g, '. ') // Convert newlines to pauses
+      .trim()
+
+    const utterance = new SpeechSynthesisUtterance(cleanText)
+
+    // Set language based on app language
+    const langMap = {
+      'de': 'de-DE',
+      'nl': 'nl-NL',
+      'en': 'en-GB'
+    }
+    utterance.lang = langMap[language] || 'en-GB'
+    utterance.rate = 1.0
+    utterance.pitch = 1.0
+
+    // Try to find a suitable voice
+    const voices = window.speechSynthesis.getVoices()
+    const preferredVoice = voices.find(v => v.lang.startsWith(langMap[language]?.split('-')[0] || 'en'))
+    if (preferredVoice) {
+      utterance.voice = preferredVoice
+    }
+
+    utterance.onend = resolve
+    utterance.onerror = resolve
+
+    window.speechSynthesis.speak(utterance)
+  })
+}
+
+// Stop any ongoing speech
+const stopSpeaking = () => {
+  if (isSpeechSynthesisSupported()) {
+    window.speechSynthesis.cancel()
+  }
+}
+
+// =============================================================================
 // ERWIN CHATBOT PERSONALITY - JAILBREAK-RESISTANT DESIGN
 // =============================================================================
 // Based on best practices from Google Gemini API, IBM Security, and LLM guardrails research.
@@ -210,7 +282,12 @@ const UI_TEXT = {
     greeting: "Servus! I'm Erwin, your WHS guy. What safety question can I help with?",
     errorMessage: "Oops, something went wrong. Try again?",
     minimize: 'Minimize',
-    powered: 'Created by Erwin in Vienna'
+    powered: 'Created by Erwin in Vienna',
+    voiceStart: 'Tap to speak',
+    voiceListening: 'Listening...',
+    voiceStop: 'Tap to stop',
+    speaking: 'Speaking...',
+    stopSpeaking: 'Stop'
   },
   de: {
     title: 'Frag Erwin',
@@ -221,7 +298,12 @@ const UI_TEXT = {
     greeting: "Servus! Ich bin der Erwin, dein WHS-Mensch. Was kann ich für dich tun?",
     errorMessage: "Hoppla, da ist was schiefgelaufen. Nochmal?",
     minimize: 'Minimieren',
-    powered: 'Erschaffen von Erwin in Wien'
+    powered: 'Erschaffen von Erwin in Wien',
+    voiceStart: 'Tippen zum Sprechen',
+    voiceListening: 'Höre zu...',
+    voiceStop: 'Tippen zum Stoppen',
+    speaking: 'Spricht...',
+    stopSpeaking: 'Stopp'
   },
   nl: {
     title: 'Vraag Erwin',
@@ -232,7 +314,12 @@ const UI_TEXT = {
     greeting: "Servus! Ik ben Erwin, je WHS-man. Waarmee kan ik helpen?",
     errorMessage: "Oeps, er ging iets mis. Opnieuw?",
     minimize: 'Minimaliseren',
-    powered: 'Gemaakt door Erwin in Wenen'
+    powered: 'Gemaakt door Erwin in Wenen',
+    voiceStart: 'Tik om te spreken',
+    voiceListening: 'Luisteren...',
+    voiceStop: 'Tik om te stoppen',
+    speaking: 'Spreekt...',
+    stopSpeaking: 'Stop'
   }
 }
 
@@ -337,10 +424,128 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
   const messagesEndRef = useRef(null)
   const inputRef = useRef(null)
 
+  // Voice recognition state
+  const [isListening, setIsListening] = useState(false)
+  const [isSpeaking, setIsSpeaking] = useState(false)
+  const [voiceInputUsed, setVoiceInputUsed] = useState(false) // Track if last input was voice
+  const recognitionRef = useRef(null)
+
+  // Check if on mobile (for showing voice button)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Load voices when available (needed for some browsers)
+  useEffect(() => {
+    if (isSpeechSynthesisSupported()) {
+      // Chrome needs this to load voices
+      window.speechSynthesis.getVoices()
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices()
+      }
+    }
+  }, [])
+
+  // Cleanup speech on unmount
+  useEffect(() => {
+    return () => {
+      stopSpeaking()
+      if (recognitionRef.current) {
+        recognitionRef.current.abort()
+      }
+    }
+  }, [])
+
   const lang = language || 'en'
   const ui = UI_TEXT[lang] || UI_TEXT.en
   const topics = QUICK_TOPICS[lang] || QUICK_TOPICS.en
   const systemPrompt = ERWIN_SYSTEM_PROMPT[lang] || ERWIN_SYSTEM_PROMPT.en
+
+  // Start voice recognition
+  const startVoiceRecognition = useCallback(() => {
+    if (!isSpeechRecognitionSupported()) {
+      console.warn('Speech recognition not supported')
+      return
+    }
+
+    const SpeechRecognition = getSpeechRecognition()
+    const recognition = new SpeechRecognition()
+
+    // Configure recognition
+    const langMap = { 'de': 'de-DE', 'nl': 'nl-NL', 'en': 'en-GB' }
+    recognition.lang = langMap[lang] || 'en-GB'
+    recognition.continuous = false
+    recognition.interimResults = true
+    recognition.maxAlternatives = 1
+
+    recognition.onstart = () => {
+      setIsListening(true)
+      setVoiceInputUsed(true)
+      stopSpeaking() // Stop any ongoing TTS
+    }
+
+    recognition.onresult = (event) => {
+      const result = event.results[event.results.length - 1]
+      const transcript = result[0].transcript
+
+      // Update input with interim or final result
+      setInputValue(transcript)
+
+      // If this is a final result, don't auto-send - let user review
+      if (result.isFinal) {
+        setIsListening(false)
+      }
+    }
+
+    recognition.onerror = (event) => {
+      console.error('Speech recognition error:', event.error)
+      setIsListening(false)
+    }
+
+    recognition.onend = () => {
+      setIsListening(false)
+    }
+
+    recognitionRef.current = recognition
+    recognition.start()
+  }, [lang])
+
+  // Stop voice recognition
+  const stopVoiceRecognition = useCallback(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop()
+      setIsListening(false)
+    }
+  }, [])
+
+  // Toggle voice recognition
+  const toggleVoiceRecognition = useCallback(() => {
+    if (isListening) {
+      stopVoiceRecognition()
+    } else {
+      startVoiceRecognition()
+    }
+  }, [isListening, startVoiceRecognition, stopVoiceRecognition])
+
+  // Handle TTS for response
+  const speakResponse = useCallback(async (text) => {
+    setIsSpeaking(true)
+    await speakText(text, lang)
+    setIsSpeaking(false)
+  }, [lang])
+
+  // Stop speaking handler
+  const handleStopSpeaking = useCallback(() => {
+    stopSpeaking()
+    setIsSpeaking(false)
+  }, [])
 
   // Check rate limit
   useEffect(() => {
@@ -406,19 +611,21 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
   }
 
   // Send message
-  const handleSend = useCallback(async (messageText = inputValue) => {
+  const handleSend = useCallback(async (messageText = inputValue, wasVoiceInput = voiceInputUsed) => {
     if (!messageText.trim() || isLoading || rateLimitInfo.isLimited) return
 
     const userMessage = {
       id: Date.now().toString(),
       role: 'user',
       content: messageText.trim(),
-      timestamp: new Date()
+      timestamp: new Date(),
+      wasVoiceInput // Track if this was a voice input
     }
 
     setMessages(prev => [...prev, userMessage])
     setInputValue('')
     setIsLoading(true)
+    setVoiceInputUsed(false) // Reset voice input flag
 
     try {
       const { context, foundLaws } = await searchLawContext(messageText)
@@ -433,6 +640,11 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
         timestamp: new Date(),
         laws: foundLaws
       }])
+
+      // Auto-speak response if input was via voice
+      if (wasVoiceInput && isSpeechSynthesisSupported()) {
+        speakResponse(response)
+      }
     } catch (error) {
       console.error('Error:', error)
       setMessages(prev => [...prev, {
@@ -446,7 +658,7 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
       setIsLoading(false)
       inputRef.current?.focus()
     }
-  }, [inputValue, isLoading, rateLimitInfo.isLimited, framework, language, systemPrompt, ui.errorMessage])
+  }, [inputValue, voiceInputUsed, isLoading, rateLimitInfo.isLimited, framework, language, systemPrompt, ui.errorMessage, speakResponse])
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -456,20 +668,21 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
   }
 
   // Closed state - just the button
+  // Position higher on mobile to avoid overlapping the bottom tab bar
   if (!isOpen) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 group flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+        className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-50 group flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
       >
-        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30">
+        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden border-2 border-white/30">
           <img src="/erwin.png" alt="Erwin" className="w-full h-full object-cover" />
         </div>
-        <div className="text-left">
+        <div className="text-left hidden sm:block">
           <div className="font-semibold text-sm">{ui.title}</div>
           <div className="text-xs text-white/70">{ui.subtitle}</div>
         </div>
-        <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+        <span className="w-2 h-2 md:w-2.5 md:h-2.5 bg-green-400 rounded-full animate-pulse"></span>
       </button>
     )
   }
@@ -479,7 +692,7 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
     return (
       <button
         onClick={() => setIsMinimized(false)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all"
+        className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-50 flex items-center gap-2 px-3 md:px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all"
       >
         <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
           <img src="/erwin.png" alt="Erwin" className="w-full h-full object-cover" />
@@ -494,9 +707,9 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
     )
   }
 
-  // Open chat widget
+  // Open chat widget - Position higher on mobile to avoid overlapping the bottom tab bar
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] flex flex-col bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-whs-dark-700 overflow-hidden animate-fade-in">
+    <div className="fixed bottom-20 md:bottom-6 right-2 md:right-6 z-50 w-[calc(100vw-1rem)] md:w-96 md:max-w-[calc(100vw-3rem)] max-h-[calc(100vh-6rem)] md:max-h-none flex flex-col bg-white dark:bg-whs-dark-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-whs-dark-700 overflow-hidden animate-fade-in">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -631,18 +844,76 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
         </div>
       )}
 
+      {/* Speaking indicator */}
+      {isSpeaking && (
+        <div className="mx-3 mb-2 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg text-xs text-blue-700 dark:text-blue-300 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="flex gap-0.5">
+              <span className="w-1 h-3 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></span>
+              <span className="w-1 h-4 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></span>
+              <span className="w-1 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></span>
+              <span className="w-1 h-3 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '450ms' }}></span>
+            </div>
+            <span>{ui.speaking}</span>
+          </div>
+          <button
+            onClick={handleStopSpeaking}
+            className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-[10px] font-medium"
+          >
+            {ui.stopSpeaking}
+          </button>
+        </div>
+      )}
+
       {/* Input */}
       <div className="p-3 border-t border-gray-200 dark:border-whs-dark-700">
+        {/* Listening indicator */}
+        {isListening && (
+          <div className="flex items-center gap-2 mb-2 px-2 py-1.5 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-xs text-red-600 dark:text-red-400">
+            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+            {ui.voiceListening}
+          </div>
+        )}
         <div className="flex gap-2">
+          {/* Voice input button - show on mobile or touch devices */}
+          {isMobile && isSpeechRecognitionSupported() && (
+            <button
+              onClick={toggleVoiceRecognition}
+              disabled={isLoading || rateLimitInfo.isLimited}
+              className={`p-2 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                isListening
+                  ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse'
+                  : 'bg-gray-100 dark:bg-whs-dark-700 hover:bg-gray-200 dark:hover:bg-whs-dark-600 text-gray-600 dark:text-gray-400'
+              }`}
+              title={isListening ? ui.voiceStop : ui.voiceStart}
+            >
+              {isListening ? (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <rect x="6" y="6" width="12" height="12" rx="2" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+              )}
+            </button>
+          )}
           <input
             ref={inputRef}
             type="text"
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e) => {
+              setInputValue(e.target.value)
+              setVoiceInputUsed(false) // Reset voice flag on manual typing
+            }}
             onKeyPress={handleKeyPress}
-            placeholder={ui.placeholder}
-            disabled={isLoading || rateLimitInfo.isLimited}
-            className="flex-1 px-3 py-2 bg-gray-50 dark:bg-whs-dark-700 border border-gray-200 dark:border-whs-dark-600 rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+            placeholder={isListening ? ui.voiceListening : ui.placeholder}
+            disabled={isLoading || rateLimitInfo.isLimited || isListening}
+            className={`flex-1 px-3 py-2 bg-gray-50 dark:bg-whs-dark-700 border rounded-lg text-sm text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 transition-all ${
+              isListening
+                ? 'border-red-300 dark:border-red-700'
+                : 'border-gray-200 dark:border-whs-dark-600'
+            }`}
           />
           <button
             onClick={() => handleSend()}
@@ -655,7 +926,10 @@ export function SafetyChatWidget({ onNavigateToLaw }) {
           </button>
         </div>
         <p className="text-[10px] text-gray-400 dark:text-gray-500 mt-1.5 text-center">
-          {ui.powered}
+          {isMobile && isSpeechRecognitionSupported()
+            ? (lang === 'de' ? 'Tippen oder sprechen' : lang === 'nl' ? 'Tik of spreek' : 'Tap mic or type')
+            : ui.powered
+          }
         </p>
       </div>
 
