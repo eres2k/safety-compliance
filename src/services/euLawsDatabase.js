@@ -134,13 +134,14 @@ export async function initializeLawsDatabase(countryCode = null) {
     return loadCountryDatabase(countryCode)
   }
 
-  // Load all databases in parallel
+  // Load all databases and changelog in parallel
   await Promise.all([
     loadCountryDatabase('AT'),
     loadCountryDatabase('DE'),
     loadCountryDatabase('NL'),
     loadCountryDatabase('WIKI'),
-    loadStatistics()
+    loadStatistics(),
+    loadChangelog() // Load changelog to enable content change detection
   ])
 
   return lawsDatabase
@@ -1562,39 +1563,35 @@ export function isHtmlOnly(law) {
 
 /**
  * Check if a law was recently updated (within specified days)
+ * This checks for ACTUAL content changes, not just when the law was last scraped.
+ * A law is considered "updated" only if it appears in the changelog with actual
+ * content changes (new law added or content hash changed).
  * @param {Object} law - The law object
  * @param {number} withinDays - Number of days to consider as "recent" (default 14)
- * @returns {boolean} - True if law was updated recently
+ * @returns {boolean} - True if law had actual content changes recently
  */
 export function isRecentlyUpdatedLaw(law, withinDays = 14) {
   if (!law) return false
 
-  // Check scraping.scraped_at timestamp
-  const scrapedAt = law.scraping?.scraped_at
-  if (!scrapedAt) return false
-
-  try {
-    const scrapedDate = new Date(scrapedAt)
-    const now = new Date()
-    const diffDays = (now - scrapedDate) / (1000 * 60 * 60 * 24)
-    return diffDays <= withinDays
-  } catch {
-    return false
-  }
+  // Check for actual content changes via the changelog cache
+  // This returns true only if the law was newly added or its content changed
+  return hasActualContentChanges(law)
 }
 
 /**
  * Get all recently updated laws across all countries
+ * Returns only laws with actual content changes (from changelog)
  * @param {number} withinDays - Number of days to consider as "recent" (default 14)
  * @param {number} limit - Maximum number of results (default 10)
  * @returns {Promise<Array>} - Array of recently updated laws
  */
 export async function getRecentlyUpdatedLaws(withinDays = 14, limit = 10) {
-  // Load all databases
+  // Load all databases and changelog
   await Promise.all([
     loadCountryDatabase('AT'),
     loadCountryDatabase('DE'),
-    loadCountryDatabase('NL')
+    loadCountryDatabase('NL'),
+    loadChangelog()
   ])
 
   const recentLaws = []
@@ -1605,18 +1602,21 @@ export async function getRecentlyUpdatedLaws(withinDays = 14, limit = 10) {
 
     for (const item of db.items) {
       if (isRecentlyUpdatedLaw(item, withinDays)) {
+        const changeInfo = getChangeInfo(item)
         recentLaws.push({
           ...item,
-          country
+          country,
+          changeType: changeInfo?.type,
+          changedAt: changeInfo?.timestamp
         })
       }
     }
   }
 
-  // Sort by scraped_at date (most recent first)
+  // Sort by changelog timestamp (most recent first)
   recentLaws.sort((a, b) => {
-    const dateA = new Date(a.scraping?.scraped_at || 0)
-    const dateB = new Date(b.scraping?.scraped_at || 0)
+    const dateA = new Date(a.changedAt || 0)
+    const dateB = new Date(b.changedAt || 0)
     return dateB - dateA
   })
 
@@ -1625,6 +1625,7 @@ export async function getRecentlyUpdatedLaws(withinDays = 14, limit = 10) {
 
 /**
  * Get recently updated laws synchronously (only from loaded databases)
+ * Returns only laws with actual content changes (from changelog)
  * @param {number} withinDays - Number of days to consider as "recent" (default 14)
  * @param {number} limit - Maximum number of results (default 10)
  * @returns {Array} - Array of recently updated laws
@@ -1638,18 +1639,21 @@ export function getRecentlyUpdatedLawsSync(withinDays = 14, limit = 10) {
 
     for (const item of db.items) {
       if (isRecentlyUpdatedLaw(item, withinDays)) {
+        const changeInfo = getChangeInfo(item)
         recentLaws.push({
           ...item,
-          country
+          country,
+          changeType: changeInfo?.type,
+          changedAt: changeInfo?.timestamp
         })
       }
     }
   }
 
-  // Sort by scraped_at date (most recent first)
+  // Sort by changelog timestamp (most recent first)
   recentLaws.sort((a, b) => {
-    const dateA = new Date(a.scraping?.scraped_at || 0)
-    const dateB = new Date(b.scraping?.scraped_at || 0)
+    const dateA = new Date(a.changedAt || 0)
+    const dateB = new Date(b.changedAt || 0)
     return dateB - dateA
   })
 
@@ -1658,6 +1662,7 @@ export function getRecentlyUpdatedLawsSync(withinDays = 14, limit = 10) {
 
 // Changelog cache
 let changelogData = null
+let changedLawsCache = null // Map of law keys to change info (timestamp, type)
 
 /**
  * Load the update changelog
@@ -1670,7 +1675,82 @@ async function loadChangelog() {
     console.warn('Changelog file not found:', error)
     changelogData = { updates: [], last_check: null }
   }
+  // Build the changed laws cache
+  buildChangedLawsCache()
   return changelogData
+}
+
+/**
+ * Build a cache of law keys that have actual content changes
+ * This enables synchronous checking of whether a law was actually updated
+ * Stores both the change status and timestamp for proper sorting
+ */
+function buildChangedLawsCache(withinDays = 14) {
+  if (!changelogData) {
+    changedLawsCache = new Map()
+    return
+  }
+
+  const cutoff = new Date()
+  cutoff.setDate(cutoff.getDate() - withinDays)
+
+  const changed = new Map()
+
+  for (const update of changelogData.updates || []) {
+    try {
+      const updateTime = new Date(update.timestamp)
+      if (updateTime < cutoff) continue
+
+      const country = update.country || ''
+
+      // Add new laws
+      for (const abbrev of update.new_laws || []) {
+        const key = `${country}:${abbrev}`
+        // Only store if not already present (keep earliest/first detection)
+        if (!changed.has(key)) {
+          changed.set(key, { timestamp: update.timestamp, type: 'new' })
+        }
+      }
+
+      // Add updated laws (content changed)
+      for (const abbrev of update.updated_laws || []) {
+        const key = `${country}:${abbrev}`
+        if (!changed.has(key)) {
+          changed.set(key, { timestamp: update.timestamp, type: 'updated' })
+        }
+      }
+    } catch {
+      continue
+    }
+  }
+
+  changedLawsCache = changed
+}
+
+/**
+ * Check if a law has actual content changes (synchronous)
+ * Uses the cached changelog data
+ */
+function hasActualContentChanges(law) {
+  if (!law || !changedLawsCache) return false
+
+  const country = law.jurisdiction || law.country || ''
+  const abbrev = law.abbreviation || ''
+
+  return changedLawsCache.has(`${country}:${abbrev}`)
+}
+
+/**
+ * Get the change info for a law (timestamp and type)
+ * Returns null if no changes recorded
+ */
+function getChangeInfo(law) {
+  if (!law || !changedLawsCache) return null
+
+  const country = law.jurisdiction || law.country || ''
+  const abbrev = law.abbreviation || ''
+
+  return changedLawsCache.get(`${country}:${abbrev}`) || null
 }
 
 /**
