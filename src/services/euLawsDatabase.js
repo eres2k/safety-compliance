@@ -1422,15 +1422,19 @@ export function isSupplementarySource(law) {
     return true
   }
 
-  // NL: PGS (Publicatiereeks Gevaarlijke Stoffen) and AI publications
-  if (abbrev.includes('pgs') || abbrev.startsWith('ai-')) {
+  // NL: PGS (Publicatiereeks Gevaarlijke Stoffen), AI publications, STL, TNO, RIVM
+  if (abbrev.includes('pgs') || abbrev.startsWith('ai-') ||
+      abbrev.includes('stl') || abbrev.includes('tno') || abbrev.includes('rivm') ||
+      abbrev.includes('nl arbeidsinspectie')) {
     return true
   }
 
   // Check title for supplementary indicators
   if (title.includes('merkblatt') || title.includes('technische regel') ||
       title.includes('technical rule') || title.includes('publicatiereeks') ||
-      title.includes('richtlijn') || title.includes('leitfaden')) {
+      title.includes('richtlijn') || title.includes('leitfaden') ||
+      title.includes('arbocatalogus') || title.includes('factsheet') ||
+      title.includes('wegwijzer')) {
     return true
   }
 
@@ -1465,6 +1469,10 @@ export function getSupplementarySourceType(law) {
   // NL
   if (abbrev.includes('pgs')) return 'pgs'
   if (abbrev.startsWith('ai-')) return 'ai'
+  if (abbrev.includes('stl')) return 'stl'
+  if (abbrev.includes('tno')) return 'tno'
+  if (abbrev.includes('rivm')) return 'rivm'
+  if (abbrev.includes('nl arbeidsinspectie')) return 'arbeidsinspectie'
 
   return 'default'
 }
