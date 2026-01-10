@@ -152,7 +152,7 @@ class Config:
             "main_laws": {
                 "ASchG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008910",      # Worker Protection Act
                 "AZG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008238",        # Working Time Act
-                "ARG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008374",        # Rest Period Act
+                "ARG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008541",        # Rest Period Act (Arbeitsruhegesetz)
                 "MSchG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008464",      # Maternity Protection Act
                 "KJBG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008632",       # Child and Youth Employment Act
                 "AStV": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009098",       # Workplace Regulation (Arbeitsstättenverordnung)

@@ -2,11 +2,11 @@
   "schema_version": "2.0.0",
   "metadata": {
     "country": "AT",
-    "generated_at": "2026-01-10T21:26:39.078599",
+    "generated_at": "2026-01-10T21:35:50.048794",
     "document_count": 34,
     "error_count": 0,
-    "cleaned_at": "2026-01-10T21:26:48.602205",
-    "restructured_at": "2026-01-10T21:26:49.077523",
+    "cleaned_at": "2026-01-10T21:35:59.140498",
+    "restructured_at": "2026-01-10T21:35:59.639285",
     "titles_updated_at": "2025-12-18T21:52:10.901Z",
     "sections_restructured_at": "2025-12-18T17:53:41.037Z",
     "auto_sections_at": "2025-12-18T17:52:16.079Z",
@@ -7206,75 +7206,75 @@
       "content_hash": "85d2d6096df742ae1c788379b2391cb1"
     },
     {
-      "id": "8707044b80c0c068",
+      "id": "53edbea9bd8da3f8",
       "version": "1.0.0",
       "type": "law",
       "jurisdiction": "AT",
       "abbreviation": "ARG",
-      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025",
-      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsruhegesetz, Fassung vom 10.01.2026",
+      "title_en": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsruhegesetz, Fassung vom 10.01.2026",
       "category": "Core Safety",
       "source": {
-        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008374",
-        "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Betriebsbewilligung nach dem Arbeitnehmerschutzgesetz, Fassung vom 20.12.2025",
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008541",
+        "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Arbeitsruhegesetz, Fassung vom 10.01.2026",
         "authority": "RIS",
         "robots_txt_compliant": true
       },
       "scraping": {
-        "scraped_at": "2025-12-20T21:39:27.878305",
+        "scraped_at": "2026-01-10T21:35:50.020328",
         "scraper_version": "8.0.0"
       },
       "whs_summary": {
-        "total_sections": 11,
+        "total_sections": 50,
         "logistics_relevance_distribution": {
-          "critical": 1,
-          "high": 1,
-          "medium": 3,
-          "low": 6
+          "critical": 0,
+          "high": 5,
+          "medium": 14,
+          "low": 31
         },
         "top_whs_topics": [
           [
             "employee_rights",
-            9
+            39
+          ],
+          [
+            "working_hours",
+            27
           ],
           [
             "employer_obligations",
-            6
-          ],
-          [
-            "workplace_design",
-            2
-          ],
-          [
-            "hazardous_substances",
-            2
-          ],
-          [
-            "risk_assessment",
-            2
-          ],
-          [
-            "health_surveillance",
-            2
-          ],
-          [
-            "ppe",
-            1
-          ],
-          [
-            "work_equipment",
-            1
+            17
           ],
           [
             "documentation",
-            1
+            8
+          ],
+          [
+            "workplace_design",
+            7
+          ],
+          [
+            "health_surveillance",
+            5
+          ],
+          [
+            "training",
+            4
           ],
           [
             "ergonomics",
-            1
+            3
+          ],
+          [
+            "ppe",
+            2
+          ],
+          [
+            "incident_reporting",
+            2
           ]
         ],
-        "critical_sections_count": 2
+        "critical_sections_count": 5
       },
       "chapters": [
         {
@@ -7287,19 +7287,39 @@
               "id": "f1732ea2faecc18f",
               "number": "1",
               "title": "§ 1. Geltungsbereich",
-              "text": "Geltungsbereich § 1 . Diese Verordnung gilt für Betriebe, die unter die Bestimmungen des Arbeitnehmerschutzgesetzes fallen, soweit für diese Betriebe nach den folgenden Bestimmungen eine Betriebsbewilligung erforderlich ist ; sie gilt jedoch nicht für Betriebe, die dem Verkehrs-Arbeitsinspektionsgesetz, BGBl . Nr . 99/1952 , unterliegen . ; sie gilt jedoch nicht für Betriebe, die dem Verkehrs-Arbeitsinspektionsgesetz, unterliegen .",
+              "text": "1 . ABSCHNITT Geltungsbereich § 1 . (1) Dieses Bundesgesetz gilt für Arbeitnehmer aller Art, soweit im folgenden nicht anderes bestimmt wird . (2) Ausgenommen sind: 1 . Arbeitnehmer, die in einem Arbeitsverhältnis zu einer Gebietskörperschaft oder zu einem Gemeindeverband stehen, soweit sie nicht a) in Betrieben eines Landes, einer Gemeinde oder eines Gemeindeverbandes beschäftigt sind, b) in Betrieben des Bundes beschäftigt sind ; 2 . Arbeitnehmer von Kraftfahrlinienunternehmungen im Sinne des Kraftfahrliniengesetzes (KfLG), BGBl . I Nr . 203/1999 , soweit für diese Arbeitnehmer zwingende dienstrechtliche Vorschriften über die wöchentliche Ruhezeit gelten ; ; 3 . nahe Angehörige der Arbeitgeberin bzw . des Arbeitgebers (Eltern, volljährige Kinder, im gemeinsamen Haushalt lebende Ehegattin oder Ehegatte, eingetragene Partnerin oder Partner, sowie Lebensgefährtin oder Lebensgefährte, wenn seit mindestens drei Jahren ein gemeinsamer Haushalt besteht), deren gesamte Arbeitszeit auf Grund der besonderen Merkmale der Tätigkeit a) nicht gemessen oder im Voraus festgelegt wird, oder b) von diesen Arbeitnehmerinnen bzw . Arbeitnehmern hinsichtlich Lage und Dauer selbst festgelegt werden kann ; 4 . Lehr- und Erziehungskräfte an Unterrichts- und Erziehungsanstalten, soweit sie nicht bereits unter Z 1 fallen ; ; 5 . leitende Angestellte oder sonstige Arbeitnehmerinnen und Arbeitnehmer, denen maßgebliche selbständige Entscheidungsbefugnis übertragen ist und deren gesamte Arbeitszeit auf Grund der besonderen Merkmale der Tätigkeit a) nicht gemessen oder im Voraus festgelegt wird, oder b) von diesen Arbeitnehmerinnen bzw . ; 6 . Arbeitnehmer, für die folgende Vorschriften gelten: a) das Hausbesorgergesetz, BGBl . Nr . 16/1970 ; b) das Hausgehilfen- und Hausangestelltengesetz, BGBl . Nr . 235/1962 ; c) das Bundesgesetz über die Beschäftigung von Kindern und Jugendlichen 1987, BGBl . Nr . 599 ; d) das Landarbeitsgesetz 2021, BGBl . I Nr . 78/2021 ; das Landarbeitsgesetz 2021, BGBl . römisch eins Nr . 78/2021 ; e) das Seeschifffahrtsgesetz, BGBl . Nr . 174/1981 , soweit für diese Arbeitnehmer kollektivvertragliche Regelungen entsprechend § 4 des Anhanges der Richtlinie 1999/63/EG gelten ; das Seeschifffahrtsgesetz, soweit für diese Arbeitnehmer kollektivvertragliche Regelungen entsprechend des Anhanges der Richtlinie 1999/63/EG gelten ; 7 . Arbeitnehmer, die dem Bäckereiarbeiter/innengesetz 1996, BGBl . Nr . 410/1996 , unterliegen ; Arbeitnehmer, die dem Bäckereiarbeiter/innengesetz 1996, unterliegen ; 8 . Arbeitnehmer, die in Theaterunternehmen im Sinne des § 1 Abs . 2 des Theaterarbeitsgesetzes (TAG), BGBl . I Nr . 100/2010 , beschäftigt sind ; Arbeitnehmer, die in Theaterunternehmen im Sinne des des Theaterarbeitsgesetzes (TAG), beschäftigt sind ; 9 . Heimarbeiter, auf die das Heimarbeitsgesetz 1960, BGBl . Nr . 105/1961 , anzuwenden ist . Heimarbeiter, auf die das Heimarbeitsgesetz 1960, anzuwenden ist . (3) Auf Arbeitnehmer gesetzlich anerkannter Kirchen und Religionsgesellschaften, die nicht in Betrieben beschäftigt sind, findet dieses Gesetz Anwendung, wenn keine gleichwertige interne Regelung besteht .",
               "whs_topics": [
                 {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
                   "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "ergonomics",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "special_groups",
                   "relevance": "medium",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
-                "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "score": 3,
+                "level": "high",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -7307,110 +7327,15 @@
               "id": "54605dab27043e86",
               "number": "2",
               "title": "§ 2. Begriffsbestimmungen",
-              "text": "§ 2. Begriffsbestimmungen:\n§ 2. (1) Betriebe, bei deren Führung infolge der Art der Betriebseinrichtungen, der Betriebsmittel, der verwendeten Arbeitsstoffe oder der Arbeitsverfahren in besonderem Maße eine Gefährdung des Lebens und der Gesundheit der Arbeitnehmer auftreten kann, dürfen nur auf Grund einer Bewilligung der zuständigen Behörde geführt werden. (2) Eine Bewilligung nach Abs. 1 ist nicht erforderlich bei Betrieben, für die durch eine andere bundesgesetzliche Vorschrift eine Bewilligung vorgeschrieben ist, sowie bei sonstigen Betrieben, die unter die Bestimmungen der Gewerbeordnung 1973 fallen. (3) Eine Bewilligung nach Abs. 1 ist, soweit sich aus Abs. 2 nicht anderes ergibt, insbesondere erforderlich für: Elektrizitätserzeugungsanlagen mit einer gesamten installierten Maschinenleistung (Klemmenleistung) von mehr als 10 MW sowie Umspann- und Schaltanlagen mit einer gesamten installierten Transformatorenleistung von mehr als 50 MVA und einer Nennspannung von 110 kV und darüber; Schlachthöfe; Müllverbrennungsanlagen; Tierkörperverwertungsanstalten; Badeanstalten, soweit Wärmepumpen oder für die Wasserentkeimung gesundheitsschädliche Stoffe verwendet werden; Sportanlagen mit Kunsteisbahnen; Rundfunk- und Fernsehanstalten hinsichtlich ihrer Produktionsstudios mit besonderen Einrichtungen, wie Filmentwicklung, Werkstätten oder zentraler Energieversorgung, und der Großsendeanlagen; Theater mit maschinellen Bühneneinrichtungen, Theaterwerkstätten; Filmateliers einschließlich ihrer Werkstätten; Betriebe mit solchen Kraftfahrzeug-Einstellräumen, die auch als Arbeitsräume verwendet werden, wenn deren Stellplätze mehr als 5 m unter dem angrenzenden Gelände liegen; Krankenanstalten; Betriebe, die unter den Geltungsbereich der Verordnung über die gesundheitliche Eignung von Arbeitnehmern für bestimmte Tätigkeiten, BGBl. Nr. 39/1974, fallen. (4) Werden in einem Betrieb, für den eine Betriebsbewilligung nach Abs. 1 nicht erforderlich ist, Änderungen vorgenommen, die die Bewilligungspflicht zur Folge haben, so ist für die Weiterführung dieses Betriebes eine Bewilligung erforderlich. (5) Die Verwendung von Betriebseinrichtungen, Betriebsmitteln, Arbeitsstoffen oder Ausrüstungen, für die eine Zulassung nach § 26 des Arbeitnehmerschutzgesetzes erteilt wurde, bedingt für den betreffenden Betrieb an sich keine Betriebsbewilligung nach Abs. 1. (6) Werden Umstände bekannt, die die Bewilligungspflicht eines Betriebes im Sinne des Abs. 1 begründen könnten, zweifelt jedoch der Arbeitgeber daran, daß der Betrieb nur auf Grund einer Bewilligung geführt werden darf, so hat die zuständige Behörde zu prüfen und von Amts wegen durch Bescheid festzustellen, ob für die Führung des Betriebes eine Bewilligung notwendig ist. Ein Feststellungsbescheid ist jedoch nicht zu erlassen, wenn die Bewilligungspflicht offenkundig ist. (7) Durch ein Verfahren nach Abs. 6 wird späteren Feststellungen über Art und Ausmaß der Gefährdung nach Abs. 1 nicht vorgegriffen. (8) Abs. 6 ist sinngemäß anzuwenden, wenn der Arbeitgeber beantragt festzustellen, ob der Betrieb nur auf Grund einer Bewilligung nach Abs. 1 geführt werden darf.",
+              "text": "2 . ABSCHNITT Wochenendruhe, Wochenruhe, Ersatzruhe und Feiertagsruhe Begriff der Ruhezeit § 2 . (1) Im Sinne dieses Bundesgesetzes ist 1 . Wochenendruhe eine ununterbrochene Ruhezeit von 36 Stunden, in die der Sonntag fällt (§ 3) ; ; 2 . Wochenruhe eine ununterbrochene Ruhezeit von 36 Stunden in der Kalenderwoche (§ 4) ; Wochenruhe eine ununterbrochene Ruhezeit von 36 Stunden in der Kalenderwoche ; 3 . wöchentliche Ruhezeit sowohl die Wochenendruhe als auch die Wochenruhe ; 4 . Ersatzruhe eine ununterbrochene Ruhezeit, die als Abgeltung für die während der wöchentlichen Ruhezeit geleistete Arbeit zusteht (§ 6) ; ; 5 . Feiertagsruhe eine ununterbrochene Ruhezeit von 24 Stunden, die frühestens um 0 Uhr und spätestens um 6 Uhr des gesetzlichen Feiertages beginnt (§ 7) . . (2) Während der Wochenend- und Feiertagsruhe darf im Rahmen der §§ 10 bis 18 nur die unumgänglich notwendige Anzahl von Arbeitnehmern beschäftigt werden . Während der Wochenend- und Feiertagsruhe darf im Rahmen der Paragraphen 10 bis 18 nur die unumgänglich notwendige Anzahl von Arbeitnehmern beschäftigt werden . (3) Soweit in diesem Bundesgesetz personenbezogene Bezeichnungen noch nicht geschlechtsneutral formuliert sind, gilt die gewählte Form für beide Geschlechter .",
               "whs_topics": [
                 {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "ppe",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "work_equipment",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "hazardous_substances",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 4,
-                "level": "high",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 2
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "cfe42a1307e7dfb9",
-              "number": "3",
-              "title": "§ 3. Wochenendruhe",
-              "text": "§ 3. Wochenendruhe:\n§ 3. (1) Um die Erteilung der Betriebsbewilligung hat der Arbeitgeber bei der zuständigen Behörde anzusuchen. (2) Dem Ansuchen sind eine Betriebsbeschreibung, die erforderlichen Pläne und sonstige für die Beurteilung des Betriebes notwendige Unterlagen in dreifacher Ausfertigung anzuschließen. Diesen Unterlagen müssen die für die Beurteilung des Betriebes vom Standpunkt des Arbeitnehmerschutzes maßgebenden Umstände zu entnehmen sein. Die Pläne müssen vor allem Aufschluß geben über die Größe und Lage der Arbeitsräume und die Belichtung derselben, über sonstige Betriebsräume und Lagerräume, über die Ausgänge, Verkehrs- und Fluchtwege, die Betriebseinrichtungen sowie die sanitären Vorkehrungen. Die Betriebsbeschreibung und die sonstigen Unterlagen müssen insbesondere Angaben enthalten über die Art des Betriebes und der Erzeugnisse desselben oder der in diesem ausgeübten Tätigkeiten, die Beleuchtung, Beheizung und Lüftung der Betriebsräume, die verwendeten Betriebseinrichtungen, sonstigen mechanischen Einrichtungen sowie Betriebsmittel, die Arbeitsvorgänge und Arbeitsverfahren, die zur Verwendung kommenden Arbeitsstoffe, die Art und Menge allfälliger Lagerungen und über die Zahl der im Betrieb Beschäftigten.",
-              "whs_topics": [
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "workplace_design",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "hazardous_substances",
+                  "id": "working_hours",
                   "relevance": "medium",
                   "match_count": 1
                 },
                 {
                   "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 1
-                }
-              ],
-              "amazon_logistics_relevance": {
-                "score": 6,
-                "level": "critical",
-                "high_keyword_matches": 2,
-                "medium_keyword_matches": 2
-              },
-              "paragraphs": []
-            },
-            {
-              "id": "5f74407da5748781",
-              "number": "4",
-              "title": "§ 4. Wochenruhe",
-              "text": "§ 4. Wochenruhe:\n§ 4. (1) Die zuständige Behörde hat über das Ansuchen um Betriebsbewilligung das Ermittlungsverfahren durchzuführen und nötigenfalls einen Augenschein anzuberaumen. (2) Die Betriebsbewilligung ist zu erteilen, wenn anzunehmen ist, daß den Erfordernissen des Schutzes des Lebens und der Gesundheit der Arbeitnehmer entsprochen werden kann. Erfordern es die für die Erteilung der Betriebsbewilligung maßgebenden Umstände, insbesondere in jenen Fällen, in denen in einem Teil des Betriebes die für die Betriebsbewilligung notwendigen Voraussetzungen nicht gegeben sind, so kann die Bewilligung auf bestimmte Teile des Betriebes beschränkt werden, sofern die Art derselben eine selbständige Führung dieser Betriebsteile zuläßt; andernfalls ist die Betriebsbewilligung nicht zu erteilen. Ist bei einem Betrieb nur für einen Teil desselben eine Bewilligung nach § 2 Abs. 1 notwendig, so hat sich die Bewilligung auf den gesamten Betrieb zu beziehen. (3) Im Bewilligungsbescheid sind die aus Gründen des Arbeitnehmerschutzes notwendigen Bedingungen und Auflagen vorzuschreiben, soweit nicht bereits durch auf Grund des § 24 des Arbeitnehmerschutzgesetzes erlassene Verordnungen oder der im § 33 dieses Gesetzes angeführten Rechtsvorschriften die Verpflichtung zur Herstellung eines bestimmten Zustandes oder zur Durchführung bestimmter Vorkehrungen oder sonstiger Maßnahmen zum Schutz des Lebens und der Gesundheit der Arbeitnehmer gegeben ist. (4) Von der Betriebsbewilligung darf erst Gebrauch gemacht werden, wenn den Bedingungen und Auflagen des rechtskräftigen Bescheides entsprochen worden ist. Die Aufnahme der Tätigkeit im Betrieb ist der zuständigen Behörde und dem Arbeitsinspektorat unverzüglich schriftlich mitzuteilen. Wird die Tätigkeit im Betrieb nicht innerhalb von drei Jahren nach dem Zeitpunkt, zu dem die Bewilligung in Rechtskraft erwachsen ist, aufgenommen oder wird der Betrieb nach erfolgter Bewilligung durch mehr als drei Jahre nicht geführt, so erlischt die Bewilligung. Die zuständige Behörde kann diese Fristen auf Grund eines vor Ablauf derselben vom Arbeitgeber gestellten Antrages verlängern, wenn ihrer Einhaltung unvorhergesehene Schwierigkeiten entgegenstehen, wobei die Frist nur so weit erstreckt werden kann, daß ein Zeitraum von fünf Jahren insgesamt nicht überschritten wird. (5) Die Wirksamkeit der Betriebsbewilligung wird durch einen Wechsel in der Person des Arbeitgebers nicht berührt.",
-              "whs_topics": [
-                {
-                  "id": "employer_obligations",
-                  "relevance": "high",
-                  "match_count": 2
-                },
-                {
-                  "id": "employee_rights",
-                  "relevance": "medium",
-                  "match_count": 2
-                },
-                {
-                  "id": "risk_assessment",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "documentation",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "health_surveillance",
                   "relevance": "medium",
                   "match_count": 1
                 }
@@ -7424,14 +7349,19 @@
               "paragraphs": []
             },
             {
-              "id": "84e8f4bf4e830d1d",
-              "number": "5",
-              "title": "§ 5. Ersatzruhe",
-              "text": "§ 5. Ersatzruhe:\n§ 5. (1) Werden in einem Betrieb, für den eine Bewilligung nach § 2 Abs. 1 erforderlich ist, Änderungen vorgenommen, durch die das Ausmaß der Gefährdung im Sinne des § 2 Abs. 1 gegenüber dem im Zeitpunkt der Erteilung der Bewilligung bestandenen vergrößert wird, oder die mit einer derartigen Gefährdung anderer Art als der bisher bestandenen verbunden sind, so ist für diese Änderungen die Bewilligung der zuständigen Behörde einzuholen. (2) Für das Ansuchen um Bewilligung der Änderung und die Erteilung derselben gelten § 3 und § 4 sinngemäß.",
+              "id": "cfe42a1307e7dfb9",
+              "number": "3",
+              "title": "§ 3. Wochenendruhe",
+              "text": "Wochenendruhe § 3 . (1) Der Arbeitnehmer hat in jeder Kalenderwoche Anspruch auf eine ununterbrochene Ruhezeit von 36 Stunden, in die der Sonntag zu fallen hat (Wochenendruhe) . Während dieser Zeit darf der Arbeitnehmer nur beschäftigt werden, wenn dies auf Grund der §§ 2 Abs . 2, 10 bis 18 zulässig ist . Der Arbeitnehmer hat in jeder Kalenderwoche Anspruch auf eine ununterbrochene Ruhezeit von 36 Stunden, in die der Sonntag zu fallen hat (Wochenendruhe) . . (2) Die Wochenendruhe hat für alle Arbeitnehmer spätestens Samstag um 13 Uhr, für Arbeitnehmer, die mit unbedingt notwendigen Abschluß-, Reinigungs-, Instandhaltungs- oder Instandsetzungsarbeiten beschäftigt sind, spätestens Samstag um 15 Uhr zu beginnen . (2a) a Bei nicht durchlaufender mehrschichtiger Arbeitsweise hat die Wochenendruhe spätestens Samstag um 24 Uhr zu beginnen . (3) In Betrieben mit einer werktags durchlaufenden mehrschichtigen Arbeitsweise hat die Wochenendruhe spätestens mit Ende der Nachtschicht zum Sonntag zu beginnen und darf frühestens mit Beginn der Nachtschicht zum Montag enden . (4) Wird in Verbindung mit Feiertagen eingearbeitet und die ausfallende Arbeitszeit auf die Werktage der die Ausfallstage einschließenden Wochen verteilt (§ 4 Abs . 2 und 3 des Arbeitszeitgesetzes, BGBl . Nr . 461/1969 ), so kann der Beginn der Wochenendruhe im Einarbeitungszeitraum bis spätestens Samstag 18 Uhr aufgeschoben werden . Wird in Verbindung mit Feiertagen eingearbeitet und die ausfallende Arbeitszeit auf die Werktage der die Ausfallstage einschließenden Wochen verteilt, so kann der Beginn der Wochenendruhe im Einarbeitungszeitraum bis spätestens Samstag 18 Uhr aufgeschoben werden .",
               "whs_topics": [
                 {
-                  "id": "employer_obligations",
-                  "relevance": "high",
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
                   "match_count": 1
                 }
               ],
@@ -7444,40 +7374,35 @@
               "paragraphs": []
             },
             {
-              "id": "07a3dce98e4c1d3e",
-              "number": "6",
-              "title": "§ 6. Feiertagsruhe",
-              "text": "§ 6. Feiertagsruhe:\n§ 6. (1) Zeigt sich in einem Betrieb nach rechtskräftig erteilter Betriebsbewilligung, daß den Erfordernissen des Schutzes des Lebens und der Gesundheit der Arbeitnehmer unter den vorgeschriebenen Bedingungen und Auflagen nicht in ausreichendem Maße entsprochen wird, so sind die zur Erreichung dieser Erfordernisse unbedingt notwendigen Maßnahmen von der zuständigen Behörde aufzutragen. (2) Hinsichtlich der Aufträge nach Abs. 1 gilt § 4 Abs. 3 sinngemäß.",
+              "id": "5f74407da5748781",
+              "number": "4",
+              "title": "§ 4. Wochenruhe",
+              "text": "Wochenruhe § 4 . Der Arbeitnehmer, der nach der für ihn geltenden Arbeitszeiteinteilung während der Zeit der Wochenendruhe beschäftigt wird, hat in jeder Kalenderwoche an Stelle der Wochenendruhe Anspruch auf eine ununterbrochene Ruhezeit von 36 Stunden (Wochenruhe) . Die Wochenruhe hat einen ganzen Wochentag einzuschließen .",
               "whs_topics": [
                 {
-                  "id": "employee_rights",
+                  "id": "working_hours",
                   "relevance": "medium",
                   "match_count": 2
                 },
                 {
-                  "id": "ergonomics",
-                  "relevance": "high",
-                  "match_count": 1
-                },
-                {
-                  "id": "health_surveillance",
+                  "id": "employee_rights",
                   "relevance": "medium",
                   "match_count": 1
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 2,
+                "score": 1,
                 "level": "medium",
-                "high_keyword_matches": 1,
-                "medium_keyword_matches": 0
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
             {
-              "id": "209ae42f2481fc8e",
-              "number": "7",
-              "title": "§ 7. Feiertage",
-              "text": "Auflegen von Vorschriften und Bescheiden § 7 . Der Arbeitgeber hat neben den sonst für seinen Betrieb in Betracht kommenden Arbeitnehmerschutzvorschriften eine Abschrift der ihm mit dem Bewilligungsbescheid vorgeschriebenen Bedingungen und Auflagen sowie der nach § 6 erteilten Aufträge im Betrieb an geeigneter, für die Arbeitnehmer leicht zugänglicher Stelle aufzulegen . .",
+              "id": "84e8f4bf4e830d1d",
+              "number": "5",
+              "title": "§ 5. Ersatzruhe",
+              "text": "Abweichende Regelung der wöchentlichen Ruhezeit § 5 . (1) Zur Ermöglichung der Schichtarbeit kann im Schichtplan die wöchentliche Ruhezeit abweichend von den §§ 3 und 4 geregelt werden . Zur Ermöglichung der Schichtarbeit kann im Schichtplan die wöchentliche Ruhezeit abweichend von den Paragraphen 3 und 4 geregelt werden . (2) Das Ausmaß der wöchentlichen Ruhezeit kann in den Fällen des Abs . 1 bis auf 24 Stunden gekürzt werden . In einem Durchrechnungszeitraum von vier Wochen muß dem Arbeitnehmer jedoch eine durchschnittliche wöchentliche Ruhezeit von 36 Stunden gesichert sein . Zur Berechnung dürfen nur mindestens 24stündige Ruhezeiten herangezogen werden . Das Ausmaß der wöchentlichen Ruhezeit kann in den Fällen des bis auf 24 Stunden gekürzt werden . . . (3) Die Bundesministerin bzw . der Bundesminister für Arbeit kann auf Antrag des Arbeitgebers nach Anhörung der gesetzlichen Interessenvertretungen der Arbeitgeber und Arbeitnehmer abweichend von Abs . 2 Schichtpläne zulassen . Sie können die wöchentliche Ruhezeit von mindestens 24 Stunden unterschreiten oder den vierwöchigen Durchrechnungszeitraum überschreiten, wenn dies aus wichtigen Gründen erforderlich und mit den Interessen der Arbeitnehmer vereinbar ist . Solche Schichtpläne können befristet werden . Die Bundesministerin bzw . . . . (4) Die Bundesministerin bzw . der Bundesminister für Arbeit hat Ausnahmen gemäß Abs . 3 von Amts wegen oder auf Antrag einer der gesetzlichen Interessenvertretungen der Arbeitgeber oder Arbeitnehmer, des Arbeitgebers oder von Organen der Arbeitnehmerschaft des Betriebes abzuändern oder zu widerrufen, wenn die Voraussetzungen des Abs . 3 nicht mehr vorliegen . . der Bundesminister für Arbeit hat Ausnahmen gemäß von Amts wegen oder auf Antrag einer der gesetzlichen Interessenvertretungen der Arbeitgeber oder Arbeitnehmer, des Arbeitgebers oder von Organen der Arbeitnehmerschaft des Betriebes abzuändern oder zu widerrufen, wenn die Voraussetzungen des nicht mehr vorliegen . (5) Für Arbeitnehmer, die auf im öffentlichen Interesse betriebenen Großbaustellen oder auf Baustellen der Wildbach- und Lawinenverbauung in Gebirgsregionen beschäftigt sind, kann durch Kollektivvertrag die wöchentliche Ruhezeit abweichend von den §§ 3 und 4 geregelt werden . Die wöchentliche Ruhezeit kann für einzelne Wochen gekürzt werden oder zur Gänze entfallen, wenn in einem vierwöchigen Durchrechnungszeitraum eine durchschnittliche wöchentliche Ruhezeit von 36 Stunden gesichert ist . Abs . 2 dritter Satz gilt sinngemäß . Für Arbeitnehmer, die auf im öffentlichen Interesse betriebenen Großbaustellen oder auf Baustellen der Wildbach- und Lawinenverbauung in Gebirgsregionen beschäftigt sind, kann durch Kollektivvertrag die wöchentliche Ruhezeit abweichend von den Paragraphen 3 und 4 geregelt werden . . dritter Satz gilt sinngemäß . (6) Für Arbeitnehmer, die bei der Herstellung oder beim Vertrieb von Tageszeitungen und Montagfrühblättern beschäftigt sind, kann durch Kollektivvertrag die wöchentliche Ruhezeit abweichend von den §§ 3 und 4 geregelt werden . Die wöchentliche Ruhezeit kann bis auf 24 Stunden gekürzt werden, wenn in einem vierwöchigen Durchrechnungszeitraum eine durchschnittliche wöchentliche Ruhezeit von 36 Stunden gesichert ist . Abs . . . . .",
               "whs_topics": [
                 {
                   "id": "employer_obligations",
@@ -7485,8 +7410,123 @@
                   "match_count": 1
                 },
                 {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
                   "id": "employee_rights",
                   "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "07a3dce98e4c1d3e",
+              "number": "6",
+              "title": "§ 6. Feiertagsruhe",
+              "text": "Ersatzruhe § 6 . (1) Der Arbeitnehmer, der während seiner wöchentlichen Ruhezeit (§ 2 Abs . 1 Z 3) beschäftigt wird, hat in der folgenden Arbeitswoche Anspruch auf Ersatzruhe, die auf seine Wochenarbeitszeit anzurechnen ist . Die Ersatzruhe ist im Ausmaß der während der wöchentlichen Ruhezeit geleisteten Arbeit zu gewähren, die innerhalb von 36 Stunden vor dem Arbeitsbeginn in der nächsten Arbeitswoche erbracht wurde . Der Arbeitnehmer, der während seiner wöchentlichen Ruhezeit beschäftigt wird, hat in der folgenden Arbeitswoche Anspruch auf Ersatzruhe, die auf seine Wochenarbeitszeit anzurechnen ist . . (2) Während der Ersatzruhe nach Abs . 1 dürfen Arbeitnehmer nur im Rahmen der §§ 11 oder 14 beschäftigt werden . Während der Ersatzruhe nach dürfen Arbeitnehmer nur im Rahmen der Paragraphen 11, oder 14 beschäftigt werden . (3) Wird ein Arbeitnehmer während der Ersatzruhe gemäß Abs . 1 beschäftigt, so ist diese Ersatzruhe im entsprechenden Ausmaß zu einer anderen, einvernehmlich festgesetzten Zeit nachzuholen . Wird ein Arbeitnehmer während der Ersatzruhe gemäß beschäftigt, so ist diese Ersatzruhe im entsprechenden Ausmaß zu einer anderen, einvernehmlich festgesetzten Zeit nachzuholen . (4) Während der Ersatzruhe nach Abs . 3 dürfen Arbeitnehmer nur zur Abwendung einer unmittelbaren Gefahr für die Sicherheit des Lebens oder für die Gesundheit von Menschen oder bei Notstand beschäftigt werden . Hiefür gebührt keine weitere Ersatzruhe . Während der Ersatzruhe nach dürfen Arbeitnehmer nur zur Abwendung einer unmittelbaren Gefahr für die Sicherheit des Lebens oder für die Gesundheit von Menschen oder bei Notstand beschäftigt werden . . (5) Die Ersatzruhe hat unmittelbar vor dem Beginn der folgenden wöchentlichen Ruhezeit zu liegen, soweit vor Antritt der Arbeit, für die Ersatzruhe gebührt, nicht anderes vereinbart wurde .",
+              "whs_topics": [
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "3935e54e0a018d49",
+              "number": "6a",
+              "title": "§ 6a. Rufbereitschaft",
+              "text": "Rufbereitschaft § 6a . a, Rufbereitschaft außerhalb der Arbeitszeit darf nur während zwei wöchentlicher Ruhezeiten pro Monat vereinbart werden .",
+              "whs_topics": [
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 2
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "209ae42f2481fc8e",
+              "number": "7",
+              "title": "§ 7. Feiertage",
+              "text": "Feiertagsruhe § 7 . (1) Der Arbeitnehmer hat an Feiertagen Anspruch auf eine ununterbrochene Ruhezeit von mindestens 24 Stunden, die frühestens um 0 Uhr und spätestens um 6 Uhr des Feiertages beginnen muß . (2) Feiertage im Sinne dieses Bundesgesetzes sind: 1 . Jänner (Neujahr), 6 . Jänner (Heilige Drei Könige), Ostermontag, 1 . Mai (Staatsfeiertag), Christi Himmelfahrt, Pfingstmontag, Fronleichnam, 15 . August (Mariä Himmelfahrt), 26 . Oktober (Nationalfeiertag), 1 . November (Allerheiligen), 8 . Dezember (Mariä Empfängnis), 25 . Dezember (Weihnachten), 26 . Dezember (Stephanstag) . (Anm . : Abs . 3 aufgehoben durch Art . 1 Z 2, BGBl . I Nr . 22/2019 ) Anmerkung, aufgehoben durch Artikel eins, )\n\n(4) Feiertage dürfen auf die wöchentliche Ruhezeit nur angerechnet werden, soweit sie in die Zeit der wöchentlichen Ruhezeit fallen . (5) In Betrieben mit einer werktags durchlaufenden mehrschichtigen Arbeitsweise hat die Feiertagsruhe spätestens mit Ende der Nachtschicht zum Feiertag zu beginnen und darf frühestens mit Beginn der Nachtschicht zum nächsten Werktag enden . (6) Ist für die Normalarbeitszeit (§ 3 Arbeitszeitgesetz) an Feiertagen Zeitausgleich vereinbart, so muß dieser mindestens einen Kalendertag oder 36 Stunden umfassen . Ist für die Normalarbeitszeit an Feiertagen Zeitausgleich vereinbart, so muß dieser mindestens einen Kalendertag oder 36 Stunden umfassen . (7) Fällt ein Feiertag auf einen Sonntag, so sind die §§ 3 bis 5 anzuwenden . Fällt ein Feiertag auf einen Sonntag, so sind die Paragraphen 3 bis 5 anzuwenden .",
+              "whs_topics": [
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 1,
+                "level": "medium",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 1
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "c1fd9de614220bd3",
+              "number": "7a",
+              "title": "§ 7a. Ausnahmen an Feiertagen",
+              "text": "Einseitiger Urlaubsantritt („persönlicher Feiertag“) § 7a . a,\n\n(1) Der Arbeitnehmer kann den Zeitpunkt des Antritts eines Tages des ihm zustehenden Urlaubs einmal pro Urlaubsjahr einseitig bestimmen . Der Arbeitnehmer hat den Zeitpunkt spätestens drei Monate im Vorhinein schriftlich bekannt zu geben . (2) Es steht dem Arbeitnehmer frei, auf Ersuchen des Arbeitgebers den bekannt gegebenen Urlaubstag nicht anzutreten . In diesem Fall hat der Arbeitnehmer weiterhin Anspruch auf diesen Urlaubstag . Weiters hat er für den bekannt gegebenen Tag außer dem Urlaubsentgelt Anspruch auf das für die geleistete Arbeit gebührende Entgelt, insgesamt daher das doppelte Entgelt, womit das Recht gemäß Abs . 1 erster Satz konsumiert ist . Es steht dem Arbeitnehmer frei, auf Ersuchen des Arbeitgebers den bekannt gegebenen Urlaubstag nicht anzutreten . . . (3) Abweichend von § 1 Abs . 2 Z 2 bis 9 gilt diese Bestimmung auch für diese Personen . Abweichend von bis 9 gilt diese Bestimmung auch für diese Personen .",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 2
+                },
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "ppe",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
                   "match_count": 1
                 }
               ],
@@ -7502,8 +7542,18 @@
               "id": "6277e3eff9f63c5d",
               "number": "8",
               "title": "§ 8. Ausnahmen von der Wochenend- und Feiertagsruhe",
-              "text": "Behördenzuständigkeit § 8 . Zuständige Behörde im Sinne dieser Verordnung ist die nach § 30 des Arbeitnehmerschutzgesetzes zuständige Behörde . Zuständige Behörde im Sinne dieser Verordnung ist die nach des Arbeitnehmerschutzgesetzes zuständige Behörde .",
+              "text": "Freizeit zur Erfüllung der religiösen Pflichten § 8 . (1) Der Arbeitnehmer, der während der Wochenend- oder Feiertagsruhe beschäftigt wird, hat auf Verlangen Anspruch auf die zur Erfüllung seiner religiösen Pflichten notwendige Freizeit, wenn diese Pflichten nicht außerhalb der Arbeitszeit erfüllt werden können und die Freistellung von der Arbeit mit den Erfordernissen des Betriebes vereinbar ist . (2) Der Arbeitnehmer hat diesen Anspruch bei Vereinbarung der Wochenend- oder Feiertagsarbeit, spätestens jedoch zwei Tage vorher, bei späterer Vereinbarung sofort, dem Arbeitgeber gegenüber geltend zu machen .",
               "whs_topics": [
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 2
+                },
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
                 {
                   "id": "employee_rights",
                   "relevance": "medium",
@@ -7511,10 +7561,10 @@
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 0,
-                "level": "low",
+                "score": 1,
+                "level": "medium",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 0
+                "medium_keyword_matches": 1
               },
               "paragraphs": []
             },
@@ -7522,8 +7572,18 @@
               "id": "409a8162861760b3",
               "number": "9",
               "title": "§ 9. Behördliche Ausnahmen",
-              "text": "Strafbestimmungen § 9 . Übertretungen dieser Verordnung sind nach Maßgabe des § 31 des Arbeitnehmerschutzgesetzes zu ahnden . Übertretungen dieser Verordnung sind nach Maßgabe des des Arbeitnehmerschutzgesetzes zu ahnden .",
+              "text": "Entgelt für Feiertage und Ersatzruhe § 9 . (1) Der Arbeitnehmer behält für die infolge eines Feiertages oder der Ersatzruhe (§ 6) ausgefallene Arbeit seinen Anspruch auf Entgelt . Der Arbeitnehmer behält für die infolge eines Feiertages oder der Ersatzruhe ausgefallene Arbeit seinen Anspruch auf Entgelt . (2) Dem Arbeitnehmer gebührt jenes Entgelt, das er erhalten hätte, wenn die Arbeit nicht aus den im Abs . 1 genannten Gründen ausgefallen wäre . Dem Arbeitnehmer gebührt jenes Entgelt, das er erhalten hätte, wenn die Arbeit nicht aus den im genannten Gründen ausgefallen wäre . (3) Bei Akkord-, Stück- oder Gedinglöhnen, akkordähnlichen oder sonstigen leistungsbezogenen Prämien oder Entgelten ist das fortzuzahlende Entgelt nach dem Durchschnitt der letzten 13 voll gearbeiteten Wochen unter Ausscheidung nur ausnahmsweise geleisteter Arbeiten zu berechnen . Hat der Arbeitnehmer nach Antritt des Arbeitsverhältnisses noch keine 13 Wochen voll gearbeitet, so ist das Entgelt nach dem Durchschnitt der seit Antritt des Arbeitsverhältnisses voll gearbeiteten Zeiten zu berechnen . (4) Durch Kollektivvertrag im Sinne des § 18 Abs . 4 Arbeitsverfassungsgesetz (ArbVG), BGBl . Nr . 22/1974 , kann geregelt werden, welche Leistungen des Arbeitgebers als Entgelt anzusehen sind . Die Berechnungsart für die Ermittlung der Höhe des Entgeltes kann durch Kollektivvertrag abweichend von Abs . 2 und 3 geregelt werden . Durch Kollektivvertrag im Sinne des Arbeitsverfassungsgesetz (ArbVG), kann geregelt werden, welche Leistungen des Arbeitgebers als Entgelt anzusehen sind . . (5) Der Arbeitnehmer, der während der Feiertagsruhe beschäftigt wird, hat außer dem Entgelt nach Abs . 1 Anspruch auf das für die geleistete Arbeit gebührende Entgelt, es sei denn, es wird Zeitausgleich im Sinne des § 7 Abs . 6 vereinbart . Der Arbeitnehmer, der während der Feiertagsruhe beschäftigt wird, hat außer dem Entgelt nach Anspruch auf das für die geleistete Arbeit gebührende Entgelt, es sei denn, es wird Zeitausgleich im Sinne des vereinbart .",
               "whs_topics": [
+                {
+                  "id": "risk_assessment",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
                 {
                   "id": "employee_rights",
                   "relevance": "medium",
@@ -7542,8 +7602,43 @@
               "id": "319ba9482ca82e79",
               "number": "10",
               "title": "§ 10. Strafbestimmungen",
-              "text": "§ 10. Strafbestimmungen:\nÜbergangsbestimmungen § 10. (1) Betriebe, für die eine Bewilligung nach § 2 Abs. 1 erforderlich wäre, dürfen ohne eine solche weitergeführt werden, wenn sie bereits am 1. Jänner 1973 geführt wurden. Solchen Betrieben hat die zuständige Behörde die zum Schutz der Arbeitnehmer erforderlichen Aufträge zu erteilen, soweit dies im Hinblick auf § 4 Abs. 3 erforderlich ist. (2) Änderungen in Betrieben nach Abs. 1, die nach dem 1. Jänner 1973 vorgenommen wurden, bedürfen einer Bewilligung, sofern durch diese Änderungen das Ausmaß der Gefährdung im Sinne des § 2 Abs. 1 gegenüber dem in dem angegebenen Zeitpunkt bestandenen vergrößert wurde oder mit den Änderungen eine derartige Gefährdung anderer Art als der bisher bestandenen verbunden ist. Für Ansuchen um Bewilligung solcher Änderungen und für die Erteilung dieser Bewilligung gelten § 3 und § 4 sinngemäß. (3) Bei Betrieben, die schon vor dem Inkrafttreten dieser Verordnung geführt wurden und die nicht unter Abs. 1 fallen, hat der Arbeitgeber innerhalb von sechs Monaten nach dem Inkrafttreten der Verordnung um Erteilung der Betriebsbewilligung anzusuchen.",
+              "text": "3 . ABSCHNITT Ausnahmen von der Wochenend- und Feiertagsruhe Ausnahmen für bestimmte Tätigkeiten § 10 . Während der Wochenend- und Feiertagsruhe dürfen Arbeitnehmer nur beschäftigt werden mit: 1 . der Reinigung, Instandhaltung oder Instandsetzung, soweit sich solche Arbeiten während des regelmäßigen Arbeitsablaufes nicht ohne Unterbrechung oder erhebliche Störung ausführen lassen und infolge ihres Umfanges nicht bis spätestens Samstag 15 Uhr abgeschlossen werden können ; 2 . der Bewachung oder Wartung von Betriebsanlagen einschließlich Bergbauanlagen oder Wartung von Tieren ; 3 . Arbeiten, die dem Brandschutz dienen ; 4 . der gesundheitlichen Betreuung oder Versorgung mit Speisen und Getränken derjenigen Arbeitnehmer, die auf Grund der Ausnahmebestimmungen dieses Bundesgesetzes während der Wochenend- oder Feiertagsruhe beschäftigt werden dürfen ; 5 . der Beförderung der während der Wochenend- oder Feiertagsruhe beschäftigten Arbeitnehmer zu und von der Arbeitsstelle ; 6 . der Be- und Entlüftung, Beheizung oder Kühlung der Arbeitsräume ; 7 . Umbauarbeiten an Betriebsanlagen einschließlich Bergbauanlagen, wenn diese aus technischen Gründen nur während des Betriebsstillstandes durchgeführt werden können und ein Betriebsstillstand außerhalb der Ruhezeiten mit einem erheblichen Schaden verbunden wäre ; 8 . der Betreuung, Beaufsichtigung und Versorgung mit Speisen und Getränken in Internaten und Heimen, wenn diese Internate und Heime auch während der Wochenend- oder Feiertagsruhe betrieben werden .",
               "whs_topics": [
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "working_hours",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 4,
+                "level": "high",
+                "high_keyword_matches": 2,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "16369ecefd164c81",
+              "number": "10a",
+              "title": "§ 10a. Reisezeit",
+              "text": "Reisezeit § 10a . a, Verläßt der Arbeitnehmer über Auftrag des Arbeitgebers vorübergehend seinen Dienstort (Arbeitsstätte), um an anderen Orten seine Arbeitsleistung zu erbringen, ist eine Reisebewegung während der Wochenend- und Feiertagsruhe zulässig, wenn diese zur Erreichung des Reiseziels notwendig oder im Interesse des Arbeitnehmers gelegen ist .",
+              "whs_topics": [
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
                 {
                   "id": "employer_obligations",
                   "relevance": "high",
@@ -7556,17 +7651,77 @@
                 }
               ],
               "amazon_logistics_relevance": {
-                "score": 1,
+                "score": 2,
                 "level": "medium",
+                "high_keyword_matches": 1,
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "7cdb3b17a41e66f5",
+              "number": "11",
+              "title": "§ 11. Durchführung",
+              "text": "Ausnahmen in außergewöhnlichen Fällen § 11 . (1) Während der Wochenend- und Feiertagsruhe dürfen Arbeitnehmer in außergewöhnlichen Fällen mit vorübergehenden und unaufschiebbaren Arbeiten beschäftigt werden, soweit diese 1 . zur Abwendung einer unmittelbaren Gefahr für die Sicherheit des Lebens oder die Gesundheit von Menschen oder bei Notstand sofort vorzunehmen sind oder 2 . zur Behebung einer Betriebsstörung oder zur Verhütung des Verderbens von Gütern oder eines sonstigen unverhältnismäßigen wirtschaftlichen Schadens erforderlich sind, wenn unvorhergesehene und nicht zu verhindernde Gründe vorliegen und andere zumutbare Maßnahmen zu diesem Zweck nicht möglich sind . (2) Der Arbeitgeber hat die in Abs . 1 angeführten Arbeiten dem Arbeitsinspektorat binnen zehn Tagen nach Beginn der Arbeiten schriftlich anzuzeigen . Die Anzeige hat die Gründe für die Arbeiten sowie die Anzahl der zur Arbeitsleistung benötigten Arbeitnehmer zu enthalten . Der Arbeitgeber hat die in angeführten Arbeiten dem Arbeitsinspektorat binnen zehn Tagen nach Beginn der Arbeiten schriftlich anzuzeigen . . (3) Zur Sicherstellung der nach Abs . 1 notwendigen Arbeiten können Bereitschaftsdienste oder Rufbereitschaften eingerichtet werden . Zur Sicherstellung der nach notwendigen Arbeiten können Bereitschaftsdienste oder Rufbereitschaften eingerichtet werden . (4) Der Arbeitgeber hat die Einrichtung von Bereitschaftsdiensten im Sinne des Abs . 3 unter Angabe von Gründen und der erforderlichen Anzahl der Arbeitnehmer dem Arbeitsinspektorat vorher schriftlich anzuzeigen . Entfallen die Gründe, die für die Einrichtung maßgebend waren, so hat er dies binnen zehn Tagen dem Arbeitsinspektorat schriftlich anzuzeigen . Der Arbeitgeber hat die Einrichtung von Bereitschaftsdiensten im Sinne des unter Angabe von Gründen und der erforderlichen Anzahl der Arbeitnehmer dem Arbeitsinspektorat vorher schriftlich anzuzeigen . .",
+              "whs_topics": [
+                {
+                  "id": "documentation",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "workplace_design",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "employer_obligations",
+                  "relevance": "high",
+                  "match_count": 1
+                },
+                {
+                  "id": "health_surveillance",
+                  "relevance": "medium",
+                  "match_count": 1
+                },
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
                 "high_keyword_matches": 0,
-                "medium_keyword_matches": 1
+                "medium_keyword_matches": 0
+              },
+              "paragraphs": []
+            },
+            {
+              "id": "b136937184fd922e",
+              "number": "12",
+              "title": "§ 12. Inkrafttreten",
+              "text": "Ausnahmen durch Verordnung für bestimmte Tätigkeiten § 12 . (1) Durch Verordnung sind für Arbeitnehmer in bestimmten Betrieben Ausnahmen von der Wochenend- und Feiertagsruhe für Arbeiten zuzulassen, wenn diese 1 . zur Befriedigung dringender Lebensbedürfnisse notwendig sind ; 2 . im Hinblick auf während der Wochenend- oder Feiertagsruhe hervortretende Freizeit- und Erholungsbedürfnisse und Erfordernisse des Fremdenverkehrs notwendig sind ; 3 . zur Bewältigung des Verkehrs notwendig sind ; 4 . aus technologischen Gründen einen ununterbrochenen Fortgang erfordern ; 5 . im Bergbau aus technologischen oder naturbedingten Gründen oder aus Gründen der Sicherheit einen ununterbrochenen Fortgang erfordern ; 6 . wegen der Gefahr des Mißlingens von Arbeitserzeugnissen nicht aufgeschoben werden können, soweit diese Gefahr nicht durch andere Maßnahmen abgewendet werden kann oder 7 . wegen der Gefahr des raschen Verderbens von Rohstoffen nicht aufgeschoben werden können und nach der Art des Betriebes auf einen bestimmten Zeitraum beschränkt sind . (2) Soweit dies nach der Art der Tätigkeit zweckmäßig ist, hat die Verordnung die nach Abs . 1 zulässigen Arbeiten einzeln anzuführen und das für die Durchführung notwendige Zeitausmaß festzulegen . Arbeiten, die im unmittelbaren Zusammenhang mit den nach Abs . 1 zulässigen Arbeiten stehen oder ohne die diese nicht durchführbar wären, sind zuzulassen, soweit sie nicht vor oder nach der Wochenend- oder Feiertagsruhe vorgenommen werden können . Soweit dies nach der Art der Tätigkeit zweckmäßig ist, hat die Verordnung die nach zulässigen Arbeiten einzeln anzuführen und das für die Durchführung notwendige Zeitausmaß festzulegen . Arbeiten, die im unmittelbaren Zusammenhang mit den nach zulässigen Arbeiten stehen oder ohne die diese nicht durchführbar wären, sind zuzulassen, soweit sie nicht vor oder nach der Wochenend- oder Feiertagsruhe vorgenommen werden können . (Anm . : Abs . 3 aufgehoben durch Art . 4 Z 3, BGBl . I Nr . 126/2017 ) Anmerkung, aufgehoben durch Artikel 4, )",
+              "whs_topics": [
+                {
+                  "id": "employee_rights",
+                  "relevance": "medium",
+                  "match_count": 1
+                }
+              ],
+              "amazon_logistics_relevance": {
+                "score": 0,
+                "level": "low",
+                "high_keyword_matches": 0,
+                "medium_keyword_matches": 0
               },
               "paragraphs": []
             }
           ]
         }
       ],
-      "content_hash": "3d74f0dc4dd98267999434ed53beef77"
+      "content_hash": "4d09cb129d52928590722caa4155f073"
     },
     {
       "id": "4f0324c0e04edbbc",
@@ -11660,7 +11815,7 @@
               "id": "3854fbd897069d04",
               "number": "48",
               "title": "§ 48. Schlußbestimmungen",
-              "text": "Schlußbestimmungen § 48 . (1) § 1 Abs . 4 der Bauarbeiterschutzverordnung - BauV, BGBl . Nr . 340/1994 , zuletzt geändert durch BGBl . II Nr . 121/1998 , tritt außer Kraft . der Bauarbeiterschutzverordnung - BauV, zuletzt geändert durch , tritt außer Kraft . (2) Gemäß § 95 Abs . 2 ASchG wird festgestellt, daß in § 25 Abs . 2 Z 2, Abs . 4 Z 3 und Abs . 7 sowie in § 46 Abs . 2 dieser Verordnung Abweichungen von § 22 Abs . 6 und § 118 Abs . 1 ASchG festgelegt werden . Gemäß ASchG wird festgestellt, daß in , und sowie in dieser Verordnung Abweichungen von und ASchG festgelegt werden . (3) Gemäß § 106 Abs . 2, § 107 Abs . 2 und 3 sowie § 108 Abs . 1 ASchG wird festgestellt, daß gleichzeitig mit dieser Verordnung § 21 Abs . 5 ASchG, § 25 Abs . 4 erster Satz und Abs . 5 ASchG sowie § 28 Abs . 3 ASchG in Kraft treten . Gemäß , und 3 sowie ASchG wird festgestellt, daß gleichzeitig mit dieser Verordnung ASchG, erster Satz und ASchG sowie ASchG in Kraft treten . (4) Gemäß § 125 Abs . 8 ASchG wird festgestellt, daß mit Inkrafttreten dieser Verordnung außer Kraft treten: Gemäß ASchG wird festgestellt, daß mit Inkrafttreten dieser Verordnung außer Kraft treten: 1 . folgende gemäß § 106 Abs . 3 und § 118 Abs . 1 erster Satz ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): § 3 ; § 4 ; § 6 Abs . 1 bis Abs . 3, in Abs . 4 der dritte und vierte Satz sowie Abs . 6 bis Abs . 8 ; § 7 Abs . 1 bis Abs . 3 und Abs . 5 ; § 8 ; § 9 ; § 10 ; § 11 ; § 12 ; § 13 ; § 14 Abs . 1 ; § 15 ; § 18 Abs . 1 bis Abs . 5 und in Abs . 6 der zweite Satz ; § 19 Abs . 1 und Abs . 2 ; § 21 ; § 22 Abs . 1 bis Abs . 4 und Abs . 7 ; § 23 ; § 24 ; § 25 ; § 26 Abs . 1 bis Abs . 9 und Abs . 11 bis Abs . 15 ; § 27 Abs . 1 ; § 28 Abs . 1 ; § 63 ; § 64 in Abs . 1 der erste und zweite Satz, Abs . 2 und Abs . 3, in Abs . 4 und Abs . 5 jeweils der erste Satz, Abs . 7 und in Abs . 8 der erste Satz . folgende gemäß und erster Satz ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): ; , ; , bis , in der dritte und vierte Satz sowie bis ; , bis und ; , ; , ; , ; , ; , ; , ; , ; , ; , bis und in der zweite Satz ; und ; , ; , bis und ; , ; , ; , ; , bis und bis ; , ; , ; , ; , in der erste und zweite Satz, und , in und jeweils der erste Satz, und in der erste Satz . 2 . sämtliche gemäß § 106 Abs . 4 bis 7 ASchG weitergeltenden Bestimmungen der Allgemeinen Dienstnehmerschutzverordnung sämtliche gemäß bis 7 ASchG weitergeltenden Bestimmungen der Allgemeinen Dienstnehmerschutzverordnung (ADSV) ; 3 . folgende gemäß § 107 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): § 76 Abs . 1 bis Abs . 5 und Abs . 7 ; § 77 ; § 78 ; § 79 ; folgende gemäß ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): bis und ; , ; , ; , ; , § 81 Abs . 1, Abs . 2 mit Ausnahme des letzten Satzes, Abs . 3 bis Abs . 7 ; § 82 ; , mit Ausnahme des letzten Satzes, bis ; , ; , 4 . folgende gemäß § 108 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): § 83 Abs . 1 ; § 84 Abs . 1, Abs . 3, in Abs . 4 der erste Satz sowie Abs . 5 und Abs . 6 ; § 85 Abs . 2 bis Abs . 5 ; § 86 Abs . 1 bis Abs . 3, Abs . 5, Abs . 7 bis Abs . 9 ; § 87 Abs . 1, mit Ausnahme des letzten Satzes, sowie Abs . 2 bis Abs . 6 ; § 88 ; ; , , in der erste Satz sowie und ; , bis ; , bis , bis ; , mit Ausnahme des letzten Satzes, sowie bis ; , ; , 5 . folgende gemäß § 109 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): § 22 Abs . 6 ; § 27 in Abs . 2 der erste Satz ; ; , in der erste Satz ; 6 . folgende gemäß § 111 Abs . 1 ASchG als Bundesgesetz geltende Bestimmungen: folgende gemäß ASchG als Bundesgesetz geltende Bestimmungen: a) § 16 Abs . 3 der Verordnung BGBl . Nr . 183/1923 ; b) § 9 Abs . . Nr . 184/1923 ; c) § 14 Abs . 1 der Verordnung BGBl . Nr . 185/1923 . der Verordnung . (5) Folgende gemäß §§ 106 bis 108 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV) werden durch diese Verordnung nicht berührt: Folgende gemäß Paragraphen 106 bis 108 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV) werden durch diese Verordnung nicht berührt: 1 . § 6 in Abs . 4 der erste und zweite Satz und Abs . 5 ; § 7 Abs . 4 ; § 14 Abs . 2 und Abs . 3 ; § 22 Abs . 5 ; § 26 Abs . 10 ; § 28 Abs . 2 bis 5 ; § 18 in Abs . 6 der erste Satz ; § 64 in Abs . 1 der dritte Satz, in Abs . 4 der zweite Satz, in Abs . 5 der zweite und dritte Satz, Abs . 6 und in Abs . 8 der zweite und dritte Satz ; in der erste und zweite Satz und ; , ; , und ; , ; , ; , bis 5 ; in der erste Satz ; in der dritte Satz, in der zweite Satz, in der zweite und dritte Satz, und in der zweite und dritte Satz ; 2 . § 74 ; § 75 ; § 76 Abs . 6 und Abs . 8 ; § 81 in Abs . 2 der letzte Satz ; § 81 Abs . 8 ; ; , ; , und ; , in der letzte Satz ; ; , 3 . § 84 in Abs . 4 der zweite Satz ; § 86 Abs . 6 ; § 87 in Abs . 1 der letzte Satz . in der zweite Satz ; ; . (6) Diese Verordnung tritt am 1 . Jänner 1999 in Kraft . § 40 und § 44a in der Fassung der Verordnung BGBl . II Nr . 256/2009 treten am 1 . Jänner 2010 in Kraft . Diese Verordnung tritt am 1 . . und a, in der Fassung der Verordnung treten am 1 . . (7) Das Inhaltsverzeichnis sowie § 43 Abs . 1 in der Fassung BGBl . II Nr . 324/2014 treten mit 1 . Jänner 2015 in Kraft . § 44 samt Überschrift tritt mit Ablauf des 31 . Dezember 2014 außer Kraft . Das Inhaltsverzeichnis sowie in der Fassung treten mit 1 . . samt Überschrift tritt mit Ablauf des 31 . . (8) § 2 Abs . 7, § 17 Abs . 1a, 1b, 1c und 3 sowie § 18 Abs . 2 und 4 in der Fassung BGBl . II Nr . 309/2017 treten mit dem ihrer Kundmachung folgenden Monatsersten in Kraft . , a, 1b, 1c und 3 sowie und 4 in der Fassung treten mit dem ihrer Kundmachung folgenden Monatsersten in Kraft .",
+              "text": "Schlußbestimmungen § 48 . (1) § 1 Abs . 4 der Bauarbeiterschutzverordnung - BauV, BGBl . Nr . 340/1994 , zuletzt geändert durch BGBl . II Nr . 121/1998 , tritt außer Kraft . der Bauarbeiterschutzverordnung - BauV, zuletzt geändert durch , tritt außer Kraft . (2) Gemäß § 95 Abs . 2 ASchG wird festgestellt, daß in § 25 Abs . 2 Z 2, Abs . 4 Z 3 und Abs . 7 sowie in § 46 Abs . 2 dieser Verordnung Abweichungen von § 22 Abs . 6 und § 118 Abs . 1 ASchG festgelegt werden . Gemäß ASchG wird festgestellt, daß in , und sowie in dieser Verordnung Abweichungen von und ASchG festgelegt werden . (3) Gemäß § 106 Abs . 2, § 107 Abs . 2 und 3 sowie § 108 Abs . 1 ASchG wird festgestellt, daß gleichzeitig mit dieser Verordnung § 21 Abs . 5 ASchG, § 25 Abs . 4 erster Satz und Abs . 5 ASchG sowie § 28 Abs . 3 ASchG in Kraft treten . Gemäß , und 3 sowie ASchG wird festgestellt, daß gleichzeitig mit dieser Verordnung ASchG, erster Satz und ASchG sowie ASchG in Kraft treten . (4) Gemäß § 125 Abs . 8 ASchG wird festgestellt, daß mit Inkrafttreten dieser Verordnung außer Kraft treten: Gemäß ASchG wird festgestellt, daß mit Inkrafttreten dieser Verordnung außer Kraft treten: 1 . folgende gemäß § 106 Abs . 3 und § 118 Abs . 1 erster Satz ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): § 3 ; § 4 ; § 6 Abs . 1 bis Abs . 3, in Abs . 4 der dritte und vierte Satz sowie Abs . 6 bis Abs . 8 ; § 7 Abs . 1 bis Abs . 3 und Abs . 5 ; § 8 ; § 9 ; § 10 ; § 11 ; § 12 ; § 13 ; § 14 Abs . 1 ; § 15 ; § 18 Abs . 1 bis Abs . 5 und in Abs . 6 der zweite Satz ; § 19 Abs . 1 und Abs . 2 ; § 21 ; § 22 Abs . 1 bis Abs . 4 und Abs . 7 ; § 23 ; § 24 ; § 25 ; § 26 Abs . 1 bis Abs . 9 und Abs . 11 bis Abs . 15 ; § 27 Abs . 1 ; § 28 Abs . 1 ; § 63 ; § 64 in Abs . 1 der erste und zweite Satz, Abs . 2 und Abs . 3, in Abs . 4 und Abs . 5 jeweils der erste Satz, Abs . 7 und in Abs . 8 der erste Satz . folgende gemäß und erster Satz ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): ; , ; , bis , in der dritte und vierte Satz sowie bis ; , bis und ; , ; , ; , ; , ; , ; , ; , ; , ; , bis und in der zweite Satz ; und ; , ; , bis und ; , ; , ; , ; , bis und bis ; , ; , ; , ; , in der erste und zweite Satz, und , in und jeweils der erste Satz, und in der erste Satz . 2 . sämtliche gemäß § 106 Abs . 4 bis 7 ASchG weitergeltenden Bestimmungen der Allgemeinen Dienstnehmerschutzverordnung sämtliche gemäß bis 7 ASchG weitergeltenden Bestimmungen der Allgemeinen Dienstnehmerschutzverordnung (ADSV) ; 3 . folgende gemäß § 107 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): § 76 Abs . 1 bis Abs . 5 und Abs . 7 ; § 77 ; § 78 ; § 79 ; folgende gemäß ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): bis und ; , ; , ; , ; , § 81 Abs . 1, Abs . 2 mit Ausnahme des letzten Satzes, Abs . 3 bis Abs . 7 ; § 82 ; , mit Ausnahme des letzten Satzes, bis ; , ; , 4 . folgende gemäß § 108 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): § 83 Abs . 1 ; § 84 Abs . 1, Abs . 3, in Abs . 4 der erste Satz sowie Abs . 5 und Abs . 6 ; § 85 Abs . 2 bis Abs . 5 ; § 86 Abs . 1 bis Abs . 3, Abs . 5, Abs . 7 bis Abs . 9 ; § 87 Abs . 1, mit Ausnahme des letzten Satzes, sowie Abs . 2 bis Abs . 6 ; § 88 ; ; , in der erste Satz sowie und ; , bis ; , bis , bis ; , mit Ausnahme des letzten Satzes, sowie bis ; , ; , 5 . folgende gemäß § 109 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV): § 22 Abs . 6 ; § 27 in Abs . 2 der erste Satz ; ; , in der erste Satz ; 6 . folgende gemäß § 111 Abs . 1 ASchG als Bundesgesetz geltende Bestimmungen: folgende gemäß ASchG als Bundesgesetz geltende Bestimmungen: a) § 16 Abs . 3 der Verordnung BGBl . Nr . 183/1923 ; b) § 9 Abs . . Nr . 184/1923 ; c) § 14 Abs . 1 der Verordnung BGBl . Nr . 185/1923 . der Verordnung . (5) Folgende gemäß §§ 106 bis 108 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV) werden durch diese Verordnung nicht berührt: Folgende gemäß Paragraphen 106 bis 108 ASchG als Bundesgesetz geltende Bestimmungen der Allgemeinen Arbeitnehmerschutzverordnung (AAV) werden durch diese Verordnung nicht berührt: 1 . § 6 in Abs . 4 der erste und zweite Satz und Abs . 5 ; § 7 Abs . 4 ; § 14 Abs . 2 und Abs . 3 ; § 22 Abs . 5 ; § 26 Abs . 10 ; § 28 Abs . 2 bis 5 ; § 18 in Abs . 6 der erste Satz ; § 64 in Abs . 1 der dritte Satz, in Abs . 4 der zweite Satz, in Abs . 5 der zweite und dritte Satz, Abs . 6 und in Abs . 8 der zweite und dritte Satz ; in der erste und zweite Satz und ; , ; , und ; , ; , ; , bis 5 ; in der erste Satz ; in der dritte Satz, in der zweite Satz, in der zweite und dritte Satz, und in der zweite und dritte Satz ; 2 . § 74 ; § 75 ; § 76 Abs . 6 und Abs . 8 ; § 81 in Abs . 2 der letzte Satz ; § 81 Abs . 8 ; ; , ; , und ; , in der letzte Satz ; ; , 3 . § 84 in Abs . 4 der zweite Satz ; § 86 Abs . 6 ; § 87 in Abs . 1 der letzte Satz . in der zweite Satz ; ; . (6) Diese Verordnung tritt am 1 . Jänner 1999 in Kraft . § 40 und § 44a in der Fassung der Verordnung BGBl . II Nr . 256/2009 treten am 1 . Jänner 2010 in Kraft . Diese Verordnung tritt am 1 . . und a, in der Fassung der Verordnung treten am 1 . . (7) Das Inhaltsverzeichnis sowie § 43 Abs . 1 in der Fassung BGBl . II Nr . 324/2014 treten mit 1 . Jänner 2015 in Kraft . § 44 samt Überschrift tritt mit Ablauf des 31 . Dezember 2014 außer Kraft . Das Inhaltsverzeichnis sowie in der Fassung treten mit 1 . . samt Überschrift tritt mit Ablauf des 31 . . (8) § 2 Abs . 7, § 17 Abs . 1a, 1b, 1c und 3 sowie § 18 Abs . 2 und 4 in der Fassung BGBl . II Nr . 309/2017 treten mit dem ihrer Kundmachung folgenden Monatsersten in Kraft . , a, 1b, 1c und 3 sowie und 4 in der Fassung treten mit dem ihrer Kundmachung folgenden Monatsersten in Kraft .",
               "whs_topics": [
                 {
                   "id": "employee_rights",

@@ -1,23 +1,23 @@
 {
-  "generated_at": "2026-01-10T21:26:58.983Z",
+  "generated_at": "2026-01-10T21:36:58.409Z",
   "statistics": {
-    "total_documents": 98,
+    "total_documents": 93,
     "total_errors": 0,
     "by_jurisdiction": {
       "AT": 34,
       "DE": 31,
-      "NL": 33
+      "NL": 28
     },
     "by_type": {
-      "law": 77,
+      "law": 72,
       "merkblatt": 21
     },
     "by_category": {
-      "Core Safety": 78,
+      "Core Safety": 73,
       "Supplementary": 20
     },
-    "total_chars": 2074272,
-    "total_words": 287769,
-    "documents_with_content": 42
+    "total_chars": 2055637,
+    "total_words": 285296,
+    "documents_with_content": 38
   }
 }
