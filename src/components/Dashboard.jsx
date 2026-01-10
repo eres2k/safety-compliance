@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext'
 import { ModuleCard } from './ModuleCard'
 import { getLawsStatistics, getRecentlyUpdatedLaws } from '../services/euLawsDatabase'
 import { LessonsLearnedFeed } from './modules/LessonsLearnedFeed'
+import { UpdateChangesModal } from './UpdateChangesModal'
 
 // Check if database was updated recently (within last 14 days)
 function isRecentlyUpdated(dateStr) {
@@ -43,6 +44,7 @@ export function Dashboard({ onModuleSelect }) {
   // Get statistics for the hero section (loaded asynchronously)
   const [stats, setStats] = useState({ totalLaws: 0, byType: [], lastUpdated: null, globalStats: null })
   const [recentlyUpdatedLaws, setRecentlyUpdatedLaws] = useState([])
+  const [showChangesModal, setShowChangesModal] = useState(false)
 
   useEffect(() => {
     getLawsStatistics(framework)
@@ -352,6 +354,21 @@ export function Dashboard({ onModuleSelect }) {
                 )}
               </div>
             )}
+
+            {/* View Changes button */}
+            <button
+              onClick={() => setShowChangesModal(true)}
+              className={`ml-auto px-3 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${
+                recentlyUpdated
+                  ? 'bg-green-100 dark:bg-green-800/40 text-green-700 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-800/60'
+                  : 'bg-blue-100 dark:bg-blue-800/40 text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800/60'
+              }`}
+            >
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              View Changes
+            </button>
           </div>
         </div>
       )}
@@ -504,6 +521,16 @@ export function Dashboard({ onModuleSelect }) {
           </div>
         </div>
       </div>
+
+      {/* Update Changes Modal */}
+      <UpdateChangesModal
+        isOpen={showChangesModal}
+        onClose={() => setShowChangesModal(false)}
+        onViewLaw={(change) => {
+          setShowChangesModal(false)
+          onModuleSelect('lawBrowser', { searchQuery: change.abbreviation, country: change.country })
+        }}
+      />
     </div>
   )
 }

@@ -1,0 +1,1463 @@
+{
+  "generated_at": "2026-01-10T21:15:18.606Z",
+  "changes": [
+    {
+      "type": "updated_law",
+      "abbreviation": "Arboregeling",
+      "title": "Arbeidsomstandighedenregeling",
+      "country": "NL",
+      "added": [],
+      "removed": [],
+      "modified": [
+        {
+          "number": "2",
+          "title": "Artikel 2. 0. Vastlegging preventiebeleid voor zware ongevallen",
+          "chapter": "Hoofdinhoud",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "4",
+          "title": "Artikel 4. 1. Definities",
+          "chapter": "Hoofdinhoud",
+          "wordDiff": -4,
+          "changeType": "reduced"
+        },
+        {
+          "number": "5",
+          "title": "Artikel 5. 1. Apparatuur en meubilair",
+          "chapter": "Hoofdinhoud",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "6",
+          "title": "Artikel 6. 1. Eisen voor registratie of herregistratie van duikers, duikploegleiders,",
+          "chapter": "Hoofdinhoud",
+          "wordDiff": 804,
+          "changeType": "expanded"
+        },
+        {
+          "number": "8",
+          "title": "Artikel 8. 1. Vereisten",
+          "chapter": "Hoofdinhoud",
+          "wordDiff": 1,
+          "changeType": "expanded"
+        },
+        {
+          "number": "9",
+          "title": "Artikel 9. 1. Overgangsbepaling duiker, duikploegleider, duikmedisch begeleider en",
+          "chapter": "Hoofdinhoud",
+          "wordDiff": -9,
+          "changeType": "reduced"
+        }
+      ],
+      "timestamp": "2026-01-10T22:05:48.524224"
+    },
+    {
+      "type": "updated_law",
+      "abbreviation": "ArbSchG",
+      "title": "Occupational Safety Act",
+      "country": "DE",
+      "added": [],
+      "removed": [],
+      "modified": [
+        {
+          "number": "1",
+          "title": "§ 1. Zielsetzung und Anwendungsbereich",
+          "chapter": "Erster Abschnitt - Allgemeine Vorschriften",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "2",
+          "title": "§ 2. Begriffsbestimmungen",
+          "chapter": "Erster Abschnitt - Allgemeine Vorschriften",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "3",
+          "title": "§ 3. Grundpflichten des Arbeitgebers",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "4",
+          "title": "§ 4. Allgemeine Grundsätze",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -4,
+          "changeType": "reduced"
+        },
+        {
+          "number": "5",
+          "title": "§ 5. Beurteilung der Arbeitsbedingungen",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "6",
+          "title": "§ 6. Dokumentation",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "8",
+          "title": "§ 8. Zusammenarbeit mehrerer Arbeitgeber",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "9",
+          "title": "§ 9. Besondere Gefahren",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -4,
+          "changeType": "reduced"
+        },
+        {
+          "number": "10",
+          "title": "§ 10. Erste Hilfe und sonstige Notfallmaßnahmen",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "12",
+          "title": "§ 12. Unterweisung",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "13",
+          "title": "§ 13. Verantwortliche Personen",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -4,
+          "changeType": "reduced"
+        },
+        {
+          "number": "14",
+          "title": "§ 14. Unterrichtung und Anhörung der Beschäftigten des öffentlichen Dienstes",
+          "chapter": "Zweiter Abschnitt - Pflichten des Arbeitgebers",
+          "wordDiff": -10,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15",
+          "title": "§ 15. Pflichten der Beschäftigten",
+          "chapter": "Dritter Abschnitt - Pflichten und Rechte der Beschäftigten",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "16",
+          "title": "§ 16. Besondere Unterstützungspflichten",
+          "chapter": "Dritter Abschnitt - Pflichten und Rechte der Beschäftigten",
+          "wordDiff": -4,
+          "changeType": "reduced"
+        },
+        {
+          "number": "17",
+          "title": "§ 17. Rechte der Beschäftigten",
+          "chapter": "Dritter Abschnitt - Pflichten und Rechte der Beschäftigten",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "18",
+          "title": "§ 18. Verordnungsermächtigungen",
+          "chapter": "Vierter Abschnitt - Verordnungsermächtigungen",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "20",
+          "title": "§ 20. Regelungen für den öffentlichen Dienst",
+          "chapter": "Vierter Abschnitt - Verordnungsermächtigungen",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "20a",
+          "title": "§ 20a. Gemeinsame deutsche Arbeitsschutzstrategie",
+          "chapter": "Fünfter Abschnitt - Gemeinsame deutsche Arbeitsschutzstrategie",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "20b",
+          "title": "§ 20b. Nationale Arbeitsschutzkonferenz",
+          "chapter": "Fünfter Abschnitt - Gemeinsame deutsche Arbeitsschutzstrategie",
+          "wordDiff": -4,
+          "changeType": "reduced"
+        },
+        {
+          "number": "21",
+          "title": "§ 21. Zuständige Behörden, Zusammenwirken mit den Trägern der gesetzlichen Unfallversicherung",
+          "chapter": "Sechster Abschnitt - Schlußvorschriften",
+          "wordDiff": 167,
+          "changeType": "expanded"
+        },
+        {
+          "number": "22",
+          "title": "§ 22. Befugnisse der zuständigen Behörden",
+          "chapter": "Sechster Abschnitt - Schlußvorschriften",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "23",
+          "title": "§ 23. Betriebliche Daten, Zusammenarbeit mit anderen Behörden, Jahresbericht, Bundesfachstelle",
+          "chapter": "Sechster Abschnitt - Schlußvorschriften",
+          "wordDiff": 97,
+          "changeType": "expanded"
+        },
+        {
+          "number": "24",
+          "title": "§ 24. Ermächtigung zum Erlaß von allgemeinen Verwaltungsvorschriften",
+          "chapter": "Sechster Abschnitt - Schlußvorschriften",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "24a",
+          "title": "§ 24a. Ausschuss für Sicherheit und Gesundheit bei der Arbeit",
+          "chapter": "Sechster Abschnitt - Schlußvorschriften",
+          "wordDiff": -10,
+          "changeType": "reduced"
+        },
+        {
+          "number": "25",
+          "title": "§ 25. Bußgeldvorschriften",
+          "chapter": "Sechster Abschnitt - Schlußvorschriften",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        }
+      ],
+      "timestamp": "2026-01-10T22:03:56.115154"
+    },
+    {
+      "type": "updated_law",
+      "abbreviation": "BetrSichV",
+      "title": "Verordnung über Sicherheit und Gesundheitsschutz bei der Verwendung von Arbeitsmitteln",
+      "country": "DE",
+      "added": [],
+      "removed": [],
+      "modified": [
+        {
+          "number": "1",
+          "title": "§ 1. Anwendungsbereich und Zielsetzung",
+          "chapter": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "2",
+          "title": "§ 2. Begriffsbestimmungen",
+          "chapter": "Erster Abschnitt - Anwendungsbereich und Begriffsbestimmungen",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "3",
+          "title": "§ 3. Gefährdungsbeurteilung",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": 146,
+          "changeType": "expanded"
+        },
+        {
+          "number": "4",
+          "title": "§ 4. Grundpflichten des Arbeitgebers",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -2,
+          "changeType": "reduced"
+        },
+        {
+          "number": "5",
+          "title": "§ 5. Anforderungen an die zur Verfügung gestellten Arbeitsmittel",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "6",
+          "title": "§ 6. Grundlegende Schutzmaßnahmen bei der Verwendung von Arbeitsmitteln",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": 3531,
+          "changeType": "expanded"
+        },
+        {
+          "number": "7",
+          "title": "§ 7. Vereinfachte Vorgehensweise bei der Verwendung von Arbeitsmitteln",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "8",
+          "title": "§ 8. Schutzmaßnahmen bei Gefährdungen durch Energien, Ingangsetzen und Stillsetzen",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -10,
+          "changeType": "reduced"
+        },
+        {
+          "number": "9",
+          "title": "§ 9. Weitere Schutzmaßnahmen bei der Verwendung von Arbeitsmitteln",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -9,
+          "changeType": "reduced"
+        },
+        {
+          "number": "10",
+          "title": "§ 10. Instandhaltung und Änderung von Arbeitsmitteln",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "11",
+          "title": "§ 11. Besondere Betriebszustände, Betriebsstörungen und Unfälle",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "12",
+          "title": "§ 12. Unterweisung und besondere Beauftragung von Beschäftigten",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "13",
+          "title": "§ 13. Zusammenarbeit verschiedener Arbeitgeber",
+          "chapter": "Zweiter Abschnitt - Gefährdungsbeurteilung und Schutzmaßnahmen",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "14",
+          "title": "§ 14. Prüfung von Arbeitsmitteln",
+          "chapter": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "wordDiff": 1518,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15",
+          "title": "§ 15. Prüfung vor Inbetriebnahme und vor Wiederinbetriebnahme nach prüfpflichtigen Änderungen",
+          "chapter": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "wordDiff": 4710,
+          "changeType": "expanded"
+        },
+        {
+          "number": "16",
+          "title": "§ 16. Wiederkehrende Prüfung",
+          "chapter": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "wordDiff": -4,
+          "changeType": "reduced"
+        },
+        {
+          "number": "17",
+          "title": "§ 17. Prüfaufzeichnungen und -bescheinigungen",
+          "chapter": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "18",
+          "title": "§ 18. Erlaubnispflicht",
+          "chapter": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "wordDiff": 116,
+          "changeType": "expanded"
+        },
+        {
+          "number": "19",
+          "title": "§ 19. Mitteilungspflichten, behördliche Ausnahmen",
+          "chapter": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "20",
+          "title": "§ 20. Sonderbestimmungen für überwachungsbedürftige Anlagen des Bundes",
+          "chapter": "Dritter Abschnitt - Zusätzliche Vorschriften für überwachungsbedürftige Anlagen",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "21",
+          "title": "§ 21. Ausschuss für Betriebssicherheit",
+          "chapter": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "22",
+          "title": "§ 22. Ordnungswidrigkeiten",
+          "chapter": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften",
+          "wordDiff": 329,
+          "changeType": "expanded"
+        },
+        {
+          "number": "24",
+          "title": "§ 24. Übergangsvorschriften",
+          "chapter": "Vierter Abschnitt - Vollzugsregelungen und Schlußvorschriften",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        }
+      ],
+      "timestamp": "2026-01-10T22:03:56.115154"
+    },
+    {
+      "type": "updated_law",
+      "abbreviation": "GefStoffV",
+      "title": "Verordnung zum Schutz vor Gefahrstoffen*)",
+      "country": "DE",
+      "added": [],
+      "removed": [],
+      "modified": [
+        {
+          "number": "1",
+          "title": "§ 1. Zielsetzung und Anwendungsbereich",
+          "chapter": "Erster Abschnitt - Zielsetzung, Anwendungsbereich und Begriffsbestimmungen",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "2",
+          "title": "§ 2. Begriffsbestimmungen",
+          "chapter": "Erster Abschnitt - Zielsetzung, Anwendungsbereich und Begriffsbestimmungen",
+          "wordDiff": 815,
+          "changeType": "expanded"
+        },
+        {
+          "number": "3",
+          "title": "§ 3. (weggefallen)",
+          "chapter": "Zweiter Abschnitt - Gefahrstoffinformation",
+          "wordDiff": -223,
+          "changeType": "reduced"
+        },
+        {
+          "number": "4",
+          "title": "§ 4. Einstufung, Kennzeichnung, Verpackung",
+          "chapter": "Zweiter Abschnitt - Gefahrstoffinformation",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "5",
+          "title": "§ 5. Sicherheitsdatenblatt und sonstige Informationspflichten",
+          "chapter": "Zweiter Abschnitt - Gefahrstoffinformation",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "6",
+          "title": "§ 6. Informationsermittlung und Gefährdungsbeurteilung",
+          "chapter": "Dritter Abschnitt - Gefährdungsbeurteilung und Grundpflichten",
+          "wordDiff": 925,
+          "changeType": "expanded"
+        },
+        {
+          "number": "7",
+          "title": "§ 7. Grundpflichten",
+          "chapter": "Dritter Abschnitt - Gefährdungsbeurteilung und Grundpflichten",
+          "wordDiff": 249,
+          "changeType": "expanded"
+        },
+        {
+          "number": "8",
+          "title": "§ 8. Allgemeine Schutzmaßnahmen",
+          "chapter": "Vierter Abschnitt - Schutzmaßnahmen",
+          "wordDiff": 5932,
+          "changeType": "expanded"
+        },
+        {
+          "number": "9",
+          "title": "§ 9. Zusätzliche Schutzmaßnahmen",
+          "chapter": "Vierter Abschnitt - Schutzmaßnahmen",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "10",
+          "title": "§ 10. Besondere Schutzmaßnahmen bei Tätigkeiten mit krebserzeugenden, keimzellmutagenen oder reproduktionstoxischen Gefahrstoffen der Kategorie 1A oder 1B",
+          "chapter": "Vierter Abschnitt - Schutzmaßnahmen",
+          "wordDiff": 515,
+          "changeType": "expanded"
+        },
+        {
+          "number": "10a",
+          "title": "§ 10a. Besondere Aufzeichnungs-, Mitteilungs- und Unterrichtungspflichten bei Tätigkeiten mit krebserzeugenden, keimzellmutagenen oder reproduktionstoxischen Gefahrstoffen der Kategorie 1A oder 1B",
+          "chapter": "Vierter Abschnitt - Schutzmaßnahmen",
+          "wordDiff": -20,
+          "changeType": "reduced"
+        },
+        {
+          "number": "11",
+          "title": "§ 11. Verwendungs- und Tätigkeitsbeschränkungen für Asbest",
+          "chapter": "Vierter Abschnitt - Schutzmaßnahmen",
+          "wordDiff": -18,
+          "changeType": "reduced"
+        },
+        {
+          "number": "11a",
+          "title": "§ 11a. Anforderungen an Tätigkeiten mit Asbest",
+          "chapter": "Vierter Abschnitt - Schutzmaßnahmen",
+          "wordDiff": 25,
+          "changeType": "expanded"
+        },
+        {
+          "number": "12",
+          "title": "§ 12. Besondere Schutzmaßnahmen gegen physikalisch-chemische Einwirkungen, insbesondere gegen Brand- und Explosionsgefährdungen",
+          "chapter": "Vierter Abschnitt - Schutzmaßnahmen",
+          "wordDiff": 1356,
+          "changeType": "expanded"
+        },
+        {
+          "number": "13",
+          "title": "§ 13. Betriebsstörungen, Unfälle und Notfälle",
+          "chapter": "Vierter Abschnitt - Schutzmaßnahmen",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "14",
+          "title": "§ 14. Unterrichtung und Unterweisung der Beschäftigten",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15",
+          "title": "§ 15. Zusammenarbeit verschiedener Firmen",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15a",
+          "title": "§ 15a. Verwendungsbeschränkungen",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15b",
+          "title": "§ 15b. Allgemeine Anforderungen an die Verwendung von Biozid-Produkten",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -9,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15c",
+          "title": "§ 15c. Besondere Anforderungen an die Verwendung bestimmter Biozid-Produkte",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": 26,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15d",
+          "title": "§ 15d. Besondere Anforderungen bei Begasungen",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15e",
+          "title": "§ 15e. Ergänzende Dokumentationspflichten",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -4,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15f",
+          "title": "§ 15f. Anforderungen an den Umgang mit Transporteinheiten",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15g",
+          "title": "§ 15g. Besondere Anforderungen an Begasungen auf Schiffen",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15h",
+          "title": "§ 15h. Ausnahmen von Abschnitt 4a",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "17",
+          "title": "§ 17. Nationale Ausnahmen von Beschränkungsregelungen nach der Verordnung (EG) Nr. 1907/2006",
+          "chapter": "Fünfter Abschnitt - Verbote und Beschränkungen",
+          "wordDiff": -180,
+          "changeType": "reduced"
+        },
+        {
+          "number": "18",
+          "title": "§ 18. Unterrichtung der Behörde",
+          "chapter": "Sechster Abschnitt - Vollzugsregelungen und Ausschuss für Gefahrstoffe",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "19",
+          "title": "§ 19. Behördliche Ausnahmen, Anordnungen und Befugnisse",
+          "chapter": "Sechster Abschnitt - Vollzugsregelungen und Ausschuss für Gefahrstoffe",
+          "wordDiff": 29,
+          "changeType": "expanded"
+        },
+        {
+          "number": "19a",
+          "title": "§ 19a. Anerkennung ausländischer Qualifikationen",
+          "chapter": "Sechster Abschnitt - Vollzugsregelungen und Ausschuss für Gefahrstoffe",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "20",
+          "title": "§ 20. Ausschuss für Gefahrstoffe",
+          "chapter": "Sechster Abschnitt - Vollzugsregelungen und Ausschuss für Gefahrstoffe",
+          "wordDiff": -201,
+          "changeType": "reduced"
+        },
+        {
+          "number": "21",
+          "title": "§ 21. Chemikaliengesetz – Anzeigen",
+          "chapter": "Siebter Abschnitt - Ordnungswidrigkeiten und Straftaten",
+          "wordDiff": 23,
+          "changeType": "expanded"
+        },
+        {
+          "number": "22",
+          "title": "§ 22. Chemikaliengesetz – Tätigkeiten",
+          "chapter": "Siebter Abschnitt - Ordnungswidrigkeiten und Straftaten",
+          "wordDiff": 77,
+          "changeType": "expanded"
+        },
+        {
+          "number": "24",
+          "title": "§ 24. Chemikaliengesetz – Herstellungs- und Verwendungsbeschränkungen",
+          "chapter": "Siebter Abschnitt - Ordnungswidrigkeiten und Straftaten",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "25",
+          "title": "§ 25. Übergangsvorschriften",
+          "chapter": "Siebter Abschnitt - Ordnungswidrigkeiten und Straftaten",
+          "wordDiff": 24,
+          "changeType": "expanded"
+        }
+      ],
+      "timestamp": "2026-01-10T22:03:56.115154"
+    },
+    {
+      "type": "updated_law",
+      "abbreviation": "MuSchG",
+      "title": "Gesetz zum Schutz von Müttern bei der Arbeit, in der Ausbildung und im Studium",
+      "country": "DE",
+      "added": [],
+      "removed": [],
+      "modified": [
+        {
+          "number": "1",
+          "title": "§ 1. Anwendungsbereich, Ziel des Mutterschutzes",
+          "chapter": "Erster Abschnitt - Allgemeine Vorschriften",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "2",
+          "title": "§ 2. Begriffsbestimmungen",
+          "chapter": "Erster Abschnitt - Allgemeine Vorschriften",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "3",
+          "title": "§ 3. Schutzfristen vor und nach der Entbindung",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "4",
+          "title": "§ 4. Verbot der Mehrarbeit; Ruhezeit",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "5",
+          "title": "§ 5. Verbot der Nachtarbeit",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "6",
+          "title": "§ 6. Verbot der Sonn- und Feiertagsarbeit",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "7",
+          "title": "§ 7. Freistellung für Untersuchungen und zum Stillen",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "8",
+          "title": "§ 8. Beschränkung von Heimarbeit",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "9",
+          "title": "§ 9. Gestaltung der Arbeitsbedingungen; unverantwortbare Gefährdung",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -7,
+          "changeType": "reduced"
+        },
+        {
+          "number": "10",
+          "title": "§ 10. Beurteilung der Arbeitsbedingungen; Schutzmaßnahmen",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "11",
+          "title": "§ 11. Unzulässige Tätigkeiten und Arbeitsbedingungen für schwangere Frauen",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": 218,
+          "changeType": "expanded"
+        },
+        {
+          "number": "12",
+          "title": "§ 12. Unzulässige Tätigkeiten und Arbeitsbedingungen für stillende Frauen",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -9,
+          "changeType": "reduced"
+        },
+        {
+          "number": "13",
+          "title": "§ 13. Rangfolge der Schutzmaßnahmen: Umgestaltung der Arbeitsbedingungen, Arbeitsplatzwechsel und betriebliches Beschäftigungsverbot",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -12,
+          "changeType": "reduced"
+        },
+        {
+          "number": "14",
+          "title": "§ 14. Dokumentation und Information durch den Arbeitgeber",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "15",
+          "title": "§ 15. Mitteilungen und Nachweise der schwangeren und stillenden Frauen",
+          "chapter": "Zweiter Abschnitt - Gesundheitsschutz",
+          "wordDiff": -10,
+          "changeType": "reduced"
+        },
+        {
+          "number": "17",
+          "title": "§ 17. Kündigungsverbot",
+          "chapter": "Dritter Abschnitt - Kündigungsschutz",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "18",
+          "title": "§ 18. Mutterschutzlohn",
+          "chapter": "Vierter Abschnitt - Leistungen",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "19",
+          "title": "§ 19. Mutterschaftsgeld",
+          "chapter": "Vierter Abschnitt - Leistungen",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "20",
+          "title": "§ 20. Zuschuss zum Mutterschaftsgeld",
+          "chapter": "Vierter Abschnitt - Leistungen",
+          "wordDiff": 79,
+          "changeType": "expanded"
+        },
+        {
+          "number": "21",
+          "title": "§ 21. Ermittlung des durchschnittlichen Arbeitsentgelts",
+          "chapter": "Vierter Abschnitt - Leistungen",
+          "wordDiff": -6,
+          "changeType": "reduced"
+        },
+        {
+          "number": "23",
+          "title": "§ 23. Entgelt bei Freistellung für Untersuchungen und zum Stillen",
+          "chapter": "Vierter Abschnitt - Leistungen",
+          "wordDiff": -10,
+          "changeType": "reduced"
+        },
+        {
+          "number": "26",
+          "title": "§ 26. Aushang des Gesetzes",
+          "chapter": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "27",
+          "title": "§ 27. Mitteilungs- und Aufbewahrungspflichten des Arbeitgebers, Offenbarungsverbot der mit der Überwachung beauftragten Personen",
+          "chapter": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "wordDiff": -14,
+          "changeType": "reduced"
+        },
+        {
+          "number": "28",
+          "title": "§ 28. Behördliches Genehmigungsverfahren für eine Beschäftigung zwischen 20 Uhr und 22 Uhr",
+          "chapter": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "wordDiff": -13,
+          "changeType": "reduced"
+        },
+        {
+          "number": "29",
+          "title": "§ 29. Zuständigkeit und Befugnisse der Aufsichtsbehörden, Jahresbericht",
+          "chapter": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "wordDiff": -8,
+          "changeType": "reduced"
+        },
+        {
+          "number": "30",
+          "title": "§ 30. Ausschuss für Mutterschutz",
+          "chapter": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "31",
+          "title": "§ 31. Erlass von Rechtsverordnungen",
+          "chapter": "Fünfter Abschnitt - Durchführung des Gesetzes",
+          "wordDiff": -5,
+          "changeType": "reduced"
+        },
+        {
+          "number": "32",
+          "title": "§ 32. Bußgeldvorschriften",
+          "chapter": "Sechster Abschnitt - Bußgeldvorschriften, Strafvorschriften",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        },
+        {
+          "number": "34",
+          "title": "§ 34. Evaluationsbericht",
+          "chapter": "Sechster Abschnitt - Bußgeldvorschriften, Strafvorschriften",
+          "wordDiff": -3,
+          "changeType": "reduced"
+        }
+      ],
+      "timestamp": "2026-01-10T22:03:56.115154"
+    },
+    {
+      "type": "updated_law",
+      "abbreviation": "MSchG",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Mutterschutzgesetz 1979, Fassung vom 10.01.2026",
+      "country": "AT",
+      "added": [],
+      "removed": [],
+      "modified": [
+        {
+          "number": "1",
+          "title": "§ 1. Geltungsbereich",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen",
+          "wordDiff": 94,
+          "changeType": "expanded"
+        },
+        {
+          "number": "2",
+          "title": "§ 2. Mitteilungspflicht",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen",
+          "wordDiff": 24,
+          "changeType": "expanded"
+        },
+        {
+          "number": "3",
+          "title": "§ 3. Beschäftigungsverbot vor der Entbindung",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 262,
+          "changeType": "expanded"
+        },
+        {
+          "number": "3a",
+          "title": "§ 3a. Sonderfreistellung COVID-19",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 187,
+          "changeType": "expanded"
+        },
+        {
+          "number": "4",
+          "title": "§ 4. Individuelles Beschäftigungsverbot",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 265,
+          "changeType": "expanded"
+        },
+        {
+          "number": "4a",
+          "title": "§ 4a. Beschäftigungsverbote für stillende Mütter",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 35,
+          "changeType": "expanded"
+        },
+        {
+          "number": "5",
+          "title": "§ 5. Beschäftigungsverbot nach der Entbindung",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 168,
+          "changeType": "expanded"
+        },
+        {
+          "number": "6",
+          "title": "§ 6. Stillende Mütter",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 167,
+          "changeType": "expanded"
+        },
+        {
+          "number": "7",
+          "title": "§ 7. Beschäftigungsverbote und -beschränkungen",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 46,
+          "changeType": "expanded"
+        },
+        {
+          "number": "9",
+          "title": "§ 9. Verbot von Sonntagsarbeit",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 41,
+          "changeType": "expanded"
+        },
+        {
+          "number": "10",
+          "title": "§ 10. Verbot von Überstundenarbeit",
+          "chapter": "2. Abschnitt - Beschäftigungsverbote und -beschränkungen",
+          "wordDiff": 296,
+          "changeType": "expanded"
+        },
+        {
+          "number": "10a",
+          "title": "§ 10a. Kündigungsschutz",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 79,
+          "changeType": "expanded"
+        },
+        {
+          "number": "11",
+          "title": "§ 11. Kündigung während der Schwangerschaft",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 7,
+          "changeType": "expanded"
+        },
+        {
+          "number": "12",
+          "title": "§ 12. Kündigung nach der Entbindung",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 49,
+          "changeType": "expanded"
+        },
+        {
+          "number": "13",
+          "title": "§ 13. Entlassungsschutz",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 2,
+          "changeType": "expanded"
+        },
+        {
+          "number": "14",
+          "title": "§ 14. Einvernehmen mit Belegschaftsorganen",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 188,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15",
+          "title": "§ 15. Karenz",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 226,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15a",
+          "title": "§ 15a. Teilung der Karenz zwischen Mutter und Vater",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 224,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15b",
+          "title": "§ 15b. Aufgeschobene Karenz",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 168,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15c",
+          "title": "§ 15c. Karenz der Adoptiv- oder Pflegemutter",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 213,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15d",
+          "title": "§ 15d. Karenz bei Verhinderung des anderen Elternteils",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 67,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15e",
+          "title": "§ 15e. Beschäftigung während der Karenz",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 58,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15f",
+          "title": "§ 15f. Sonstige gemeinsame Vorschriften zur Karenz",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 102,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15h",
+          "title": "§ 15h. Anspruch auf Teilzeitbeschäftigung",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 186,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15i",
+          "title": "§ 15i. Vereinbarte Teilzeitbeschäftigung",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 62,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15j",
+          "title": "§ 15j. Gemeinsame Bestimmungen zur Teilzeitbeschäftigung",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 345,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15k",
+          "title": "§ 15k. Verfahren beim Anspruch auf Teilzeitbeschäftigung",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 181,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15l",
+          "title": "§ 15l. Verfahren bei der vereinbarten Teilzeitbeschäftigung",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 85,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15m",
+          "title": "§ 15m. Karenz an Stelle von Teilzeitbeschäftigung",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 102,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15n",
+          "title": "§ 15n. Kündigungs- und Entlassungsschutz bei einer Teilzeitbeschäftigung",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 121,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15o",
+          "title": "§ 15o. Teilzeitbeschäftigung der Adoptiv- oder Pflegemutter",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 59,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15q",
+          "title": "§ 15q. Spätere Geltendmachung der Karenz",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 52,
+          "changeType": "expanded"
+        },
+        {
+          "number": "15r",
+          "title": "§ 15r. Austritt aus Anlass der Geburt eines Kindes",
+          "chapter": "3. Abschnitt - Kündigungs- und Entlassungsschutz",
+          "wordDiff": 74,
+          "changeType": "expanded"
+        },
+        {
+          "number": "18",
+          "title": "§ 18",
+          "chapter": "4. Abschnitt - Entgelt und sonstige Leistungen",
+          "wordDiff": 76,
+          "changeType": "expanded"
+        },
+        {
+          "number": "18a",
+          "title": "§ 18a",
+          "chapter": "4. Abschnitt - Entgelt und sonstige Leistungen",
+          "wordDiff": 65,
+          "changeType": "expanded"
+        },
+        {
+          "number": "19",
+          "title": "§ 19",
+          "chapter": "4. Abschnitt - Entgelt und sonstige Leistungen",
+          "wordDiff": 56,
+          "changeType": "expanded"
+        },
+        {
+          "number": "20",
+          "title": "§ 20",
+          "chapter": "4. Abschnitt - Entgelt und sonstige Leistungen",
+          "wordDiff": 123,
+          "changeType": "expanded"
+        },
+        {
+          "number": "21",
+          "title": "§ 21",
+          "chapter": "4. Abschnitt - Entgelt und sonstige Leistungen",
+          "wordDiff": 32,
+          "changeType": "expanded"
+        },
+        {
+          "number": "22",
+          "title": "§ 22",
+          "chapter": "4. Abschnitt - Entgelt und sonstige Leistungen",
+          "wordDiff": 88,
+          "changeType": "expanded"
+        },
+        {
+          "number": "23",
+          "title": "§ 23",
+          "chapter": "5. Abschnitt - Aufsicht und Durchführung",
+          "wordDiff": 1634,
+          "changeType": "expanded"
+        },
+        {
+          "number": "24",
+          "title": "§ 24. Personenkreis",
+          "chapter": "5. Abschnitt - Aufsicht und Durchführung",
+          "wordDiff": 61,
+          "changeType": "expanded"
+        },
+        {
+          "number": "25",
+          "title": "§ 25",
+          "chapter": "5. Abschnitt - Aufsicht und Durchführung",
+          "wordDiff": 42,
+          "changeType": "expanded"
+        },
+        {
+          "number": "27",
+          "title": "§ 27. Kündigungsschutz",
+          "chapter": "5. Abschnitt - Aufsicht und Durchführung",
+          "wordDiff": 77,
+          "changeType": "expanded"
+        },
+        {
+          "number": "31",
+          "title": "§ 31",
+          "chapter": "6. Abschnitt - Strafbestimmungen",
+          "wordDiff": 208,
+          "changeType": "expanded"
+        },
+        {
+          "number": "35",
+          "title": "§ 35. Behördenzuständigkeit und Verfahrensvorschriften",
+          "chapter": "7. Abschnitt - Schlussbestimmungen",
+          "wordDiff": 88,
+          "changeType": "expanded"
+        }
+      ],
+      "timestamp": "2026-01-10T22:03:46.371843"
+    },
+    {
+      "type": "updated_law",
+      "abbreviation": "AStV",
+      "title": "Bundesrecht konsolidiert: Gesamte Rechtsvorschrift für Gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten erbrachten Leistungen für das Jahr 2000, Fassung vom 10.01.2026",
+      "country": "AT",
+      "added": [
+        {
+          "number": "0",
+          "title": "§ 0",
+          "chapter": "Hauptteil",
+          "preview": "Langtitel Verordnung des Bundesministers für Justiz über die gesonderte Festsetzung der Pauschalvergütung des Bundes für die von Rechtsanwälten in überdurchschnittlich lang dauernden Verfahren nach § ..."
+        }
+      ],
+      "removed": [
+        {
+          "number": "1",
+          "title": "§ 1. Anwendungsbereich",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "2",
+          "title": "§ 2. Verkehrswege",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "3",
+          "title": "§ 3. Ausgänge",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "4",
+          "title": "§ 4. Stiegen",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "5",
+          "title": "§ 5. Beleuchtung und Belüftung von Räumen",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "6",
+          "title": "§ 6. Fußböden, Wände und Decken",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "7",
+          "title": "§ 7. Türen und Tore",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "8",
+          "title": "§ 8. Fenster, Lichtkuppeln und Glasdächer",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "9",
+          "title": "§ 9. Sicherheitsbeleuchtung und Orientierungshilfen",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "10",
+          "title": "§ 10. Lagerungen",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "11",
+          "title": "§ 11. Gefahrenbereiche",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "12",
+          "title": "§ 12. Alarmeinrichtungen",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "13",
+          "title": "§ 13. Prüfungen",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "14",
+          "title": "§ 14. Information der Arbeitnehmer/innen",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "15",
+          "title": "§ 15. Barrierefreie Gestaltung von Arbeitsstätten",
+          "chapter": "1. Abschnitt - Allgemeine Bestimmungen"
+        },
+        {
+          "number": "16",
+          "title": "§ 16. Grundsätzliche Bestimmungen",
+          "chapter": "2. Abschnitt - Sicherung der Flucht"
+        },
+        {
+          "number": "17",
+          "title": "§ 17. Fluchtwege, gesicherte Fluchtbereiche, Notausgänge",
+          "chapter": "2. Abschnitt - Sicherung der Flucht"
+        },
+        {
+          "number": "18",
+          "title": "§ 18. Abmessungen von Fluchtwegen und Notausgängen",
+          "chapter": "2. Abschnitt - Sicherung der Flucht"
+        },
+        {
+          "number": "19",
+          "title": "§ 19. Anforderungen an Fluchtwege",
+          "chapter": "2. Abschnitt - Sicherung der Flucht"
+        },
+        {
+          "number": "20",
+          "title": "§ 20. Anforderungen an Notausgänge",
+          "chapter": "2. Abschnitt - Sicherung der Flucht"
+        },
+        {
+          "number": "21",
+          "title": "§ 21. Anforderungen an gesicherte Fluchtbereiche",
+          "chapter": "2. Abschnitt - Sicherung der Flucht"
+        },
+        {
+          "number": "22",
+          "title": "§ 22. Stiegenhaus",
+          "chapter": "2. Abschnitt - Sicherung der Flucht"
+        },
+        {
+          "number": "23",
+          "title": "§ 23. Raumhöhe in Arbeitsräumen",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "24",
+          "title": "§ 24. Bodenfläche und Luftraum",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "25",
+          "title": "§ 25. Lichteintrittsflächen und Sichtverbindung",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "26",
+          "title": "§ 26. Natürliche Lüftung",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "27",
+          "title": "§ 27. Mechanische Be- und Entlüftung",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "28",
+          "title": "§ 28. Raumklima in Arbeitsräumen",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "29",
+          "title": "§ 29. Künstliche Beleuchtung in Arbeitsräumen",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "30",
+          "title": "§ 30. Abweichende Regelungen für bestimmte Arbeitsräume",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "31",
+          "title": "§ 31. Abweichende Regelungen für Container und ähnliche Einrichtungen",
+          "chapter": "3. Abschnitt - Anforderungen an Arbeitsräume"
+        },
+        {
+          "number": "32",
+          "title": "§ 32. Trink- und Waschwasser",
+          "chapter": "4. Abschnitt - Sanitäre Vorkehrungen und Sozialeinrichtungen"
+        },
+        {
+          "number": "33",
+          "title": "§ 33. Toiletten",
+          "chapter": "4. Abschnitt - Sanitäre Vorkehrungen und Sozialeinrichtungen"
+        },
+        {
+          "number": "34",
+          "title": "§ 34. Waschplätze, Waschräume, Duschen",
+          "chapter": "4. Abschnitt - Sanitäre Vorkehrungen und Sozialeinrichtungen"
+        },
+        {
+          "number": "35",
+          "title": "§ 35. Kleiderkästen und Umkleideräume",
+          "chapter": "4. Abschnitt - Sanitäre Vorkehrungen und Sozialeinrichtungen"
+        },
+        {
+          "number": "36",
+          "title": "§ 36. Aufenthalts- und Bereitschaftsräume",
+          "chapter": "4. Abschnitt - Sanitäre Vorkehrungen und Sozialeinrichtungen"
+        },
+        {
+          "number": "37",
+          "title": "§ 37. Wohnräume",
+          "chapter": "4. Abschnitt - Sanitäre Vorkehrungen und Sozialeinrichtungen"
+        },
+        {
+          "number": "38",
+          "title": "§ 38. Benutzbarkeit von sanitären Vorkehrungen",
+          "chapter": "4. Abschnitt - Sanitäre Vorkehrungen und Sozialeinrichtungen"
+        },
+        {
+          "number": "39",
+          "title": "§ 39. Mittel für die Erste Hilfe",
+          "chapter": "5. Abschnitt - Erste Hilfe und Brandschutz"
+        },
+        {
+          "number": "40",
+          "title": "§ 40. Erst-Helfer/innen",
+          "chapter": "5. Abschnitt - Erste Hilfe und Brandschutz"
+        },
+        {
+          "number": "41",
+          "title": "§ 41. Sanitätsräume",
+          "chapter": "5. Abschnitt - Erste Hilfe und Brandschutz"
+        },
+        {
+          "number": "42",
+          "title": "§ 42. Löschhilfen",
+          "chapter": "5. Abschnitt - Erste Hilfe und Brandschutz"
+        },
+        {
+          "number": "43",
+          "title": "§ 43. Brandschutzbeauftragte und Brandschutzwarte",
+          "chapter": "5. Abschnitt - Erste Hilfe und Brandschutz"
+        },
+        {
+          "number": "44",
+          "title": "§ 44. Brandschutzordnung",
+          "chapter": "5. Abschnitt - Erste Hilfe und Brandschutz"
+        },
+        {
+          "number": "45",
+          "title": "§ 45. Maßnahmen bei erhöhtem Brandschutz",
+          "chapter": "5. Abschnitt - Erste Hilfe und Brandschutz"
+        },
+        {
+          "number": "46",
+          "title": "§ 46. Gebäude und Arbeitsräume auf Baustellen",
+          "chapter": "6. Abschnitt - Gebäude auf Baustellen"
+        },
+        {
+          "number": "47",
+          "title": "§ 47. Übergangsbestimmungen",
+          "chapter": "7. Abschnitt - Übergangs- und Schlussbestimmungen"
+        },
+        {
+          "number": "48",
+          "title": "§ 48. Schlussbestimmungen",
+          "chapter": "7. Abschnitt - Übergangs- und Schlussbestimmungen"
+        }
+      ],
+      "modified": [],
+      "timestamp": "2026-01-10T22:03:46.371843"
+    }
+  ]
+}
