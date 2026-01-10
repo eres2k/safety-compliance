@@ -1324,6 +1324,24 @@
         "category": "regulations",
         "source_type": "custom"
       },
+      "WAZO": {
+        "url": "https://wetten.overheid.nl/BWBR0013008/geldend",
+        "name": "Wet arbeid en zorg",
+        "name_en": "Work and Care Act",
+        "description": "Regulates various types of leave including parental leave, care leave, and maternity/paternity leave.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom"
+      },
+      "Warenwetbesluit machines": {
+        "url": "https://wetten.overheid.nl/BWBR0005577/geldend",
+        "name": "Warenwetbesluit machines",
+        "name_en": "Commodities Act Decree on Machines",
+        "description": "Safety requirements for machines and equipment - implements EU Machinery Directive 2006/42/EC.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom"
+      },
       "_category_pdf_verification": {
         "_folder": true,
         "_name": "PDF Verification Sources (DISABLED)",
