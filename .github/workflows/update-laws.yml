@@ -21,6 +21,7 @@ on:
 jobs:
   check-and-update:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -39,6 +40,7 @@ jobs:
 
       - name: Check for law updates
         id: check_updates
+        timeout-minutes: 10
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
