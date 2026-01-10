@@ -111,7 +111,10 @@ jobs:
           # Generate mobile-compatible databases
           node scripts/generate-mobile-database.js
 
-          echo "Schema migration and mobile database generation complete"
+          # Generate detailed changelog for UI
+          node scripts/generate-law-changelog.js
+
+          echo "Schema migration, mobile database, and changelog generation complete"
 
       - name: Check for changes
         id: git_status
