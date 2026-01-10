@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-10T21:11:50.396Z",
+  "generated_at": "2026-01-10T21:26:58.983Z",
   "statistics": {
     "total_documents": 98,
     "total_errors": 0,
@@ -16,8 +16,8 @@
       "Core Safety": 78,
       "Supplementary": 20
     },
-    "total_chars": 1959722,
-    "total_words": 270235,
+    "total_chars": 2074272,
+    "total_words": 287769,
     "documents_with_content": 42
   }
 }
