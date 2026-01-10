@@ -1,5 +1,114 @@
 {
-  "updates": [],
-  "last_check": null,
+  "updates": [
+    {
+      "timestamp": "2026-01-10T22:02:49.766912",
+      "country": "NL",
+      "new_laws": [],
+      "updated_laws": [
+        "Arboregeling"
+      ],
+      "unchanged_laws": [
+        "Arbowet",
+        "Arbobesluit",
+        "Arbeidstijdenwet",
+        "ATB"
+      ],
+      "scraped_laws": [],
+      "details": {
+        "new": [],
+        "updated": [
+          {
+            "abbreviation": "Arboregeling",
+            "old_hash": "79179206",
+            "new_hash": "9d60ef70",
+            "last_scraped": "2025-12-21"
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-10T22:01:25.977011",
+      "country": "DE",
+      "new_laws": [],
+      "updated_laws": [
+        "ArbSchG",
+        "MuSchG",
+        "BetrSichV",
+        "GefStoffV"
+      ],
+      "unchanged_laws": [
+        "ASiG",
+        "ArbZG",
+        "JArbSchG",
+        "ArbStättV"
+      ],
+      "scraped_laws": [],
+      "details": {
+        "new": [],
+        "updated": [
+          {
+            "abbreviation": "ArbSchG",
+            "old_hash": "941e5916",
+            "new_hash": "f8a22a20",
+            "last_scraped": "2025-12-20"
+          },
+          {
+            "abbreviation": "MuSchG",
+            "old_hash": "6668d608",
+            "new_hash": "896d5275",
+            "last_scraped": "2025-12-20"
+          },
+          {
+            "abbreviation": "BetrSichV",
+            "old_hash": "46745987",
+            "new_hash": "8e37b384",
+            "last_scraped": "2025-12-20"
+          },
+          {
+            "abbreviation": "GefStoffV",
+            "old_hash": "f19b5eb5",
+            "new_hash": "68879a34",
+            "last_scraped": "2025-12-20"
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-10T22:01:16.435558",
+      "country": "AT",
+      "new_laws": [],
+      "updated_laws": [
+        "MSchG",
+        "AStV"
+      ],
+      "unchanged_laws": [
+        "ASchG",
+        "AZG",
+        "ARG",
+        "KJBG",
+        "AM-VO",
+        "DOK-VO"
+      ],
+      "scraped_laws": [],
+      "details": {
+        "new": [],
+        "updated": [
+          {
+            "abbreviation": "MSchG",
+            "old_hash": "4ea9f731",
+            "new_hash": "487d52a7",
+            "last_scraped": "2025-12-20"
+          },
+          {
+            "abbreviation": "AStV",
+            "old_hash": "astv_100",
+            "new_hash": "ee712e6e",
+            "last_scraped": "2025-12-21"
+          }
+        ]
+      }
+    }
+  ],
+  "last_check": "2026-01-10T22:02:49.766926",
   "description": "This file tracks changes to laws detected during update checks. Run 'python law_manager.py check-updates --all' to populate."
 }
