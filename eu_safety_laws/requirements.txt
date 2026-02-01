@@ -1,0 +1,24 @@
+# EU Safety Laws Database - Python Dependencies
+# Used by law_manager.py and related scripts
+
+# Web scraping
+requests>=2.31.0
+beautifulsoup4>=4.12.2
+
+# AI processing
+google-generativeai>=0.3.0
+
+# Progress display
+tqdm>=4.66.1
+
+# Text processing
+markdownify>=0.11.6
+fuzzywuzzy>=0.18.0
+python-Levenshtein>=0.21.0
+
+# CLI formatting
+rich>=13.7.0
+click>=8.1.7
+
+# Environment
+python-dotenv>=1.0.0
