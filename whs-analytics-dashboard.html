@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHS Safety Compliance Analytics Dashboard</title>
+    <style>
+        :root {
+            --primary: #f97316;
+            --primary-dark: #ea580c;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --bg-dark: #1a1a2e;
+            --bg-card: #16213e;
+            --bg-card-light: #1f2937;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f0f23 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Local Processing Banner */
+        .local-banner {
+            background: linear-gradient(90deg, #065f46 0%, #047857 100%);
+            border: 1px solid #10b981;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .local-banner-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .local-banner-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .local-banner-content p {
+            font-size: 12px;
+            color: #a7f3d0;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(249, 115, 22, 0.2);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 50px;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+        }
+
+        .header-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .header-badge span {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header h1 span {
+            background: linear-gradient(90deg, var(--primary), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(249, 115, 22, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card.primary .stat-value { color: var(--primary); }
+        .stat-card.success .stat-value { color: var(--success); }
+        .stat-card.info .stat-value { color: var(--info); }
+        .stat-card.warning .stat-value { color: var(--warning); }
+
+        /* Section */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        /* Country Distribution */
+        .country-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .country-card {
+            background: linear-gradient(135deg, var(--bg-card-light) 0%, var(--bg-card) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .country-flag {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .country-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .country-count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .country-label {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin-bottom: 16px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .progress-value {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.primary { background: var(--primary); }
+        .progress-fill.success { background: var(--success); }
+        .progress-fill.info { background: var(--info); }
+
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Bar Chart */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .bar-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            max-width: 80px;
+        }
+
+        .bar {
+            width: 40px;
+            border-radius: 6px 6px 0 0;
+            transition: height 0.5s ease;
+            position: relative;
+        }
+
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .bar-label {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Updates List */
+        .updates-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .update-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .update-flag {
+            font-size: 28px;
+        }
+
+        .update-content {
+            flex: 1;
+        }
+
+        .update-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .update-meta {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .update-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .update-badge.new {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+
+        .update-badge.updated {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--info);
+        }
+
+        /* Topics Grid */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .topic-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .topic-icon {
+            font-size: 24px;
+        }
+
+        .topic-info {
+            flex: 1;
+        }
+
+        .topic-name {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .topic-count {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Relevance Distribution */
+        .relevance-bars {
+            display: flex;
+            height: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .relevance-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            transition: flex 0.5s ease;
+        }
+
+        .relevance-segment.critical { background: #dc2626; }
+        .relevance-segment.high { background: #ea580c; }
+        .relevance-segment.medium { background: #eab308; }
+        .relevance-segment.low { background: #6b7280; }
+
+        .relevance-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.critical { background: #dc2626; }
+        .legend-dot.high { background: #ea580c; }
+        .legend-dot.medium { background: #eab308; }
+        .legend-dot.low { background: #6b7280; }
+
+        /* Data Import Section */
+        .import-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .import-card {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px dashed var(--info);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .import-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .import-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .import-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-body textarea {
+            width: 100%;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text-primary);
+            font-family: monospace;
+            font-size: 12px;
+            resize: vertical;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .country-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Document Type Donut Chart */
+        .donut-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .donut-chart {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--primary) 0deg var(--law-angle, 280deg),
+                var(--info) var(--law-angle, 280deg) 360deg
+            );
+            position: relative;
+        }
+
+        .donut-chart::after {
+            content: '';
+            position: absolute;
+            inset: 30px;
+            background: var(--bg-card);
+            border-radius: 50%;
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .donut-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .donut-legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        .donut-legend-color.law { background: var(--primary); }
+        .donut-legend-color.merkblatt { background: var(--info); }
+
+        .donut-legend-text {
+            font-size: 14px;
+        }
+
+        .donut-legend-count {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Local Processing Banner -->
+        <div class="local-banner">
+            <div class="local-banner-icon">🔒</div>
+            <div class="local-banner-content">
+                <h4>100% Local Processing - No Internet Required</h4>
+                <p>All data analysis happens in your browser. No data is sent to any server. This file works completely offline.</p>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">
+                <div class="header-badge-dot"></div>
+                <span>MEU Safety Compliance - WHS Analytics</span>
+            </div>
+            <h1>Safety Compliance <span>Analytics</span></h1>
+            <p>Comprehensive analytics dashboard for EU workplace safety laws across Austria, Germany, and the Netherlands.</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+            <button class="tab-btn" onclick="switchTab('countries')">By Country</button>
+            <button class="tab-btn" onclick="switchTab('topics')">WHS Topics</button>
+            <button class="tab-btn" onclick="switchTab('updates')">Recent Updates</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="tab-overview" class="tab-content active">
+            <!-- Key Stats -->
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-value" id="stat-total">93</div>
+                    <div class="stat-label">Total Documents</div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-card info">
+                    <div class="stat-value" id="stat-words">285K</div>
+                    <div class="stat-label">Total Words</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-value" id="stat-updated">7</div>
+                    <div class="stat-label">Recently Updated</div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-grid">
+                <!-- Document Types -->
+                <div class="card">
+                    <div class="section-header">
+                        <div>
+                            <h3 class="section-title">Document Types</h3>
+                            <p class="section-subtitle">Distribution of laws vs guidance documents</p>
+                        </div>
+                    </div>
+                    <div class="donut-container">
+                        <div class="donut-chart" id="donut-chart"></div>
+                        <div class="donut-legend">
+                            <div class="donut-legend-item">
+                                <div class="donut-legend-color law"></div>
+                                <div class="donut-legend-text">
+                                    <span>Laws</span>
+                                    <span class="donut-legend-count" id="law-count">72</span>
+                                </div>
+                            </div>
+                            <div class="donut-legend-item">
+                                <div class="donut-legend-color merkblatt"></div>
+                                <div class="donut-legend-text">
+                                    <span>Merkblatt/Guidance</span>
+                                    <span class="donut-legend-count" id="merkblatt-count">21</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Country Distribution -->
+                <div class="card">
+                    <div class="section-header">
+                        <div>
+                            <h3 class="section-title">Country Distribution</h3>
+                            <p class="section-subtitle">Documents per jurisdiction</p>
+                        </div>
+                    </div>
+                    <div class="bar-chart" id="country-chart">
+                        <div class="bar-item">
+                            <div class="bar" style="height: 170px; background: linear-gradient(180deg, #ef4444, #dc2626);" data-value="34"></div>
+                            <span class="bar-label">Austria</span>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar" style="height: 155px; background: linear-gradient(180deg, #fbbf24, #f59e0b);" data-value="31"></div>
+                            <span class="bar-label">Germany</span>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar" style="height: 140px; background: linear-gradient(180deg, #f97316, #ea580c);" data-value="28"></div>
+                            <span class="bar-label">Netherlands</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database Info -->
+            <div class="card">
+                <div class="section-header">
+                    <div>
+                        <h3 class="section-title">Database Statistics</h3>
+                        <p class="section-subtitle">Comprehensive safety law database metrics</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div>
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span class="progress-label">Total Characters</span>
+                                <span class="progress-value" id="stat-chars">2,055,637</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill primary" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span class="progress-label">Documents with Full Text</span>
+                                <span class="progress-value" id="stat-fulltext">38 / 93</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill success" style="width: 41%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span class="progress-label">Core Safety Laws</span>
+                                <span class="progress-value">73</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill info" style="width: 78%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-size: 13px; color: var(--text-secondary);">
+                    Last database update: <strong id="last-update">January 10, 2026</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Countries Tab -->
+        <div id="tab-countries" class="tab-content">
+            <div class="country-grid">
+                <div class="country-card">
+                    <div class="country-flag">🇦🇹</div>
+                    <div class="country-name">Austria (AT)</div>
+                    <div class="country-count" id="at-count">34</div>
+                    <div class="country-label">Documents</div>
+                    <div style="margin-top: 16px; text-align: left; font-size: 13px; color: var(--text-secondary);">
+                        <p><strong>Framework:</strong> ASchG (ArbeitnehmerInnenschutzgesetz)</p>
+                        <p><strong>Authority:</strong> RIS (Rechtsinformationssystem)</p>
+                        <p style="margin-top: 8px;"><strong>Core Laws:</strong></p>
+                        <ul style="margin-left: 16px; margin-top: 4px;">
+                            <li>ASchG - Employee Protection Act</li>
+                            <li>ArbIG - Labour Inspectorate Act</li>
+                            <li>AStV - Workplace Ordinance</li>
+                            <li>AM-VO - Work Equipment Ordinance</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="country-card">
+                    <div class="country-flag">🇩🇪</div>
+                    <div class="country-name">Germany (DE)</div>
+                    <div class="country-count" id="de-count">31</div>
+                    <div class="country-label">Documents</div>
+                    <div style="margin-top: 16px; text-align: left; font-size: 13px; color: var(--text-secondary);">
+                        <p><strong>Framework:</strong> ArbSchG + DGUV Regulations</p>
+                        <p><strong>Authority:</strong> BMAS, DGUV</p>
+                        <p style="margin-top: 8px;"><strong>Core Laws:</strong></p>
+                        <ul style="margin-left: 16px; margin-top: 4px;">
+                            <li>ArbSchG - Occupational Safety Act</li>
+                            <li>ASiG - Safety Specialists Act</li>
+                            <li>ArbStättV - Workplace Ordinance</li>
+                            <li>GefStoffV - Hazardous Substances</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="country-card">
+                    <div class="country-flag">🇳🇱</div>
+                    <div class="country-name">Netherlands (NL)</div>
+                    <div class="country-count" id="nl-count">28</div>
+                    <div class="country-label">Documents</div>
+                    <div style="margin-top: 16px; text-align: left; font-size: 13px; color: var(--text-secondary);">
+                        <p><strong>Framework:</strong> Arbowet (Working Conditions Act)</p>
+                        <p><strong>Authority:</strong> Ministry of SZW</p>
+                        <p style="margin-top: 8px;"><strong>Core Laws:</strong></p>
+                        <ul style="margin-left: 16px; margin-top: 4px;">
+                            <li>Arbowet - Working Conditions Act</li>
+                            <li>Arbobesluit - Working Conditions Decree</li>
+                            <li>Arboregeling - Working Conditions Regulation</li>
+                            <li>Arbeidstijdenwet - Working Hours Act</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WHS Topics Tab -->
+        <div id="tab-topics" class="tab-content">
+            <div class="card" style="margin-bottom: 24px;">
+                <div class="section-header">
+                    <div>
+                        <h3 class="section-title">Logistics Relevance Distribution</h3>
+                        <p class="section-subtitle">How law sections relate to delivery last mile operations</p>
+                    </div>
+                </div>
+                <div class="relevance-bars" id="relevance-bars">
+                    <div class="relevance-segment critical" style="flex: 23;">23</div>
+                    <div class="relevance-segment high" style="flex: 30;">30</div>
+                    <div class="relevance-segment medium" style="flex: 43;">43</div>
+                    <div class="relevance-segment low" style="flex: 41;">41</div>
+                </div>
+                <div class="relevance-legend">
+                    <div class="legend-item">
+                        <div class="legend-dot critical"></div>
+                        <span>Critical (23)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot high"></div>
+                        <span>High (30)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot medium"></div>
+                        <span>Medium (43)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot low"></div>
+                        <span>Low (41)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-header">
+                    <div>
+                        <h3 class="section-title">WHS Topics Coverage</h3>
+                        <p class="section-subtitle">Safety topics identified across all documents</p>
+                    </div>
+                </div>
+                <div class="topics-grid" id="topics-grid">
+                    <!-- Topics will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Updates Tab -->
+        <div id="tab-updates" class="tab-content">
+            <div class="card">
+                <div class="section-header">
+                    <div>
+                        <h3 class="section-title">Recent Law Updates</h3>
+                        <p class="section-subtitle">Laws that have been updated in the last 14 days</p>
+                    </div>
+                </div>
+                <div class="updates-list" id="updates-list">
+                    <!-- Updates will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Import Section -->
+        <div class="import-section">
+            <div class="import-card">
+                <h3>Import Your Own Data</h3>
+                <p>Load statistics from your local safety compliance database. Paste JSON data from statistics.json or update_changelog.json files.</p>
+                <div class="import-buttons">
+                    <button class="btn btn-primary" onclick="openImportModal('statistics')">Import Statistics</button>
+                    <button class="btn btn-secondary" onclick="openImportModal('changelog')">Import Changelog</button>
+                    <button class="btn btn-secondary" onclick="resetToDefaults()">Reset to Defaults</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>WHS Safety Compliance Analytics Dashboard | Standalone Version</p>
+            <p style="margin-top: 8px;">All data processed locally in your browser. No server connection required.</p>
+            <p style="margin-top: 8px; opacity: 0.7;">Data covers: ASchG (Austria) | ArbSchG/DGUV (Germany) | Arbowet (Netherlands)</p>
+        </footer>
+    </div>
+
+    <!-- Import Modal -->
+    <div class="modal-overlay" id="import-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Import Data</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-secondary);" id="modal-description">
+                    Paste your JSON data below.
+                </p>
+                <textarea id="import-data" placeholder='{"statistics": {...}}'></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="processImport()">Import</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Default data (embedded from the actual database)
+        const defaultStatistics = {
+            "generated_at": "2026-01-10T21:36:58.409Z",
+            "statistics": {
+                "total_documents": 93,
+                "total_errors": 0,
+                "by_jurisdiction": {
+                    "AT": 34,
+                    "DE": 31,
+                    "NL": 28
+                },
+                "by_type": {
+                    "law": 72,
+                    "merkblatt": 21
+                },
+                "by_category": {
+                    "Core Safety": 73,
+                    "Supplementary": 20
+                },
+                "total_chars": 2055637,
+                "total_words": 285296,
+                "documents_with_content": 38
+            }
+        };
+
+        const defaultChangelog = {
+            "updates": [
+                {
+                    "timestamp": "2026-01-10T22:02:49.766912",
+                    "country": "NL",
+                    "updated_laws": ["Arboregeling"],
+                    "new_laws": []
+                },
+                {
+                    "timestamp": "2026-01-10T22:01:25.977011",
+                    "country": "DE",
+                    "updated_laws": ["ArbSchG", "MuSchG", "BetrSichV", "GefStoffV"],
+                    "new_laws": []
+                },
+                {
+                    "timestamp": "2026-01-10T22:01:16.435558",
+                    "country": "AT",
+                    "updated_laws": ["MSchG", "AStV"],
+                    "new_laws": []
+                }
+            ],
+            "last_check": "2026-01-10T22:02:49.766926"
+        };
+
+        const whsTopics = [
+            { id: 'employee_rights', label: 'Employee Rights', icon: '✊', count: 78 },
+            { id: 'workplace_design', label: 'Workplace Design', icon: '🏭', count: 75 },
+            { id: 'employer_obligations', label: 'Employer Obligations', icon: '👔', count: 74 },
+            { id: 'risk_assessment', label: 'Risk Assessment', icon: '⚠️', count: 56 },
+            { id: 'health_surveillance', label: 'Health Surveillance', icon: '🩺', count: 54 },
+            { id: 'documentation', label: 'Documentation', icon: '📋', count: 32 },
+            { id: 'ergonomics', label: 'Ergonomics', icon: '🧘', count: 29 },
+            { id: 'training', label: 'Training', icon: '📚', count: 29 },
+            { id: 'hazardous_substances', label: 'Hazardous Substances', icon: '☣️', count: 27 },
+            { id: 'work_equipment', label: 'Work Equipment', icon: '🔧', count: 25 },
+            { id: 'first_aid', label: 'First Aid', icon: '🏥', count: 18 },
+            { id: 'ppe', label: 'PPE', icon: '🦺', count: 15 },
+            { id: 'incident_reporting', label: 'Incident Reporting', icon: '📝', count: 12 },
+            { id: 'working_hours', label: 'Working Hours', icon: '⏰', count: 10 },
+            { id: 'special_groups', label: 'Special Groups', icon: '👥', count: 8 },
+            { id: 'penalties', label: 'Penalties', icon: '⚖️', count: 6 }
+        ];
+
+        // Current state
+        let currentStats = { ...defaultStatistics };
+        let currentChangelog = { ...defaultChangelog };
+        let importType = 'statistics';
+
+        // Initialize dashboard
+        function initDashboard() {
+            updateStatistics(currentStats);
+            updateChangelog(currentChangelog);
+            renderTopics();
+        }
+
+        // Update statistics display
+        function updateStatistics(data) {
+            const stats = data.statistics || data;
+
+            // Update main stats
+            document.getElementById('stat-total').textContent = stats.total_documents || 93;
+            document.getElementById('stat-words').textContent = formatNumber(stats.total_words) || '285K';
+            document.getElementById('stat-chars').textContent = (stats.total_chars || 2055637).toLocaleString();
+            document.getElementById('stat-fulltext').textContent = `${stats.documents_with_content || 38} / ${stats.total_documents || 93}`;
+
+            // Update country counts
+            if (stats.by_jurisdiction) {
+                document.getElementById('at-count').textContent = stats.by_jurisdiction.AT || 34;
+                document.getElementById('de-count').textContent = stats.by_jurisdiction.DE || 31;
+                document.getElementById('nl-count').textContent = stats.by_jurisdiction.NL || 28;
+
+                // Update bar chart
+                updateBarChart(stats.by_jurisdiction);
+            }
+
+            // Update document type counts
+            if (stats.by_type) {
+                const lawCount = stats.by_type.law || 72;
+                const merkblattCount = stats.by_type.merkblatt || 21;
+                document.getElementById('law-count').textContent = lawCount;
+                document.getElementById('merkblatt-count').textContent = merkblattCount;
+
+                // Update donut chart
+                const total = lawCount + merkblattCount;
+                const lawAngle = (lawCount / total) * 360;
+                document.getElementById('donut-chart').style.setProperty('--law-angle', `${lawAngle}deg`);
+            }
+
+            // Update last update date
+            if (data.generated_at) {
+                const date = new Date(data.generated_at);
+                document.getElementById('last-update').textContent = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+        }
+
+        // Update bar chart
+        function updateBarChart(jurisdiction) {
+            const maxCount = Math.max(jurisdiction.AT || 34, jurisdiction.DE || 31, jurisdiction.NL || 28);
+            const bars = document.querySelectorAll('#country-chart .bar');
+            const values = [jurisdiction.AT || 34, jurisdiction.DE || 31, jurisdiction.NL || 28];
+
+            bars.forEach((bar, i) => {
+                const height = (values[i] / maxCount) * 170;
+                bar.style.height = `${height}px`;
+                bar.setAttribute('data-value', values[i]);
+            });
+        }
+
+        // Update changelog display
+        function updateChangelog(data) {
+            const container = document.getElementById('updates-list');
+            let allUpdates = [];
+
+            // Collect all updates
+            (data.updates || []).forEach(update => {
+                const country = update.country;
+                const flag = country === 'AT' ? '🇦🇹' : country === 'DE' ? '🇩🇪' : '🇳🇱';
+                const countryName = country === 'AT' ? 'Austria' : country === 'DE' ? 'Germany' : 'Netherlands';
+
+                (update.new_laws || []).forEach(law => {
+                    allUpdates.push({
+                        flag,
+                        countryName,
+                        law,
+                        type: 'new',
+                        timestamp: update.timestamp
+                    });
+                });
+
+                (update.updated_laws || []).forEach(law => {
+                    allUpdates.push({
+                        flag,
+                        countryName,
+                        law,
+                        type: 'updated',
+                        timestamp: update.timestamp
+                    });
+                });
+            });
+
+            // Update count
+            document.getElementById('stat-updated').textContent = allUpdates.length;
+
+            // Render updates
+            if (allUpdates.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 40px;">No recent updates found.</p>';
+                return;
+            }
+
+            container.innerHTML = allUpdates.map(update => `
+                <div class="update-item">
+                    <div class="update-flag">${update.flag}</div>
+                    <div class="update-content">
+                        <div class="update-title">${update.law}</div>
+                        <div class="update-meta">${update.countryName} • ${formatDate(update.timestamp)}</div>
+                    </div>
+                    <span class="update-badge ${update.type}">${update.type === 'new' ? 'New' : 'Updated'}</span>
+                </div>
+            `).join('');
+        }
+
+        // Render WHS topics
+        function renderTopics() {
+            const container = document.getElementById('topics-grid');
+            container.innerHTML = whsTopics.map(topic => `
+                <div class="topic-card">
+                    <div class="topic-icon">${topic.icon}</div>
+                    <div class="topic-info">
+                        <div class="topic-name">${topic.label}</div>
+                        <div class="topic-count">${topic.count} sections</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Tab switching
+        function switchTab(tabId) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+        }
+
+        // Modal functions
+        function openImportModal(type) {
+            importType = type;
+            const modal = document.getElementById('import-modal');
+            const title = document.getElementById('modal-title');
+            const desc = document.getElementById('modal-description');
+            const textarea = document.getElementById('import-data');
+
+            if (type === 'statistics') {
+                title.textContent = 'Import Statistics';
+                desc.textContent = 'Paste the contents of your statistics.json file below.';
+                textarea.placeholder = JSON.stringify(defaultStatistics, null, 2);
+            } else {
+                title.textContent = 'Import Changelog';
+                desc.textContent = 'Paste the contents of your update_changelog.json file below.';
+                textarea.placeholder = JSON.stringify(defaultChangelog, null, 2);
+            }
+
+            textarea.value = '';
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('import-modal').classList.remove('active');
+        }
+
+        function processImport() {
+            const textarea = document.getElementById('import-data');
+            try {
+                const data = JSON.parse(textarea.value);
+
+                if (importType === 'statistics') {
+                    currentStats = data;
+                    updateStatistics(data);
+                } else {
+                    currentChangelog = data;
+                    updateChangelog(data);
+                }
+
+                closeModal();
+                alert('Data imported successfully!');
+            } catch (e) {
+                alert('Invalid JSON format. Please check your data and try again.');
+            }
+        }
+
+        function resetToDefaults() {
+            currentStats = { ...defaultStatistics };
+            currentChangelog = { ...defaultChangelog };
+            updateStatistics(currentStats);
+            updateChangelog(currentChangelog);
+            alert('Data reset to defaults.');
+        }
+
+        // Utility functions
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
+            return num.toString();
+        }
+
+        function formatDate(dateStr) {
+            try {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            } catch {
+                return dateStr;
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('import-modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('import-modal')) {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initialize on load
+        initDashboard();
+    </script>
+</body>
+</html>
