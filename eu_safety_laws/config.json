@@ -110,6 +110,33 @@
         "3": "Jugendliche",
         "4": "Verbot der Kinderarbeit",
         "5": "Kinder dürfen"
+      },
+      "FK-V": {
+        "1": "Geltungsbereich",
+        "2": "Fachkenntnisse",
+        "3": "Ausbildung",
+        "4": "Prüfung",
+        "5": "Fachkenntnisnachweis"
+      },
+      "VEXAT": {
+        "1": "Geltungsbereich und Begriffsbestimmungen",
+        "2": "Beurteilung der Explosionsgefahren",
+        "3": "Maßnahmen des Explosionsschutzes",
+        "4": "Explosionsschutzdokument",
+        "5": "Zoneneinteilung"
+      },
+      "KennV": {
+        "1": "Geltungsbereich",
+        "2": "Begriffsbestimmungen",
+        "3": "Allgemeine Vorschriften",
+        "4": "Sicherheitszeichen",
+        "5": "Kennzeichnung von Hindernissen und Gefahrstellen"
+      },
+      "NSchG": {
+        "1": "Geltungsbereich",
+        "2": "Begriffsbestimmungen",
+        "3": "Nachtschwerarbeit",
+        "4": "Sonderbestimmungen"
       }
     },
     "DE": {
@@ -150,6 +177,24 @@
         "6": "Aufgaben der Fachkräfte für Arbeitssicherheit",
         "7": "Anforderungen an Fachkräfte für Arbeitssicherheit",
         "8": "Unabhängigkeit bei Anwendung der Fachkunde"
+      },
+      "PSA-BV": {
+        "1": "Anwendungsbereich",
+        "2": "Bereitstellung und Benutzung",
+        "3": "Anforderungen an persönliche Schutzausrüstungen"
+      },
+      "GGBefG": {
+        "1": "Geltungsbereich",
+        "2": "Begriffsbestimmungen",
+        "3": "Allgemeine Sicherheitspflichten",
+        "4": "Zuständige Behörden",
+        "5": "Gefahrgutbeauftragter"
+      },
+      "ChemG": {
+        "1": "Zweck des Gesetzes",
+        "2": "Begriffsbestimmungen",
+        "3": "Einstufung, Kennzeichnung und Verpackung",
+        "4": "Sicherheitsdatenblatt"
       }
     },
     "NL": {

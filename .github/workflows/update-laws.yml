@@ -30,6 +30,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -38,7 +39,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          pip install requests beautifulsoup4 google-generativeai tqdm
+          pip install requests beautifulsoup4 google-generativeai tqdm pdfplumber
 
       - name: Check for law updates
         id: check_updates
@@ -132,9 +133,14 @@ jobs:
 
       - name: Commit and push changes
         if: steps.git_status.outputs.has_changes == 'true' && github.event.inputs.check_only != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+
+          # Set remote URL with token for push authentication
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
 
           # Generate commit message with update summary
           CHANGES=$(cd eu_safety_laws && python law_manager.py status 2>/dev/null | head -20 || echo "Database updated")
@@ -144,7 +150,12 @@ jobs:
             -m "Updates from scheduled check on ${UPDATE_DATE}" \
             -m "${CHANGES}"
 
-          git push
+          # Push with retry logic for transient network failures
+          for i in 1 2 3 4; do
+            git push && break
+            echo "Push attempt $i failed, retrying in $((2 ** i))s..."
+            sleep $((2 ** i))
+          done
 
       - name: Create issue for review (if updates)
         if: steps.git_status.outputs.has_changes == 'true' && github.event.inputs.check_only != 'true'

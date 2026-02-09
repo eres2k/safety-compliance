@@ -158,6 +158,14 @@ class Config:
                 "AStV": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009098",       # Workplace Regulation (Arbeitsstättenverordnung)
                 "AM-VO": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20000727",      # Work Equipment Regulation (Arbeitsmittelverordnung)
                 "DOK-VO": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009021",     # Documentation Regulation (Sicherheits- und Gesundheitsschutzdokumente)
+                "FK-V": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20005222",       # Expert Knowledge Certification (forklift license etc.)
+                "VEXAT": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20003475",      # Explosive Atmospheres Ordinance
+                "GKV 2025": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001418",   # Workplace Exposure Limits Ordinance
+                "KennV": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009067",      # Safety Signage Ordinance
+                "VGÜ": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009034",        # Health Surveillance at Workplace
+                "ArbIG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008840",      # Labour Inspection Act
+                "ArbVG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008329",      # Labour Constitution Act (works councils)
+                "NSchG": "/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008502",      # Night Heavy Labour Act
             }
         },
         "DE": {
@@ -177,6 +185,14 @@ class Config:
                 "ArbStättV": "/arbst_ttv_2004/",  # Workplace Ordinance
                 "BetrSichV": "/betrsichv_2015/",  # Industrial Safety Regulation
                 "GefStoffV": "/gefstoffv_2010/",  # Hazardous Substances Ordinance
+                "PSA-BV": "/psa-bv/",             # PPE Usage Ordinance
+                "GGBefG": "/gefahrgutg/",         # Dangerous Goods Transport Act
+                "GGVSEB": "/ggvseb/",             # Dangerous Goods Transport Ordinance (ADR)
+                "ChemG": "/chemg/",               # Chemicals Act
+                "ChemVerbotsV": "/chemverbotsv_2017/",  # Chemical Prohibition Ordinance
+                "AwSV": "/awsv/",                 # Water-Hazardous Substances Facilities Ordinance
+                "ProdSG": "/prodsg_2021/",        # Product Safety Act
+                "SGB VII": "/sgb_7/",             # Statutory Accident Insurance (DGUV legal basis)
             }
         },
         "NL": {
@@ -193,6 +209,12 @@ class Config:
                 "Arboregeling": "/BWBR0008587/geldend",    # Working Conditions Regulation
                 "Arbeidstijdenwet": "/BWBR0007671/geldend", # Working Time Act
                 "ATB": "/BWBR0007687/geldend",              # Working Time Decree
+                "Wvgs": "/BWBR0007606/geldend",             # Dangerous Substances Transport Act
+                "Bvgs": "/BWBR0008080/geldend",             # Dangerous Substances Transport Decree
+                "Bbl": "/BWBR0041297/geldend",              # Building Works Decree (fire safety)
+                "Omgevingswet": "/BWBR0037885/geldend",     # Environment and Planning Act
+                "Wvr": "/BWBR0027466/geldend",              # Safety Regions Act (fire services)
+                "Warenwetbesluit PBM 2018": "/BWBR0040828/geldend",  # PPE Decree
             }
         }
     })
@@ -3397,18 +3419,33 @@ def parse_pdf_content(pdf_path_or_url: str, is_url: bool = True) -> Optional[Dic
             import os
             os.unlink(pdf_path)
 
-        # Extract sections from text (look for § patterns or numbered sections)
+        # Extract sections from text using multiple patterns for different jurisdictions
+        # Pattern 1: German/Austrian § sections (§ 1, § 2a, etc.)
         section_pattern = re.compile(r'(?:^|\n)(§\s*\d+[a-z]?\.?.*?)(?=\n§\s*\d+|\Z)', re.MULTILINE | re.DOTALL)
         section_matches = section_pattern.findall(full_text)
 
         if not section_matches:
-            # Try alternative pattern for numbered paragraphs like "(1)", "(2)"
+            # Pattern 2: Dutch Artikel sections (Artikel 1, Artikel 2, etc.)
+            nl_pattern = re.compile(r'(?:^|\n)(Artikel\s+\d+[a-z]?\.?.*?)(?=\nArtikel\s+\d+|\Z)', re.MULTILINE | re.DOTALL)
+            section_matches = nl_pattern.findall(full_text)
+
+        if not section_matches:
+            # Pattern 3: Numbered chapters/sections (1. Title, 2. Title, etc.)
+            numbered_pattern = re.compile(r'(?:^|\n)(\d+\.\s+[A-ZÄÖÜ].*?)(?=\n\d+\.\s+[A-ZÄÖÜ]|\Z)', re.MULTILINE | re.DOTALL)
+            section_matches = numbered_pattern.findall(full_text)
+
+        if not section_matches:
+            # Pattern 4: Numbered paragraphs like (1), (2)
             alt_pattern = re.compile(r'(?:^|\n)(\(\d+\).*?)(?=\n\(\d+\)|\Z)', re.MULTILINE | re.DOTALL)
             section_matches = alt_pattern.findall(full_text)
 
         for i, match in enumerate(section_matches):
-            # Try to extract section number
+            # Try to extract section number from various patterns
             num_match = re.match(r'§\s*(\d+[a-z]?)', match)
+            if not num_match:
+                num_match = re.match(r'Artikel\s+(\d+[a-z]?)', match)
+            if not num_match:
+                num_match = re.match(r'(\d+)\.\s+', match)
             section_num = num_match.group(1) if num_match else str(i + 1)
 
             sections.append({
@@ -5302,15 +5339,15 @@ class ATScraper(Scraper):
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a direct PDF URL - download only, no parsing
+        # Check if this is a direct PDF URL - download and extract text
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
-            log_info(f"  PDF source for {abbrev} - downloading without parsing")
+            log_info(f"  PDF source for {abbrev} - downloading and extracting text...")
             custom = load_custom_sources()
             source_info = custom.get('custom_sources', {}).get('AT', {}).get(abbrev, {})
             title = source_info.get('name', abbrev)
             description = source_info.get('description', f'PDF document: {title}')
 
-            # Download and store PDF only - no parsing
+            # Download and store PDF
             pdf_info = download_and_store_pdf(url, "AT", abbrev, doc_type="law")
             if not pdf_info:
                 log_warning(f"  Could not download PDF for {abbrev}")
@@ -5318,7 +5355,15 @@ class ATScraper(Scraper):
 
             pdf_path = pdf_info.get("local_path", "")
 
-            # Create document without parsed content
+            # Try to extract text from the downloaded PDF
+            extracted_text = ""
+            if HAS_PDF and pdf_path:
+                pdf_content = parse_pdf_content(pdf_path, is_url=False)
+                if pdf_content and pdf_content.get("text"):
+                    extracted_text = pdf_content["text"][:100000]
+                    log_success(f"  Extracted {len(extracted_text)} chars from PDF for {abbrev} ({pdf_content.get('page_count', 0)} pages)")
+
+            # Create document with extracted content when available
             doc = create_unified_document(
                 country="AT",
                 abbrev=abbrev,
@@ -5327,14 +5372,16 @@ class ATScraper(Scraper):
                 source_url=url,
                 source_authority="PDF Source",
                 content_text=description,
-                full_text="",  # No text extraction
+                full_text=extracted_text,
                 pdf_path=pdf_path,
                 ai_summary="",
                 metadata={
                     "description": description,
                     "pdf_filename": pdf_info.get("filename", ""),
                     "pdf_size_bytes": pdf_info.get("size_bytes", 0),
-                    "is_pdf_only": True
+                    "is_pdf_only": not bool(extracted_text),
+                    "pdf_text_extracted": bool(extracted_text),
+                    "pdf_page_count": pdf_content.get("page_count", 0) if HAS_PDF and pdf_path and pdf_content else 0
                 }
             )
 
@@ -5344,7 +5391,8 @@ class ATScraper(Scraper):
                 doc["source"]["pdf_url"] = url
                 doc["source"]["source_type"] = "pdf"
 
-            log_success(f"  Stored PDF for {abbrev} (no parsing)")
+            status = "with text extraction" if extracted_text else "without text extraction"
+            log_success(f"  Stored PDF for {abbrev} ({status})")
             return doc
 
         # PRIMARY: Scrape from HTML source (official government website)
@@ -5369,7 +5417,7 @@ class ATScraper(Scraper):
 
                 # SUPPLEMENTARY: Try to download PDF for offline access (non-blocking)
                 pdf_source = get_pdf_source_for_law("AT", abbrev)
-                if pdf_source and HAS_PDF:
+                if pdf_source:
                     pdf_url = pdf_source.get("url", "")
                     if pdf_url:
                         if not pdf_url.startswith('http'):
@@ -6032,22 +6080,22 @@ class DEScraper(Scraper):
         """Scrape a single law - used for parallel processing.
 
         Priority: HTML sources from official government sites (gesetze-im-internet.de)
-        PDF sources are downloaded and stored WITHOUT parsing - just for display.
+        PDF sources are downloaded and stored with text extraction when possible.
         """
         # Set current law for AI URL correction on sub-page failures
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a direct PDF URL - download only, no parsing
+        # Check if this is a direct PDF URL - download and extract text
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url:
-            log_info(f"  PDF source for {abbrev} - downloading without parsing")
+            log_info(f"  PDF source for {abbrev} - downloading and extracting text...")
             custom = load_custom_sources()
             source_info = custom.get('custom_sources', {}).get('DE', {}).get(abbrev, {})
             title = source_info.get('name', abbrev)
             description = source_info.get('description', f'PDF document: {title}')
 
-            # Download and store PDF only - no parsing
+            # Download and store PDF
             pdf_info = download_and_store_pdf(url, "DE", abbrev, doc_type="law")
             if not pdf_info:
                 log_warning(f"  Could not download PDF for {abbrev}")
@@ -6055,7 +6103,16 @@ class DEScraper(Scraper):
 
             pdf_path = pdf_info.get("local_path", "")
 
-            # Create document without parsed content
+            # Try to extract text from the downloaded PDF
+            extracted_text = ""
+            pdf_content = None
+            if HAS_PDF and pdf_path:
+                pdf_content = parse_pdf_content(pdf_path, is_url=False)
+                if pdf_content and pdf_content.get("text"):
+                    extracted_text = pdf_content["text"][:100000]
+                    log_success(f"  Extracted {len(extracted_text)} chars from PDF for {abbrev} ({pdf_content.get('page_count', 0)} pages)")
+
+            # Create document with extracted content when available
             doc = create_unified_document(
                 country="DE",
                 abbrev=abbrev,
@@ -6064,14 +6121,16 @@ class DEScraper(Scraper):
                 source_url=url,
                 source_authority="PDF Source",
                 content_text=description,
-                full_text="",  # No text extraction
+                full_text=extracted_text,
                 pdf_path=pdf_path,
                 ai_summary="",
                 metadata={
                     "description": description,
                     "pdf_filename": pdf_info.get("filename", ""),
                     "pdf_size_bytes": pdf_info.get("size_bytes", 0),
-                    "is_pdf_only": True
+                    "is_pdf_only": not bool(extracted_text),
+                    "pdf_text_extracted": bool(extracted_text),
+                    "pdf_page_count": pdf_content.get("page_count", 0) if pdf_content else 0
                 }
             )
 
@@ -6081,7 +6140,8 @@ class DEScraper(Scraper):
                 doc["source"]["pdf_url"] = url
                 doc["source"]["source_type"] = "pdf"
 
-            log_success(f"  Stored PDF for {abbrev} (no parsing)")
+            status = "with text extraction" if extracted_text else "without text extraction"
+            log_success(f"  Stored PDF for {abbrev} ({status})")
             return doc
 
         # PRIMARY: Scrape from HTML source (official government website)
@@ -6106,7 +6166,7 @@ class DEScraper(Scraper):
 
                 # SUPPLEMENTARY: Try to download PDF for offline access (non-blocking)
                 pdf_source = get_pdf_source_for_law("DE", abbrev)
-                if pdf_source and HAS_PDF:
+                if pdf_source:
                     pdf_url = pdf_source.get("url", "")
                     if pdf_url:
                         if not pdf_url.startswith('http'):
@@ -6119,21 +6179,30 @@ class DEScraper(Scraper):
 
                 return doc
 
-        # FALLBACK: If HTML parsing failed completely, download PDF without parsing
+        # FALLBACK: If HTML parsing failed, try PDF with text extraction
         pdf_source = get_pdf_source_for_law("DE", abbrev)
         if pdf_source:
             pdf_url = pdf_source.get("url", "")
             if pdf_url:
                 if not pdf_url.startswith('http'):
                     pdf_url = self._get_full_url(pdf_url)
-                log_warning(f"  HTML parsing failed for {abbrev}, downloading PDF fallback (no parsing)")
+                log_warning(f"  HTML parsing failed for {abbrev}, trying PDF fallback with text extraction...")
 
-                # Download and store PDF only - no parsing
+                # Download and store PDF with text extraction
                 pdf_info = download_and_store_pdf(pdf_url, "DE", abbrev, doc_type="law")
                 if pdf_info:
                     pdf_path = pdf_info.get("local_path", "")
                     title = pdf_source.get('name', abbrev)
                     description = pdf_source.get('description', f'PDF document: {title}')
+
+                    # Try to extract text from fallback PDF
+                    extracted_text = ""
+                    pdf_content = None
+                    if HAS_PDF and pdf_path:
+                        pdf_content = parse_pdf_content(pdf_path, is_url=False)
+                        if pdf_content and pdf_content.get("text"):
+                            extracted_text = pdf_content["text"][:100000]
+                            log_success(f"  Extracted {len(extracted_text)} chars from fallback PDF for {abbrev}")
 
                     doc = create_unified_document(
                         country="DE",
@@ -6143,15 +6212,17 @@ class DEScraper(Scraper):
                         source_url=pdf_url,
                         source_authority="PDF Source",
                         content_text=description,
-                        full_text="",
+                        full_text=extracted_text,
                         pdf_path=pdf_path,
                         ai_summary="",
                         metadata={
                             "description": description,
                             "pdf_filename": pdf_info.get("filename", ""),
                             "pdf_size_bytes": pdf_info.get("size_bytes", 0),
-                            "is_pdf_only": True,
-                            "pdf_fallback": True
+                            "is_pdf_only": not bool(extracted_text),
+                            "pdf_text_extracted": bool(extracted_text),
+                            "pdf_fallback": True,
+                            "pdf_page_count": pdf_content.get("page_count", 0) if pdf_content else 0
                         }
                     )
 
@@ -6160,7 +6231,8 @@ class DEScraper(Scraper):
                         doc["source"]["pdf_url"] = pdf_url
                         doc["source"]["source_type"] = "pdf"
 
-                    log_success(f"  Stored PDF fallback for {abbrev} (no parsing)")
+                    status = "with text extraction" if extracted_text else "without text extraction"
+                    log_success(f"  Stored PDF fallback for {abbrev} ({status})")
                     return doc
 
         return None
@@ -6637,22 +6709,22 @@ class NLScraper(Scraper):
         """Scrape a single law - used for parallel processing.
 
         Priority: HTML sources from official government sites (wetten.overheid.nl)
-        PDF sources are downloaded and stored WITHOUT parsing - just for display.
+        PDF sources are downloaded and stored with text extraction when possible.
         """
         # Set current law for AI URL correction on sub-page failures
         self._current_law_abbr = abbrev
         log_info(f"Scraping {abbrev} with full text extraction...")
         url = self._get_full_url(path)
 
-        # Check if this is a direct PDF URL - download only, no parsing
+        # Check if this is a direct PDF URL - download and extract text
         if url.lower().endswith('.pdf') or 'blob=publicationFile' in url or '/pdf' in url:
-            log_info(f"  PDF source for {abbrev} - downloading without parsing")
+            log_info(f"  PDF source for {abbrev} - downloading and extracting text...")
             custom = load_custom_sources()
             source_info = custom.get('custom_sources', {}).get('NL', {}).get(abbrev, {})
             title = source_info.get('name', abbrev)
             description = source_info.get('description', f'PDF document: {title}')
 
-            # Download and store PDF only - no parsing
+            # Download and store PDF
             pdf_info = download_and_store_pdf(url, "NL", abbrev, doc_type="law")
             if not pdf_info:
                 log_warning(f"  Could not download PDF for {abbrev}")
@@ -6660,7 +6732,16 @@ class NLScraper(Scraper):
 
             pdf_path = pdf_info.get("local_path", "")
 
-            # Create document without parsed content
+            # Try to extract text from the downloaded PDF
+            extracted_text = ""
+            pdf_content = None
+            if HAS_PDF and pdf_path:
+                pdf_content = parse_pdf_content(pdf_path, is_url=False)
+                if pdf_content and pdf_content.get("text"):
+                    extracted_text = pdf_content["text"][:100000]
+                    log_success(f"  Extracted {len(extracted_text)} chars from PDF for {abbrev} ({pdf_content.get('page_count', 0)} pages)")
+
+            # Create document with extracted content when available
             doc = create_unified_document(
                 country="NL",
                 abbrev=abbrev,
@@ -6669,14 +6750,16 @@ class NLScraper(Scraper):
                 source_url=url,
                 source_authority="PDF Source",
                 content_text=description,
-                full_text="",  # No text extraction
+                full_text=extracted_text,
                 pdf_path=pdf_path,
                 ai_summary="",
                 metadata={
                     "description": description,
                     "pdf_filename": pdf_info.get("filename", ""),
                     "pdf_size_bytes": pdf_info.get("size_bytes", 0),
-                    "is_pdf_only": True
+                    "is_pdf_only": not bool(extracted_text),
+                    "pdf_text_extracted": bool(extracted_text),
+                    "pdf_page_count": pdf_content.get("page_count", 0) if pdf_content else 0
                 }
             )
 
@@ -6686,7 +6769,8 @@ class NLScraper(Scraper):
                 doc["source"]["pdf_url"] = url
                 doc["source"]["source_type"] = "pdf"
 
-            log_success(f"  Stored PDF for {abbrev} (no parsing)")
+            status = "with text extraction" if extracted_text else "without text extraction"
+            log_success(f"  Stored PDF for {abbrev} ({status})")
             return doc
 
         # PRIMARY: Scrape from HTML source (official government website)
@@ -6709,7 +6793,7 @@ class NLScraper(Scraper):
 
                 # SUPPLEMENTARY: Try to download PDF for offline access (non-blocking)
                 pdf_source = get_pdf_source_for_law("NL", abbrev)
-                if pdf_source and HAS_PDF:
+                if pdf_source:
                     pdf_url = pdf_source.get("url", "")
                     if pdf_url:
                         if not pdf_url.startswith('http'):
@@ -6722,21 +6806,30 @@ class NLScraper(Scraper):
 
                 return doc
 
-        # FALLBACK: If HTML parsing failed completely, download PDF without parsing
+        # FALLBACK: If HTML parsing failed, try PDF with text extraction
         pdf_source = get_pdf_source_for_law("NL", abbrev)
         if pdf_source:
             pdf_url = pdf_source.get("url", "")
             if pdf_url:
                 if not pdf_url.startswith('http'):
                     pdf_url = self._get_full_url(pdf_url)
-                log_warning(f"  HTML parsing failed for {abbrev}, downloading PDF fallback (no parsing)")
+                log_warning(f"  HTML parsing failed for {abbrev}, trying PDF fallback with text extraction...")
 
-                # Download and store PDF only - no parsing
+                # Download and store PDF with text extraction
                 pdf_info = download_and_store_pdf(pdf_url, "NL", abbrev, doc_type="law")
                 if pdf_info:
                     pdf_path = pdf_info.get("local_path", "")
                     title = pdf_source.get('name', abbrev)
                     description = pdf_source.get('description', f'PDF document: {title}')
+
+                    # Try to extract text from fallback PDF
+                    extracted_text = ""
+                    pdf_content = None
+                    if HAS_PDF and pdf_path:
+                        pdf_content = parse_pdf_content(pdf_path, is_url=False)
+                        if pdf_content and pdf_content.get("text"):
+                            extracted_text = pdf_content["text"][:100000]
+                            log_success(f"  Extracted {len(extracted_text)} chars from fallback PDF for {abbrev}")
 
                     doc = create_unified_document(
                         country="NL",
@@ -6746,15 +6839,17 @@ class NLScraper(Scraper):
                         source_url=pdf_url,
                         source_authority="PDF Source",
                         content_text=description,
-                        full_text="",
+                        full_text=extracted_text,
                         pdf_path=pdf_path,
                         ai_summary="",
                         metadata={
                             "description": description,
                             "pdf_filename": pdf_info.get("filename", ""),
                             "pdf_size_bytes": pdf_info.get("size_bytes", 0),
-                            "is_pdf_only": True,
-                            "pdf_fallback": True
+                            "is_pdf_only": not bool(extracted_text),
+                            "pdf_text_extracted": bool(extracted_text),
+                            "pdf_fallback": True,
+                            "pdf_page_count": pdf_content.get("page_count", 0) if pdf_content else 0
                         }
                     )
 
@@ -6763,7 +6858,8 @@ class NLScraper(Scraper):
                         doc["source"]["pdf_url"] = pdf_url
                         doc["source"]["source_type"] = "pdf"
 
-                    log_success(f"  Stored PDF fallback for {abbrev} (no parsing)")
+                    status = "with text extraction" if extracted_text else "without text extraction"
+                    log_success(f"  Stored PDF fallback for {abbrev} ({status})")
                     return doc
 
         return None
