@@ -21,6 +21,7 @@ on:
 jobs:
   check-and-update:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: write
       issues: write
@@ -35,10 +36,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Install Python dependencies
         run: |
-          pip install requests beautifulsoup4 google-generativeai tqdm
+          pip install -r requirements.txt
 
       - name: Check for law updates
         id: check_updates
@@ -49,13 +51,24 @@ jobs:
 
           # Check for updates across all countries
           echo "Checking for law updates..."
-          python law_manager.py check-updates --all > update_check.txt 2>&1 || true
+          python law_manager.py check-updates --all 2>&1 | tee update_check_raw.txt || true
+
+          # Strip ANSI color codes before parsing output
+          sed 's/\x1b\[[0-9;]*m//g' update_check_raw.txt > update_check.txt
 
           # Parse output to determine if updates exist
-          if grep -q "has changes" update_check.txt || grep -q "needs update" update_check.txt; then
-            echo "updates_available=true" >> $GITHUB_OUTPUT
-            echo "Updates found:"
-            cat update_check.txt
+          # The script outputs "X/Y laws need updating" in its summary and
+          # "UPDATED laws" / "NEW laws" when changes are found
+          if grep -qE "(laws need updating|UPDATED laws|NEW laws)" update_check.txt; then
+            # Verify it's not "0/N laws need updating"
+            if grep -qP "^Summary: 0/" update_check.txt && ! grep -q "NEW laws" update_check.txt && ! grep -q "UPDATED laws" update_check.txt; then
+              echo "updates_available=false" >> $GITHUB_OUTPUT
+              echo "No updates found (0 laws need updating)"
+            else
+              echo "updates_available=true" >> $GITHUB_OUTPUT
+              echo "Updates found:"
+              cat update_check.txt
+            fi
           else
             echo "updates_available=false" >> $GITHUB_OUTPUT
             echo "No updates found"
@@ -73,14 +86,48 @@ jobs:
 
           echo "Scraping updated laws for: $COUNTRIES"
 
-          if [ "$COUNTRIES" = "all" ]; then
-            python law_manager.py scrape --all --check-updates
+          # Use --select with laws identified in the check step to avoid
+          # running check-updates again (which doubles HTTP requests).
+          # check-updates output format after ANSI strip:
+          #   + ASchG (5 sections)       <- new laws
+          #   ~ AZG (hash: abc -> def)   <- updated laws
+          UPDATED_LAWS=$(grep -oP '^\s+[+~]\s+\K\S+' update_check.txt | paste -sd, -)
+
+          if [ -n "$UPDATED_LAWS" ]; then
+            echo "Scraping specific laws: $UPDATED_LAWS"
+            if [ "$COUNTRIES" = "all" ]; then
+              for country in AT DE NL; do
+                # Filter laws for this country from the check output
+                # Each country section starts with "Checking {CC}" header
+                COUNTRY_LAWS=$(sed -n "/Checking ${country}/,/Checking [A-Z]\|^$/p" update_check.txt | grep -oP '^\s+[+~]\s+\K\S+' | paste -sd, -)
+                if [ -n "$COUNTRY_LAWS" ]; then
+                  echo "Scraping $country: $COUNTRY_LAWS"
+                  python law_manager.py scrape --country "$country" --select "$COUNTRY_LAWS"
+                fi
+              done
+            else
+              IFS=',' read -ra COUNTRY_ARRAY <<< "$COUNTRIES"
+              for country in "${COUNTRY_ARRAY[@]}"; do
+                country=$(echo "$country" | tr -d ' ')
+                COUNTRY_LAWS=$(sed -n "/Checking ${country}/,/Checking [A-Z]\|^$/p" update_check.txt | grep -oP '^\s+[+~]\s+\K\S+' | paste -sd, -)
+                if [ -n "$COUNTRY_LAWS" ]; then
+                  echo "Scraping $country: $COUNTRY_LAWS"
+                  python law_manager.py scrape --country "$country" --select "$COUNTRY_LAWS"
+                fi
+              done
+            fi
           else
-            IFS=',' read -ra COUNTRY_ARRAY <<< "$COUNTRIES"
-            for country in "${COUNTRY_ARRAY[@]}"; do
-              echo "Scraping $country..."
-              python law_manager.py scrape --country "$country" --check-updates
-            done
+            # Fallback: use --check-updates if we couldn't parse specific laws
+            echo "Could not parse specific laws, falling back to --check-updates"
+            if [ "$COUNTRIES" = "all" ]; then
+              python law_manager.py scrape --all --check-updates
+            else
+              IFS=',' read -ra COUNTRY_ARRAY <<< "$COUNTRIES"
+              for country in "${COUNTRY_ARRAY[@]}"; do
+                echo "Scraping $country..."
+                python law_manager.py scrape --country "$country" --check-updates
+              done
+            fi
           fi
 
       - name: Clean and restructure
@@ -161,6 +208,7 @@ jobs:
             });
 
       - name: Summary
+        if: always()
         run: |
           echo "### Law Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -175,4 +223,15 @@ jobs:
             fi
           else
             echo "- No updates found - all laws are current" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Append check output for debugging
+          if [ -f eu_safety_laws/update_check.txt ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "<details><summary>Check output</summary>" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat eu_safety_laws/update_check.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "</details>" >> $GITHUB_STEP_SUMMARY
           fi

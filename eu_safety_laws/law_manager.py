@@ -3677,53 +3677,74 @@ def download_and_store_pdf(url: str, country: str, abbrev: str, doc_type: str = 
     last_http_status = None
 
     for attempt_url in urls_to_try:
-        try:
-            # Download the PDF
-            log_info(f"Downloading PDF for {abbrev} from {attempt_url[:60]}...")
-            response = requests.get(attempt_url, timeout=CONFIG.request_timeout, headers=Scraper.HTTP_HEADERS)
-            response.raise_for_status()
+        # Retry each URL with exponential backoff before trying fallbacks
+        for retry in range(CONFIG.max_retries):
+            try:
+                # Download the PDF
+                if retry == 0:
+                    log_info(f"Downloading PDF for {abbrev} from {attempt_url[:60]}...")
+                else:
+                    log_info(f"  Retry {retry}/{CONFIG.max_retries - 1} for {abbrev}...")
+                response = requests.get(attempt_url, timeout=CONFIG.request_timeout, headers=Scraper.HTTP_HEADERS)
+                response.raise_for_status()
 
-            # Verify it's actually a PDF
-            content_type = response.headers.get('Content-Type', '')
-            if 'application/pdf' not in content_type and not attempt_url.lower().endswith('.pdf'):
-                log_warning(f"URL may not be a PDF (Content-Type: {content_type})")
+                # Verify it's actually a PDF
+                content_type = response.headers.get('Content-Type', '')
+                if 'application/pdf' not in content_type and not attempt_url.lower().endswith('.pdf'):
+                    log_warning(f"URL may not be a PDF (Content-Type: {content_type})")
 
-            # Save to local file
-            with open(local_path, 'wb') as f:
-                f.write(response.content)
+                # Save to local file
+                with open(local_path, 'wb') as f:
+                    f.write(response.content)
 
-            size_bytes = len(response.content)
-            log_success(f"Stored PDF: {filename} ({size_bytes / 1024:.1f} KB)")
+                size_bytes = len(response.content)
+                log_success(f"Stored PDF: {filename} ({size_bytes / 1024:.1f} KB)")
 
-            # Record success in health tracker
-            SOURCE_HEALTH.record_success(source_id, attempt_url)
-            SOURCE_HEALTH.save()
+                # Record success in health tracker
+                SOURCE_HEALTH.record_success(source_id, attempt_url)
+                SOURCE_HEALTH.save()
 
-            # If fallback worked, suggest updating the primary URL
-            if attempt_url != url:
-                log_info(f"  ℹ️  Fallback URL worked. Consider updating primary URL in custom_sources.json")
+                # If fallback worked, suggest updating the primary URL
+                if attempt_url != url:
+                    log_info(f"  ℹ️  Fallback URL worked. Consider updating primary URL in custom_sources.json")
 
-            return {
-                "local_path": str(local_path),
-                "filename": filename,
-                "url": attempt_url,
-                "size_bytes": size_bytes,
-                "used_fallback": attempt_url != url
-            }
+                return {
+                    "local_path": str(local_path),
+                    "filename": filename,
+                    "url": attempt_url,
+                    "size_bytes": size_bytes,
+                    "used_fallback": attempt_url != url
+                }
 
-        except requests.exceptions.HTTPError as e:
-            last_error = e
-            last_http_status = e.response.status_code if e.response else None
-            if attempt_url == urls_to_try[-1]:  # Last URL in list
-                break
-            log_warning(f"  Primary URL failed ({last_http_status}), trying fallback...")
+            except requests.exceptions.HTTPError as e:
+                last_error = e
+                last_http_status = e.response.status_code if e.response else None
+                # Don't retry on 4xx client errors (except 429 rate limit)
+                if last_http_status and 400 <= last_http_status < 500 and last_http_status != 429:
+                    log_warning(f"  HTTP {last_http_status} for {abbrev} - skipping retries")
+                    break
+                if retry < CONFIG.max_retries - 1:
+                    wait_time = 2 ** retry  # 1s, 2s, 4s
+                    log_warning(f"  HTTP {last_http_status} on attempt {retry + 1}, retrying in {wait_time}s...")
+                    time.sleep(wait_time)
 
-        except requests.exceptions.RequestException as e:
-            last_error = e
-            last_http_status = None
-            if attempt_url == urls_to_try[-1]:  # Last URL in list
-                break
-            log_warning(f"  Primary URL failed, trying fallback...")
+            except requests.exceptions.RequestException as e:
+                last_error = e
+                last_http_status = None
+                if retry < CONFIG.max_retries - 1:
+                    wait_time = 2 ** retry
+                    log_warning(f"  Request failed on attempt {retry + 1}, retrying in {wait_time}s...")
+                    time.sleep(wait_time)
+        else:
+            # All retries exhausted for this URL, try next fallback
+            if attempt_url != urls_to_try[-1]:
+                log_warning(f"  All retries failed for {attempt_url[:60]}, trying fallback...")
+            continue
+
+        # break from retry loop landed here (4xx error) - try next fallback
+        if attempt_url != urls_to_try[-1]:
+            log_warning(f"  URL failed ({last_http_status}), trying fallback...")
+        continue
 
     # All URLs failed - record error and track health
     error_category = categorize_request_error(last_error, last_http_status)
@@ -4302,7 +4323,7 @@ def check_for_updates(country: str) -> Dict[str, Any]:
     if not scraper_class:
         return {"new": [], "updated": [], "unchanged": [], "error": True}
 
-    results = {"new": [], "updated": [], "unchanged": []}
+    results = {"new": [], "updated": [], "unchanged": [], "failed": []}
 
     main_laws = list(CONFIG.sources.get(country, {}).get('main_laws', {}).items())
     log_info(f"Checking {len(main_laws)} {country} laws for updates...")
@@ -4349,6 +4370,18 @@ def check_for_updates(country: str) -> Dict[str, Any]:
                         'abbreviation': abbrev,
                         'hash': new_hash[:8]
                     })
+            else:
+                results['failed'].append({
+                    'abbreviation': abbrev,
+                    'reason': 'parse_error'
+                })
+                log_warning(f"Could not parse {abbrev} for update check")
+        else:
+            results['failed'].append({
+                'abbreviation': abbrev,
+                'reason': 'fetch_error'
+            })
+            log_warning(f"Could not fetch {abbrev} for update check")
 
         time.sleep(CONFIG.rate_limit_delay)
         pbar.update(1)
@@ -9435,10 +9468,19 @@ def cmd_check_updates(args) -> int:
             for item in results['unchanged']:
                 print(f"  = {item['abbreviation']} (hash: {item['hash']})")
 
+        if results.get('failed'):
+            print(f"\n{Colors.RED}FAILED to check:{Colors.RESET}")
+            for item in results['failed']:
+                print(f"  ! {item['abbreviation']} ({item['reason']})")
+
         # Summary
-        total = len(results['new']) + len(results['updated']) + len(results['unchanged'])
+        total = len(results['new']) + len(results['updated']) + len(results['unchanged']) + len(results.get('failed', []))
         needs_update = len(results['new']) + len(results['updated'])
-        print(f"\n{Colors.CYAN}Summary: {needs_update}/{total} laws need updating{Colors.RESET}")
+        failed_count = len(results.get('failed', []))
+        summary_parts = [f"{needs_update}/{total} laws need updating"]
+        if failed_count > 0:
+            summary_parts.append(f"{failed_count} failed to check")
+        print(f"\n{Colors.CYAN}Summary: {', '.join(summary_parts)}{Colors.RESET}")
 
         if needs_update > 0:
             print(f"\n{Colors.DIM}Run 'python law_manager.py scrape --country {country} --check-updates' to update only changed laws{Colors.RESET}")
