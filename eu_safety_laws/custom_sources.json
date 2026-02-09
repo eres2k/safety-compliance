@@ -522,6 +522,91 @@
         "enabled": true,
         "category": "general",
         "source_type": "pdf"
+      },
+      "_category_core_laws_new": {
+        "_folder": true,
+        "_name": "Additional Core Laws & Regulations",
+        "_description": "Key Austrian safety laws added for comprehensive coverage"
+      },
+      "FK-V": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20005222",
+        "name": "Fachkenntnisnachweis-Verordnung",
+        "name_en": "Expert Knowledge Certification Ordinance",
+        "description": "Core regulation for forklift (Hubstapler) operator certification. Mandates theoretical and practical exams for operating forklifts, cranes, and other specified dangerous equipment. Every forklift driver must hold a valid Staplerschein under this ordinance.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["forklift", "certification", "Staplerschein", "crane operator"]
+      },
+      "VEXAT": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20003475",
+        "name": "Verordnung explosionsfähige Atmosphären",
+        "name_en": "Explosive Atmospheres Ordinance",
+        "description": "Implements EU ATEX workplace directive. Applies to warehouse battery charging areas, chemical storage, and dust-generating operations. Requires explosion protection documents and zone classification.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["battery charging", "ATEX", "chemical storage", "fire safety"]
+      },
+      "GKV 2025": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001418",
+        "name": "Grenzwerteverordnung 2025",
+        "name_en": "Workplace Exposure Limit Values Ordinance 2025",
+        "description": "Establishes binding occupational exposure limits (MAK/TRK values) for hazardous substances in workplace air. Contains extensive substance list in Annex I.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["chemicals", "exposure limits", "hazmat", "air quality"]
+      },
+      "KennV": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009067",
+        "name": "Kennzeichnungsverordnung",
+        "name_en": "Safety and Health Signage Ordinance",
+        "description": "Mandates type, placement, and design of safety signs. Covers forklift route markings, pedestrian walkways, hazardous area warnings, emergency exit signage, and chemical storage labeling.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["signage", "floor marking", "safety signs", "pedestrian safety"]
+      },
+      "VGÜ": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009034",
+        "name": "Verordnung über die Gesundheitsüberwachung am Arbeitsplatz",
+        "name_en": "Health Surveillance at the Workplace Ordinance",
+        "description": "Specifies mandatory medical examinations for workers exposed to health hazards including chemical handlers, night workers, noise-exposed workers, and heavy physical labor.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["medical examination", "night shift", "health surveillance"]
+      },
+      "ArbIG": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008840",
+        "name": "Arbeitsinspektionsgesetz 1993",
+        "name_en": "Labour Inspection Act 1993",
+        "description": "Establishes authority, powers, and procedures of the Austrian Labour Inspectorate. Defines how workplace inspections are conducted and how violations are penalized.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["inspection", "compliance", "enforcement", "penalties"]
+      },
+      "ArbVG": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008329",
+        "name": "Arbeitsverfassungsgesetz",
+        "name_en": "Labour Constitution Act",
+        "description": "Governs works councils (Betriebsrat), collective agreements, and employee co-determination rights on safety measures, shift schedules, and working conditions.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["works council", "Betriebsrat", "employee rights", "co-determination"]
+      },
+      "NSchG": {
+        "url": "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008502",
+        "name": "Nachtschwerarbeitsgesetz",
+        "name_en": "Night Heavy Labour Act",
+        "description": "Special protections for workers performing physically demanding work during night hours (22:00-06:00). Grants additional rest days, health care entitlements, and limits average working time.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["night shift", "heavy labor", "rest periods", "shift work"]
       }
     },
     "DE": {
@@ -1126,6 +1211,91 @@
         "enabled": true,
         "category": "technical_trgs",
         "source_type": "pdf"
+      },
+      "_category_core_laws_new": {
+        "_folder": true,
+        "_name": "Additional Core Laws & Regulations",
+        "_description": "Key German safety laws added for comprehensive coverage"
+      },
+      "PSA-BV": {
+        "url": "https://www.gesetze-im-internet.de/psa-bv/",
+        "name": "PSA-Benutzungsverordnung",
+        "name_en": "PPE Usage Ordinance",
+        "description": "Implements EU Directive 89/656/EEC on minimum PPE requirements. Mandates employers provide appropriate PPE with CE marking and instruct employees on proper use.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["PPE", "safety shoes", "high-vis", "gloves", "hearing protection"]
+      },
+      "GGBefG": {
+        "url": "https://www.gesetze-im-internet.de/gefahrgutg/",
+        "name": "Gefahrgutbeförderungsgesetz",
+        "name_en": "Dangerous Goods Transport Act",
+        "description": "Federal law governing transport of dangerous goods. Establishes obligations for warehouses receiving, storing, and dispatching hazardous goods. Legal basis for dangerous goods safety advisor (Gefahrgutbeauftragter) requirements.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["hazmat", "dangerous goods", "ADR", "transport"]
+      },
+      "GGVSEB": {
+        "url": "https://www.gesetze-im-internet.de/ggvseb/",
+        "name": "Gefahrgutverordnung Straße, Eisenbahn und Binnenschifffahrt",
+        "name_en": "Dangerous Goods Transport Ordinance (Road/Rail/Waterway)",
+        "description": "Key implementing ordinance integrating ADR/RID/ADN standards into German law. Covers classification, packaging, labeling, loading/unloading procedures for dangerous goods in warehouses.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["hazmat", "ADR", "loading", "unloading", "dock"]
+      },
+      "ChemG": {
+        "url": "https://www.gesetze-im-internet.de/chemg/",
+        "name": "Chemikaliengesetz",
+        "name_en": "Chemicals Act",
+        "description": "Overarching federal law for chemical safety. Legal basis for GefStoffV. Establishes framework for identification, labeling, and handling of dangerous chemical substances.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["chemicals", "hazmat", "labeling", "safety data sheets"]
+      },
+      "ChemVerbotsV": {
+        "url": "https://www.gesetze-im-internet.de/chemverbotsv_2017/",
+        "name": "Chemikalien-Verbotsverordnung",
+        "name_en": "Chemical Prohibition Ordinance",
+        "description": "Regulates restrictions on marketing hazardous chemicals. Requires expert knowledge certification (Sachkunde) for handling regulated chemicals.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["chemicals", "hazmat", "restricted substances"]
+      },
+      "AwSV": {
+        "url": "https://www.gesetze-im-internet.de/awsv/",
+        "name": "Verordnung über Anlagen zum Umgang mit wassergefährdenden Stoffen",
+        "name_en": "Water-Hazardous Substances Facilities Ordinance",
+        "description": "Applicable to warehouse storage of water-hazardous substances. Defines water hazard classes (WGK 1-3), containment requirements, and leak detection. Section 31 covers drum/container storage.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["chemicals", "spill containment", "storage", "environmental"]
+      },
+      "ProdSG": {
+        "url": "https://www.gesetze-im-internet.de/prodsg_2021/",
+        "name": "Produktsicherheitsgesetz",
+        "name_en": "Product Safety Act",
+        "description": "Ensures only safe products are placed on the market. Covers safety requirements for forklift attachments, racking systems, lifting equipment, and packaging machinery used in warehouses.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["equipment safety", "racking", "forklift attachments", "machinery"]
+      },
+      "SGB VII": {
+        "url": "https://www.gesetze-im-internet.de/sgb_7/",
+        "name": "Siebtes Buch Sozialgesetzbuch - Gesetzliche Unfallversicherung",
+        "name_en": "Social Code Book VII - Statutory Accident Insurance",
+        "description": "Legal foundation for the German statutory accident insurance system (DGUV). Authorizes Berufsgenossenschaften to issue binding accident prevention regulations. Governs accident reporting and workplace investigations.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["accident insurance", "DGUV", "accident reporting", "BG"]
       }
     },
     "NL": {
@@ -1370,11 +1540,86 @@
         "enabled": false,
         "category": "pdf_verification",
         "source_type": "pdf"
+      },
+      "_category_core_laws_new": {
+        "_folder": true,
+        "_name": "Additional Core Laws & Regulations",
+        "_description": "Key Dutch safety laws added for comprehensive coverage"
+      },
+      "Wvgs": {
+        "url": "https://wetten.overheid.nl/BWBR0007606/geldend",
+        "name": "Wet vervoer gevaarlijke stoffen",
+        "name_en": "Transport of Dangerous Substances Act",
+        "description": "Primary Dutch law governing transport of dangerous substances. Covers offering, accepting, loading, unloading dangerous substances. Directly applies to warehouse dock operations. Incorporates European ADR framework.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["hazmat", "dock", "dangerous goods", "ADR", "transport"]
+      },
+      "Bvgs": {
+        "url": "https://wetten.overheid.nl/BWBR0008080/geldend",
+        "name": "Besluit vervoer gevaarlijke stoffen",
+        "name_en": "Transport of Dangerous Substances Decree",
+        "description": "Implementing decree providing detailed rules for dangerous goods handling at warehouses, including loading, unloading, and forklift transport of hazardous substances.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["hazmat", "dock", "forklift", "loading", "unloading"]
+      },
+      "Bbl": {
+        "url": "https://wetten.overheid.nl/BWBR0041297/geldend",
+        "name": "Besluit bouwwerken leefomgeving",
+        "name_en": "Building Works in the Living Environment Decree",
+        "description": "Contains mandatory building safety rules including fire safety for warehouses. Covers fire compartmentalization, escape routes, fire detection, and structural fire resistance (minimum 60 min for storage).",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["fire safety", "building code", "escape routes", "fire compartment"]
+      },
+      "Omgevingswet": {
+        "url": "https://wetten.overheid.nl/BWBR0037885/geldend",
+        "name": "Omgevingswet",
+        "name_en": "Environment and Planning Act",
+        "description": "Overarching Dutch environmental law (effective Jan 2024) consolidating 26 former laws. Governs environmental permits, Seveso facility designations, and hazardous substance storage regulations.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["environmental permit", "Seveso", "hazardous storage", "emissions"]
+      },
+      "Wvr": {
+        "url": "https://wetten.overheid.nl/BWBR0027466/geldend",
+        "name": "Wet veiligheidsregio's",
+        "name_en": "Safety Regions Act",
+        "description": "Governs fire services, disaster response, and crisis management. Defines how fire safety inspections are conducted for warehouses and how emergency response is organized.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["fire safety", "emergency response", "fire inspection", "evacuation"]
+      },
+      "Warenwetbesluit PBM 2018": {
+        "url": "https://wetten.overheid.nl/BWBR0040828/geldend",
+        "name": "Warenwetbesluit persoonlijke beschermingsmiddelen 2018",
+        "name_en": "Commodities Act Decree on Personal Protective Equipment 2018",
+        "description": "Implements EU Regulation 2016/425 on PPE. Establishes requirements for all PPE provided to warehouse workers including safety shoes, high-vis, hearing protection, gloves, and respiratory protection.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["PPE", "safety shoes", "high-vis", "gloves", "hearing protection"]
+      },
+      "Warenwetbesluit explosieveilig materieel 2016": {
+        "url": "https://wetten.overheid.nl/BWBR0037644/geldend",
+        "name": "Warenwetbesluit explosieveilig materieel 2016",
+        "name_en": "Commodities Act Decree on Explosion-Proof Equipment 2016",
+        "description": "Implements EU ATEX Directive 2014/34/EU. Regulates equipment in potentially explosive atmospheres: electrical equipment, forklifts, lighting in battery charging zones and chemical storage areas.",
+        "enabled": true,
+        "category": "regulations",
+        "source_type": "custom",
+        "amazon_relevance": ["ATEX", "battery charging", "chemical storage", "explosion-proof"]
       }
     }
   },
   "created_at": "2025-12-18T00:42:55.558440",
-  "updated_at": "2025-12-21T12:00:00.000000",
+  "updated_at": "2026-02-09T12:00:00.000000",
   "_changelog": [
     "2025-12-21: Major update - Added new PDFs and alphabetical sorting",
     "- DE: Added DGUV Vorschrift 2, 3, 52, 54 (regulations)",
@@ -1387,6 +1632,18 @@
     "- AT: Reorganized all Merkblätter alphabetically within categories",
     "- NL: Added RIVM research reports (2021-0096, 2023-0417, 2024-0097, 620801002)",
     "- NL: Reorganized all documents alphabetically within categories",
-    "2025-12-20: Fixed 16 broken URLs based on pipeline_errors.json analysis"
+    "2025-12-20: Fixed 16 broken URLs based on pipeline_errors.json analysis",
+    "2026-02-09: Major expansion - Added 23 new core laws across all countries",
+    "- AT: Added FK-V (forklift certification), VEXAT (ATEX), GKV 2025 (exposure limits)",
+    "- AT: Added KennV (signage), VGÜ (health surveillance), ArbIG (inspection)",
+    "- AT: Added ArbVG (works councils), NSchG (night heavy labour)",
+    "- DE: Added PSA-BV (PPE), GGBefG/GGVSEB (dangerous goods transport)",
+    "- DE: Added ChemG (chemicals), ChemVerbotsV (chemical prohibitions)",
+    "- DE: Added AwSV (water-hazardous substances), ProdSG (product safety)",
+    "- DE: Added SGB VII (statutory accident insurance/DGUV legal basis)",
+    "- NL: Added Wvgs/Bvgs (dangerous substances transport)",
+    "- NL: Added Bbl (building fire safety), Omgevingswet (environment)",
+    "- NL: Added Wvr (safety regions/fire services)",
+    "- NL: Added Warenwetbesluit PBM 2018 (PPE), explosieveilig materieel 2016 (ATEX)"
   ]
 }
