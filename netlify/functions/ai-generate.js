@@ -12,6 +12,35 @@ const CACHE_TTL_SECONDS = 48 * 60 * 60
 // ============================================
 // Chat Log Helper - logs interactions to Netlify Blobs
 // ============================================
+
+// Detect which AI feature triggered the request from the systemPrompt content
+function detectFeatureType(systemPrompt, prompt) {
+  if (!systemPrompt && !prompt) return 'unknown'
+  const sp = (systemPrompt || '').toLowerCase()
+  const p = (prompt || '').toLowerCase()
+
+  if (sp.includes('erwin') || sp.includes('lead workplace health')) return 'chatbot'
+  if (p.includes('simplify') || p.includes('manager level') || p.includes('associate level')) return 'simplify'
+  if (p.includes('flowchart') || p.includes('mermaid')) return 'flowchart'
+  if (p.includes('equivalent law') || p.includes('cross-border')) return 'cross-border'
+  if (p.includes('compare') && p.includes('countries')) return 'multi-country'
+  if (p.includes('translate')) return 'translate'
+  if (p.includes('compliance check') || p.includes('checklist')) return 'compliance'
+  if (p.includes('explain') && p.includes('provision')) return 'explain'
+  if (p.includes('semantic tag') || p.includes('role tag')) return 'tags'
+  return 'general'
+}
+
+// Detect framework/jurisdiction from the systemPrompt
+function detectFramework(systemPrompt) {
+  if (!systemPrompt) return 'unknown'
+  const sp = systemPrompt.toLowerCase()
+  if (sp.includes('aschg') || sp.includes('austrian') || sp.includes('österreich')) return 'AT'
+  if (sp.includes('dguv') || sp.includes('german') || sp.includes('arbschg')) return 'DE'
+  if (sp.includes('arbowet') || sp.includes('dutch') || sp.includes('netherlands')) return 'NL'
+  return 'unknown'
+}
+
 async function logChatInteraction(context, logEntry) {
   try {
     const store = getStore({
@@ -21,11 +50,12 @@ async function logChatInteraction(context, logEntry) {
     })
 
     const logId = `log_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+    const now = new Date().toISOString()
 
     await store.setJSON(logId, {
       ...logEntry,
       id: logId,
-      timestamp: new Date().toISOString()
+      timestamp: now
     })
 
     // Update the index (best-effort, non-blocking)
@@ -33,12 +63,16 @@ async function logChatInteraction(context, logEntry) {
       let index = await store.get('log-index', { type: 'json' }) || { entries: [] }
       index.entries.unshift({
         id: logId,
-        timestamp: new Date().toISOString(),
+        timestamp: now,
         ip: logEntry.ip || 'unknown',
         model: logEntry.model || 'unknown',
         cached: logEntry.cached || false,
         promptLength: logEntry.promptLength || 0,
-        blocked: logEntry.blocked || false
+        blocked: logEntry.blocked || false,
+        feature: logEntry.feature || 'unknown',
+        framework: logEntry.framework || 'unknown',
+        responseLength: logEntry.responseLength || 0,
+        error: logEntry.error || false
       })
       if (index.entries.length > 5000) {
         index.entries = index.entries.slice(0, 5000)
@@ -49,6 +83,47 @@ async function logChatInteraction(context, logEntry) {
     }
   } catch (err) {
     console.log('[Chat Log] Write error (non-fatal):', err.message)
+  }
+}
+
+// Error log helper - stores errors in a separate blob store
+async function logError(context, errorEntry) {
+  try {
+    const store = getStore({
+      name: "error-logs",
+      siteID: context.site?.id || process.env.SITE_ID,
+      token: process.env.NETLIFY_AUTH_TOKEN || context.clientContext?.identity?.token
+    })
+
+    const errorId = `err_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+    const now = new Date().toISOString()
+
+    await store.setJSON(errorId, {
+      ...errorEntry,
+      id: errorId,
+      timestamp: now
+    })
+
+    // Update error index
+    try {
+      let index = await store.get('error-index', { type: 'json' }) || { entries: [] }
+      index.entries.unshift({
+        id: errorId,
+        timestamp: now,
+        type: errorEntry.type || 'unknown',
+        message: (errorEntry.message || '').substring(0, 100),
+        statusCode: errorEntry.statusCode,
+        ip: errorEntry.ip || 'unknown'
+      })
+      if (index.entries.length > 2000) {
+        index.entries = index.entries.slice(0, 2000)
+      }
+      await store.setJSON('error-index', index)
+    } catch {
+      // Non-fatal
+    }
+  } catch {
+    // Non-fatal
   }
 }
 
@@ -517,6 +592,10 @@ export async function handler(event, context) {
       }
     }
 
+    // Detect feature type and framework for logging
+    const featureType = detectFeatureType(systemPrompt, prompt)
+    const detectedFramework = detectFramework(systemPrompt)
+
     // Check for prompt injection attempts
     const injectionCheck = detectPromptInjection(prompt)
     if (injectionCheck.blocked) {
@@ -528,7 +607,9 @@ export async function handler(event, context) {
         promptLength: prompt.length,
         blocked: true,
         blockReason: injectionCheck.reason,
-        blockType: injectionCheck.type
+        blockType: injectionCheck.type,
+        feature: featureType,
+        framework: detectedFramework
       })
       return {
         statusCode: 400,
@@ -567,9 +648,12 @@ export async function handler(event, context) {
               promptPreview: prompt.substring(0, 200),
               promptLength: prompt.length,
               responsePreview: cached.response.substring(0, 200),
+              responseLength: cached.response.length,
               cached: true,
               model: cached.model || 'unknown',
-              cacheAge: `${ageHours}h`
+              cacheAge: `${ageHours}h`,
+              feature: featureType,
+              framework: detectedFramework
             })
             return {
               statusCode: 200,
@@ -634,6 +718,27 @@ export async function handler(event, context) {
       }
       console.error(`Gemini API error (model: ${usedModel}):`, errorData)
 
+      // Log API error
+      logError(context, {
+        type: 'api_error',
+        message: errorData.error?.message || `HTTP ${response.status}`,
+        statusCode: response.status,
+        model: usedModel,
+        ip: clientIP,
+        feature: featureType,
+        framework: detectedFramework
+      })
+      logChatInteraction(context, {
+        ip: clientIP,
+        promptPreview: prompt.substring(0, 200),
+        promptLength: prompt.length,
+        error: true,
+        errorMessage: errorData.error?.message || `HTTP ${response.status}`,
+        model: usedModel,
+        feature: featureType,
+        framework: detectedFramework
+      })
+
       // Provide more specific error messages
       let errorMessage = 'AI service error'
       const details = errorData.error?.message || 'Unknown error'
@@ -695,7 +800,9 @@ export async function handler(event, context) {
       responsePreview: generatedText.substring(0, 200),
       responseLength: generatedText.length,
       cached: false,
-      model: usedModel
+      model: usedModel,
+      feature: featureType,
+      framework: detectedFramework
     })
 
     // Store in cache
@@ -729,6 +836,13 @@ export async function handler(event, context) {
     }
   } catch (error) {
     console.error('Function error:', error)
+    logError(context, {
+      type: 'function_error',
+      message: error.message,
+      stack: error.stack?.substring(0, 500),
+      statusCode: 500,
+      ip: clientIP
+    })
     return {
       statusCode: 500,
       headers: {
