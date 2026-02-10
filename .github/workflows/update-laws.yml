@@ -120,6 +120,24 @@ jobs:
 
           echo "Schema migration, mobile database, and changelog generation complete"
 
+      - name: Update statistics timestamp
+        if: github.event.inputs.check_only != 'true'
+        run: |
+          # Always update the generated_at timestamp in statistics.json after a successful check
+          # This ensures the website shows the correct "last checked" date even when no law content changed
+          STATS_FILE="eu_safety_laws/statistics.json"
+          if [ -f "$STATS_FILE" ]; then
+            NEW_DATE=$(date -u +'%Y-%m-%dT%H:%M:%S.000Z')
+            # Use node for reliable JSON manipulation
+            node -e "
+              const fs = require('fs');
+              const stats = JSON.parse(fs.readFileSync('$STATS_FILE', 'utf8'));
+              stats.generated_at = '$NEW_DATE';
+              fs.writeFileSync('$STATS_FILE', JSON.stringify(stats, null, 2) + '\n');
+            "
+            echo "Updated statistics.json generated_at to $NEW_DATE"
+          fi
+
       - name: Check for changes
         id: git_status
         if: github.event.inputs.check_only != 'true'

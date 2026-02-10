@@ -13,7 +13,8 @@ import {
   PreventionTimeCalculator,
   PenaltyLookup,
   Glossary,
-  WarehouseVisualization
+  WarehouseVisualization,
+  AdminPanel
 } from './components/modules'
 import { SafetyChatWidget, LawPreviewModal } from './components/ui'
 
@@ -159,6 +160,8 @@ function AppContent() {
             />
           </div>
         )
+      case 'admin':
+        return <AdminPanel onBack={onBack} />
       default:
         return <Dashboard onModuleSelect={handleModuleSelect} />
     }
@@ -206,10 +209,10 @@ function AppContent() {
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         <Header />
-        <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-6 md:py-8">
+        <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 py-6 md:py-8">
           {renderModule()}
         </main>
-        <Footer />
+        <Footer onNavigate={(moduleId) => setActiveModule(moduleId)} />
       </div>
 
       {/* Erwin Safety Chat Widget */}
