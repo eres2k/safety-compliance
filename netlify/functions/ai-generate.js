@@ -10,6 +10,49 @@ import { getStore } from "@netlify/blobs"
 const CACHE_TTL_SECONDS = 48 * 60 * 60
 
 // ============================================
+// Chat Log Helper - logs interactions to Netlify Blobs
+// ============================================
+async function logChatInteraction(context, logEntry) {
+  try {
+    const store = getStore({
+      name: "chat-logs",
+      siteID: context.site?.id || process.env.SITE_ID,
+      token: process.env.NETLIFY_AUTH_TOKEN || context.clientContext?.identity?.token
+    })
+
+    const logId = `log_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
+
+    await store.setJSON(logId, {
+      ...logEntry,
+      id: logId,
+      timestamp: new Date().toISOString()
+    })
+
+    // Update the index (best-effort, non-blocking)
+    try {
+      let index = await store.get('log-index', { type: 'json' }) || { entries: [] }
+      index.entries.unshift({
+        id: logId,
+        timestamp: new Date().toISOString(),
+        ip: logEntry.ip || 'unknown',
+        model: logEntry.model || 'unknown',
+        cached: logEntry.cached || false,
+        promptLength: logEntry.promptLength || 0,
+        blocked: logEntry.blocked || false
+      })
+      if (index.entries.length > 5000) {
+        index.entries = index.entries.slice(0, 5000)
+      }
+      await store.setJSON('log-index', index)
+    } catch (indexErr) {
+      // Non-fatal: index update failed
+    }
+  } catch (err) {
+    console.log('[Chat Log] Write error (non-fatal):', err.message)
+  }
+}
+
+// ============================================
 // IP-Based Rate Limiting Configuration
 // ============================================
 const RATE_LIMIT_WINDOW_MS = 60 * 1000 // 1 minute window
@@ -478,6 +521,15 @@ export async function handler(event, context) {
     const injectionCheck = detectPromptInjection(prompt)
     if (injectionCheck.blocked) {
       console.warn(`[Security] Prompt injection blocked: IP ${clientIP} - ${injectionCheck.reason}`)
+      // Log blocked attempt
+      logChatInteraction(context, {
+        ip: clientIP,
+        promptPreview: prompt.substring(0, 200),
+        promptLength: prompt.length,
+        blocked: true,
+        blockReason: injectionCheck.reason,
+        blockType: injectionCheck.type
+      })
       return {
         statusCode: 400,
         headers: rateLimitHeaders,
@@ -509,6 +561,16 @@ export async function handler(event, context) {
           // Check if cache is still valid (48 hours)
           if (age < CACHE_TTL_SECONDS * 1000) {
             console.log(`Cache hit for key ${cacheKey} (${ageHours}h old)`)
+            // Log cache hit
+            logChatInteraction(context, {
+              ip: clientIP,
+              promptPreview: prompt.substring(0, 200),
+              promptLength: prompt.length,
+              responsePreview: cached.response.substring(0, 200),
+              cached: true,
+              model: cached.model || 'unknown',
+              cacheAge: `${ageHours}h`
+            })
             return {
               statusCode: 200,
               headers: {
@@ -624,6 +686,17 @@ export async function handler(event, context) {
     }
 
     console.log(`Successfully generated response using model: ${usedModel}`)
+
+    // Log successful AI interaction
+    logChatInteraction(context, {
+      ip: clientIP,
+      promptPreview: prompt.substring(0, 200),
+      promptLength: prompt.length,
+      responsePreview: generatedText.substring(0, 200),
+      responseLength: generatedText.length,
+      cached: false,
+      model: usedModel
+    })
 
     // Store in cache
     if (store) {

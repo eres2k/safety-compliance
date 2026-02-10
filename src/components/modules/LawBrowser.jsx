@@ -2765,8 +2765,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         </div>
       </div>
 
-      {/* Main Content - Responsive Layout: 3 columns on desktop, tab-based on mobile */}
-      <div className="flex flex-col md:flex-row md:gap-4 h-[calc(100%-180px)] md:h-[calc(100%-180px)] pb-16 md:pb-0 relative">
+      {/* Main Content - Responsive Layout: 3 columns on lg+ desktop, tab-based on mobile/tablet */}
+      <div className="flex flex-col lg:flex-row lg:gap-3 xl:gap-4 h-[calc(100%-180px)] lg:h-[calc(100%-180px)] pb-16 lg:pb-0 relative">
         {/* Loading Overlay */}
         {isLoading && (
           <div className="absolute inset-0 bg-white/80 dark:bg-whs-dark-900/80 z-10 flex items-center justify-center rounded-lg">
@@ -2783,8 +2783,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         {/* On mobile: only show when mobileActiveTab === 'laws', full width */}
         {/* On desktop (md+): always visible, fixed width */}
         <div className={`
-          ${mobileActiveTab === 'laws' ? 'flex' : 'hidden'} md:flex
-          w-full md:w-72 flex-shrink-0 h-full
+          ${mobileActiveTab === 'laws' ? 'flex' : 'hidden'} lg:flex
+          w-full lg:w-64 xl:w-72 flex-shrink-0 h-full
         `}>
           <Card className="h-full w-full overflow-hidden flex flex-col bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
             {/* Header with gradient accent */}
@@ -3060,8 +3060,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         {/* On desktop (md+): always visible when law selected, fixed width */}
         {selectedLaw && lawSections.length > 0 && (
           <div className={`
-            ${mobileActiveTab === 'sections' ? 'flex' : 'hidden'} md:flex
-            w-full md:w-64 flex-shrink-0 h-full
+            ${mobileActiveTab === 'sections' ? 'flex' : 'hidden'} lg:flex
+            w-full lg:w-56 xl:w-64 flex-shrink-0 h-full
           `}>
             <Card className="h-full w-full overflow-hidden bg-white/80 dark:bg-whs-dark-900/80 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
               <div className="p-4 border-b border-gray-100 dark:border-whs-dark-700 bg-gradient-to-br from-slate-50 via-white to-slate-50/50 dark:from-whs-dark-800 dark:via-whs-dark-800 dark:to-whs-dark-900">
@@ -3282,8 +3282,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         {/* On mobile: only show when mobileActiveTab === 'content', full width */}
         {/* On desktop (md+): always visible, takes remaining space */}
         <div className={`
-          ${mobileActiveTab === 'content' ? 'flex' : 'hidden'} md:flex
-          w-full md:flex-1 min-w-0 h-full
+          ${mobileActiveTab === 'content' ? 'flex' : 'hidden'} lg:flex
+          w-full lg:flex-1 min-w-0 h-full
         `}>
           <Card className="h-full w-full overflow-hidden bg-white/90 dark:bg-whs-dark-900/90 backdrop-blur-sm shadow-xl border-0 ring-1 ring-gray-200/50 dark:ring-whs-dark-700/50">
             {/* Inline PDF/HTML View */}
@@ -4294,8 +4294,8 @@ export function LawBrowser({ onBack, initialLawId, initialCountry, initialSectio
         </div>
       )}
 
-      {/* Mobile Bottom Tab Bar - Only visible on mobile */}
-      <div className="md:hidden mobile-tab-bar">
+      {/* Mobile/Tablet Bottom Tab Bar - Only visible below lg breakpoint */}
+      <div className="lg:hidden mobile-tab-bar">
         {/* Laws Tab */}
         <button
           onClick={() => setMobileActiveTab('laws')}
