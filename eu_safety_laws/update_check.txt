@@ -1,0 +1,152 @@
+/home/runner/work/safety-compliance/safety-compliance/eu_safety_laws/law_manager.py:84: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+
+[94m============================================================[0m
+[94m[1m                  Checking AT for Updates                   [0m
+[94m============================================================[0m
+
+[96mℹ Checking 16 AT laws for updates...[0m
+  Checking AT:   0%|                                            | 0/16 [00:00<?]Checking ASchG:   0%|                                           | 0/16 [00:00<?]Checking ASchG:   6%|██▍                                    | 1/16 [00:04<01:13]Checking AZG:   6%|██▌                                      | 1/16 [00:04<01:13]Checking AZG:  12%|█████▏                                   | 2/16 [00:08<00:53]Checking ARG:  12%|█████▏                                   | 2/16 [00:08<00:53]Checking ARG:  19%|███████▋                                 | 3/16 [00:10<00:40]Checking MSchG:  19%|███████▎                               | 3/16 [00:10<00:40]Checking MSchG:  25%|█████████▊                             | 4/16 [00:12<00:33]Checking KJBG:  25%|██████████                              | 4/16 [00:12<00:33]Checking KJBG:  31%|████████████▌                           | 5/16 [00:14<00:25]Checking AStV:  31%|████████████▌                           | 5/16 [00:14<00:25]Checking AStV:  38%|███████████████                         | 6/16 [00:16<00:23]Checking AM-VO:  38%|██████████████▋                        | 6/16 [00:16<00:23]Checking AM-VO:  44%|█████████████████                      | 7/16 [00:19<00:21]Checking DOK-VO:  44%|████████████████▋                     | 7/16 [00:19<00:21]Checking DOK-VO:  50%|███████████████████                   | 8/16 [00:19<00:15]Checking FK-V:  50%|████████████████████                    | 8/16 [00:19<00:15]Checking FK-V:  56%|██████████████████████▌                 | 9/16 [00:21<00:11]Checking VEXAT:  56%|█████████████████████▉                 | 9/16 [00:21<00:11]Checking VEXAT:  62%|███████████████████████▊              | 10/16 [00:22<00:10]Checking GKV 2025:  62%|█████████████████████▉             | 10/16 [00:22<00:10]Checking GKV 2025:  69%|████████████████████████           | 11/16 [00:25<00:09]Checking KennV:  69%|██████████████████████████▏           | 11/16 [00:25<00:09]Checking KennV:  75%|████████████████████████████▌         | 12/16 [00:26<00:06]Checking VGÜ:  75%|██████████████████████████████          | 12/16 [00:26<00:06]Checking VGÜ:  81%|████████████████████████████████▌       | 13/16 [00:28<00:05]Checking ArbIG:  81%|██████████████████████████████▉       | 13/16 [00:28<00:05]Checking ArbIG:  88%|█████████████████████████████████▎    | 14/16 [00:30<00:03]Checking ArbVG:  88%|█████████████████████████████████▎    | 14/16 [00:30<00:03]Checking ArbVG:  94%|███████████████████████████████████▋  | 15/16 [00:36<00:03]Checking NSchG:  94%|███████████████████████████████████▋  | 15/16 [00:36<00:03]Checking NSchG: 100%|██████████████████████████████████████| 16/16 [00:37<00:00]Checking NSchG: 100%|██████████████████████████████████████| 16/16 [00:37<00:00]
+[96mℹ   Found 136 section titles in table of contents[0m
+[96mℹ   Found 77 section titles in table of contents[0m
+[96mℹ   Found 49 section titles in table of contents[0m
+[96mℹ   Found 44 section titles in table of contents[0m
+[96mℹ   Found 47 section titles in table of contents[0m
+[96mℹ   Found 69 section titles in table of contents[0m
+[96mℹ   Found 16 section titles in table of contents[0m
+[96mℹ   Found 22 section titles in table of contents[0m
+[96mℹ   Found 46 section titles in table of contents[0m
+[96mℹ Changelog saved to /home/runner/work/safety-compliance/safety-compliance/eu_safety_laws/update_changelog.json[0m
+
+[92mNEW laws (not in database):[0m
+  + FK-V (17 sections)
+  + VEXAT (23 sections)
+  + GKV 2025 (47 sections)
+  + KennV (11 sections)
+  + VGÜ (15 sections)
+  + ArbIG (30 sections)
+  + ArbVG (279 sections)
+  + NSchG (1 sections)
+
+[2mUNCHANGED laws:[0m
+  = ASchG (hash: 41112449)
+  = AZG (hash: 85d2d609)
+  = ARG (hash: 4d09cb12)
+  = MSchG (hash: 487d52a7)
+  = KJBG (hash: 80327e34)
+  = AStV (hash: 05f1e717)
+  = AM-VO (hash: 1562951e)
+  = DOK-VO (hash: a5e84dcd)
+
+[96mSummary: 8/16 laws need updating[0m
+
+[2mRun 'python law_manager.py scrape --country AT --check-updates' to update only changed laws[0m
+
+[94m============================================================[0m
+[94m[1m                  Checking DE for Updates                   [0m
+[94m============================================================[0m
+
+[96mℹ Checking 16 DE laws for updates...[0m
+  Checking DE:   0%|                                            | 0/16 [00:00<?]Checking ArbSchG:   0%|                                         | 0/16 [00:00<?]Checking ArbSchG:   6%|██▎                                  | 1/16 [03:05<46:24]Checking ASiG:   6%|██▌                                     | 1/16 [03:05<46:24]Checking ASiG:  12%|█████                                   | 2/16 [06:11<43:24]Checking ArbZG:  12%|████▉                                  | 2/16 [06:11<43:24]Checking ArbZG:  19%|███████▎                               | 3/16 [09:17<40:16]Checking MuSchG:  19%|███████▏                              | 3/16 [09:17<40:16]Checking MuSchG:  25%|█████████▌                            | 4/16 [12:22<37:05]Checking JArbSchG:  25%|█████████                           | 4/16 [12:22<37:05]Checking JArbSchG:  31%|███████████▎                        | 5/16 [15:27<33:57]Checking ArbStättV:  31%|██████████▉                        | 5/16 [15:27<33:57]Checking ArbStättV:  38%|█████████████▏                     | 6/16 [18:32<30:50]Checking BetrSichV:  38%|█████████████▏                     | 6/16 [18:32<30:50]Checking BetrSichV:  44%|███████████████▎                   | 7/16 [21:37<27:47]Checking GefStoffV:  44%|███████████████▎                   | 7/16 [21:37<27:47]Checking GefStoffV:  50%|█████████████████▌                 | 8/16 [24:42<24:41]Checking PSA-BV:  50%|███████████████████                   | 8/16 [24:42<24:41]Checking PSA-BV:  56%|█████████████████████▍                | 9/16 [27:47<21:35]Checking GGBefG:  56%|█████████████████████▍                | 9/16 [27:47<21:35]Checking GGBefG:  62%|███████████████████████▏             | 10/16 [30:53<18:31]Checking GGVSEB:  62%|███████████████████████▏             | 10/16 [30:53<18:31]Checking GGVSEB:  69%|█████████████████████████▍           | 11/16 [33:58<15:26]Checking ChemG:  69%|██████████████████████████▏           | 11/16 [33:58<15:26]Checking ChemG:  75%|████████████████████████████▌         | 12/16 [37:03<12:20]Checking ChemVerbotsV:  75%|███████████████████████▎       | 12/16 [37:03<12:20]Checking ChemVerbotsV:  81%|█████████████████████████▏     | 13/16 [40:08<09:15]Checking AwSV:  81%|███████████████████████████████▋       | 13/16 [40:08<09:15]Checking AwSV:  88%|██████████████████████████████████▏    | 14/16 [43:13<06:10]Checking ProdSG:  88%|████████████████████████████████▍    | 14/16 [43:13<06:10]Checking ProdSG:  94%|██████████████████████████████████▋  | 15/16 [46:18<03:05]Checking SGB VII:  94%|█████████████████████████████████▊  | 15/16 [46:18<03:05]Checking SGB VII: 100%|████████████████████████████████████| 16/16 [49:23<00:00]Checking SGB VII: 100%|████████████████████████████████████| 16/16 [49:23<00:00]
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/arbschg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/arbschg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/arbschg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/arbschg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/asig/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/asig/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/asig/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/asig/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/arbzg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/arbzg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/arbzg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/arbzg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/muschg_2018/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/muschg_2018/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/muschg_2018/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/muschg_2018/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/jarbschg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/jarbschg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/jarbschg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/jarbschg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/arbst_ttv_2004/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/arbst_ttv_2004/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/arbst_ttv_2004/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/arbst_ttv_2004/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/betrsichv_2015/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/betrsichv_2015/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/betrsichv_2015/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/betrsichv_2015/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/gefstoffv_2010/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/gefstoffv_2010/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/gefstoffv_2010/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/gefstoffv_2010/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/psa-bv/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/psa-bv/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/psa-bv/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/psa-bv/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/gefahrgutg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/gefahrgutg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/gefahrgutg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/gefahrgutg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/ggvseb/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/ggvseb/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/ggvseb/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/ggvseb/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/chemg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/chemg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/chemg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/chemg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/chemverbotsv_2017/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/chemverbotsv_2017/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/chemverbotsv_2017/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/chemverbotsv_2017/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/awsv/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/awsv/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/awsv/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/awsv/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/prodsg_2021/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/prodsg_2021/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/prodsg_2021/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/prodsg_2021/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/sgb_7/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/sgb_7/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/sgb_7/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/sgb_7/[0m
+[96mℹ Changelog saved to /home/runner/work/safety-compliance/safety-compliance/eu_safety_laws/update_changelog.json[0m
+
+
+[96mSummary: 0/0 laws need updating[0m
+
+[94m============================================================[0m
+[94m[1m                  Checking NL for Updates                   [0m
+[94m============================================================[0m
+
+[96mℹ Checking 11 NL laws for updates...[0m
+  Checking NL:   0%|                                            | 0/11 [00:00<?]Checking Arbowet:   0%|                                         | 0/11 [00:00<?]Checking Arbowet:   9%|███▎                                 | 1/11 [00:02<00:24]Checking Arbobesluit:   9%|███                              | 1/11 [00:02<00:24]Checking Arbobesluit:  18%|██████                           | 2/11 [00:07<00:36]Checking Arboregeling:  18%|█████▊                          | 2/11 [00:07<00:36]Checking Arboregeling:  27%|████████▋                       | 3/11 [00:12<00:34]Checking Arbeidstijdenwet:  27%|███████▋                    | 3/11 [00:12<00:34]Checking Arbeidstijdenwet:  36%|██████████▏                 | 4/11 [00:14<00:23]Checking ATB:  36%|██████████████▉                          | 4/11 [00:14<00:23]Checking ATB:  45%|██████████████████▋                      | 5/11 [00:16<00:18]Checking Wvgs:  45%|██████████████████▏                     | 5/11 [00:16<00:18]Checking Wvgs:  55%|█████████████████████▊                  | 6/11 [00:18<00:12]Checking Bvgs:  55%|█████████████████████▊                  | 6/11 [00:18<00:12]Checking Bvgs:  64%|█████████████████████████▍              | 7/11 [00:19<00:08]Checking Bbl:  64%|██████████████████████████               | 7/11 [00:19<00:08]Checking Bbl:  73%|█████████████████████████████▊           | 8/11 [00:30<00:14]Checking Omgevingswet:  73%|███████████████████████▎        | 8/11 [00:30<00:14]Checking Omgevingswet:  82%|██████████████████████████▏     | 9/11 [00:37<00:11]Checking Wvr:  82%|█████████████████████████████████▌       | 9/11 [00:37<00:11]Checking Wvr:  91%|████████████████████████████████████▎   | 10/11 [00:39<00:04]Checking Warenwetbesluit PBM 2018:  91%|█████████████████▎ | 10/11 [00:39<00:04]Checking Warenwetbesluit PBM 2018: 100%|███████████████████| 11/11 [00:40<00:00]Checking Warenwetbesluit PBM 2018: 100%|███████████████████| 11/11 [00:40<00:00]
+[96mℹ Changelog saved to /home/runner/work/safety-compliance/safety-compliance/eu_safety_laws/update_changelog.json[0m
+
+[92mNEW laws (not in database):[0m
+  + Wvgs (68 sections)
+  + Bvgs (11 sections)
+  + Bbl (9 sections)
+  + Omgevingswet (19 sections)
+  + Wvr (84 sections)
+  + Warenwetbesluit PBM 2018 (18 sections)
+
+[2mUNCHANGED laws:[0m
+  = Arbowet (hash: cb86af70)
+  = Arbobesluit (hash: 6c38646c)
+  = Arboregeling (hash: 9d60ef70)
+  = Arbeidstijdenwet (hash: 24055b28)
+  = ATB (hash: a0c4af98)
+
+[96mSummary: 6/11 laws need updating[0m
+
+[2mRun 'python law_manager.py scrape --country NL --check-updates' to update only changed laws[0m
