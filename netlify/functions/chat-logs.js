@@ -242,12 +242,36 @@ export async function handler(event, context) {
         const last7d = entries.filter(e => now - new Date(e.timestamp).getTime() < 7 * day).length
         const cachedCount = entries.filter(e => e.cached).length
         const blockedCount = entries.filter(e => e.blocked).length
+        const errorCount = entries.filter(e => e.error).length
         const uniqueIPs = new Set(entries.map(e => e.ip)).size
         const modelBreakdown = {}
+        const featureBreakdown = {}
+        const frameworkBreakdown = {}
+        const hourlyActivity = {}
+
         entries.forEach(e => {
           const model = e.model || 'unknown'
           modelBreakdown[model] = (modelBreakdown[model] || 0) + 1
+
+          const feature = e.feature || 'unknown'
+          featureBreakdown[feature] = (featureBreakdown[feature] || 0) + 1
+
+          const fw = e.framework || 'unknown'
+          frameworkBreakdown[fw] = (frameworkBreakdown[fw] || 0) + 1
+
+          // Hourly activity for last 24h
+          const entryTime = new Date(e.timestamp).getTime()
+          if (now - entryTime < day) {
+            const hour = new Date(e.timestamp).getHours()
+            hourlyActivity[hour] = (hourlyActivity[hour] || 0) + 1
+          }
         })
+
+        // Average response length
+        const withResponse = entries.filter(e => e.responseLength > 0)
+        const avgResponseLength = withResponse.length > 0
+          ? Math.round(withResponse.reduce((sum, e) => sum + e.responseLength, 0) / withResponse.length)
+          : 0
 
         return {
           statusCode: 200,
@@ -258,8 +282,13 @@ export async function handler(event, context) {
             last7d,
             cachedPercent: entries.length > 0 ? Math.round(cachedCount / entries.length * 100) : 0,
             blockedCount,
+            errorCount,
             uniqueIPs,
-            modelBreakdown
+            avgResponseLength,
+            modelBreakdown,
+            featureBreakdown,
+            frameworkBreakdown,
+            hourlyActivity
           })
         }
       }
