@@ -53,7 +53,8 @@ jobs:
           python law_manager.py check-updates --all > update_check.txt 2>&1 || true
 
           # Parse output to determine if updates exist
-          if grep -q "has changes" update_check.txt || grep -q "needs update" update_check.txt; then
+          # Python script outputs "need updating" for changed laws and "NEW laws" for new ones
+          if grep -q "need updating" update_check.txt || grep -q "NEW laws" update_check.txt; then
             echo "updates_available=true" >> $GITHUB_OUTPUT
             echo "Updates found:"
             cat update_check.txt
