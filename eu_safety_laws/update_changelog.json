@@ -1,6 +1,204 @@
 {
   "updates": [
     {
+      "timestamp": "2026-03-01T04:16:23.929409",
+      "country": "NL",
+      "new_laws": [
+        "Wvgs",
+        "Bvgs",
+        "Bbl",
+        "Omgevingswet",
+        "Wvr",
+        "Warenwetbesluit PBM 2018"
+      ],
+      "updated_laws": [],
+      "unchanged_laws": [
+        "Arbowet",
+        "Arbobesluit",
+        "Arboregeling",
+        "Arbeidstijdenwet",
+        "ATB"
+      ],
+      "scraped_laws": [],
+      "details": {
+        "new": [
+          {
+            "abbreviation": "Wvgs",
+            "sections": 68
+          },
+          {
+            "abbreviation": "Bvgs",
+            "sections": 11
+          },
+          {
+            "abbreviation": "Bbl",
+            "sections": 9
+          },
+          {
+            "abbreviation": "Omgevingswet",
+            "sections": 19
+          },
+          {
+            "abbreviation": "Wvr",
+            "sections": 84
+          },
+          {
+            "abbreviation": "Warenwetbesluit PBM 2018",
+            "sections": 18
+          }
+        ],
+        "updated": []
+      }
+    },
+    {
+      "timestamp": "2026-03-01T04:15:49.603096",
+      "country": "DE",
+      "new_laws": [
+        "PSA-BV",
+        "GGBefG",
+        "GGVSEB",
+        "ChemG",
+        "ChemVerbotsV",
+        "AwSV",
+        "ProdSG",
+        "SGB VII"
+      ],
+      "updated_laws": [
+        "MuSchG",
+        "GefStoffV"
+      ],
+      "unchanged_laws": [
+        "ArbSchG",
+        "ASiG",
+        "ArbZG",
+        "JArbSchG",
+        "ArbStättV",
+        "BetrSichV"
+      ],
+      "scraped_laws": [],
+      "details": {
+        "new": [
+          {
+            "abbreviation": "PSA-BV",
+            "sections": 3
+          },
+          {
+            "abbreviation": "GGBefG",
+            "sections": 18
+          },
+          {
+            "abbreviation": "GGVSEB",
+            "sections": 48
+          },
+          {
+            "abbreviation": "ChemG",
+            "sections": 69
+          },
+          {
+            "abbreviation": "ChemVerbotsV",
+            "sections": 14
+          },
+          {
+            "abbreviation": "AwSV",
+            "sections": 73
+          },
+          {
+            "abbreviation": "ProdSG",
+            "sections": 30
+          },
+          {
+            "abbreviation": "SGB VII",
+            "sections": 251
+          }
+        ],
+        "updated": [
+          {
+            "abbreviation": "MuSchG",
+            "old_hash": "896d5275",
+            "new_hash": "a1174a21",
+            "last_scraped": "2026-01-10"
+          },
+          {
+            "abbreviation": "GefStoffV",
+            "old_hash": "68879a34",
+            "new_hash": "bcd4d7cd",
+            "last_scraped": "2026-01-10"
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-03-01T04:15:23.777920",
+      "country": "AT",
+      "new_laws": [
+        "FK-V",
+        "VEXAT",
+        "GKV 2025",
+        "KennV",
+        "VGÜ",
+        "ArbIG",
+        "ArbVG",
+        "NSchG"
+      ],
+      "updated_laws": [
+        "ASchG"
+      ],
+      "unchanged_laws": [
+        "AZG",
+        "ARG",
+        "MSchG",
+        "KJBG",
+        "AStV",
+        "AM-VO",
+        "DOK-VO"
+      ],
+      "scraped_laws": [],
+      "details": {
+        "new": [
+          {
+            "abbreviation": "FK-V",
+            "sections": 17
+          },
+          {
+            "abbreviation": "VEXAT",
+            "sections": 23
+          },
+          {
+            "abbreviation": "GKV 2025",
+            "sections": 47
+          },
+          {
+            "abbreviation": "KennV",
+            "sections": 11
+          },
+          {
+            "abbreviation": "VGÜ",
+            "sections": 15
+          },
+          {
+            "abbreviation": "ArbIG",
+            "sections": 30
+          },
+          {
+            "abbreviation": "ArbVG",
+            "sections": 279
+          },
+          {
+            "abbreviation": "NSchG",
+            "sections": 1
+          }
+        ],
+        "updated": [
+          {
+            "abbreviation": "ASchG",
+            "old_hash": "41112449",
+            "new_hash": "e8f20117",
+            "last_scraped": "2025-12-20"
+          }
+        ]
+      }
+    },
+    {
       "timestamp": "2026-02-15T05:05:02.925652",
       "country": "NL",
       "new_laws": [
@@ -359,6 +557,6 @@
       }
     }
   ],
-  "last_check": "2026-02-15T05:05:02.925668",
+  "last_check": "2026-03-01T04:16:23.929425",
   "description": "This file tracks changes to laws detected during update checks. Run 'python law_manager.py check-updates --all' to populate."
 }
