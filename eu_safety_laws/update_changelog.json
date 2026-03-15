@@ -1,6 +1,139 @@
 {
   "updates": [
     {
+      "timestamp": "2026-03-15T03:51:58.109510",
+      "country": "NL",
+      "new_laws": [
+        "Wvgs",
+        "Bvgs",
+        "Bbl",
+        "Omgevingswet",
+        "Wvr",
+        "Warenwetbesluit PBM 2018"
+      ],
+      "updated_laws": [],
+      "unchanged_laws": [
+        "Arbowet",
+        "Arbobesluit",
+        "Arboregeling",
+        "Arbeidstijdenwet",
+        "ATB"
+      ],
+      "scraped_laws": [],
+      "details": {
+        "new": [
+          {
+            "abbreviation": "Wvgs",
+            "sections": 68
+          },
+          {
+            "abbreviation": "Bvgs",
+            "sections": 11
+          },
+          {
+            "abbreviation": "Bbl",
+            "sections": 9
+          },
+          {
+            "abbreviation": "Omgevingswet",
+            "sections": 19
+          },
+          {
+            "abbreviation": "Wvr",
+            "sections": 84
+          },
+          {
+            "abbreviation": "Warenwetbesluit PBM 2018",
+            "sections": 18
+          }
+        ],
+        "updated": []
+      }
+    },
+    {
+      "timestamp": "2026-03-15T03:51:24.366398",
+      "country": "DE",
+      "new_laws": [],
+      "updated_laws": [],
+      "unchanged_laws": [],
+      "scraped_laws": [],
+      "details": {
+        "new": [],
+        "updated": []
+      }
+    },
+    {
+      "timestamp": "2026-03-15T03:02:09.184974",
+      "country": "AT",
+      "new_laws": [
+        "FK-V",
+        "VEXAT",
+        "GKV 2025",
+        "KennV",
+        "VGÜ",
+        "ArbIG",
+        "ArbVG",
+        "NSchG"
+      ],
+      "updated_laws": [
+        "ASchG"
+      ],
+      "unchanged_laws": [
+        "AZG",
+        "ARG",
+        "MSchG",
+        "KJBG",
+        "AStV",
+        "AM-VO",
+        "DOK-VO"
+      ],
+      "scraped_laws": [],
+      "details": {
+        "new": [
+          {
+            "abbreviation": "FK-V",
+            "sections": 17
+          },
+          {
+            "abbreviation": "VEXAT",
+            "sections": 23
+          },
+          {
+            "abbreviation": "GKV 2025",
+            "sections": 47
+          },
+          {
+            "abbreviation": "KennV",
+            "sections": 11
+          },
+          {
+            "abbreviation": "VGÜ",
+            "sections": 15
+          },
+          {
+            "abbreviation": "ArbIG",
+            "sections": 30
+          },
+          {
+            "abbreviation": "ArbVG",
+            "sections": 279
+          },
+          {
+            "abbreviation": "NSchG",
+            "sections": 1
+          }
+        ],
+        "updated": [
+          {
+            "abbreviation": "ASchG",
+            "old_hash": "41112449",
+            "new_hash": "e8f20117",
+            "last_scraped": "2025-12-20"
+          }
+        ]
+      }
+    },
+    {
       "timestamp": "2026-03-01T04:16:23.929409",
       "country": "NL",
       "new_laws": [
@@ -557,6 +690,6 @@
       }
     }
   ],
-  "last_check": "2026-03-01T04:16:23.929425",
+  "last_check": "2026-03-15T03:51:58.109527",
   "description": "This file tracks changes to laws detected during update checks. Run 'python law_manager.py check-updates --all' to populate."
 }

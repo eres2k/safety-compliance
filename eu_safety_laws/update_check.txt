@@ -13,7 +13,7 @@ https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/READM
 [94m============================================================[0m
 
 [96mℹ Checking 16 AT laws for updates...[0m
-  Checking AT:   0%|                                            | 0/16 [00:00<?]Checking ASchG:   0%|                                           | 0/16 [00:00<?]Checking ASchG:   6%|██▍                                    | 1/16 [00:04<01:09]Checking AZG:   6%|██▌                                      | 1/16 [00:04<01:09]Checking AZG:  12%|█████▏                                   | 2/16 [00:07<00:48]Checking ARG:  12%|█████▏                                   | 2/16 [00:07<00:48]Checking ARG:  19%|███████▋                                 | 3/16 [00:09<00:35]Checking MSchG:  19%|███████▎                               | 3/16 [00:09<00:35]Checking MSchG:  25%|█████████▊                             | 4/16 [00:11<00:30]Checking KJBG:  25%|██████████                              | 4/16 [00:11<00:30]Checking KJBG:  31%|████████████▌                           | 5/16 [00:12<00:23]Checking AStV:  31%|████████████▌                           | 5/16 [00:12<00:23]Checking AStV:  38%|███████████████                         | 6/16 [00:14<00:20]Checking AM-VO:  38%|██████████████▋                        | 6/16 [00:14<00:20]Checking AM-VO:  44%|█████████████████                      | 7/16 [00:16<00:18]Checking DOK-VO:  44%|████████████████▋                     | 7/16 [00:16<00:18]Checking DOK-VO:  50%|███████████████████                   | 8/16 [00:17<00:13]Checking FK-V:  50%|████████████████████                    | 8/16 [00:17<00:13]Checking FK-V:  56%|██████████████████████▌                 | 9/16 [00:19<00:11]Checking VEXAT:  56%|█████████████████████▉                 | 9/16 [00:19<00:11]Checking VEXAT:  62%|███████████████████████▊              | 10/16 [00:20<00:09]Checking GKV 2025:  62%|█████████████████████▉             | 10/16 [00:20<00:09]Checking GKV 2025:  69%|████████████████████████           | 11/16 [00:22<00:07]Checking KennV:  69%|██████████████████████████▏           | 11/16 [00:22<00:07]Checking KennV:  75%|████████████████████████████▌         | 12/16 [00:23<00:05]Checking VGÜ:  75%|██████████████████████████████          | 12/16 [00:23<00:05]Checking VGÜ:  81%|████████████████████████████████▌       | 13/16 [00:24<00:04]Checking ArbIG:  81%|██████████████████████████████▉       | 13/16 [00:24<00:04]Checking ArbIG:  88%|█████████████████████████████████▎    | 14/16 [00:26<00:02]Checking ArbVG:  88%|█████████████████████████████████▎    | 14/16 [00:26<00:02]Checking ArbVG:  94%|███████████████████████████████████▋  | 15/16 [00:31<00:02]Checking NSchG:  94%|███████████████████████████████████▋  | 15/16 [00:31<00:02]Checking NSchG: 100%|██████████████████████████████████████| 16/16 [00:32<00:00]Checking NSchG: 100%|██████████████████████████████████████| 16/16 [00:32<00:00]
+  Checking AT:   0%|                                            | 0/16 [00:00<?]Checking ASchG:   0%|                                           | 0/16 [00:00<?]Checking ASchG:   6%|██▍                                    | 1/16 [00:05<01:16]Checking AZG:   6%|██▌                                      | 1/16 [00:05<01:16]Checking AZG:  12%|█████▏                                   | 2/16 [00:08<00:54]Checking ARG:  12%|█████▏                                   | 2/16 [00:08<00:54]Checking ARG:  19%|███████▋                                 | 3/16 [00:10<00:39]Checking MSchG:  19%|███████▎                               | 3/16 [00:10<00:39]Checking MSchG:  25%|█████████▊                             | 4/16 [00:12<00:34]Checking KJBG:  25%|██████████                              | 4/16 [00:12<00:34]Checking KJBG:  31%|████████████▌                           | 5/16 [00:14<00:26]Checking AStV:  31%|████████████▌                           | 5/16 [00:14<00:26]Checking AStV:  38%|███████████████                         | 6/16 [00:16<00:22]Checking AM-VO:  38%|██████████████▋                        | 6/16 [00:16<00:22]Checking AM-VO:  44%|█████████████████                      | 7/16 [00:19<00:22]Checking DOK-VO:  44%|████████████████▋                     | 7/16 [00:19<00:22]Checking DOK-VO:  50%|███████████████████                   | 8/16 [00:20<00:15]Checking FK-V:  50%|████████████████████                    | 8/16 [00:20<00:15]Checking FK-V:  56%|██████████████████████▌                 | 9/16 [00:23<00:16]Checking VEXAT:  56%|█████████████████████▉                 | 9/16 [00:23<00:16]Checking VEXAT:  62%|███████████████████████▊              | 10/16 [00:26<00:15]Checking GKV 2025:  62%|█████████████████████▉             | 10/16 [00:26<00:15]Checking GKV 2025:  69%|████████████████████████           | 11/16 [00:30<00:14]Checking KennV:  69%|██████████████████████████▏           | 11/16 [00:30<00:14]Checking KennV:  75%|████████████████████████████▌         | 12/16 [00:31<00:09]Checking VGÜ:  75%|██████████████████████████████          | 12/16 [00:31<00:09]Checking VGÜ:  81%|████████████████████████████████▌       | 13/16 [00:33<00:06]Checking ArbIG:  81%|██████████████████████████████▉       | 13/16 [00:33<00:06]Checking ArbIG:  88%|█████████████████████████████████▎    | 14/16 [00:35<00:04]Checking ArbVG:  88%|█████████████████████████████████▎    | 14/16 [00:35<00:04]Checking ArbVG:  94%|███████████████████████████████████▋  | 15/16 [00:41<00:03]Checking NSchG:  94%|███████████████████████████████████▋  | 15/16 [00:41<00:03]Checking NSchG: 100%|██████████████████████████████████████| 16/16 [00:42<00:00]Checking NSchG: 100%|██████████████████████████████████████| 16/16 [00:42<00:00]
 [96mℹ   Found 136 section titles in table of contents[0m
 [96mℹ   Found 77 section titles in table of contents[0m
 [96mℹ   Found 49 section titles in table of contents[0m
@@ -56,73 +56,82 @@ https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/READM
 [94m============================================================[0m
 
 [96mℹ Checking 16 DE laws for updates...[0m
-  Checking DE:   0%|                                            | 0/16 [00:00<?]Checking ArbSchG:   0%|                                         | 0/16 [00:00<?]Checking ArbSchG:   6%|██▎                                  | 1/16 [00:02<00:41]Checking ASiG:   6%|██▌                                     | 1/16 [00:02<00:41]Checking ASiG:  12%|█████                                   | 2/16 [00:04<00:28]Checking ArbZG:  12%|████▉                                  | 2/16 [00:04<00:28]Checking ArbZG:  19%|███████▎                               | 3/16 [00:05<00:19]Checking MuSchG:  19%|███████▏                              | 3/16 [00:05<00:19]Checking MuSchG:  25%|█████████▌                            | 4/16 [00:06<00:17]Checking JArbSchG:  25%|█████████                           | 4/16 [00:06<00:17]Checking JArbSchG:  31%|███████████▎                        | 5/16 [00:09<00:22]Checking ArbStättV:  31%|██████████▉                        | 5/16 [00:09<00:22]Checking ArbStättV:  38%|█████████████▏                     | 6/16 [00:11<00:18]Checking BetrSichV:  38%|█████████████▏                     | 6/16 [00:11<00:18]Checking BetrSichV:  44%|███████████████▎                   | 7/16 [00:12<00:15]Checking GefStoffV:  44%|███████████████▎                   | 7/16 [00:12<00:15]Checking GefStoffV:  50%|█████████████████▌                 | 8/16 [00:14<00:14]Checking PSA-BV:  50%|███████████████████                   | 8/16 [00:14<00:14]Checking PSA-BV:  56%|█████████████████████▍                | 9/16 [00:16<00:12]Checking GGBefG:  56%|█████████████████████▍                | 9/16 [00:16<00:12]Checking GGBefG:  62%|███████████████████████▏             | 10/16 [00:17<00:09]Checking GGVSEB:  62%|███████████████████████▏             | 10/16 [00:17<00:09]Checking GGVSEB:  69%|█████████████████████████▍           | 11/16 [00:19<00:07]Checking ChemG:  69%|██████████████████████████▏           | 11/16 [00:19<00:07]Checking ChemG:  75%|████████████████████████████▌         | 12/16 [00:20<00:05]Checking ChemVerbotsV:  75%|███████████████████████▎       | 12/16 [00:20<00:05]Checking ChemVerbotsV:  81%|█████████████████████████▏     | 13/16 [00:20<00:03]Checking AwSV:  81%|███████████████████████████████▋       | 13/16 [00:20<00:03]Checking AwSV:  88%|██████████████████████████████████▏    | 14/16 [00:22<00:02]Checking ProdSG:  88%|████████████████████████████████▍    | 14/16 [00:22<00:02]Checking ProdSG:  94%|██████████████████████████████████▋  | 15/16 [00:24<00:01]Checking SGB VII:  94%|█████████████████████████████████▊  | 15/16 [00:24<00:01]Checking SGB VII: 100%|████████████████████████████████████| 16/16 [00:25<00:00]Checking SGB VII: 100%|████████████████████████████████████| 16/16 [00:25<00:00]
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 29 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 23 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 27 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 34 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 66 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 10 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 24 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 35 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 3 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 14 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 47 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 57 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 14 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 73 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 30 sections from full HTML page[0m
-[96mℹ Trying to fetch full HTML version...[0m
-[92m✓ Extracted 236 sections from full HTML page[0m
+  Checking DE:   0%|                                            | 0/16 [00:00<?]Checking ArbSchG:   0%|                                         | 0/16 [00:00<?]Checking ArbSchG:   6%|██▎                                  | 1/16 [03:05<46:15]Checking ASiG:   6%|██▌                                     | 1/16 [03:05<46:15]Checking ASiG:  12%|█████                                   | 2/16 [06:09<43:05]Checking ArbZG:  12%|████▉                                  | 2/16 [06:09<43:05]Checking ArbZG:  19%|███████▎                               | 3/16 [09:13<39:59]Checking MuSchG:  19%|███████▏                              | 3/16 [09:13<39:59]Checking MuSchG:  25%|█████████▌                            | 4/16 [12:19<36:57]Checking JArbSchG:  25%|█████████                           | 4/16 [12:19<36:57]Checking JArbSchG:  31%|███████████▎                        | 5/16 [15:23<33:51]Checking ArbStättV:  31%|██████████▉                        | 5/16 [15:23<33:51]Checking ArbStättV:  38%|█████████████▏                     | 6/16 [18:28<30:46]Checking BetrSichV:  38%|█████████████▏                     | 6/16 [18:28<30:46]Checking BetrSichV:  44%|███████████████▎                   | 7/16 [21:32<27:41]Checking GefStoffV:  44%|███████████████▎                   | 7/16 [21:32<27:41]Checking GefStoffV:  50%|█████████████████▌                 | 8/16 [24:37<24:36]Checking PSA-BV:  50%|███████████████████                   | 8/16 [24:37<24:36]Checking PSA-BV:  56%|█████████████████████▍                | 9/16 [27:41<21:31]Checking GGBefG:  56%|█████████████████████▍                | 9/16 [27:41<21:31]Checking GGBefG:  62%|███████████████████████▏             | 10/16 [30:46<18:27]Checking GGVSEB:  62%|███████████████████████▏             | 10/16 [30:46<18:27]Checking GGVSEB:  69%|█████████████████████████▍           | 11/16 [33:51<15:24]Checking ChemG:  69%|██████████████████████████▏           | 11/16 [33:51<15:24]Checking ChemG:  75%|████████████████████████████▌         | 12/16 [36:56<12:19]Checking ChemVerbotsV:  75%|███████████████████████▎       | 12/16 [36:56<12:19]Checking ChemVerbotsV:  81%|█████████████████████████▏     | 13/16 [40:00<09:14]Checking AwSV:  81%|███████████████████████████████▋       | 13/16 [40:00<09:14]Checking AwSV:  88%|██████████████████████████████████▏    | 14/16 [43:05<06:09]Checking ProdSG:  88%|████████████████████████████████▍    | 14/16 [43:05<06:09]Checking ProdSG:  94%|██████████████████████████████████▋  | 15/16 [46:10<03:04]Checking SGB VII:  94%|█████████████████████████████████▊  | 15/16 [46:10<03:04]Checking SGB VII: 100%|████████████████████████████████████| 16/16 [49:15<00:00]Checking SGB VII: 100%|████████████████████████████████████| 16/16 [49:15<00:00]
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/arbschg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/arbschg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/arbschg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/arbschg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/asig/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/asig/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/asig/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/asig/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/arbzg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/arbzg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/arbzg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/arbzg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/muschg_2018/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/muschg_2018/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/muschg_2018/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/muschg_2018/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/jarbschg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/jarbschg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/jarbschg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/jarbschg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/arbst_ttv_2004/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/arbst_ttv_2004/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/arbst_ttv_2004/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/arbst_ttv_2004/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/betrsichv_2015/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/betrsichv_2015/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/betrsichv_2015/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/betrsichv_2015/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/gefstoffv_2010/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/gefstoffv_2010/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/gefstoffv_2010/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/gefstoffv_2010/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/psa-bv/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/psa-bv/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/psa-bv/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/psa-bv/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/gefahrgutg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/gefahrgutg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/gefahrgutg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/gefahrgutg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/ggvseb/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/ggvseb/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/ggvseb/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/ggvseb/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/chemg/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/chemg/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/chemg/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/chemg/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/chemverbotsv_2017/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/chemverbotsv_2017/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/chemverbotsv_2017/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/chemverbotsv_2017/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/awsv/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/awsv/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/awsv/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/awsv/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/prodsg_2021/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/prodsg_2021/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/prodsg_2021/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/prodsg_2021/[0m
+[93m⚠ Timeout on attempt 1/3: https://www.gesetze-im-internet.de/sgb_7/[0m
+[93m⚠ Timeout on attempt 2/3: https://www.gesetze-im-internet.de/sgb_7/[0m
+[93m⚠ Timeout on attempt 3/3: https://www.gesetze-im-internet.de/sgb_7/[0m
+[91m✗ Failed to fetch after 3 attempts: https://www.gesetze-im-internet.de/sgb_7/[0m
 [96mℹ Changelog saved to /home/runner/work/safety-compliance/safety-compliance/eu_safety_laws/update_changelog.json[0m
 
-[92mNEW laws (not in database):[0m
-  + PSA-BV (3 sections)
-  + GGBefG (18 sections)
-  + GGVSEB (48 sections)
-  + ChemG (69 sections)
-  + ChemVerbotsV (14 sections)
-  + AwSV (73 sections)
-  + ProdSG (30 sections)
-  + SGB VII (251 sections)
 
-[93mUPDATED laws (content changed):[0m
-  ~ MuSchG (hash: 896d5275 -> a1174a21, last scraped: 2026-01-10)
-  ~ GefStoffV (hash: 68879a34 -> bcd4d7cd, last scraped: 2026-01-10)
-
-[2mUNCHANGED laws:[0m
-  = ArbSchG (hash: f8a22a20)
-  = ASiG (hash: fb0dee55)
-  = ArbZG (hash: c46393c8)
-  = JArbSchG (hash: 7fdd26f6)
-  = ArbStättV (hash: 638d9a68)
-  = BetrSichV (hash: 8e37b384)
-
-[96mSummary: 10/16 laws need updating[0m
-
-[2mRun 'python law_manager.py scrape --country DE --check-updates' to update only changed laws[0m
+[96mSummary: 0/0 laws need updating[0m
 
 [94m============================================================[0m
 [94m[1m                  Checking NL for Updates                   [0m
 [94m============================================================[0m
 
 [96mℹ Checking 11 NL laws for updates...[0m
-  Checking NL:   0%|                                            | 0/11 [00:00<?]Checking Arbowet:   0%|                                         | 0/11 [00:00<?]Checking Arbowet:   9%|███▎                                 | 1/11 [00:01<00:18]Checking Arbobesluit:   9%|███                              | 1/11 [00:01<00:18]Checking Arbobesluit:  18%|██████                           | 2/11 [00:06<00:30]Checking Arboregeling:  18%|█████▊                          | 2/11 [00:06<00:30]Checking Arboregeling:  27%|████████▋                       | 3/11 [00:10<00:28]Checking Arbeidstijdenwet:  27%|███████▋                    | 3/11 [00:10<00:28]Checking Arbeidstijdenwet:  36%|██████████▏                 | 4/11 [00:11<00:19]Checking ATB:  36%|██████████████▉                          | 4/11 [00:11<00:19]Checking ATB:  45%|██████████████████▋                      | 5/11 [00:13<00:14]Checking Wvgs:  45%|██████████████████▏                     | 5/11 [00:13<00:14]Checking Wvgs:  55%|█████████████████████▊                  | 6/11 [00:14<00:10]Checking Bvgs:  55%|█████████████████████▊                  | 6/11 [00:14<00:10]Checking Bvgs:  64%|█████████████████████████▍              | 7/11 [00:15<00:06]Checking Bbl:  64%|██████████████████████████               | 7/11 [00:15<00:06]Checking Bbl:  73%|█████████████████████████████▊           | 8/11 [00:25<00:12]Checking Omgevingswet:  73%|███████████████████████▎        | 8/11 [00:25<00:12]Checking Omgevingswet:  82%|██████████████████████████▏     | 9/11 [00:31<00:09]Checking Wvr:  82%|█████████████████████████████████▌       | 9/11 [00:31<00:09]Checking Wvr:  91%|████████████████████████████████████▎   | 10/11 [00:33<00:03]Checking Warenwetbesluit PBM 2018:  91%|█████████████████▎ | 10/11 [00:33<00:03]Checking Warenwetbesluit PBM 2018: 100%|███████████████████| 11/11 [00:34<00:00]Checking Warenwetbesluit PBM 2018: 100%|███████████████████| 11/11 [00:34<00:00]
+  Checking NL:   0%|                                            | 0/11 [00:00<?]Checking Arbowet:   0%|                                         | 0/11 [00:00<?]Checking Arbowet:   9%|███▎                                 | 1/11 [00:01<00:16]Checking Arbobesluit:   9%|███                              | 1/11 [00:01<00:16]Checking Arbobesluit:  18%|██████                           | 2/11 [00:06<00:31]Checking Arboregeling:  18%|█████▊                          | 2/11 [00:06<00:31]Checking Arboregeling:  27%|████████▋                       | 3/11 [00:09<00:27]Checking Arbeidstijdenwet:  27%|███████▋                    | 3/11 [00:09<00:27]Checking Arbeidstijdenwet:  36%|██████████▏                 | 4/11 [00:11<00:19]Checking ATB:  36%|██████████████▉                          | 4/11 [00:11<00:19]Checking ATB:  45%|██████████████████▋                      | 5/11 [00:13<00:14]Checking Wvgs:  45%|██████████████████▏                     | 5/11 [00:13<00:14]Checking Wvgs:  55%|█████████████████████▊                  | 6/11 [00:14<00:10]Checking Bvgs:  55%|█████████████████████▊                  | 6/11 [00:14<00:10]Checking Bvgs:  64%|█████████████████████████▍              | 7/11 [00:16<00:07]Checking Bbl:  64%|██████████████████████████               | 7/11 [00:16<00:07]Checking Bbl:  73%|█████████████████████████████▊           | 8/11 [00:25<00:12]Checking Omgevingswet:  73%|███████████████████████▎        | 8/11 [00:25<00:12]Checking Omgevingswet:  82%|██████████████████████████▏     | 9/11 [00:30<00:09]Checking Wvr:  82%|█████████████████████████████████▌       | 9/11 [00:30<00:09]Checking Wvr:  91%|████████████████████████████████████▎   | 10/11 [00:32<00:03]Checking Warenwetbesluit PBM 2018:  91%|█████████████████▎ | 10/11 [00:32<00:03]Checking Warenwetbesluit PBM 2018: 100%|███████████████████| 11/11 [00:33<00:00]Checking Warenwetbesluit PBM 2018: 100%|███████████████████| 11/11 [00:33<00:00]
 [96mℹ Changelog saved to /home/runner/work/safety-compliance/safety-compliance/eu_safety_laws/update_changelog.json[0m
 
 [92mNEW laws (not in database):[0m
