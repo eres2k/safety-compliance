@@ -433,7 +433,7 @@ export function UpdateChangesModal({ isOpen, onClose, onViewLaw }) {
         <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-whs-dark-700 flex items-center justify-between">
           <p className="text-xs text-gray-500 dark:text-gray-400">
             {changes?.generated_at && (
-              <>Generated: {new Date(changes.generated_at).toLocaleString()}</>
+              <>Last checked: {new Date(changes.generated_at).toLocaleString()}</>
             )}
           </p>
           <button

@@ -53,7 +53,8 @@ jobs:
           python law_manager.py check-updates --all > update_check.txt 2>&1 || true
 
           # Parse output to determine if updates exist
-          if grep -q "has changes" update_check.txt || grep -q "needs update" update_check.txt; then
+          # Python script outputs "need updating" for changed laws and "NEW laws" for new ones
+          if grep -q "need updating" update_check.txt || grep -q "NEW laws" update_check.txt; then
             echo "updates_available=true" >> $GITHUB_OUTPUT
             echo "Updates found:"
             cat update_check.txt
@@ -120,15 +121,15 @@ jobs:
 
           echo "Schema migration, mobile database, and changelog generation complete"
 
-      - name: Update statistics timestamp
+      - name: Update statistics and changelog timestamps
         if: github.event.inputs.check_only != 'true'
         run: |
-          # Always update the generated_at timestamp in statistics.json after a successful check
+          # Always update generated_at timestamps after a successful check
           # This ensures the website shows the correct "last checked" date even when no law content changed
+          NEW_DATE=$(date -u +'%Y-%m-%dT%H:%M:%S.000Z')
+
           STATS_FILE="eu_safety_laws/statistics.json"
           if [ -f "$STATS_FILE" ]; then
-            NEW_DATE=$(date -u +'%Y-%m-%dT%H:%M:%S.000Z')
-            # Use node for reliable JSON manipulation
             node -e "
               const fs = require('fs');
               const stats = JSON.parse(fs.readFileSync('$STATS_FILE', 'utf8'));
@@ -136,6 +137,17 @@ jobs:
               fs.writeFileSync('$STATS_FILE', JSON.stringify(stats, null, 2) + '\n');
             "
             echo "Updated statistics.json generated_at to $NEW_DATE"
+          fi
+
+          CHANGES_FILE="eu_safety_laws/law_changes.json"
+          if [ -f "$CHANGES_FILE" ]; then
+            node -e "
+              const fs = require('fs');
+              const changes = JSON.parse(fs.readFileSync('$CHANGES_FILE', 'utf8'));
+              changes.generated_at = '$NEW_DATE';
+              fs.writeFileSync('$CHANGES_FILE', JSON.stringify(changes, null, 2) + '\n');
+            "
+            echo "Updated law_changes.json generated_at to $NEW_DATE"
           fi
 
       - name: Check for changes
